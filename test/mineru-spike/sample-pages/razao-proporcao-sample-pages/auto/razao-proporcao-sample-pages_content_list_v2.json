@@ -1,0 +1,2939 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Exemplo"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                65,
+                147,
+                149,
+                165
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A raz˜ao entre as idades das irm˜as Beatriz e Fernanda "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textup { \\ ' } _ { 3 } ^ { 2 } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "Isso significa que, para cada 2 anos de Beatriz, Fernanda tem 3 anos. Ent˜ao, por exemplo, se Beatriz tiver 6 anos, logo Fernanda ter´a 9 anos."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                180,
+                860,
+                241
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Importante! Quando se trata de raz˜ao, ´e muito importante a ordem em que as informa¸c˜oes aparecem. Como assim? No exemplo anterior, em que a raz˜ao entre as idades das irm˜as Beatriz e Fernanda "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { ~ \\acute ~ { ~ e ~ } ~ } _ { 3 } ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", dissemos que Beatriz tem 2 e Fernanda tem 3 anos. Mas se diss´essemos a raz˜ao entre as idades de Fernanda e Beatriz, ent˜ao ter´ıamos a raz˜ao inversa "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 3 } { 2 }"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                288,
+                885,
+                379
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Existem in´umeras aplica¸c˜oes de raz˜ao e, a seguir, vamos exemplificar algumas importantes, como a escala, a densidade demogr´afica, velocidade m´edia e vaz˜ao."
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                392,
+                884,
+                429
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Escala: ´e a raz˜ao entre a dimens˜ao do desenho "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( d )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "e a dimens˜ao real do objeto por ele representado (r). E comumente utilizado em mapas para representar distˆancias. Assim, podemos<sup>´</sup> escrever:"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                443,
+                885,
+                495
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "E = { \\frac { d } { r } }",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/c4c34f301b709393e425e871e8aacaf1c00a24c5fe9a866169efcb4e43bf3eba.jpg"
+                }
+            },
+            "bbox": [
+                442,
+                516,
+                510,
+                552
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Exemplo"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                65,
+                599,
+                149,
+                615
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Quando vemos, por exemplo, uma miniatura que foi fabricada com uma escala de 1 : 200, isso quer dizer que a cada 1 cm da miniatura corresponde a 200 cm ou 2 m do objeto real. Ent˜ao, suponhamos que a miniatura possua "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "7"
+                    },
+                    {
+                        "type": "text",
+                        "content": "cm de comprimento, ent˜ao o objeto ter´a 1400 cm ou 14 m de comprimento real."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                625,
+                860,
+                696
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Densidade Demogr´afica: tamb´em chamada de densidade populacional, ´e a raz˜ao entre o n´umero de habitantes ou popula¸c˜ao (h) e a superf´ıcie do territ´orio por eles habitada (a). Assim, podemos escrever:"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                728,
+                884,
+                782
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "D d = { \\frac { h } { a } }",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/b8124a5babc9d38256d790478d886731b675d5f19cb8cd0fb3dd7892fc8df827.jpg"
+                }
+            },
+            "bbox": [
+                438,
+                804,
+                515,
+                841
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                27,
+                462,
+                83
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                589,
+                33,
+                885,
+                86
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "4"
+                    }
+                ]
+            },
+            "bbox": [
+                470,
+                913,
+                484,
+                926
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Exemplo"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                65,
+                147,
+                149,
+                165
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Uma torneira sozinha enche um tanque em 6 horas enquanto outra torneira, tamb´em sozinha, enche o mesmo tanque em 30 horas. Em quanto tempo as duas torneiras juntas enchem o tanque? (Tente fazer primeiro antes de ler a solu¸c˜ao desse problema.)"
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                174,
+                860,
+                229
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Solu¸c˜ao:"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                94,
+                239,
+                196,
+                262
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Uma forma de resolver esse problema ´e usando o conceito de Vaz˜ao."
+                    }
+                ]
+            },
+            "bbox": [
+                122,
+                277,
+                726,
+                297
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Seja t nossa inc´ognita, ou seja, o tempo necess´ario para que as duas torneira, juntas, encham o tangue."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                311,
+                858,
+                348
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Vamos chamar de "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { 1 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "a vaz˜ao da primeira torneira e "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "a vaz˜ao da segunda. Suponha que volume do tangue seja igual a c."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                363,
+                860,
+                400
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Portanto, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { 1 } = \\frac { c } { 6 } \\mathrm { ~ e ~ } V _ { 2 } = \\frac { c } { 3 0 } ."
+                    }
+                ]
+            },
+            "bbox": [
+                124,
+                409,
+                378,
+                442
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Podemos imaginar que as duas torneiras juntas formem uma s´o quando acionadas simultaneamente para encher o tanque e a vaz˜ao dessa ´unica torneira pode ser calculada de duas formas:"
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                449,
+                860,
+                502
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• somando as duas vaz˜oes;"
+                    }
+                ]
+            },
+            "bbox": [
+                122,
+                512,
+                364,
+                532
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "dividindo o volume do tanque pelo tempo que as duas torneiras, juntas, levam para encher o tanque."
+                    }
+                ]
+            },
+            "bbox": [
+                122,
+                558,
+                860,
+                595
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Igualando as duas formas, temos:"
+                    }
+                ]
+            },
+            "bbox": [
+                124,
+                605,
+                418,
+                624
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "{ \\frac { \\not e } { 6 } } + { \\frac { \\not e } { 3 0 } } = { \\frac { \\not e } { t } } ( \\mathrm { D i v i d i m o s ~ p o r ~ } c \\not = 0 )",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/58ca3607de9fb54496ae2879f9ceec003128c1e08295a9e155d246ea386c4d8d.jpg"
+                }
+            },
+            "bbox": [
+                247,
+                648,
+                573,
+                682
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "{ \\frac { 1 } { 6 } } + { \\frac { 1 } { 3 0 } } = { \\frac { 1 } { t } } ( { \\mathrm { N o t e ~ q u e ~ o ~ M M C ~ e n t r e ~ 6 ~ e ~ 3 0 ~ } } \\in 3 0 . )",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/e1cf6b756932564b9f2688b785bfc7c5113010c1caa4be15fd05ccddd6e80a0d.jpg"
+                }
+            },
+            "bbox": [
+                247,
+                681,
+                705,
+                714
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "{ \\frac { 5 + 1 } { 3 0 } } \\ = \\ { \\frac { 1 } { t } }",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/2b8fb745608ee94bca8a6c89c43fef0721abe55e461a1a5b38ccdf29ac17307a.jpg"
+                }
+            },
+            "bbox": [
+                263,
+                714,
+                379,
+                749
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "{ \\frac { 6 } { 3 0 } } = { \\frac { 1 } { t } }",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/4fff668fe1a9e6d49d53dacb3e43ea57b473ccc062d5d7dd6e7c069f1085ad8c.jpg"
+                }
+            },
+            "bbox": [
+                287,
+                749,
+                381,
+                782
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "6 t \\ = \\ 3 0",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/45193c6234c97978c340e1f43f8c7dc5c14ad30b0850189ed5c6518a813aea2b.jpg"
+                }
+            },
+            "bbox": [
+                289,
+                780,
+                388,
+                797
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "t \\ = \\ = 5",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/2651da861a8445544910597d4f3b7248c8655ce4fad03557bfa16e839ea40560.jpg"
+                }
+            },
+            "bbox": [
+                299,
+                800,
+                398,
+                819
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Portanto, as duas torneiras, juntas, enchem o tanque em 5 horas. Concorda com a resposta? Pense um pouco."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                831,
+                862,
+                868
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                27,
+                462,
+                84
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                588,
+                33,
+                887,
+                86
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "7"
+                    }
+                ]
+            },
+            "bbox": [
+                470,
+                913,
+                485,
+                926
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "0.1.3.1 Exerc´ıcios de fixa¸c˜ao"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                67,
+                148,
+                368,
+                166
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. Determine a raz˜ao entre os n´umeros: a) 12 e 48 b) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "6 0 \\textrm { e } 2 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "c) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^ \\textrm { \\scriptsize 5 e 2 , 2 5 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "d) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^ { 1 , 5 \\textrm { e 3 } , 5 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "e) 5 e <sup>1</sup><sub>2</sub> f) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1 2 5 \\mathrm { ~ e ~ } 3 5"
+                    },
+                    {
+                        "type": "text",
+                        "content": "g) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 \\frac { 1 } { 2 } \\textrm { e } 3 \\frac { 2 } { 3 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "h) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { \\sqrt { 2 } } { 2 } \\textrm { e } \\frac { \\sqrt { 6 } } { 3 }"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                173,
+                773,
+                278
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. Verifique se a raz˜ao "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 1 4 } { 3 5 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "´e igual `a raz˜ao "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 2 0 } { 1 0 0 }"
+                    }
+                ]
+            },
+            "bbox": [
+                95,
+                290,
+                504,
+                326
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3. Um produto que custa R$ 24,00 para ser fabricado ´e vendido por R$ 38,00. Determine a raz˜ao entre:"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                334,
+                884,
+                369
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "a) o pre¸co de venda e o pre¸co de custo."
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                386,
+                411,
+                404
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "b) o lucro e o pre¸co de venda."
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                419,
+                331,
+                438
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "4. Determine o valor da inc´ognita x em cada uma das propor¸c˜oes a seguir: a) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\frac { x + 1 } { x } } = { \\frac { 2 } { 3 } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "b) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\frac { 3 x - 1 } { 4 } } = { \\frac { 2 } { 5 } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "c) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\frac { x - 4 } { 6 } } = { \\frac { 2 x - 3 } { 5 } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "d) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\frac { 5 5 - x } { 6 } } = { \\frac { 3 } { 4 } }"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                455,
+                821,
+                519
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "5. Uma loja vendeu "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 2 } { 5 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "de uma pe¸ca de tecido e depois "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 5 } { 1 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do restante. O que sobrou foi vendido por R$ 1.400,00. Sabendo-se que o tecido foi vendido a R$ 5,00 o metro, o comprimento inicial da pe¸ca era de: a) 200m b) 400m c) 800m d) 1.200m e) 1.600m"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                521,
+                885,
+                621
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "6. Um estudante gastou "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 1 } { 7 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do seu sal´ario com alimenta¸c˜ao. "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 5 } { 6 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do que sobrou com educa¸c˜ao e outras despesas. Restaram, ainda, R$ 286, 34. O seu sal´ario ´e de: a) R$ 3.006,20 b) R$ 4.004,16 c) R$ 2.004,38 d) R$ 1.736,40 e) R$ 2.134,29"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                629,
+                885,
+                714
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "7. (UERJ 2017) Um anel cont´em 15 gramas de ouro 16 quilates. Isso significa que o anel cont´em 10 g de ouro puro e 5 g de uma liga met´alica. Sabe-se que o ouro ´e considerado 18 quilates se h´a a propor¸c˜ao de 3 g de ouro puro para 1 g de liga met´alica. Para transformar esse anel de ouro 16 quilates em outro de 18 quilates, ´e preciso acrescentar a seguinte quantidade, em gramas, de ouro puro: a) 6 b) 5 c) 4 d) 3"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                730,
+                885,
+                852
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                28,
+                460,
+                83
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                589,
+                33,
+                885,
+                85
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "18"
+                    }
+                ]
+            },
+            "bbox": [
+                465,
+                912,
+                489,
+                926
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "14. (ENEM 2017) A mensagem digitada no celular, enquanto vocˆe dirige, tira a sua aten¸c˜ao e, por isso, deve ser evitada. Pesquisas mostram que um motorista que dirige um carro a uma velocidade constante percorre “`as cegas” (isto ´e, sem ter vis˜ao da pista) uma distˆancia proporcional ao tempo gasto a olhar para o celular durante a digita¸c˜ao da mensagem. Considere que isso de fato aconte¸ca. Suponha que dois motoristas X e Y dirigem com a mesma velocidade constante e digitam a mesma mensagem em seus celulares. Suponha, ainda, que o tempo gasto pelo motorista X olhando para seu celular enquanto digita a mensagem corresponde a 25% do tempo gasto pelo motorista Y para executar a mesma tarefa."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                148,
+                887,
+                287
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Dispon´ıvel em: http://g1.globo.com. Acesso em: 21 jul. 2012 (adaptado)."
+                    }
+                ]
+            },
+            "bbox": [
+                416,
+                311,
+                882,
+                326
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A raz˜ao entre as distˆancias percorridas `as cegas por "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "X \\mathrm { ~ e ~ } Y"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", nessa ordem, ´e igual a a) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 5 } { 4 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "b) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac 1 4"
+                    },
+                    {
+                        "type": "text",
+                        "content": "c) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac 4 3"
+                    },
+                    {
+                        "type": "text",
+                        "content": "d) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 4 } { 1 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "e) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac 3 4"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                337,
+                816,
+                401
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "15. (ENEM 2011) Sabe-se que a distˆancia real, em linha reta, de uma cidade A, localizada no estado de S˜ao Paulo, a uma cidade B, localizada no estado de Alagoas, ´e igual a 2000 km. Um estudante, ao analisar um mapa, verificou com sua r´egua que a distˆancia entre essas duas cidades, A e B, era 8 cm. Os dados nos indicam que o mapa observado pelo estudante est´a na escala de: a) 1 : 250 b) 1 : 2 500 c) 1 : 25 000 d) 1 : 250 000 e) 1 : 25 000 000"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                407,
+                885,
+                531
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "16. (ENEM 2012) O esporte de alta competi¸c˜ao da atualidade produziu uma quest˜ao ainda sem resposta: Qual ´e o limite do corpo humano? O maratonista original, o grego da lenda, morreu de fadiga por ter corrido 42 quilˆometros. O americano Dean Karnazes, cruzando sozinho as plan´ıcies da Calif´ornia, conseguiu correr dez vezes mais em 75 horas."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                546,
+                885,
+                617
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Um professor de Educa¸c˜ao F´ısica, ao discutir com a turma o texto sobre a capacidade do maratonista americano, desenhou na lousa uma pista reta de 60 cent´ımetros, que representaria o percurso referido."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                632,
+                885,
+                684
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Dispon´ıvel em: http://veja.abril.com.br. Acesso em: 25 jun. 2011 (adaptado)."
+                    }
+                ]
+            },
+            "bbox": [
+                391,
+                697,
+                882,
+                713
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Se o percurso de Dean Karnazes fosse tamb´em em uma pista reta, qual seria a escala entre a pista feita pelo professor e percorrida pelo atleta? a) 1:700 b) 1:7.000 c) 1:70.000 d) 1:700.000 e) 1:7.000.000"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                724,
+                885,
+                795
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                28,
+                460,
+                83
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                589,
+                33,
+                885,
+                85
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "21"
+                    }
+                ]
+            },
+            "bbox": [
+                465,
+                912,
+                487,
+                926
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Exemplo"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                63,
+                147,
+                151,
+                165
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/9e9279620d12ec678a45c3713e046ef634949cbe47c4998c6bb45794d410f2d0.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Vamos tomar um exemplo tradicional, que ´e o tempo (t) que se gasta em determinado percurso levando-se em conta a velocidade m´edia "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left( k m / h \\right)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do ve´ıculo."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>Velocidade  $\\overline { { \\left( \\mathrm { k m / h } \\right) } }$ </td><td>40</td><td>50</td><td>.</td><td>80</td><td>100</td><td>120</td></tr><tr><td>Tempo (hora)</td><td>10</td><td>8</td><td>..</td><td>5</td><td>4</td><td>?</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                255,
+                223,
+                697,
+                262
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Note que quando a velocidade m´edia ´e de 40 km/h, o tempo gasto em viagem ´e de 10 h. Se o condutor aumenta a velocidade, fazendo com que a velocidade m´edia atinja 80 km/h, ou seja, dobre, o tempo de viagem reduz para 4h, isto "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\acute { \\mathrm { e } } ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "metade. Se compararmos com o triplo da velocidade m´edia, o tempo reduz a ter¸ca parte, assim por diante, sempre na propor¸c˜ao inversa. E aqui vemos, mais um vez, o significado de propor¸c˜oes, onde velocidade e tempo se relacionam de maneira inversa."
+                    }
+                ]
+            },
+            "bbox": [
+                90,
+                275,
+                862,
+                381
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Se vocˆe foi um bom observador viu que na tabela n˜ao temos o tempo de viagem para uma velocidade m´edia de 120 km/h. Mas, pelo que vimos, 120 km/h ´e o triplo de 40 km/h, como a propor¸c˜ao ´e inversa, o tempo gasto dever´a ser a ter¸ca parte de 10h. Temos:"
+                    }
+                ]
+            },
+            "bbox": [
+                90,
+                395,
+                862,
+                450
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "{ \\frac { 1 0 h } { 3 } } = { \\frac { 1 0 \\cdot 6 0 ~ m i n } { 3 } } = { \\frac { 6 0 0 ~ m i n } { 3 } } = 2 0 0 ~ m i n = 3 h 2 0 ~ m i n",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/f343c11a13994f71ed1d0d22c63355ce5125bca08fce56451c54b6783547415b.jpg"
+                }
+            },
+            "bbox": [
+                238,
+                456,
+                717,
+                493
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Observa¸c˜ao: Poder´ıamos sim, ter dividido a fra¸c˜ao inicial, mas ter´ıamos uma d´ızima peri´odica como resposta ou ter´ıamos que fazer uma aproxima¸c˜ao. Veja: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\frac { 1 0 } { 3 } = 3 , \\dot { 3 } 3 . . . \\approx 3 , 3 \\mathrm { h } ."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                498,
+                862,
+                565
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Cuidado! 0,3h n˜ao s˜ao 3 minutos ou 30 minutos. Note que, se compararmos com o c´alculo realizado acima, 0,33...h = 20min. Que tal um videozinho sobre isso? Clique aqui e veja como fazer convers˜ao de unidades de tempo."
+                    }
+                ]
+            },
+            "bbox": [
+                90,
+                573,
+                862,
+                627
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Temos que a velocidade m´edia (y) para percorrer k quilˆometros em determinado tempo (x) ´e: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "y = { \\frac { k } { x } } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "Assim, nessa rela¸c˜ao, aumentando o tempo, por exemplo, a velocidade diminui e vice-versa, sempre na constante de proporcionalidade k. Podemos escrever:"
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                640,
+                862,
+                707
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "y = { \\frac { k } { x } } \\quad { \\mathrm { ~ o u ~ } } \\quad y \\cdot x = k",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/34063b872bf33fb130ae01852ea6bf104367cd90f5bc70ac3cbf7da17f99edb8.jpg"
+                }
+            },
+            "bbox": [
+                369,
+                713,
+                584,
+                750
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Observa¸c˜ao: Vocˆe pode verificar ainda que se multiplicarmos os n´umeros das colunas na tabela, sempre teremos a mesma constante."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                753,
+                858,
+                791
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "E importante destacar que nem sempre duas grandezas s˜ao diretamente ou inversamente <sup>´</sup> proporcionais. Tomemos, como exemplo, o caso da rela¸c˜ao entre o lado de um quadrado e sua ´area. A figura, a seguir, mostra claramente que, se dobrarmos o lado do quadrado, sua ´area n˜ao fica multiplicada por 2 e sim, quadruplicada. N˜ao sendo, portanto, grandezas proporcionais."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                824,
+                887,
+                895
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                70,
+                14,
+                462,
+                84
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                588,
+                33,
+                887,
+                86
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "26"
+                    }
+                ]
+            },
+            "bbox": [
+                465,
+                912,
+                489,
+                927
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/f91df5cdcfe28b99e315261bcd6ab5ac4b7f745b7b3fd47c774d7a7a53dd190d.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                312,
+                146,
+                647,
+                272
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "N˜ao h´a propor¸c˜ao entre lado e ´area de um quadrado. Observe a tabela a seguir:"
+                    }
+                ]
+            },
+            "bbox": [
+                75,
+                297,
+                773,
+                316
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/af40796a987e8415349e2addcaf61a1dc4ffef71bb7aa725b793daa75439fc27.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=1 colspan=1>Lado</td><td rowspan=1 colspan=1>1</td><td rowspan=1 colspan=1>2</td><td rowspan=1 colspan=1>3</td><td rowspan=1 colspan=1>4</td><td rowspan=1 colspan=1>.</td></tr><tr><td rowspan=1 colspan=1>Área</td><td rowspan=1 colspan=1>1</td><td rowspan=1 colspan=1>4</td><td rowspan=1 colspan=1>9</td><td rowspan=1 colspan=1>16</td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>Razão entre Lado e Área</td><td rowspan=1 colspan=1>1</td><td rowspan=1 colspan=1>1-2</td><td rowspan=1 colspan=1>1-3</td><td rowspan=1 colspan=1>1-4</td><td rowspan=1 colspan=1></td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                273,
+                336,
+                680,
+                398
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Quando estudamos grandezas proporcionais, em muitos casos, recorremos a simplifica¸c˜oes para entender os conceitos envolvidos no conte´udo. Nos exemplos a seguir, vamos pensar mais um pouco sobre isso e ver alguns casos de quando isso acontece."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                404,
+                885,
+                457
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Vamos pensar mais um pouco..."
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                63,
+                474,
+                364,
+                491
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Por exemplo, podemos supor que o gasto de energia el´etrica e o valor a ser pago s˜ao diretamente proporcionais, uma vez que dobrando o consumo de energia, teremos de pagar o dobro do pre¸co. Mas, se trouxermos o exemplo para a realidade, faz sentido pensarmos nas bandeiras de consumo (verde, amarela e vermelha) e nas tarifas por faixa de consumo que podem modificar, de um mˆes para o outro, e alteram o valor do kW, podendo fazer com que as grandezas deixem de ser proporcionais."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                500,
+                702,
+                639
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/2923a05edf6f3984c5fc748adc6eaa2d639768aff6b0a2327a0dcfa7538bcae9.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                727,
+                521,
+                838,
+                608
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Vamos pensar agora em uma outra situa¸c˜ao. Se vocˆe compra 1 caixa de leite no mercado, dever´a pagar o pre¸co x, se compra 3 caixas, pagar´a 3x. Nesse racioc´ınio, dizemos que as grandezas s˜ao diretamente proporcionais. Mas, vamos supor que vocˆe precise de um n´umero elevado de caixas de leite, ´e sensato supor que vocˆe poder´a negociar um desconto com o gerente e, assim, as grandezas deixariam de ser proporcionais."
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                655,
+                862,
+                744
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Outa situa¸c˜ao ´e: se vocˆe tem uma determinada quantidade de oper´arios trabalhando em uma obra, o servi¸co terminar´a em x dias. Mas, se vocˆe tem urgˆencia e contrata o dobro de oper´arios, somos levados a pensar que a obra terminar´a na metade do tempo, o que n˜ao necessariamente acontece de fato, pois simplificamos o problema afirmando que todas as pessoas trabalhariam com o mesmo empenho. O mais curioso ´e que, se vocˆe possui um grande poder de contrata¸c˜ao, nos levaria a crer que a obra possa ser terminada em um tempo bastante pequeno, digamos at´e, imposs´ıvel. Interessante, n˜ao ´e?"
+                    }
+                ]
+            },
+            "bbox": [
+                90,
+                757,
+                862,
+                881
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                28,
+                462,
+                83
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                589,
+                33,
+                887,
+                86
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "27"
+                    }
+                ]
+            },
+            "bbox": [
+                465,
+                912,
+                489,
+                926
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "0.2.4 Divis˜ao Proporcional"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                67,
+                146,
+                408,
+                166
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Defini¸c˜ao 5 Se quisermos dividir um n´umero N em partes diretamente proporcionais aos n´umeros "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a , b , e c ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "significa determinar os n´umeros x, y, e z, de tal modo que:"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                174,
+                887,
+                210
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(I) as sequˆencias "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left( x , y , z \\right) \\textrm { } e \\left( a , b , c \\right)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "sejam diretamente proporcionais;"
+                    }
+                ]
+            },
+            "bbox": [
+                97,
+                225,
+                697,
+                244
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(II) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "x + y + z = N"
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                260,
+                268,
+                278
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Pela "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "3 ^ { \\mathrm { a } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "propriedade das propor¸c˜oes, temos, ent˜ao:"
+                    }
+                ]
+            },
+            "bbox": [
+                95,
+                310,
+                534,
+                328
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "{ \\frac { x } { y } } = { \\frac { y } { b } } = { \\frac { z } { c } } = { \\frac { x + y + z } { a + b + c } } = { \\frac { N } { a + b + c } }",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/fdf471de08b0cee62febbb1e4782d4df925587905d4d7d503583f831862ad5cb.jpg"
+                }
+            },
+            "bbox": [
+                314,
+                348,
+                640,
+                385
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Defini¸c˜ao 6 Se quisermos dividir um n´umero N em partes inversamente proporcionais, aos n´umeros "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a , b , e c ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "significa determinar os n´umeros "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "x , y , e z ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", de tal modo que:"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                407,
+                884,
+                443
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(I) as sequˆencias "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left( x , y , z \\right) \\textrm { } e \\left( a , b , c \\right)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "sejam inversamente proporcionais;"
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                460,
+                709,
+                478
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "( I I ) \\ : x + y + z = N",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/4c6b4b1988d73391e45e08b2b4abbf0b6235346014c3989de19d917443700c25.jpg"
+                }
+            },
+            "bbox": [
+                99,
+                493,
+                267,
+                512
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Assim, tamb´em pela "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "3 ^ { \\mathrm { a } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "propriedade das propor¸c˜oes, temos, ent˜ao:"
+                    }
+                ]
+            },
+            "bbox": [
+                68,
+                543,
+                643,
+                562
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "a x = b y = c z = { \\frac { x } { \\frac { 1 } { a } } } = { \\frac { y } { \\frac { 1 } { b } } } = { \\frac { z } { \\frac { 1 } { c } } } = { \\frac { x + y + z } { { \\frac { 1 } { a } } + { \\frac { 1 } { b } } + { \\frac { 1 } { c } } } } = { \\frac { N } { { \\frac { 1 } { a } } + { \\frac { 1 } { b } } + { \\frac { 1 } { c } } } }",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/51e826a3cc1b5d033a2031dd0b8e9a91e2f9400e3923da2f698a6294fafabca0.jpg"
+                }
+            },
+            "bbox": [
+                238,
+                581,
+                710,
+                623
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Exemplos"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                65,
+                665,
+                157,
+                682
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. Jo˜ao ganhou 120 bombons em uma rifa e quer distribu´ı-los em partes diretamente proporcionais `as idades de seus filhos, que s˜ao 3, 4 e 5 anos. Cada filho ganhar´a quantos bombons?"
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                692,
+                860,
+                743
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Solu¸c˜ao:"
+                    }
+                ]
+            },
+            "bbox": [
+                94,
+                756,
+                196,
+                778
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Vamos supor A, B, C para identificar os filhos. Queremos que: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left( A , B , C \\right) \\mathrm { ~ e ~ } ( 3 , 4 , 5 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "sejam diretamente proporcionais e que "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "A + B + C = 1 2 0 . { \\mathrm { ~ L o g o } }"
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                794,
+                858,
+                831
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "{ \\frac { A } { 3 } } = { \\frac { B } { 4 } } = { \\frac { C } { 5 } } = k",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/a54e085243268d14747f7111a6c07b813c9ceddbfa34d74cde94edeb2b949f36.jpg"
+                }
+            },
+            "bbox": [
+                400,
+                839,
+                556,
+                876
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                28,
+                462,
+                83
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                589,
+                33,
+                885,
+                85
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "28"
+                    }
+                ]
+            },
+            "bbox": [
+                465,
+                913,
+                489,
+                926
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Curiosidade"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                65,
+                147,
+                178,
+                164
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Vocˆe sabe quem foi Leonardo de Pisa?"
+                    }
+                ]
+            },
+            "bbox": [
+                124,
+                172,
+                485,
+                190
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "E a palavra Fibonacci? Lhe parece mais conhecida? Sim! E da-<sup>´</sup> quela famosa sequˆencia 1, 1, 2, 3, 5, 8, 13, 21, · · · Acontece que Leonardo de Pisa foi quem enunciou essa famosa sequˆencia e, por isso, tamb´em ´e conhecido por Leonardo Fibonacci. Mas porque estamos falando sobre isso? Acontece que Leonardo de Pisa fez muito mais do que enunciar a sequˆencia de Fibonacci. Foi ele quem difundiu os princ´ıpios do m´etodo de regra de trˆes, atrav´es do seu livro Liber Abaci (Livro dos C´alculos). Nesse livro h´a o seguinte problema:"
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                203,
+                675,
+                332
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Se um le˜ao come uma ovelha em 4 horas, um leopardo, em 5 horas e um urso, em 6 horas, quanto tempo levar˜ao para comˆe-la juntos?"
+                    }
+                ]
+            },
+            "bbox": [
+                92,
+                332,
+                675,
+                367
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Legal, n˜ao ´e mesmo?"
+                    }
+                ]
+            },
+            "bbox": [
+                94,
+                381,
+                268,
+                398
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/e2899d70fdf04d007f14637e65ebd50ff407276e0b9c500d5ab950c70f2ee15d.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                687,
+                321,
+                833,
+                413
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "0.3.2.1 Exerc´ıcios de Fixa¸c˜ao"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                67,
+                487,
+                374,
+                505
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "33. Duas piscinas tˆem a mesma largura e a mesma profundidade e comprimentos diferentes. Na piscina que tem 8 m de comprimento, a quantidade de ´agua que cabe na piscina ´e de 45000 litros. Quantos litros de ´agua cabem na piscina que tem 10 m de comprimento?"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                514,
+                885,
+                568
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "34. Para transportar material bruto para uma constru¸c˜ao, foram usados 16 caminh˜oes com capacidade de "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "5 ~ c m ^ { 3 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "cada um. Se a capacidade de cada caminh˜ao fosse de 4 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "c m ^ { 3 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", quantos caminh˜oes seriam necess´arios para fazer o mesmo servi¸co?"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                583,
+                885,
+                636
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "35. Numa f´abrica, 12 oper´arios trabalhando 8 horas por dia conseguem fazer 864 caixas de papel˜ao. Quantas caixas ser˜ao feitas por 15 oper´arios que trabalhem 10 horas por dia?"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                651,
+                885,
+                687
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "36. Vinte m´aquinas, trabalhando 16 horas por dia, levam 6 dias para fazer um trabalho. Quantas m´aquinas ser˜ao necess´arias para executar o mesmo servi¸co, se trabalharem 20 horas por dia durante 12 dias?"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                702,
+                885,
+                756
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "37. Trˆes torneiras enchem uma piscina em 10 horas. Quantas horas levar˜ao 10 torneiras para encher 2 piscinas?"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                771,
+                885,
+                807
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "38. (SM) Para construir um pr´edio em 12 meses, foram contratados 100 oper´arios. Por causa da urgˆencia do propriet´ario, ficou estabelecido que o prazo seria reduzido para 10 meses. Quantos oper´arios a construtora precisar´a contratar a mais para conseguir cumprir o prazo?"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                822,
+                887,
+                877
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                28,
+                462,
+                83
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                589,
+                33,
+                887,
+                86
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "40"
+                    }
+                ]
+            },
+            "bbox": [
+                465,
+                913,
+                490,
+                926
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "a) 17 b) 20 c) 83 d) 120 e) nenhum"
+                    }
+                ]
+            },
+            "bbox": [
+                68,
+                147,
+                500,
+                166
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "39. (SM) Em um ´unico dia, um trabalhador chega a cortar 10 toneladas de cana-de-a¸c´ucar. Sabendo que um hectare corresponde a 10000 m<sup>2</sup> e que, em m´edia, s˜ao produzidas cerca de 80 toneladas de cana-de-a¸c´ucar por hectare, a ´area que um trabalhador consegue cortar por dia corresponde a um retˆangulo de base e altura iguais, respectivamente, a:"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                216,
+                652,
+                321
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "a) 20 m e 40 m b) 35 m e 35 m c) 100 m e 40 m d) 25 m e 100 m e) 25 m e 50 m"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                335,
+                650,
+                370
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/488966338c7fcd01e865f5c8aa549cfe0ca26d409dfc741bd2f4de8f05e4f552.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                695,
+                219,
+                885,
+                353
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "40. (UFMG) No ano passado, uma equipe de 13 professores, com um ritmo de trabalho supostamente constante, corrigiu 3.000 provas em 6 dias. Este ano, o n´umero de provas aumentou para 5.500 e a equipe foi ampliada para 15 professores. Para se obter uma estimativa do n´umero n de dias necess´arios para totalizar a corre¸c˜ao, suponha que, durante todo o per´ıodo de corre¸c˜ao, o ritmo de trabalho da equipe deste ano ser´a o mesmo da equipe do ano passado. O n´umero n satisfaz a condi¸c˜ao: a) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n \\leq 8"
+                    },
+                    {
+                        "type": "text",
+                        "content": "b) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "8 < n \\leq 1 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "c) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1 0 < n \\le 1 2"
+                    },
+                    {
+                        "type": "text",
+                        "content": "d) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n > 1 2"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                387,
+                885,
+                527
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "41. (PUC-Campinas) Sabe-se que 5 m´aquinas, todas de igual eficiˆencia, s˜ao capazes de produzir 500 pe¸cas em 5 dias, se operarem 5 horas por dia. Se 10 m´aquinas iguais as primeiras operassem 10 horas por dia durante 10 dias, o n´umero de pe¸cas produzidas seria: a) 1000 b) 2000 c) 4000 d) 5000 e) 8000"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                542,
+                885,
+                631
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "42. (UFMG) Uma empresa tem 750 empregados e comprou marmitas individuais congeladas suficientes para o almo¸co deles durante 25 dias se essa empresa tivesse mais 500 empregados qual seria o n´umero de dias em que as marmitas iriam atender a esta demanda?"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                645,
+                885,
+                699
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "43. (UERJ) Na imagem da etiqueta, informa-se o valor a ser pago por 0,256 kg de peito de peru."
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                714,
+                884,
+                750
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/ecfaa86597e027f5cc2db619392086b1e854ea1d14dc33bdf1c579be333cd7d3.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                349,
+                764,
+                603,
+                863
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                28,
+                460,
+                83
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                589,
+                33,
+                885,
+                85
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "41"
+                    }
+                ]
+            },
+            "bbox": [
+                465,
+                913,
+                487,
+                926
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "tretanto, com o lan¸camento da nova cole¸c˜ao e de uma nova campanha de marketing, o n´umero de encomendas cresceu de forma acentuada, aumentando a demanda di´aria para 21600 camisetas. Buscando atender essa nova demanda, a empresa aumentou o quadro de funcion´arios para 96. Ainda assim, a carga hor´aria de trabalho necessita ser ajustada."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                149,
+                887,
+                218
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Qual deve ser a nova jornada de trabalho di´aria dos funcion´arios para que a empresa consiga atender a demanda?"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                234,
+                885,
+                268
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "a) 1 hora e 30 minutos b) 2 horas e 15 minutos c) 9 horas d) 16 horas e) 24 horas"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                285,
+                843,
+                303
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Em caso de d´uvidas, temos a resolu¸c˜ao para vocˆe no Canal N˜aoπra, clicando aqui."
+                    }
+                ]
+            },
+            "bbox": [
+                95,
+                319,
+                813,
+                337
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "48. (ENEM 2009) Uma escola lan¸cou uma campanha para seus alunos arrecadarem, durante 30 dias, alimentos n˜ao perec´ıveis para doar a uma comunidade carente da regi˜ao. Vinte alunos aceitaram a tarefa e nos primeiros 10 dias trabalharam 3 horas di´arias, arrecadando 12 kg de alimentos por dia. Animados com os resultados, 30 novos alunos somaram-se ao grupo, e passaram a trabalhar 4 horas por dia nos dias seguintes at´e o t´ermino da campanha."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                354,
+                887,
+                442
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Admitindo-se que o ritmo de coleta tenha se mantido constante, a quantidade de alimentos arrecadados ao final do prazo estipulado seria de: a) 920 kg b) 800 kg c) 720 kg d) 600 kg e) 570 kg"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                457,
+                885,
+                527
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "49. (ENEM 2013) Uma ind´ustria tem um reservat´orio de ´agua com capacidade para 900 m<sup>3</sup>. Quando h´a necessidade de limpeza do reservat´orio, toda a ´agua precisa ser escoada. O escoamento da ´agua ´e feito por seis ralos, e dura 6 horas quando o reservat´orio est´a cheio. Esta ind´ustria construir´a um novo reservat´orio, com capacidade de 500 m<sup>3</sup>, cujo escoamento da ´agua dever´a ser realizado em 4 horas, quando o reservat´orio estiver cheio. Os ralos utilizados no novo reservat´orio dever˜ao ser idˆenticos aos do j´a existente."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                543,
+                887,
+                648
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A quantidade de ralos do novo reservat´orio dever´a ser igual a: a) 2 b) 4 c) 5 d) 8 e) 9"
+                    }
+                ]
+            },
+            "bbox": [
+                67,
+                664,
+                774,
+                717
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "50. (ENEM PPL 2017) Uma ind´ustria tem um setor totalmente automatizado. S˜ao quatro m´aquinas iguais, que trabalham simultˆanea e ininterruptamente durante uma jornada de 6 horas. Ap´os esse per´ıodo, as m´aquinas s˜ao desligadas por 30 minutos para manuten¸c˜ao. Se alguma m´aquina precisar de mais manuten¸c˜ao, ficar´a parada at´e a pr´oxima manuten¸c˜ao."
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                732,
+                885,
+                803
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Certo dia, era necess´ario que as quatro m´aquinas produzissem um total de 9000 itens. O trabalho come¸cou a ser feito `as 8 horas. Durante uma jornada de 6 horas, produziram 6000 itens, mas na manuten¸c˜ao observou-se que uma m´aquina precisava ficar parada. Quando o servi¸co foi finalizado, as trˆes m´aquinas que continuaram operando passaram por uma nova ma-"
+                    }
+                ]
+            },
+            "bbox": [
+                65,
+                819,
+                887,
+                889
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": []
+            },
+            "bbox": [
+                72,
+                14,
+                139,
+                79
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "INSTITUTO FEDERAL Fluminense Campus Bom Jesus do Itabapoana"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                28,
+                462,
+                83
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Raz˜ao, Propor¸c˜ao e Regra de trˆes Prof. Leonardo Muniz Prof. Thiago Jacomino"
+                    }
+                ]
+            },
+            "bbox": [
+                589,
+                33,
+                885,
+                85
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "43"
+                    }
+                ]
+            },
+            "bbox": [
+                465,
+                913,
+                489,
+                927
+            ]
+        }
+    ]
+]

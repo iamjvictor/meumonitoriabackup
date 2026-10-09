@@ -1,0 +1,4 @@
+'use client';
+import { useEffect, useMemo, useState } from 'react';
+export type ConsistencyDay = { day: string; weekday: string; answeredCount: number; responseTimeMs?: number };
+export function useStudentConsistency() { const [days, setDays] = useState<ConsistencyDay[]>([]); useEffect(() => { let active = true; void fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8443'}/api/v1/student/consistency`, { credentials: 'include', cache: 'no-store' }).then(r => r.json()).then(b => { if (active) setDays(Array.isArray(b.data?.days) ? b.data.days : []); }).catch(() => { if (active) setDays([]); }); return () => { active = false; }; }, []); return useMemo(() => ({ visibleConsistencyDays: [...days].sort((a,b) => a.day.localeCompare(b.day)).slice(-7), activeDays: days.filter(d => d.answeredCount > 0).length, answeredCount: days.reduce((n,d) => n + d.answeredCount, 0) }), [days]); }

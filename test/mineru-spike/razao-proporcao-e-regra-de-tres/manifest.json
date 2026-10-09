@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "spike-manifest-v1",
+  "status": "FAILED",
+  "migration": {
+    "currentParserName": "DOCLING",
+    "currentParserVersion": "2.122.0",
+    "doclingExecution": "not-run",
+    "note": "Falha MinerU histórica preservada; nenhuma conversão Docling foi inferida."
+  },
+  "startedAt": "2026-08-26T01:15:59.484224+00:00",
+  "input": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/test/docsTeste/razao-proporcao-e-regra-de-tres.pdf",
+  "inputSha256": "b3fb445a51337e7079139bca38132236d0567b54994b6b5bb4f1adca8a4197e0",
+  "python": "3.11.0rc1 (main, Aug 12 2022, 10:02:14) [GCC 11.2.0]",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "mineruVersion": "3.4.5",
+  "backend": "pipeline",
+  "command": [
+    "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/bin/python",
+    "-c",
+    "from mineru.cli.client import main; main()",
+    "-p",
+    "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/test/docsTeste/razao-proporcao-e-regra-de-tres.pdf",
+    "-o",
+    "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/test/mineru-spike/razao-proporcao-e-regra-de-tres",
+    "-b",
+    "pipeline"
+  ],
+  "warnings": [
+    "content_list_not_found"
+  ],
+  "exitCode": 1,
+  "error": "MINERU_EXIT_NONZERO",
+  "durationMs": 17461,
+  "finishedAt": "2026-08-26T01:16:16.945032+00:00",
+  "files": [
+    "manifest.json",
+    "mineru.stderr.log",
+    "mineru.stdout.log"
+  ]
+}

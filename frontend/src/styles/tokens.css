@@ -1,0 +1,79 @@
+/* Design tokens — palette normative v2 */
+:root {
+  /* Primitive palette */
+  --color-navy-900: #0F2942;
+  --color-navy-700: #173C67;
+  --color-green-900: #132E20;
+  --color-green-800: #1B4332;
+  --color-green-700: #2E5B37;
+  --color-green-400: #76D69B;
+  --color-green-200: #B8EAC5;
+  --color-cream: #F5F1E8;
+  --color-surface: #F8F5EE;
+  --color-white: #FFFFFF;
+  --color-danger-value: #B42318;
+  --color-warning-value: #B54708;
+
+  /* Semantic color tokens */
+  --color-brand-primary: var(--color-navy-900);
+  --color-brand-primary-hover: var(--color-navy-700);
+  --color-brand-accent: var(--color-green-700);
+  --color-brand-highlight: var(--color-green-400);
+  --color-bg-page: var(--color-cream);
+  --color-bg-surface: var(--color-white);
+  --color-bg-subtle: var(--color-surface);
+  --color-bg-dark: var(--color-green-900);
+  --color-text-primary: var(--color-navy-900);
+  --color-text-secondary: color-mix(in srgb, var(--color-navy-900) 78%, transparent);
+  --color-text-muted: color-mix(in srgb, var(--color-navy-900) 58%, transparent);
+  --color-text-inverted: var(--color-white);
+  --color-border: color-mix(in srgb, var(--color-navy-900) 14%, transparent);
+  --color-success: var(--color-green-700);
+  --color-warning: var(--color-warning-value);
+  --color-danger: var(--color-danger-value);
+
+  /* Interaction states */
+  --color-action-primary: var(--color-brand-primary);
+  --color-action-primary-hover: var(--color-brand-primary-hover);
+  --color-action-primary-active: var(--color-navy-900);
+  --color-focus-ring: var(--color-green-700);
+  --color-disabled: color-mix(in srgb, var(--color-navy-900) 38%, transparent);
+
+  /* Shape and layout contracts */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 1.75rem;
+  --radius-control: var(--radius-md);
+  --radius-surface: var(--radius-xl);
+  --content-readable: 72ch;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+
+  /* Non-circular aliases consumed by Tailwind's theme namespace. */
+  --token-brand-primary: var(--color-brand-primary);
+  --token-brand-primary-hover: var(--color-brand-primary-hover);
+  --token-brand-accent: var(--color-brand-accent);
+  --token-brand-highlight: var(--color-brand-highlight);
+  --token-bg-page: var(--color-bg-page);
+  --token-bg-surface: var(--color-bg-surface);
+  --token-bg-subtle: var(--color-bg-subtle);
+  --token-bg-dark: var(--color-bg-dark);
+  --token-text-primary: var(--color-text-primary);
+  --token-text-secondary: var(--color-text-secondary);
+  --token-text-muted: var(--color-text-muted);
+  --token-text-inverted: var(--color-text-inverted);
+  --token-border: var(--color-border);
+  --token-success: var(--color-success);
+  --token-warning: var(--color-warning);
+  --token-danger: var(--color-danger);
+}
+
+[data-theme='storefront'] {
+  --color-brand-accent: #007185;
+  --color-brand-highlight: #F0C14B;
+}

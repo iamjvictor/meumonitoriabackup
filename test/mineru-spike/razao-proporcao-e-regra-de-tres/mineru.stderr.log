@@ -1,0 +1,142 @@
+2026-08-25 22:16:03.282 | INFO     | mineru.cli.client:run_orchestrated_cli:953 - Started local mineru-api at http://127.0.0.1:35427
+2026-08-25 22:16:06.032 | INFO     | __main__:create_app:236 - Request concurrency limited to 3
+INFO:     Started server process [54549]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:35427 (Press CTRL+C to quit)
+2026-08-25 22:16:06.303 | INFO     | mineru.cli.client:run_planned_task:832 - Submitting batch 1/1 | 1 document, 48 pages in this batch | 48 pages total | task#1 [razao-proporcao-e-regra-de-tres]
+2026-08-25 22:16:13.041 | ERROR    | __main__:_process_task:1154 - Async task failed: c8541167-ba9c-4dd4-8d23-1008482a0be9
+Traceback (most recent call last):
+
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/cli/fast_api.py", line 1474, in <module>
+    main()
+    └ <Command main>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/click/core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           │    │     │       └ {}
+           │    │     └ ()
+           │    └ <function Command.main at 0x7922c898ca40>
+           └ <Command main>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/click/core.py", line 1490, in main
+    rv = self.invoke(ctx)
+         │    │      └ <click.core.Context object at 0x7921e9fc0390>
+         │    └ <function Command.invoke at 0x7922c898c720>
+         └ <Command main>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/click/core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           │   │      │    │           │   └ {'host': '127.0.0.1', 'port': 35427, 'reload': False, 'allow_public_http_client': False, 'enable_vlm_preload': False}
+           │   │      │    │           └ <click.core.Context object at 0x7921e9fc0390>
+           │   │      │    └ <function main at 0x7921e9f5b740>
+           │   │      └ <Command main>
+           │   └ <function Context.invoke at 0x7922c8af5760>
+           └ <click.core.Context object at 0x7921e9fc0390>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/click/core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+           │         │       └ {'host': '127.0.0.1', 'port': 35427, 'reload': False, 'allow_public_http_client': False, 'enable_vlm_preload': False}
+           │         └ ()
+           └ <function main at 0x7921e9f5b740>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/click/decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           │ │                       │       └ {'host': '127.0.0.1', 'port': 35427, 'reload': False, 'allow_public_http_client': False, 'enable_vlm_preload': False}
+           │ │                       └ ()
+           │ └ <function get_current_context at 0x7922c897c4a0>
+           └ <function main at 0x7921e9f5bb00>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/cli/fast_api.py", line 1470, in main
+    server.run()
+    │      └ <function Server.run at 0x7922c88bfe20>
+    └ <uvicorn.server.Server object at 0x7922c887ef10>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/uvicorn/server.py", line 77, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x7922c8888400>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x7921e9fc1590>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x7922c887ef10>
+           │           │    │             └ None
+           │           │    └ <function Server.serve at 0x7922c88bfec0>
+           │           └ <uvicorn.server.Server object at 0x7922c887ef10>
+           └ <function asyncio_run at 0x7922c89ef1a0>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x7921ea044c70>
+           │      └ <function Runner.run at 0x7922c8b6be20>
+           └ <asyncio.runners.Runner object at 0x7921e9fb2210>
+  File "/usr/lib/python3.11/asyncio/runners.py", line 120, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/se...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x7922c8b69940>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x7921e9fb2210>
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 637, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7922c8b698a0>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 604, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7922c8b6b6a0>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7922c9269b20>
+    └ <Handle Task.task_wakeup(<Future finis...named 'six'")>)>
+  File "/usr/lib/python3.11/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finis...named 'six'")>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finis...named 'six'")>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finis...named 'six'")>)>
+> File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/cli/fast_api.py", line 1144, in _process_task
+    await self._run_task(task)
+          │    │         └ AsyncParseTask(task_id='c8541167-ba9c-4dd4-8d23-1008482a0be9', status='failed', backend='pipeline', file_names=['razao-propor...
+          │    └ <function AsyncTaskManager._run_task at 0x7921ea061e40>
+          └ <__main__.AsyncTaskManager object at 0x7921e9616e90>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/cli/fast_api.py", line 1174, in _run_task
+    await run_parse_job(
+          └ <function run_parse_job at 0x7921ea0611c0>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/cli/fast_api.py", line 864, in run_parse_job
+    await asyncio.to_thread(do_parse, **parse_kwargs)
+          │       │         │           └ {'output_dir': '/tmp/mineru-api-client-5lmxandq/output/c8541167-ba9c-4dd4-8d23-1008482a0be9', 'pdf_file_names': ['razao-propo...
+          │       │         └ <function do_parse at 0x7921ea03d8a0>
+          │       └ <function to_thread at 0x7922c8b90cc0>
+          └ <module 'asyncio' from '/usr/lib/python3.11/asyncio/__init__.py'>
+  File "/usr/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+                 │    │                     └ functools.partial(<built-in method run of _contextvars.Context object at 0x7921e9676540>, <function do_parse at 0x7921ea03d8a...
+                 │    └ <function BaseEventLoop.run_in_executor at 0x7922c8b6a200>
+                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │        │            └ None
+             │        └ None
+             └ None
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/cli/common.py", line 717, in do_parse
+    _process_pipeline(
+    └ <function _process_pipeline at 0x7921ea03d4e0>
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/cli/common.py", line 370, in _process_pipeline
+    from mineru.backend.pipeline.pipeline_analyze import doc_analyze_streaming as pipeline_doc_analyze_streaming
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/backend/pipeline/pipeline_analyze.py", line 11, in <module>
+    from .model_init import MineruPipelineModel, PIPELINE_MODEL_INIT_LOCK
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/backend/pipeline/model_init.py", line 12, in <module>
+    from mineru.model.ocr.pytorch_paddle import PytorchPaddleOCR
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/model/ocr/pytorch_paddle.py", line 26, in <module>
+    from mineru.model.utils.tools.infer.predict_system import TextSystem
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/model/utils/tools/infer/predict_system.py", line 7, in <module>
+    from . import  predict_det
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/model/utils/tools/infer/predict_det.py", line 11, in <module>
+    from ...pytorchocr.data import create_operators, transform
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/model/utils/pytorchocr/data/__init__.py", line 7, in <module>
+    from .imaug import transform, create_operators
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/model/utils/pytorchocr/data/imaug/__init__.py", line 14, in <module>
+    from .operators import *
+  File "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv311/lib/python3.11/site-packages/mineru/model/utils/pytorchocr/data/imaug/operators.py", line 23, in <module>
+    import six
+
+ModuleNotFoundError: No module named 'six'
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [54549]
+Error: 1 task(s) failed while processing documents:
+- task#1 (razao-proporcao-e-regra-de-tres): Task c8541167-ba9c-4dd4-8d23-1008482a0be9 failed for task#1 [razao-proporcao-e-regra-de-tres]: {"task_id": "c8541167-ba9c-4dd4-8d23-1008482a0be9", "status": "failed", "backend": "pipeline", "file_names": ["razao-proporcao-e-regra-de-tres"], "created_at": "2026-08-26T01:16:06.355268+00:00", "started_at": "2026-08-26T01:16:06.355992+00:00", "completed_at": "2026-08-26T01:16:13.041605+00:00", "error": "No module named 'six'", "status_url": "http://127.0.0.1:35427/tasks/c8541167-ba9c-4dd4-8d23-1008482a0be9", "result_url": "http://127.0.0.1:35427/tasks/c8541167-ba9c-4dd4-8d23-1008482a0be9/result", "queued_ahead": 0}

@@ -1,0 +1,11 @@
+export { StudentHeader } from './components/StudentHeader';
+export { StudentSidebar } from './components/StudentSidebar';
+export { StudentRightSidebar } from './components/StudentRightSidebar';
+export { StudentAppShell } from './components/StudentAppShell';
+export { StudentMobileNavigation } from './components/StudentMobileNavigation';
+export { TeacherAvatar } from './components/TeacherAvatar';
+export { StudentProvider, useStudent } from './context/StudentContext';
+export { EntitlementProvider, useEntitlements } from './context/EntitlementProvider';
+export * from './context/entitlements';
+export { StudentSessionGuard } from './guards/StudentSessionGuard';
+export { LoadingState, LoadingSkeletonCard } from '@/shared';

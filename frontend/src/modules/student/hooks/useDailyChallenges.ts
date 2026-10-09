@@ -1,0 +1,5 @@
+'use client';
+import { useCallback, useEffect, useState } from 'react';
+export interface DailyChallenge { id: string; question: { text: string; alternatives: unknown; subject?: { name: string } | null; topic?: { name: string } | null }; answered?: boolean }
+export function useDailyChallenges(authenticated = true) { const [dailyChallenges, setDailyChallenges] = useState<DailyChallenge[]>([]); const [loading, setLoading] = useState(false); const reload = useCallback(async () => { if (!authenticated) return; setLoading(true); try { const r = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8443'}/api/v1/student/daily-challenges`, { credentials: 'include', cache: 'no-store' }); const b = await r.json().catch(() => ({})); setDailyChallenges(r.ok && Array.isArray(b.data) ? b.data : []); } finally { setLoading(false); } }, [authenticated]); // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { void reload(); }, [reload]); return { dailyChallenges, setDailyChallenges, loading, reload }; }

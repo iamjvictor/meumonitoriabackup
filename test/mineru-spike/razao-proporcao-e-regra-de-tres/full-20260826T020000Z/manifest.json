@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "spike-manifest-v1",
+  "status": "FAILED",
+  "migration": {
+    "currentParserName": "DOCLING",
+    "currentParserVersion": "2.122.0",
+    "doclingExecution": "not-run",
+    "note": "Falha MinerU histórica preservada; nenhuma conversão Docling foi inferida."
+  },
+  "startedAt": "2026-08-26T02:01:18.282759+00:00",
+  "input": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/test/docsTeste/razao-proporcao-e-regra-de-tres.pdf",
+  "inputSha256": "b3fb445a51337e7079139bca38132236d0567b54994b6b5bb4f1adca8a4197e0",
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "pythonExecutable": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv/bin/python3",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "mineruVersion": "3.4.5",
+  "backend": "pipeline",
+  "configuration": {
+    "backend": "pipeline",
+    "timeoutSeconds": 7200,
+    "skipParse": false
+  },
+  "hardware": {
+    "architecture": "x86_64",
+    "processor": "x86_64",
+    "cpuCount": 12,
+    "accelerator": "not-detected"
+  },
+  "executionMode": "fresh",
+  "reusedExistingOutput": false,
+  "exitCode": 1,
+  "warnings": [
+    "content_normalization_skipped_after_fresh_failure"
+  ],
+  "command": [
+    "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv/bin/mineru",
+    "-p",
+    "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/test/docsTeste/razao-proporcao-e-regra-de-tres.pdf",
+    "-o",
+    "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/test/mineru-spike/razao-proporcao-e-regra-de-tres/full-20260826T020000Z",
+    "-b",
+    "pipeline"
+  ],
+  "commandSource": "same-interpreter-console-script",
+  "error": "MINERU_DEPENDENCY_MISSING",
+  "errorDetails": "transformers",
+  "finishedAt": "2026-08-26T02:01:36.570418+00:00",
+  "durationMs": 18288,
+  "files": [
+    "manifest.json",
+    "mineru.stderr.log",
+    "mineru.stdout.log"
+  ]
+}

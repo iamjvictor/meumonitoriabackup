@@ -1,0 +1,20 @@
+{
+  "name": "MeuMonitor AI",
+  "short_name": "MeuMonitor AI",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0F2942",
+  "background_color": "#F5F1E8",
+  "display": "standalone"
+}

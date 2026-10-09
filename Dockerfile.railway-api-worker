@@ -1,0 +1,27 @@
+ARG NODE_MAJOR=22
+
+FROM node:${NODE_MAJOR}-bookworm-slim
+
+WORKDIR /app/backend
+
+ENV NODE_ENV=production \
+    HOST=0.0.0.0 \
+    PORT=10000
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends supervisor ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY backend/package.json backend/package-lock.json ./
+RUN npm ci --ignore-scripts
+
+COPY backend ./
+RUN npx prisma generate \
+    && npm run build \
+    && npm prune --omit=dev
+
+COPY deploy/supervisord-api-worker.conf /etc/supervisor/supervisord.conf
+
+EXPOSE 10000
+
+ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
