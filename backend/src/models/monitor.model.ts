@@ -34,6 +34,13 @@ export const createMonitorSchema = z.object({
   questionBankSelections: z.array(questionBankSelectionSchema).max(5000).optional(),
 });
 
+export const addMonitorSubjectsSchema = z.object({
+  name: z.string().trim().min(3).max(120).optional(),
+  description: z.string().trim().max(500).optional().nullable(),
+  subjects: z.array(monitorSubjectSchema.extend({ id: z.string().uuid().optional() })).min(1).max(20),
+  questionBankSelections: z.array(questionBankSelectionSchema).max(5000).optional(),
+}).strict();
+
 export const monitorIdParamsSchema = z.object({
   monitorId: z.string().uuid(),
 });
@@ -47,4 +54,5 @@ export const updateMonitorSchema = z.object({
 });
 
 export type CreateMonitorInput = z.infer<typeof createMonitorSchema>;
+export type AddMonitorSubjectsInput = z.infer<typeof addMonitorSubjectsSchema>;
 export type UpdateMonitorInput = z.infer<typeof updateMonitorSchema>;

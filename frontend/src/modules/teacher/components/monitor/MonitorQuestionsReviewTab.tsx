@@ -22,7 +22,7 @@ export interface MonitorQuestionsReviewTabProps {
   selectedQuestionIds: string[];
   editQuestionDraft: QuestionItem | null;
   monitor: { subjects?: Array<{ id: string; name: string; topicRefs?: Array<{ id: string; name: string }> }> } | null;
-  setUploadsByView: Dispatch<SetStateAction<Record<'knowledge' | 'questions' | 'flashcards', Array<{ id: string; file: File; topicId: string; status: 'staged' | 'uploading' | 'uploaded' | 'failed'; error?: string }>>>>;
+  setUploadsByView: Dispatch<SetStateAction<Record<'knowledge' | 'questions' | 'flashcards', Array<{ id: string; file: File; subjectId: string; topicId?: string; status: 'staged' | 'uploading' | 'uploaded' | 'failed'; error?: string }>>>>;
   setQuestions: Dispatch<SetStateAction<QuestionItem[]>>;
   setSelectedQuestionIds: Dispatch<SetStateAction<string[]>>;
   handleOpenCreateQuestion: () => void;

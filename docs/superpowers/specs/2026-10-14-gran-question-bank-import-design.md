@@ -1,6 +1,6 @@
 # Importação de questões do Gran Questões
 
-**Status:** desenho aprovado para documentação; aguardando revisão desta spec antes do plano de implementação
+**Status:** implementação solicitada pelo usuário em 2026-10-14; classificação atualizada com os exemplos completos de assuntos
 **Data:** 2026-10-14
 
 ## Objetivo
@@ -48,12 +48,12 @@ Os filtros da primeira execução são configuração, não valores embutidos no
 
 | ID Gran | Classificação local |
 | --- | --- |
-| `403825` | tópico raiz `Matemática`, sem subtópico obrigatório |
-| `403794` | subtópico `Matemática Financeira` |
-| `43` | subtópico `Estatística` |
-| `404257` | subtópico `Raciocínio Lógico` |
+| `403825` | matéria `Matemática`; sem tópico quando a resposta trouxer somente a matéria |
+| `403794` | tópico `Matemática Financeira` |
+| `43` | tópico `Estatística` |
+| `404257` | tópico `Raciocínio Lógico` |
 
-As quatro categorias pertencem à matéria local `Matemática`. O tópico raiz local também é `Matemática`; Financeira, Estatística e Raciocínio Lógico são subtópicos desse tópico. O adaptador deve usar os nós de `assuntos` retornados para identificar a classificação mais específica. Quando a resposta não informar qual filtro filho classificou a questão, o coletor deve consultar os assuntos filhos separadamente e guardar o ID de filtro que originou cada registro. Ao mesclar os resultados, deduplica por ID Gran e prefere uma classificação filha explícita à categoria raiz. Conflitos entre duas classificações filhas são registrados para revisão e não resolvidos por escolha arbitrária.
+As quatro categorias pertencem à matéria local `Matemática`. Matemática Financeira, Estatística e Raciocínio Lógico são tópicos; assuntos mais específicos retornados em `assuntos` tornam-se subtópicos, seguindo as relações `pai` presentes na resposta. As linhas que contêm somente o assunto raiz Matemática podem ser importadas com `topic=null`; o contrato e a coluna `question_bank_items.topic` precisam aceitar nulo. O filtro combinado informado pelo usuário retorna `total=3196`; o importador deve preservar o registro completo de `assuntos` em `rawPayload`, contabilizar itens sem tópico e comparar IDs únicos lidos com esse total. Quando uma linha vier com mais de um ramo de tópicos, o adaptador seleciona um caminho principal de forma determinística, e todos os assuntos Gran continuam preservados em `rawPayload`.
 
 Os campos adicionais disponíveis em `bancas`, `provas`, `orgaos`, `cargos`, `anos` e `areas` fornecem banca, nome da prova, instituição, cargo, ano e área. A área consultada informa `subject=Matemática`; `taxonomyPath` representa o tópico e o subtópico Gran disponíveis, sem inventar uma classificação ausente.
 
@@ -66,7 +66,7 @@ Os campos adicionais disponíveis em `bancas`, `provas`, `orgaos`, `cargos`, `an
 - `externalId`: `hashId`, quando presente; guardar `hash` também em `rawPayload`.
 - `examType`: `CONCURSO`.
 - `examName`, `board`, `institution`, `examYear`: prova mais relevante em `provas[0]`, com fallback nos arrays de banca/órgão/ano.
-- `subject`, `topic`, `subtopic`, `taxonomyPath`: matéria e assunto conforme a tabela de classificação acima e `assuntos` do registro.
+- `subject`, `topic`, `subtopic`, `taxonomyPath`: matéria e assunto conforme a tabela de classificação acima e `assuntos` do registro; `topic` é nulo se o JSON trouxer somente o assunto raiz.
 - `statementHtml`: `enunciado` sanitizado, preservando imagens HTTPS embutidas.
 - `statementText`: texto simples derivado do HTML sanitizado.
 - `alternatives`: cada `itens[]` vira alternativa; o rótulo é `rotulo.trim()`, o texto é texto simples derivado de `corpo`, e `providerId` recebe `String(item.id)`.
@@ -93,7 +93,7 @@ As imagens do exemplo estão nos elementos `<img src="...">` dentro de `enunciad
 
 ## Escopo
 
-Inclui o provedor Gran, cliente autenticado, adaptador, script retomável, configuração dos filtros iniciais, mapeamento de gabarito/dificuldade/taxonomia, preservação de `rawPayload` e suporte a imagem inline no enunciado.
+Inclui o provedor Gran, cliente autenticado, adaptador, script retomável, configuração dos filtros iniciais, mapeamento de gabarito/dificuldade/taxonomia, preservação de `rawPayload`, tópico opcional no contrato do acervo e suporte a imagem inline no enunciado.
 
 Não inclui executar a carga integral de 3.196 questões como parte da implementação inicial, materializar a questão em monitor, importar comentários, baixar/espelhar arquivos de imagem, inferir resoluções que não venham no JSON ou alterar filtros da interface de prática. O script resultante permitirá executar a carga integral explicitamente.
 
@@ -103,7 +103,7 @@ Não inclui executar a carga integral de 3.196 questões como parte da implement
 2. O dry-run da questão `4373725` identifica a alternativa E pelo vínculo entre `resposta` e `itens[].id`.
 3. O fixture da questão `4373850` identifica a alternativa C, extrai três URLs de imagem do enunciado e mantém as imagens inline no HTML sanitizado.
 4. `GRAN` é aceito pelo schema e por `QuestionBankRepository`; nenhum segredo está no código, nos logs ou no Git.
-5. As categorias Financeira, Estatística e Raciocínio Lógico são persistidas como subtópicos de Matemática; a categoria Matemática raiz não inventa subtópico.
+5. Matemática Financeira, Estatística e Raciocínio Lógico são tópicos de Matemática; assuntos mais específicos viram subtópicos. Registros que contenham somente Matemática podem ter `topic=null`.
 6. O mapeamento numérico de dificuldade segue 1–2 Fácil, 3–4 Média, 5 Difícil; valores fora da faixa são sinalizados.
 7. Uma página pode ser retomada e reexecutada sem duplicar `QuestionBankItem`.
 8. A importação compara total único deduplicado com o total combinado da consulta e relata divergências.

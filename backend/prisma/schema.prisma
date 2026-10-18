@@ -699,7 +699,7 @@ model QuestionBankItem {
   institution        String?
   examYear           Int?     @map("exam_year")
   subject            String
-  topic              String
+  topic              String?
   subtopic           String?
   subsubtopic        String?
   taxonomyPath       Json     @map("taxonomy_path")

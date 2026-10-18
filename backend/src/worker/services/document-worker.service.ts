@@ -105,6 +105,13 @@ export function shouldExtractQuestionsForDocument(
   return tag === 'QUESTIONS';
 }
 
+export function shouldGenerateTopicProfile(
+  tag: 'KNOWLEDGE_BASE' | 'QUESTIONS' | 'FLASHCARDS',
+  topicId: string | null,
+) {
+  return tag === 'KNOWLEDGE_BASE' && Boolean(topicId);
+}
+
 export function resolveDocumentStatus(
   failures: Array<{ operation: DocumentProcessingOperation; error: unknown }>,
 ) {
@@ -385,25 +392,15 @@ export class DocumentWorkerService {
           });
         }
 
-        if (document.tag === 'KNOWLEDGE_BASE') {
+        if (shouldGenerateTopicProfile(document.tag, document.topicId)) {
           try {
-            if (document.topicId) {
-              await this.measureStage(
-                document.id,
-                'GENERATE_TOPIC_PROFILE',
-                () => this.topicProfileGenerationService.processTopic(document.topicId!),
-                context,
-                { profileScope: 'TOPIC' },
-              );
-            } else {
-              await this.measureStage(
-                document.id,
-                'GENERATE_TOPIC_PROFILE',
-                () => this.topicProfileGenerationService.processSubject(document.subjectId),
-                context,
-                { profileScope: 'SUBJECT' },
-              );
-            }
+            await this.measureStage(
+              document.id,
+              'GENERATE_TOPIC_PROFILE',
+              () => this.topicProfileGenerationService.processTopic(document.topicId!),
+              context,
+              { profileScope: 'TOPIC' },
+            );
           } catch (error) {
             console.log('Perfil do topico nao foi gerado; processamento continuara', {
               event: 'monitor.topic_profile_generation_failed_non_blocking',

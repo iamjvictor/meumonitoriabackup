@@ -18,17 +18,17 @@ test('second extraction keeps the literal performance and consistency card route
     assert.match(component, new RegExp(`\\b${marker}\\b`), `missing component marker ${marker}`);
   }
   for (const marker of [
-    'CARD UNIFICADO DE DESEMPENHO E CONSTÂNCIA',
-    'Frequência nos últimos 7 dias',
-    'Frequência no Desafio Diário',
-    'Colocação no Ranking',
-    'rounded-[28px]',
-    'bg-gradient-to-br from-[#1B4332] via-[#2E5B37] to-[#133024]',
+    'Seu progresso',
+    'Constância semanal',
+    'Desafio diário',
+    'Ranking',
+    'rounded-[24px]',
+    'bg-gradient-to-br from-[#1B4332] via-[#245337] to-[#122B20]',
   ]) {
     assert.equal(component.includes(marker), true, `missing literal marker ${marker}`);
   }
   assert.match(page, /<DashboardPerformanceSection\b/);
-  assert.doesNotMatch(page, /CARD UNIFICADO DE DESEMPENHO E CONSTÂNCIA/);
+  assert.doesNotMatch(page, /Seu progresso/);
   assert.match(page, /performanceStats=\{performanceStats\}/);
   assert.match(page, /consistencySummary=\{consistencySummary\}/);
   assert.match(page, /visibleConsistencyDays=\{visibleConsistencyDays\}/);

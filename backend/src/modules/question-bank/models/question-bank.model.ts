@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const questionBankProviderSchema = z.enum(['ENEMHUB', 'QAPI']);
+export const questionBankProviderSchema = z.enum(['ENEMHUB', 'QAPI', 'GRAN']);
 export const questionBankExamTypeSchema = z.enum(['ENEM', 'CONCURSO', 'MILITAR', 'VESTIBULAR']);
 
 const alternativeSchema = z.object({
@@ -8,6 +8,7 @@ const alternativeSchema = z.object({
   label: z.string().trim().min(1).max(10),
   text: z.string().trim().min(1).max(20_000),
   isCorrect: z.boolean(),
+  html: z.string().optional(),
 });
 
 export const normalizedQuestionBankItemSchema = z.object({
@@ -20,7 +21,7 @@ export const normalizedQuestionBankItemSchema = z.object({
   institution: z.string().trim().min(1).nullable(),
   examYear: z.number().int().positive().nullable(),
   subject: z.string().trim().min(1),
-  topic: z.string().trim().min(1),
+  topic: z.string().trim().min(1).nullable(),
   subtopic: z.string().trim().min(1).nullable(),
   subsubtopic: z.string().trim().min(1).nullable(),
   taxonomyPath: z.array(z.string().trim().min(1)).min(1),
@@ -34,6 +35,13 @@ export const normalizedQuestionBankItemSchema = z.object({
   rawPayload: z.unknown(),
   sourceFetchedAt: z.date(),
 }).superRefine((item, context) => {
+  if ((item.subtopic || item.subsubtopic) && !item.topic) {
+    context.addIssue({
+      code: 'custom',
+      path: ['topic'],
+      message: 'topic é obrigatório quando subtopic ou subsubtopic estiver preenchido.',
+    });
+  }
   const correctAlternatives = item.alternatives.filter((alternative) => alternative.isCorrect);
   if (correctAlternatives.length !== 1) {
     context.addIssue({

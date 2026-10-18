@@ -7,6 +7,9 @@ import { revokeClientSession } from '@/shared/auth/client-session';
 import { buildStudentAuthHeaders } from '@/shared/auth/session-headers';
 import { dedupeAsyncRequest } from '@/shared/utils/async-request-deduper';
 import { entitlementToStudentMonitor, normalizeEntitlementSnapshot } from './entitlements';
+import { SessionRequestTimeoutError, withSessionRequestTimeout } from './student-session-request';
+
+const SESSION_VALIDATION_TIMEOUT_MS = 15_000;
 
 export interface StudentData {
   userId: string;
@@ -58,7 +61,7 @@ export interface StudentMonitorSubject {
   id: string;
   name: string;
   title?: string;
-  topics?: Array<{ id: string; name: string }>;
+  topics?: Array<{ id: string; name: string; subtopics?: Array<{ id: string; name: string }> }>;
 }
 
 export interface StudentMonitorRecord {
@@ -80,7 +83,7 @@ export interface StudentMonitorRecord {
 
 interface StudentContextValue {
   student: StudentData | null;
-  status: 'loading' | 'authenticated' | 'unauthenticated';
+  status: 'loading' | 'authenticated' | 'unauthenticated' | 'error';
   error: string | null;
   monitors: StudentMonitorRecord[] | null;
   isLoadingMonitors: boolean;
@@ -140,28 +143,54 @@ function extractInitials(fullName?: string | null, email?: string): string {
 export function StudentProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [student, setStudent] = useState<StudentData | null>(null);
-  const [status, setStatus] = useState<'loading' | 'authenticated' | 'unauthenticated'>('loading');
+  const [status, setStatus] = useState<'loading' | 'authenticated' | 'unauthenticated' | 'error'>('loading');
   const [error, setError] = useState<string | null>(null);
   const [monitors, setMonitors] = useState<StudentMonitorRecord[] | null>(null);
   const monitorsRef = useRef<StudentMonitorRecord[] | null>(null);
   const monitorsRequestRef = useRef<Promise<StudentMonitorRecord[]> | null>(null);
   const [isLoadingMonitors, setIsLoadingMonitors] = useState<boolean>(false);
+  const sessionRequestIdRef = useRef(0);
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8443';
   const studentRole = student?.role?.toLowerCase() || '';
 
   const fetchSession = useCallback(async () => {
+    const requestId = ++sessionRequestIdRef.current;
     try {
       setStatus('loading');
       setError(null);
 
-      const response = await fetch(`${apiUrl}/api/v1/session`, {
-        credentials: 'include',
-        headers: buildStudentAuthHeaders(localStorage.getItem('mm_access_token')),
-        cache: 'no-store',
-      });
+      const { response, body } = await withSessionRequestTimeout(async (signal) => {
+        const response = await fetch(`${apiUrl}/api/v1/session`, {
+          credentials: 'include',
+          headers: buildStudentAuthHeaders(localStorage.getItem('mm_access_token')),
+          cache: 'no-store',
+          signal,
+        });
+
+        const body = response.ok ? await response.json() as {
+          data?: {
+            userId?: string;
+            email?: string;
+            fullName?: string | null;
+            whatsapp?: string | null;
+            cpf?: string | null;
+            avatarUrl?: string | null;
+            role?: string;
+          };
+        } : null;
+
+        return { response, body };
+      }, SESSION_VALIDATION_TIMEOUT_MS);
+
+      if (requestId !== sessionRequestIdRef.current) return;
 
       if (!response.ok) {
+        if (response.status !== 401) {
+          setError('Não foi possível validar sua sessão agora. Verifique sua conexão e tente novamente.');
+          setStatus('error');
+          return;
+        }
         setStudent(null);
         setMonitors(null);
         monitorsRef.current = null;
@@ -169,27 +198,15 @@ export function StudentProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      const body = (await response.json().catch(() => ({}))) as {
-        data?: {
-          userId?: string;
-          email?: string;
-          fullName?: string | null;
-          whatsapp?: string | null;
-          cpf?: string | null;
-          avatarUrl?: string | null;
-          role?: string;
-        };
-      };
+      if (requestId !== sessionRequestIdRef.current) return;
 
-      const data = body.data;
+      const data = body?.data;
       const role = data?.role?.toLowerCase();
       const allowedRoles = ['student', 'aluno', 'teacher', 'professor', 'admin'];
 
       if (!data?.userId || (role && !allowedRoles.includes(role))) {
-        setStudent(null);
-        setMonitors(null);
-        monitorsRef.current = null;
-        setStatus('unauthenticated');
+        setError('A resposta de validação da sessão está incompleta. Tente novamente.');
+        setStatus('error');
         return;
       }
 
@@ -209,12 +226,12 @@ export function StudentProvider({ children }: { children: ReactNode }) {
       });
       setStatus('authenticated');
     } catch (err) {
+      if (requestId !== sessionRequestIdRef.current) return;
       console.error('Erro ao carregar sessão do aluno:', err);
-      setError(err instanceof Error ? err.message : 'Erro de conexão');
-      setStudent(null);
-      setMonitors(null);
-      monitorsRef.current = null;
-      setStatus('unauthenticated');
+      setError(err instanceof SessionRequestTimeoutError
+        ? 'A validação da sessão demorou demais. Verifique sua conexão e tente novamente.'
+        : 'Não foi possível validar sua sessão agora. Verifique sua conexão e tente novamente.');
+      setStatus('error');
     }
   }, [apiUrl]);
 

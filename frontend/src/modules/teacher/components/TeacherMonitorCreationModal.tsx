@@ -23,8 +23,18 @@ import {
   Trash2,
   X,
 } from 'lucide-react';
-import { TeacherMonitorService } from '../services/TeacherMonitorService';
+import { TeacherMonitorService, type TeacherMonitor } from '../services/TeacherMonitorService';
 import { TeacherSessionError } from '../services/TeacherSessionError';
+import {
+  buildQuestionBankSelections,
+  filterQuestionBankCatalogByProfiles,
+  getQuestionCountForProfiles,
+  type ExamProfile,
+  type QuestionBankSelectionDraft,
+  type QuestionBankSubject,
+  type QuestionBankSubtopic,
+  type QuestionBankTopic,
+} from './question-bank-catalog';
 
 type ContentSource = 'MANUAL' | 'QUESTION_BANK' | 'MIXED';
 
@@ -41,19 +51,10 @@ type SubjectDraft = {
   topics: TopicDraft[];
 };
 
-export type QuestionBankSelectionDraft = {
-  subject: string;
-  topic: string;
-  examType: string;
-  board: string | null;
-  subtopic: string | null;
-  subsubtopic: string | null;
-};
-
 export type MonitorDraft = {
   name: string;
   description: string;
-  subjects: SubjectDraft[];
+  subjects: Array<{ id?: string; name: string; topics: TopicDraft[] }>;
   questionBankSelections?: QuestionBankSelectionDraft[];
 };
 
@@ -61,6 +62,8 @@ interface TeacherMonitorCreationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onCreated: (monitor: MonitorDraft) => Promise<void>;
+  mode?: 'create' | 'edit-monitor';
+  existingMonitor?: TeacherMonitor;
 }
 
 // 5 Etapas Oficiais por Fases
@@ -72,109 +75,8 @@ const steps = [
   'Revisão Final',
 ];
 
-// Perfis de Prova & Bancas Oficiais
-export interface ExamProfile {
-  id: string;
-  name: string;
-  examType?: string;
-  board?: string | null;
-  category: string;
-  description: string;
-  badge: string;
-  questionCount: number;
-}
-
-const INITIAL_EXAM_PROFILES: ExamProfile[] = [
-  {
-    id: 'enem',
-    name: 'ENEM',
-    category: 'Vestibulares & ENEM',
-    description: 'Exame Nacional do Ensino Médio — Questões oficiais do banco com matriz de habilidades.',
-    badge: 'Nacional',
-    questionCount: 1538,
-  },
-];
-
-const normalizeDraftName = (value: string) => value.trim().replace(/\s+/g, ' ').toLowerCase();
-
-export const buildQuestionBankSelections = (input: {
-  catalogSubjects: QuestionBankSubject[];
-  selectedCatalogSubtopics: Record<string, string[]>;
-  selectedExamProfiles: string[];
-  examProfilesList: ExamProfile[];
-}): QuestionBankSelectionDraft[] => {
-  const selections: QuestionBankSelectionDraft[] = [];
-
-  for (const catalogSubject of input.catalogSubjects) {
-    const selectedIds = new Set(input.selectedCatalogSubtopics[catalogSubject.id] || []);
-    if (selectedIds.size === 0) continue;
-
-    for (const topic of catalogSubject.topics || []) {
-      for (const subtopic of topic.subtopics || []) {
-        if (subtopic.subsubtopics?.length) {
-          for (const subsubtopic of subtopic.subsubtopics) {
-            if (!selectedIds.has(subsubtopic.id)) continue;
-            for (const profileId of input.selectedExamProfiles) {
-              const profile = input.examProfilesList.find((item) => item.id === profileId);
-              selections.push({
-                subject: catalogSubject.name,
-                topic: topic.name,
-                examType: profile?.examType || profile?.name || profileId,
-                board: profile?.board || null,
-                subtopic: subtopic.name,
-                subsubtopic: subsubtopic.name,
-              });
-            }
-          }
-        } else if (selectedIds.has(subtopic.id)) {
-          for (const profileId of input.selectedExamProfiles) {
-            const profile = input.examProfilesList.find((item) => item.id === profileId);
-            selections.push({
-              subject: catalogSubject.name,
-              topic: topic.name,
-              examType: profile?.examType || profile?.name || profileId,
-              board: profile?.board || null,
-              subtopic: subtopic.name,
-              subsubtopic: null,
-            });
-          }
-        }
-      }
-    }
-  }
-
-  return selections;
-};
-
 // Banco de Questões Integrado: Matérias → Tópicos → Subtópicos → Subsubtópicos
-export interface QuestionBankSubsubtopic {
-  id: string;
-  name: string;
-  questionCount: number;
-}
-
-export interface QuestionBankSubtopic {
-  id: string;
-  name: string;
-  questionCount: number;
-  subsubtopics: QuestionBankSubsubtopic[];
-}
-
-export interface QuestionBankTopic {
-  id: string;
-  name: string;
-  totalQuestions: number;
-  subtopics: QuestionBankSubtopic[];
-}
-
-export interface QuestionBankSubject {
-  id: string;
-  name: string;
-  category: string;
-  totalQuestions: number;
-  examProfileIds?: string[];
-  topics: QuestionBankTopic[];
-}
+const normalizeDraftName = (value: string) => value.trim().replace(/\s+/g, ' ').toLowerCase();
 
 // Helpers para navegação na árvore de 4 níveis
 export const getAllSubjectLeafIds = (subject: QuestionBankSubject): string[] => {
@@ -223,11 +125,14 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
   isOpen,
   onClose,
   onCreated,
+  mode = 'create',
+  existingMonitor,
 }) => {
   const router = useRouter();
-  const [step, setStep] = useState(1);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const isEditMonitorMode = mode === 'edit-monitor';
+  const [step, setStep] = useState(isEditMonitorMode ? 2 : 1);
+  const [name, setName] = useState(existingMonitor?.name ?? '');
+  const [description, setDescription] = useState(existingMonitor?.description ?? '');
   const [subjects, setSubjects] = useState<SubjectDraft[]>([]);
   const [subjectName, setSubjectName] = useState('');
   const [topicName, setTopicName] = useState('');
@@ -235,11 +140,11 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
   const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [hasReviewedRecommendations, setHasReviewedRecommendations] = useState(false);
-  const [isCreationStarted, setIsCreationStarted] = useState(false);
+  const [isCreationStarted, setIsCreationStarted] = useState(isEditMonitorMode);
   const [isSaving, setIsSaving] = useState(false);
 
   // Estados da Etapa 2: Perfis de Prova & Bancas
-  const [selectedExamProfiles, setSelectedExamProfiles] = useState<string[]>(['enem']);
+  const [selectedExamProfiles, setSelectedExamProfiles] = useState<string[]>([]);
   const [examCategoryFilter, setExamCategoryFilter] = useState<string>('Todas');
   const [examSearch, setExamSearch] = useState<string>('');
 
@@ -247,6 +152,7 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
   const [activeCatalogSubjectId, setActiveCatalogSubjectId] = useState<string>('matematica');
   const [subjectCategoryFilter, setSubjectCategoryFilter] = useState<string>('Todas');
   const [catalogSearch, setCatalogSearch] = useState<string>('');
+  const [catalogLoadError, setCatalogLoadError] = useState<string | null>(null);
   const [selectedCatalogSubjects, setSelectedCatalogSubjects] = useState<string[]>([]);
   const [selectedCatalogSubtopics, setSelectedCatalogSubtopics] = useState<Record<string, string[]>>({});
   const [expandedCatalogTopics, setExpandedCatalogTopics] = useState<Record<string, boolean>>({});
@@ -268,9 +174,8 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
 
   // Catálogo Real vindo da tabela question_bank_items
   const [catalogSubjects, setCatalogSubjects] = useState<QuestionBankSubject[]>(INITIAL_QUESTION_BANK_CATALOG);
-  const [examProfilesList, setExamProfilesList] = useState<ExamProfile[]>(INITIAL_EXAM_PROFILES);
+  const [examProfilesList, setExamProfilesList] = useState<ExamProfile[]>([]);
   const [isLoadingCatalog, setIsLoadingCatalog] = useState<boolean>(false);
-  const [isDatabaseCatalogLoaded, setIsDatabaseCatalogLoaded] = useState<boolean>(false);
 
   // Carrega os dados reais da tabela question_bank_items ao abrir o modal
   useEffect(() => {
@@ -278,19 +183,81 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
 
     let isMounted = true;
     setIsLoadingCatalog(true);
+    setCatalogLoadError(null);
 
     TeacherMonitorService.getQuestionBankCatalog()
       .then((data) => {
         if (!isMounted) return;
-        if (data && data.subjects && data.subjects.length > 0) {
-          setCatalogSubjects(data.subjects as unknown as QuestionBankSubject[]);
-          setIsDatabaseCatalogLoaded(true);
-          if (data.subjects[0]?.id) {
-            setActiveCatalogSubjectId(data.subjects[0].id);
-          }
-        }
-        if (data && data.examProfiles && data.examProfiles.length > 0) {
-          setExamProfilesList(data.examProfiles);
+        const subjects = data?.subjects || [];
+        const profiles = data?.examProfiles || [];
+        setCatalogSubjects(subjects);
+        setExamProfilesList(profiles);
+
+        if (isEditMonitorMode && existingMonitor) {
+          setName(existingMonitor.name);
+          setDescription(existingMonitor.description);
+
+          const selectedProfileIds = new Set<string>();
+          const selectedLeaves: Record<string, string[]> = {};
+          const hydratedSubjects = existingMonitor.subjects.map((monitorSubject) => {
+            const topics: TopicDraft[] = [];
+            const catalogSubject = subjects.find((candidate) => normalizeDraftName(candidate.name) === normalizeDraftName(monitorSubject.name));
+
+            for (const topic of monitorSubject.topicRefs) {
+              const selections = topic.questionBankSelections ?? [];
+              for (const selection of selections) {
+                const profile = profiles.find((candidate) =>
+                  (candidate.examType || candidate.name).toUpperCase() === selection.examType.toUpperCase()
+                  && (candidate.board ?? null) === (selection.board ?? null)
+                );
+                if (profile) selectedProfileIds.add(profile.id);
+
+                const catalogTopic = catalogSubject?.topics.find((candidate) => normalizeDraftName(candidate.name) === normalizeDraftName(topic.name));
+                if (!catalogSubject || !catalogTopic) continue;
+                const current = new Set(selectedLeaves[catalogSubject.id] ?? []);
+                if (!selection.subtopic) {
+                  getAllTopicLeafIds(catalogTopic).forEach((id) => current.add(id));
+                } else {
+                  const catalogSubtopic = catalogTopic.subtopics.find((candidate) => normalizeDraftName(candidate.name) === normalizeDraftName(selection.subtopic || ''));
+                  if (catalogSubtopic) {
+                    const catalogLeaf = selection.subsubtopic
+                      ? catalogSubtopic.subsubtopics.find((candidate) => normalizeDraftName(candidate.name) === normalizeDraftName(selection.subsubtopic || ''))
+                      : null;
+                    const leafId = catalogLeaf?.id ?? (!selection.subsubtopic ? catalogSubtopic.id : null);
+                    if (leafId) current.add(leafId);
+                  }
+                }
+                selectedLeaves[catalogSubject.id] = Array.from(current);
+              }
+
+              const hasSelection = (subtopic?: string | null, subsubtopic?: string | null) => selections.some((selection) =>
+                normalizeDraftName(selection.subtopic ?? '') === normalizeDraftName(subtopic ?? '')
+                && normalizeDraftName(selection.subsubtopic ?? '') === normalizeDraftName(subsubtopic ?? '')
+              );
+              topics.push({ name: topic.name, definition: topic.definition ?? '', source: hasSelection() ? 'QUESTION_BANK' : 'MANUAL' });
+              for (const subtopic of topic.subtopics) {
+                if (subtopic.subsubtopics.length === 0) {
+                  topics.push({ name: `${topic.name} > ${subtopic.name}`, definition: '', source: hasSelection(subtopic.name) ? 'QUESTION_BANK' : 'MANUAL' });
+                } else {
+                  for (const subsubtopic of subtopic.subsubtopics) {
+                    topics.push({ name: `${topic.name} > ${subtopic.name} > ${subsubtopic.name}`, definition: '', source: hasSelection(subtopic.name, subsubtopic.name) ? 'QUESTION_BANK' : 'MANUAL' });
+                  }
+                }
+              }
+            }
+
+            return { id: monitorSubject.id, name: monitorSubject.name, source: 'MIXED' as const, topics };
+          });
+
+          setSubjects(hydratedSubjects);
+          setSelectedExamProfiles(Array.from(selectedProfileIds));
+          setSelectedCatalogSubtopics(selectedLeaves);
+          setSelectedCatalogSubjects(Object.keys(selectedLeaves).filter((id) => selectedLeaves[id]?.length));
+          const firstSelectedCatalogSubject = Object.keys(selectedLeaves).find((id) => selectedLeaves[id]?.length);
+          setActiveCatalogSubjectId(firstSelectedCatalogSubject ?? subjects[0]?.id ?? 'matematica');
+          setExpandedSubjects(Object.fromEntries(hydratedSubjects.map((subject) => [subject.id, true])));
+        } else if (subjects[0]?.id) {
+          setActiveCatalogSubjectId(subjects[0].id);
         }
       })
       .catch((err) => {
@@ -298,7 +265,10 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
           router.replace('/?login=true&perfil=professor&session=expired');
           return;
         }
-        console.warn('Usando catálogo padrão local do banco de questões:', err);
+        console.warn('Não foi possível carregar o catálogo do banco de questões:', err);
+        setCatalogLoadError('Não foi possível carregar as bancas e matérias do banco. Tente novamente mais tarde.');
+        setCatalogSubjects([]);
+        setExamProfilesList([]);
       })
       .finally(() => {
         if (isMounted) setIsLoadingCatalog(false);
@@ -307,7 +277,7 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
     return () => {
       isMounted = false;
     };
-  }, [isOpen, router]);
+  }, [isOpen, router, isEditMonitorMode, existingMonitor]);
 
   useEffect(() => {
     if (subjectCategoryFilter !== 'Todas' && !selectedExamProfiles.includes(subjectCategoryFilter)) {
@@ -337,22 +307,22 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
       const profile = examProfilesList.find((p) => p.id === pId);
       return {
         id: pId,
-        label: profile?.badge || profile?.name || pId.toUpperCase(),
+        label: profile?.name || pId.toUpperCase(),
       };
     });
     return [{ id: 'Todas', label: 'Todas' }, ...list];
   }, [selectedExamProfiles, examProfilesList]);
 
   const resetAndClose = () => {
-    setStep(1);
-    setName('');
-    setDescription('');
+    setStep(isEditMonitorMode ? 2 : 1);
+    setName(isEditMonitorMode ? existingMonitor?.name ?? '' : '');
+    setDescription(isEditMonitorMode ? existingMonitor?.description ?? '' : '');
     setSubjects([]);
     setSubjectName('');
     setTopicName('');
     setTopicDefinition('');
     setSelectedSubjectId(null);
-    setSelectedExamProfiles(['enem']);
+    setSelectedExamProfiles([]);
     setExamCategoryFilter('Todas');
     setExamSearch('');
     setActiveCatalogSubjectId('matematica');
@@ -373,7 +343,7 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
     setNewSubsubtopicInput('');
     setError(null);
     setHasReviewedRecommendations(false);
-    setIsCreationStarted(false);
+    setIsCreationStarted(isEditMonitorMode);
     onClose();
   };
 
@@ -486,7 +456,8 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
   const syncCatalogToSubjects = () => {
     const newSubjects: SubjectDraft[] = [];
 
-    for (const catalogSubject of catalogSubjects) {
+    const selectedProfileCatalog = filterQuestionBankCatalogByProfiles(catalogSubjects, selectedExamProfiles);
+    for (const catalogSubject of selectedProfileCatalog) {
       const selectedIds = selectedCatalogSubtopics[catalogSubject.id] || [];
       if (selectedIds.length === 0 && !selectedCatalogSubjects.includes(catalogSubject.id)) {
         continue;
@@ -531,22 +502,24 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
       }
     }
 
-    // Preserva matérias manuais e mescla tópicos sem descartar conteúdo próprio.
-    const manualSubjects = subjects.filter((subject) => subject.source !== 'QUESTION_BANK');
-    for (const existing of manualSubjects) {
+    // Em edição, mantém o ID de cada matéria existente e preserva os tópicos manuais.
+    const previousSubjects = isEditMonitorMode ? subjects : subjects.filter((subject) => subject.source !== 'QUESTION_BANK');
+    for (const existing of previousSubjects) {
       const matchingSubject = newSubjects.find(
         (subject) => normalizeDraftName(subject.name) === normalizeDraftName(existing.name),
       );
 
       if (!matchingSubject) {
-        newSubjects.push(existing);
+        const manualTopics = existing.topics.filter((topic) => topic.source !== 'QUESTION_BANK');
+        if (manualTopics.length > 0) newSubjects.push({ ...existing, topics: manualTopics });
         continue;
       }
 
       const bankTopicNames = new Set(matchingSubject.topics.map((topic) => normalizeDraftName(topic.name)));
-      const manualTopics = existing.topics.filter((topic) => !bankTopicNames.has(normalizeDraftName(topic.name)));
+      const manualTopics = existing.topics.filter((topic) => topic.source !== 'QUESTION_BANK' && !bankTopicNames.has(normalizeDraftName(topic.name)));
+      if (isEditMonitorMode) matchingSubject.id = existing.id;
       matchingSubject.topics = [...matchingSubject.topics, ...manualTopics];
-      matchingSubject.source = 'MIXED';
+      matchingSubject.source = manualTopics.length > 0 ? 'MIXED' : 'QUESTION_BANK';
     }
 
     setSubjects(newSubjects);
@@ -571,6 +544,10 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
   };
 
   const removeSubject = (subjectId: string) => {
+    if (subjects.length <= 1) {
+      setError('O monitor precisa manter pelo menos uma matéria.');
+      return;
+    }
     setSubjects((current) => current.filter((subject) => subject.id !== subjectId));
     if (selectedSubjectId === subjectId) setSelectedSubjectId(null);
   };
@@ -1004,11 +981,28 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
         return;
       }
 
+      if (isEditMonitorMode && existingMonitor) {
+        const remainingSubjectIds = new Set(subjects.map((subject) => subject.id));
+        const removedSubject = existingMonitor.subjects.some((subject) => !remainingSubjectIds.has(subject.id));
+        const remainingPaths = new Map(subjects.map((subject) => [subject.id, new Set(subject.topics.map((topic) => normalizeDraftName(topic.name)))]));
+        const removedTopic = existingMonitor.subjects.some((subject) => subject.topicRefs.some((topic) => {
+          const paths = remainingPaths.get(subject.id);
+          const oldPaths = [topic.name, ...topic.subtopics.flatMap((subtopic) => subtopic.subsubtopics.length
+            ? subtopic.subsubtopics.map((subsubtopic) => `${topic.name} > ${subtopic.name} > ${subsubtopic.name}`)
+            : [`${topic.name} > ${subtopic.name}`])];
+          return oldPaths.some((path) => paths && !paths.has(normalizeDraftName(path)));
+        }));
+        if ((removedSubject || removedTopic) && !window.confirm('Remover matérias ou tópicos também remove questões e flashcards associados. Deseja continuar?')) {
+          setIsSaving(false);
+          return;
+        }
+      }
+
       await onCreated({
         name: name.trim(),
         description: description.trim(),
         subjects: subjects.map((subject) => ({
-          id: subject.id,
+          id: /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(subject.id) ? subject.id : undefined,
           name: subject.name,
           topics: subject.topics.map((topic) => ({
             name: topic.name,
@@ -1025,10 +1019,31 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
     }
   };
 
-  // Contagem de nós folha selecionados no banco
+  const activeCatalogProfileIds = useMemo(
+    () => subjectCategoryFilter === 'Todas' ? selectedExamProfiles : [subjectCategoryFilter],
+    [selectedExamProfiles, subjectCategoryFilter]
+  );
+  const profileScopedCatalogSubjects = useMemo(
+    () => filterQuestionBankCatalogByProfiles(catalogSubjects, activeCatalogProfileIds),
+    [catalogSubjects, activeCatalogProfileIds]
+  );
+
+  // Contagem de nós folha selecionados que estão visíveis no filtro atual.
   const totalSelectedSubtopicsCount = useMemo(() => {
-    return Object.values(selectedCatalogSubtopics).reduce((acc, curr) => acc + curr.length, 0);
-  }, [selectedCatalogSubtopics]);
+    const visibleLeafIds = new Set<string>();
+    for (const subject of profileScopedCatalogSubjects) {
+      for (const topic of subject.topics) {
+        for (const subtopic of topic.subtopics) {
+          const leaves = subtopic.subsubtopics?.length ? subtopic.subsubtopics : [subtopic];
+          for (const leaf of leaves) visibleLeafIds.add(leaf.id);
+        }
+      }
+    }
+    return Object.values(selectedCatalogSubtopics).reduce(
+      (count, ids) => count + ids.filter((id) => visibleLeafIds.has(id)).length,
+      0
+    );
+  }, [profileScopedCatalogSubjects, selectedCatalogSubtopics]);
 
   // Calcula o número de questões selecionadas em uma matéria do catálogo de acordo com os nós marcados
   const getSubjectSelectedQuestionsCount = (catalogSubject: QuestionBankSubject) => {
@@ -1041,12 +1056,12 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
         if (subtopic.subsubtopics && subtopic.subsubtopics.length > 0) {
           for (const sst of subtopic.subsubtopics) {
             if (selectedIds.includes(sst.id)) {
-              total += sst.questionCount;
+              total += getQuestionCountForProfiles(sst, activeCatalogProfileIds);
             }
           }
         } else {
           if (selectedIds.includes(subtopic.id)) {
-            total += subtopic.questionCount;
+            total += getQuestionCountForProfiles(subtopic, activeCatalogProfileIds);
           }
         }
       }
@@ -1062,12 +1077,12 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
       if (subtopic.subsubtopics && subtopic.subsubtopics.length > 0) {
         for (const sst of subtopic.subsubtopics) {
           if (selectedIds.includes(sst.id)) {
-            total += sst.questionCount;
+            total += getQuestionCountForProfiles(sst, activeCatalogProfileIds);
           }
         }
       } else {
         if (selectedIds.includes(subtopic.id)) {
-          total += subtopic.questionCount;
+          total += getQuestionCountForProfiles(subtopic, activeCatalogProfileIds);
         }
       }
     }
@@ -1080,17 +1095,17 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
     if (subtopic.subsubtopics && subtopic.subsubtopics.length > 0) {
       return subtopic.subsubtopics
         .filter((sst) => selectedIds.includes(sst.id))
-        .reduce((sum, sst) => sum + sst.questionCount, 0);
+        .reduce((sum, sst) => sum + getQuestionCountForProfiles(sst, activeCatalogProfileIds), 0);
     }
-    return selectedIds.includes(subtopic.id) ? subtopic.questionCount : 0;
+    return selectedIds.includes(subtopic.id) ? getQuestionCountForProfiles(subtopic, activeCatalogProfileIds) : 0;
   };
 
   // Total de questões selecionadas em todo o catálogo
   const totalSelectedQuestionsCount = useMemo(() => {
-    return catalogSubjects.reduce((acc, subject) => {
+    return profileScopedCatalogSubjects.reduce((acc, subject) => {
       return acc + getSubjectSelectedQuestionsCount(subject);
     }, 0);
-  }, [catalogSubjects, selectedCatalogSubtopics]);
+  }, [profileScopedCatalogSubjects, selectedCatalogSubtopics, activeCatalogProfileIds]);
 
   // Total de questões disponíveis em todo o catálogo real carregado
   const totalAvailableQuestionsCount = useMemo(() => {
@@ -1297,28 +1312,7 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
 
   // Filtro de Matérias do Catálogo pelos Perfis Selecionados na Etapa Anterior e Busca
   const filteredCatalogSubjects = useMemo(() => {
-    return catalogSubjects.filter((subject) => {
-      const subjectProfiles = subject.examProfileIds || [];
-
-      // 1. Matéria deve pertencer a pelo menos um dos perfis selecionados na Etapa 2
-      if (
-        selectedExamProfiles.length > 0 &&
-        subjectProfiles.length > 0 &&
-        !subjectProfiles.some((pId) => selectedExamProfiles.includes(pId))
-      ) {
-        return false;
-      }
-
-      // 2. Se um perfil específico estiver selecionado na barra de filtros da Etapa 3
-      if (
-        subjectCategoryFilter !== 'Todas' &&
-        subjectProfiles.length > 0 &&
-        !subjectProfiles.includes(subjectCategoryFilter)
-      ) {
-        return false;
-      }
-
-      // 3. Busca por texto
+    return profileScopedCatalogSubjects.filter((subject) => {
       const query = catalogSearch.toLowerCase().trim();
       const matchQuery =
         !query ||
@@ -1335,15 +1329,15 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
 
       return matchQuery;
     });
-  }, [catalogSubjects, selectedExamProfiles, subjectCategoryFilter, catalogSearch]);
+  }, [profileScopedCatalogSubjects, catalogSearch]);
 
   // Matéria ativa no painel de detalhe do Banco de Questões
   const activeSubject = useMemo(() => {
-    if (!catalogSubjects || catalogSubjects.length === 0) return null;
-    const found = catalogSubjects.find((s) => s.id === activeCatalogSubjectId);
+    if (!filteredCatalogSubjects.length) return null;
+    const found = filteredCatalogSubjects.find((s) => s.id === activeCatalogSubjectId);
     if (found) return found;
-    return filteredCatalogSubjects[0] || catalogSubjects[0] || null;
-  }, [activeCatalogSubjectId, catalogSubjects, filteredCatalogSubjects]);
+    return filteredCatalogSubjects[0] || null;
+  }, [activeCatalogSubjectId, filteredCatalogSubjects]);
 
   if (!isOpen) return null;
 
@@ -1578,6 +1572,10 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                         <Loader2 className="h-8 w-8 animate-spin text-emerald-700 mb-2" />
                         <p className="text-xs font-semibold">Carregando bancas e questões do banco oficial...</p>
                       </div>
+                    ) : catalogLoadError ? (
+                      <div role="alert" className="p-8 text-center text-amber-800 bg-amber-50 rounded-2xl border border-amber-200">
+                        <p className="text-sm font-semibold">{catalogLoadError}</p>
+                      </div>
                     ) : filteredExamProfiles.length === 0 ? (
                       <div className="p-8 text-center text-slate-500 bg-slate-50 rounded-2xl border border-slate-200">
                         <p className="text-sm font-semibold">Nenhuma banca encontrada com os filtros selecionados.</p>
@@ -1760,8 +1758,17 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                         {!activeSubject ? (
                           <div className="flex h-full min-h-[220px] flex-col items-center justify-center text-center p-6 text-slate-400">
                             <BookOpen className="h-8 w-8 text-slate-300 mb-2" />
-                            <p className="text-sm font-semibold text-slate-600">Nenhuma matéria selecionada</p>
-                            <p className="text-xs text-slate-400 mt-1">Selecione uma matéria na lista ao lado para ver seus tópicos.</p>
+                            {selectedExamProfiles.length === 0 ? (
+                              <>
+                                <p className="text-sm font-semibold text-slate-600">Selecione uma ou mais bancas para filtrar o acervo</p>
+                                <p className="text-xs text-slate-400 mt-1">Volte à etapa anterior e escolha os perfis que deseja incluir.</p>
+                              </>
+                            ) : (
+                              <>
+                                <p className="text-sm font-semibold text-slate-600">Nenhuma matéria selecionada</p>
+                                <p className="text-xs text-slate-400 mt-1">Selecione uma matéria na lista ao lado para ver seus tópicos.</p>
+                              </>
+                            )}
                           </div>
                         ) : (
                           <>
@@ -2566,7 +2573,7 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                                 key={pId}
                                 className="px-2.5 py-1 rounded-lg bg-[#132E20] text-white text-xs font-bold shadow-2xs"
                               >
-                                {prof?.badge || prof?.name || pId.toUpperCase()}
+                                {prof?.name || pId.toUpperCase()}
                               </span>
                             );
                           })}
@@ -2659,7 +2666,7 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                       const profile = examProfilesList.find((ep) => ep.id === p);
                       return (
                         <span key={p} className="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-emerald-100 text-emerald-800 uppercase">
-                          {profile?.badge || p}
+                          {profile?.name || p}
                         </span>
                       );
                     })}

@@ -4,6 +4,8 @@ export type TeacherPracticePreviewQuestionInput = {
   monitorId?: string;
   subjectId?: string;
   topicId?: string;
+  subtopicId?: string;
+  difficulty?: string;
   page: number;
   pageSize: number;
 };

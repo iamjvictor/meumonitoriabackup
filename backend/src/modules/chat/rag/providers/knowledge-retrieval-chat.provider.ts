@@ -73,8 +73,7 @@ export class KnowledgeRetrievalChatProvider implements ChatKnowledgePort {
         teacherId: input.teacherId,
         monitorId: input.monitorId,
         subjectId: input.subjectId,
-        topicId: input.topicId ?? undefined,
-        questionDocumentId: input.questionDocumentId ?? undefined,
+        // Search the full subject knowledge base; the question determines relevance.
         questionBlockId: input.questionBlockId ?? undefined,
         queryText: builtQuery.query,
         queryEmbedding,

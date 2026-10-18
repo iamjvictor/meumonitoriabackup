@@ -15,6 +15,7 @@ export type MonitorKnowledgeDocument = {
 export type MonitorKnowledgeUpload = {
   id: string;
   file: File;
+  subjectName?: string;
   status: UploadStatus;
   error?: string;
 };
@@ -23,7 +24,7 @@ export interface MonitorKnowledgeTabProps {
   filteredDocuments: MonitorKnowledgeDocument[];
   queuedUploads: MonitorKnowledgeUpload[];
   currentScope: string;
-  selectedTopicId: string | null;
+  selectedSubjectId: string | null;
   isSubmittingUploads: boolean;
   isDraggingFiles: boolean;
   stagedCount: number;
@@ -40,7 +41,7 @@ export function MonitorKnowledgeTab({
   filteredDocuments,
   queuedUploads,
   currentScope,
-  selectedTopicId,
+  selectedSubjectId,
   isSubmittingUploads,
   isDraggingFiles,
   stagedCount,
@@ -117,10 +118,10 @@ export function MonitorKnowledgeTab({
         <div>
           <h4 className="text-base font-bold text-[#132E20] flex items-center gap-2"><FileUp className="h-5 w-5 text-emerald-700" /><span>Adicionar Materiais</span></h4>
           <p className="text-xs text-slate-500 mt-0.5">Envie apostilas, resumos ou livros que compõem a base de <strong className="text-emerald-950 font-semibold">{currentScope}</strong>.</p>
-          {!selectedTopicId && <p className="mt-2 text-xs font-semibold text-amber-700">Selecione um tópico específico na estrutura do monitor para liberar o upload.</p>}
+          {!selectedSubjectId && <p className="mt-2 text-xs font-semibold text-amber-700">Selecione uma matéria para liberar o upload.</p>}
         </div>
-        <input ref={uploadInputRef} type="file" multiple accept=".pdf,.doc,.docx,.txt" className="sr-only" disabled={!selectedTopicId || isSubmittingUploads} onChange={onFilesSelected} />
-        <button type="button" disabled={!selectedTopicId || isSubmittingUploads} onClick={() => { if (selectedTopicId) uploadInputRef.current?.click(); }} onDragEnter={(e) => { e.preventDefault(); if (selectedTopicId) onDraggingChange(true); }} onDragOver={(e) => { e.preventDefault(); if (selectedTopicId) onDraggingChange(true); }} onDragLeave={(e) => { e.preventDefault(); onDraggingChange(false); }} onDrop={(e: DragEvent<HTMLButtonElement>) => { e.preventDefault(); onDraggingChange(false); if (selectedTopicId) onQueueFiles(Array.from(e.dataTransfer.files)); }} className={`flex w-full flex-col items-center justify-center border-2 border-dashed rounded-xl px-6 py-10 text-center transition-all ${!selectedTopicId || isSubmittingUploads ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'} ${isDraggingFiles ? 'border-emerald-700 bg-emerald-100/70 shadow-inner scale-[0.99]' : 'border-emerald-300 bg-emerald-50/40 hover:border-emerald-600 hover:bg-emerald-50/80 hover:shadow-xs'}`}>
+        <input ref={uploadInputRef} type="file" multiple accept=".pdf,.doc,.docx,.txt" className="sr-only" disabled={!selectedSubjectId || isSubmittingUploads} onChange={onFilesSelected} />
+        <button type="button" disabled={!selectedSubjectId || isSubmittingUploads} onClick={() => { if (selectedSubjectId) uploadInputRef.current?.click(); }} onDragEnter={(e) => { e.preventDefault(); if (selectedSubjectId) onDraggingChange(true); }} onDragOver={(e) => { e.preventDefault(); if (selectedSubjectId) onDraggingChange(true); }} onDragLeave={(e) => { e.preventDefault(); onDraggingChange(false); }} onDrop={(e: DragEvent<HTMLButtonElement>) => { e.preventDefault(); onDraggingChange(false); if (selectedSubjectId) onQueueFiles(Array.from(e.dataTransfer.files)); }} className={`flex w-full flex-col items-center justify-center border-2 border-dashed rounded-xl px-6 py-10 text-center transition-all ${!selectedSubjectId || isSubmittingUploads ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'} ${isDraggingFiles ? 'border-emerald-700 bg-emerald-100/70 shadow-inner scale-[0.99]' : 'border-emerald-300 bg-emerald-50/40 hover:border-emerald-600 hover:bg-emerald-50/80 hover:shadow-xs'}`}>
           <div className="p-3 bg-white rounded-full shadow-2xs mb-3 text-emerald-700 border border-emerald-100"><Upload className="h-6 w-6" aria-hidden="true" /></div>
           <span className="text-sm font-bold text-emerald-950">Arraste arquivos aqui ou clique para selecionar</span>
           <span className="mt-1 text-[11px] text-slate-500 max-w-xs">PDF, DOC, DOCX ou TXT serão vetorizados e processados pela IA</span>
@@ -130,8 +131,8 @@ export function MonitorKnowledgeTab({
           <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs mt-4">
             <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50/80 px-4 py-3"><p className="text-xs font-bold text-[#132E20]">Fila de Envio ({queuedUploads.length})</p>{!isSubmittingUploads && <button type="button" onClick={onClearQueue} className="text-[11px] font-semibold text-slate-400 hover:text-rose-700 transition-colors">Limpar fila</button>}</div>
             <ul className="divide-y divide-slate-100 max-h-48 overflow-y-auto">
-              {queuedUploads.map(({ id, file, status, error: uploadError }) => (
-                <li key={id} className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50/50"><div className="flex items-center gap-2 min-w-0"><FileText className="h-4 w-4 text-emerald-700 shrink-0" /><div className="min-w-0"><p className="text-xs font-semibold text-slate-800 truncate max-w-[180px]" title={file.name}>{file.name}</p><p className="text-[10px] text-slate-400">{formatFileSize(file.size)}</p></div></div><div className="flex items-center gap-2 shrink-0">{status === 'staged' && <span className="text-[10px] font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full flex items-center gap-1"><Clock className="h-3 w-3 text-slate-500" /> Pronto p/ Enviar</span>}{status === 'uploading' && <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full flex items-center gap-1.5"><LoaderCircle className="h-3 w-3 animate-spin text-emerald-700" /> Enviando...</span>}{status === 'uploaded' && <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-full flex items-center gap-1.5 border border-emerald-200/80 shadow-2xs"><LoaderCircle className="h-3 w-3 animate-spin text-emerald-700" /><span>Enviado e Processando...</span></span>}{status === 'failed' && <span className="text-[10px] font-bold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full flex items-center gap-1" title={uploadError}><AlertCircle className="h-3 w-3" /> Falhou</span>}</div></li>
+              {queuedUploads.map(({ id, file, subjectName, status, error: uploadError }) => (
+                <li key={id} className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50/50"><div className="flex items-center gap-2 min-w-0"><FileText className="h-4 w-4 text-emerald-700 shrink-0" /><div className="min-w-0"><p className="text-xs font-semibold text-slate-800 truncate max-w-[180px]" title={file.name}>{file.name}</p><p className="text-[10px] text-slate-400">{formatFileSize(file.size)}{subjectName ? ` · ${subjectName}` : ""}</p></div></div><div className="flex items-center gap-2 shrink-0">{status === 'staged' && <span className="text-[10px] font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full flex items-center gap-1"><Clock className="h-3 w-3 text-slate-500" /> Pronto p/ Enviar</span>}{status === 'uploading' && <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full flex items-center gap-1.5"><LoaderCircle className="h-3 w-3 animate-spin text-emerald-700" /> Enviando...</span>}{status === 'uploaded' && <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-full flex items-center gap-1.5 border border-emerald-200/80 shadow-2xs"><LoaderCircle className="h-3 w-3 animate-spin text-emerald-700" /><span>Enviado e Processando...</span></span>}{status === 'failed' && <span className="text-[10px] font-bold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full flex items-center gap-1" title={uploadError}><AlertCircle className="h-3 w-3" /> Falhou</span>}</div></li>
               ))}
             </ul>
             <div className="flex items-center justify-between border-t border-slate-200 bg-slate-50/80 px-4 py-3"><p className="text-[10px] text-slate-500">{stagedCount} arquivos prontos</p><button type="button" onClick={onOpenUploadConfirmation} disabled={isSubmittingUploads || stagedCount === 0} className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-800 px-4 py-2 text-xs font-bold text-white shadow-xs hover:bg-emerald-900 disabled:opacity-50 transition-all cursor-pointer">{isSubmittingUploads ? <LoaderCircle className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}<span>Enviar para IA</span></button></div>

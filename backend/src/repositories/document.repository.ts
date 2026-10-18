@@ -39,7 +39,7 @@ export class DocumentRepository {
 
     if (!scope) return { kind: 'SCOPE_NOT_FOUND' as const };
 
-    const topicIds = [input.topicId];
+    const topicIds = input.topicId ? [input.topicId] : [];
 
     console.log('Escopo do documento validado', {
       event: 'monitor.document_scope_validation_completed',
@@ -55,7 +55,7 @@ export class DocumentRepository {
       .replace(/[^a-zA-Z0-9._-]/g, '_')
       .replace(/\.{2,}/g, '.')
       .slice(0, 180);
-    const scopeFolder = input.topicId;
+    const scopeFolder = input.topicId ?? 'whole-subject';
     const storagePath = `${scope.teacherId}/${monitorId}/${input.subjectId}/${scopeFolder}/${documentId}-${safeName || 'document'}`;
 
     const preparedFile = await compressPdfForStorage({
@@ -112,9 +112,9 @@ export class DocumentRepository {
           sizeBytes: preparedFile.finalSizeBytes,
           status: 'QUEUED',
           processingVersion: DOCUMENT_PROCESSING_VERSION,
-          topicLinks: {
-            create: topicIds.map((topicId) => ({ topicId })),
-          },
+          ...(topicIds.length > 0 ? {
+            topicLinks: { create: topicIds.map((topicId) => ({ topicId })) },
+          } : {}),
         },
       });
 

@@ -26,7 +26,7 @@ export type QuestApiQuestion = {
   textos_associados?: string[] | null;
   anexos?: Array<{ url?: string | null } | string> | null;
   sinalizadores?: Record<string, boolean>;
-  dificuldade?: string | null;
+  dificuldade?: string | number | null;
 };
 
 export type QuestApiPage = {

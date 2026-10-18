@@ -1,6 +1,6 @@
 export type EntitlementStatus = 'ACTIVE' | 'CANCEL_PENDING';
 
-export interface EntitlementSubject { id: string; name: string; topics: Array<{ id: string; name: string }>; }
+export interface EntitlementSubject { id: string; name: string; topics: Array<{ id: string; name: string; subtopics?: Array<{ id: string; name: string }> }>; }
 export interface EntitlementSubscription {
   paymentSubscriptionId: string;
   providerSubscriptionId: string | null;

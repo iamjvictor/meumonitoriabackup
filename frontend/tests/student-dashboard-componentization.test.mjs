@@ -59,10 +59,10 @@ test('study actions extraction retains its original UI contract', () => {
 
 test('performance extraction retains its original UI contract', () => {
   const source = read(`${routeRoot}/components/DashboardPerformanceSection.tsx`);
-  for (const marker of ['CARD UNIFICADO DE DESEMPENHO E CONSTÂNCIA', 'Frequência no Desafio Diário', 'Colocação no Ranking']) {
+  for (const marker of ['Seu progresso', 'Desafio diário', 'Ranking']) {
     assert.match(source, new RegExp(marker));
   }
-  for (const marker of ['lg:grid-cols-12', 'rounded-[28px]', 'bg-gradient-to-br from-[#1B4332] via-[#2E5B37] to-[#133024]']) {
+  for (const marker of ['sm:grid-cols-3', 'rounded-[24px]', 'bg-gradient-to-br from-[#1B4332] via-[#245337] to-[#122B20]']) {
     assert.match(source, new RegExp(marker.replace(/[.[\]#]/g, '\\$&')));
   }
 });

@@ -5,6 +5,8 @@ type QuestionFilters = {
   monitorId?: string;
   subjectId?: string;
   topicId?: string;
+  subtopicId?: string;
+  difficulty?: string;
   page: number;
   pageSize: number;
 };
@@ -32,6 +34,8 @@ export class PrismaTeacherPracticePreviewRepository implements TeacherPracticePr
       ...(input.monitorId ? { monitorId: input.monitorId } : {}),
       ...(input.subjectId ? { subjectId: input.subjectId } : {}),
       ...(input.topicId ? { topicId: input.topicId } : {}),
+      ...(input.subtopicId ? { subtopicId: input.subtopicId } : {}),
+      ...(input.difficulty ? { OR: [{ difficulty: input.difficulty }, { difficulty: null, questionBankItem: { difficulty: input.difficulty } }] } : {}),
     };
 
     const [questions, total] = await Promise.all([
@@ -50,16 +54,17 @@ export class PrismaTeacherPracticePreviewRepository implements TeacherPracticePr
           kind: true,
           difficulty: true,
           explanation: true,
-          questionBankItem: { select: { imageUrls: true } },
+          questionBankItem: { select: { imageUrls: true, difficulty: true } },
           subject: { select: { id: true, name: true } },
           topic: { select: { id: true, name: true } },
+          subtopic: { select: { id: true, name: true } },
         },
       }),
       prisma.question.count({ where }),
     ]);
 
     return {
-      questions,
+      questions: questions.map((question) => ({ ...question, difficulty: question.difficulty ?? question.questionBankItem?.difficulty ?? null })),
       total,
       stats: { attemptsCount: 0, correctCount: 0, answeredQuestionsCount: 0, accuracy: 0 },
     };

@@ -26,7 +26,7 @@ export interface MonitorStructureSidebarProps {
   setNewTopicName: (value: string) => void;
   setNewTopicDefinition: (value: string) => void;
   handleDeleteSubject: (subjectId: string) => void;
-  handleAddTopic: (subjectId: string) => void;
+  handleAddTopic: (subjectId: string, nameOverride?: string) => void;
   setSelectedSubjectId: (subjectId: string) => void;
   setSelectedTopic: (topic: string) => void;
   handleDeleteTopic: (subjectId: string, topicId: string | undefined, topic: string) => void;
@@ -44,6 +44,8 @@ export function MonitorStructureSidebar({
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [expandedTopics, setExpandedTopics] = useState<Record<string, boolean>>({});
   const [expandedSubtopics, setExpandedSubtopics] = useState<Record<string, boolean>>({});
+  const [activeChildInputKey, setActiveChildInputKey] = useState<string | null>(null);
+  const [newChildName, setNewChildName] = useState('');
 
   const renderStatus = (topicDocs: SidebarItem[], topicQuestions: SidebarItem[]) => {
     const hasReported = topicQuestions.some((question) => question.status === 'reported');
@@ -303,13 +305,14 @@ export function MonitorStructureSidebar({
                       </button>
                       <button
                         type="button"
+                        disabled={monitor.subjects.length <= 1}
                         onClick={() => handleDeleteSubject(subject.id)}
                         className={`p-1 rounded-md transition-colors cursor-pointer ${
                           isDirectSubjectSelected
                             ? 'text-emerald-200 hover:text-rose-200 hover:bg-emerald-700'
                             : 'text-slate-400 hover:text-rose-600 hover:bg-slate-100'
                         }`}
-                        title="Remover Matéria"
+                        title={monitor.subjects.length <= 1 ? 'O monitor precisa manter pelo menos uma matéria' : 'Remover Matéria'}
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>
@@ -393,7 +396,16 @@ export function MonitorStructureSidebar({
                               {renderStatus(topicDocs, topicQuestions)}
                             </button>
                             <button type="button" onClick={() => handleDeleteTopic(subject.id, topicId, topic)} className="mr-1 p-0.5 text-slate-400 opacity-0 group-hover/topic:opacity-100 hover:text-rose-600 rounded transition-all cursor-pointer" title="Remover Tópico"><X className="h-3.5 w-3.5" /></button>
+                            <button type="button" onClick={() => { setActiveChildInputKey(topicKey); setNewChildName(''); setExpandedTopics((current) => ({ ...current, [topicKey]: true })); }} className="mr-1 p-0.5 text-slate-400 opacity-0 group-hover/topic:opacity-100 hover:text-emerald-700 rounded transition-all cursor-pointer" title="Adicionar subtópico"><Plus className="h-3.5 w-3.5" /></button>
                           </div>
+
+                          {activeChildInputKey === topicKey && (
+                            <div className="ml-5 flex items-center gap-1.5 rounded-md bg-emerald-50 p-1.5">
+                              <input value={newChildName} onChange={(event) => setNewChildName(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') { handleAddTopic(subject.id, `${topic} > ${newChildName}`); setActiveChildInputKey(null); } }} placeholder="Nome do subtópico" className="min-w-0 flex-1 rounded border border-emerald-200 px-2 py-1 text-xs" autoFocus />
+                              <button type="button" onClick={() => { handleAddTopic(subject.id, `${topic} > ${newChildName}`); setActiveChildInputKey(null); }} className="rounded bg-emerald-700 p-1 text-white" aria-label="Salvar subtópico"><CheckCircle2 className="h-3.5 w-3.5" /></button>
+                              <button type="button" onClick={() => setActiveChildInputKey(null)} className="rounded bg-slate-200 p-1 text-slate-600" aria-label="Cancelar"><X className="h-3.5 w-3.5" /></button>
+                            </div>
+                          )}
 
                           {isExpanded && subtopics.length > 0 && (
                             <div className="ml-4 space-y-0.5 border-l border-slate-200 pl-1.5">
@@ -411,7 +423,15 @@ export function MonitorStructureSidebar({
                                       <button type="button" onClick={() => { setSelectedSubjectId(subject.id); setSelectedTopic(selectionName); }} className="flex min-w-0 flex-1 items-center justify-between py-1.5 pr-1 text-left cursor-pointer">
                                         <span className="truncate">{subtopic.name}</span>
                                       </button>
+                                      <button type="button" onClick={() => { setActiveChildInputKey(subtopicKey); setNewChildName(''); setExpandedTopics((current) => ({ ...current, [topicKey]: true })); setExpandedSubtopics((current) => ({ ...current, [subtopicKey]: true })); }} className="mr-1 p-0.5 text-slate-400 opacity-0 hover:opacity-100 hover:text-emerald-700 rounded cursor-pointer" title="Adicionar sub-subtópico"><Plus className="h-3.5 w-3.5" /></button>
                                     </div>
+                                    {activeChildInputKey === subtopicKey && (
+                                      <div className="ml-5 flex items-center gap-1.5 rounded-md bg-emerald-50 p-1.5">
+                                        <input value={newChildName} onChange={(event) => setNewChildName(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') { handleAddTopic(subject.id, `${topic} > ${subtopic.name} > ${newChildName}`); setActiveChildInputKey(null); } }} placeholder="Nome do sub-subtópico" className="min-w-0 flex-1 rounded border border-emerald-200 px-2 py-1 text-xs" autoFocus />
+                                        <button type="button" onClick={() => { handleAddTopic(subject.id, `${topic} > ${subtopic.name} > ${newChildName}`); setActiveChildInputKey(null); }} className="rounded bg-emerald-700 p-1 text-white" aria-label="Salvar sub-subtópico"><CheckCircle2 className="h-3.5 w-3.5" /></button>
+                                        <button type="button" onClick={() => setActiveChildInputKey(null)} className="rounded bg-slate-200 p-1 text-slate-600" aria-label="Cancelar"><X className="h-3.5 w-3.5" /></button>
+                                      </div>
+                                    )}
                                     {subtopicExpanded && subsubtopics.length > 0 && (
                                       <div className="ml-5 space-y-0.5 border-l border-slate-200 pl-2">
                                         {subsubtopics.map((subsubtopic) => {

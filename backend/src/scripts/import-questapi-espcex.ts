@@ -155,13 +155,13 @@ function readRawStringOption(name: string) {
 }
 
 function readQuestApiKey() {
+  const configuredKey = process.env.QUESTAPI_API_KEY;
+  if (configuredKey?.startsWith('qk_')) return configuredKey;
+
   const testTokenFile = resolve(process.cwd(), '../TetseAPIFY.ts');
   const testToken = readFileSync(testTokenFile, 'utf8')
     .match(/const API_TOKEN\s*=\s*["']([^"']+)["']/)?.[1];
   if (testToken?.startsWith('qk_')) return testToken;
-
-  const configuredKey = process.env.QUESTAPI_API_KEY;
-  if (configuredKey?.startsWith('qk_')) return configuredKey;
 
   throw new Error('Nenhuma chave Quest API válida foi encontrada em TetseAPIFY.ts ou QUESTAPI_API_KEY.');
 }

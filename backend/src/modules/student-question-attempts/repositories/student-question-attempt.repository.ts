@@ -31,13 +31,15 @@ export class StudentQuestionAttemptRepository {
     ]));
   }
 
-  async listApprovedQuestions(input: { monitorIds: string[]; monitorId?: string; subjectId?: string; topicId?: string; page: number; pageSize: number; studentId: string }) {
+  async listApprovedQuestions(input: { monitorIds: string[]; monitorId?: string; subjectId?: string; topicId?: string; subtopicId?: string; difficulty?: string; page: number; pageSize: number; studentId: string }) {
     const monitorIds = input.monitorId ? input.monitorIds.filter((id) => id === input.monitorId) : input.monitorIds;
     const where = {
       monitorId: { in: monitorIds },
       status: 'APPROVED' as const,
       ...(input.subjectId ? { subjectId: input.subjectId } : {}),
       ...(input.topicId ? { topicId: input.topicId } : {}),
+      ...(input.subtopicId ? { subtopicId: input.subtopicId } : {}),
+      ...(input.difficulty ? { OR: [{ difficulty: input.difficulty }, { difficulty: null, questionBankItem: { difficulty: input.difficulty } }] } : {}),
     };
     const [questions, total] = await Promise.all([
       prisma.question.findMany({
@@ -57,6 +59,7 @@ export class StudentQuestionAttemptRepository {
           metadata: true,
           questionBankItem: { select: {
             imageUrls: true,
+            difficulty: true,
             board: true,
             examName: true,
             examYear: true,
@@ -64,6 +67,7 @@ export class StudentQuestionAttemptRepository {
           } },
           subject: { select: { id: true, name: true } },
           topic: { select: { id: true, name: true } },
+          subtopic: { select: { id: true, name: true } },
           questionAttempts: {
             where: { studentId: input.studentId, mode: 'PRACTICE', status: 'ACTIVE' },
             orderBy: { answeredAt: 'desc' },
@@ -84,6 +88,8 @@ export class StudentQuestionAttemptRepository {
         status: 'APPROVED' as const,
         ...(input.subjectId ? { subjectId: input.subjectId } : {}),
         ...(input.topicId ? { topicId: input.topicId } : {}),
+        ...(input.subtopicId ? { subtopicId: input.subtopicId } : {}),
+        ...(input.difficulty ? { OR: [{ difficulty: input.difficulty }, { difficulty: null, questionBankItem: { difficulty: input.difficulty } }] } : {}),
       },
     };
     const [attemptsCount, correctCount, answeredQuestionIds] = await Promise.all([
@@ -95,6 +101,7 @@ export class StudentQuestionAttemptRepository {
     return {
       questions: questions.map(({ metadata, ...question }) => ({
         ...question,
+        difficulty: question.difficulty ?? question.questionBankItem?.difficulty ?? null,
         ...mapQuestionPracticeProvenance({ questionBankItem: question.questionBankItem, metadata }),
       })),
       total,
@@ -163,6 +170,8 @@ export class StudentQuestionAttemptRepository {
     monitorId?: string;
     subjectId?: string;
     topicId?: string;
+    subtopicId?: string;
+    difficulty?: string;
   }) {
     const result = await prisma.studentQuestionAttempt.updateMany({
       where: {
@@ -172,6 +181,8 @@ export class StudentQuestionAttemptRepository {
         question: {
           ...(input.subjectId ? { subjectId: input.subjectId } : {}),
           ...(input.topicId ? { topicId: input.topicId } : {}),
+          ...(input.subtopicId ? { subtopicId: input.subtopicId } : {}),
+          ...(input.difficulty ? { OR: [{ difficulty: input.difficulty }, { difficulty: null, questionBankItem: { difficulty: input.difficulty } }] } : {}),
         },
       },
       data: { status: 'ARCHIVED' },

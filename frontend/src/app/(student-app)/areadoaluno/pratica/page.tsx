@@ -200,6 +200,8 @@ type PracticeQuestion = {
   subjectId?: string;
   topicId?: string;
   monitorId?: string;
+  subtopicId?: string;
+  difficulty?: string | null;
   latestAttempt?: { id: string; selectedAnswer: string; isCorrect: boolean; answeredAt: string } | null;
 };
 
@@ -218,12 +220,15 @@ type RawPracticeQuestion = {
   subjectId?: string;
   topic?: { name?: string };
   topicId?: string;
+  subtopic?: { id?: string; name?: string } | null;
+  subtopicId?: string;
+  difficulty?: string | null;
   monitorId?: string;
   text: string;
   alternatives?: RawPracticeAlternative[] | Record<string, string>;
   explanation?: string;
   imageUrls?: unknown;
-  questionBankItem?: { imageUrls?: unknown } | null;
+  questionBankItem?: { imageUrls?: unknown; difficulty?: string | null } | null;
   provenance?: {
     board?: unknown;
     examName?: unknown;
@@ -272,6 +277,8 @@ function mapPracticeQuestion(question: RawPracticeQuestion): PracticeQuestion {
     subjectId: question.subjectId,
     topic: question.topic?.name || 'Sem tópico',
     topicId: question.topicId,
+    subtopicId: question.subtopicId,
+    difficulty: question.difficulty ?? null,
     monitorId: question.monitorId,
     statement: question.text,
     imageUrls,
@@ -306,6 +313,8 @@ export default function PraticaPage() {
   const [selectedMonitorId, setSelectedMonitorId] = useState<string>('ALL');
   const [selectedSubjectId, setSelectedSubjectId] = useState<string>('ALL');
   const [selectedTopicId, setSelectedTopicId] = useState<string>('ALL');
+  const [selectedSubtopicId, setSelectedSubtopicId] = useState<string>('ALL');
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('ALL');
   const [isQuestionFiltersExpanded, setIsQuestionFiltersExpanded] = useState<boolean>(true);
   const [isFlashcardFiltersExpanded, setIsFlashcardFiltersExpanded] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -371,12 +380,12 @@ export default function PraticaPage() {
 
   const monitorsOptions = useMemo(() => {
     return rawMonitorsList.map((m: StudentMonitorRecord) => {
-      const subjects: { id: string; name: string; topics: { id: string; name: string }[] }[] = [];
-      const topics: { id: string; name: string; subjectName: string }[] = [];
+      const subjects: { id: string; name: string; topics: { id: string; name: string; subtopics: { id: string; name: string }[] }[] }[] = [];
+      const topics: { id: string; name: string; subjectName: string; subtopics: { id: string; name: string }[] }[] = [];
       if (Array.isArray(m.subjects)) {
         m.subjects.forEach((subj) => {
           const subjectTopics = Array.isArray(subj.topics)
-            ? subj.topics.map((top) => ({ id: top.id || '', name: top.name || '' }))
+            ? subj.topics.map((top) => ({ id: top.id || '', name: top.name || '', subtopics: top.subtopics ?? [] }))
             : [];
           subjects.push({ id: subj.id, name: subj.name, topics: subjectTopics });
           if (Array.isArray(subj.topics)) {
@@ -385,6 +394,7 @@ export default function PraticaPage() {
                 id: top.id,
                 name: top.name,
                 subjectName: subj.name,
+                subtopics: top.subtopics ?? [],
               });
             });
           }
@@ -412,7 +422,7 @@ export default function PraticaPage() {
 
   const availableTopics = useMemo(() => {
     if (selectedMonitorId === 'ALL') {
-      const allTopics: { id: string; name: string; subjectName: string; monitorName: string }[] = [];
+      const allTopics: { id: string; name: string; subjectName: string; monitorName: string; subtopics: { id: string; name: string }[] }[] = [];
       monitorsOptions.forEach((m) => {
         m.topics.forEach((t) => {
           if (selectedSubjectId === 'ALL' || m.subjects.some((subject) => subject.id === selectedSubjectId && subject.topics.some((topic) => topic.id === t.id))) {
@@ -428,18 +438,31 @@ export default function PraticaPage() {
     return selectedMon.topics.filter((topic) => selectedMon.subjects.some((subject) => subject.id === selectedSubjectId && subject.topics.some((subjectTopic) => subjectTopic.id === topic.id)));
   }, [selectedMonitorId, selectedSubjectId, monitorsOptions]);
 
+  const availableSubtopics = useMemo(() => {
+    const topic = availableTopics.find((item) => item.id === selectedTopicId);
+    return topic?.subtopics ?? [];
+  }, [availableTopics, selectedTopicId]);
+
   useEffect(() => {
     if (selectedSubjectId !== 'ALL' && !availableSubjects.some((subject) => subject.id === selectedSubjectId)) {
       setSelectedSubjectId('ALL');
       setSelectedTopicId('ALL');
+      setSelectedSubtopicId('ALL');
     }
   }, [availableSubjects, selectedSubjectId]);
 
   useEffect(() => {
     if (selectedTopicId !== 'ALL' && !availableTopics.some((topic) => topic.id === selectedTopicId)) {
       setSelectedTopicId('ALL');
+      setSelectedSubtopicId('ALL');
     }
   }, [availableTopics, selectedTopicId]);
+
+  useEffect(() => {
+    if (selectedSubtopicId !== 'ALL' && !availableSubtopics.some((subtopic) => subtopic.id === selectedSubtopicId)) {
+      setSelectedSubtopicId('ALL');
+    }
+  }, [availableSubtopics, selectedSubtopicId]);
 
   const _totalQuestionsCount = useMemo(() => {
     if (selectedMonitorId === 'ALL') {
@@ -540,6 +563,8 @@ export default function PraticaPage() {
     if (selectedMonitorId !== 'ALL' && question.monitorId !== selectedMonitorId) return false;
     if (selectedSubjectId !== 'ALL' && question.subjectId !== selectedSubjectId) return false;
     if (selectedTopicId !== 'ALL' && question.topicId !== selectedTopicId) return false;
+    if (selectedSubtopicId !== 'ALL' && question.subtopicId !== selectedSubtopicId) return false;
+    if (selectedDifficulty !== 'ALL' && question.difficulty !== selectedDifficulty) return false;
     const isAnswered = Boolean(submittedQuestions[question.id] || question.latestAttempt);
     const isSubmitting = Boolean(isSubmittingQuestion[question.id]);
     const isCurrentlyRevealed = Boolean(revealedQuestionResults[question.id]);
@@ -549,7 +574,7 @@ export default function PraticaPage() {
     if (questionAnswerFilter === 'CORRECT') return isAnswered && isCorrect === true;
     if (questionAnswerFilter === 'INCORRECT') return isAnswered && isCorrect === false;
     return true;
-  }), [questionAnswerFilter, questionsList, selectedMonitorId, selectedSubjectId, selectedTopicId, submittedQuestions, isSubmittingQuestion, revealedQuestionResults]);
+  }), [questionAnswerFilter, questionsList, selectedMonitorId, selectedSubjectId, selectedTopicId, selectedSubtopicId, selectedDifficulty, submittedQuestions, isSubmittingQuestion, revealedQuestionResults]);
   const effectivePageSize = pageSize === 'ALL' ? Math.max(filteredQuestions.length, 1) : pageSize;
   const totalPages = Math.max(1, Math.ceil(filteredQuestions.length / effectivePageSize));
   const startIndex = (currentPage - 1) * effectivePageSize;
@@ -559,12 +584,14 @@ export default function PraticaPage() {
     () => questionsList.filter((question) => Boolean(submittedQuestions[question.id] || question.latestAttempt)).length,
     [questionsList, submittedQuestions],
   );
-  const hasScopeFilters = selectedMonitorId !== 'ALL' || selectedSubjectId !== 'ALL' || selectedTopicId !== 'ALL';
+  const hasScopeFilters = selectedMonitorId !== 'ALL' || selectedSubjectId !== 'ALL' || selectedTopicId !== 'ALL' || selectedSubtopicId !== 'ALL' || selectedDifficulty !== 'ALL';
   const hasQuestionFilters = hasScopeFilters || questionAnswerFilter !== 'UNANSWERED';
   const clearQuestionFilters = () => {
     setSelectedMonitorId('ALL');
     setSelectedSubjectId('ALL');
     setSelectedTopicId('ALL');
+    setSelectedSubtopicId('ALL');
+    setSelectedDifficulty('ALL');
     setQuestionAnswerFilter('UNANSWERED');
     setCurrentPage(1);
   };
@@ -616,6 +643,8 @@ export default function PraticaPage() {
           ...(selectedMonitorId !== 'ALL' ? { monitorId: selectedMonitorId } : {}),
           ...(selectedSubjectId !== 'ALL' ? { subjectId: selectedSubjectId } : {}),
           ...(selectedTopicId !== 'ALL' ? { topicId: selectedTopicId } : {}),
+          ...(selectedSubtopicId !== 'ALL' ? { subtopicId: selectedSubtopicId } : {}),
+          ...(selectedDifficulty !== 'ALL' ? { difficulty: selectedDifficulty } : {}),
         }),
       });
       const body = await response.json().catch(() => ({}));
@@ -641,6 +670,8 @@ export default function PraticaPage() {
     (selectedMonitorId === 'ALL' || question.monitorId === selectedMonitorId)
     && (selectedSubjectId === 'ALL' || question.subjectId === selectedSubjectId)
     && (selectedTopicId === 'ALL' || question.topicId === selectedTopicId)
+    && (selectedSubtopicId === 'ALL' || question.subtopicId === selectedSubtopicId)
+    && (selectedDifficulty === 'ALL' || question.difficulty === selectedDifficulty)
   ));
   const totalQuestionsInScope = totalQuestionsAvailable !== null && loadedQuestionsMatchScope
     ? totalQuestionsAvailable
@@ -668,6 +699,8 @@ export default function PraticaPage() {
     if (selectedMonitorId !== 'ALL') params.set('monitorId', selectedMonitorId);
     if (selectedSubjectId !== 'ALL') params.set('subjectId', selectedSubjectId);
     if (selectedTopicId !== 'ALL') params.set('topicId', selectedTopicId);
+    if (selectedSubtopicId !== 'ALL') params.set('subtopicId', selectedSubtopicId);
+    if (selectedDifficulty !== 'ALL') params.set('difficulty', selectedDifficulty);
     let cancelled = false;
     const questionsEndpoint = isTeacher
       ? `${apiUrl}/api/v1/teacher/practice-preview/questions`
@@ -712,7 +745,7 @@ export default function PraticaPage() {
         }
       });
     return () => { cancelled = true; };
-  }, [activeMode, apiUrl, isTeacher, questionsReloadNonce, selectedMonitorId, selectedSubjectId, selectedTopicId, solvingTitle, status]);
+  }, [activeMode, apiUrl, isTeacher, questionsReloadNonce, selectedMonitorId, selectedSubjectId, selectedTopicId, selectedSubtopicId, selectedDifficulty, solvingTitle, status]);
 
   const submitQuestionAnswer = async (question: PracticeQuestion) => {
     const selectedAnswer = selectedAnswers[question.id];
@@ -859,7 +892,7 @@ export default function PraticaPage() {
   const handleAttachFlashcardToAi = () => {
     if (!currentFlashcard?.id || !currentFlashcard.monitorId || !currentFlashcard.subjectId) return;
     if (activeFlashcardContext?.id === currentFlashcard.id) {
-      router.push('/areadoaluno/chat');
+      setActiveFlashcardContext(null);
       return;
     }
     setActiveFlashcardContext({
@@ -871,7 +904,12 @@ export default function PraticaPage() {
       front: currentFlashcard.front,
       back: currentFlashcard.back,
     });
-    router.push('/areadoaluno/chat');
+
+    // On desktop the chat sidebar is already beside the flashcard.
+    // Keep this page in place; mobile still navigates to its full-screen chat.
+    if (!window.matchMedia('(min-width: 1024px)').matches) {
+      router.push('/areadoaluno/chat');
+    }
   };
 
   const handleStartQuestion = (title: string) => {
@@ -1198,6 +1236,7 @@ export default function PraticaPage() {
                                   setSelectedMonitorId(e.target.value);
                                   setSelectedSubjectId('ALL');
                                   setSelectedTopicId('ALL');
+                                  setSelectedSubtopicId('ALL');
                                   setCurrentPage(1);
                                 }}
                                 className="w-full rounded-lg border border-[#0F2942]/12 bg-white px-2 py-1.5 text-[10px] font-bold normal-case tracking-normal text-[#0F2942] transition focus:border-[#2E5B37] focus:outline-none cursor-pointer sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-xs"
@@ -1216,6 +1255,7 @@ export default function PraticaPage() {
                                   setQuestionLoadError(null);
                                   setSelectedSubjectId(e.target.value);
                                   setSelectedTopicId('ALL');
+                                  setSelectedSubtopicId('ALL');
                                   setCurrentPage(1);
                                 }}
                                 className="w-full rounded-lg border border-[#0F2942]/12 bg-white px-2 py-1.5 text-[10px] font-bold normal-case tracking-normal text-[#0F2942] transition focus:border-[#2E5B37] focus:outline-none cursor-pointer sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-xs"
@@ -1233,12 +1273,51 @@ export default function PraticaPage() {
                                   setIsLoadingQuestionData(true);
                                   setQuestionLoadError(null);
                                   setSelectedTopicId(e.target.value);
+                                  setSelectedSubtopicId('ALL');
                                   setCurrentPage(1);
                                 }}
                                 className="w-full rounded-lg border border-[#0F2942]/12 bg-white px-2 py-1.5 text-[10px] font-bold normal-case tracking-normal text-[#0F2942] transition focus:border-[#2E5B37] focus:outline-none cursor-pointer sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-xs"
                               >
                                 <option value="ALL">Todos os tópicos</option>
                                 {availableTopics.map((topic) => <option key={`${('monitorName' in topic ? topic.monitorName : 'all') || 'all'}-${topic.id}`} value={topic.id}>{topic.name}</option>)}
+                              </select>
+                            </label>
+                            {selectedTopicId !== 'ALL' && availableSubtopics.length > 0 && (
+                              <label className="space-y-1 text-[8px] font-black uppercase tracking-[0.1em] text-[#0F2942]/55 sm:space-y-1.5 sm:text-[10px] sm:tracking-[0.12em]">
+                                Subtópico
+                                <select
+                                  aria-label="Filtrar questões por subtópico"
+                                  value={selectedSubtopicId}
+                                  onChange={(e) => {
+                                    setIsLoadingQuestionData(true);
+                                    setQuestionLoadError(null);
+                                    setSelectedSubtopicId(e.target.value);
+                                    setCurrentPage(1);
+                                  }}
+                                  className="w-full rounded-lg border border-[#0F2942]/12 bg-white px-2 py-1.5 text-[10px] font-bold normal-case tracking-normal text-[#0F2942] transition focus:border-[#2E5B37] focus:outline-none cursor-pointer sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-xs"
+                                >
+                                  <option value="ALL">Todos os subtópicos</option>
+                                  {availableSubtopics.map((subtopic) => <option key={subtopic.id} value={subtopic.id}>{subtopic.name}</option>)}
+                                </select>
+                              </label>
+                            )}
+                            <label className="space-y-1 text-[8px] font-black uppercase tracking-[0.1em] text-[#0F2942]/55 sm:space-y-1.5 sm:text-[10px] sm:tracking-[0.12em]">
+                              Dificuldade
+                              <select
+                                aria-label="Filtrar questões por dificuldade"
+                                value={selectedDifficulty}
+                                onChange={(e) => {
+                                  setIsLoadingQuestionData(true);
+                                  setQuestionLoadError(null);
+                                  setSelectedDifficulty(e.target.value);
+                                  setCurrentPage(1);
+                                }}
+                                className="w-full rounded-lg border border-[#0F2942]/12 bg-white px-2 py-1.5 text-[10px] font-bold normal-case tracking-normal text-[#0F2942] transition focus:border-[#2E5B37] focus:outline-none cursor-pointer sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-xs"
+                              >
+                                <option value="ALL">Todas as dificuldades</option>
+                                <option value="EASY">Fácil</option>
+                                <option value="MEDIUM">Média</option>
+                                <option value="HARD">Difícil</option>
                               </select>
                             </label>
                             <label className="space-y-1 text-[8px] font-black uppercase tracking-[0.1em] text-[#0F2942]/55 sm:space-y-1.5 sm:text-[10px] sm:tracking-[0.12em]">

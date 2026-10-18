@@ -172,3 +172,11 @@ test('documentos com tag questions usam o pipeline de conhecimento', async () =>
   assert.equal(shouldProcessDocumentContent('QUESTIONS'), true);
   assert.equal(shouldProcessDocumentContent('FLASHCARDS'), true);
 });
+
+test('base de conhecimento de toda a matéria não gera perfis de todos os tópicos no upload', async () => {
+  const { shouldGenerateTopicProfile } = await import('../document-worker.service.js');
+
+  assert.equal(shouldGenerateTopicProfile('KNOWLEDGE_BASE', null), false);
+  assert.equal(shouldGenerateTopicProfile('KNOWLEDGE_BASE', 'topic-1'), true);
+  assert.equal(shouldGenerateTopicProfile('QUESTIONS', 'topic-1'), false);
+});

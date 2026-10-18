@@ -42,7 +42,7 @@ export type QuestionBankMaterializationItem = {
   institution: string | null;
   examYear: number | null;
   subject: string;
-  topic: string;
+  topic: string | null;
   subtopic: string | null;
   subsubtopic: string | null;
   taxonomyPath: unknown;

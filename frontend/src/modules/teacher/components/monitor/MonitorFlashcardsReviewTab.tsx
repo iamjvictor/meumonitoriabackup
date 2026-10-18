@@ -4,7 +4,7 @@ import type { ChangeEvent, Dispatch, RefObject, SetStateAction } from 'react';
 import { AlertCircle, AlertTriangle, BrainCircuit, Check, CheckCircle2, Clock, Edit3, FileText, Filter, HelpCircle, LoaderCircle, Plus, Send, Sparkles, Trash2, Upload, XCircle, RotateCcw } from 'lucide-react';
 
 type UploadStatus = 'staged' | 'uploading' | 'uploaded' | 'failed';
-type UploadItem = { id: string; file: File; topicId: string; status: UploadStatus; error?: string };
+type UploadItem = { id: string; file: File; subjectId: string; topicId?: string; status: UploadStatus; error?: string };
 type FlashcardItem = {
   id: string;
   topicName: string;

@@ -106,7 +106,7 @@ export function normalizeQuestApiQuestion(
       isCorrect: alternative.letra.trim().toUpperCase() === correctAnswer,
     })),
     correctAnswer,
-    difficulty: typeof question.dificuldade === 'string' ? normalizeDifficulty(question.dificuldade) : null,
+    difficulty: normalizeDifficulty(question.dificuldade),
     sourceUrl: `https://api.quest.api.br/v2/questoes/${encodeURIComponent(question.id)}`,
     imageUrls,
     rawPayload: question,

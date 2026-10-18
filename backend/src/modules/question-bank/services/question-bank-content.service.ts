@@ -14,13 +14,24 @@ export function splitTaxonomyPath(value: string | null | undefined) {
     .filter(Boolean);
 }
 
-export function normalizeDifficulty(value: string | null | undefined) {
-  const normalized = value
+export function normalizeDifficulty(value: string | number | null | undefined) {
+  const rawValue = typeof value === 'number' ? String(value) : value;
+  const normalized = rawValue
     ?.normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .trim()
     .toLowerCase();
-  return normalized ? difficultyMap[normalized] ?? null : null;
+  if (!normalized) return null;
+
+  if (/^\d+(?:\.\d+)?$/.test(normalized)) {
+    const score = Number(normalized);
+    if (!Number.isFinite(score) || score < 1 || score > 10) return null;
+    if (score < 5) return 'EASY';
+    if (score <= 7) return 'MEDIUM';
+    return 'HARD';
+  }
+
+  return difficultyMap[normalized] ?? null;
 }
 
 export function extractImageUrls(html: string) {
@@ -60,7 +71,7 @@ export function computeQuestionContentHash(input: {
   provider: string;
   providerQuestionId: string;
   subject: string;
-  topic: string;
+  topic: string | null;
   statementText: string;
   alternatives: Array<{ label: string; text: string }>;
   correctAnswer: string;

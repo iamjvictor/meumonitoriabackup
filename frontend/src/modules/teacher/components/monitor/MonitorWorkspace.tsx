@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { TeacherMonitor, TeacherMonitorService } from '@/modules/teacher/services/TeacherMonitorService';
+import type { MonitorDraft } from '@/modules/teacher/components/TeacherMonitorCreationModal';
 import { TeacherSessionError } from '@/modules/teacher/services/TeacherSessionError';
 import { TeacherProfileService, TeacherProfile } from '@/modules/teacher/services/TeacherProfileService';
 import { AlertModal } from '@/shared';
@@ -33,8 +34,8 @@ const MonitorFlashcardEditorModal = dynamic(
   () => import('@/modules/teacher/components/monitor/MonitorFlashcardEditorModal').then((module) => module.MonitorFlashcardEditorModal),
   { ssr: false, loading: () => null }
 );
-const AddSubjectModal = dynamic(
-  () => import('@/modules/teacher/components/monitor/AddSubjectModal').then((module) => module.AddSubjectModal),
+const TeacherMonitorStructureModal = dynamic(
+  () => import('@/modules/teacher/components/TeacherMonitorCreationModal').then((module) => module.TeacherMonitorCreationModal),
   { ssr: false, loading: () => null }
 );
 const UploadConfirmationModal = dynamic(
@@ -47,7 +48,9 @@ type UploadStatus = 'staged' | 'uploading' | 'uploaded' | 'failed';
 type QueuedUpload = {
   id: string;
   file: File;
-  topicId: string;
+  subjectId: string;
+  subjectName: string;
+  topicId?: string;
   status: UploadStatus;
   error?: string;
 };
@@ -401,81 +404,47 @@ export default function TeacherMonitorPage() {
 
   // Estado para adicionar/remover Matérias e Tópicos na Sidebar
   const [isAddSubjectModalOpen, setIsAddSubjectModalOpen] = useState(false);
-  const [newSubjectModalName, setNewSubjectModalName] = useState('');
-  const [newSubjectModalTopics, setNewSubjectModalTopics] = useState<string[]>(['']);
-  const [addSubjectModalError, setAddSubjectModalError] = useState<string | null>(null);
-  const [isSubmittingSubjectModal, setIsSubmittingSubjectModal] = useState(false);
 
   const [activeTopicInputSubjectId, setActiveTopicInputSubjectId] = useState<string | null>(null);
   const [newTopicName, setNewTopicName] = useState('');
   const [newTopicDefinition, setNewTopicDefinition] = useState('');
 
   const openAddSubjectModal = () => {
-    setNewSubjectModalName('');
-    setNewSubjectModalTopics(['']);
-    setAddSubjectModalError(null);
     setIsAddSubjectModalOpen(true);
   };
 
   const closeAddSubjectModal = () => {
     setIsAddSubjectModalOpen(false);
-    setNewSubjectModalName('');
-    setNewSubjectModalTopics(['']);
-    setAddSubjectModalError(null);
   };
 
-  const handleAddTopicInputInModal = () => {
-    setNewSubjectModalTopics((prev) => [...prev, '']);
-  };
-
-  const handleRemoveTopicInputInModal = (index: number) => {
-    if (newSubjectModalTopics.length <= 1) return;
-    setNewSubjectModalTopics((prev) => prev.filter((_, i) => i !== index));
-  };
-
-  const handleTopicChangeInModal = (index: number, value: string) => {
-    setNewSubjectModalTopics((prev) => prev.map((t, i) => (i === index ? value : t)));
-  };
-
-  const handleSubmitSubjectModal = async () => {
-    if (!newSubjectModalName.trim()) {
-      setAddSubjectModalError('Informe o nome da matéria.');
-      return;
-    }
-
-    const validTopics = newSubjectModalTopics.map((t) => t.trim()).filter((t) => t.length > 0);
-    if (validTopics.length === 0) {
-      setAddSubjectModalError('Adicione pelo menos 1 tópico para a matéria.');
-      return;
-    }
-
-    if (!params.monitorId) return;
-
-    setIsSubmittingSubjectModal(true);
-    setAddSubjectModalError(null);
-
+  const handleAddSubjectsFromDraft = async (draft: MonitorDraft) => {
+    if (!params.monitorId) throw new Error('Monitor não encontrado.');
     try {
-      const updatedMonitor = await TeacherMonitorService.addSubject(
-        params.monitorId,
-        newSubjectModalName.trim(),
-        validTopics
-      );
+      const existingSubjectCount = monitor?.subjects.length ?? 0;
+      const existingSubjectIds = new Set(monitor?.subjects.map((subject) => subject.id) ?? []);
+      const updatedMonitor = await TeacherMonitorService.addSubjectsFromDraft(params.monitorId, draft);
       setMonitor(updatedMonitor);
-      if (!selectedSubjectId && updatedMonitor.subjects[0]) {
-        setSelectedSubjectId(updatedMonitor.subjects[0].id);
-        setSelectedTopic(updatedMonitor.subjects[0].topicRefs?.[0]?.name || updatedMonitor.subjects[0].topics?.[0] || null);
+      const selectedAfterEdit = updatedMonitor.subjects.find((subject) => !existingSubjectIds.has(subject.id))
+        ?? updatedMonitor.subjects[Math.min(existingSubjectCount - 1, updatedMonitor.subjects.length - 1)];
+      if (selectedAfterEdit) {
+        setSelectedSubjectId(selectedAfterEdit.id);
+        setSelectedTopic(selectedAfterEdit.topicRefs?.[0]?.name || selectedAfterEdit.topics?.[0] || null);
       }
-      closeAddSubjectModal();
-    } catch (err: any) {
-      console.error('Erro ao adicionar matéria:', err);
-      setAddSubjectModalError(err.message || 'Erro ao salvar matéria.');
-    } finally {
-      setIsSubmittingSubjectModal(false);
+    } catch (error) {
+      if (error instanceof TeacherSessionError) {
+        router.replace('/?login=true&perfil=professor&session=expired');
+        return;
+      }
+      throw error;
     }
   };
 
   const handleDeleteSubject = async (subjectId: string) => {
     if (!params.monitorId) return;
+    if ((monitor?.subjects.length ?? 0) <= 1) {
+      showAlert('Matéria obrigatória', 'O monitor precisa ter pelo menos uma matéria. Adicione outra antes de remover esta.', 'warning');
+      return;
+    }
     if (!confirm('Deseja realmente remover esta matéria e seus tópicos?')) return;
 
     try {
@@ -510,9 +479,9 @@ export default function TeacherMonitorPage() {
     }
   };
 
-  const handleAddTopic = async (subjectId: string) => {
-    if (!newTopicName.trim() || !params.monitorId) return;
-    const name = newTopicName.trim();
+  const handleAddTopic = async (subjectId: string, nameOverride?: string) => {
+    const name = (nameOverride ?? newTopicName).trim();
+    if (!name || !params.monitorId) return;
     const definition = newTopicDefinition.trim();
     setNewTopicName('');
     setNewTopicDefinition('');
@@ -918,7 +887,11 @@ export default function TeacherMonitorPage() {
   };
 
   const queueFiles = (files: File[]) => {
-    if (!selectedTopicId) {
+    if (!selectedSubject) {
+      showAlert('Selecione uma matéria', 'Escolha uma matéria antes de adicionar materiais.', 'warning');
+      return;
+    }
+    if (activeView !== 'knowledge' && !selectedTopicId) {
       showAlert('Selecione um tópico', 'Escolha um tópico específico na estrutura do monitor antes de adicionar materiais.', 'warning');
       return;
     }
@@ -926,14 +899,16 @@ export default function TeacherMonitorPage() {
     const candidateUploads = files.map((file) => ({
       id: crypto.randomUUID(),
       file,
-      topicId: selectedTopicId,
+      subjectId: selectedSubject.id,
+      subjectName: selectedSubject.name,
+      topicId: targetView === 'knowledge' ? undefined : selectedTopicId,
       status: 'staged' as const,
     }));
     const knownFiles = new Set(
-      uploadsByView[targetView].map(({ file }) => `${file.name}-${file.size}-${file.lastModified}`)
+      uploadsByView[targetView].map(({ file, subjectId }) => `${subjectId}-${file.name}-${file.size}-${file.lastModified}`)
     );
     const uniqueUploads: QueuedUpload[] = candidateUploads.filter(
-      ({ file }) => !knownFiles.has(`${file.name}-${file.size}-${file.lastModified}`)
+      ({ file, subjectId }) => !knownFiles.has(`${subjectId}-${file.name}-${file.size}-${file.lastModified}`)
     );
     setUploadsByView((uploads) => ({
       ...uploads,
@@ -943,9 +918,7 @@ export default function TeacherMonitorPage() {
 
   const handleSendQueuedFiles = async () => {
     const targetView = activeView;
-    const targetSubjectId = selectedSubjectId || monitor?.subjects[0]?.id;
-
-    if (!targetSubjectId || stagedCount === 0 || isSubmittingUploads) return;
+    if (stagedCount === 0 || isSubmittingUploads) return;
 
     setIsSubmittingUploads(true);
     const stagedItems = uploadsByView[targetView].filter((item) => item.status === 'staged');
@@ -958,7 +931,7 @@ export default function TeacherMonitorPage() {
         }));
 
         try {
-          await uploadDocument(params.monitorId, item.file, targetSubjectId, item.topicId, targetView);
+          await uploadDocument(params.monitorId, item.file, item.subjectId, item.topicId, targetView);
 
           setUploadsByView((uploads) => ({
             ...uploads,
@@ -1007,9 +980,6 @@ export default function TeacherMonitorPage() {
 
   const scopeDocuments = useMemo(() => {
     return documents.filter((doc) => {
-      if (selectedTopic) {
-        return doc.topicName === selectedTopic || (selectedTopicId && doc.topicId === selectedTopicId);
-      }
       if (selectedSubject) {
         return (
           doc.subjectId === selectedSubject.id ||
@@ -1019,7 +989,7 @@ export default function TeacherMonitorPage() {
       }
       return true;
     });
-  }, [documents, selectedTopic, selectedTopicId, selectedSubject]);
+  }, [documents, selectedSubject]);
 
   const scopeQuestions = useMemo(() => {
     return questions.filter((q) => {
@@ -1438,8 +1408,8 @@ export default function TeacherMonitorPage() {
               <MonitorKnowledgeTab
                 filteredDocuments={filteredDocuments}
                 queuedUploads={queuedUploads}
-                currentScope={currentScope}
-                selectedTopicId={selectedTopicId ?? null}
+                currentScope={selectedSubject?.name ?? currentScope}
+                selectedSubjectId={selectedSubject?.id ?? null}
                 isSubmittingUploads={isSubmittingUploads}
                 isDraggingFiles={isDraggingFiles}
                 stagedCount={stagedCount}
@@ -1586,23 +1556,20 @@ export default function TeacherMonitorPage() {
       </div>
 
       {isAddSubjectModalOpen && (
-        <AddSubjectModal
-          newSubjectModalName={newSubjectModalName}
-          newSubjectModalTopics={newSubjectModalTopics}
-          addSubjectModalError={addSubjectModalError}
-          isSubmittingSubjectModal={isSubmittingSubjectModal}
-          setNewSubjectModalName={setNewSubjectModalName}
-          handleAddTopicInputInModal={handleAddTopicInputInModal}
-          handleRemoveTopicInputInModal={handleRemoveTopicInputInModal}
-          handleTopicChangeInModal={handleTopicChangeInModal}
-          closeAddSubjectModal={closeAddSubjectModal}
-          handleSubmitSubjectModal={handleSubmitSubjectModal}
+        <TeacherMonitorStructureModal
+          isOpen={isAddSubjectModalOpen}
+          mode="edit-monitor"
+          existingMonitor={monitor}
+          onCreated={handleAddSubjectsFromDraft}
+          onClose={closeAddSubjectModal}
         />
       )}
 
       {/* Modal de Confirmação de Envio para Processamento */}
       {isUploadConfirmModalOpen && (
         <UploadConfirmationModal
+          requireScopeConfirmation={activeView === 'knowledge'}
+          teacherName={teacher?.fullName ?? 'este professor'}
           onClose={() => setIsUploadConfirmModalOpen(false)}
           onConfirm={() => {
             setIsUploadConfirmModalOpen(false);

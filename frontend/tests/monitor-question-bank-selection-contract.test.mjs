@@ -22,8 +22,8 @@ test('keeps manual and question-bank content as separate creation inputs', () =>
 });
 
 test('preserves manual topics when synchronizing catalog topics', () => {
-  assert.match(modalSource, /const manualSubjects|manualSubjects/);
-  assert.match(modalSource, /newSubjects\.push\(existing\)/);
+  assert.match(modalSource, /const manualTopics/);
+  assert.match(modalSource, /newSubjects\.push\(\{ \.\.\.existing, topics: manualTopics \}\)/);
   assert.match(modalSource, /questionBankSelections/);
 });
 

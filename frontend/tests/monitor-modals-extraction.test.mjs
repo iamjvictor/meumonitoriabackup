@@ -11,10 +11,6 @@ const modalContracts = [
     markers: ['Editar Flashcard', 'Novo Flashcard Manual', 'Preencha os campos', 'handleSaveFlashcardEdit'],
   },
   {
-    component: 'AddSubjectModal.tsx',
-    markers: ['Adicionar Nova Matéria', 'Defina o nome da disciplina', 'Adicionar outro tópico', 'Criar Matéria'],
-  },
-  {
     component: 'UploadConfirmationModal.tsx',
     markers: ['Confirmar Envio para Processamento', 'Ferramenta de auxílio', 'Revisão necessária', 'Confirmar e Enviar para IA'],
   },
@@ -29,17 +25,17 @@ test('componentes de modais preservam os marcadores visuais e de fluxo originais
   }
 });
 
-test('page conecta os três modais pelos estados e callbacks originais', async () => {
+test('workspace conecta os modais usados pelos fluxos atuais', async () => {
   const page = await file('src/modules/teacher/components/monitor/MonitorWorkspace.tsx');
   for (const marker of [
     'MonitorFlashcardEditorModal',
-    'AddSubjectModal',
+    'TeacherMonitorStructureModal',
     'UploadConfirmationModal',
     'isFlashcardModalOpen',
     'isAddSubjectModalOpen',
     'isUploadConfirmModalOpen',
     'handleSaveFlashcardEdit',
-    'handleSubmitSubjectModal',
+    'handleAddSubjectsFromDraft',
     'handleSendQueuedFiles',
   ]) {
     assert.match(page, new RegExp(`\\b${marker}\\b`), `page não conecta ${marker}`);

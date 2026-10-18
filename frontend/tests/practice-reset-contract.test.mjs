@@ -65,7 +65,7 @@ test('dashboard performance banner uses historical practice stats after reset', 
   const component = await readFile(componentPath, 'utf8');
   const hook = await readFile(hookPath, 'utf8');
 
-  assert.match(component, /Desempenho histórico/);
+  assert.match(component, /Seu progresso/);
   assert.match(hook, /historicalStats/);
   assert.match(hook, /statsBody\.data\?\.stats/);
   assert.doesNotMatch(hook, /questionAttempts\?\.\[0\]/);

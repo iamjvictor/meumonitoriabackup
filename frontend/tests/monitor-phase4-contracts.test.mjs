@@ -10,7 +10,7 @@ test('rota do monitor permanece fina e delega para o workspace funcional', async
   const workspace = await file('src/modules/teacher/components/monitor/MonitorWorkspace.tsx');
   assert.ok(page.split('\n').length < 150, 'a rota deve ser apenas um entrypoint');
   assert.match(page, /MonitorWorkspace/);
-  for (const marker of ['selectedSubjectId', 'uploadsByView', 'documents', 'publishValidation', 'isAddSubjectModalOpen', 'handleSubmitSubjectModal']) {
+  for (const marker of ['selectedSubjectId', 'uploadsByView', 'documents', 'publishValidation', 'isAddSubjectModalOpen', 'handleAddSubjectsFromDraft']) {
     assert.match(workspace, new RegExp(`\\b${marker}\\b`), `missing functional marker: ${marker}`);
   }
 });

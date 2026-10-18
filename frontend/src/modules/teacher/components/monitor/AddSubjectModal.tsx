@@ -1,6 +1,9 @@
 'use client';
 
 import { AlertCircle, BookOpen, Check, LoaderCircle, Plus, Trash2, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { TeacherMonitorService } from '@/modules/teacher/services/TeacherMonitorService';
+import type { ExamProfile, QuestionBankSubject } from '@/modules/teacher/components/question-bank-catalog';
 
 type Props = {
   newSubjectModalName: string;
@@ -12,7 +15,7 @@ type Props = {
   handleRemoveTopicInputInModal: (index: number) => void;
   handleTopicChangeInModal: (index: number, value: string) => void;
   closeAddSubjectModal: () => void;
-  handleSubmitSubjectModal: () => void;
+  handleSubmitSubjectModal: (profiles: Array<{ subject: string; examType: string; board?: string | null }>) => void;
 };
 
 export function AddSubjectModal({
@@ -27,9 +30,32 @@ export function AddSubjectModal({
   closeAddSubjectModal,
   handleSubmitSubjectModal,
 }: Props) {
+  const [catalogSubjects, setCatalogSubjects] = useState<QuestionBankSubject[]>([]);
+  const [examProfiles, setExamProfiles] = useState<ExamProfile[]>([]);
+  const [catalogSubjectId, setCatalogSubjectId] = useState('');
+  const [selectedProfileIds, setSelectedProfileIds] = useState<string[]>([]);
+  const [catalogError, setCatalogError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    TeacherMonitorService.getQuestionBankCatalog().then((catalog) => {
+      if (!active) return;
+      setCatalogSubjects(catalog.subjects);
+      setExamProfiles(catalog.examProfiles);
+      setCatalogSubjectId(catalog.subjects[0]?.id ?? '');
+    }).catch(() => {
+      if (active) setCatalogError('Não foi possível carregar as bancas do acervo. Você ainda pode criar a matéria e seus tópicos.');
+    });
+    return () => { active = false; };
+  }, []);
+
+  const selectedCatalogSubject = catalogSubjects.find((subject) => subject.id === catalogSubjectId);
+  const availableProfiles = examProfiles.filter((profile) => selectedCatalogSubject?.examProfileIds.includes(profile.id));
+  const selectedProfiles = availableProfiles.filter((profile) => selectedProfileIds.includes(profile.id));
+
   return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4 animate-in fade-in">
-          <div className="w-full max-w-lg rounded-2xl bg-white shadow-2xl border border-slate-100 overflow-hidden space-y-5">
+          <div className="flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-emerald-950 bg-gradient-to-r from-emerald-900 to-emerald-950 px-6 py-4 text-white">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 rounded-xl bg-emerald-800/80 border border-emerald-700/50 text-white">
@@ -37,7 +63,7 @@ export function AddSubjectModal({
                 </div>
                 <div>
                   <h3 className="text-sm font-extrabold text-white uppercase tracking-wide">Adicionar Nova Matéria</h3>
-                  <p className="text-xs text-emerald-100/90 font-medium">Defina o nome da disciplina e seus tópicos iniciais</p>
+                  <p className="text-xs text-emerald-100/90 font-medium">Escolha bancas e personalize os tópicos iniciais</p>
                 </div>
               </div>
               <button
@@ -50,13 +76,37 @@ export function AddSubjectModal({
             </div>
 
             {addSubjectModalError && (
-              <div className="flex items-center gap-2 rounded-xl bg-rose-50 p-3 text-xs font-semibold text-rose-700 border border-rose-200">
+              <div className="mx-6 mt-4 flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs font-semibold text-rose-700">
                 <AlertCircle className="h-4 w-4 shrink-0" />
                 <span>{addSubjectModalError}</span>
               </div>
             )}
 
-            <div className="space-y-4">
+            <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-6 py-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                  Matéria do acervo
+                  <select value={catalogSubjectId} onChange={(event) => setCatalogSubjectId(event.target.value)} className="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-medium normal-case tracking-normal">
+                    <option value="">Selecione a matéria do banco</option>
+                    {catalogSubjects.map((subject) => <option key={subject.id} value={subject.id}>{subject.name}</option>)}
+                  </select>
+                </label>
+                <div className="text-xs text-slate-500 self-end pb-2">A matéria escolhida vincula os tópicos às questões oficiais.</div>
+              </div>
+              {catalogError && <p role="status" className="text-xs text-amber-800">{catalogError}</p>}
+              <fieldset className="space-y-2">
+                <legend className="mb-1.5 text-xs font-bold uppercase tracking-wider text-slate-700">Bancas e perfis</legend>
+                <div className="grid max-h-36 gap-1 overflow-y-auto rounded-xl border border-slate-200 p-2 sm:grid-cols-2">
+                  {availableProfiles.map((profile) => (
+                    <label key={profile.id} className="flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1.5 text-xs text-slate-700 hover:bg-emerald-50">
+                      <input type="checkbox" checked={selectedProfileIds.includes(profile.id)} onChange={() => setSelectedProfileIds((current) => current.includes(profile.id) ? current.filter((id) => id !== profile.id) : [...current, profile.id])} />
+                      <span className="min-w-0 flex-1 truncate">{profile.name}</span><span className="text-slate-400">{profile.questionCount.toLocaleString('pt-BR')}</span>
+                    </label>
+                  ))}
+                  {examProfiles.length === 0 && <p className="p-2 text-xs text-slate-500">Carregando bancas do acervo…</p>}
+                  {examProfiles.length > 0 && availableProfiles.length === 0 && <p className="p-2 text-xs text-slate-500">Não há bancas disponíveis para esta matéria do acervo.</p>}
+                </div>
+              </fieldset>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                   Nome da Matéria <span className="text-rose-500">*</span>
@@ -113,7 +163,7 @@ export function AddSubjectModal({
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
+            <div className="flex shrink-0 items-center justify-end gap-2.5 border-t border-slate-100 px-6 py-4">
               <button
                 type="button"
                 onClick={closeAddSubjectModal}
@@ -124,7 +174,7 @@ export function AddSubjectModal({
               <button
                 type="button"
                 disabled={isSubmittingSubjectModal}
-                onClick={handleSubmitSubjectModal}
+                onClick={() => handleSubmitSubjectModal(selectedProfiles.map((profile) => ({ subject: catalogSubjects.find((subject) => subject.id === catalogSubjectId)?.name ?? '', examType: profile.examType || profile.name, board: profile.board ?? null })).filter((profile) => profile.subject))}
                 className="flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-2 text-xs font-bold text-white hover:bg-emerald-800 transition-colors cursor-pointer disabled:opacity-50"
               >
                 {isSubmittingSubjectModal ? (

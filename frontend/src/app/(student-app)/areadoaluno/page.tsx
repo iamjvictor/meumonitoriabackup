@@ -109,6 +109,9 @@ export default function AreaDoAlunoPage() {
             back: currentFlashcard.answer,
           });
           setIsFlashcardModalOpen(false);
+          if (typeof window !== 'undefined' && !window.matchMedia('(min-width: 1024px)').matches) {
+            router.push('/areadoaluno/chat');
+          }
         }}
         onReport={() => {
           if (currentFlashcard?.id) {

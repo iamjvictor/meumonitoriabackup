@@ -1,5 +1,5 @@
 import { prisma } from '../lib/prisma.js';
-import type { CreateMonitorInput } from '../models/monitor.model.js';
+import type { AddMonitorSubjectsInput, CreateMonitorInput } from '../models/monitor.model.js';
 import {
   buildMonitorTopicName,
   buildMonitorTopicHierarchy,
@@ -14,6 +14,13 @@ import {
 export class MonitorPublicationBlockedError extends Error {
   constructor() {
     super('PAYMENT_ACCOUNT_REQUIRED_FOR_PUBLICATION');
+  }
+}
+
+export class MonitorSubjectAlreadyExistsError extends Error {
+  constructor() {
+    super('MONITOR_SUBJECT_ALREADY_EXISTS');
+    this.name = 'MonitorSubjectAlreadyExistsError';
   }
 }
 
@@ -251,6 +258,7 @@ export class MonitorRepository {
               definition: true,
               classificationGuidance: true,
               position: true,
+              subtopics: { select: { id: true, name: true, position: true }, orderBy: { position: 'asc' } },
             },
           },
         },
@@ -295,7 +303,10 @@ export class MonitorRepository {
         .sort((left, right) => left.position - right.position)
         .map((subject) => ({
           ...subject,
-          topics: subject.topics.sort((left, right) => left.position - right.position),
+          topics: subject.topics.sort((left, right) => left.position - right.position).map((topic) => ({
+            ...topic,
+            subtopics: topic.subtopics.sort((left, right) => left.position - right.position),
+          })),
         })),
       _count: countsByMonitor.get(monitor.id) ?? { questions: 0, flashcards: 0, documents: 0 },
       questions: reportedByMonitor.get(monitor.id) ?? [],
@@ -317,7 +328,7 @@ export class MonitorRepository {
     });
   }
 
-  async addSubject(userId: string, monitorId: string, name: string, topics: string[] = []) {
+  async addSubject(userId: string, monitorId: string, name: string, topics: string[] = [], examProfiles: Array<{ subject: string; examType: string; board?: string | null }> = []) {
     const monitor = await prisma.monitor.findFirst({
       where: { id: monitorId, teacher: { userId } },
       include: { subjects: { orderBy: { position: 'asc' } } },
@@ -330,7 +341,7 @@ export class MonitorRepository {
 
     const validTopics = topics.map((t) => t.trim()).filter((t) => t.length > 0);
 
-    await prisma.monitorSubject.create({
+    const createdSubject = await prisma.monitorSubject.create({
       data: {
         monitorId,
         name: name.trim(),
@@ -354,16 +365,221 @@ export class MonitorRepository {
           })),
         },
       },
+      include: { topics: true },
     });
 
+    const profiles = Array.from(new Map(examProfiles.map((profile) => {
+      const normalized = normalizeQuestionBankSelection({ subject: profile.subject, topic: validTopics[0] ?? name, examType: profile.examType, board: profile.board });
+      return [normalized.subject + '|' + normalized.examType + '|' + (normalized.board ?? ''), { subject: normalized.subject, examType: normalized.examType, board: normalized.board }];
+    })).values());
+    const selections = createdSubject.topics.flatMap((topic) => profiles.map((profile) => {
+      const selection = normalizeQuestionBankSelection({ subject: profile.subject, topic: topic.name, examType: profile.examType, board: profile.board });
+      return {
+        monitorTopicId: topic.id,
+        examType: selection.examType,
+        board: selection.board,
+        subtopic: null,
+        subsubtopic: null,
+        selectionKey: selection.selectionKey,
+      };
+    }));
+    if (selections.length > 0) await prisma.monitorQuestionBankSelection.createMany({ data: selections, skipDuplicates: true });
+
     return this.findOwnedByUserId(userId, monitorId);
+  }
+
+  async addSubjectsFromDraft(userId: string, monitorId: string, input: AddMonitorSubjectsInput) {
+    const monitor = await prisma.monitor.findFirst({
+      where: { id: monitorId, teacher: { userId } },
+      include: {
+        subjects: {
+          orderBy: { position: 'asc' },
+          include: { topics: { include: { subtopics: { include: { subsubtopics: true } } } } },
+        },
+      },
+    });
+    if (!monitor) return null;
+
+    const incomingNames = input.subjects.map((subject) => normalizeTaxonomyName(subject.name));
+    if (new Set(incomingNames).size !== incomingNames.length) {
+      throw new MonitorSubjectAlreadyExistsError();
+    }
+    const existingById = new Map(monitor.subjects.map((subject) => [subject.id, subject]));
+    if (input.subjects.some((subject) => subject.id && !existingById.has(subject.id))) throw new Error('MONITOR_SUBJECT_NOT_OWNED');
+    if (input.subjects.some((subject) => {
+      const normalizedName = normalizeTaxonomyName(subject.name);
+      return monitor.subjects.some((existing) =>
+        existing.id !== subject.id && normalizeTaxonomyName(existing.name) === normalizedName,
+      );
+    })) throw new MonitorSubjectAlreadyExistsError();
+
+    const normalizedSelections = Array.from(new Map(
+      (input.questionBankSelections ?? [])
+        .map(normalizeQuestionBankSelection)
+        .map((selection) => [selection.selectionKey, selection] as const),
+    ).values());
+    const nextSubjectPosition = monitor.subjects.reduce((max, subject) => Math.max(max, subject.position), -1) + 1;
+
+    return prisma.$transaction(async (transaction) => {
+      if (input.name !== undefined || input.description !== undefined) {
+        await transaction.monitor.update({
+          where: { id: monitorId },
+          data: {
+            ...(input.name !== undefined ? { name: input.name } : {}),
+            ...(input.description !== undefined ? { description: input.description } : {}),
+          },
+        });
+      }
+      const retainedSubjectIds = input.subjects.flatMap((subject) => subject.id ? [subject.id] : []);
+      await transaction.monitorSubject.deleteMany({
+        where: { monitorId, ...(retainedSubjectIds.length ? { id: { notIn: retainedSubjectIds } } : {}) },
+      });
+
+      for (const [subjectIndex, subject] of input.subjects.entries()) {
+        const topicHierarchy = buildMonitorTopicHierarchy(subject.topics);
+        const oldSubject = subject.id ? existingById.get(subject.id) : undefined;
+        if (!oldSubject) {
+          await transaction.monitorSubject.create({
+            data: {
+              monitorId,
+              name: subject.name,
+              position: nextSubjectPosition + subjectIndex,
+              topics: { create: topicHierarchy.map((topic) => ({
+                name: topic.name,
+                definition: topic.definition,
+                definitionOrigin: topic.definition ? 'TEACHER' : null,
+                definitionUpdatedAt: topic.definition ? new Date() : null,
+                position: topic.position,
+                subtopics: { create: topic.subtopics.map((subtopic) => ({
+                  name: subtopic.name,
+                  position: subtopic.position,
+                  subsubtopics: { create: subtopic.subsubtopics.map((subsubtopic) => ({ name: subsubtopic.name, position: subsubtopic.position })) },
+                })) },
+              })) },
+            },
+          });
+          continue;
+        }
+
+        await transaction.monitorSubject.update({ where: { id: oldSubject.id }, data: { name: subject.name } });
+        const desiredTopicNames = new Set(topicHierarchy.map((topic) => normalizeTaxonomyName(topic.name)));
+        const removedTopics = oldSubject.topics.filter((topic) => !desiredTopicNames.has(normalizeTaxonomyName(topic.name)));
+        if (removedTopics.length) await transaction.monitorTopic.deleteMany({ where: { id: { in: removedTopics.map((topic) => topic.id) }, subjectId: oldSubject.id } });
+
+        for (const [topicIndex, desiredTopic] of topicHierarchy.entries()) {
+          const oldTopic = oldSubject.topics.find((topic) => normalizeTaxonomyName(topic.name) === normalizeTaxonomyName(desiredTopic.name));
+          if (!oldTopic) {
+            await transaction.monitorTopic.create({
+              data: {
+                subjectId: oldSubject.id,
+                name: desiredTopic.name,
+                definition: desiredTopic.definition,
+                definitionOrigin: desiredTopic.definition ? 'TEACHER' : null,
+                definitionUpdatedAt: desiredTopic.definition ? new Date() : null,
+                position: oldSubject.topics.reduce((max, topic) => Math.max(max, topic.position), -1) + 1 + topicIndex,
+                subtopics: { create: desiredTopic.subtopics.map((subtopic) => ({
+                  name: subtopic.name,
+                  position: subtopic.position,
+                  subsubtopics: { create: subtopic.subsubtopics.map((subsubtopic) => ({ name: subsubtopic.name, position: subsubtopic.position })) },
+                })) },
+              },
+            });
+            continue;
+          }
+
+          await transaction.monitorTopic.update({ where: { id: oldTopic.id }, data: {
+            definition: desiredTopic.definition,
+            definitionOrigin: desiredTopic.definition ? 'TEACHER' : null,
+            definitionUpdatedAt: desiredTopic.definition ? new Date() : null,
+          } });
+          const desiredSubtopicNames = new Set(desiredTopic.subtopics.map((subtopic) => normalizeTaxonomyName(subtopic.name)));
+          const removedSubtopics = oldTopic.subtopics.filter((subtopic) => !desiredSubtopicNames.has(normalizeTaxonomyName(subtopic.name)));
+          if (removedSubtopics.length) await transaction.monitorSubtopic.deleteMany({ where: { id: { in: removedSubtopics.map((subtopic) => subtopic.id) }, monitorTopicId: oldTopic.id } });
+
+          for (const [subtopicIndex, desiredSubtopic] of desiredTopic.subtopics.entries()) {
+            const oldSubtopic = oldTopic.subtopics.find((subtopic) => normalizeTaxonomyName(subtopic.name) === normalizeTaxonomyName(desiredSubtopic.name));
+            if (!oldSubtopic) {
+              await transaction.monitorSubtopic.create({ data: {
+                monitorTopicId: oldTopic.id,
+                name: desiredSubtopic.name,
+                position: oldTopic.subtopics.reduce((max, subtopic) => Math.max(max, subtopic.position), -1) + 1 + subtopicIndex,
+                subsubtopics: { create: desiredSubtopic.subsubtopics.map((subsubtopic) => ({ name: subsubtopic.name, position: subsubtopic.position })) },
+              } });
+              continue;
+            }
+
+            const desiredSubsubtopicNames = new Set(desiredSubtopic.subsubtopics.map((subsubtopic) => normalizeTaxonomyName(subsubtopic.name)));
+            const removedSubsubtopics = oldSubtopic.subsubtopics.filter((subsubtopic) => !desiredSubsubtopicNames.has(normalizeTaxonomyName(subsubtopic.name)));
+            if (removedSubsubtopics.length) await transaction.monitorSubsubtopic.deleteMany({ where: { id: { in: removedSubsubtopics.map((subsubtopic) => subsubtopic.id) }, monitorSubtopicId: oldSubtopic.id } });
+            for (const [subsubtopicIndex, desiredSubsubtopic] of desiredSubtopic.subsubtopics.entries()) {
+              if (oldSubtopic.subsubtopics.some((subsubtopic) => normalizeTaxonomyName(subsubtopic.name) === normalizeTaxonomyName(desiredSubsubtopic.name))) continue;
+              await transaction.monitorSubsubtopic.create({ data: {
+                monitorSubtopicId: oldSubtopic.id,
+                name: desiredSubsubtopic.name,
+                position: oldSubtopic.subsubtopics.reduce((max, subsubtopic) => Math.max(max, subsubtopic.position), -1) + 1 + subsubtopicIndex,
+              } });
+            }
+          }
+        }
+      }
+
+      const refreshedSubjects = await transaction.monitorSubject.findMany({
+        where: { monitorId },
+        include: { topics: { include: { subtopics: { include: { subsubtopics: true } } } } },
+      });
+      const topicIds = refreshedSubjects.flatMap((subject) => subject.topics.map((topic) => topic.id));
+      if (topicIds.length > 0) {
+        await transaction.monitorQuestionBankSelection.deleteMany({ where: { monitorTopicId: { in: topicIds } } });
+      }
+
+      if (normalizedSelections.length > 0) {
+        const subjectAliases = new Map<string, string>();
+        for (const subject of input.subjects) {
+          if (subject.id) {
+            const oldName = existingById.get(subject.id)?.name;
+            if (oldName) subjectAliases.set(normalizeTaxonomyName(oldName), normalizeTaxonomyName(subject.name));
+          }
+        }
+        const selectionRows = normalizedSelections.map((selection) => {
+          const selectionSubjectName = subjectAliases.get(normalizeTaxonomyName(selection.subject)) ?? normalizeTaxonomyName(selection.subject);
+          const localSubject = refreshedSubjects.find((subject) => normalizeTaxonomyName(subject.name) === selectionSubjectName);
+          const localTopic = localSubject?.topics.find((topic) => normalizeTaxonomyName(topic.name) === normalizeTaxonomyName(selection.topic));
+          const localSubtopic = selection.subtopic
+            ? localTopic?.subtopics.find((subtopic) => normalizeTaxonomyName(subtopic.name) === normalizeTaxonomyName(selection.subtopic))
+            : null;
+          const localSubsubtopic = selection.subsubtopic
+            ? localSubtopic?.subsubtopics.find((subsubtopic) => normalizeTaxonomyName(subsubtopic.name) === normalizeTaxonomyName(selection.subsubtopic))
+            : null;
+
+          if (!localSubject || !localTopic || (selection.subtopic && !localSubtopic) || (selection.subsubtopic && !localSubsubtopic)) {
+            throw new Error(`QUESTION_BANK_SELECTION_TOPIC_NOT_FOUND: ${selection.subject} / ${selection.topic}`);
+          }
+          return {
+            monitorTopicId: localTopic.id,
+            monitorSubtopicId: localSubtopic?.id ?? null,
+            monitorSubsubtopicId: localSubsubtopic?.id ?? null,
+            examType: selection.examType,
+            board: selection.board,
+            subtopic: selection.subtopic,
+            subsubtopic: selection.subsubtopic,
+            selectionKey: selection.selectionKey,
+          };
+        });
+        await transaction.monitorQuestionBankSelection.createMany({ data: selectionRows, skipDuplicates: true });
+      }
+
+      return transaction.monitor.findUniqueOrThrow({ where: { id: monitorId }, include: this.monitorTree });
+    }, { maxWait: 10_000, timeout: 60_000 });
   }
 
   async deleteSubject(userId: string, monitorId: string, subjectId: string) {
     const monitor = await prisma.monitor.findFirst({
       where: { id: monitorId, teacher: { userId } },
+      include: { subjects: { select: { id: true } } },
     });
     if (!monitor) return null;
+    if (!monitor.subjects.some((subject) => subject.id === subjectId)) return null;
+    if (monitor.subjects.length <= 1) return { kind: 'MINIMUM_SUBJECT_REQUIRED' as const };
 
     await prisma.monitorSubject.deleteMany({
       where: { id: subjectId, monitorId },
@@ -550,6 +766,18 @@ export class MonitorRepository {
     subsubtopic: string | null;
     count: number;
   }>) {
+    type ProfileCountAccumulator = {
+      examProfileIds: Set<string>;
+      questionCountsMap: Map<string, number>;
+    };
+    const recordProfileCount = (node: ProfileCountAccumulator, profileId: string, rowCount: number) => {
+      node.examProfileIds.add(profileId);
+      node.questionCountsMap.set(profileId, (node.questionCountsMap.get(profileId) ?? 0) + rowCount);
+    };
+    const serializeProfileCounts = (counts: Map<string, number>) => Object.fromEntries(
+      Array.from(counts.entries()).filter(([, count]) => count > 0),
+    );
+
     let totalQuestions = 0;
     const examProfilesMap = new Map<string, {
       id: string;
@@ -568,18 +796,25 @@ export class MonitorRepository {
       category: string;
       totalQuestions: number;
       examProfileIds: Set<string>;
+      questionCountsMap: Map<string, number>;
       topicsMap: Map<string, {
         id: string;
         name: string;
         totalQuestions: number;
+        examProfileIds: Set<string>;
+        questionCountsMap: Map<string, number>;
         subtopicsMap: Map<string, {
           id: string;
           name: string;
           questionCount: number;
+          examProfileIds: Set<string>;
+          questionCountsMap: Map<string, number>;
           subsubtopicsMap: Map<string, {
             id: string;
             name: string;
             questionCount: number;
+            examProfileIds: Set<string>;
+            questionCountsMap: Map<string, number>;
           }>;
         }>;
       }>;
@@ -619,12 +854,13 @@ export class MonitorRepository {
           category: this.inferSubjectCategory(subjectName),
           totalQuestions: 0,
           examProfileIds: new Set<string>(),
+          questionCountsMap: new Map<string, number>(),
           topicsMap: new Map(),
         });
       }
       const subj = subjectsMap.get(subjectName)!;
       subj.totalQuestions += rowCount;
-      subj.examProfileIds.add(profileId);
+      recordProfileCount(subj, profileId, rowCount);
 
       // Agregação por Tópico (Topic)
       const topicName = (row.topic || 'Geral').trim();
@@ -633,11 +869,14 @@ export class MonitorRepository {
           id: `${subj.id}-${topicName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
           name: topicName,
           totalQuestions: 0,
+          examProfileIds: new Set<string>(),
+          questionCountsMap: new Map<string, number>(),
           subtopicsMap: new Map(),
         });
       }
       const topicObj = subj.topicsMap.get(topicName)!;
       topicObj.totalQuestions += rowCount;
+      recordProfileCount(topicObj, profileId, rowCount);
 
       // Agregação por Subtópico (Subtopic) e Subsubtópico (Subsubtopic)
       const rawSubtopic = (row.subtopic || '').trim();
@@ -651,11 +890,14 @@ export class MonitorRepository {
           id: subtopicId,
           name: subtopicName,
           questionCount: 0,
+          examProfileIds: new Set<string>(),
+          questionCountsMap: new Map<string, number>(),
           subsubtopicsMap: new Map(),
         });
       }
       const subtopicObj = topicObj.subtopicsMap.get(subtopicName)!;
       subtopicObj.questionCount += rowCount;
+      recordProfileCount(subtopicObj, profileId, rowCount);
 
       if (rawSubsubtopic) {
         const subsubtopicId = `${subtopicId}-${rawSubsubtopic.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
@@ -664,10 +906,13 @@ export class MonitorRepository {
             id: subsubtopicId,
             name: rawSubsubtopic,
             questionCount: 0,
+            examProfileIds: new Set<string>(),
+            questionCountsMap: new Map<string, number>(),
           });
         }
         const subsubObj = subtopicObj.subsubtopicsMap.get(rawSubsubtopic)!;
         subsubObj.questionCount += rowCount;
+        recordProfileCount(subsubObj, profileId, rowCount);
       }
     }
 
@@ -679,18 +924,25 @@ export class MonitorRepository {
       category: s.category,
       totalQuestions: s.totalQuestions,
       examProfileIds: Array.from(s.examProfileIds),
+      questionCountsByProfile: serializeProfileCounts(s.questionCountsMap),
       topics: Array.from(s.topicsMap.values()).map((t) => ({
         id: t.id,
         name: t.name,
         totalQuestions: t.totalQuestions,
+        examProfileIds: Array.from(t.examProfileIds),
+        questionCountsByProfile: serializeProfileCounts(t.questionCountsMap),
         subtopics: Array.from(t.subtopicsMap.values()).map((st) => ({
           id: st.id,
           name: st.name,
           questionCount: st.questionCount,
+          examProfileIds: Array.from(st.examProfileIds),
+          questionCountsByProfile: serializeProfileCounts(st.questionCountsMap),
           subsubtopics: Array.from(st.subsubtopicsMap.values()).map((sst) => ({
             id: sst.id,
             name: sst.name,
             questionCount: sst.questionCount,
+            examProfileIds: Array.from(sst.examProfileIds),
+            questionCountsByProfile: serializeProfileCounts(sst.questionCountsMap),
           })),
         })),
       })),

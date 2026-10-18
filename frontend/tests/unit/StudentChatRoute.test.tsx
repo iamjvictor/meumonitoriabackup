@@ -11,6 +11,6 @@ describe('student chat route', () => {
     render(<StudentChatPage />);
     expect(screen.getByRole('main')).toBeInTheDocument();
     expect(screen.getByTestId('student-chat')).toBeInTheDocument();
-    expect(screen.getByTestId('student-chat-surface').className).toContain('100dvh-5rem');
+    expect(screen.getByTestId('student-chat-surface').className).toContain('100dvh-3.8125rem-env(safe-area-inset-bottom)');
   });
 });

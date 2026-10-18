@@ -1,7 +1,10 @@
 import type { MonitorDraft } from '../components/TeacherMonitorCreationModal';
+import type { ExamProfile, QuestionBankSubject } from '../components/question-bank-catalog';
 import { TeacherSessionError } from './TeacherSessionError';
 
 const getBackendUrl = () => process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8443';
+
+type RawBankSelection = { examType: string; board: string | null; subtopic: string | null; subsubtopic: string | null; selectionKey: string };
 
 type RawMonitor = {
   id: string;
@@ -26,14 +29,17 @@ type RawMonitor = {
       name: string;
       definition: string | null;
       classificationGuidance: string | null;
+      questionBankSelections?: RawBankSelection[];
       subtopics?: Array<{
         id: string;
         name: string;
         position?: number;
+        questionBankSelections?: RawBankSelection[];
         subsubtopics?: Array<{
           id: string;
           name: string;
           position?: number;
+          questionBankSelections?: RawBankSelection[];
         }>;
       }>;
     }>;
@@ -61,14 +67,17 @@ export type TeacherMonitor = Omit<MonitorDraft, 'subjects'> & {
       name: string;
       definition: string | null;
       classificationGuidance: string | null;
+      questionBankSelections: Array<{ examType: string; board: string | null; subtopic: string | null; subsubtopic: string | null; selectionKey: string }>;
       subtopics: Array<{
         id: string;
         name: string;
         position?: number;
+        questionBankSelections: Array<{ examType: string; board: string | null; subtopic: string | null; subsubtopic: string | null; selectionKey: string }>;
         subsubtopics: Array<{
           id: string;
           name: string;
           position?: number;
+          questionBankSelections: Array<{ examType: string; board: string | null; subtopic: string | null; subsubtopic: string | null; selectionKey: string }>;
         }>;
       }>;
     }>;
@@ -90,9 +99,14 @@ const mapMonitor = (data: RawMonitor): TeacherMonitor => ({
     topics: subject.topics.map((topic) => topic.name),
     topicRefs: subject.topics.map((topic) => ({
       ...topic,
+      questionBankSelections: topic.questionBankSelections ?? [],
       subtopics: (topic.subtopics ?? []).map((subtopic) => ({
         ...subtopic,
-        subsubtopics: subtopic.subsubtopics ?? [],
+        questionBankSelections: subtopic.questionBankSelections ?? [],
+        subsubtopics: (subtopic.subsubtopics ?? []).map((subsubtopic) => ({
+          ...subsubtopic,
+          questionBankSelections: subsubtopic.questionBankSelections ?? [],
+        })),
       })),
     })),
   })),
@@ -107,7 +121,7 @@ export const TeacherMonitorService = {
   async uploadDocument(input: {
     monitorId: string;
     subjectId: string;
-    topicId: string;
+    topicId?: string;
     tag: 'knowledge' | 'questions' | 'flashcards';
     file: File;
   }) {
@@ -343,17 +357,33 @@ export const TeacherMonitorService = {
     return data;
   },
 
-  async addSubject(monitorId: string, name: string, topics: string[] = []): Promise<TeacherMonitor> {
+  async addSubject(monitorId: string, name: string, topics: string[] = [], examProfiles: Array<{ subject: string; examType: string; board?: string | null }> = []): Promise<TeacherMonitor> {
     const response = await fetch(`${getBackendUrl()}/api/v1/monitors/${encodeURIComponent(monitorId)}/subjects`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({ name, topics }),
+      body: JSON.stringify({ name, topics, examProfiles }),
     });
     if (response.status === 401) throw new TeacherSessionError();
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(errorData.message || 'Falha ao adicionar matéria.');
+    }
+    const { data } = await response.json();
+    return mapMonitor(data);
+  },
+
+  async addSubjectsFromDraft(monitorId: string, draft: MonitorDraft): Promise<TeacherMonitor> {
+    const response = await fetch(`${getBackendUrl()}/api/v1/monitors/${encodeURIComponent(monitorId)}/subjects/from-draft`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ name: draft.name, description: draft.description, subjects: draft.subjects, questionBankSelections: draft.questionBankSelections ?? [] }),
+    });
+    if (response.status === 401) throw new TeacherSessionError();
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || 'Falha ao adicionar matérias ao monitor.');
     }
     const { data } = await response.json();
     return mapMonitor(data);
@@ -439,38 +469,8 @@ export const TeacherMonitorService = {
 
   async getQuestionBankCatalog(): Promise<{
     totalQuestions: number;
-    examProfiles: Array<{
-      id: string;
-      name: string;
-      examType?: string;
-      board?: string | null;
-      category: string;
-      description: string;
-      badge: string;
-      questionCount: number;
-    }>;
-    subjects: Array<{
-      id: string;
-      name: string;
-      category: string;
-      totalQuestions: number;
-      examProfileIds?: string[];
-      topics: Array<{
-        id: string;
-        name: string;
-        totalQuestions: number;
-        subtopics: Array<{
-          id: string;
-          name: string;
-          questionCount: number;
-          subsubtopics: Array<{
-            id: string;
-            name: string;
-            questionCount: number;
-          }>;
-        }>;
-      }>;
-    }>;
+    examProfiles: ExamProfile[];
+    subjects: QuestionBankSubject[];
   }> {
     const response = await fetch(`${getBackendUrl()}/api/v1/monitors/question-bank-catalog`, {
       method: 'GET',

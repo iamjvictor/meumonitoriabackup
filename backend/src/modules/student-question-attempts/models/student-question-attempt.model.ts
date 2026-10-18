@@ -14,6 +14,8 @@ export const resetStudentQuestionAttemptsSchema = z.object({
   monitorId: z.string().uuid().optional(),
   subjectId: z.string().uuid().optional(),
   topicId: z.string().uuid().optional(),
+  subtopicId: z.string().uuid().optional(),
+  difficulty: z.enum(['EASY', 'MEDIUM', 'HARD']).optional(),
 });
 
 export type ResetStudentQuestionAttemptsInput = z.infer<typeof resetStudentQuestionAttemptsSchema>;

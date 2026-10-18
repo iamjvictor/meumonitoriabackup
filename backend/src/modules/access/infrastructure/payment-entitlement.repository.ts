@@ -12,7 +12,7 @@ export class PaymentEntitlementRepository implements EntitlementRepository {
       where: { studentId },
       orderBy: { createdAt: 'desc' },
       include: {
-        items: { include: { monitor: { include: { teacher: { select: { id: true, fullName: true, avatarUrl: true, bannerUrl: true } }, subjects: { include: { topics: { select: { id: true, name: true }, orderBy: { position: 'asc' } } }, orderBy: { position: 'asc' } } } } } },
+        items: { include: { monitor: { include: { teacher: { select: { id: true, fullName: true, avatarUrl: true, bannerUrl: true } }, subjects: { include: { topics: { select: { id: true, name: true, subtopics: { select: { id: true, name: true }, orderBy: { position: 'asc' } } }, orderBy: { position: 'asc' } } }, orderBy: { position: 'asc' } } } } } },
       },
     });
     const monitorIds = [...new Set(subscriptions.flatMap((subscription) => subscription.items.map((item) => item.monitorId)))];
@@ -35,7 +35,7 @@ export class PaymentEntitlementRepository implements EntitlementRepository {
       subscriptionStatus: subscription.status, itemStatus: item.status, purchasedAt: subscription.createdAt.toISOString(),
       currentPeriodStart: subscription.currentPeriodStart?.toISOString() ?? null, currentPeriodEnd: subscription.currentPeriodEnd?.toISOString() ?? null,
       cancelRequestedAt: subscription.cancelledAt?.toISOString() ?? null,
-      subjects: item.monitor.subjects.map((subject) => ({ id: subject.id, name: subject.name, topics: subject.topics.map((topic) => ({ id: topic.id, name: topic.name })) })),
+      subjects: item.monitor.subjects.map((subject) => ({ id: subject.id, name: subject.name, topics: subject.topics.map((topic) => ({ id: topic.id, name: topic.name, subtopics: topic.subtopics.map((subtopic) => ({ id: subtopic.id, name: subtopic.name })) })) })),
       approvedQuestionCount: countsByMonitor.get(item.monitorId)?.questions ?? 0,
       approvedFlashcardCount: countsByMonitor.get(item.monitorId)?.flashcards ?? 0,
     })));

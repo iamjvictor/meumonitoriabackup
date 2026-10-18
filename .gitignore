@@ -50,3 +50,6 @@ supabase/.temp/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Gran import responses and progress (no credentials).
+backend/.cache/

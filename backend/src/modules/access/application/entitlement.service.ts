@@ -6,7 +6,7 @@ export type EntitlementRepositoryRow = {
   subscriptionStatus: string; itemStatus: string; purchasedAt: string;
   currentPeriodStart: string | null; currentPeriodEnd: string | null;
   cancelRequestedAt: string | null;
-  subjects: Array<{ id: string; name: string; topics: Array<{ id: string; name: string }> }>;
+  subjects: Array<{ id: string; name: string; topics: Array<{ id: string; name: string; subtopics?: Array<{ id: string; name: string }> }> }>;
   approvedQuestionCount: number; approvedFlashcardCount: number;
 };
 

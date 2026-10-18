@@ -1,11 +1,15 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { AppError } from '../core/errors/app-error.js';
-import { createMonitorSchema, monitorIdParamsSchema, updateMonitorSchema } from '../models/monitor.model.js';
+import { addMonitorSubjectsSchema, createMonitorSchema, monitorIdParamsSchema, updateMonitorSchema } from '../models/monitor.model.js';
 import { MonitorService } from '../services/monitor.service.js';
-import { MonitorPublicationBlockedError } from '../repositories/monitor.repository.js';
+import { MonitorPublicationBlockedError, MonitorSubjectAlreadyExistsError } from '../repositories/monitor.repository.js';
 
-export const addSubjectBodySchema = z.object({ name: z.string().trim().min(1).max(120), topics: z.array(z.string().trim().min(1).max(120)).min(1).max(30) }).strict();
+export const addSubjectBodySchema = z.object({
+  name: z.string().trim().min(1).max(120),
+  topics: z.array(z.string().trim().min(1).max(120)).min(1).max(30),
+  examProfiles: z.array(z.object({ subject: z.string().trim().min(1).max(120), examType: z.string().trim().min(1).max(60), board: z.string().trim().max(120).nullable().optional() }).strict()).max(100).optional(),
+}).strict();
 export const addTopicBodySchema = z.object({ name: z.string().trim().min(1).max(120), definition: z.string().trim().max(4000).optional() }).strict();
 export const publicationExceptionBodySchema = z.object({ allowPublishWithoutPaymentAccount: z.boolean() }).strict();
 
@@ -156,18 +160,37 @@ export class MonitorController {
     }
   }
 
-  async addSubject(request: FastifyRequest<{ Params: { monitorId: string }; Body: { name: string; topics?: string[] } }>, reply: FastifyReply) {
+  async addSubject(request: FastifyRequest<{ Params: { monitorId: string }; Body: { name: string; topics?: string[]; examProfiles?: Array<{ subject: string; examType: string; board?: string | null }> } }>, reply: FastifyReply) {
     if (!request.user) return reply.code(401).send({ error: 'UNAUTHENTICATED', message: 'Sessao de usuario obrigatoria.' });
     const parsed = addSubjectBodySchema.safeParse(request.body);
     if (!parsed.success) throw new AppError({ code: 'VALIDATION_ERROR', statusCode: 422, publicMessage: 'Dados da matéria inválidos.', internalDetails: parsed.error.flatten() });
-    const { name, topics } = parsed.data;
+    const { name, topics, examProfiles } = parsed.data;
 
     try {
-      const monitor = await this.service.addSubject(request.user.id, request.params.monitorId, name, topics);
+      const monitor = await this.service.addSubject(request.user.id, request.params.monitorId, name, topics, examProfiles);
       if (!monitor) return reply.code(404).send({ error: 'NOT_FOUND', message: 'Monitor nao encontrado.' });
       return reply.code(201).send({ data: monitor });
     } catch (cause) {
       throw new AppError({ code: 'ADD_SUBJECT_FAILED', statusCode: 500, publicMessage: 'Falha ao adicionar matéria.', cause });
+    }
+  }
+
+  async addSubjectsFromDraft(request: FastifyRequest<{ Params: { monitorId: string } }>, reply: FastifyReply) {
+    if (!request.user) return reply.code(401).send({ error: 'UNAUTHENTICATED', message: 'Sessao de usuario obrigatoria.' });
+    if (request.user.role !== 'teacher') return reply.code(403).send({ error: 'FORBIDDEN', message: 'Apenas professores podem alterar Monitores de IA.' });
+
+    const parsed = addMonitorSubjectsSchema.safeParse(request.body);
+    if (!parsed.success) throw new AppError({ code: 'VALIDATION_ERROR', statusCode: 422, publicMessage: 'Estrutura de matérias inválida.', internalDetails: parsed.error.flatten() });
+
+    try {
+      const result = await this.service.addSubjectsFromDraft(request.user.id, request.params.monitorId, parsed.data);
+      if (!result) return reply.code(404).send({ error: 'NOT_FOUND', message: 'Monitor nao encontrado.' });
+      return reply.code(201).send({ data: result.monitor, materialization: result.materialization });
+    } catch (error) {
+      if (error instanceof MonitorSubjectAlreadyExistsError) {
+        return reply.code(409).send({ error: 'SUBJECT_ALREADY_EXISTS', message: 'Uma ou mais matérias já existem neste monitor.' });
+      }
+      throw new AppError({ code: 'ADD_MONITOR_SUBJECTS_FAILED', statusCode: 500, publicMessage: 'Falha ao adicionar matérias ao monitor.', cause: error });
     }
   }
 
@@ -176,6 +199,9 @@ export class MonitorController {
 
     try {
       const monitor = await this.service.deleteSubject(request.user.id, request.params.monitorId, request.params.subjectId);
+      if (monitor && 'kind' in monitor && monitor.kind === 'MINIMUM_SUBJECT_REQUIRED') {
+        return reply.code(409).send({ error: 'MINIMUM_SUBJECT_REQUIRED', message: 'O monitor precisa manter pelo menos uma matéria.' });
+      }
       if (!monitor) return reply.code(404).send({ error: 'NOT_FOUND', message: 'Monitor ou materia nao encontrada.' });
       return reply.code(200).send({ data: monitor });
     } catch (error) {

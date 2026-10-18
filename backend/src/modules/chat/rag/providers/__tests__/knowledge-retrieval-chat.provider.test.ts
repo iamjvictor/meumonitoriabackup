@@ -86,8 +86,8 @@ test('gera um embedding e consulta retrieval com o escopo autorizado', async () 
   assert.equal(retrievalInputs[0]?.teacherId, 'teacher-1');
   assert.equal(retrievalInputs[0]?.monitorId, 'monitor-1');
   assert.equal(retrievalInputs[0]?.subjectId, 'subject-1');
-  assert.equal(retrievalInputs[0]?.topicId, 'topic-1');
-  assert.equal(retrievalInputs[0]?.questionDocumentId, 'document-question-1');
+  assert.equal(retrievalInputs[0]?.topicId, undefined);
+  assert.equal(retrievalInputs[0]?.questionDocumentId, undefined);
   assert.equal(retrievalInputs[0]?.questionBlockId, 'block-question-1');
   assert.equal(retrievalInputs[0]?.limit, 8);
   assert.deepEqual(retrievalInputs[0]?.queryEmbedding, [0.1, 0.2, 0.3]);

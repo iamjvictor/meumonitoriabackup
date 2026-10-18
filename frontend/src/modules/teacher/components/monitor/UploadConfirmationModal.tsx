@@ -1,13 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import { CheckCircle2, Clock, Send, Sparkles } from 'lucide-react';
 
 type Props = {
   onClose: () => void;
   onConfirm: () => void;
+  requireScopeConfirmation?: boolean;
+  teacherName?: string;
 };
 
-export function UploadConfirmationModal({ onClose, onConfirm }: Props) {
+export function UploadConfirmationModal({ onClose, onConfirm, requireScopeConfirmation = false, teacherName }: Props) {
+  const [scopeConfirmed, setScopeConfirmed] = useState(false);
   return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-in fade-in duration-200">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-md w-full p-6 space-y-5 animate-in zoom-in-95 duration-200">
@@ -48,6 +52,13 @@ export function UploadConfirmationModal({ onClose, onConfirm }: Props) {
               </div>
             </div>
 
+            {requireScopeConfirmation && (
+              <label className="flex items-start gap-2.5 text-xs leading-relaxed text-slate-700">
+                <input type="checkbox" checked={scopeConfirmed} onChange={(event) => setScopeConfirmed(event.target.checked)} className="mt-0.5 h-4 w-4 accent-emerald-800" />
+                <span>Confirmo que estes arquivos serão adicionados somente à base de conhecimento de {teacherName}, nas matérias indicadas na fila.</span>
+              </label>
+            )}
+
             <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-slate-100">
               <button
                 type="button"
@@ -59,9 +70,10 @@ export function UploadConfirmationModal({ onClose, onConfirm }: Props) {
               <button
                 type="button"
                 onClick={() => {
-                  onConfirm();
+                  if (!requireScopeConfirmation || scopeConfirmed) onConfirm();
                 }}
-                className="inline-flex items-center gap-2 px-4.5 py-2 text-xs font-bold text-white bg-[#0F2942] hover:bg-[#0F2942]/90 rounded-lg shadow-xs transition cursor-pointer"
+                disabled={requireScopeConfirmation && !scopeConfirmed}
+                className="inline-flex items-center gap-2 px-4.5 py-2 text-xs font-bold text-white bg-[#0F2942] hover:bg-[#0F2942]/90 disabled:cursor-not-allowed disabled:opacity-50 rounded-lg shadow-xs transition cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>Confirmar e Enviar para IA</span>

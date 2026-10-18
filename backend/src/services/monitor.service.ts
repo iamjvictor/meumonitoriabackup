@@ -1,4 +1,4 @@
-import type { CreateMonitorInput } from '../models/monitor.model.js';
+import type { AddMonitorSubjectsInput, CreateMonitorInput } from '../models/monitor.model.js';
 import { normalizeQuestionBankSelection } from '../modules/question-bank/services/question-bank-selection.service.js';
 import { QuestionBankMaterializationService } from '../modules/question-bank/services/question-bank-materialization.service.js';
 import { MonitorRepository } from '../repositories/monitor.repository.js';
@@ -98,10 +98,45 @@ export class MonitorService {
     return this.repository.findOwnedByUserId(userId, monitorId);
   }
 
-  async addSubject(userId: string, monitorId: string, name: string, topics: string[] = []) {
-    const result = await this.repository.addSubject(userId, monitorId, name, topics);
+  async addSubject(userId: string, monitorId: string, name: string, topics: string[] = [], examProfiles: Array<{ subject: string; examType: string; board?: string | null }> = []) {
+    const result = await this.repository.addSubject(userId, monitorId, name, topics, examProfiles);
     await this.invalidatePublicProfile(monitorId);
     return result;
+  }
+
+  async addSubjectsFromDraft(userId: string, monitorId: string, input: AddMonitorSubjectsInput) {
+    const monitor = await this.repository.addSubjectsFromDraft(userId, monitorId, input);
+    if (!monitor) return null;
+
+    const selections = monitor.subjects
+      .flatMap((subject) => subject.topics.flatMap((topic) => topic.questionBankSelections.map((selection) => {
+        const [topicName] = topic.name.split(' > ');
+        return {
+          monitorTopicId: topic.id,
+          monitorSubjectId: subject.id,
+          monitorSubtopicId: selection.monitorSubtopicId ?? null,
+          monitorSubsubtopicId: selection.monitorSubsubtopicId ?? null,
+          selection: normalizeQuestionBankSelection({
+            subject: subject.name,
+            topic: topicName ?? topic.name,
+            examType: selection.examType,
+            board: selection.board,
+            subtopic: selection.subtopic,
+            subsubtopic: selection.subsubtopic,
+          }),
+        };
+      })));
+
+    const materialization = selections.length > 0
+      ? await this.materializationService.materialize({
+          teacherId: monitor.teacher.id,
+          monitorId,
+          selections,
+        })
+      : null;
+    const refreshedMonitor = materialization ? await this.repository.findOwnedByUserId(userId, monitorId) : monitor;
+    await this.invalidatePublicProfile(monitorId);
+    return { monitor: refreshedMonitor ?? monitor, materialization };
   }
 
   async deleteSubject(userId: string, monitorId: string, subjectId: string) {
