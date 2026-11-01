@@ -144,6 +144,9 @@ export class MineruParserAdapter implements DocumentParserAdapter {
   private async request(path: string, init: RequestInit): Promise<Response> {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), this.requestTimeoutMs);
+    const timeoutError = new Promise<never>((_resolve, reject) => {
+      controller.signal.addEventListener('abort', () => reject(new DOMException('Parser timeout', 'AbortError')), { once: true });
+    });
     const url = path.startsWith('http://') || path.startsWith('https://')
       ? path
       : `${this.baseUrl}${path.startsWith('/') ? path : `/${path}`}`;
@@ -157,7 +160,17 @@ export class MineruParserAdapter implements DocumentParserAdapter {
     });
 
     try {
-      const response = await this.fetchImpl(url, { ...init, signal: controller.signal });
+      const upstreamResponse = await Promise.race([
+        this.fetchImpl(url, { ...init, signal: controller.signal }), timeoutError,
+      ]);
+      // Keep the deadline active until the entire body has arrived. A parser
+      // may send headers while conversion is still in progress.
+      const body = await Promise.race([upstreamResponse.arrayBuffer(), timeoutError]);
+      const response = new Response([204, 205, 304].includes(upstreamResponse.status) ? null : body, {
+        status: upstreamResponse.status,
+        statusText: upstreamResponse.statusText,
+        headers: upstreamResponse.headers,
+      });
       if (!response.ok) {
         const { error, upstream } = await buildHttpError(response);
         this.logger('docling_client.request_failed', {
@@ -182,7 +195,7 @@ export class MineruParserAdapter implements DocumentParserAdapter {
       return response;
     } catch (error) {
       if (error instanceof DocumentParserAdapterError) throw error;
-      if (error instanceof DOMException && error.name === 'AbortError') {
+      if (controller.signal.aborted || (error instanceof DOMException && error.name === 'AbortError')) {
         const timeoutError = new DocumentParserAdapterError('Timeout ao comunicar com o parser.', 'PARSER_TIMEOUT');
         this.logger('docling_client.request_failed', {
           method,

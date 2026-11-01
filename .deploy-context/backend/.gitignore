@@ -1,0 +1,54 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente e segredos
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
+!.env.example
+
+# Build e artefatos gerados
+dist/
+build/
+out/
+src/generated/
+
+# Prisma
+prisma/generated/
+
+# Certificados e chaves locais
+certs/
+*.pem
+*.key
+*.crt
+
+# Arquivos temporários, uploads locais e bancos de dados locais (Redis)
+.tmp/
+tmp/
+uploads/
+storage/
+dump.rdb
+*.rdb
+
+# Ferramentas locais e caches de agentes AI
+.superpowers/
+.worktrees/
+
+# Logs, cobertura e caches
+logs/
+*.log
+coverage/
+.nyc_output/
+.eslintcache
+.tsbuildinfo
+*.tsbuildinfo
+
+# Sistema operacional e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

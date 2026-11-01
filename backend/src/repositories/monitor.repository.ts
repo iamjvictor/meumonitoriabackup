@@ -1,4 +1,5 @@
 import { prisma } from '../lib/prisma.js';
+import { calculateAnnualPriceCents } from '../modules/payments/domain/annual-plan-price.js';
 import type { AddMonitorSubjectsInput, CreateMonitorInput } from '../models/monitor.model.js';
 import {
   buildMonitorTopicName,
@@ -6,14 +7,17 @@ import {
   normalizeQuestionBankSelection,
   normalizeTaxonomyName,
 } from '../modules/question-bank/services/question-bank-selection.service.js';
-import {
-  canPublishMonitor,
-  isPaymentAccountEligible,
-} from '../modules/payments/application/queries/get-payout-eligibility.use-case.js';
+import { canPublishMonitor } from '../modules/payments/application/queries/get-payout-eligibility.use-case.js';
 
 export class MonitorPublicationBlockedError extends Error {
   constructor() {
     super('PAYMENT_ACCOUNT_REQUIRED_FOR_PUBLICATION');
+  }
+}
+
+export class TeacherProfilePublicationBlockedError extends Error {
+  constructor() {
+    super('TEACHER_PROFILE_REQUIRED_FOR_PUBLICATION');
   }
 }
 
@@ -74,21 +78,10 @@ export class MonitorRepository {
       where: { userId },
       select: {
         id: true,
-        status: true,
-        paymentAccounts: {
-          where: { environment: (process.env.ASAAS_ENV ?? 'SANDBOX').toUpperCase() },
-          orderBy: { revision: 'desc' },
-          take: 1,
-          select: { status: true, generalStatus: true },
-        },
       },
     });
 
     if (!teacher) return { kind: 'TEACHER_NOT_FOUND' as const };
-    if (teacher.status !== 'active') return { kind: 'TEACHER_NOT_ACTIVE' as const };
-    if (!isPaymentAccountEligible(teacher.paymentAccounts[0] ?? null)) {
-      return { kind: 'PAYMENT_ACCOUNT_REQUIRED' as const };
-    }
 
     const normalizedSelections = Array.from(
       new Map(
@@ -110,7 +103,7 @@ export class MonitorRepository {
       normalizedSelections,
     });
 
-    const monitor = await prisma.$transaction(async (transaction) => {
+    const result = await prisma.$transaction(async (transaction) => {
         const createdMonitor = await transaction.monitor.create({
           data: {
             teacherId: teacher.id,
@@ -192,11 +185,25 @@ export class MonitorRepository {
           });
         }
 
-        return transaction.monitor.findUniqueOrThrow({
+        const materializationRun = normalizedSelections.length > 0
+          ? await transaction.questionBankMaterializationRun.create({
+              data: {
+                monitorId: createdMonitor.id,
+                totalSelected: input.totalSelectedQuestions ?? 0,
+                status: 'QUEUED',
+              },
+              select: { id: true, status: true, totalSelected: true },
+            })
+          : null;
+
+        const monitor = await transaction.monitor.findUniqueOrThrow({
           where: { id: createdMonitor.id },
           include: this.monitorTree,
         });
+        return { monitor, materializationRun };
     }, { maxWait: 10_000, timeout: 60_000 });
+
+    const { monitor, materializationRun } = result;
 
     console.log('Criação transacional do Monitor concluída', {
       event: 'monitor.create_transaction_completed',
@@ -210,7 +217,96 @@ export class MonitorRepository {
       ),
     });
 
-    return { kind: 'CREATED' as const, monitor };
+    return { kind: 'CREATED' as const, monitor, materializationRun };
+  }
+
+  async findQuestionBankMaterializationRunOwnedByUser(userId: string, monitorId: string) {
+    return prisma.questionBankMaterializationRun.findFirst({
+      where: { monitorId, monitor: { teacher: { userId } } },
+    });
+  }
+
+  async findRecoverableQuestionBankMaterializationRuns() {
+    return prisma.questionBankMaterializationRun.findMany({
+      where: {
+        OR: [
+          { status: { in: ['QUEUED', 'RETRYING'] } },
+          { status: 'PROCESSING', updatedAt: { lt: new Date(Date.now() - 2 * 60_000) } },
+        ],
+      },
+      orderBy: { createdAt: 'asc' },
+      select: { id: true, attempts: true },
+    });
+  }
+
+  async markQuestionBankMaterializationProcessing(runId: string) {
+    return prisma.questionBankMaterializationRun.updateMany({
+      where: { id: runId, status: { in: ['QUEUED', 'RETRYING', 'PROCESSING'] } },
+      data: { status: 'PROCESSING', attempts: { increment: 1 }, startedAt: new Date(), completedAt: null, errorMessage: null },
+    });
+  }
+
+  async findQuestionBankMaterializationWork(runId: string) {
+    return prisma.questionBankMaterializationRun.findUnique({
+      where: { id: runId },
+      include: {
+        monitor: {
+          include: {
+            subjects: {
+              orderBy: { position: 'asc' },
+              include: {
+                topics: {
+                  orderBy: { position: 'asc' },
+                  include: { questionBankSelections: { orderBy: { createdAt: 'asc' } } },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
+  async updateQuestionBankMaterializationProgress(runId: string, data: {
+    totalEligible?: number; processed?: number; created?: number; updated?: number; skipped?: number; failed?: number;
+  }) {
+    return prisma.questionBankMaterializationRun.update({ where: { id: runId }, data });
+  }
+
+  async finishQuestionBankMaterialization(runId: string, data: {
+    status: 'COMPLETED' | 'COMPLETED_WITH_WARNINGS' | 'FAILED';
+    processed?: number; created?: number; updated?: number; skipped?: number; failed?: number; errorMessage?: string | null;
+  }) {
+    return prisma.questionBankMaterializationRun.update({
+      where: { id: runId },
+      data: { ...data, completedAt: new Date() },
+    });
+  }
+
+  async markQuestionBankMaterializationRetrying(runId: string, errorMessage: string) {
+    return prisma.questionBankMaterializationRun.update({
+      where: { id: runId },
+      data: { status: 'RETRYING', errorMessage },
+    });
+  }
+
+  async reserveQuestionBankMaterializationRetry(userId: string, monitorId: string) {
+    return prisma.$transaction(async (transaction) => {
+      const owned = await transaction.questionBankMaterializationRun.findFirst({
+        where: { monitorId, monitor: { teacher: { userId } }, status: 'FAILED' },
+        select: { id: true },
+      });
+      if (!owned) return null;
+      const changed = await transaction.questionBankMaterializationRun.updateMany({
+        where: { id: owned.id, status: 'FAILED' },
+        data: {
+          status: 'QUEUED', totalEligible: null, processed: 0, created: 0, updated: 0, skipped: 0, failed: 0,
+          errorMessage: null, startedAt: null, completedAt: null,
+        },
+      });
+      if (changed.count !== 1) return null;
+      return transaction.questionBankMaterializationRun.findUnique({ where: { id: owned.id } });
+    });
   }
 
   async findAllOwnedByUserId(userId: string) {
@@ -299,6 +395,7 @@ export class MonitorRepository {
     monitors.sort((left, right) => right.updatedAt.getTime() - left.updatedAt.getTime());
     const monitorsWithSummary = monitors.map((monitor) => ({
       ...monitor,
+      annualPriceCents: monitor.priceCents > 0 ? calculateAnnualPriceCents(monitor.priceCents) : null,
       subjects: (subjectsByMonitor.get(monitor.id) ?? [])
         .sort((left, right) => left.position - right.position)
         .map((subject) => ({
@@ -695,10 +792,11 @@ export class MonitorRepository {
     });
     if (!monitor) return null;
 
-    if (data.status === 'PUBLISHED' && !monitor.allowPublishWithoutPaymentAccount) {
+    if (data.status === 'PUBLISHED') {
       const teacher = await prisma.teacher.findUnique({
         where: { id: monitor.teacherId },
         select: {
+          status: true,
           paymentAccounts: {
             where: { environment: (process.env.ASAAS_ENV ?? 'SANDBOX').toUpperCase() },
             orderBy: { revision: 'desc' },
@@ -707,7 +805,8 @@ export class MonitorRepository {
           },
         },
       });
-      if (!canPublishMonitor({ allowPublishWithoutPaymentAccount: monitor.allowPublishWithoutPaymentAccount, account: teacher?.paymentAccounts[0] ?? null })) {
+      if (teacher?.status !== 'active') throw new TeacherProfilePublicationBlockedError();
+      if (!canPublishMonitor({ allowPublishWithoutPaymentAccount: monitor.allowPublishWithoutPaymentAccount, account: teacher.paymentAccounts[0] ?? null })) {
         throw new MonitorPublicationBlockedError();
       }
     }
@@ -863,10 +962,14 @@ export class MonitorRepository {
       recordProfileCount(subj, profileId, rowCount);
 
       // Agregação por Tópico (Topic)
+      // Usa o slug como chave do Map para evitar que variações de nome (acentos/espaços)
+      // gerem entradas separadas com IDs duplicados.
       const topicName = (row.topic || 'Geral').trim();
-      if (!subj.topicsMap.has(topicName)) {
-        subj.topicsMap.set(topicName, {
-          id: `${subj.id}-${topicName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      const topicSlug = topicName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const topicMapKey = `${subj.id}-${topicSlug}`;
+      if (!subj.topicsMap.has(topicMapKey)) {
+        subj.topicsMap.set(topicMapKey, {
+          id: topicMapKey,
           name: topicName,
           totalQuestions: 0,
           examProfileIds: new Set<string>(),
@@ -874,7 +977,7 @@ export class MonitorRepository {
           subtopicsMap: new Map(),
         });
       }
-      const topicObj = subj.topicsMap.get(topicName)!;
+      const topicObj = subj.topicsMap.get(topicMapKey)!;
       topicObj.totalQuestions += rowCount;
       recordProfileCount(topicObj, profileId, rowCount);
 
@@ -883,10 +986,12 @@ export class MonitorRepository {
       const rawSubsubtopic = (row.subsubtopic || '').trim();
 
       const subtopicName = rawSubtopic || (rawSubsubtopic ? topicName : 'Geral');
-      const subtopicId = `${topicObj.id}-${subtopicName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+      const subtopicSlug = subtopicName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const subtopicId = `${topicObj.id}-${subtopicSlug}`;
+      const subtopicMapKey = subtopicId; // já é único pois inclui o topicId
 
-      if (!topicObj.subtopicsMap.has(subtopicName)) {
-        topicObj.subtopicsMap.set(subtopicName, {
+      if (!topicObj.subtopicsMap.has(subtopicMapKey)) {
+        topicObj.subtopicsMap.set(subtopicMapKey, {
           id: subtopicId,
           name: subtopicName,
           questionCount: 0,
@@ -895,14 +1000,16 @@ export class MonitorRepository {
           subsubtopicsMap: new Map(),
         });
       }
-      const subtopicObj = topicObj.subtopicsMap.get(subtopicName)!;
+      const subtopicObj = topicObj.subtopicsMap.get(subtopicMapKey)!;
       subtopicObj.questionCount += rowCount;
       recordProfileCount(subtopicObj, profileId, rowCount);
 
       if (rawSubsubtopic) {
-        const subsubtopicId = `${subtopicId}-${rawSubsubtopic.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-        if (!subtopicObj.subsubtopicsMap.has(rawSubsubtopic)) {
-          subtopicObj.subsubtopicsMap.set(rawSubsubtopic, {
+        const rawSubsubtopicSlug = rawSubsubtopic.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        const subsubtopicId = `${subtopicId}-${rawSubsubtopicSlug}`;
+        const subsubtopicMapKey = subsubtopicId;
+        if (!subtopicObj.subsubtopicsMap.has(subsubtopicMapKey)) {
+          subtopicObj.subsubtopicsMap.set(subsubtopicMapKey, {
             id: subsubtopicId,
             name: rawSubsubtopic,
             questionCount: 0,
@@ -910,7 +1017,7 @@ export class MonitorRepository {
             questionCountsMap: new Map<string, number>(),
           });
         }
-        const subsubObj = subtopicObj.subsubtopicsMap.get(rawSubsubtopic)!;
+        const subsubObj = subtopicObj.subsubtopicsMap.get(subsubtopicMapKey)!;
         subsubObj.questionCount += rowCount;
         recordProfileCount(subsubObj, profileId, rowCount);
       }

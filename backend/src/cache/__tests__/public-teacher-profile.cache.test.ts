@@ -25,7 +25,7 @@ test('salva e recupera perfil público do professor com TTL', async () => {
   assert.deepEqual(await cache.get(profile.pageSlug), profile);
   assert.equal(calls.set, 1);
   assert.equal(calls.get, 1);
-  assert.equal(buildPublicTeacherProfileCacheKey(profile.pageSlug), 'teacher:public-profile:v1:joao-professor');
+  assert.equal(buildPublicTeacherProfileCacheKey(profile.pageSlug), 'teacher:public-profile:v2:joao-professor');
 });
 
 test('invalida o perfil público pelo slug', async () => {

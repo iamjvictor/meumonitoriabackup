@@ -80,3 +80,15 @@ test('usa contexto RAG já montado como conteúdo do usuário', () => {
 
   assert.equal(messages[1]?.content, '[EVIDÊNCIAS RECUPERADAS]\nA força é uma interação.');
 });
+
+test('mantém descrição factual da imagem no contexto do chat', () => {
+  const messages = new ChatPromptBuilder().build({
+    message: 'O que mostra a figura?', monitorId: 'monitor-1', subjectId: 'subject-1', history: [], questionContext: null,
+    visualContext: {
+      text: '[CONTEXTO VISUAL 1]\nOrigem: QUESTION\nPágina: 4\nO eixo y indica pressão em kPa.',
+      images: [{ assetId: 'asset-1', page: 4, checksum: 'sha', description: 'O eixo y indica pressão em kPa.', source: 'QUESTION' }],
+      contextManifest: [{ assetId: 'asset-1', page: 4, checksum: 'sha', source: 'QUESTION' }],
+    },
+  });
+  assert.match(messages[1]?.content ?? '', /O eixo y indica pressão em kPa/);
+});

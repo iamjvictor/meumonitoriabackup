@@ -21,7 +21,10 @@ export class ChatPromptBuilder {
 
     messages.push({
       role: 'user',
-      content: input.ragContext?.trim() || formatUserMessage(input.message, input.questionContext),
+      content: [
+        input.ragContext?.trim() || formatUserMessage(input.message, input.questionContext),
+        input.visualContext?.text.trim(),
+      ].filter(Boolean).join('\n\n'),
     });
 
     return messages;

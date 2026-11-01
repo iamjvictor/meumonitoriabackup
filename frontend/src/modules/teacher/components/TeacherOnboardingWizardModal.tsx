@@ -11,12 +11,13 @@ import {
   Camera,
   Globe,
   Sparkles,
-  AlertCircle,
   ArrowRight,
   ArrowLeft,
   Loader2,
 } from 'lucide-react';
 import { TeacherProfileService, TeacherProfile, UserInfo } from '../services/TeacherProfileService';
+import { ApiErrorNotice } from '@/shared/errors/ApiErrorNotice';
+import { createApiError, normalizeApiError, type ApiError } from '@/shared/errors/api-error';
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -62,7 +63,7 @@ export const TeacherOnboardingWizardModal: React.FC<TeacherOnboardingWizardModal
   const [youtube, setYoutube] = useState('');
   const [agreedTerms, setAgreedTerms] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ApiError | null>(null);
 
   if (!isOpen) return null;
 
@@ -79,19 +80,26 @@ export const TeacherOnboardingWizardModal: React.FC<TeacherOnboardingWizardModal
 
   const teacherName = user?.fullName || 'Seu Nome';
 
-  const generatedSlug = username
-    ? username.toLowerCase().replace(/[^a-z0-9_-]/g, '')
-    : 'seu-username';
+  const normalizeTeacherSlug = (value: string) => value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60)
+    .replace(/-+$/g, '');
+
+  const generatedSlug = normalizeTeacherSlug(username) || 'seu-username';
 
   const handleNextStep = () => {
     setError(null);
     if (currentStep === 2) {
       if (!username.trim()) {
-        setError('Digite seu nome de usuário (slug).');
+        setError(createApiError('CLIENT_VALIDATION_ERROR', 'Digite seu nome de usuário (slug).', { username: ['Este campo é obrigatório.'] }));
         return;
       }
       if (area === 'Outros' && !customArea.trim()) {
-        setError('Por favor, especifique a sua área de atuação.');
+        setError(createApiError('CLIENT_VALIDATION_ERROR', 'Por favor, especifique a sua área de atuação.', { customArea: ['Este campo é obrigatório.'] }));
         return;
       }
       setCurrentStep(3);
@@ -110,11 +118,11 @@ export const TeacherOnboardingWizardModal: React.FC<TeacherOnboardingWizardModal
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!username.trim()) {
-      setError('Por favor, informe seu nome de usuário (slug).');
+      setError(createApiError('CLIENT_VALIDATION_ERROR', 'Por favor, informe seu nome de usuário (slug).', { username: ['Este campo é obrigatório.'] }));
       return;
     }
     if (!agreedTerms) {
-      setError('Você precisa concordar com os termos para concluir.');
+      setError(createApiError('CLIENT_VALIDATION_ERROR', 'Você precisa concordar com os termos para concluir.', { agreedTerms: ['Aceite os termos para continuar.'] }));
       return;
     }
 
@@ -123,10 +131,10 @@ export const TeacherOnboardingWizardModal: React.FC<TeacherOnboardingWizardModal
 
     try {
       const payload: Partial<TeacherProfile> & { agreedTerms: boolean } = {
-        username: username.trim(),
+        username: generatedSlug,
         pageSlug: generatedSlug,
         area: area === 'Outros' ? customArea || 'Geral' : area,
-        customArea: area === 'Outros' ? customArea : null,
+        customArea: area === 'Outros' ? customArea.trim() || undefined : undefined,
         bio: bio.trim() || undefined,
         avatarUrl: avatarUrl.trim() || undefined,
         instagram: instagram.trim() || undefined,
@@ -140,7 +148,7 @@ export const TeacherOnboardingWizardModal: React.FC<TeacherOnboardingWizardModal
       onClose();
     } catch (err: unknown) {
       console.warn('Erro ao salvar onboarding do professor:', err instanceof Error ? err.message : err);
-      setError(err instanceof Error ? err.message : 'Não foi possível salvar seu perfil. Tente novamente.');
+      setError(normalizeApiError(err, 'Não foi possível salvar seu perfil. Tente novamente.'));
     } finally {
       setSubmitting(false);
     }
@@ -211,12 +219,7 @@ export const TeacherOnboardingWizardModal: React.FC<TeacherOnboardingWizardModal
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1">
           
-          {error && (
-            <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start space-x-2">
-              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-              <span className="font-medium">{error}</span>
-            </div>
-          )}
+          {error && <ApiErrorNotice error={error} />}
 
           {/* STEP 2: PERFIL */}
           {currentStep === 2 && (
@@ -279,7 +282,8 @@ export const TeacherOnboardingWizardModal: React.FC<TeacherOnboardingWizardModal
                       type="text"
                       required
                       value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      maxLength={60}
+                      onChange={(e) => setUsername(normalizeTeacherSlug(e.target.value))}
                       placeholder="joaovictor"
                       className="w-full bg-white px-3.5 py-3 text-sm font-semibold text-slate-900 placeholder-slate-400 focus:outline-none"
                     />

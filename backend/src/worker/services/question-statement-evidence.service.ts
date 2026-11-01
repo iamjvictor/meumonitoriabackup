@@ -46,6 +46,24 @@ function meaningfulTokens(value: string) {
     ?? [];
 }
 
+function hasReadableTextTable(sourceChunks: SourceChunk[]) {
+  for (const chunk of sourceChunks) {
+    const lines = chunk.content.split('\n').map((line) => line.trim()).filter(Boolean);
+    for (let index = 0; index < lines.length; index += 1) {
+      const header = lines[index]!;
+      const letters = header.match(/\p{L}/gu) ?? [];
+      const uppercaseRatio = letters.length === 0 ? 0 : letters.filter((letter) => letter === letter.toLocaleUpperCase('pt-BR')).length / letters.length;
+      const headerTerms = header.match(/[\p{L}]{3,}/gu) ?? [];
+      if (uppercaseRatio < 0.65 || headerTerms.length < 2) continue;
+      const rows = lines.slice(index + 1, index + 9).filter((line) => (
+        line.length < 140 && /\p{L}/u.test(line) && /\d/u.test(line)
+      ));
+      if (rows.length >= 2) return true;
+    }
+  }
+  return false;
+}
+
 /**
  * Validates only the evidence needed to form a statement. It deliberately
  * does not require alternatives, answer or explanation: those belong to the
@@ -98,7 +116,9 @@ export function validateQuestionStatementEvidence(
   if (TRAILING_CONTINUATION.test(normalizedStatement)) reasons.push('ENDS_AS_CONTINUATION');
   if (NEXT_QUESTION.test(normalizedStatement)) reasons.push('CONTAINS_NEXT_QUESTION');
   if (MULTI_ITEM.test(statement) || MULTI_ITEM_INSTRUCTION.test(normalizedStatement)) reasons.push('MULTI_ITEM_ACTIVITY');
-  if (VISUAL_REFERENCE.test(normalizedStatement)) reasons.push('MISSING_VISUAL_EVIDENCE');
+  const hasTableReference = /\btabela\b/iu.test(normalizedStatement);
+  const tableValuesAreInSource = hasTableReference && hasReadableTextTable(sourceChunks);
+  if (VISUAL_REFERENCE.test(normalizedStatement) && !tableValuesAreInSource) reasons.push('MISSING_VISUAL_EVIDENCE');
 
   return { valid: reasons.length === 0, reasons, sourceMatch };
 }

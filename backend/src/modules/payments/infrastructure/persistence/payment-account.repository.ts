@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import type { CreatedSubaccount } from '../providers/asaas/asaas-account.provider.js';
 import type { CreateSubaccountCommand } from '../providers/asaas/asaas-account.provider.js';
 import { LocalPaymentAccountCredentialStore, type PaymentAccountCredentialStore } from '../credentials/payment-account-credential.store.js';
-import { mapAsaasAccountStatusEvent } from '../providers/asaas/asaas-account-status.mapper.js';
+import { mapAsaasAccountStatusSnapshot } from '../providers/asaas/asaas-account-status.mapper.js';
 
 export type PaymentAccountInput = {
   name: string;
@@ -40,6 +40,11 @@ export class PaymentAccountRepository {
             id: true,
             providerAccountId: true,
             providerWebhookId: true,
+            webhookSyncState: true,
+            webhookSyncAttempts: true,
+            webhookSyncNextAttemptAt: true,
+            webhookSyncLeaseUntil: true,
+            webhookSyncErrorCode: true,
             walletId: true,
             revision: true,
             status: true,
@@ -90,6 +95,47 @@ export class PaymentAccountRepository {
   async findAccountByUserAndEnvironment(userId: string, environment: string) {
     return this.database.paymentAccount.findFirst({ where: { environment, teacher: { userId } }, select: { id: true, environment: true } });
   }
+  async reserveSubaccountCreation(userId: string, environment: string) {
+    const teacher = await this.database.teacher.findUnique({ where: { userId }, select: { id: true } });
+    if (!teacher) throw new Error('TEACHER_PROFILE_NOT_FOUND');
+    try {
+      const operation = await this.database.paymentAccountCreationOperation.create({
+        data: { teacherId: teacher.id, environment, status: 'STARTED' },
+        select: { id: true, status: true },
+      });
+      return { acquired: true, ...operation };
+    } catch (error: any) {
+      if (error?.code !== 'P2002') throw error;
+      const where = { teacherId_environment: { teacherId: teacher.id, environment } };
+      const existing = await this.database.paymentAccountCreationOperation.findUniqueOrThrow({ where, select: { id: true, status: true } });
+      if (existing.status === 'FAILED') {
+        const acquired = await this.database.paymentAccountCreationOperation.updateMany({
+          where: { id: existing.id, status: 'FAILED' },
+          data: { status: 'STARTED', providerAccountId: null, failureCode: null },
+        });
+        if (acquired.count === 1) return { acquired: true, id: existing.id, status: 'STARTED' };
+      }
+      const latest = await this.database.paymentAccountCreationOperation.findUniqueOrThrow({ where, select: { id: true, status: true } });
+      return { acquired: false, ...latest };
+    }
+  }
+  async updateSubaccountCreation(operationId: string, status: string, options: { providerAccountId?: string; failureCode?: string } = {}) {
+    await this.database.paymentAccountCreationOperation.update({
+      where: { id: operationId },
+      data: { status, providerAccountId: options.providerAccountId, failureCode: options.failureCode?.slice(0, 80) ?? null },
+    });
+  }
+  async markStaleSubaccountCreations(olderThanMs = 5 * 60_000) {
+    const result = await this.database.paymentAccountCreationOperation.updateMany({
+      where: {
+        status: { in: ['STARTED', 'REMOTE_CREATED'] },
+        updatedAt: { lt: new Date(Date.now() - olderThanMs) },
+      },
+      data: { status: 'RECONCILIATION_REQUIRED', failureCode: 'CREATION_OPERATION_STALE' },
+    });
+    if (result.count > 0) console.error('Criações de subconta sem conclusão exigem reconciliação', { event: 'payments.asaas_subaccount_creation_stale', count: result.count });
+    return result.count;
+  }
   async findForWebhookSync(accountId: string, environment: string) {
     return this.database.paymentAccount.findFirst({
       where: { id: accountId, environment },
@@ -102,7 +148,54 @@ export class PaymentAccountRepository {
     });
   }
   async setProviderWebhookId(accountId: string, webhookId: string) {
-    await this.database.paymentAccount.update({ where: { id: accountId }, data: { providerWebhookId: webhookId } });
+    await this.database.paymentAccount.update({ where: { id: accountId }, data: { providerWebhookId: webhookId, webhookSyncState: 'ACTIVE', webhookSyncNextAttemptAt: null, webhookSyncLeaseUntil: null, webhookSyncErrorCode: null } });
+  }
+  async claimProviderWebhookSync(accountId: string) {
+    const now = new Date();
+    const result = await this.database.paymentAccount.updateMany({
+      where: {
+        id: accountId,
+        webhookSyncAttempts: { lt: 10 },
+        OR: [
+          { webhookSyncState: 'PENDING', webhookSyncNextAttemptAt: { lte: now } },
+          { webhookSyncState: 'SYNCING', webhookSyncLeaseUntil: { lt: now } },
+        ],
+      },
+      data: { webhookSyncState: 'SYNCING', webhookSyncLeaseUntil: new Date(now.getTime() + 5 * 60_000) },
+    });
+    return result.count === 1;
+  }
+  async recordProviderWebhookSyncFailure(accountId: string, errorCode: string) {
+    const current = await this.database.paymentAccount.findUnique({ where: { id: accountId }, select: { webhookSyncAttempts: true } });
+    if (!current) return;
+    const attempts = current.webhookSyncAttempts + 1;
+    const terminal = attempts >= 10;
+    const delayMs = Math.min(60 * 60_000, 60_000 * 2 ** Math.min(attempts - 1, 6));
+    await this.database.paymentAccount.update({
+      where: { id: accountId },
+      data: {
+        webhookSyncAttempts: attempts,
+        webhookSyncState: terminal ? 'FAILED' : 'PENDING',
+        webhookSyncLeaseUntil: null,
+        webhookSyncErrorCode: errorCode.slice(0, 80),
+        webhookSyncNextAttemptAt: terminal ? null : new Date(Date.now() + delayMs),
+      },
+    });
+  }
+  async findPendingWebhookSync(environment: string, limit = 100) {
+    return this.database.paymentAccount.findMany({
+      where: {
+        environment,
+        webhookSyncAttempts: { lt: 10 },
+        OR: [
+          { webhookSyncState: 'PENDING', webhookSyncNextAttemptAt: { lte: new Date() } },
+          { webhookSyncState: 'SYNCING', webhookSyncLeaseUntil: { lt: new Date() } },
+        ],
+      },
+      orderBy: { webhookSyncNextAttemptAt: 'asc' },
+      take: limit,
+      select: { id: true, environment: true, credential: { select: { ciphertext: true, nonce: true, authTag: true, keyVersion: true } } },
+    });
   }
   async findCredentialOperation(userId: string, environment: string, operation: string, operationKey: string) {
     return this.database.paymentAccountCredentialOperation.findFirst({ where: { teacher: { userId }, environment, operation, operationKey }, select: { result: true } });
@@ -249,25 +342,51 @@ export class PaymentAccountRepository {
     });
   }
 
-  async applyAccountStatusEvent(providerAccountId: string, eventType: string, occurredAt = new Date()) {
+  async applyAccountStatusEvent(providerAccountId: string, eventType: string, occurredAt = new Date(), accountStatus?: unknown) {
     const normalized = eventType.toUpperCase();
-    const mirror = mapAsaasAccountStatusEvent(normalized);
+    const mirror = mapAsaasAccountStatusSnapshot(normalized, accountStatus);
     console.log('Atualizando status da conta Asaas', { event: 'payments.account_status_update_started', tableName: 'payment_accounts', providerAccountId, eventType: normalized, derivedStatus: mirror?.status ?? null });
     if (!mirror) return null;
-    const result = await prisma.paymentAccount.updateMany({
-      where: { providerAccountId },
-      data: {
-        status: mirror.status,
-        generalStatus: mirror.generalStatus,
-        commercialInfoStatus: mirror.commercialInfoStatus,
-        bankAccountStatus: mirror.bankAccountStatus,
-        documentationStatus: mirror.documentationStatus,
-        verifiedAt: mirror.verified === true ? occurredAt : mirror.verified === false ? null : undefined,
-        lastEventAt: occurredAt,
-      },
+    const existing = await this.database.paymentAccount.findUnique({ where: { providerAccountId }, select: { id: true } });
+    if (!existing) {
+      console.log('Conta de recebimento ainda não encontrada para evento Asaas', { event: 'payments.account_status_update_not_correlated', providerAccountId, eventType: normalized });
+      return { count: 0, updatedDimensions: 0 };
+    }
+    const dimensions = [
+      ['generalStatus', 'generalStatusEventAt'],
+      ['commercialInfoStatus', 'commercialInfoStatusEventAt'],
+      ['bankAccountStatus', 'bankAccountStatusEventAt'],
+      ['documentationStatus', 'documentationStatusEventAt'],
+    ] as const;
+    const updatedDimensions = await this.database.$transaction(async (transaction) => {
+      let updated = 0;
+      for (const [statusField, timestampField] of dimensions) {
+        const value = mirror[statusField];
+        if (typeof value !== 'string') continue;
+        const result = await transaction.paymentAccount.updateMany({
+          where: {
+            id: existing.id,
+            OR: [{ [timestampField]: null }, { [timestampField]: { lte: occurredAt } }],
+          },
+          data: { [statusField]: value, [timestampField]: occurredAt },
+        });
+        updated += result.count;
+      }
+      if (mirror.status !== undefined) {
+        await transaction.paymentAccount.updateMany({
+          where: { id: existing.id, OR: [{ generalStatusEventAt: null }, { generalStatusEventAt: { lte: occurredAt } }] },
+          data: { status: mirror.status, verifiedAt: mirror.verified === true ? occurredAt : null },
+        });
+      }
+      await transaction.paymentAccount.updateMany({
+        where: { id: existing.id, OR: [{ lastEventAt: null }, { lastEventAt: { lte: occurredAt } }] },
+        data: { lastEventAt: occurredAt },
+      });
+      return updated;
     });
-    console.log('Status da conta Asaas atualizado', { event: 'payments.account_status_update_persisted', tableName: 'payment_accounts', providerAccountId, eventType: normalized, status: mirror.status ?? null, updatedRows: result.count });
-    return result;
+    console.log('Status da conta Asaas atualizado', { event: 'payments.account_status_update_persisted', tableName: 'payment_accounts', providerAccountId, eventType: normalized, status: mirror.status ?? null, updatedDimensions, updatedRows: 1 });
+    // A recognized stale event is correlated and should be acknowledged, not retried as missing.
+    return { count: 1, updatedDimensions };
   }
 
 }

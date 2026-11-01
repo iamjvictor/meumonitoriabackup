@@ -17,6 +17,13 @@ import { PaymentEventRepository } from './modules/payments/infrastructure/persis
 import { startWorkerHeartbeat } from './health/worker-health.js';
 import { loadQuestionGenerationEnumState } from './worker/services/worker-database-bootstrap.js';
 import { createQueueWorkerOptions } from './worker/worker-options.js';
+import { QUESTION_BANK_MATERIALIZATION_QUEUE_NAME, questionBankMaterializationQueueConnection, type QuestionBankMaterializationJob, closeQuestionBankMaterializationQueue } from './queues/question-bank-materialization.queue.js';
+import { QuestionBankMaterializationWorkerService } from './modules/question-bank/services/question-bank-materialization-worker.service.js';
+import { QuestionBankMaterializationRecoveryService } from './modules/question-bank/services/question-bank-materialization-recovery.service.js';
+import { claimDocumentProcessingStallEvent, listProcessingJobsForStageWatchdog } from './repositories/document-processing-job.repository.js';
+import { DocumentProcessingStageWatchdog } from './worker/services/document-processing-stage-watchdog.service.js';
+import { createPaymentAccountModule } from './modules/payments/payments-account.module.js';
+import { ChatImageCleanupService } from './modules/chat/services/chat-image-cleanup.service.js';
 
 const questionGenerationEnumState = await loadQuestionGenerationEnumState(() => prisma.$queryRaw<Array<{ hasCorrection: boolean; hasNormalization: boolean }>>`
   SELECT EXISTS (
@@ -42,6 +49,24 @@ if (!questionGenerationEnumState?.hasCorrection || !questionGenerationEnumState.
 const redisConnection = new Redis(env.REDIS_URL, { maxRetriesPerRequest: null });
 const stopWorkerHeartbeat = startWorkerHeartbeat(redisConnection);
 const workerService = new DocumentWorkerService();
+const chatImageCleanup = new ChatImageCleanupService();
+const cleanExpiredChatImages = () => {
+  void chatImageCleanup.deleteExpired().catch((error) => console.error('Falha na limpeza de imagens temporárias do chat', {
+    event: 'chat.image_attachments_cleanup_failed', errorType: error instanceof Error ? error.name : 'UnknownError',
+  }));
+};
+const chatImageCleanupTimer = setInterval(cleanExpiredChatImages, 60 * 60 * 1000);
+cleanExpiredChatImages();
+const documentStageWatchdog = new DocumentProcessingStageWatchdog({
+  listProcessingJobs: listProcessingJobsForStageWatchdog,
+  claimStallEvent: claimDocumentProcessingStallEvent,
+  emit: (event) => console.warn('Etapa de processamento sem evento terminal', event),
+});
+const documentStageWatchdogTimer = setInterval(() => {
+  void documentStageWatchdog.scan().catch((error) => console.error('Falha no watchdog de etapas de documentos', {
+    event: 'document_stage.watchdog_failed', error: error instanceof Error ? error.message : 'unknown',
+  }));
+}, 30_000);
 const dailyChallengeScheduler = startDailyChallengeScheduler();
 const weeklySimulationWorkerService = new WeeklySimulationWorkerService();
 const paymentWebhookRepository = new PrismaPaymentWebhookRepository(env.ASAAS_ENV.toUpperCase());
@@ -49,8 +74,45 @@ const paymentWebhookRecovery = new PaymentWebhookRecoveryJob(paymentWebhookRepos
 const paymentAccountRepository = new PaymentAccountRepository();
 const paymentEventRepository = new PaymentEventRepository();
 const processPaymentWebhookWithAccounts = new ProcessPaymentWebhookUseCase(paymentWebhookRepository, paymentAccountRepository, paymentEventRepository);
-const paymentWebhookRecoveryTimer = setInterval(() => void paymentWebhookRecovery.run(), 60_000);
-void paymentWebhookRecovery.run();
+const paymentAccountWebhookSyncRecovery = createPaymentAccountModule().syncAccountWebhook;
+const recoverPaymentAccountWebhooks = () => {
+  void paymentAccountRepository.markStaleSubaccountCreations().catch((error) => {
+    console.error('Falha ao verificar criações de subconta incompletas', {
+      event: 'payments.asaas_subaccount_creation_recovery_failed',
+      errorType: error instanceof Error ? error.name : 'UnknownError',
+    });
+  });
+  void paymentAccountWebhookSyncRecovery.recoverPending(env.ASAAS_ENV.toUpperCase()).catch((error) => {
+    console.error('Falha ao consultar sincronizações pendentes de webhook das subcontas', {
+      event: 'payments.asaas_subaccount_webhook_sync_recovery_failed',
+      errorType: error instanceof Error ? error.name : 'UnknownError',
+    });
+  });
+};
+const paymentAccountWebhookSyncTimer = setInterval(recoverPaymentAccountWebhooks, 60_000);
+recoverPaymentAccountWebhooks();
+const questionBankMaterializationWorkerService = new QuestionBankMaterializationWorkerService();
+const questionBankMaterializationRecovery = new QuestionBankMaterializationRecoveryService();
+const recoverQuestionBankMaterializations = () => {
+  void questionBankMaterializationRecovery.recover().catch((error) => {
+    console.error('Falha ao consultar materializações pendentes', {
+      event: 'question_bank.materialization_recovery_failed',
+      error: error instanceof Error ? error.message : String(error),
+    });
+  });
+};
+const recoverPaymentWebhooks = () => {
+  void paymentWebhookRecovery.run().catch((error) => {
+    console.error('Falha ao consultar webhooks pendentes de recuperação', {
+      event: 'payments.webhook_recovery_job_failed',
+      errorType: error instanceof Error ? error.name : 'UnknownError',
+    });
+  });
+};
+const paymentWebhookRecoveryTimer = setInterval(recoverPaymentWebhooks, 60_000);
+recoverPaymentWebhooks();
+const questionBankMaterializationRecoveryTimer = setInterval(recoverQuestionBankMaterializations, 30_000);
+recoverQuestionBankMaterializations();
 
 const worker = new Worker<DocumentJob>(
   DOCUMENT_QUEUE_NAME,
@@ -71,6 +133,16 @@ const paymentWebhookWorker = new Worker<PaymentWebhookJob>(
   PAYMENT_WEBHOOK_QUEUE_NAME,
   async (job) => processPaymentWebhookWithAccounts.execute(job.data.eventId),
   createQueueWorkerOptions(paymentWebhookQueueConnection, 4),
+);
+
+const questionBankMaterializationWorker = new Worker<QuestionBankMaterializationJob>(
+  QUESTION_BANK_MATERIALIZATION_QUEUE_NAME,
+  async (job) => questionBankMaterializationWorkerService.process(
+    job.data.runId,
+    job.attemptsMade + 1,
+    job.opts.attempts ?? 3,
+  ),
+  createQueueWorkerOptions(questionBankMaterializationQueueConnection, 2),
 );
 
 weeklySimulationWorker.on('active', (job) => console.info('[weekly-simulation]', { event: 'weekly_simulation.worker_job_active', jobId: job.id, simulationId: job.data.simulationId }));
@@ -129,16 +201,26 @@ weeklySimulationWorker.on('error', (error) => {
 paymentWebhookWorker.on('ready', () => console.log('Worker de webhooks de pagamentos conectado ao Redis', { event: 'payments.webhook_worker_ready', queue: PAYMENT_WEBHOOK_QUEUE_NAME }));
 paymentWebhookWorker.on('active', (job) => console.log('Job de webhook Asaas iniciado', { event: 'payments.webhook_job_active', jobId: job.id, eventId: job.data.eventId }));
 paymentWebhookWorker.on('completed', (job, result) => console.log('Job de webhook Asaas concluído', { event: 'payments.webhook_job_completed', jobId: job.id, eventId: job.data.eventId, result }));
-paymentWebhookWorker.on('failed', (job, error) => console.error('Falha no processamento de webhook de pagamento', { event: 'payments.webhook_job_failed', jobId: job?.id, eventId: job?.data.eventId, error: error.message }));
+paymentWebhookWorker.on('failed', (job, error) => console.error('Falha no processamento de webhook de pagamento', { event: 'payments.webhook_job_failed', jobId: job?.id, eventId: job?.data.eventId, errorType: error.name }));
+
+questionBankMaterializationWorker.on('active', (job) => console.info('Importação do acervo iniciada', { event: 'question_bank.materialization_worker_started', jobId: job.id, runId: job.data.runId, attemptsMade: job.attemptsMade }));
+questionBankMaterializationWorker.on('completed', (job, result) => console.info('Importação do acervo finalizada', { event: 'question_bank.materialization_worker_completed', jobId: job.id, runId: job.data.runId, result }));
+questionBankMaterializationWorker.on('failed', (job, error) => console.error('Falha na tentativa de importação do acervo', { event: 'question_bank.materialization_worker_failed', jobId: job?.id, runId: job?.data.runId, attemptsMade: job?.attemptsMade, error: error.message }));
 
 const shutdown = async (signal: string) => {
   console.log('Encerramento do worker solicitado', { event: 'monitor.document_worker_shutdown', signal });
   stopWorkerHeartbeat();
   dailyChallengeScheduler.stop();
   clearInterval(paymentWebhookRecoveryTimer);
+  clearInterval(paymentAccountWebhookSyncTimer);
+  clearInterval(questionBankMaterializationRecoveryTimer);
+  clearInterval(documentStageWatchdogTimer);
+  clearInterval(chatImageCleanupTimer);
   await worker.close();
   await weeklySimulationWorker.close();
   await paymentWebhookWorker.close();
+  await questionBankMaterializationWorker.close();
+  await closeQuestionBankMaterializationQueue();
   await redisConnection.quit();
   await prisma.$disconnect();
   process.exit(0);

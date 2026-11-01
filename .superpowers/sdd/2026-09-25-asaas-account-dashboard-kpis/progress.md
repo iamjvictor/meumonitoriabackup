@@ -1,4 +1,4 @@
-# SDD ledger — plan: docs/superpowers/plans/2026-09-25-asaas-account-dashboard-kpis.md
+# SDD ledger — plan: docs/asaas/plans/2026-09-25-asaas-account-dashboard-kpis.md
 
 ## Workspace ruling
 

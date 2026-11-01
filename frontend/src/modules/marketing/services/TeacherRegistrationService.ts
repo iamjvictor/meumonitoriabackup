@@ -1,3 +1,5 @@
+import { apiErrorFromResponse } from '@/shared/errors/api-error';
+
 export interface TeacherSignupStep1Payload {
   fullName: string;
   email: string;
@@ -41,11 +43,13 @@ export const TeacherRegistrationService = {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || 'Erro ao salvar a imagem de perfil.');
+      throw await apiErrorFromResponse(response, 'Não foi possível salvar a imagem de perfil.');
     }
 
-    const result = await response.json();
+    const result = await response.json().catch(() => null);
+    if (!result?.data?.avatarUrl) {
+      throw new Error('O servidor não confirmou o salvamento da foto. Tente enviar outra imagem.');
+    }
     return result.data?.avatarUrl;
   },
 
@@ -54,21 +58,6 @@ export const TeacherRegistrationService = {
    */
   async registerAccountStep1(payload: TeacherSignupStep1Payload): Promise<{ success: boolean; message?: string }> {
     const backendUrl = getBackendUrl();
-
-    // Persiste dados do usuario localmente para que a UI exiba o nome do professor antes do onboarding de perfil
-    if (typeof window !== 'undefined') {
-      try {
-        localStorage.setItem(
-          'mm_user_info',
-          JSON.stringify({
-            fullName: payload.fullName,
-            email: payload.email,
-          })
-        );
-      } catch (err) {
-        console.warn('Nao foi possivel salvar mm_user_info no localStorage:', err);
-      }
-    }
 
     const response = await fetch(`${backendUrl}/api/v1/auth/signup`, {
       method: 'POST',
@@ -80,11 +69,22 @@ export const TeacherRegistrationService = {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || 'Erro ao criar conta de acesso.');
+      throw await apiErrorFromResponse(response, 'Não foi possível criar sua conta.');
     }
 
     const data = await response.json().catch(() => ({ success: true }));
+
+    // Guarda os dados de onboarding somente depois que a API confirmar a conta.
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(
+          'mm_user_info',
+          JSON.stringify({ fullName: payload.fullName, email: payload.email }),
+        );
+      } catch (err) {
+        console.warn('Nao foi possivel salvar mm_user_info no localStorage:', err);
+      }
+    }
 
     // Se o backend retornou dados do usuario criado, atualiza no localStorage
     if (data?.user?.fullName || data?.data?.user?.fullName) {
@@ -119,8 +119,7 @@ export const TeacherRegistrationService = {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || 'Erro ao atualizar o perfil do professor.');
+      throw await apiErrorFromResponse(response, 'Não foi possível atualizar o perfil do professor.');
     }
 
     return response.json().catch(() => ({ success: true }));

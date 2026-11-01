@@ -39,6 +39,7 @@ export async function protectedRoutes(app: FastifyInstance) {
       data: {
         userId: request.user.id,
         email: request.user.email,
+        emailVerified: request.user.emailVerified,
         fullName: fullName || null,
         whatsapp: whatsapp || null,
         cpf: cpf || null,

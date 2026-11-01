@@ -35,9 +35,9 @@ export type StructuredRequestUsage = {
   finishReason?: string | null;
 };
 
-type ChatMessage = {
+export type ChatMessage = {
   role: 'system' | 'user' | 'assistant';
-  content: string;
+  content: string | Array<{ type: 'text'; text: string } | { type: 'image_url'; image_url: { url: string } }>;
 };
 
 export type ChatCompletionResult = {
@@ -75,6 +75,56 @@ export class StructuredCompletionError extends Error {
 }
 
 export class OpenRouterClient {
+  async describeVisualAsset(input: {
+    imageBase64: string;
+    mimeType: string;
+    pageNumber: number;
+    timeoutMs?: number;
+  }): Promise<{ description: string; model: string; version: string }> {
+    if (!env.OPENROUTER_API_KEY) throw new Error('OPENROUTER_API_KEY nao configurada para o worker.');
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(input.mimeType)) throw new Error('Formato de imagem não suportado para descrição visual.');
+    const model = env.DOCUMENT_VISUAL_DESCRIPTION_MODEL;
+    const startedAt = Date.now();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), input.timeoutMs ?? env.OPENROUTER_STRUCTURED_TIMEOUT_MS);
+    try {
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${env.OPENROUTER_API_KEY}`, 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          model,
+          temperature: 0,
+          max_tokens: 700,
+          messages: [{
+            role: 'user',
+            content: [
+              { type: 'text', text: `Descreva apenas o que é visível nesta figura da página ${input.pageNumber}. Registre tipo de figura, título, rótulos, unidades, valores legíveis, relações visuais e incertezas. Preserve texto e valores exatamente quando legíveis. Não resolva questões, não infira respostas nem complete partes ilegíveis. Responda em português, como descrição factual concisa.` },
+              { type: 'image_url', image_url: { url: `data:${input.mimeType};base64,${input.imageBase64}` } },
+            ],
+          }],
+        }),
+      });
+      const payload = await response.json() as ChatResponse;
+      const description = payload.choices?.[0]?.message?.content?.trim();
+      if (!response.ok || !description) throw new Error(`OpenRouter falhou ao descrever figura (${response.status}).`);
+      console.log('Descrição visual concluída', {
+        event: 'monitor.document_visual_description_completed', model,
+        durationMs: Date.now() - startedAt, descriptionChars: description.length,
+      });
+      return { description, model, version: 'visual-description-v1' };
+    } catch (error) {
+      if (controller.signal.aborted) {
+        const timeoutError = new Error('OpenRouter excedeu o timeout de descrição visual.');
+        timeoutError.name = 'VISUAL_DESCRIPTION_TIMEOUT';
+        throw timeoutError;
+      }
+      throw error;
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
   async createEmbeddings(input: string[], options: { timeoutMs?: number; signal?: AbortSignal } = {}): Promise<number[][]> {
     console.log('Validando cliente do OpenRouter', {
       event: 'monitor.openrouter_client_validation_started',
@@ -456,10 +506,11 @@ export class OpenRouterClient {
       try {
         return input.validate(parsed);
       } catch (error) {
+        const issues = describeValidationIssues(error, parsed);
         console.log('Resposta estruturada nao atende ao schema local', {
           event: 'monitor.llm_structured_schema_validation_failed',
           schemaName: input.schemaName,
-          error,
+          issues: JSON.stringify(issues),
         });
         throw new StructuredCompletionError(
           'INVALID_SCHEMA',
@@ -468,7 +519,7 @@ export class OpenRouterClient {
             model,
             finishReason,
             nativeFinishReason: payload.choices?.[0]?.native_finish_reason,
-            validationError: serializeValidationError(error),
+            validationError: { ...serializeValidationError(error), issueDetails: issues },
             responseContent: content?.slice(0, 4_000) ?? null,
           },
         );
@@ -492,12 +543,32 @@ export class OpenRouterClient {
 }
 
 function serializeValidationError(error: unknown) {
-  if (!error || typeof error !== 'object') return error;
+  if (!error || typeof error !== 'object') return { message: String(error) };
   const candidate = error as { message?: unknown; issues?: unknown };
   return {
     message: typeof candidate.message === 'string' ? candidate.message : undefined,
     issues: Array.isArray(candidate.issues) ? candidate.issues.slice(0, 8) : undefined,
   };
+}
+
+function describeValidationIssues(error: unknown, value: unknown) {
+  const issues = error && typeof error === 'object' && 'issues' in error && Array.isArray(error.issues)
+    ? error.issues.slice(0, 8) : [];
+  return issues.map((issue: unknown) => {
+    if (!issue || typeof issue !== 'object') return { message: String(issue) };
+    const item = issue as Record<string, unknown>;
+    const path = Array.isArray(item.path) ? item.path : [];
+    let field: unknown = value;
+    for (const segment of path) {
+      if (field === null || typeof field !== 'object') { field = undefined; break; }
+      field = (field as Record<string | number, unknown>)[segment as string | number];
+    }
+    return {
+      path: path.join('.'), code: item.code, message: item.message,
+      actualLength: typeof field === 'string' || Array.isArray(field) ? field.length : undefined,
+      limit: item.maximum ?? item.minimum,
+    };
+  });
 }
 
 function parseRetryAfterMilliseconds(value: string | null) {

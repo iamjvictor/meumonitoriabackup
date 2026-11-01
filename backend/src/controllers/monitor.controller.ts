@@ -3,11 +3,11 @@ import { z } from 'zod';
 import { AppError } from '../core/errors/app-error.js';
 import { addMonitorSubjectsSchema, createMonitorSchema, monitorIdParamsSchema, updateMonitorSchema } from '../models/monitor.model.js';
 import { MonitorService } from '../services/monitor.service.js';
-import { MonitorPublicationBlockedError, MonitorSubjectAlreadyExistsError } from '../repositories/monitor.repository.js';
+import { MonitorPublicationBlockedError, MonitorSubjectAlreadyExistsError, TeacherProfilePublicationBlockedError } from '../repositories/monitor.repository.js';
 
 export const addSubjectBodySchema = z.object({
   name: z.string().trim().min(1).max(120),
-  topics: z.array(z.string().trim().min(1).max(120)).min(1).max(30),
+  topics: z.array(z.string().trim().min(1).max(1086)).min(1).max(30),
   examProfiles: z.array(z.object({ subject: z.string().trim().min(1).max(120), examType: z.string().trim().min(1).max(60), board: z.string().trim().max(120).nullable().optional() }).strict()).max(100).optional(),
 }).strict();
 export const addTopicBodySchema = z.object({ name: z.string().trim().min(1).max(120), definition: z.string().trim().max(4000).optional() }).strict();
@@ -56,16 +56,6 @@ export class MonitorController {
       if (result.kind === 'TEACHER_NOT_FOUND') {
         return reply.code(404).send({ error: 'TEACHER_PROFILE_NOT_FOUND', message: 'Conclua o perfil de professor antes de criar um monitor.' });
       }
-      if (result.kind === 'TEACHER_NOT_ACTIVE') {
-        return reply.code(403).send({ error: 'TEACHER_PROFILE_NOT_ACTIVE', message: 'Seu perfil precisa estar ativo para criar um monitor.' });
-      }
-      if (result.kind === 'PAYMENT_ACCOUNT_REQUIRED') {
-        return reply.code(403).send({
-          error: 'PAYMENT_ACCOUNT_REQUIRED_FOR_CREATION',
-          message: 'Configure e aguarde a aprovação da conta de recebimento antes de criar um monitor.',
-        });
-      }
-
       console.log('Monitor de IA salvo como rascunho', {
         event: 'monitor.create_completed',
         requestId: request.id,
@@ -158,6 +148,31 @@ export class MonitorController {
       console.log('Falha ao buscar Monitor de IA', { event: 'monitor.lookup_failed', requestId: request.id, userId: request.user.id, monitorId: params.data.monitorId, errorType: error instanceof Error ? error.name : 'UnknownError' });
       return reply.code(500).send({ error: 'MONITOR_LOOKUP_FAILED', message: 'Nao foi possivel carregar o Monitor de IA.' });
     }
+  }
+
+  async getQuestionBankMaterialization(request: FastifyRequest<{ Params: { monitorId: string } }>, reply: FastifyReply) {
+    if (!request.user) return reply.code(401).send({ error: 'UNAUTHENTICATED', message: 'Sessao de usuario obrigatoria.' });
+    if (!['teacher', 'professor', 'admin'].includes(request.user.role?.toLowerCase() || '')) {
+      return reply.code(403).send({ error: 'FORBIDDEN', message: 'Apenas professores podem acessar Monitores de IA.' });
+    }
+    const params = monitorIdParamsSchema.safeParse(request.params);
+    if (!params.success) return reply.code(400).send({ error: 'VALIDATION_ERROR', message: 'Identificador de monitor invalido.' });
+    const run = await this.service.getQuestionBankMaterialization(request.user.id, params.data.monitorId);
+    if (!run) return reply.code(404).send({ error: 'MATERIALIZATION_NOT_FOUND', message: 'Importação do acervo não encontrada.' });
+    return reply.code(200).send({ data: run });
+  }
+
+  async retryQuestionBankMaterialization(request: FastifyRequest<{ Params: { monitorId: string } }>, reply: FastifyReply) {
+    if (!request.user) return reply.code(401).send({ error: 'UNAUTHENTICATED', message: 'Sessao de usuario obrigatoria.' });
+    if (request.user.role !== 'teacher') return reply.code(403).send({ error: 'FORBIDDEN', message: 'Apenas professores podem repetir importações.' });
+    const params = monitorIdParamsSchema.safeParse(request.params);
+    if (!params.success) return reply.code(400).send({ error: 'VALIDATION_ERROR', message: 'Identificador de monitor invalido.' });
+    const result = await this.service.retryQuestionBankMaterialization(request.user.id, params.data.monitorId);
+    if (!result) return reply.code(404).send({ error: 'MATERIALIZATION_NOT_FOUND', message: 'Importação do acervo não encontrada.' });
+    if (result.kind === 'NOT_RETRYABLE') {
+      return reply.code(409).send({ error: 'MATERIALIZATION_NOT_FAILED', message: 'A importação só pode ser repetida depois de uma falha final.', data: result.run });
+    }
+    return reply.code(202).send({ data: result.run });
   }
 
   async addSubject(request: FastifyRequest<{ Params: { monitorId: string }; Body: { name: string; topics?: string[]; examProfiles?: Array<{ subject: string; examType: string; board?: string | null }> } }>, reply: FastifyReply) {
@@ -258,6 +273,9 @@ export class MonitorController {
 
       return reply.code(200).send({ data: monitor });
     } catch (error) {
+      if (error instanceof TeacherProfilePublicationBlockedError) {
+        return reply.code(403).send({ error: 'TEACHER_PROFILE_REQUIRED_FOR_PUBLICATION', message: 'Aguarde a aprovação do perfil do professor antes de publicar o monitor.' });
+      }
       if (error instanceof MonitorPublicationBlockedError) {
         return reply.code(403).send({ error: 'PAYMENT_ACCOUNT_REQUIRED_FOR_PUBLICATION', message: 'Configure uma conta de recebimento aprovada antes de publicar o monitor.' });
       }

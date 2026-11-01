@@ -23,7 +23,7 @@ export class AsaasWebhookController {
       console.log('Webhook Asaas aceito pelo endpoint', { event: 'payments.webhook_http_accepted', requestId: request.id, ...result });
       return reply.code(200).send(result);
     } catch (error) {
-      console.warn('Webhook Asaas rejeitado pelo endpoint', { event: 'payments.webhook_http_rejected', requestId: request.id, errorType: error instanceof Error ? error.name : 'UnknownError', errorMessage: error instanceof Error ? error.message : String(error) });
+      console.warn('Webhook Asaas rejeitado pelo endpoint', { event: 'payments.webhook_http_rejected', requestId: request.id, errorType: error instanceof Error ? error.name : 'UnknownError' });
       if (error instanceof Error && error.message === 'Invalid Asaas webhook token') {
         throw new AppError({ code: 'INVALID_WEBHOOK_TOKEN', statusCode: 401, publicMessage: 'Webhook não autorizado.' });
       }

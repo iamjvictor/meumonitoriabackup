@@ -5,6 +5,8 @@ export class PaymentWebhookRecoveryJob {
   constructor(private readonly repository: PrismaPaymentWebhookRepository) {}
 
   async run() {
+    const exhausted = await this.repository.markExhaustedForAttention();
+    if (exhausted > 0) console.error('Eventos de webhook precisam de reconciliação operacional', { event: 'payments.webhook_recovery_exhausted', count: exhausted });
     const events = await this.repository.findRecoverable(100);
     for (const event of events) {
       try {

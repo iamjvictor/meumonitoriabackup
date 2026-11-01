@@ -11,6 +11,8 @@ export async function monitorRoutes(app: FastifyInstance) {
   app.get('/', { onRequest: authMiddleware }, controller.listMine.bind(controller));
   app.get('/question-bank-catalog', { onRequest: authMiddleware }, controller.getQuestionBankCatalog.bind(controller));
   app.get<{ Params: { monitorId: string } }>('/:monitorId', { onRequest: authMiddleware }, controller.getMine.bind(controller));
+  app.get<{ Params: { monitorId: string } }>('/:monitorId/question-bank-materialization', { onRequest: authMiddleware }, controller.getQuestionBankMaterialization.bind(controller));
+  app.post<{ Params: { monitorId: string } }>('/:monitorId/question-bank-materialization/retry', { onRequest: authMiddleware }, controller.retryQuestionBankMaterialization.bind(controller));
   app.patch<{ Params: { monitorId: string }; Body: { name?: string; description?: string | null } }>('/:monitorId', { onRequest: authMiddleware }, controller.update.bind(controller));
   app.patch<{ Params: { monitorId: string }; Body: { allowPublishWithoutPaymentAccount: boolean } }>('/:monitorId/publication-exception', { onRequest: authMiddleware }, controller.setPublicationException.bind(controller));
   app.post('/', {

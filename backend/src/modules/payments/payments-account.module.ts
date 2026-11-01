@@ -11,6 +11,7 @@ import { GetPaymentAccountOverviewUseCase } from './application/queries/get-paym
 import { LocalPaymentAccountCredentialStore } from './infrastructure/credentials/payment-account-credential.store.js';
 import { createPaymentAccountCredentialResolver } from './application/queries/get-payment-account-overview.use-case.js';
 import { RotatePaymentAccountCredentialUseCase } from './application/commands/rotate-payment-account-credential.use-case.js';
+import { SyncPaymentAccountWebhookUseCase } from './application/commands/sync-payment-account-webhook.use-case.js';
 
 export function createPaymentAccountModule() {
   const httpClient = new AsaasHttpClient({ apiKey: selectAsaasApiKey(env.ASAAS_ENV, { sandbox: env.ASAAS_API_KEY_SANDBOX, production: env.ASAAS_API_KEY }) ?? '', baseUrl: getAsaasBaseUrl(env.ASAAS_ENV), environment: env.ASAAS_ENV, timeoutMs: env.ASAAS_HTTP_TIMEOUT_MS });
@@ -23,6 +24,7 @@ export function createPaymentAccountModule() {
   const repository = new PaymentAccountRepository(credentialStore);
   const rotateCredential = new RotatePaymentAccountCredentialUseCase(repository, credentialStore);
   const startAccount = new StartPaymentAccountUseCase(repository, provider);
+  const syncAccountWebhook = new SyncPaymentAccountWebhookUseCase(repository, credentialStore, provider);
   const getAccount = new GetPaymentAccountUseCase(repository);
   const overviewProvider = new AsaasAccountOverviewProvider(httpClient, {
     environment: env.ASAAS_ENV,
@@ -40,7 +42,7 @@ export function createPaymentAccountModule() {
     }),
   });
   const controller = new PaymentAccountController(getAccount, startAccount, getOverview);
-  return { repository, provider, startAccount, getAccount, overviewProvider, getOverview, controller, rotateCredential };
+  return { repository, provider, startAccount, syncAccountWebhook, getAccount, overviewProvider, getOverview, controller, rotateCredential };
 }
 
 function resolveAsaasDashboardUrl(environment: 'sandbox' | 'production', configuredUrl: string): string {

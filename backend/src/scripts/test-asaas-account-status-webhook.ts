@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { env } from '../config/env.js';
+import { assertSafeAsaasWebhookTestTarget } from '../modules/payments/infrastructure/providers/asaas/asaas-test-target.guard.js';
 
 type AccountStatusWebhookPayload = {
   id: string;
@@ -34,6 +35,7 @@ async function main() {
     ?? (env.PUBLIC_API_URL ? `${env.PUBLIC_API_URL.replace(/\/$/, '')}/api/v1/payments/webhooks/asaas` : undefined);
   if (!webhookUrl) throw new Error('Defina ASAAS_WEBHOOK_URL ou PUBLIC_API_URL antes de testar o webhook.');
   if (!env.ASAAS_WEBHOOK_AUTH_TOKEN) throw new Error('Defina ASAAS_WEBHOOK_AUTH_TOKEN antes de testar o webhook.');
+  assertSafeAsaasWebhookTestTarget(env.ASAAS_ENV, webhookUrl, (process.env.ASAAS_WEBHOOK_TEST_ALLOWED_HOSTS ?? '').split(','));
 
   const payload = buildAccountStatusWebhookPayload(providerAccountId);
   console.log('Enviando evento sintético de aprovação de subconta', {

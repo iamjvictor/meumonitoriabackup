@@ -1,7 +1,7 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { AppError } from '../../../core/errors/app-error.js';
-import { PaymentAccountAlreadyExistsError, StartPaymentAccountUseCase } from '../application/commands/start-payment-account.use-case.js';
+import { PaymentAccountAlreadyExistsError, PaymentAccountCreationInProgressError, PaymentAccountReconciliationRequiredError, StartPaymentAccountUseCase } from '../application/commands/start-payment-account.use-case.js';
 import type { GetPaymentAccountUseCase } from '../application/queries/get-payment-account.use-case.js';
 import { AsaasApiError } from '../infrastructure/providers/asaas/asaas-http.client.js';
 import { GetPaymentAccountOverviewUseCase, PaymentAccountNotFoundError, PaymentAccountOverviewProviderError } from '../application/queries/get-payment-account-overview.use-case.js';
@@ -156,11 +156,12 @@ export class PaymentAccountController {
         requestId: request.id,
         userId: request.user.id,
         errorType: error instanceof Error ? error.name : 'UnknownError',
-        errorMessage: error instanceof Error ? error.message : String(error),
         providerCode: error instanceof AsaasApiError ? error.responseBody?.code : undefined,
-        providerErrorDescriptions: error instanceof AsaasApiError ? error.responseBody?.descriptions : undefined,
+        providerStatus: error instanceof AsaasApiError ? error.status : undefined,
       });
       if (error instanceof PaymentAccountAlreadyExistsError) throw new AppError({ code: 'PAYMENT_ACCOUNT_ALREADY_EXISTS', statusCode: 409, publicMessage: 'O professor já possui uma conta de recebimento configurada.' });
+      if (error instanceof PaymentAccountCreationInProgressError) throw new AppError({ code: 'PAYMENT_ACCOUNT_CREATION_IN_PROGRESS', statusCode: 409, publicMessage: 'Estamos confirmando a solicitação ao Asaas. Atualize o painel em instantes antes de tentar novamente.' });
+      if (error instanceof PaymentAccountReconciliationRequiredError) throw new AppError({ code: 'PAYMENT_ACCOUNT_RECONCILIATION_REQUIRED', statusCode: 503, publicMessage: 'A solicitação está em confirmação com o Asaas. Não envie outra solicitação; nossa equipe vai revisar o vínculo.' });
       if (error instanceof Error && error.message === 'TEACHER_PROFILE_NOT_FOUND') throw new AppError({ code: 'TEACHER_PROFILE_NOT_FOUND', statusCode: 404, publicMessage: 'Conclua o perfil de professor antes de configurar o recebimento.' });
       if (error instanceof AsaasApiError && error.status === 400) {
         const providerCode = error.responseBody?.code;
@@ -172,6 +173,13 @@ export class PaymentAccountController {
           statusCode: 422,
           publicMessage,
           internalDetails: error.responseBody,
+        });
+      }
+      if (error instanceof AsaasApiError) {
+        throw new AppError({
+          code: 'ASAAS_ACCOUNT_PROVIDER_UNAVAILABLE',
+          statusCode: error.status === 429 || error.status >= 500 ? 503 : 502,
+          publicMessage: 'Não foi possível concluir a configuração agora. Aguarde um pouco e confira o painel antes de tentar novamente.',
         });
       }
       throw error;

@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { Prisma } from '@prisma/client';
 import { env } from '../../config/env.js';
 import { aiModels } from '../../config/ai-models.config.js';
@@ -10,6 +10,8 @@ import {
   markDocumentReady,
   markDocumentFailed,
   markDocumentNeedsOcr,
+  saveDoclingChunks,
+  findReusableDoclingChunks,
 } from '../../repositories/document-worker.repository.js';
 import { ChunkService } from './chunk.service.js';
 import { DocumentBlockDetectionService } from './document-block-detection.service.js';
@@ -29,12 +31,20 @@ import {
   createDocumentIngestionV3Service,
   type DocumentIngestionV3Service,
 } from './document-parser/document-ingestion-v3.service.js';
+import { DocChunkerClient, DocChunkerClientError } from './doc-chunker/doc-chunker.client.js';
+import { DocChunkerV2Client } from './doc-chunker/doc-chunker-v2.client.js';
+import { DocumentVisualAssetRepository } from '../../repositories/document-visual-asset.repository.js';
+import { PrismaDocumentParseRunStore } from '../../repositories/document-parser.repository.js';
+import { PrismaDocumentVisualLinkStore } from '../../repositories/document-visual-link.repository.js';
+import { DocumentVisualLinkingService } from './document-visual-linking.service.js';
+import { DocumentVisualIndexingService } from './document-visual-indexing.service.js';
 import {
   completeDocumentProcessingJob,
   ensureDocumentProcessingJobs,
   failDocumentProcessingJob,
   skipDocumentProcessingJob,
   startDocumentProcessingJob,
+  updateDocumentProcessingStage,
   type DocumentProcessingOperation,
 } from '../../repositories/document-processing-job.repository.js';
 
@@ -137,12 +147,24 @@ export type DocumentWorkerServiceDependencies = {
   documentIngestionV3Service?: DocumentIngestionV3Service | null;
   flashcardGenerationService?: Pick<FlashcardGenerationService, 'processDocument'>;
   flashcardConcurrency?: number;
+  docChunkerClient?: Pick<DocChunkerClient, 'chunk'>;
+  docChunkerV2Client?: Pick<DocChunkerV2Client, 'chunkWithAssets'>;
+  documentVisualAssetRepository?: Pick<DocumentVisualAssetRepository, 'persistVisualParseRun'>;
+  documentVisualLinkingService?: Pick<DocumentVisualLinkingService, 'linkVisualAssetsToChunks'>;
+  documentVisualIndexingService?: Pick<DocumentVisualIndexingService, 'describeAndIndexAsset'>;
+  saveDoclingChunks?: typeof saveDoclingChunks;
 };
 
 export class DocumentWorkerService {
   private readonly documentIngestionV3Service: DocumentIngestionV3Service | null;
   private readonly flashcardGenerationService: Pick<FlashcardGenerationService, 'processDocument'>;
   private readonly flashcardConcurrency: number;
+  private readonly docChunkerClient: Pick<DocChunkerClient, 'chunk'> | null;
+  private readonly docChunkerV2Client: Pick<DocChunkerV2Client, 'chunkWithAssets'> | null;
+  private readonly documentVisualAssetRepository: Pick<DocumentVisualAssetRepository, 'persistVisualParseRun'> | null;
+  private readonly documentVisualLinkingService: Pick<DocumentVisualLinkingService, 'linkVisualAssetsToChunks'> | null;
+  private readonly documentVisualIndexingService: Pick<DocumentVisualIndexingService, 'describeAndIndexAsset'> | null;
+  private readonly saveDoclingChunks: typeof saveDoclingChunks;
 
   constructor(
     private readonly chunkService = new ChunkService(),
@@ -164,6 +186,31 @@ export class DocumentWorkerService {
         : null);
     this.flashcardGenerationService = dependencies.flashcardGenerationService ?? new FlashcardGenerationService();
     this.flashcardConcurrency = dependencies.flashcardConcurrency ?? aiModels.flashcardGenerationConcurrency;
+    this.docChunkerClient = dependencies.docChunkerClient
+      ?? ((env.DOCUMENT_CHUNKER_BASE_URL ?? env.DOCUMENT_PARSER_BASE_URL)
+        ? new DocChunkerClient({
+          baseUrl: env.DOCUMENT_CHUNKER_BASE_URL ?? env.DOCUMENT_PARSER_BASE_URL!,
+          requestTimeoutMs: env.DOCUMENT_CHUNKER_REQUEST_TIMEOUT_MS,
+          maxResponseBytes: env.DOCUMENT_CHUNKER_MAX_RESPONSE_BYTES,
+          logger: (event, payload) => console.log(event, payload),
+        }) : null);
+    this.docChunkerV2Client = dependencies.docChunkerV2Client
+      ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED && (env.DOCUMENT_CHUNKER_BASE_URL ?? env.DOCUMENT_PARSER_BASE_URL)
+        ? new DocChunkerV2Client({
+          baseUrl: env.DOCUMENT_CHUNKER_BASE_URL ?? env.DOCUMENT_PARSER_BASE_URL!,
+          requestTimeoutMs: env.DOCUMENT_CHUNKER_REQUEST_TIMEOUT_MS,
+          maxResponseBytes: env.DOCUMENT_CHUNKER_MAX_RESPONSE_BYTES,
+          logger: (event, payload) => console.log(event, payload),
+        }) : null);
+    this.documentVisualAssetRepository = dependencies.documentVisualAssetRepository
+      ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED ? new DocumentVisualAssetRepository() : null);
+    this.documentVisualLinkingService = dependencies.documentVisualLinkingService
+      ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED
+        ? new DocumentVisualLinkingService(new PrismaDocumentVisualLinkStore(), (event, fields) => console.log(event, fields))
+        : null);
+    this.documentVisualIndexingService = dependencies.documentVisualIndexingService
+      ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED ? new DocumentVisualIndexingService() : null);
+    this.saveDoclingChunks = dependencies.saveDoclingChunks ?? saveDoclingChunks;
   }
 
   async process(documentId: string, context: DocumentWorkerContext = {}) {
@@ -229,7 +276,195 @@ export class DocumentWorkerService {
       const pdfBytes = new Uint8Array(await data.arrayBuffer());
       const contentHash = createHash('sha256').update(pdfBytes).digest('hex');
 
-      if (this.documentIngestionV3Service && shouldProcessDocumentContent(document.tag)) {
+      if (shouldParseVisualAssets(document.tag, env.DOCUMENT_VISUAL_ASSETS_ENABLED) && document.tag === 'QUESTIONS') {
+        try {
+          const visual = await this.processVisualAssetsOnly(document, pdfBytes, contentHash);
+          console.log('Extração visual das questões concluída; extração textual permanece no fluxo atual', {
+            event: 'document_visual_assets.question_document_completed', documentId: document.id,
+            parseRunId: visual.parseRunId, assetCount: visual.assetCount,
+            warningCount: visual.warningCount, reused: visual.reused,
+          });
+        } catch (error) {
+          console.warn('Extração visual indisponível; fluxo textual de questões continuará', {
+            event: 'document_visual_assets.question_document_failed_non_blocking', documentId: document.id,
+            errorCode: error instanceof Error ? error.name : 'VISUAL_PARSE_FAILED',
+          });
+        }
+      }
+
+      let doclingChunksPersisted = false;
+      let doclingFallbackOccurred = false;
+      let visualParseRunId: string | null = null;
+      if (shouldUseDocChunker(document.tag, env.DOCUMENT_TEXT_SOURCE)
+          || (shouldParseVisualAssets(document.tag, env.DOCUMENT_VISUAL_ASSETS_ENABLED) && document.tag === 'KNOWLEDGE_BASE')) {
+        if (!this.docChunkerClient && !this.docChunkerV2Client) throw new Error('DOCUMENT_CHUNKER_BASE_URL não configurada.');
+        try {
+          const result = await track('CREATE_RETRIEVAL_CHUNKS', async () => {
+            const reusable = await findReusableDoclingChunks(document.id, contentHash, 'hybrid-v1');
+            const parseRunStore = env.DOCUMENT_VISUAL_ASSETS_ENABLED ? new PrismaDocumentParseRunStore() : null;
+            const visualRunKey = env.DOCUMENT_VISUAL_ASSETS_ENABLED
+              ? createHash('sha256').update([document.id, contentHash, 'doc-chunker-v2', 'hybrid-v1'].join(':')).digest('hex')
+              : null;
+            const visualRun = visualRunKey ? await parseRunStore!.findByIdempotencyKey(visualRunKey) : null;
+            if (reusable.reusable && (!env.DOCUMENT_VISUAL_ASSETS_ENABLED
+                || visualRun?.status === 'COMPLETED' || visualRun?.status === 'COMPLETED_WITH_WARNINGS')) {
+              if (env.DOCUMENT_VISUAL_ASSETS_ENABLED && visualRun) {
+                visualParseRunId = visualRun.parseRunId;
+                await this.documentVisualLinkingService?.linkVisualAssetsToChunks(
+                  visualRun.parseRunId, reusable.chunks.map((chunk) => ({
+                    id: chunk.id, text: chunk.content,
+                    pages: Array.isArray(chunk.pages) ? chunk.pages.filter((page): page is number => typeof page === 'number') : [],
+                    provenance: normalizeVisualProvenance(chunk.provenance),
+                  })),
+                );
+              }
+              return { chunkCount: reusable.chunkCount, reused: true };
+            }
+            const requestId = randomUUID();
+            await updateDocumentProcessingStage(document.id, 'CREATE_RETRIEVAL_CHUNKS', 'DOC_CHUNKER_HTTP', requestId, env.DOCUMENT_CHUNKER_REQUEST_TIMEOUT_MS);
+            const input = {
+              documentId: document.id, expectedSha256: contentHash,
+              fileName: document.originalName, mimeType: document.mimeType, fileBytes: pdfBytes,
+              requestId,
+            };
+            let parsed: {
+              doc_hash: string; engine: 'docling'; tokenizer_id: string; chunker_version: string;
+              page_count: number; chunks: Array<{
+                index: number; text: string; raw_text: string; headings: string[]; pages: number[];
+                type: 'text' | 'table' | 'formula' | 'mixed'; tokens: number; provenance: Array<Record<string, unknown>>;
+              }>;
+            };
+            if (env.DOCUMENT_VISUAL_ASSETS_ENABLED) {
+              if (!this.docChunkerV2Client || !this.documentVisualAssetRepository) {
+                throw new Error('A extração visual foi ativada sem cliente v2 ou persistência de assets configurados.');
+              }
+              const visualResult = await this.docChunkerV2Client.chunkWithAssets(input);
+              const activeParseRunStore = parseRunStore ?? new PrismaDocumentParseRunStore();
+              const idempotencyKey = visualRunKey!;
+              const now = new Date().toISOString();
+              await activeParseRunStore.save({
+                parseRunId: randomUUID(), documentId: document.id, contentHash,
+                parser: 'DOCLING', parserBackend: 'pipeline', parserVersion: visualResult.parserVersion,
+                modelVersion: visualResult.tokenizerId, layoutSchemaVersion: 'doc-chunker/v2',
+                configurationHash: visualResult.chunkerVersion, idempotencyKey,
+                status: 'PROCESSING', createdAt: now, updatedAt: now,
+              });
+              const parseRun = await activeParseRunStore.findByIdempotencyKey(idempotencyKey);
+              if (!parseRun) throw new Error('Não foi possível recuperar o parse run Docling após a criação.');
+              visualParseRunId = parseRun.parseRunId;
+              try {
+                const persistedVisualAssets = await this.documentVisualAssetRepository.persistVisualParseRun({
+                  documentId: document.id, parseRunId: parseRun.parseRunId,
+                  docHash: visualResult.docHash, assets: visualResult.assets,
+                });
+                if (this.documentVisualIndexingService) {
+                  const indexResults = await Promise.allSettled(Object.values(persistedVisualAssets.assetIdsByKey)
+                    .map((assetId) => this.documentVisualIndexingService!.describeAndIndexAsset(assetId)));
+                  const indexFailures = indexResults.filter((result) => result.status === 'rejected').length;
+                  console.log('Indexação das imagens do documento concluída', {
+                    event: 'document_visual_assets.indexing_completed', documentId: document.id,
+                    parseRunId: parseRun.parseRunId, assetCount: indexResults.length, failureCount: indexFailures,
+                  });
+                }
+                await activeParseRunStore.update(parseRun.parseRunId, {
+                  status: visualResult.warnings.length ? 'COMPLETED_WITH_WARNINGS' : 'COMPLETED',
+                });
+              } catch (error) {
+                await activeParseRunStore.update(parseRun.parseRunId, {
+                  status: 'FAILED', errorCode: 'VISUAL_ASSET_PERSIST_FAILED',
+                }).catch(() => undefined);
+                throw error;
+              }
+              parsed = {
+                doc_hash: visualResult.docHash, engine: visualResult.engine,
+                tokenizer_id: visualResult.tokenizerId, chunker_version: visualResult.chunkerVersion,
+                page_count: visualResult.pageCount, chunks: visualResult.chunks,
+              };
+              console.log('Assets visuais privados persistidos', {
+                event: 'document_visual_assets.persist_completed', documentId: document.id,
+                parseRunId: parseRun.parseRunId, assetCount: visualResult.assets.length,
+                warningCount: visualResult.warnings.length,
+              });
+            } else {
+              if (!this.docChunkerClient) throw new Error('DOCUMENT_CHUNKER_BASE_URL não configurada.');
+              const legacyResult = await this.docChunkerClient.chunk(input);
+              parsed = {
+                doc_hash: legacyResult.doc_hash, engine: legacyResult.engine,
+                tokenizer_id: legacyResult.tokenizer_id, chunker_version: legacyResult.chunker_version,
+                page_count: legacyResult.page_count, chunks: legacyResult.chunks,
+              };
+            }
+            await updateDocumentProcessingStage(document.id, 'CREATE_RETRIEVAL_CHUNKS', 'PERSIST_DOC_CHUNKS', requestId, 30_000);
+            const saved = await this.saveDoclingChunks(document.id, {
+              expectedHash: parsed.doc_hash, engine: parsed.engine, tokenizerId: parsed.tokenizer_id,
+              chunkerVersion: parsed.chunker_version, pageCount: parsed.page_count,
+              chunks: parsed.chunks.map((chunk) => ({
+                index: chunk.index, text: chunk.text, rawText: chunk.raw_text,
+                headings: chunk.headings, pages: chunk.pages, type: chunk.type,
+                tokens: chunk.tokens, provenance: chunk.provenance,
+              })),
+            });
+            if (visualParseRunId && this.documentVisualLinkingService) {
+              const linked = await this.documentVisualLinkingService.linkVisualAssetsToChunks(
+                visualParseRunId,
+                parsed.chunks.flatMap((chunk, index) => {
+                  const id = saved.chunkIds[index];
+                  return id ? [{ id, text: chunk.text, pages: chunk.pages, provenance: chunk.provenance as Array<Record<string, unknown>> }] : [];
+                }),
+              );
+              console.log('Vínculos de imagens aos chunks calculados', {
+                event: 'document_visual_assets.chunk_links_summary', documentId: document.id,
+                parseRunId: visualParseRunId, linkedCount: linked.linked.length,
+                ambiguousCount: linked.ambiguous.length, missingCount: linked.missing.length,
+              });
+            }
+            return { chunkCount: saved.savedCount, reused: saved.reused };
+          }, { engine: 'docling', contentHash, sourceMode: env.DOCUMENT_TEXT_SOURCE });
+          doclingChunksPersisted = true;
+          console.log('Chunks Docling persistidos', {
+            event: 'document_chunks.persist_completed', documentId: document.id,
+            chunkCount: result.chunkCount, reused: result.reused,
+            engine: 'docling', sourceMode: env.DOCUMENT_TEXT_SOURCE,
+          });
+        } catch (error) {
+          if (env.DOCUMENT_TEXT_SOURCE !== 'auto' || !isEligibleDocChunkerFallback(error)) throw error;
+          console.warn('Doc-chunker falhou; usando PDF.js para esta tentativa', {
+            event: 'document_chunker.fallback_started', documentId: document.id,
+            errorCode: error instanceof DocChunkerClientError ? error.code : 'DOC_CHUNKER_ERROR',
+          });
+          doclingFallbackOccurred = true;
+        }
+      }
+
+      if (doclingChunksPersisted) {
+        await this.skipOperations(document.id, ['EXTRACT_TEXT', 'NORMALIZE_TEXT', 'DETECT_BLOCKS'], 'docling_chunks_persisted');
+        try {
+          await track('GENERATE_CHUNK_EMBEDDINGS', () => this.embeddingService.processDocument(document.id), {
+            embeddingModel: 'configured-openrouter-model', source: 'docling',
+          });
+        } catch (error) {
+          console.warn('Embeddings Docling pendentes; retry continuará pelos chunks persistidos', {
+            event: 'document_embeddings.failed', documentId: document.id,
+            engine: 'docling', retryable: true,
+          });
+          throw error;
+        }
+        if (shouldGenerateTopicProfile(document.tag, document.topicId)) {
+          try {
+            await this.measureStage(document.id, 'GENERATE_TOPIC_PROFILE',
+              () => this.topicProfileGenerationService.processTopic(document.topicId!), context, { profileScope: 'TOPIC' });
+          } catch (error) {
+            console.warn('Perfil do tópico não foi gerado; processamento continuará', {
+              event: 'monitor.topic_profile_generation_failed_non_blocking', documentId: document.id, error,
+            });
+          }
+        }
+        await this.skipOperations(document.id, [
+          'EXTRACT_QUESTIONS_TO_PENDING_REVIEW', 'MATCH_ANSWER_KEYS', 'GENERATE_FLASHCARD_CANDIDATES',
+        ], 'document_tag_knowledge_base');
+      }
+
+      if (this.documentIngestionV3Service && env.DOCUMENT_TEXT_SOURCE === 'pdfjs' && shouldProcessDocumentContent(document.tag)) {
         try {
           console.log('Enviando PDF ao Docling para extracao de layout', {
             event: 'monitor.document_ingestion_v3_started',
@@ -281,11 +516,10 @@ export class DocumentWorkerService {
         }
       }
 
-      if (shouldProcessDocumentContent(document.tag)) {
+      if (shouldProcessDocumentContent(document.tag) && !doclingChunksPersisted) {
         console.log('Iniciando extracao de texto da base de conhecimento', {
           event: 'monitor.document_text_extraction_started',
           documentId: document.id,
-          originalName: document.originalName,
         });
 
         const parsedPdf = await track(
@@ -361,11 +595,17 @@ export class DocumentWorkerService {
           typeCounts: blockResult.typeCounts,
         });
 
-        await track(
+        const legacyChunkResult = await track(
           'CREATE_RETRIEVAL_CHUNKS',
           () => this.chunkService.processDocument(document.id, textExtraction.documentTextId),
           { documentTextId: textExtraction.documentTextId },
         );
+        if (doclingFallbackOccurred) {
+          console.log('Fallback PDF.js concluído', {
+            event: 'document_chunker.fallback_completed', documentId: document.id,
+            effectiveEngine: 'pdfjs', chunkCount: Number((legacyChunkResult as { chunkCount?: number })?.chunkCount ?? 0),
+          });
+        }
 
         let embeddingResult = { chunkCount: 0, batchCount: 0 };
         let embeddingsSucceeded = false;
@@ -504,7 +744,6 @@ export class DocumentWorkerService {
       console.log('Documento processado pelo worker', {
         event: 'monitor.document_worker_completed',
         documentId: document.id,
-        originalName: document.originalName,
         mimeType: document.mimeType,
         expectedBytes: document.sizeBytes,
         downloadedBytes: data.size,
@@ -528,7 +767,6 @@ export class DocumentWorkerService {
       console.log('Erro no processamento do documento pelo worker', {
         event: 'monitor.document_processing_failed',
         documentId: document.id,
-        originalName: document.originalName,
         durationMs: Date.now() - startedAt,
         error,
       });
@@ -543,6 +781,50 @@ export class DocumentWorkerService {
       ].join('\n'));
       throw error;
     }
+  }
+
+  private async processVisualAssetsOnly(
+    document: { id: string; originalName: string; mimeType: string },
+    fileBytes: Uint8Array,
+    contentHash: string,
+  ) {
+    if (!this.docChunkerV2Client || !this.documentVisualAssetRepository) {
+      throw new Error('Cliente v2 ou persistência de assets visuais não configurados.');
+    }
+    const idempotencyKey = createHash('sha256')
+      .update([document.id, contentHash, 'doc-chunker-v2', 'hybrid-v1'].join(':')).digest('hex');
+    const store = new PrismaDocumentParseRunStore();
+    const existing = await store.findByIdempotencyKey(idempotencyKey);
+    if (existing?.status === 'COMPLETED' || existing?.status === 'COMPLETED_WITH_WARNINGS') {
+      return { parseRunId: existing.parseRunId, assetCount: 0, warningCount: 0, reused: true };
+    }
+
+    const requestId = randomUUID();
+    const visual = await this.docChunkerV2Client.chunkWithAssets({
+      documentId: document.id, expectedSha256: contentHash, fileName: document.originalName,
+      mimeType: document.mimeType, fileBytes, requestId,
+    });
+    const now = new Date().toISOString();
+    await store.save({
+      parseRunId: existing?.parseRunId ?? randomUUID(), documentId: document.id, contentHash,
+      parser: 'DOCLING', parserBackend: 'pipeline', parserVersion: visual.parserVersion,
+      modelVersion: visual.tokenizerId, layoutSchemaVersion: 'doc-chunker/v2',
+      configurationHash: visual.chunkerVersion, idempotencyKey, status: 'PROCESSING',
+      createdAt: existing?.createdAt ?? now, updatedAt: now,
+    });
+    const parseRun = await store.findByIdempotencyKey(idempotencyKey);
+    if (!parseRun) throw new Error('Não foi possível recuperar o parse run após o processamento visual.');
+    try {
+      await this.documentVisualAssetRepository.persistVisualParseRun({
+        documentId: document.id, parseRunId: parseRun.parseRunId,
+        docHash: visual.docHash, assets: visual.assets,
+      });
+      await store.update(parseRun.parseRunId, { status: visual.warnings.length ? 'COMPLETED_WITH_WARNINGS' : 'COMPLETED' });
+    } catch (error) {
+      await store.update(parseRun.parseRunId, { status: 'FAILED', errorCode: 'VISUAL_ASSET_PERSIST_FAILED' }).catch(() => undefined);
+      throw error;
+    }
+    return { parseRunId: parseRun.parseRunId, assetCount: visual.assets.length, warningCount: visual.warnings.length, reused: false };
   }
 
   private async skipOperations(
@@ -563,12 +845,22 @@ export class DocumentWorkerService {
     context: DocumentWorkerContext = {},
   ) {
     const startedAt = Date.now();
+    const monotonicStartedAt = performance.now();
     await startDocumentProcessingJob(documentId, operation, inputSnapshot);
+    const requestId = randomUUID();
+    await updateDocumentProcessingStage(
+      documentId, operation, operation, requestId, env.DOCUMENT_CHUNKER_REQUEST_TIMEOUT_MS,
+    );
+    console.log('Etapa do documento iniciada', {
+      event: 'document_processing_stage.started', timestamp: new Date().toISOString(), service: 'worker',
+      request_id: requestId, document_id: documentId, job_id: context.jobId ?? null,
+      job_attempt: context.attempt ?? null, stage: operation,
+    });
     try {
       const result = await action();
       const outputSummary = sanitizeFlashcardOutputSummary(result);
       const finishedAt = Date.now();
-      outputSummary.durationMs = finishedAt - startedAt;
+      outputSummary.durationMs = Math.round(performance.now() - monotonicStartedAt);
       const operationStatus = resolveTrackedOperationStatus(result);
       if (operationStatus === 'FAILED' || operationStatus === 'PARTIAL_SUCCESS') {
         outputSummary.status = operationStatus;
@@ -592,6 +884,13 @@ export class DocumentWorkerService {
       await completeDocumentProcessingJob(documentId, operation, {
         ...outputSummary,
       }, operationStatus === 'PARTIAL_SUCCESS' ? 'PARTIAL_SUCCESS' : 'READY');
+      console.log('Etapa do documento concluída', {
+        event: 'document_processing_stage.completed', timestamp: new Date().toISOString(), service: 'worker',
+        request_id: requestId, document_id: documentId, job_id: context.jobId ?? null,
+        job_attempt: context.attempt ?? null, stage: operation,
+        outcome: operationStatus === 'PARTIAL_SUCCESS' ? 'partial_success' : 'completed',
+        duration_ms: outputSummary.durationMs, ...stageDetails(outputSummary),
+      });
       await appendProcessingStageReport({
         documentId,
         stage: operation,
@@ -607,6 +906,13 @@ export class DocumentWorkerService {
     } catch (error) {
       await failDocumentProcessingJob(documentId, operation, error);
       const finishedAt = Date.now();
+      console.error('Etapa do documento falhou', {
+        event: 'document_processing_stage.failed', timestamp: new Date().toISOString(), service: 'worker',
+        request_id: requestId, document_id: documentId, job_id: context.jobId ?? null,
+        job_attempt: context.attempt ?? null, stage: operation, outcome: 'failed',
+        duration_ms: Math.round(performance.now() - monotonicStartedAt), error_code: error instanceof DocChunkerClientError ? error.code : 'DOCUMENT_PROCESSING_FAILED',
+        error_class: error instanceof Error ? error.name : 'UnknownError',
+      });
       console.log('Operacao de processamento falhou', {
         event: 'monitor.document_processing_operation_failed',
         documentId,
@@ -639,9 +945,22 @@ export class DocumentWorkerService {
     details?: Record<string, string | number | boolean | null>,
   ) {
     const startedAt = Date.now();
+    const monotonicStartedAt = performance.now();
+    const requestId = randomUUID();
+    console.log('Etapa auxiliar iniciada', {
+      event: 'document_stage.started', timestamp: new Date().toISOString(), service: 'worker',
+      request_id: requestId, document_id: documentId, job_id: context.jobId ?? null,
+      job_attempt: context.attempt ?? null, stage,
+    });
     try {
       const result = await action();
       const finishedAt = Date.now();
+      console.log('Etapa auxiliar concluída', {
+        event: 'document_stage.completed', timestamp: new Date().toISOString(), service: 'worker',
+        request_id: requestId, document_id: documentId, job_id: context.jobId ?? null,
+        job_attempt: context.attempt ?? null, stage, outcome: 'completed',
+        duration_ms: Math.round(performance.now() - monotonicStartedAt),
+      });
       await appendProcessingStageReport({
         documentId,
         stage,
@@ -656,6 +975,13 @@ export class DocumentWorkerService {
       return result;
     } catch (error) {
       const finishedAt = Date.now();
+      console.error('Etapa auxiliar falhou', {
+        event: 'document_stage.failed', timestamp: new Date().toISOString(), service: 'worker',
+        request_id: requestId, document_id: documentId, job_id: context.jobId ?? null,
+        job_attempt: context.attempt ?? null, stage, outcome: 'failed', duration_ms: finishedAt - startedAt,
+        error_code: error instanceof Error ? error.name : 'UNKNOWN_ERROR',
+        error_class: error instanceof Error ? error.name : 'UnknownError',
+      });
       await appendProcessingStageReport({
         documentId,
         stage,
@@ -686,4 +1012,36 @@ function stageDetails(summary: Record<string, Prisma.InputJsonValue>) {
     }
   }
   return details;
+}
+
+export function isEligibleDocChunkerFallback(error: unknown): boolean {
+  if (!(error instanceof DocChunkerClientError)) return false;
+  if (error.statusCode !== undefined && error.statusCode >= 500) return true;
+  return [
+    'DOC_CHUNKER_NETWORK_ERROR', 'DOC_CHUNKER_TIMEOUT', 'DOC_CHUNKER_BODY_INTERRUPTED',
+    'DOC_CHUNKER_INVALID_JSON', 'DOC_CHUNKER_INVALID_CONTRACT', 'DOC_CHUNKER_RESPONSE_TOO_LARGE',
+  ].includes(error.code);
+}
+
+export function shouldUseDocChunker(tag: 'KNOWLEDGE_BASE' | 'QUESTIONS' | 'FLASHCARDS', source: 'pdfjs' | 'docling' | 'auto') {
+  return tag === 'KNOWLEDGE_BASE' && source !== 'pdfjs';
+}
+
+export function shouldParseVisualAssets(tag: 'KNOWLEDGE_BASE' | 'QUESTIONS' | 'FLASHCARDS', enabled: boolean) {
+  return enabled && (tag === 'KNOWLEDGE_BASE' || tag === 'QUESTIONS');
+}
+
+function normalizeVisualProvenance(value: unknown) {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((entry) => {
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) return [];
+    const source = entry as Record<string, unknown>;
+    return [{
+      ...(typeof source.page === 'number' ? { page: source.page } : {}),
+      ...(typeof source.item_ref === 'string' ? { item_ref: source.item_ref } : {}),
+      ...(typeof source.reading_order === 'number' ? { reading_order: source.reading_order } : {}),
+      ...(Array.isArray(source.bbox) && source.bbox.length === 4 && source.bbox.every((part) => typeof part === 'number')
+        ? { bbox: source.bbox as number[] } : {}),
+    }];
+  });
 }

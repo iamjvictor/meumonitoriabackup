@@ -1,0 +1,1475 @@
+{
+  "schema_version": "doc-chunker/v1",
+  "request_id": "09f2dcb3-d2c6-4ad9-bc9f-d48ce6bfb4e9",
+  "status": "completed",
+  "doc_hash": "5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc",
+  "engine": "docling",
+  "parser_version": "2.122.0",
+  "tokenizer_id": "Qwen/Qwen3-Embedding-8B@c90816d848505624c2434128dfc61132162a0ee9",
+  "chunker_version": "hybrid-v1",
+  "page_count": 4,
+  "chunks": [
+    {
+      "index": 0,
+      "text": "Ahrrenius\nHCI\nM2O\nNaOH\nH2O\nBronsted - Lowry\nHCl +\nH₂O\nAcido asea\nNH3+ H2O\nBase ACido\nH\nN\nLewis\nHCl H2O\n:Cl-H\n:Cl:\n+\nHCl\nH\n>\n>\n十\n1\nH\n0\nH⁺\nNa⁺\n+ Cl⁻\n+\n(Acido)\nOH\n>\n>\n(Base)\nH_3O⁺\n+ Cl⁻\nNH_{4\nH2 +\n>\n→Cl⁻ + H₃O⁺\nH\nH\n+\n(Acido)\nOH\n(Base)\nCl⁻\nLewis\nLOWE.1\nH\nH\nBransted-\nAhrtenius\nH-\nH\nH\nu\nH-N-BH\nB\nÁcido libera H+ em água, e base libera OH- em água\nÁcido doa H+ e base recebe H+\nÁcido recebe um par de elétrons enquanto a base doa par de elétrons\nEquilíbrio químico\nHCL H⁺ + Cl⁻ 100%\nHAcO H⁺ + AcO - Ka = 1,8 · 105\n[ ] = Concentragão\n[H+]\n0,01\n0,01\n[HCi] = [H+]\n[H+]·[Aco-] Ka H [HAcO]\nKa = [H+] [HAcO]\n[H+7² Ka·[HAcO]\n[H+]=√ Ka· [MAcO]\n[+H] b01- = Hd pH<7\np=-10g(op1\npH=20\n0,01 mol/L\ndo A'cida\n0 meio\nacido\nNaOH\nNa⁺\n>\n+\nOH\n001\n9,01\n0,01\n0,01 mol/L base\n[OH-] = 0,01\npOH = - log [OH-]\npOH = 2\npH + pOH 14\nL < Hd\nO meio\nbasico e\npH 十 2 =14\np\npH = 12",
+      "raw_text": "Ahrrenius\nHCI\nM2O\nNaOH\nH2O\nBronsted - Lowry\nHCl +\nH₂O\nAcido asea\nNH3+ H2O\nBase ACido\nH\nN\nLewis\nHCl H2O\n:Cl-H\n:Cl:\n+\nHCl\nH\n>\n>\n十\n1\nH\n0\nH⁺\nNa⁺\n+ Cl⁻\n+\n(Acido)\nOH\n>\n>\n(Base)\nH_3O⁺\n+ Cl⁻\nNH_{4\nH2 +\n>\n→Cl⁻ + H₃O⁺\nH\nH\n+\n(Acido)\nOH\n(Base)\nCl⁻\nLewis\nLOWE.1\nH\nH\nBransted-\nAhrtenius\nH-\nH\nH\nu\nH-N-BH\nB\nÁcido libera H+ em água, e base libera OH- em água\nÁcido doa H+ e base recebe H+\nÁcido recebe um par de elétrons enquanto a base doa par de elétrons\nEquilíbrio químico\nHCL H⁺ + Cl⁻ 100%\nHAcO H⁺ + AcO - Ka = 1,8 · 105\n[ ] = Concentragão\n[H+]\n0,01\n0,01\n[HCi] = [H+]\n[H+]·[Aco-] Ka H [HAcO]\nKa = [H+] [HAcO]\n[H+7² Ka·[HAcO]\n[H+]=√ Ka· [MAcO]\n[+H] b01- = Hd pH<7\np=-10g(op1\npH=20\n0,01 mol/L\ndo A'cida\n0 meio\nacido\nNaOH\nNa⁺\n>\n+\nOH\n001\n9,01\n0,01\n0,01 mol/L base\n[OH-] = 0,01\npOH = - log [OH-]\npOH = 2\npH + pOH 14\nL < Hd\nO meio\nbasico e\npH 十 2 =14\np\npH = 12",
+      "headings": [],
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "type": "text",
+      "tokens": 490,
+      "provenance": [
+        {
+          "page": 1,
+          "item_ref": "#/texts/0",
+          "bbox": [
+            79.734375,
+            784.6644643147787,
+            157.359375,
+            757.9593251546224
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/1",
+          "bbox": [
+            97.453125,
+            740.1558939615885,
+            153.140625,
+            712.6029663085938
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/2",
+          "bbox": [
+            170.859375,
+            748.6337178548177,
+            206.71875,
+            721.5046895345052
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/3",
+          "bbox": [
+            105.46875,
+            690.9845174153646,
+            168.328125,
+            663.8554890950521
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/4",
+          "bbox": [
+            186.890625,
+            703.7012532552084,
+            229.921875,
+            672.3333129882812
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/5",
+          "bbox": [
+            77.203125,
+            618.9230346679688,
+            241.734375,
+            588.4028727213541
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/6",
+          "bbox": [
+            97.03125,
+            568.0560913085938,
+            191.109375,
+            542.19873046875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/7",
+          "bbox": [
+            180.140625,
+            568.9038696289062,
+            235.40625,
+            538.807596842448
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/8",
+          "bbox": [
+            105.890625,
+            546.4376424153645,
+            142.59375,
+            525.666971842448
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/8",
+          "bbox": [
+            190.265625,
+            544.7420857747395,
+            216.421875,
+            526.0908610026042
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/9",
+          "bbox": [
+            111.796875,
+            525.2430826822917,
+            223.59375,
+            490.9079182942708
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/10",
+          "bbox": [
+            115.59375,
+            494.7229410807292,
+            145.96875,
+            479.0389404296875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/10",
+          "bbox": [
+            177.609375,
+            495.5707194010417,
+            210.09375,
+            478.6150716145833
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/11",
+          "bbox": [
+            110.953125,
+            457.8444010416667,
+            126.140625,
+            440.8887532552083
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/12",
+          "bbox": [
+            111.375,
+            444.2798665364583,
+            131.625,
+            422.237548828125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/13",
+          "bbox": [
+            71.71875,
+            353.5671793619792,
+            135.84375,
+            326.86201985677087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/14",
+          "bbox": [
+            77.625,
+            307.363037109375,
+            117.28125,
+            277.26676432291663
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/14",
+          "bbox": [
+            165.796875,
+            303.971923828125,
+            213.046875,
+            277.26676432291663
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/15",
+          "bbox": [
+            92.390625,
+            212.8353271484375,
+            182.671875,
+            180.61958821614587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/16",
+          "bbox": [
+            121.078125,
+            114.4925537109375,
+            164.953125,
+            86.93965657552087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/17",
+          "bbox": [
+            163.6875,
+            425.2047932942708,
+            195.328125,
+            403.5863444010417
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/18",
+          "bbox": [
+            193.640625,
+            429.4436848958333,
+            228.234375,
+            401.04296875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/19",
+          "bbox": [
+            208.828125,
+            77.61405436197913,
+            226.96875,
+            57.69112141927087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/20",
+          "bbox": [
+            243.0,
+            731.2541809082031,
+            260.296875,
+            713.8746439615885
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/21",
+          "bbox": [
+            242.15625,
+            684.6261596679688,
+            258.1875,
+            669.3660685221354
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/22",
+          "bbox": [
+            248.484375,
+            118.30757649739587,
+            257.34375,
+            107.7103271484375
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/23",
+          "bbox": [
+            253.96875,
+            85.66792805989587,
+            272.53125,
+            67.0167236328125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/24",
+          "bbox": [
+            271.265625,
+            80.58125813802087,
+            286.453125,
+            59.38667805989587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/25",
+          "bbox": [
+            233.296875,
+            110.67753092447913,
+            259.875,
+            83.54854329427087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/26",
+          "bbox": [
+            276.328125,
+            734.2214152018229,
+            311.34375,
+            714.2985331217448
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/27",
+          "bbox": [
+            273.375,
+            690.9845174153646,
+            316.828125,
+            663.0077107747396
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/28",
+          "bbox": [
+            322.734375,
+            738.8842264811198,
+            396.5625,
+            710.9074096679688
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/29",
+          "bbox": [
+            330.328125,
+            686.3217163085938,
+            365.765625,
+            665.9749348958334
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/30",
+          "bbox": [
+            438.75,
+            738.0364379882812,
+            493.59375,
+            710.4835103352865
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/31",
+          "bbox": [
+            355.21875,
+            686.3217163085938,
+            391.921875,
+            663.8554890950521
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/32",
+          "bbox": [
+            335.8125,
+            562.5455118815105,
+            353.109375,
+            544.7420857747395
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/33",
+          "bbox": [
+            316.828125,
+            517.613037109375,
+            336.234375,
+            498.5379231770833
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/34",
+          "bbox": [
+            426.515625,
+            689.7128499348959,
+            492.75,
+            663.4315999348959
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/35",
+          "bbox": [
+            372.09375,
+            570.175537109375,
+            434.53125,
+            539.2314860026042
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/36",
+          "bbox": [
+            449.296875,
+            569.7516479492188,
+            519.328125,
+            540.9270629882812
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/37",
+          "bbox": [
+            363.234375,
+            523.971415201823,
+            408.796875,
+            493.02734375
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/38",
+          "bbox": [
+            388.96875,
+            453.60546875,
+            429.46875,
+            425.2047932942708
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/39",
+          "bbox": [
+            342.5625,
+            415.879150390625,
+            356.90625,
+            400.1951904296875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/40",
+          "bbox": [
+            293.625,
+            308.63472493489587,
+            435.796875,
+            275.57120768229163
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/41",
+          "bbox": [
+            299.53125,
+            257.76778157552087,
+            320.625,
+            233.18208821614587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/42",
+          "bbox": [
+            314.296875,
+            217.9219970703125,
+            331.59375,
+            196.72745768229163
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/43",
+          "bbox": [
+            441.28125,
+            519.308614095052,
+            472.5,
+            495.9945882161458
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/44",
+          "bbox": [
+            530.71875,
+            570.5994466145833,
+            577.546875,
+            542.19873046875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/45",
+          "bbox": [
+            476.296875,
+            522.699727376302,
+            515.109375,
+            495.9945882161458
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/46",
+          "bbox": [
+            522.703125,
+            520.5802815755208,
+            580.921875,
+            495.1468098958333
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/47",
+          "bbox": [
+            495.703125,
+            423.93310546875,
+            537.46875,
+            398.0757242838542
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/48",
+          "bbox": [
+            520.171875,
+            261.15889485677087,
+            555.609375,
+            234.02986653645837
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/49",
+          "bbox": [
+            498.234375,
+            230.63875325520837,
+            526.5,
+            209.86808268229163
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/50",
+          "bbox": [
+            539.15625,
+            106.86250813802087,
+            549.703125,
+            91.6024169921875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/51",
+          "bbox": [
+            496.546875,
+            71.6795654296875,
+            504.984375,
+            59.81058756510413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/52",
+          "bbox": [
+            486.84375,
+            241.23600260416663,
+            524.8125,
+            221.73701985677087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/53",
+          "bbox": [
+            445.078125,
+            232.33430989583337,
+            490.640625,
+            209.86808268229163
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/54",
+          "bbox": [
+            464.90625,
+            90.75467936197913,
+            491.90625,
+            70.40791829427087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/55",
+          "bbox": [
+            513.84375,
+            82.27681477864587,
+            528.609375,
+            66.5928955078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/56",
+          "bbox": [
+            469.96875,
+            53.8760986328125,
+            477.984375,
+            42.85493977864587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/57",
+          "bbox": [
+            469.125,
+            17.84541829427087,
+            476.71875,
+            9.3675537109375
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/58",
+          "bbox": [
+            456.46875,
+            46.66996256510413,
+            541.265625,
+            10.639200846354129
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/59",
+          "bbox": [
+            557.71875,
+            113.64481608072913,
+            566.578125,
+            103.0474853515625
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/60",
+          "bbox": [
+            155.87,
+            774.4897705078125,
+            455.87,
+            762.5017705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/61",
+          "bbox": [
+            221.882237,
+            749.5898225078125,
+            395.88223700000003,
+            737.6018225078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/62",
+          "bbox": [
+            138.917574,
+            724.9898345078125,
+            540.9175740000001,
+            713.0018345078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/63",
+          "bbox": [
+            75.33333333333333,
+            667.5564371744791,
+            246.33333333333334,
+            630.5564371744791
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/64",
+          "bbox": [
+            109.33333333333334,
+            620.8897705078125,
+            484.3333333333333,
+            589.2231038411458
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/65",
+          "bbox": [
+            109.66666666666666,
+            572.8897705078125,
+            557.3333333333333,
+            540.5564371744791
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/66",
+          "bbox": [
+            86.0,
+            501.8897705078125,
+            266.33333333333337,
+            467.2231038411458
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/67",
+          "bbox": [
+            79.66666666666667,
+            451.8897705078125,
+            128.66666666666666,
+            422.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/68",
+          "bbox": [
+            224.33333333333334,
+            464.8897705078125,
+            250.0,
+            447.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/69",
+          "bbox": [
+            299.66666666666663,
+            470.2231038411458,
+            328.66666666666663,
+            446.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/70",
+          "bbox": [
+            206.66666666666666,
+            454.8897705078125,
+            342.0,
+            417.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/71",
+          "bbox": [
+            219.0,
+            407.2231038411458,
+            381.3333333333333,
+            352.22310384114587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/72",
+          "bbox": [
+            224.33333333333334,
+            333.22310384114587,
+            361.3333333333333,
+            281.55643717447913
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/73",
+          "bbox": [
+            228.33333333333334,
+            259.55643717447913,
+            417.33333333333337,
+            231.22310384114587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/74",
+          "bbox": [
+            235.0,
+            211.55643717447913,
+            414.0,
+            179.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/75",
+          "bbox": [
+            71.0,
+            143.8897705078125,
+            253.33333333333334,
+            98.22310384114587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/75",
+          "bbox": [
+            310.0,
+            138.8897705078125,
+            396.6666666666667,
+            101.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/76",
+          "bbox": [
+            73.66666666666667,
+            107.8897705078125,
+            252.66666666666666,
+            42.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/77",
+          "bbox": [
+            76.0,
+            41.55643717447913,
+            172.0,
+            7.556437174479129
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/78",
+          "bbox": [
+            396.6666666666667,
+            504.5564371744792,
+            528.0,
+            461.5564371744792
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/79",
+          "bbox": [
+            402.6666666666667,
+            470.8897705078125,
+            489.6666666666667,
+            445.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/80",
+          "bbox": [
+            444.6666666666667,
+            135.22310384114587,
+            509.0,
+            111.22310384114587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/81",
+          "bbox": [
+            472.0,
+            112.8897705078125,
+            514.6666666666667,
+            90.8897705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/82",
+          "bbox": [
+            133.3125,
+            792.2945048014323,
+            202.078125,
+            758.8071034749349
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/83",
+          "bbox": [
+            313.875,
+            793.1422882080078,
+            364.078125,
+            758.3832143147787
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/84",
+          "bbox": [
+            286.03125,
+            783.8166809082031,
+            300.375,
+            768.5565999348959
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/85",
+          "bbox": [
+            369.140625,
+            786.7839202880859,
+            415.546875,
+            760.0787811279297
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/86",
+          "bbox": [
+            406.265625,
+            786.7839202880859,
+            449.71875,
+            759.2309977213541
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/87",
+          "bbox": [
+            152.296875,
+            759.2309977213541,
+            185.625,
+            735.4930928548177
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/88",
+          "bbox": [
+            311.765625,
+            757.9593251546224,
+            349.3125,
+            735.4930928548177
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/89",
+          "bbox": [
+            410.90625,
+            760.0787811279297,
+            447.1875,
+            735.0692036946615
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/90",
+          "bbox": [
+            81.84375,
+            720.2330118815104,
+            209.671875,
+            661.7360229492188
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/91",
+          "bbox": [
+            72.140625,
+            646.8998413085938,
+            222.75,
+            611.7168782552084
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/92",
+          "bbox": [
+            84.796875,
+            594.3373413085938,
+            272.53125,
+            566.3605346679688
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/93",
+          "bbox": [
+            103.78125,
+            538.807596842448,
+            167.484375,
+            518.4608154296875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/94",
+          "bbox": [
+            88.171875,
+            473.1044921875,
+            261.140625,
+            445.5515543619792
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/95",
+          "bbox": [
+            360.28125,
+            471.8328043619792,
+            440.4375,
+            440.46484375
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/96",
+          "bbox": [
+            468.703125,
+            474.3761393229167,
+            540.0,
+            444.2798665364583
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/97",
+          "bbox": [
+            473.765625,
+            448.0948893229167,
+            550.546875,
+            423.93310546875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/98",
+          "bbox": [
+            89.859375,
+            423.5091959635417,
+            256.078125,
+            398.4996337890625
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/99",
+          "bbox": [
+            166.640625,
+            372.2183837890625,
+            178.03125,
+            355.2627360026042
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/100",
+          "bbox": [
+            169.59375,
+            331.5248209635417,
+            248.484375,
+            301.42854817708337
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "text": "Corpo de bombeiro militar do Ceará\nDurante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\nCom base nessa informação, é correto afirmar:\n- A) A substância é neutra, com concentração igual de H⁺ e OH⁻.\n- B) Trata-se de um ácido forte, com alto poder de corrosão.\n- C) A substância possui caráter levemente ácido.\n- A substância é uma base forte, com alta concentração de íons OH⁻.\n- E) O valor de pH indica que a solução não apresenta riscos químicos.",
+      "raw_text": "Corpo de bombeiro militar do Ceará\nDurante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\nCom base nessa informação, é correto afirmar:\n- A) A substância é neutra, com concentração igual de H⁺ e OH⁻.\n- B) Trata-se de um ácido forte, com alto poder de corrosão.\n- C) A substância possui caráter levemente ácido.\n- A substância é uma base forte, com alta concentração de íons OH⁻.\n- E) O valor de pH indica que a solução não apresenta riscos químicos.",
+      "headings": [],
+      "pages": [
+        3
+      ],
+      "type": "text",
+      "tokens": 167,
+      "provenance": [
+        {
+          "page": 3,
+          "item_ref": "#/texts/101",
+          "bbox": [
+            75.09375,
+            280.2340087890625,
+            246.375,
+            266.24560546875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/102",
+          "bbox": [
+            74.25,
+            240.8121337890625,
+            505.828125,
+            197.99910481770837
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/103",
+          "bbox": [
+            74.671875,
+            184.43461100260413,
+            318.515625,
+            169.17451985677087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/104",
+          "bbox": [
+            74.25,
+            156.03389485677087,
+            396.140625,
+            141.19771321614587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/105",
+          "bbox": [
+            74.671875,
+            141.19771321614587,
+            372.09375,
+            127.20926920572913
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/106",
+          "bbox": [
+            75.09375,
+            127.20926920572913,
+            323.15625,
+            113.22090657552087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/107",
+          "bbox": [
+            75.9375,
+            111.94917805989587,
+            434.109375,
+            99.23246256510413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 3,
+          "item_ref": "#/texts/108",
+          "bbox": [
+            74.25,
+            99.23246256510413,
+            429.046875,
+            84.39628092447913
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "FGV - TDTND/AMAZUL/Operador de Central Termonuclear/2026\nQuímica e Engenharia Química - Ácidos e Bases\n563) O suco de uva pode ser usado como um indicador natural do pH de uma solução. Isso se dá por conta de uma substância natural chamada antocianina, presente nas uvas, que ao reagir com o meio forma produtos de cores distintas, seguindo um mesmo padrão de cores. Dessa forma, em meio ácido o suco de uva, ficará vermelho- rosa, enquanto em meio básico ficará verde-escuro.\nSe fizermos um teste com suco de uva, será observada uma coloração verde-escuro\n- no limpa-forno.\n- b) no suco de limão.\n- c) na água destilada.\n- d) no vinagre de maçã.\n- e) na solução de bateria automotiva.\nFGV - Tec Ge (CPRM)/CPRM/Hidrologia/2025\nuis  noa ns os   ood  sa - Lud   oso\n472) O parâmetro físico-químico que mede a concentração de íons livres na água, indicando a capacidade de conduzir corrente elétrica, é\n- a) a alcalinidade.\n- b) o pH.\n- a condutividade elétrica.\n- d) o oxigênio dissolvido.\n- e) a turbidez.",
+      "raw_text": "Química e Engenharia Química - Ácidos e Bases\n563) O suco de uva pode ser usado como um indicador natural do pH de uma solução. Isso se dá por conta de uma substância natural chamada antocianina, presente nas uvas, que ao reagir com o meio forma produtos de cores distintas, seguindo um mesmo padrão de cores. Dessa forma, em meio ácido o suco de uva, ficará vermelho- rosa, enquanto em meio básico ficará verde-escuro.\nSe fizermos um teste com suco de uva, será observada uma coloração verde-escuro\n- no limpa-forno.\n- b) no suco de limão.\n- c) na água destilada.\n- d) no vinagre de maçã.\n- e) na solução de bateria automotiva.\nFGV - Tec Ge (CPRM)/CPRM/Hidrologia/2025\nuis  noa ns os   ood  sa - Lud   oso\n472) O parâmetro físico-químico que mede a concentração de íons livres na água, indicando a capacidade de conduzir corrente elétrica, é\n- a) a alcalinidade.\n- b) o pH.\n- a condutividade elétrica.\n- d) o oxigênio dissolvido.\n- e) a turbidez.",
+      "headings": [
+        "FGV - TDTND/AMAZUL/Operador de Central Termonuclear/2026"
+      ],
+      "pages": [
+        4
+      ],
+      "type": "text",
+      "tokens": 350,
+      "provenance": [
+        {
+          "page": 4,
+          "item_ref": "#/texts/110",
+          "bbox": [
+            22.5978266398112,
+            787.3050918579102,
+            210.6440226236979,
+            775.0873514811198
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/111",
+          "bbox": [
+            20.17663065592448,
+            772.6438013712565,
+            564.1385904947916,
+            743.7284800211588
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/112",
+          "bbox": [
+            21.790761311848957,
+            736.8050893147787,
+            290.5434977213542,
+            725.401865641276
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/113",
+          "bbox": [
+            39.54619598388672,
+            721.7365417480469,
+            102.09375,
+            711.9623514811199
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/114",
+          "bbox": [
+            38.73913065592448,
+            712.7768656412761,
+            110.16440836588542,
+            702.5954182942708
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/115",
+          "bbox": [
+            39.54619598388672,
+            704.2244466145833,
+            111.77853393554688,
+            693.6357320149739
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/116",
+          "bbox": [
+            39.54619598388672,
+            695.6720275878906,
+            118.63859049479167,
+            685.0833129882812
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/117",
+          "bbox": [
+            39.54619598388672,
+            686.3050944010417,
+            161.009521484375,
+            675.7163798014323
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/118",
+          "bbox": [
+            41.96739196777344,
+            639.4704081217448,
+            241.3125,
+            626.0309041341146
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/119",
+          "bbox": [
+            41.56386057535807,
+            624.40185546875,
+            543.9619954427084,
+            611.3696085611979
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/120",
+          "bbox": [
+            41.56386057535807,
+            607.7042846679688,
+            540.7337239583334,
+            595.0792846679688
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/121",
+          "bbox": [
+            60.93342590332031,
+            591.0066935221354,
+            128.7269083658854,
+            578.7889607747396
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/122",
+          "bbox": [
+            60.93342590332031,
+            581.2325032552084,
+            98.05843098958333,
+            568.6075032552084
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/123",
+          "bbox": [
+            72.23234049479167,
+            570.2365315755209,
+            163.8342488606771,
+            559.2405802408854
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/124",
+          "bbox": [
+            61.33695983886719,
+            560.0550944010416,
+            153.74593098958334,
+            549.8736368815105
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/125",
+          "bbox": [
+            60.52989196777344,
+            551.502665201823,
+            116.21739705403645,
+            539.284932454427
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        }
+      ]
+    }
+  ]
+}

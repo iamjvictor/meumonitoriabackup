@@ -60,6 +60,30 @@ test('normalizes empty board and taxonomy levels to null', () => {
   assert.equal(result.selectionKey, 'ENEM||MATEMÁTICA|ÁLGEBRA||');
 });
 
+test('gera chave SHA-256 compacta e determinística para seleções com rótulo longo', () => {
+  const longTopic = 'T'.repeat(121);
+  const normalized = normalizeQuestionBankSelection({
+    subject: 'Matemática',
+    topic: ` ${longTopic} `,
+    examType: 'enem',
+  });
+  const equivalent = normalizeQuestionBankSelection({
+    subject: ' Matemática ',
+    topic: longTopic,
+    examType: ' ENEM ',
+  });
+  const different = normalizeQuestionBankSelection({
+    subject: 'Matemática',
+    topic: `${'T'.repeat(120)}X`,
+    examType: 'ENEM',
+  });
+
+  assert.match(normalized.selectionKey, /^sha256:[a-f0-9]{64}$/);
+  assert.equal(normalized.selectionKey.length, 71);
+  assert.equal(normalized.selectionKey, equivalent.selectionKey);
+  assert.notEqual(normalized.selectionKey, different.selectionKey);
+});
+
 test('rejects a subsubtopic without a subtopic', () => {
   assert.throws(
     () => normalizeQuestionBankSelection({

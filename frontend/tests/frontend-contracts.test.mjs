@@ -83,6 +83,31 @@ test('public teacher page deduplicates profile fetch between metadata and page r
   assert.equal((page.match(/getTeacherProfile\(teacherSlug\)/g) || []).length, 2);
 });
 
+test('public storefront displays the backend monitor price instead of a fixed price', () => {
+  const page = read('src/app/(public-teacher)/p/[teacherSlug]/page.tsx');
+  const storefront = read('src/app/(public-teacher)/p/[teacherSlug]/StorefrontClient.tsx');
+
+  assert.match(page, /priceCents:\s*number/);
+  assert.match(storefront, /priceCents:\s*number/);
+  assert.match(storefront, /price:\s*formatMonitorPrice\(m\.priceCents\)/);
+  assert.match(storefront, /originalPrice:\s*formatMonitorPrice\(Math\.round\(m\.priceCents \* 1\.2\)\)/);
+  assert.doesNotMatch(storefront, /price:\s*['"]R\$\s*29,90['"]/);
+  assert.match(storefront, /mm_payment_checkout_idempotency_key:v2:/);
+});
+
+test('sponsored classes are reachable from the teacher dashboard and public annual offers use the configured price', () => {
+  const dashboard = read('src/modules/teacher/components/TeacherDashboardOverview.tsx');
+  const route = read('src/app/(teacher)/professor/turmas/page.tsx');
+  const storefrontPage = read('src/app/(public-teacher)/p/[teacherSlug]/page.tsx');
+  const storefront = read('src/app/(public-teacher)/p/[teacherSlug]/StorefrontClient.tsx');
+
+  assert.match(dashboard, /href="\/professor\/turmas"/);
+  assert.match(route, /TeacherSponsoredClassesPage/);
+  assert.match(storefrontPage, /annualPriceCents\?: number \| null/);
+  assert.match(storefront, /interval: selectedInterval/);
+  assert.match(storefront, /selectedProduct\.annualPriceCents/);
+});
+
 test('storefront emits frontend timing logs for mount, session and ready states', () => {
   const storefront = read('src/app/(public-teacher)/p/[teacherSlug]/StorefrontClient.tsx');
 

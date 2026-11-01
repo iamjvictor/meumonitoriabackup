@@ -63,3 +63,36 @@ test('StudentEnrollment e StudentSubscription possuem ponte para o domínio de p
   assert.match(source, /paymentSubscriptionItemId\s+String\?/);
   assert.match(source, /lastPaymentChargeId\s+String\?/);
 });
+
+test('o preço anual é derivado e pedidos diretos congelam duração e política de split', async () => {
+  const source = await schema();
+  const monitor = source.match(/model Monitor \{([\s\S]*?)\n\}/)?.[1] ?? '';
+  const order = source.match(/model PaymentOrder \{([\s\S]*?)\n\}/)?.[1] ?? '';
+
+  assert.doesNotMatch(monitor, /annualPriceCents/);
+  assert.match(order, /billingInterval\s+String\s+@default\("MONTHLY"\)/);
+  assert.match(order, /serviceMonths\s+Int\s+@default\(1\)/);
+  assert.match(order, /splitPolicy\s+String\s+@default\("TEACHER_ELIGIBLE"\)/);
+});
+
+test('lote patrocinado registra pagador, ambiente e checkout sem exigir conta para cada beneficiário', async () => {
+  const source = await schema();
+  const batch = source.match(/model SponsoredSeatBatch \{([\s\S]*?)\n\}/)?.[1] ?? '';
+  const seat = source.match(/model SponsoredSeat \{([\s\S]*?)\n\}/)?.[1] ?? '';
+
+  assert.match(source, /model SponsoredSeatBatch \{/);
+  assert.match(batch, /teacherId\s+String/);
+  assert.match(batch, /monitorId\s+String/);
+  assert.match(batch, /environment\s+String/);
+  assert.match(batch, /billingInterval\s+String/);
+  assert.match(batch, /externalReference\s+String/);
+  assert.match(batch, /idempotencyKey\s+String/);
+  assert.match(batch, /platformAmountCents\s+Int/);
+  assert.match(batch, /providerCheckoutId\s+String\?/);
+  assert.match(batch, /@@unique\(\[environment, externalReference\]\)/);
+  assert.match(seat, /emailNormalized\s+String/);
+  assert.match(seat, /studentId\s+String\?/);
+  assert.match(seat, /startsAt\s+DateTime\?/);
+  assert.match(seat, /endsAt\s+DateTime\?/);
+  assert.match(seat, /@@unique\(\[batchId, emailNormalized\]\)/);
+});

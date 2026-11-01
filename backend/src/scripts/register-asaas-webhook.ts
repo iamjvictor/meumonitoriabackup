@@ -1,5 +1,6 @@
 import { env } from '../config/env.js';
 import { getAsaasBaseUrl, selectAsaasApiKey } from '../modules/payments/infrastructure/providers/asaas/asaas.config.js';
+import { ASAAS_PLATFORM_WEBHOOK_EVENTS } from '../modules/payments/infrastructure/providers/asaas/asaas-webhook-events.js';
 
 const webhookUrl = env.ASAAS_WEBHOOK_URL ?? (env.PUBLIC_API_URL ? `${env.PUBLIC_API_URL.replace(/\/$/, '')}/api/v1/payments/webhooks/asaas` : undefined);
 const webhookEmail = process.env.ASAAS_WEBHOOK_EMAIL;
@@ -10,41 +11,7 @@ if (!webhookEmail) throw new Error('Defina ASAAS_WEBHOOK_EMAIL com o e-mail de a
 if (!authToken) throw new Error('Defina ASAAS_WEBHOOK_AUTH_TOKEN antes de registrar o webhook.');
 
 const baseUrl = getAsaasBaseUrl(env.ASAAS_ENV);
-const events = [
-  'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_APPROVED',
-  'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_AWAITING_APPROVAL',
-  'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_PENDING',
-  'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_REJECTED',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_APPROVED',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_AWAITING_APPROVAL',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_PENDING',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_REJECTED',
-  'ACCOUNT_STATUS_DOCUMENT_APPROVED',
-  'ACCOUNT_STATUS_DOCUMENT_AWAITING_APPROVAL',
-  'ACCOUNT_STATUS_DOCUMENT_PENDING',
-  'ACCOUNT_STATUS_DOCUMENT_REJECTED',
-  'ACCOUNT_STATUS_GENERAL_APPROVAL_APPROVED',
-  'ACCOUNT_STATUS_GENERAL_APPROVAL_AWAITING_APPROVAL',
-  'ACCOUNT_STATUS_GENERAL_APPROVAL_PENDING',
-  'ACCOUNT_STATUS_GENERAL_APPROVAL_REJECTED',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_EXPIRED',
-  'CHECKOUT_CREATED',
-  'CHECKOUT_PAID',
-  'CHECKOUT_CANCELED',
-  'CHECKOUT_EXPIRED',
-  'SUBSCRIPTION_CREATED',
-  'SUBSCRIPTION_UPDATED',
-  'SUBSCRIPTION_DELETED',
-  'PAYMENT_CREATED',
-  'PAYMENT_CONFIRMED',
-  'PAYMENT_RECEIVED',
-  'PAYMENT_OVERDUE',
-  'PAYMENT_CREDIT_CARD_CAPTURE_REFUSED',
-  'PAYMENT_REFUNDED',
-  'PAYMENT_PARTIALLY_REFUNDED',
-  'PAYMENT_CHARGEBACK_REQUESTED',
-  'PAYMENT_SPLIT_DONE',
-];
+const events = ASAAS_PLATFORM_WEBHOOK_EVENTS;
 
 const listResponse = await fetch(`${baseUrl}/webhooks`, {
   headers: { accept: 'application/json', access_token: selectAsaasApiKey(env.ASAAS_ENV, { sandbox: env.ASAAS_API_KEY_SANDBOX, production: env.ASAAS_API_KEY })! },

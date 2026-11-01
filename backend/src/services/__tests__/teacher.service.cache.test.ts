@@ -37,3 +37,10 @@ test('consulta o repositório e preenche o cache quando há miss', async () => {
   assert.equal(repositoryCalls, 1);
   assert.deepEqual(cachedProfile, profile);
 });
+
+test('fornece no perfil público o preço anual calculado com 20% de desconto', async () => {
+  const profileWithMonitor = { ...profile, monitors: [{ id: 'monitor-1', priceCents: 5990 }] };
+  const service = new TeacherService({ async findPublicBySlug() { return profileWithMonitor; } } as any);
+  const result = await service.findPublicProfile(profile.pageSlug) as typeof profileWithMonitor & { monitors: Array<{ annualPriceCents: number }> };
+  assert.equal(result.monitors[0]?.annualPriceCents, 57504);
+});

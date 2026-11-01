@@ -68,6 +68,8 @@ const formatSocialUrl = (platform: 'instagram' | 'tiktok' | 'youtube', value: st
 type MonitorItem = {
   id: string;
   name: string;
+  priceCents: number;
+  annualPriceCents?: number | null;
   description: string | null;
   avatarUrl?: string | null;
   detailedDescription?: string | null;
@@ -106,6 +108,8 @@ type TeacherPublicProfile = {
   monitors?: Array<{
     id: string;
     name: string;
+    priceCents: number;
+    annualPriceCents?: number | null;
     description: string | null;
     avatarUrl?: string | null;
     detailedDescription?: string | null;
@@ -124,6 +128,14 @@ type TeacherPublicProfile = {
   }>;
 };
 
+function formatMonitorPrice(priceCents: number) {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceCents / 100);
+}
+
+function annualMonthlyEquivalentCents(annualPriceCents: number) {
+  return Math.round(annualPriceCents / 12);
+}
+
 type StorefrontClientProps = {
   teacher: TeacherPublicProfile;
 };
@@ -136,6 +148,8 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
   const [cart, setCart] = useState<{ id: string; name: string; price: string; originalPrice?: string; avatarUrl?: string | null }[]>([]);
   const [, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<MonitorItem | null>(null);
+  const [selectedInterval, setSelectedInterval] = useState<'MONTHLY' | 'ANNUAL'>('MONTHLY');
+  const [selectedBillingType, setSelectedBillingType] = useState<'PIX' | 'CREDIT_CARD' | null>(null);
 
   const [isStudentAuthOpen, setIsStudentAuthOpen] = useState(false);
   const [isCheckoutAuthMode, setIsCheckoutAuthMode] = useState(false);
@@ -303,12 +317,12 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
   };
 
   const startHostedCheckout = async () => {
-    if (checkoutStarting.current) return;
+    if (checkoutStarting.current || !selectedBillingType) return;
     const rawCart = localStorage.getItem('storefront_cart');
     if (!rawCart) return;
     checkoutStarting.current = true;
     const selectedIds = (JSON.parse(rawCart) as Array<{ id: string }>).map((item) => item.id).sort();
-    const idempotencyStorageKey = `mm_payment_checkout_idempotency_key:${selectedIds.join(',')}`;
+    const idempotencyStorageKey = `mm_payment_checkout_idempotency_key:v2:${selectedInterval}:${selectedBillingType}:${selectedIds.join(',')}`;
     const idempotencyKey = sessionStorage.getItem(idempotencyStorageKey) || crypto.randomUUID();
     sessionStorage.setItem(idempotencyStorageKey, idempotencyKey);
     const headers: HeadersInit = {
@@ -320,7 +334,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
     try {
       const checkoutResponse = await fetch(`${apiUrl}/api/v1/payments/checkout`, {
         method: 'POST', credentials: 'include', headers,
-        body: JSON.stringify({ monitorId: selectedIds[0] }),
+        body: JSON.stringify({ monitorId: selectedIds[0], interval: selectedInterval, billingType: selectedBillingType }),
       });
       const checkoutBody = await checkoutResponse.json() as { data?: { orderId?: string; checkoutUrl?: string | null }; error?: { message?: string }; message?: string };
       const created = checkoutBody.data;
@@ -349,7 +363,9 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
     return serverMessage || 'Não foi possível iniciar o checkout Asaas.';
   }
 
-  const handleChoosePlan = (product: any) => {
+  const handleChoosePlan = (product: any, interval: 'MONTHLY' | 'ANNUAL' = 'MONTHLY') => {
+    if (!selectedBillingType) return;
+    setSelectedInterval(interval);
     const selectedItem = {
       id: product.id,
       name: product.name,
@@ -384,6 +400,13 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
     }
   };
 
+  const openProduct = (product: MonitorItem) => {
+    const hasAnnualPlan = Number.isInteger(product.annualPriceCents) && Number(product.annualPriceCents) > 0;
+    setSelectedInterval(hasAnnualPlan ? 'ANNUAL' : 'MONTHLY');
+    setSelectedBillingType(null);
+    setSelectedProduct(product);
+  };
+
 
   // Only real monitors with status === 'PUBLISHED'
   const realMonitors: MonitorItem[] = (teacher.monitors || [])
@@ -392,8 +415,8 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
       ...m,
       rating: 4.9,
       reviewsCount: 42 + (index * 17),
-      price: 'R$ 29,90',
-      originalPrice: 'R$ 59,90',
+      price: formatMonitorPrice(m.priceCents),
+      originalPrice: formatMonitorPrice(Math.round(m.priceCents * 1.2)),
       badge: index === 0 ? 'Mais Vendido' : undefined
     }));
 
@@ -753,7 +776,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
                 {filteredProducts.map((product) => (
                   <div 
                     key={product.id}
-                    onClick={() => setSelectedProduct(product)}
+                    onClick={() => openProduct(product)}
                     className="transform hover:-translate-y-2 hover:shadow-xl bg-white rounded-2xl border border-[#0f294208] shadow-sm transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer group"
                   >
                     {/* Product Visual Container */}
@@ -838,16 +861,32 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
                       <div className="mt-5 border-t border-[#0f294208] pt-4">
                         {/* Price Block */}
                         <div className="mb-4">
-                          {product.originalPrice && (
+                          {product.originalPrice && !(product.annualPriceCents != null && product.annualPriceCents > 0) && (
                             <div className="text-[11px] text-[#565959] line-through leading-none">
                               De: {product.originalPrice}
                             </div>
                           )}
-                          <div className="flex items-baseline gap-1 mt-0.5">
-                            <span className="text-[12px] font-semibold text-[#565959]">Por:</span>
-                            <span className="text-xl font-extrabold text-[#B12704]">{product.price}</span>
-                            <span className="text-[11px] font-medium text-[#565959]">/mês</span>
-                          </div>
+                          {product.annualPriceCents != null && product.annualPriceCents > 0 ? (
+                            <div className="mt-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2">
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="text-[10px] font-extrabold uppercase tracking-wide text-emerald-800">Plano anual</span>
+                                <span className="rounded-full bg-emerald-700 px-2 py-0.5 text-[9px] font-extrabold text-white">20% OFF</span>
+                              </div>
+                              <div className="mt-0.5 flex items-baseline gap-1">
+                                <span className="text-xl font-extrabold text-[#B12704]">{formatMonitorPrice(annualMonthlyEquivalentCents(product.annualPriceCents))}</span>
+                                <span className="text-[11px] font-medium text-[#565959]">/mês equivalente</span>
+                              </div>
+                              <span className="block text-[10px] text-[#565959]">No mensal: {product.price}/mês</span>
+                              <span className="block text-[10px] font-semibold text-[#565959]">12x de {formatMonitorPrice(annualMonthlyEquivalentCents(product.annualPriceCents))} no cartão</span>
+                              <span className="block text-[10px] text-[#565959]">ou {formatMonitorPrice(product.annualPriceCents)} à vista</span>
+                            </div>
+                          ) : (
+                            <div className="flex items-baseline gap-1 mt-0.5">
+                              <span className="text-[12px] font-semibold text-[#565959]">Por:</span>
+                              <span className="text-xl font-extrabold text-[#B12704]">{product.price}</span>
+                              <span className="text-[11px] font-medium text-[#565959]">/mês</span>
+                            </div>
+                          )}
                           <span className="text-[11px] text-[#007600] font-bold block mt-1">
                             Disponível para início imediato
                           </span>
@@ -857,7 +896,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            setSelectedProduct(product);
+                            openProduct(product);
                           }}
                           className="w-full inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#F0C14B] hover:bg-[#E2B23C] border border-[#a88734] px-4 py-2.5 text-xs font-bold text-[#111111] transition duration-150 shadow-sm cursor-pointer relative z-10"
                         >
@@ -893,7 +932,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
                 {filteredProducts.map((product) => (
                   <div 
                     key={product.id}
-                    onClick={() => setSelectedProduct(product)}
+                    onClick={() => openProduct(product)}
                     className="transform hover:-translate-y-2 hover:shadow-xl bg-white rounded-2xl border border-[#0f294208] shadow-sm transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer group"
                   >
                     <div className="p-4 bg-[#0f294202] border-b border-[#0f294205] h-40 relative flex items-center justify-center overflow-hidden">
@@ -950,16 +989,37 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
 
                       <div className="mt-5 border-t border-[#0f294208] pt-4">
                         <div className="mb-4">
-                          <div className="flex items-baseline gap-1 mt-0.5">
-                            <span className="text-xl font-extrabold text-[#B12704]">{product.price}</span>
-                            <span className="text-[11px] font-medium text-[#565959]">/mês</span>
-                          </div>
+                          {product.annualPriceCents == null || product.annualPriceCents <= 0 ? (
+                            <div className="text-[11px] text-[#565959] line-through leading-none">
+                              De: {product.originalPrice}
+                            </div>
+                          ) : null}
+                          {product.annualPriceCents != null && product.annualPriceCents > 0 ? (
+                            <div className="mt-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2">
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="text-[10px] font-extrabold uppercase tracking-wide text-emerald-800">Plano anual</span>
+                                <span className="rounded-full bg-emerald-700 px-2 py-0.5 text-[9px] font-extrabold text-white">20% OFF</span>
+                              </div>
+                              <div className="mt-0.5 flex items-baseline gap-1">
+                                <span className="text-xl font-extrabold text-[#B12704]">{formatMonitorPrice(annualMonthlyEquivalentCents(product.annualPriceCents))}</span>
+                                <span className="text-[11px] font-medium text-[#565959]">/mês equivalente</span>
+                              </div>
+                              <span className="block text-[10px] text-[#565959]">No mensal: {product.price}/mês</span>
+                              <span className="block text-[10px] font-semibold text-[#565959]">12x de {formatMonitorPrice(annualMonthlyEquivalentCents(product.annualPriceCents))} no cartão</span>
+                              <span className="block text-[10px] text-[#565959]">ou {formatMonitorPrice(product.annualPriceCents)} à vista</span>
+                            </div>
+                          ) : (
+                            <div className="flex items-baseline gap-1 mt-0.5">
+                              <span className="text-xl font-extrabold text-[#B12704]">{product.price}</span>
+                              <span className="text-[11px] font-medium text-[#565959]">/mês</span>
+                            </div>
+                          )}
                         </div>
 
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            setSelectedProduct(product);
+                            openProduct(product);
                           }}
                           className="w-full inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#F0C14B] hover:bg-[#E2B23C] border border-[#a88734] px-4 py-2.5 text-xs font-bold text-[#111111] transition duration-150 shadow-sm cursor-pointer relative z-10"
                         >
@@ -1198,24 +1258,63 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
 
               {/* Pricing section & Checkout CTA */}
               <div className="flex flex-col gap-3">
-                <div className="flex items-baseline justify-between px-1">
-                  <span className="text-xs text-[#0f294260] font-bold">Preço de assinatura:</span>
-                  <div className="flex items-baseline gap-0.5">
-                    <span className="text-[12px] text-[#565959] mr-1">Apenas</span>
-                    <span className="text-2xl font-black text-[#B12704]">{selectedProduct.price}</span>
-                    <span className="text-xs text-[#565959]">/mês</span>
-                  </div>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  <button type="button" onClick={() => { if (selectedInterval !== 'MONTHLY') setSelectedBillingType(null); setSelectedInterval('MONTHLY'); }} aria-pressed={selectedInterval === 'MONTHLY'} className={`rounded-xl border p-3 text-left ${selectedInterval === 'MONTHLY' ? 'border-emerald-700 bg-emerald-50' : 'border-slate-200 bg-white'}`}>
+                    <span className="block text-xs font-bold text-[#0F2942]">Mensal</span>
+                    <span className="mt-1 block text-lg font-black text-[#B12704]">{selectedProduct.price}<span className="text-xs font-medium text-[#565959]">/mês</span></span>
+                  </button>
+                  {selectedProduct.annualPriceCents != null && selectedProduct.annualPriceCents > 0 && <button type="button" onClick={() => { if (selectedInterval !== 'ANNUAL') setSelectedBillingType(null); setSelectedInterval('ANNUAL'); }} aria-pressed={selectedInterval === 'ANNUAL'} className={`rounded-xl border p-3 text-left ${selectedInterval === 'ANNUAL' ? 'border-emerald-700 bg-emerald-50' : 'border-slate-200 bg-white'}`}>
+                    <span className="flex items-center justify-between gap-2 text-xs font-bold text-[#0F2942]">Anual · 12 meses <span className="flex items-center gap-1.5"><span className="rounded-full bg-emerald-700 px-2 py-0.5 text-[9px] font-extrabold text-white">20% OFF</span><span className="rounded-full bg-[#0F2942] px-2 py-0.5 text-[9px] font-extrabold text-white">Recomendado</span></span></span>
+                    <span className="mt-1 block text-lg font-black text-[#B12704]">{formatMonitorPrice(annualMonthlyEquivalentCents(selectedProduct.annualPriceCents))}<span className="ml-1 text-xs font-semibold text-[#565959]">/mês equivalente</span></span>
+                    <span className="block text-[10px] font-semibold text-[#565959]">12x de {formatMonitorPrice(annualMonthlyEquivalentCents(selectedProduct.annualPriceCents))} no cartão</span>
+                    <span className="block text-[10px] text-[#565959]">ou {formatMonitorPrice(selectedProduct.annualPriceCents)} à vista</span>
+                  </button>}
                 </div>
-
-                <button 
+                <fieldset className="min-w-0 border-0 p-0">
+                  <legend className="text-xs font-bold text-[#0F2942]">Forma de pagamento</legend>
+                  <div className="mt-2 grid grid-cols-2 gap-2">
+                    {(selectedInterval === 'MONTHLY'
+                    ? [
+                      { value: 'CREDIT_CARD' as const, title: 'Cartão de crédito', detail: 'Cobrança recorrente mensal' },
+                      { value: 'PIX' as const, title: 'Pix', detail: 'Pagamento único por 1 mês; renovação manual' },
+                    ]
+                    : [
+                      { value: 'PIX' as const, title: 'Pix', detail: 'Pagamento à vista por 12 meses' },
+                      { value: 'CREDIT_CARD' as const, title: 'Cartão de crédito', detail: 'À vista ou em até 12 parcelas' },
+                    ]
+                    ).map((option) => {
+                    const checked = selectedBillingType === option.value;
+                    return (
+                      <label key={`${selectedInterval}-${option.value}`} className={`flex h-full min-w-0 cursor-pointer items-start gap-2 rounded-xl border p-2 transition-colors ${checked ? 'border-emerald-700 bg-emerald-50' : 'border-slate-200 bg-white hover:border-emerald-400'}`}>
+                        <input
+                          type="radio"
+                          name="storefront-payment-method"
+                          value={option.value}
+                          checked={checked}
+                          onChange={() => setSelectedBillingType(option.value)}
+                          className="mt-0.5 h-4 w-4 shrink-0 accent-emerald-700"
+                        />
+                        <span className="flex min-w-0 flex-col">
+                          <span className="break-words text-xs font-bold text-[#0F2942]">{option.title}</span>
+                          <span className="mt-0.5 break-words text-[10px] leading-relaxed text-slate-500">{option.detail}</span>
+                        </span>
+                      </label>
+                    );
+                    })}
+                  </div>
+                </fieldset>
+                <button
+                  type="button"
+                  disabled={!selectedBillingType || isCheckoutStarting}
                   onClick={() => {
-                    handleChoosePlan(selectedProduct);
+                    if (!selectedBillingType) return;
+                    handleChoosePlan(selectedProduct, selectedInterval);
                     setSelectedProduct(null);
                   }}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 px-4 py-3.5 text-sm font-extrabold text-white transition duration-150 shadow-lg shadow-emerald-600/30 cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-emerald-600/30 transition duration-150 enabled:cursor-pointer enabled:hover:bg-emerald-700 enabled:active:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
                 >
                   <CheckCircle2 className="w-4.5 h-4.5 text-white" />
-                  <span>Assinar Agora</span>
+                  <span>{selectedInterval === 'ANNUAL' ? 'Comprar 12 meses' : 'Assinar Agora'}</span>
                 </button>
               </div>
 

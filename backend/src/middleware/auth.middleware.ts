@@ -4,12 +4,12 @@ import { AppError } from '../core/errors/app-error.js';
 
 declare module 'fastify' {
   interface FastifyRequest {
-    user: { id: string; email?: string; fullName?: string; whatsapp?: string; role?: string } | null;
+    user: { id: string; email?: string; emailVerified: boolean; fullName?: string; whatsapp?: string; role?: string } | null;
   }
 }
 
 interface CachedUserSession {
-  user: { id: string; email?: string; fullName?: string; whatsapp?: string; role?: string };
+  user: { id: string; email?: string; emailVerified: boolean; fullName?: string; whatsapp?: string; role?: string };
   expiresAt: number;
 }
 
@@ -82,13 +82,7 @@ export async function authMiddleware(request: FastifyRequest, reply: FastifyRepl
     throw new AppError({ code: 'UNAUTHENTICATED', statusCode: 401, publicMessage: 'Sessao invalida ou expirada.' });
   }
 
-  const userObj = {
-    id: data.user.id,
-    email: data.user.email,
-    fullName: data.user.user_metadata?.full_name || data.user.user_metadata?.fullName || data.user.user_metadata?.name,
-    whatsapp: data.user.user_metadata?.whatsapp,
-    role: data.user.app_metadata?.role,
-  };
+  const userObj = mapAuthenticatedUser(data.user);
 
   // Cache duration: 60s max, or up to the exact JWT expiration timestamp (whichever comes first)
   const tokenExpMs = getTokenExpirationMs(accessToken);
@@ -104,3 +98,18 @@ export async function authMiddleware(request: FastifyRequest, reply: FastifyRepl
   request.user = userObj;
   console.log('Sessao validada', { event: 'auth.session_validated', requestId: request.id, userId: data.user.id });
 }
+
+export function mapAuthenticatedUser(user: { id: string; email?: string; email_confirmed_at?: string | null; user_metadata?: Record<string, unknown>; app_metadata?: Record<string, unknown> }) {
+  const userMetadata = user.user_metadata ?? {};
+  const appMetadata = user.app_metadata ?? {};
+  return {
+    id: user.id,
+    ...(user.email ? { email: user.email } : {}),
+    emailVerified: Boolean(user.email_confirmed_at),
+    fullName: firstString(userMetadata.full_name, userMetadata.fullName, userMetadata.name),
+    whatsapp: firstString(userMetadata.whatsapp),
+    role: firstString(appMetadata.role),
+  };
+}
+
+function firstString(...values: unknown[]) { return values.find((value): value is string => typeof value === 'string'); }

@@ -13,7 +13,7 @@ The implementation matches the approved specification and plan across runtime wi
 - Provider: requests use the configured environment and credential header, list endpoints paginate in batches of 100, monetary values become integer cents, transfer states are filtered, malformed/incomplete responses and transient failures become controlled unavailability, and raw provider payloads/secrets are not returned or logged.
 - Security: the DTO is an explicit allowlist; no API key, token, CPF, bank data, or provider response body reaches the frontend. The runtime intentionally has no plaintext credential persistence/resolver, so it fails closed with `metrics: null` until a secret-manager-backed resolver is configured.
 - Frontend: the service uses the authenticated endpoint with `credentials: 'include'`, `cache: 'no-store'`, request deduplication, strict DTO parsing, BRL cent formatting, HTTPS-only external links, and retry classification. The panel renders the navy banner, approved/pending/rejected states, four KPI states, skeleton, unavailable state, timestamp, and retry action; external links use `target="_blank"` and `rel="noreferrer"`.
-- Docs: `docs/PAGAMENTOS-E-ASSINATURAS.md` documents the endpoint, states, secure credential prerequisite, environment separation, and no-withdrawal boundary.
+- Docs: `docs/asaas/reference/PAGAMENTOS-E-ASSINATURAS.md` documents the endpoint, states, secure credential prerequisite, environment separation, and no-withdrawal boundary.
 
 ## Findings
 

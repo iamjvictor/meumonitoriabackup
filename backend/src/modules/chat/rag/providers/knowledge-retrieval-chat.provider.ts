@@ -86,14 +86,19 @@ export class KnowledgeRetrievalChatProvider implements ChatKnowledgePort {
         blockId: candidate.blockId,
         pageStart: candidate.pageStart,
         pageEnd: candidate.pageEnd,
+        pages: candidate.pages ?? (candidate.pageStart ? [candidate.pageStart, ...(candidate.pageEnd && candidate.pageEnd !== candidate.pageStart ? [candidate.pageEnd] : [])] : []),
+        headings: candidate.headings ?? [],
+        engine: candidate.engine ?? null,
         score: candidate.fusedScore ?? candidate.similarity,
         content: candidate.content,
+        visualAssetIds: candidate.visualAssetIds ?? [],
       }));
       const context = citations
         .map((citation, index) => [
           `Evidência ${index + 1}`,
           `Documento: ${citation.documentId}`,
           `Página: ${formatPageRange(citation.pageStart, citation.pageEnd)}`,
+          ...(citation.headings.length ? [`Seção: ${citation.headings.join(' > ')}`] : []),
           citation.content,
         ].join('\n'))
         .join('\n\n---\n\n');

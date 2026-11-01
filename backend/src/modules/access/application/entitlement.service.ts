@@ -38,6 +38,12 @@ export class EntitlementService {
       const existing = grouped.get(row.monitorId);
       if (existing) {
         alerts.push({ code: 'DUPLICATE_PROVIDER_SUBSCRIPTION', monitorId: row.monitorId });
+        const existingEnd = existing.subscription.currentPeriodEnd ? new Date(existing.subscription.currentPeriodEnd).getTime() : Number.POSITIVE_INFINITY;
+        const candidateEnd = row.currentPeriodEnd ? new Date(row.currentPeriodEnd).getTime() : Number.POSITIVE_INFINITY;
+        if (candidateEnd > existingEnd) {
+          existing.subscription.currentPeriodEnd = row.currentPeriodEnd;
+          existing.subscription.accessEndsAt = row.currentPeriodEnd;
+        }
         continue;
       }
       const status = row.subscriptionStatus === 'CANCEL_PENDING' || row.itemStatus === 'CANCEL_PENDING' ? 'CANCEL_PENDING' : 'ACTIVE';

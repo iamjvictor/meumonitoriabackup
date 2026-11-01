@@ -1,19 +1,24 @@
 import { createHash } from 'node:crypto';
 import type { HostedCheckoutResult, PaymentProvider } from '../../domain/ports/payment-provider.port.js';
 import type { CheckoutIntent, CreateCheckoutRepository } from '../../infrastructure/persistence/payment-checkout.repository.js';
+import { calculateAnnualPriceCents } from '../../domain/annual-plan-price.js';
 
 export class CheckoutStudentNotFoundError extends Error {}
 export class CheckoutStudentRoleError extends Error {}
 export class CheckoutMonitorNotFoundError extends Error {}
+export class CheckoutAnnualPlanUnavailableError extends Error {}
+// Kept as a typed legacy error for callers/tests; the direct checkout no longer throws it.
+export class CheckoutTeacherPayoutUnavailableError extends Error {
+  constructor() {
+    super('A conta de recebimento do professor ainda não permite repasse.');
+    this.name = 'CheckoutTeacherPayoutUnavailableError';
+  }
+}
 export class CheckoutIdempotencyKeyRequiredError extends Error {}
 export class CheckoutIdempotencyKeyReusedError extends Error {}
 export class CheckoutPendingError extends Error {}
 
-// Temporary Sandbox override. Keep the monitor/catalog price unchanged while
-// making the local order and provider checkout agree on the minimum test value.
-export const TEMPORARY_CHECKOUT_PRICE_OVERRIDE_CENTS = 500;
-
-export type CreateCheckoutInput = { monitorId: string; idempotencyKey: string; returnBaseUrl: string };
+export type CreateCheckoutInput = { monitorId: string; interval?: 'MONTHLY' | 'ANNUAL'; billingType?: 'PIX' | 'CREDIT_CARD'; idempotencyKey: string; returnBaseUrl: string };
 
 export class CreateCheckoutUseCase {
   constructor(private readonly repository: CreateCheckoutRepository, private readonly provider: PaymentProvider) {}
@@ -21,12 +26,21 @@ export class CreateCheckoutUseCase {
   async execute(userId: string, input: CreateCheckoutInput) {
     const key = input.idempotencyKey.trim();
     if (!key) throw new CheckoutIdempotencyKeyRequiredError();
+    const interval = input.interval ?? 'MONTHLY';
+    if (interval !== 'MONTHLY' && interval !== 'ANNUAL') throw new CheckoutAnnualPlanUnavailableError();
+    const billingType = input.billingType ?? 'CREDIT_CARD';
+    if (billingType !== 'PIX' && billingType !== 'CREDIT_CARD') throw new CheckoutAnnualPlanUnavailableError();
 
     const student = await this.repository.findStudentByUserId(userId);
     if (!student) throw new CheckoutStudentNotFoundError();
     if (student.role.toLowerCase() !== 'student') throw new CheckoutStudentRoleError();
 
-    const fingerprint = createHash('sha256').update(JSON.stringify({ monitorId: input.monitorId })).digest('hex');
+    // Retain the exact fingerprints used by prior card checkouts. New PIX
+    // attempts carry the method in the fingerprint so they cannot reuse a card checkout.
+    const fingerprintInput = billingType === 'CREDIT_CARD'
+      ? (interval === 'MONTHLY' ? { monitorId: input.monitorId } : { monitorId: input.monitorId, interval })
+      : { monitorId: input.monitorId, interval, billingType };
+    const fingerprint = createHash('sha256').update(JSON.stringify(fingerprintInput)).digest('hex');
     const existing = await this.repository.findIdempotency(student.id, key);
     if (existing) {
       if (existing.requestFingerprint !== fingerprint) throw new CheckoutIdempotencyKeyReusedError();
@@ -62,14 +76,9 @@ export class CreateCheckoutUseCase {
       found: Boolean(monitor),
     });
     if (!monitor) throw new CheckoutMonitorNotFoundError();
-    const checkoutMonitor = { ...monitor, priceCents: TEMPORARY_CHECKOUT_PRICE_OVERRIDE_CENTS };
-    console.warn('Override temporário de preço aplicado ao checkout', {
-      event: 'payments.checkout_price_override_applied',
-      studentId: student.id,
-      monitorId: monitor.id,
-      catalogPriceCents: monitor.priceCents,
-      checkoutPriceCents: checkoutMonitor.priceCents,
-    });
+    if (interval === 'ANNUAL' && (!Number.isInteger(monitor.priceCents) || monitor.priceCents <= 0)) throw new CheckoutAnnualPlanUnavailableError();
+    const amountCents = interval === 'ANNUAL' ? calculateAnnualPriceCents(monitor.priceCents) : monitor.priceCents;
+    if (!amountCents || amountCents <= 0) throw new CheckoutAnnualPlanUnavailableError();
     console.log('Criando intenção local de checkout', {
       event: 'payments.checkout_intent_creation_started',
       studentId: student.id,
@@ -77,7 +86,8 @@ export class CreateCheckoutUseCase {
     });
     const intent = await this.repository.createIntent({
       studentId: student.id,
-      monitor: checkoutMonitor,
+      monitor,
+      interval,
       idempotencyKey: key,
       requestFingerprint: fingerprint,
     });
@@ -94,9 +104,9 @@ export class CreateCheckoutUseCase {
     try {
       checkout = await this.provider.createHostedCheckout({
         externalReference: intent.order.id,
-        monitorName: checkoutMonitor.name,
-        description: 'Assinatura mensal do monitor',
-        amountCents: checkoutMonitor.priceCents,
+        monitorName: monitor.name,
+        description: interval === 'ANNUAL' ? 'Acesso anual do monitor' : 'Assinatura mensal do monitor',
+        amountCents,
         successUrl: `${callbackBase}/checkout/retorno?orderId=${intent.order.id}&status=success`,
         cancelUrl: `${callbackBase}/checkout/retorno?orderId=${intent.order.id}&status=cancelled`,
         expiredUrl: `${callbackBase}/checkout/retorno?orderId=${intent.order.id}&status=expired`,
@@ -104,6 +114,10 @@ export class CreateCheckoutUseCase {
         splits: intent.payout.walletId && intent.payout.percentage !== '0.0000'
           ? [{ walletId: intent.payout.walletId, percentage: intent.payout.percentage }]
           : [],
+        billingType,
+        chargeType: interval === 'MONTHLY' && billingType === 'CREDIT_CARD' ? 'RECURRENT' : 'DETACHED',
+        ...(interval === 'ANNUAL' && billingType === 'CREDIT_CARD' ? { chargeTypes: ['DETACHED', 'INSTALLMENT'] as const, maxInstallmentCount: 12 } : {}),
+        ...(interval === 'MONTHLY' && billingType === 'CREDIT_CARD' ? { cycle: 'MONTHLY' as const } : {}),
       });
     } catch (error) {
       await this.repository.markCheckoutCreationFailed(intent.order.id, error instanceof Error ? error.message : 'CHECKOUT_CREATION_FAILED');

@@ -28,8 +28,12 @@ export type ChatRagCitation = {
   blockId: string | null;
   pageStart: number | null;
   pageEnd: number | null;
+  pages?: number[];
+  headings?: string[];
+  engine?: string | null;
   score: number;
   content: string;
+  visualAssetIds?: string[];
 };
 
 export type ChatRagResult = {

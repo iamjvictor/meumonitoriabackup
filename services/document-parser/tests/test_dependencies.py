@@ -25,11 +25,11 @@ class ParserDependencyTests(unittest.TestCase):
         dockerfile = DOCKERFILE_PATH.read_text(encoding="utf-8")
 
         self.assertIn("ARG UV_VERSION=0.10.9", dockerfile)
-        self.assertIn("COPY --from=ghcr.io/astral-sh/uv:${UV_VERSION} /uv /uvx /bin/", dockerfile)
+        self.assertIn("COPY --from=uv /uv /uvx /bin/", dockerfile)
         self.assertIn("COPY pyproject.toml uv.lock README.md ./", dockerfile)
         self.assertIn("uv sync --locked", dockerfile)
         self.assertIn(
-            'python -c "import docling; from docling.document_converter import DocumentConverter;',
+            "import docling; from docling.document_converter import DocumentConverter;",
             dockerfile,
         )
 

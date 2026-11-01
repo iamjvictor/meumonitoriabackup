@@ -12,6 +12,7 @@ interface TeacherOnboardingBannerProps {
   paymentAccountStatus?: string | null;
   paymentAccountRejectionReason?: string | null;
   onStartOnboarding: () => void;
+  hasBottomExtension?: boolean;
 }
 
 type TeacherProgressProfile = TeacherProfile & {
@@ -27,6 +28,7 @@ export const TeacherOnboardingBanner: React.FC<TeacherOnboardingBannerProps> = (
   paymentAccountStatus = null,
   paymentAccountRejectionReason = null,
   onStartOnboarding,
+  hasBottomExtension = false,
 }) => {
   const progressTeacher = teacher as TeacherProgressProfile | null;
   const hasCreatedProducts = Boolean(
@@ -67,13 +69,13 @@ export const TeacherOnboardingBanner: React.FC<TeacherOnboardingBannerProps> = (
     },
     {
       title: 'Criar Seu Produto',
-      done: hasProfile && teacher?.status === 'active' && hasCreatedProducts,
-      locked: !(hasProfile && teacher?.status === 'active' && paymentAccountApproved),
+      done: hasProfile && hasCreatedProducts,
+      locked: !hasProfile,
       statusText: hasCreatedProducts
-        ? 'Produto criado'
-        : teacher?.status === 'active' && paymentAccountApproved
-        ? 'Liberado'
-        : 'Bloqueado (Aguardando aprovação)',
+        ? 'Rascunho criado'
+        : hasProfile
+        ? 'Liberado para criar rascunho'
+        : 'Bloqueado (complete o perfil)',
     },
   ];
 
@@ -85,7 +87,7 @@ export const TeacherOnboardingBanner: React.FC<TeacherOnboardingBannerProps> = (
   }
 
   return (
-    <div className="w-full bg-gradient-to-r from-[#132E20] via-[#1B3B2B] to-[#2E5B37] rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-white/10 relative overflow-hidden mb-8">
+    <div className={`w-full bg-gradient-to-r from-[#132E20] via-[#1B3B2B] to-[#2E5B37] ${hasBottomExtension ? 'rounded-t-3xl rounded-b-none border-b-0 mb-0' : 'rounded-3xl mb-8'} p-6 sm:p-8 text-white shadow-xl border border-white/10 relative overflow-hidden`}>
       {/* Background Subtle Pattern Overlay */}
       <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -100,7 +102,7 @@ export const TeacherOnboardingBanner: React.FC<TeacherOnboardingBannerProps> = (
                 ? 'Passo 1: Complete seu Perfil'
                 : teacher?.status === 'pending'
                 ? 'Perfil Enviado para Análise'
-                : teacher?.status === 'active' && paymentAccountApproved
+                : teacher?.status === 'active'
                 ? 'Pronto! Crie seu Produto'
                 : 'Aprovado! Configure seu Recebimento'}
             </span>
@@ -111,7 +113,7 @@ export const TeacherOnboardingBanner: React.FC<TeacherOnboardingBannerProps> = (
               ? 'Complete seu perfil para enviar para análise'
               : teacher?.status === 'pending'
               ? 'Seu perfil está em análise pela nossa equipe'
-              : teacher?.status === 'active' && paymentAccountApproved
+              : teacher?.status === 'active'
               ? 'Seu perfil foi aprovado! Crie seu primeiro produto'
               : paymentAccountStatus === 'REJECTED' || paymentAccountStatus === 'SUSPENDED'
               ? 'Regularize sua conta de recebimento'
@@ -122,12 +124,12 @@ export const TeacherOnboardingBanner: React.FC<TeacherOnboardingBannerProps> = (
             {!hasProfile
               ? 'Para começar a vender e criar seus assistentes IA de estudo, preencha seus dados de perfil e configure sua conta de recebimento. Seu perfil passará por análise antes da liberação total.'
               : teacher?.status === 'pending'
-              ? 'Recebemos suas informações. Nossa equipe está analisando seu perfil. Assim que for aprovado, você poderá criar produtos e assistentes de estudo para seus alunos.'
+              ? 'Seu perfil está em análise. Você já pode criar monitores como rascunho; para publicar, será necessário aprovar o perfil e a conta de recebimento Asaas.'
               : teacher?.status === 'active' && paymentAccountApproved
               ? 'Parabéns! Seu perfil e sua conta de recebimento foram aprovados. Você já pode criar e publicar produtos.'
               : paymentAccountStatus === 'REJECTED' || paymentAccountStatus === 'SUSPENDED'
               ? paymentAccountRejectionReason || 'A conta de recebimento precisa ser regularizada para liberar seus produtos.'
-              : 'Seu perfil foi aprovado. Configure e aguarde a aprovação da conta de recebimento para liberar seus produtos.'}
+              : 'Seu perfil foi aprovado. Você já pode criar monitores. Configure sua conta de recebimento para receber os repasses das vendas.'}
           </p>
 
           {/* Progress Bar */}

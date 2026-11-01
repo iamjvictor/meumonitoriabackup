@@ -120,6 +120,33 @@ test('retorna fallback sem evidências quando o embedding falha', async () => {
   assert.equal(retrievalCalls.length, 0);
 });
 
+test('propaga páginas e títulos de chunks Docling sem inventar blockId', async () => {
+  const retrieval = makeRetrievalResult();
+  retrieval.citations[0]!.blockId = null;
+  Object.assign(retrieval.citations[0]!, { pages: [4, 5], headings: ['Dinâmica', 'Forças'], engine: 'docling' });
+  const provider = new KnowledgeRetrievalChatProvider(
+    { async createEmbeddings() { return [[0.1, 0.2, 0.3]]; } },
+    { async search() { return retrieval; } },
+  );
+  const result = await provider.retrieve(makeInput());
+  assert.equal(result.citations[0]?.blockId, null);
+  assert.deepEqual((result.citations[0] as unknown as { pages: number[] }).pages, [4, 5]);
+  assert.deepEqual((result.citations[0] as unknown as { headings: string[] }).headings, ['Dinâmica', 'Forças']);
+  assert.match(result.context, /Dinâmica/);
+});
+
+test('propaga somente IDs das figuras vinculadas para a etapa multimodal do chat', async () => {
+  const retrieval = makeRetrievalResult();
+  Object.assign(retrieval.citations[0]!, { visualAssetIds: ['asset-figure-1'], engine: 'docling-visual' });
+  const provider = new KnowledgeRetrievalChatProvider(
+    { async createEmbeddings() { return [[0.1]]; } },
+    { async search() { return retrieval; } },
+  );
+  const result = await provider.retrieve(makeInput());
+  assert.deepEqual(result.citations[0]?.visualAssetIds, ['asset-figure-1']);
+  assert.equal(JSON.stringify(result).includes('base64'), false);
+});
+
 test('retorna fallback semântico quando o embedding excede o orçamento', async () => {
   const provider = new KnowledgeRetrievalChatProvider(
     {

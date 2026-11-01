@@ -8,6 +8,8 @@ import { X, CheckCircle2, User, Mail, Lock, Phone, BookOpen, Sparkles, ArrowRigh
 import confetti from 'canvas-confetti';
 import type { TeacherRegistrationForm, RegistrationStep } from '@/types';
 import { TeacherRegistrationService } from '../services/TeacherRegistrationService';
+import { ApiErrorNotice } from '@/shared/errors/ApiErrorNotice';
+import { createApiError, normalizeApiError, type ApiError } from '@/shared/errors/api-error';
 
 interface TeacherRegistrationModalProps {
   isOpen: boolean;
@@ -69,6 +71,7 @@ interface AvatarCropModalProps {
   imageSrc: string | null;
   onClose: () => void;
   onConfirm: (croppedDataUrl: string) => void;
+  onError: () => void;
 }
 
 const AvatarCropModal: React.FC<AvatarCropModalProps> = ({
@@ -76,6 +79,7 @@ const AvatarCropModal: React.FC<AvatarCropModalProps> = ({
   imageSrc,
   onClose,
   onConfirm,
+  onError,
 }) => {
   const [zoom, setZoom] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -127,39 +131,58 @@ const AvatarCropModal: React.FC<AvatarCropModalProps> = ({
   const handleCropSave = () => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
-    img.src = imageSrc;
+    const failToProcessImage = () => onError();
+    img.onerror = failToProcessImage;
     img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const outputSize = 360;
-      canvas.width = outputSize;
-      canvas.height = outputSize;
-      const ctx = canvas.getContext('2d');
+      try {
+        const imageWidth = img.naturalWidth || img.width;
+        const imageHeight = img.naturalHeight || img.height;
+        if (imageWidth <= 0 || imageHeight <= 0) {
+          failToProcessImage();
+          return;
+        }
 
-      if (!ctx) return;
+        const canvas = document.createElement('canvas');
+        const outputSize = 360;
+        canvas.width = outputSize;
+        canvas.height = outputSize;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          failToProcessImage();
+          return;
+        }
 
-      ctx.beginPath();
-      ctx.arc(outputSize / 2, outputSize / 2, outputSize / 2, 0, Math.PI * 2);
-      ctx.closePath();
-      ctx.clip();
+        ctx.beginPath();
+        ctx.arc(outputSize / 2, outputSize / 2, outputSize / 2, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.clip();
 
-      const viewportSize = 220;
-      const ratio = outputSize / viewportSize;
+        const viewportSize = 220;
+        const ratio = outputSize / viewportSize;
 
-      const minDim = Math.min(img.width, img.height);
-      const baseWidth = (img.width / minDim) * viewportSize;
-      const baseHeight = (img.height / minDim) * viewportSize;
+        const minDim = Math.min(imageWidth, imageHeight);
+        const baseWidth = (imageWidth / minDim) * viewportSize;
+        const baseHeight = (imageHeight / minDim) * viewportSize;
 
-      const scaledW = baseWidth * zoom * ratio;
-      const scaledH = baseHeight * zoom * ratio;
+        const scaledW = baseWidth * zoom * ratio;
+        const scaledH = baseHeight * zoom * ratio;
 
-      const drawX = (outputSize - scaledW) / 2 + offset.x * ratio;
-      const drawY = (outputSize - scaledH) / 2 + offset.y * ratio;
+        const drawX = (outputSize - scaledW) / 2 + offset.x * ratio;
+        const drawY = (outputSize - scaledH) / 2 + offset.y * ratio;
 
-      ctx.drawImage(img, drawX, drawY, scaledW, scaledH);
+        ctx.drawImage(img, drawX, drawY, scaledW, scaledH);
 
-      const croppedUrl = canvas.toDataURL('image/png');
-      onConfirm(croppedUrl);
+        const croppedUrl = canvas.toDataURL('image/png');
+        onConfirm(croppedUrl);
+      } catch {
+        failToProcessImage();
+      }
     };
+    try {
+      img.src = imageSrc;
+    } catch {
+      failToProcessImage();
+    }
   };
 
   return (
@@ -296,6 +319,15 @@ const AREAS_LIST = [
   'Outro (Especificar)',
 ];
 
+const normalizeTeacherSlug = (value: string) => value
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '')
+  .slice(0, 60)
+  .replace(/-+$/g, '');
+
 export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> = ({ isOpen, onClose }) => {
   const router = useRouter();
   const [step, setStep] = useState<RegistrationStep>(1);
@@ -305,9 +337,9 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submittingStep1, setSubmittingStep1] = useState(false);
-  const [_step1Error, setStep1Error] = useState<string | null>(null);
-  const [_isAccountCreated, setIsAccountCreated] = useState(false);
-  const [_submitError, setSubmitError] = useState<string | null>(null);
+  const [step1Error, setStep1Error] = useState<ApiError | null>(null);
+  const [maxUnlockedStep, setMaxUnlockedStep] = useState<RegistrationStep>(1);
+  const [submitError, setSubmitError] = useState<ApiError | null>(null);
 
   // Avatar cropping modal state
   const [rawImageSrc, setRawImageSrc] = useState<string | null>(null);
@@ -338,16 +370,14 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
     field: Field,
     value: TeacherRegistrationForm[Field]
   ) => {
+    setStep1Error(null);
+    setSubmitError(null);
     setFormData((prev) => {
       const updated = { ...prev, [field]: value };
       if (field === 'fullName' && typeof value === 'string') {
-        const slug = value
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/^-+|-+$/g, '');
-        if (!prev.username) {
+        const slug = normalizeTeacherSlug(value);
+        const previousGeneratedSlug = normalizeTeacherSlug(prev.fullName);
+        if (!prev.username || prev.username === previousGeneratedSlug) {
           updated.username = slug;
           updated.pageSlug = slug;
         }
@@ -357,6 +387,7 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
   };
 
   const handleDocumentTypeChange = (type: 'CPF' | 'CNPJ') => {
+    setStep1Error(null);
     setFormData((prev) => ({
       ...prev,
       docType: type,
@@ -372,17 +403,33 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
   const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setSubmitError(null);
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setRawImageSrc(reader.result as string);
+      const reportReadFailure = () => setSubmitError(createApiError(
+        'AVATAR_READ_FAILED',
+        'Não foi possível ler a imagem selecionada.',
+        { avatarUrl: ['Escolha outra imagem ou tente novamente.'] },
+      ));
+      reader.onload = () => {
+        if (typeof reader.result !== 'string' || !reader.result.startsWith('data:image/')) {
+          reportReadFailure();
+          return;
+        }
+        setRawImageSrc(reader.result);
         setIsCropModalOpen(true);
       };
-      reader.readAsDataURL(file);
+      reader.onerror = reportReadFailure;
+      try {
+        reader.readAsDataURL(file);
+      } catch {
+        reportReadFailure();
+      }
     }
     e.target.value = '';
   };
 
   const handleConfirmCroppedPhoto = (croppedDataUrl: string) => {
+    setSubmitError(null);
     setFormData((prev) => ({
       ...prev,
       avatarUrl: croppedDataUrl,
@@ -406,20 +453,21 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
           role: 'teacher',
         });
 
-        setIsAccountCreated(true);
+        setMaxUnlockedStep(2);
         setStep(2);
       } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : 'Não foi possível criar sua conta.';
-        console.warn('Requisição 1 (Lead/Auth) executada via Service:', message);
-        setStep1Error(message);
+        const normalizedError = normalizeApiError(err, 'Não foi possível criar sua conta.');
+        console.warn('Falha no cadastro da conta do professor:', normalizedError.code);
+        setStep1Error(normalizedError);
       } finally {
         setSubmittingStep1(false);
       }
       return;
     }
 
-    if (step < 3) {
-      setStep((prev) => (prev + 1) as RegistrationStep);
+    if (step === 2) {
+      setMaxUnlockedStep(3);
+      setStep(3);
     }
   };
 
@@ -456,6 +504,7 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
         await TeacherRegistrationService.updateProfileStep2({ ...profilePayload, avatarUrl });
       }
 
+      setMaxUnlockedStep(4);
       setStep(4);
       confetti({
         particleCount: 100,
@@ -463,9 +512,9 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
         origin: { y: 0.6 },
       });
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Não foi possível concluir o cadastro.';
-      console.warn('Requisição 2 (Perfil Estendido) executada via Service:', message);
-      setSubmitError(message);
+      const normalizedError = normalizeApiError(err, 'Não foi possível concluir o cadastro. Seus dados continuam preenchidos.');
+      console.warn('Falha no cadastro do perfil do professor:', normalizedError.code);
+      setSubmitError(normalizedError);
     } finally {
       setSubmitting(false);
     }
@@ -473,7 +522,10 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
 
   const resetModal = () => {
     setStep(1);
+    setMaxUnlockedStep(1);
     setFormData(INITIAL_FORM);
+    setStep1Error(null);
+    setSubmitError(null);
     setConfirmPassword('');
     setShowPassword(false);
     setShowConfirmPassword(false);
@@ -514,8 +566,14 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
             <button
               key={s.num}
               type="button"
-              onClick={() => setStep(s.num as RegistrationStep)}
-              className="flex items-center space-x-1.5 focus:outline-none hover:opacity-80 transition-opacity cursor-pointer shrink-0 px-1"
+              onClick={() => {
+                if (s.num <= maxUnlockedStep && !(s.num === 1 && maxUnlockedStep > 1)) {
+                  setStep(s.num as RegistrationStep);
+                }
+              }}
+              disabled={s.num > maxUnlockedStep || (s.num === 1 && maxUnlockedStep > 1)}
+              aria-current={step === s.num ? 'step' : undefined}
+              className="flex items-center space-x-1.5 focus:outline-none hover:opacity-80 transition-opacity cursor-pointer shrink-0 px-1 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <div
                 className={`w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold ${
@@ -541,6 +599,7 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
           {/* STEP 1: Informações Pessoais & Documentos */}
           {step === 1 && (
             <div className="space-y-4">
+              {step1Error && <ApiErrorNotice error={step1Error} />}
               <div className="p-3 rounded-xl bg-[#0F2942]/10 border border-[#0F2942]/20 text-[#0F2942] text-xs flex items-center space-x-2 font-medium">
                 <Sparkles className="w-4 h-4 text-[#2E5B37] shrink-0" />
                 <span>Passo 1 de 4: Informações Pessoais, Cadastro de Documento e Acesso.</span>
@@ -814,6 +873,7 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
           {/* STEP 2: Perfil Profissional & Foto */}
           {step === 2 && (
             <div className="space-y-5">
+              {submitError && <ApiErrorNotice error={submitError} />}
               <div className="p-3 rounded-xl bg-[#2E5B37]/10 border border-[#2E5B37]/20 text-[#2E5B37] text-xs flex items-center space-x-2 font-medium">
                 <BookOpen className="w-4 h-4 text-[#2E5B37] shrink-0" />
                 <span>Passo 2 de 4: Foto de Perfil, URL Personalizada, Área de Atuação e Biografia.</span>
@@ -984,6 +1044,7 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
           {/* STEP 3: Redes Sociais Opcionais */}
           {step === 3 && (
             <div className="space-y-5">
+              {submitError && <ApiErrorNotice error={submitError} />}
               <div className="p-3 rounded-xl bg-purple-50 border border-purple-200 text-purple-900 text-xs flex items-center space-x-2 font-medium">
                 <Sparkles className="w-4 h-4 text-purple-600 shrink-0" />
                 <span>Passo 3 de 4: Conecte suas Redes Sociais (Opcional) para dar mais visibilidade ao seu perfil.</span>
@@ -1121,7 +1182,7 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
         {/* Footer Navigation Controls */}
         {step < 4 && (
           <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
-            {step > 1 ? (
+            {step > 1 && !(step === 2 && maxUnlockedStep > 1) ? (
               <button
                 type="button"
                 onClick={handlePrev}
@@ -1183,6 +1244,14 @@ export const TeacherRegistrationModal: React.FC<TeacherRegistrationModalProps> =
           isOpen={isCropModalOpen}
           imageSrc={rawImageSrc}
           onClose={() => setIsCropModalOpen(false)}
+          onError={() => {
+            setIsCropModalOpen(false);
+            setSubmitError(createApiError(
+              'AVATAR_PROCESSING_FAILED',
+              'Não foi possível processar a foto selecionada.',
+              { avatarUrl: ['Escolha outra imagem ou tente novamente.'] },
+            ));
+          }}
           onConfirm={handleConfirmCroppedPhoto}
         />
 

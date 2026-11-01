@@ -1,4 +1,4 @@
-# SDD ledger — plan: docs/superpowers/plans/2026-09-23-asaas-checkout-mvp.md
+# SDD ledger — plan: docs/asaas/plans/2026-09-23-asaas-checkout-mvp.md
 
 Pre-flight: Fase 1 será executada no checkout compartilhado porque o repositório raiz não expõe um Git checkout utilizável e o backend/frontend possuem alterações pré-existentes. Nenhuma alteração será removida ou commitada automaticamente.
 

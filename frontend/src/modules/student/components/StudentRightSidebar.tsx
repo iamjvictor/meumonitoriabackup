@@ -37,6 +37,7 @@ type ChatHistoryMessage = {
   createdAt: string;
   questionContext?: { number?: number };
   contextAttachment?: { type?: 'QUESTION' | 'FLASHCARD' };
+  imageAttachmentIds?: string[];
 };
 
 type ChatSendPayload = {
@@ -44,7 +45,10 @@ type ChatSendPayload = {
   topicId: string | null;
   questionContext: Record<string, unknown> | null;
   contextAttachment: Record<string, unknown> | null;
+  imageAttachmentIds?: string[];
 };
+
+type ImageDraft = { fileName: string; previewUrl: string; attachmentId: string | null; uploading: boolean };
 
 type ChatRetryRequest = {
   monitorId: string;
@@ -324,6 +328,7 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
   const [chatError, setChatError] = useState<string | null>(null);
   const [retryRequest, setRetryRequest] = useState<ChatRetryRequest | null>(null);
   const [attachedFile, setAttachedFile] = useState<string | null>(null);
+  const [imageDraft, setImageDraft] = useState<ImageDraft | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -377,6 +382,10 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
             questionContextNumber: message.questionContext?.number ?? undefined,
             attachmentType: message.contextAttachment?.type
               ?? (message.questionContext ? 'QUESTION' : undefined),
+            imageAttachmentIds: message.imageAttachmentIds ?? [],
+            imagePreviewUrl: message.imageAttachmentIds?.[0]
+              ? `${apiUrl}/api/v1/student/monitors/${encodeURIComponent(selectedAgent.monitorId)}/chat/subjects/${encodeURIComponent(selectedAgent.subjectId)}/images/${encodeURIComponent(message.imageAttachmentIds[0])}`
+              : undefined,
           }));
 
         if (!cancelled) {
@@ -413,11 +422,12 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
     const targetMonitorId = retry?.monitorId || selectedAgent.monitorId;
     const targetSubjectId = retry?.subjectId || selectedAgent.subjectId;
     const rawText = textToSend || inputMessage;
-    if (!retry && !rawText.trim() && !attachedFile && !activeContext && !activeFlashcardContext) return;
+    if (!retry && !rawText.trim() && !attachedFile && !imageDraft && !activeContext && !activeFlashcardContext) return;
+    if (imageDraft?.uploading) return;
 
     const messageText = retry?.payload.message
       || rawText.trim()
-      || 'Pode me ajudar a entender e resolver esta questão passo a passo?';
+      || (imageDraft ? 'Pode me ajudar a entender esta imagem?' : 'Pode me ajudar a entender e resolver esta questão passo a passo?');
     const payload: ChatSendPayload = retry?.payload || {
       message: messageText,
       topicId: activeContext?.topicId || activeFlashcardContext?.topicId || null,
@@ -443,6 +453,7 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
           subjectId: activeFlashcardContext.subjectId,
         }
         : null,
+      imageAttachmentIds: imageDraft?.attachmentId ? [imageDraft.attachmentId] : [],
     };
 
     const userMsg: Message | null = isRetry ? null : {
@@ -452,6 +463,10 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       questionContextNumber: activeContext?.number,
       attachmentType: activeFlashcardContext ? 'FLASHCARD' : activeContext ? 'QUESTION' : undefined,
+      imageAttachmentIds: payload.imageAttachmentIds,
+      imagePreviewUrl: imageDraft?.attachmentId && selectedAgent
+        ? `${apiUrl}/api/v1/student/monitors/${encodeURIComponent(targetMonitorId)}/chat/subjects/${encodeURIComponent(targetSubjectId)}/images/${encodeURIComponent(imageDraft.attachmentId)}`
+        : imageDraft?.previewUrl,
     };
 
     if (userMsg) setMessages((prev) => [...prev, userMsg]);
@@ -466,6 +481,8 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
     if (!isRetry) {
       if (!textToSend) setInputMessage('');
       setAttachedFile(null);
+      if (imageDraft?.previewUrl.startsWith('blob:')) URL.revokeObjectURL(imageDraft.previewUrl);
+      setImageDraft(null);
       if (activeContext && setActiveContext) setActiveContext(null);
       if (activeFlashcardContext && setActiveFlashcardContext) setActiveFlashcardContext(null);
     }
@@ -553,10 +570,30 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
     setChatError(null);
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setAttachedFile(file.name);
+    e.target.value = '';
+    if (!file || !selectedAgent) return;
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type) || file.size > 5 * 1024 * 1024) {
+      setChatError('Escolha uma imagem PNG, JPEG ou WebP de até 5 MB.');
+      return;
+    }
+    const previewUrl = URL.createObjectURL(file);
+    setImageDraft({ fileName: file.name, previewUrl, attachmentId: null, uploading: true });
+    setChatError(null);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      const response = await fetch(`${apiUrl}/api/v1/student/monitors/${encodeURIComponent(selectedAgent.monitorId)}/chat/subjects/${encodeURIComponent(selectedAgent.subjectId)}/images`, {
+        method: 'POST', credentials: 'include', body: form,
+      });
+      const body = await response.json().catch(() => ({})) as { data?: { attachmentId?: string }; error?: string };
+      if (!response.ok || !body.data?.attachmentId) throw new Error(body.error || 'Não foi possível enviar a imagem.');
+      setImageDraft((current) => current?.previewUrl === previewUrl ? { ...current, attachmentId: body.data!.attachmentId!, uploading: false } : current);
+    } catch (error) {
+      URL.revokeObjectURL(previewUrl);
+      setImageDraft(null);
+      setChatError(error instanceof Error ? error.message : 'Não foi possível enviar a imagem.');
     }
   };
 
@@ -759,6 +796,9 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
                   Flashcard anexado
                 </div>
               )}
+              {msg.sender === 'user' && msg.imagePreviewUrl && (
+                <img src={msg.imagePreviewUrl} alt="Imagem anexada à mensagem" className="mb-1 max-h-40 max-w-48 rounded-xl border border-white/30 object-contain" />
+              )}
               <div
                 className={`rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed ${
                   msg.sender === 'user'
@@ -892,6 +932,16 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
             </button>
           </div>
         )}
+        {imageDraft && (
+          <div className="mb-2 flex items-center gap-2 rounded-xl border border-[#0F2942]/10 bg-white p-2 text-xs">
+            <img src={imageDraft.previewUrl} alt="Prévia da imagem selecionada" className="h-12 w-12 rounded-lg object-cover" />
+            <span className="min-w-0 flex-1 truncate">{imageDraft.fileName}{imageDraft.uploading ? ' · enviando…' : ''}</span>
+            <button type="button" aria-label="Remover imagem" onClick={() => {
+              if (imageDraft.previewUrl.startsWith('blob:')) URL.revokeObjectURL(imageDraft.previewUrl);
+              setImageDraft(null);
+            }} className="text-[#0F2942]/50 hover:text-red-600"><X className="h-4 w-4" /></button>
+          </div>
+        )}
 
         {/* Caixa de Entrada Estilo AI Assistant */}
         <div className="flex flex-col rounded-2xl border border-white/20 bg-white p-2.5 shadow-md transition focus-within:ring-2 focus-within:ring-white/40 focus-within:border-white/40">
@@ -926,7 +976,7 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
                 ref={fileInputRef}
                 onChange={handleFileUpload}
                 className="hidden"
-                accept="image/*"
+                accept="image/png,image/jpeg,image/webp"
                 aria-label="Selecionar imagem para anexar"
               />
               <button
@@ -954,18 +1004,16 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
                       Anexar conteúdo
                     </p>
 
-                    {/* Opção 1: Imagem (Desabilitada com Tag Em Breve) */}
-                    <div className="flex w-full items-center justify-between rounded-xl px-2.5 py-2 text-xs font-medium text-[#0F2942]/50 opacity-75">
+                    {process.env.NEXT_PUBLIC_CHAT_IMAGE_INPUT_ENABLED === 'true' ? (
+                    <button type="button" onClick={() => { setIsAttachMenuOpen(false); fileInputRef.current?.click(); }} className="flex w-full items-center justify-between rounded-xl px-2.5 py-2 text-xs font-medium text-[#0F2942] hover:bg-[#F8F5EE]">
                       <div className="flex items-center gap-2.5">
                         <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#E3F1E4] text-[#2E5B37]">
                           <ImageIcon className="h-3.5 w-3.5" />
                         </div>
-                        <span>Imagem</span>
+                        <span>Imagem (até 5 MB)</span>
                       </div>
-                      <span className="rounded-md bg-amber-100 px-1.5 py-0.5 text-[9px] font-extrabold text-amber-800 border border-amber-200">
-                        Em breve
-                      </span>
-                    </div>
+                    </button>
+                    ) : <div className="px-2.5 py-2 text-xs text-[#0F2942]/45">Imagem indisponível</div>}
 
                     {/* Opção 2: Documento (PDF) com Tag Em Breve */}
                     <div className="flex w-full items-center justify-between rounded-xl px-2.5 py-2 text-xs font-medium text-[#0F2942]/50 opacity-75">
@@ -988,7 +1036,7 @@ export function StudentRightSidebar({ className: _className = '' }: { className?
             <button
               type="button"
               onClick={() => handleSendMessage()}
-              disabled={isTyping || (!inputMessage.trim() && !attachedFile && !activeContext && !activeFlashcardContext)}
+              disabled={isTyping || Boolean(imageDraft?.uploading) || (!inputMessage.trim() && !attachedFile && !imageDraft && !activeContext && !activeFlashcardContext)}
               aria-label="Enviar mensagem"
               className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#2E5B37] text-white shadow-xs transition hover:bg-[#1B4332] disabled:opacity-40 disabled:hover:bg-[#2E5B37] cursor-pointer"
             >

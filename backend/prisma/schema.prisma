@@ -7,45 +7,47 @@ datasource db {
 }
 
 model Teacher {
-  id                       String                    @id @default(uuid()) @db.Uuid
-  userId                   String                    @unique @map("user_id") @db.Uuid
-  fullName                 String                    @map("full_name")
-  email                    String
-  phone                    String?
-  username                 String                    @unique
-  area                     String
-  customArea               String?                   @map("custom_area")
-  bio                      String?
-  pageSlug                 String                    @unique @map("page_slug")
-  avatarUrl                String?                   @map("avatar_url")
-  bannerUrl                String?                   @map("banner_url")
-  instagram                String?
-  tiktok                   String?
-  youtube                  String?
-  role                     String                    @default("teacher")
-  emailVerified            Boolean                   @default(false) @map("email_verified")
-  status                   String                    @default("pending")
-  termsAcceptedAt          DateTime                  @map("terms_accepted_at")
-  teacherPercentage        Decimal                   @default(50) @map("teacher_percentage") @db.Decimal(7, 4)
-  currentPaymentAccountId  String?                   @map("current_payment_account_id") @db.Uuid
-  createdAt                DateTime                  @default(now()) @map("created_at")
-  updatedAt                DateTime                  @updatedAt @map("updated_at")
-  referralsMade            TeacherReferral[]         @relation("IndicatorTeacher")
-  referralReceived         TeacherReferral?          @relation("ReferredTeacher")
-  paymentAccounts          PaymentAccount[]          @relation("TeacherPaymentAccounts")
-  credentialOperations     PaymentAccountCredentialOperation[]
-  paymentProfiles          TeacherPaymentProfile[]
-  currentPaymentAccount    PaymentAccount?           @relation("TeacherCurrentPaymentAccount", fields: [currentPaymentAccountId], references: [id], onDelete: SetNull)
-  paymentOrderItems        PaymentOrderItem[]
-  paymentSubscriptionItems PaymentSubscriptionItem[]
-  paymentAuditEntries      PaymentAuditEntry[]
-  monitors                 Monitor[]
-  documents                MonitorDocument[]
-  chunks                   DocumentChunk[]
-  questions                Question[]
-  flashcards               Flashcard[]
-  questionAiGenerations    QuestionAiGeneration[]
-  retrievalEvalCases       RetrievalEvalCase[]
+  id                               String                              @id @default(uuid()) @db.Uuid
+  userId                           String                              @unique @map("user_id") @db.Uuid
+  fullName                         String                              @map("full_name")
+  email                            String
+  phone                            String?
+  username                         String                              @unique
+  area                             String
+  customArea                       String?                             @map("custom_area")
+  bio                              String?
+  pageSlug                         String                              @unique @map("page_slug")
+  avatarUrl                        String?                             @map("avatar_url")
+  bannerUrl                        String?                             @map("banner_url")
+  instagram                        String?
+  tiktok                           String?
+  youtube                          String?
+  role                             String                              @default("teacher")
+  emailVerified                    Boolean                             @default(false) @map("email_verified")
+  status                           String                              @default("pending")
+  termsAcceptedAt                  DateTime                            @map("terms_accepted_at")
+  teacherPercentage                Decimal                             @default(50) @map("teacher_percentage") @db.Decimal(7, 4)
+  currentPaymentAccountId          String?                             @map("current_payment_account_id") @db.Uuid
+  createdAt                        DateTime                            @default(now()) @map("created_at")
+  updatedAt                        DateTime                            @updatedAt @map("updated_at")
+  referralsMade                    TeacherReferral[]                   @relation("IndicatorTeacher")
+  referralReceived                 TeacherReferral?                    @relation("ReferredTeacher")
+  paymentAccounts                  PaymentAccount[]                    @relation("TeacherPaymentAccounts")
+  credentialOperations             PaymentAccountCredentialOperation[]
+  paymentAccountCreationOperations PaymentAccountCreationOperation[]
+  paymentProfiles                  TeacherPaymentProfile[]
+  currentPaymentAccount            PaymentAccount?                     @relation("TeacherCurrentPaymentAccount", fields: [currentPaymentAccountId], references: [id], onDelete: SetNull)
+  paymentOrderItems                PaymentOrderItem[]
+  paymentSubscriptionItems         PaymentSubscriptionItem[]
+  paymentAuditEntries              PaymentAuditEntry[]
+  monitors                         Monitor[]
+  documents                        MonitorDocument[]
+  chunks                           DocumentChunk[]
+  questions                        Question[]
+  flashcards                       Flashcard[]
+  questionAiGenerations            QuestionAiGeneration[]
+  retrievalEvalCases               RetrievalEvalCase[]
+  sponsoredSeatBatches              SponsoredSeatBatch[]
 
   @@index([userId])
   @@index([status])
@@ -83,24 +85,27 @@ model Monitor {
   createdAt                         DateTime      @default(now()) @map("created_at")
   updatedAt                         DateTime      @updatedAt @map("updated_at")
 
-  teacher                    Teacher                     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  subjects                   MonitorSubject[]
-  documents                  MonitorDocument[]
-  chunks                     DocumentChunk[]
-  questions                  Question[]
-  flashcards                 Flashcard[]
-  retrievalEvalCases         RetrievalEvalCase[]
-  subscriptions              StudentSubscription[]
-  purchaseItems              StudentPurchaseItem[]
-  billingItems               BillingSubscriptionItem[]
-  enrollments                StudentEnrollment[]
-  billingSubscriptionChanges BillingSubscriptionChange[]
-  dailyChallenges            DailyChallenge[]
-  questionAttempts           StudentQuestionAttempt[]
-  weeklySimulations          WeeklySimulation[]
-  paymentOrderItems          PaymentOrderItem[]
-  paymentSubscriptionItems   PaymentSubscriptionItem[]
-  paymentAuditEntries        PaymentAuditEntry[]
+  teacher                        Teacher                         @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  subjects                       MonitorSubject[]
+  documents                      MonitorDocument[]
+  chunks                         DocumentChunk[]
+  questions                      Question[]
+  flashcards                     Flashcard[]
+  retrievalEvalCases             RetrievalEvalCase[]
+  subscriptions                  StudentSubscription[]
+  purchaseItems                  StudentPurchaseItem[]
+  billingItems                   BillingSubscriptionItem[]
+  enrollments                    StudentEnrollment[]
+  billingSubscriptionChanges     BillingSubscriptionChange[]
+  dailyChallenges                DailyChallenge[]
+  questionAttempts               StudentQuestionAttempt[]
+  weeklySimulations              WeeklySimulation[]
+  paymentOrderItems              PaymentOrderItem[]
+  paymentSubscriptionItems       PaymentSubscriptionItem[]
+  questionBankMaterializationRun QuestionBankMaterializationRun?
+  paymentAuditEntries            PaymentAuditEntry[]
+  chatImageAttachments           ChatImageAttachment[]
+  sponsoredSeatBatches           SponsoredSeatBatch[]
 
   @@index([teacherId, status])
   @@map("monitors")
@@ -116,6 +121,7 @@ model MonitorSubject {
 
   monitor               Monitor                @relation(fields: [monitorId], references: [id], onDelete: Cascade)
   topics                MonitorTopic[]
+  chatImageAttachments  ChatImageAttachment[]
   documents             MonitorDocument[]
   chunks                DocumentChunk[]
   questions             Question[]
@@ -223,6 +229,30 @@ model MonitorQuestionBankSelection {
   @@index([monitorSubsubtopicId])
   @@index([monitorTopicId, examType, board])
   @@map("monitor_question_bank_selections")
+}
+
+model QuestionBankMaterializationRun {
+  id            String                            @id @default(uuid()) @db.Uuid
+  monitorId     String                            @unique @map("monitor_id") @db.Uuid
+  status        QuestionBankMaterializationStatus @default(QUEUED)
+  totalSelected Int                               @default(0) @map("total_selected")
+  totalEligible Int?                              @map("total_eligible")
+  processed     Int                               @default(0)
+  created       Int                               @default(0)
+  updated       Int                               @default(0)
+  skipped       Int                               @default(0)
+  failed        Int                               @default(0)
+  attempts      Int                               @default(0)
+  startedAt     DateTime?                         @map("started_at")
+  completedAt   DateTime?                         @map("completed_at")
+  errorMessage  String?                           @map("error_message") @db.Text
+  createdAt     DateTime                          @default(now()) @map("created_at")
+  updatedAt     DateTime                          @updatedAt @map("updated_at")
+
+  monitor Monitor @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+
+  @@index([status, updatedAt])
+  @@map("question_bank_materialization_runs")
 }
 
 model MonitorDocument {
@@ -359,6 +389,7 @@ model DocumentVisualAsset {
   id              String   @id @default(uuid()) @db.Uuid
   documentId      String   @map("document_id") @db.Uuid
   parseRunId      String   @map("parse_run_id") @db.Uuid
+  sourceKey       String   @map("source_key")
   layoutElementId String?  @map("layout_element_id") @db.Uuid
   pageNumber      Int      @map("page_number")
   assetType       String   @map("asset_type")
@@ -371,14 +402,61 @@ model DocumentVisualAsset {
   metadata        Json?
   createdAt       DateTime @default(now()) @map("created_at")
 
-  document      MonitorDocument        @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  parseRun      DocumentParseRun       @relation(fields: [parseRunId], references: [id], onDelete: Cascade)
-  layoutElement DocumentLayoutElement? @relation(fields: [layoutElementId], references: [id], onDelete: SetNull)
+  document          MonitorDocument            @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  parseRun          DocumentParseRun           @relation(fields: [parseRunId], references: [id], onDelete: Cascade)
+  layoutElement     DocumentLayoutElement?     @relation(fields: [layoutElementId], references: [id], onDelete: SetNull)
+  chunkLinks        DocumentChunkVisualAsset[]
+  questionLinks     QuestionVisualAsset[]
+  questionSpanLinks QuestionSpanVisualAsset[]
+  visualIndex       DocumentVisualAssetIndex?
 
+  @@unique([documentId, parseRunId, sourceKey])
   @@index([documentId, pageNumber, assetType])
   @@index([parseRunId, assetType])
   @@index([layoutElementId])
   @@map("document_visual_assets")
+}
+
+model DocumentVisualAssetIndex {
+  visualAssetId      String                       @id @map("visual_asset_id") @db.Uuid
+  description        String?
+  descriptionStatus  String                       @default("PENDING") @map("description_status")
+  descriptionModel   String?                      @map("description_model")
+  descriptionVersion String?                      @map("description_version")
+  embeddingModel     String?                      @map("embedding_model")
+  embeddingVersion   String?                      @map("embedding_version")
+  errorCode          String?                      @map("error_code")
+  embedding          Unsupported("vector(2048)")?
+  updatedAt          DateTime                     @updatedAt @map("updated_at")
+
+  visualAsset DocumentVisualAsset @relation(fields: [visualAssetId], references: [id], onDelete: Cascade)
+
+  @@index([descriptionStatus])
+  @@map("document_visual_asset_indexes")
+}
+
+model ChatImageAttachment {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @map("user_id") @db.Uuid
+  studentId   String   @map("student_id") @db.Uuid
+  monitorId   String   @map("monitor_id") @db.Uuid
+  subjectId   String   @map("subject_id") @db.Uuid
+  storagePath String   @unique @map("storage_path")
+  mimeType    String   @map("mime_type")
+  sizeBytes   Int      @map("size_bytes")
+  width       Int
+  height      Int
+  checksum    String   @db.VarChar(64)
+  expiresAt   DateTime @map("expires_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  student Student        @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  monitor Monitor        @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+  subject MonitorSubject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@index([studentId, monitorId, subjectId, expiresAt])
+  @@index([expiresAt])
+  @@map("chat_image_attachments")
 }
 
 model DocumentBlockElement {
@@ -594,6 +672,15 @@ model DocumentChunk {
   charEnd           Int?                         @map("char_end")
   pageStart         Int?                         @map("page_start")
   pageEnd           Int?                         @map("page_end")
+  pages             Json?
+  headings          Json?
+  chunkType         String?                      @map("chunk_type")
+  engine            String?
+  tokenizerId       String?                      @map("tokenizer_id")
+  chunkerVersion    String?                      @map("chunker_version")
+  provenance        Json?
+  docHash           String?                      @map("doc_hash") @db.VarChar(64)
+  sourceKey         String?                      @unique @map("source_key") @db.VarChar(255)
   embeddingModel    String?                      @map("embedding_model")
   embeddingVersion  String?                      @map("embedding_version")
   embeddedAt        DateTime?                    @map("embedded_at")
@@ -602,13 +689,14 @@ model DocumentChunk {
   createdAt         DateTime                     @default(now()) @map("created_at")
   updatedAt         DateTime                     @updatedAt @map("updated_at")
 
-  document          MonitorDocument      @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  teacher           Teacher              @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  monitor           Monitor              @relation(fields: [monitorId], references: [id], onDelete: Cascade)
-  subject           MonitorSubject       @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-  block             DocumentBlock?       @relation(fields: [blockId], references: [id], onDelete: SetNull)
+  document          MonitorDocument            @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  teacher           Teacher                    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  monitor           Monitor                    @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+  subject           MonitorSubject             @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  block             DocumentBlock?             @relation(fields: [blockId], references: [id], onDelete: SetNull)
   topicLinks        DocumentChunkTopic[]
   questionSources   QuestionSource[]
+  visualAssets      DocumentChunkVisualAsset[]
   questionSpanLinks QuestionSpanChunk[]
   flashcardSources  FlashcardSource[]
 
@@ -672,6 +760,7 @@ model Question {
   subsubtopic           MonitorSubsubtopic?      @relation(fields: [subsubtopicId], references: [id], onDelete: SetNull)
   questionBankItem      QuestionBankItem?        @relation(fields: [questionBankItemId], references: [id], onDelete: Restrict)
   sources               QuestionSource[]
+  visualAssets          QuestionVisualAsset[]
   topicLinks            QuestionTopic[]
   contentReports        StudentContentReport[]
   aiGenerations         QuestionAiGeneration[]
@@ -686,6 +775,54 @@ model Question {
   @@index([subsubtopicId])
   @@index([monitorId, subjectId, topicId, status])
   @@map("questions")
+}
+
+model DocumentChunkVisualAsset {
+  chunkId           String   @map("chunk_id") @db.Uuid
+  visualAssetId     String   @map("visual_asset_id") @db.Uuid
+  associationMethod String   @map("association_method")
+  role              String   @default("INLINE")
+  confidence        Float?
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  chunk       DocumentChunk       @relation(fields: [chunkId], references: [id], onDelete: Cascade)
+  visualAsset DocumentVisualAsset @relation(fields: [visualAssetId], references: [id], onDelete: Cascade)
+
+  @@id([chunkId, visualAssetId])
+  @@index([visualAssetId])
+  @@map("document_chunk_visual_assets")
+}
+
+model QuestionVisualAsset {
+  questionId        String   @map("question_id") @db.Uuid
+  visualAssetId     String   @map("visual_asset_id") @db.Uuid
+  associationMethod String   @map("association_method")
+  role              String   @default("STATEMENT")
+  confidence        Float?
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  question    Question            @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  visualAsset DocumentVisualAsset @relation(fields: [visualAssetId], references: [id], onDelete: Cascade)
+
+  @@id([questionId, visualAssetId])
+  @@index([visualAssetId])
+  @@map("question_visual_assets")
+}
+
+model QuestionSpanVisualAsset {
+  questionSpanId    String   @map("question_span_id") @db.Uuid
+  visualAssetId     String   @map("visual_asset_id") @db.Uuid
+  associationMethod String   @map("association_method")
+  role              String   @default("STATEMENT")
+  confidence        Float?
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  questionSpan QuestionSpan        @relation(fields: [questionSpanId], references: [id], onDelete: Cascade)
+  visualAsset  DocumentVisualAsset @relation(fields: [visualAssetId], references: [id], onDelete: Cascade)
+
+  @@id([questionSpanId, visualAssetId])
+  @@index([visualAssetId])
+  @@map("question_span_visual_assets")
 }
 
 model QuestionBankItem {
@@ -744,10 +881,11 @@ model QuestionSpan {
   createdAt       DateTime             @default(now()) @map("created_at")
   updatedAt       DateTime             @updatedAt @map("updated_at")
 
-  document      MonitorDocument     @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  documentBlock DocumentBlock?      @relation(fields: [documentBlockId], references: [id], onDelete: SetNull)
+  document      MonitorDocument           @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  documentBlock DocumentBlock?            @relation(fields: [documentBlockId], references: [id], onDelete: SetNull)
   chunks        QuestionSpanChunk[]
   candidate     QuestionCandidate?
+  visualAssets  QuestionSpanVisualAsset[]
 
   @@index([documentId, status])
   @@index([documentBlockId])
@@ -1049,6 +1187,15 @@ enum MonitorStatus {
   PUBLISHED
   PAUSED
   ARCHIVED
+}
+
+enum QuestionBankMaterializationStatus {
+  QUEUED
+  PROCESSING
+  RETRYING
+  COMPLETED
+  COMPLETED_WITH_WARNINGS
+  FAILED
 }
 
 enum PayoutMode {
@@ -1367,6 +1514,8 @@ model Student {
   flashcardProgresses        StudentFlashcardProgress[]
   flashcardReviews           StudentFlashcardReviewLog[]
   contentReports             StudentContentReport[]
+  chatImageAttachments       ChatImageAttachment[]
+  sponsoredSeats             SponsoredSeat[]
   weeklySimulations          WeeklySimulation[]
 
   @@index([userId])
@@ -1598,52 +1747,79 @@ model BillingWebhookEvent {
 }
 
 model PaymentAccount {
-  id                   String                 @id @default(uuid()) @db.Uuid
-  teacherId            String                 @map("teacher_id") @db.Uuid
-  environment          String                 @default("SANDBOX")
-  provider             String                 @default("ASAAS")
-  providerAccountId    String?                @unique @map("provider_account_id")
-  providerWebhookId    String?                @unique @map("provider_webhook_id")
-  walletId             String?                @unique @map("wallet_id")
-  revision             Int                    @default(1)
-  status               String                 @default("NOT_STARTED")
-  generalStatus        String?                @map("general_status")
-  commercialInfoStatus String?                @map("commercial_info_status")
-  bankAccountStatus    String?                @map("bank_account_status")
-  documentationStatus  String?                @map("documentation_status")
-  activationChannel    String?                @map("activation_channel")
-  onboardingUrl        String?                @map("onboarding_url") @db.Text
-  credentialRef        String?                @map("credential_ref")
-  rejectionReason      String?                @map("rejection_reason") @db.Text
-  verifiedAt           DateTime?              @map("verified_at")
-  lastEventAt          DateTime?              @map("last_event_at")
-  createdAt            DateTime               @default(now()) @map("created_at")
-  updatedAt            DateTime               @updatedAt @map("updated_at")
-  teacher              Teacher                @relation("TeacherPaymentAccounts", fields: [teacherId], references: [id], onDelete: Cascade)
-  currentTeachers      Teacher[]              @relation("TeacherCurrentPaymentAccount")
-  paymentProfile       TeacherPaymentProfile?
-  splits               PaymentSplit[]
-  webhookEvents        PaymentWebhookEvent[]
-  credential           PaymentAccountCredential?
+  id                          String                    @id @default(uuid()) @db.Uuid
+  teacherId                   String                    @map("teacher_id") @db.Uuid
+  environment                 String                    @default("SANDBOX")
+  provider                    String                    @default("ASAAS")
+  providerAccountId           String?                   @unique @map("provider_account_id")
+  providerWebhookId           String?                   @unique @map("provider_webhook_id")
+  webhookSyncState            String                    @default("PENDING") @map("webhook_sync_state")
+  webhookSyncAttempts         Int                       @default(0) @map("webhook_sync_attempts")
+  webhookSyncNextAttemptAt    DateTime?                 @default(now()) @map("webhook_sync_next_attempt_at")
+  webhookSyncLeaseUntil       DateTime?                 @map("webhook_sync_lease_until")
+  webhookSyncErrorCode        String?                   @map("webhook_sync_error_code")
+  walletId                    String?                   @unique @map("wallet_id")
+  revision                    Int                       @default(1)
+  status                      String                    @default("NOT_STARTED")
+  generalStatus               String?                   @map("general_status")
+  commercialInfoStatus        String?                   @map("commercial_info_status")
+  bankAccountStatus           String?                   @map("bank_account_status")
+  documentationStatus         String?                   @map("documentation_status")
+  activationChannel           String?                   @map("activation_channel")
+  onboardingUrl               String?                   @map("onboarding_url") @db.Text
+  credentialRef               String?                   @map("credential_ref")
+  rejectionReason             String?                   @map("rejection_reason") @db.Text
+  verifiedAt                  DateTime?                 @map("verified_at")
+  lastEventAt                 DateTime?                 @map("last_event_at")
+  generalStatusEventAt        DateTime?                 @map("general_status_event_at")
+  commercialInfoStatusEventAt DateTime?                 @map("commercial_info_status_event_at")
+  bankAccountStatusEventAt    DateTime?                 @map("bank_account_status_event_at")
+  documentationStatusEventAt  DateTime?                 @map("documentation_status_event_at")
+  createdAt                   DateTime                  @default(now()) @map("created_at")
+  updatedAt                   DateTime                  @updatedAt @map("updated_at")
+  teacher                     Teacher                   @relation("TeacherPaymentAccounts", fields: [teacherId], references: [id], onDelete: Cascade)
+  currentTeachers             Teacher[]                 @relation("TeacherCurrentPaymentAccount")
+  paymentProfile              TeacherPaymentProfile?
+  splits                      PaymentSplit[]
+  webhookEvents               PaymentWebhookEvent[]
+  credential                  PaymentAccountCredential?
 
   @@unique([teacherId, environment, revision])
   @@index([environment, providerAccountId])
   @@index([environment, walletId])
   @@index([teacherId, status])
   @@index([environment, status])
+  @@index([environment, webhookSyncState, webhookSyncNextAttemptAt], map: "payment_accounts_webhook_sync_due_idx")
+  @@index([environment, webhookSyncState, webhookSyncLeaseUntil], map: "payment_accounts_webhook_sync_lease_idx")
   @@map("payment_accounts")
 }
 
+model PaymentAccountCreationOperation {
+  id                String   @id @default(uuid()) @db.Uuid
+  teacherId         String   @map("teacher_id") @db.Uuid
+  environment       String
+  status            String   @default("STARTED")
+  providerAccountId String?  @map("provider_account_id")
+  failureCode       String?  @map("failure_code")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  teacher           Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@unique([teacherId, environment], map: "payment_account_creation_operations_teacher_environment_key")
+  @@index([environment, status, updatedAt], map: "payment_account_creation_ops_state_idx")
+  @@map("payment_account_creation_operations")
+}
+
 model PaymentAccountCredential {
-  id               String         @id @default(uuid()) @db.Uuid
-  paymentAccountId String         @unique @map("payment_account_id") @db.Uuid
+  id               String   @id @default(uuid()) @db.Uuid
+  paymentAccountId String   @unique @map("payment_account_id") @db.Uuid
   environment      String
-  ciphertext       String         @db.Text
+  ciphertext       String   @db.Text
   nonce            String
-  authTag          String         @map("auth_tag")
-  keyVersion       Int            @default(1) @map("key_version")
-  createdAt        DateTime       @default(now()) @map("created_at")
-  updatedAt        DateTime       @updatedAt @map("updated_at")
+  authTag          String   @map("auth_tag")
+  keyVersion       Int      @default(1) @map("key_version")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
 
   paymentAccount PaymentAccount @relation(fields: [paymentAccountId], references: [id], onDelete: Cascade)
 
@@ -1651,14 +1827,14 @@ model PaymentAccountCredential {
 }
 
 model PaymentAccountCredentialOperation {
-  id            String   @id @default(uuid()) @db.Uuid
-  teacherId     String   @map("teacher_id") @db.Uuid
-  environment   String
-  operation     String
-  operationKey  String   @map("operation_key")
-  result        Json
-  createdAt     DateTime @default(now()) @map("created_at")
-  teacher       Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  id           String   @id @default(uuid()) @db.Uuid
+  teacherId    String   @map("teacher_id") @db.Uuid
+  environment  String
+  operation    String
+  operationKey String   @map("operation_key")
+  result       Json
+  createdAt    DateTime @default(now()) @map("created_at")
+  teacher      Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
 
   @@unique([teacherId, environment, operation, operationKey])
   @@map("payment_account_credential_operations")
@@ -1718,6 +1894,9 @@ model PaymentOrder {
   currency           String               @default("BRL")
   externalReference  String               @map("external_reference")
   requestFingerprint String               @map("request_fingerprint")
+  billingInterval    String               @default("MONTHLY") @map("billing_interval")
+  serviceMonths      Int                  @default(1) @map("service_months")
+  splitPolicy        String               @default("TEACHER_ELIGIBLE") @map("split_policy")
   createdAt          DateTime             @default(now()) @map("created_at")
   updatedAt          DateTime             @updatedAt @map("updated_at")
   student            Student              @relation(fields: [studentId], references: [id], onDelete: Restrict)
@@ -1730,6 +1909,96 @@ model PaymentOrder {
   @@index([studentId, status])
   @@index([customerId])
   @@map("payment_orders")
+}
+
+model SponsoredSeatBatch {
+  id                    String          @id @default(uuid()) @db.Uuid
+  teacherId             String          @map("teacher_id") @db.Uuid
+  monitorId             String          @map("monitor_id") @db.Uuid
+  environment           String          @default("SANDBOX")
+  billingInterval       String          @map("billing_interval")
+  billingType           String          @default("CREDIT_CARD") @map("billing_type")
+  serviceMonths         Int             @map("service_months")
+  status                String          @default("PENDING")
+  currency              String          @default("BRL")
+  seatCount             Int             @map("seat_count")
+  grossPriceCents       Int             @map("gross_price_cents")
+  platformAmountCents   Int             @map("platform_amount_cents")
+  teacherPercentage     Decimal         @map("teacher_percentage") @db.Decimal(7, 4)
+  totalAmountCents      Int             @map("total_amount_cents")
+  externalReference     String          @map("external_reference")
+  idempotencyKey        String          @map("idempotency_key")
+  requestFingerprint    String          @map("request_fingerprint")
+  providerCheckoutId    String?         @map("provider_checkout_id")
+  checkoutUrl           String?         @map("checkout_url") @db.Text
+  checkoutExpiresAt     DateTime?       @map("checkout_expires_at")
+  providerSubscriptionId String?        @map("provider_subscription_id")
+  currentPeriodStart    DateTime?       @map("current_period_start")
+  currentPeriodEnd      DateTime?       @map("current_period_end")
+  cancelAtPeriodEnd     Boolean         @default(false) @map("cancel_at_period_end")
+  paidAt                DateTime?       @map("paid_at")
+  cancelledAt           DateTime?       @map("cancelled_at")
+  createdAt             DateTime        @default(now()) @map("created_at")
+  updatedAt             DateTime        @updatedAt @map("updated_at")
+
+  teacher Teacher          @relation(fields: [teacherId], references: [id], onDelete: Restrict)
+  monitor Monitor          @relation(fields: [monitorId], references: [id], onDelete: Restrict)
+  seats   SponsoredSeat[]
+  payments SponsoredSeatPayment[]
+
+  @@unique([environment, externalReference])
+  @@unique([environment, providerCheckoutId])
+  @@unique([environment, providerSubscriptionId])
+  @@unique([teacherId, idempotencyKey])
+  @@index([teacherId, status, createdAt])
+  @@index([monitorId, status])
+  @@map("sponsored_seat_batches")
+}
+
+model SponsoredSeat {
+  id                    String             @id @default(uuid()) @db.Uuid
+  batchId               String             @map("batch_id") @db.Uuid
+  emailNormalized       String             @map("email_normalized")
+  studentId             String?            @map("student_id") @db.Uuid
+  status                String             @default("PENDING_PAYMENT")
+  startsAt              DateTime?          @map("starts_at")
+  endsAt                DateTime?          @map("ends_at")
+  accessRevokedAt       DateTime?          @map("access_revoked_at")
+  createdAt             DateTime           @default(now()) @map("created_at")
+  updatedAt             DateTime           @updatedAt @map("updated_at")
+
+  batch   SponsoredSeatBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  student Student?          @relation(fields: [studentId], references: [id], onDelete: SetNull)
+
+  @@unique([batchId, emailNormalized])
+  @@index([emailNormalized, status])
+  @@index([studentId, status])
+  @@index([batchId, status])
+  @@map("sponsored_seats")
+}
+
+model SponsoredSeatPayment {
+  id                 String             @id @default(uuid()) @db.Uuid
+  batchId            String             @map("batch_id") @db.Uuid
+  environment        String             @default("SANDBOX")
+  providerPaymentId  String             @map("provider_payment_id")
+  providerCheckoutId String?            @map("provider_checkout_id")
+  status             String             @default("CONFIRMED")
+  grossCents         Int                @map("gross_cents")
+  confirmedAt        DateTime?          @map("confirmed_at")
+  receivedAt         DateTime?          @map("received_at")
+  servicePeriodStart DateTime?          @map("service_period_start")
+  servicePeriodEnd   DateTime?          @map("service_period_end")
+  lastProviderEventAt DateTime?         @map("last_provider_event_at")
+  lastProviderEventId String?           @map("last_provider_event_id")
+  createdAt          DateTime           @default(now()) @map("created_at")
+  updatedAt          DateTime           @updatedAt @map("updated_at")
+  batch              SponsoredSeatBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+
+  @@unique([environment, providerPaymentId])
+  @@index([batchId, status])
+  @@index([providerCheckoutId])
+  @@map("sponsored_seat_payments")
 }
 
 model PaymentOrderItem {
@@ -1784,6 +2053,11 @@ model PaymentSubscription {
   environment            String                    @default("SANDBOX")
   providerSubscriptionId String?                   @map("provider_subscription_id")
   status                 String                    @default("PENDING")
+  splitStatus            String?                   @map("split_status")
+  accessRevocationReason String?                   @map("access_revocation_reason")
+  lastProviderEventAt    DateTime?                 @map("last_provider_event_at")
+  lastProviderEventId    String?                   @map("last_provider_event_id")
+  splitStatusEventAt     DateTime?                 @map("split_status_event_at")
   nextDueDate            DateTime?                 @map("next_due_date")
   anchorDay              Int?                      @map("anchor_day")
   currentPeriodStart     DateTime?                 @map("current_period_start")
@@ -1844,6 +2118,8 @@ model PaymentCharge {
   servicePeriodStart       DateTime?             @map("service_period_start")
   servicePeriodEnd         DateTime?             @map("service_period_end")
   status                   String                @default("PENDING")
+  lastProviderEventAt      DateTime?             @map("last_provider_event_at")
+  lastProviderEventId      String?               @map("last_provider_event_id")
   grossCents               Int                   @map("gross_cents")
   netCents                 Int?                  @map("net_cents")
   feeCents                 Int?                  @map("fee_cents")
@@ -1908,23 +2184,24 @@ model PaymentIdempotencyKey {
 }
 
 model PaymentWebhookEvent {
-  id                String          @id @default(uuid()) @db.Uuid
-  environment       String          @default("SANDBOX")
-  providerAccountId String?         @map("provider_account_id")
-  providerEventId   String          @map("provider_event_id")
-  eventType         String          @map("event_type")
-  payload           Json
-  state             String          @default("RECEIVED")
-  attempts          Int             @default(0)
-  nextAttemptAt     DateTime?       @map("next_attempt_at")
-  leaseUntil        DateTime?       @map("lease_until")
-  processedAt       DateTime?       @map("processed_at")
-  failureMessage    String?         @map("failure_message")
-  createdAt         DateTime        @default(now()) @map("created_at")
-  updatedAt         DateTime        @updatedAt @map("updated_at")
-  account           PaymentAccount? @relation(fields: [providerAccountId], references: [providerAccountId], onDelete: SetNull)
+  id                      String          @id @default(uuid()) @db.Uuid
+  environment             String          @default("SANDBOX")
+  providerAccountId       String?         @map("provider_account_id")
+  sourceProviderAccountId String?         @map("source_provider_account_id")
+  providerEventId         String          @map("provider_event_id")
+  eventType               String          @map("event_type")
+  payload                 Json
+  state                   String          @default("RECEIVED")
+  attempts                Int             @default(0)
+  nextAttemptAt           DateTime?       @map("next_attempt_at")
+  leaseUntil              DateTime?       @map("lease_until")
+  processedAt             DateTime?       @map("processed_at")
+  failureMessage          String?         @map("failure_message")
+  createdAt               DateTime        @default(now()) @map("created_at")
+  updatedAt               DateTime        @updatedAt @map("updated_at")
+  account                 PaymentAccount? @relation(fields: [providerAccountId], references: [providerAccountId], onDelete: SetNull)
 
-  @@unique([environment, providerAccountId, providerEventId])
+  @@unique([environment, providerEventId])
   @@index([state, nextAttemptAt])
   @@index([eventType])
   @@map("payment_webhook_events")

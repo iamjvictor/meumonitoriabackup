@@ -86,7 +86,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
   );
   const paymentAccountStatus = paymentAccount?.status.toUpperCase() ?? null;
   const paymentAccountNeedsCorrection = paymentAccountStatus === 'REJECTED' || paymentAccountStatus === 'SUSPENDED';
-  const canCreateProducts = isProfileActive && isPaymentAccountEligible;
+  const canCreateProducts = hasProfile;
 
   const focusPaymentAccount = useCallback(() => {
     document.getElementById('teacher-payment-account')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -99,8 +99,8 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
 
   const openMonitorCreation = useCallback(() => {
     if (canCreateProducts) setIsMonitorCreationOpen(true);
-    else focusPaymentAccount();
-  }, [canCreateProducts, focusPaymentAccount]);
+    else onOpenOnboarding();
+  }, [canCreateProducts, onOpenOnboarding]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(publicUrl);
@@ -123,7 +123,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
   };
 
   useEffect(() => {
-    if (!isProfileActive) {
+    if (!hasProfile) {
       setMonitors([]);
       onReportedQuestionsChange?.([]);
       setLoadingMonitors(false);
@@ -155,7 +155,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
     return () => {
       isCurrent = false;
     };
-  }, [isProfileActive, onReportedQuestionsChange, router]);
+  }, [hasProfile, onReportedQuestionsChange, router]);
 
   useEffect(() => {
     if (!isProfileActive) {
@@ -298,7 +298,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
       title: 'Configurar Conta de Recebimento',
       description: paymentAccountNeedsCorrection
         ? paymentAccount?.rejectionReason || 'A conta precisa ser regularizada antes de liberar seus produtos.'
-        : 'Cadastre sua conta de recebimento no Asaas e aguarde a aprovação para liberar a criação e publicação dos produtos.',
+        : 'Cadastre sua conta de recebimento no Asaas para habilitar os repasses. Você já pode criar monitores; a aprovação é necessária para receber vendas.',
       status: isPaymentAccountEligible ? 'Aprovado' : paymentAccountNeedsCorrection ? (paymentAccountStatus === 'SUSPENDED' ? 'Suspenso' : 'Requer correção') : paymentAccount ? 'Em Análise' : 'Pendente',
       isCompleted: isPaymentAccountEligible,
       inReview: Boolean(paymentAccount) && !isPaymentAccountEligible,
@@ -318,7 +318,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
     {
       step: '04',
       title: 'Criar Seu Produto & Assistente IA',
-      description: 'Após o perfil ser aprovado e a conta de recebimento ser aprovada pelo Asaas, crie seus assistentes inteligentes de estudo.',
+      description: 'Crie e organize seus monitores como rascunho. Para publicar, o perfil e a conta de recebimento precisam estar aprovados.',
       status: canCreateProducts ? (hasCreatedProducts ? 'Concluído' : 'Liberado para Criar') : 'Bloqueado',
       isCompleted: canCreateProducts && hasCreatedProducts,
       isLocked: !canCreateProducts,
@@ -329,164 +329,161 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
 
   return (
     <div className="space-y-8">
-      {/* Banner Superior: Enquanto carrega exibe Skeleton/Loading. Quando carregar: se NÃO tiver agente publicado, exibe Onboarding Banner. Se TIVER ao menos 1 publicado, exibe o Banner com Link da Página Pública + Bônus 50% */}
-      {loadingMonitors ? (
-        <div className="w-full bg-gradient-to-r from-[#132E20] via-[#1B3B2B] to-[#2E5B37] rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-white/10 relative overflow-hidden mb-8 min-h-[160px] flex items-center justify-center animate-pulse">
-          <div className="flex items-center space-x-3 text-emerald-200/90 font-medium text-sm">
-            <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
-            <span>Carregando informações do seu painel...</span>
+      {/* Banner Superior Principal + Extensão de Conta de Recebimento */}
+      <div className="w-full">
+        {loadingMonitors ? (
+          <div className="w-full bg-gradient-to-r from-[#132E20] via-[#1B3B2B] to-[#2E5B37] rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-white/10 relative overflow-hidden mb-8 min-h-[160px] flex items-center justify-center animate-pulse">
+            <div className="flex items-center space-x-3 text-emerald-200/90 font-medium text-sm">
+              <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
+              <span>Carregando informações do seu painel...</span>
+            </div>
           </div>
-        </div>
-      ) : monitorLoadError ? (
-        <div className="w-full rounded-3xl border border-amber-200 bg-amber-50 p-6 text-sm font-semibold text-amber-900 shadow-sm">{monitorLoadError} Você ainda pode configurar sua conta de recebimento.</div>
-      ) : !hasPublishedAgent ? (
-        <TeacherOnboardingBanner
-          teacher={teacher}
-          hasProfile={hasProfile}
-          hasProducts={monitors.length > 0}
-          paymentAccountApproved={isPaymentAccountEligible}
-          paymentAccountStatus={paymentAccountStatus}
-          paymentAccountRejectionReason={paymentAccount?.rejectionReason ?? null}
-          onStartOnboarding={onOpenOnboarding}
-        />
-      ) : (
-        <div className="w-full bg-gradient-to-br from-[#0A1D30] via-[#0F2942] to-[#18395B] rounded-3xl p-6 sm:p-8 text-white shadow-2xl border border-[#2E5B37]/40 relative overflow-hidden mb-8 group animate-fadeIn">
-          {/* Background Glow */}
-          <div className="absolute -right-16 -top-16 w-80 h-80 bg-[#2E5B37]/20 rounded-full blur-3xl group-hover:bg-[#2E5B37]/30 transition-all duration-700 pointer-events-none" />
+        ) : monitorLoadError ? (
+          <div className="w-full rounded-3xl border border-amber-200 bg-amber-50 p-6 text-sm font-semibold text-amber-900 shadow-sm">{monitorLoadError} Você ainda pode configurar sua conta de recebimento.</div>
+        ) : !hasPublishedAgent ? (
+          <TeacherOnboardingBanner
+            teacher={teacher}
+            hasProfile={hasProfile}
+            hasProducts={monitors.length > 0}
+            paymentAccountApproved={isPaymentAccountEligible}
+            paymentAccountStatus={paymentAccountStatus}
+            paymentAccountRejectionReason={paymentAccount?.rejectionReason ?? null}
+            onStartOnboarding={onOpenOnboarding}
+            hasBottomExtension={hasProfile && !isPaymentAccountEligible}
+          />
+        ) : (
+          <div className={`w-full bg-gradient-to-br from-[#0A1D30] via-[#0F2942] to-[#18395B] ${hasProfile && !isPaymentAccountEligible ? 'rounded-t-3xl rounded-b-none border-b-0 mb-0' : 'rounded-3xl mb-8'} p-6 sm:p-8 text-white shadow-2xl border border-[#2E5B37]/40 relative overflow-hidden group animate-fadeIn`}>
+            {/* Background Glow */}
+            <div className="absolute -right-16 -top-16 w-80 h-80 bg-[#2E5B37]/20 rounded-full blur-3xl group-hover:bg-[#2E5B37]/30 transition-all duration-700 pointer-events-none" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 items-center relative z-10">
-            
-            {/* Esquerda: Banner Página Pública */}
-            <div className="lg:col-span-7 space-y-5">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#2E5B37]/20 border border-[#2E5B37]/40 flex items-center justify-center text-[#52B76D] shadow-inner">
-                  <Globe className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-extrabold tracking-wider px-3 py-1 rounded-full bg-[#2E5B37]/30 text-white border border-[#2E5B37]/50 uppercase flex items-center space-x-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#52B76D] animate-ping" />
-                  <span>PÁGINA ATIVA</span>
-                </span>
-              </div>
-
-              <div className="space-y-1.5">
-                <h2 className="text-white font-heading text-2xl sm:text-3xl font-bold tracking-tight">
-                  Sua Página Pública
-                </h2>
-                <p className="text-sm text-slate-200 font-medium leading-relaxed max-w-xl">
-                  A vitrine onde alunos encontram seus assistentes de estudo e assinam seus planos.
-                </p>
-              </div>
-
-              {/* URL Input Box & Copy Action */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
-                <div className="flex-1 p-1 bg-[#071624]/90 rounded-2xl border border-[#2E5B37]/40 flex items-center justify-between group/link focus-within:border-[#52B76D]/60 transition-all shadow-inner">
-                  <span className="px-3.5 py-2 font-mono text-xs text-slate-200 truncate select-all">
-                    {publicUrl.replace('http://', '').replace('https://', '')}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 items-center relative z-10">
+              
+              {/* Esquerda: Banner Página Pública */}
+              <div className="lg:col-span-7 space-y-5">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 rounded-2xl bg-[#2E5B37]/20 border border-[#2E5B37]/40 flex items-center justify-center text-[#52B76D] shadow-inner">
+                    <Globe className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-extrabold tracking-wider px-3 py-1 rounded-full bg-[#2E5B37]/30 text-white border border-[#2E5B37]/50 uppercase flex items-center space-x-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#52B76D] animate-ping" />
+                    <span>PÁGINA ATIVA</span>
                   </span>
-                  
-                  <button
-                    onClick={handleCopyLink}
-                    className={`min-h-11 px-3.5 py-2 rounded-xl flex items-center justify-center gap-1.5 transition-all cursor-pointer text-xs font-bold shrink-0 ${
-                      copied
-                        ? 'bg-[#2E5B37] text-white scale-95 font-extrabold shadow-sm'
-                        : 'bg-[#2E5B37]/30 hover:bg-[#2E5B37]/50 text-white border border-[#2E5B37]/50'
-                    }`}
-                    title="Copiar Link da Página"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-4 h-4 stroke-[3px]" />
-                        <span className="text-[10px] uppercase font-bold tracking-wider">Copiado!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-4 h-4" />
-                        <span className="text-xs">Copiar</span>
-                      </>
-                    )}
-                  </button>
                 </div>
 
-                <Link
-                  href={publicUrl}
-                  target="_blank"
-                  className="px-6 py-3.5 rounded-2xl bg-[#2E5B37] hover:bg-[#23472B] text-white font-bold text-xs flex items-center justify-center space-x-2 transition-all cursor-pointer shadow-lg shadow-[#2E5B37]/30 hover:shadow-xl hover:shadow-[#2E5B37]/40 active:scale-[0.98] shrink-0 border border-[#2E5B37]/40"
-                >
-                  <span className="whitespace-nowrap font-bold">Acessar Minha Página</span>
-                  <ExternalLink className="w-4 h-4 stroke-[2.5px]" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Direita Superior: Card de Comissão (50%) & Indicação (1%) */}
-            <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-[#2E5B37]/30 pt-6 lg:pt-0 lg:pl-8 flex flex-col justify-center">
-              <div className="bg-[#071624]/90 border border-[#2E5B37]/40 rounded-2xl p-5 space-y-4 shadow-inner relative overflow-hidden">
-                
-                <div className="flex items-center justify-between">
-                  <div className="text-xs font-bold text-white">
-                    <span>Taxa por Venda</span>
-                  </div>
+                <div className="space-y-1.5">
+                  <h2 className="text-white font-heading text-2xl sm:text-3xl font-bold tracking-tight">
+                    Sua Página Pública
+                  </h2>
+                  <p className="text-sm text-slate-200 font-medium leading-relaxed max-w-xl">
+                    A vitrine onde alunos encontram seus assistentes de estudo e assinam seus planos.
+                  </p>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-y-2 gap-x-3.5">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-4xl sm:text-5xl font-extrabold text-[#52B76D] font-heading tracking-tight">
-                      50%
+                {/* URL Input Box & Copy Action */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+                  <div className="flex-1 p-1 bg-[#071624]/90 rounded-2xl border border-[#2E5B37]/40 flex items-center justify-between group/link focus-within:border-[#52B76D]/60 transition-all shadow-inner">
+                    <span className="px-3.5 py-2 font-mono text-xs text-slate-200 truncate select-all">
+                      {publicUrl.replace('http://', '').replace('https://', '')}
                     </span>
-                    <div 
-                      className="inline-flex items-center justify-center p-1.5 rounded-full bg-[#2E5B37]/40 text-[#52B76D] border border-[#2E5B37]/60 shadow-[0_0_12px_rgba(82,183,109,0.35)]"
-                      title="Comissão por Venda"
+                    
+                    <button
+                      onClick={handleCopyLink}
+                      className={`min-h-11 px-3.5 py-2 rounded-xl flex items-center justify-center gap-1.5 transition-all cursor-pointer text-xs font-bold shrink-0 ${
+                        copied
+                          ? 'bg-[#2E5B37] text-white scale-95 font-extrabold shadow-sm'
+                          : 'bg-[#2E5B37]/30 hover:bg-[#2E5B37]/50 text-white border border-[#2E5B37]/50'
+                      }`}
+                      title="Copiar Link da Página"
                     >
-                      <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5px]" />
-                    </div>
+                      {copied ? (
+                        <>
+                          <Check className="w-4 h-4 stroke-[3px]" />
+                          <span className="text-[10px] uppercase font-bold tracking-wider">Copiado!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-4 h-4" />
+                          <span className="text-xs">Copiar</span>
+                        </>
+                      )}
+                    </button>
                   </div>
-                  <div className="flex items-center space-x-3 text-left">
-                    <div className="flex flex-col">
-                      <span className="text-xs font-extrabold text-white uppercase tracking-wider whitespace-nowrap">
-                        Sua Comissão
-                      </span>
-                      <span className="text-[11px] text-slate-400 whitespace-nowrap">
-                        50% por venda direta
-                      </span>
-                    </div>
-                    <span className="text-[#2E5B37] font-semibold text-lg select-none" aria-hidden="true">|</span>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-extrabold text-[#52B76D] uppercase tracking-wider whitespace-nowrap">
-                        Comissão por Indicação
-                      </span>
-                      <span className="text-[11px] text-slate-400 whitespace-nowrap">
-                        1% sobre vendas do indicado
-                      </span>
-                    </div>
-                  </div>
+
+                  <Link
+                    href={publicUrl}
+                    target="_blank"
+                    className="px-6 py-3.5 rounded-2xl bg-[#2E5B37] hover:bg-[#23472B] text-white font-bold text-xs flex items-center justify-center space-x-2 transition-all cursor-pointer shadow-lg shadow-[#2E5B37]/30 hover:shadow-xl hover:shadow-[#2E5B37]/40 active:scale-[0.98] shrink-0 border border-[#2E5B37]/40"
+                  >
+                    <span className="whitespace-nowrap font-bold">Acessar Minha Página</span>
+                    <ExternalLink className="w-4 h-4 stroke-[2.5px]" />
+                  </Link>
                 </div>
-
               </div>
-            </div>
 
-          </div>
-        </div>
-      )}
+              {/* Direita Superior: Card de Comissão (50%) & Indicação (1%) */}
+              <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-[#2E5B37]/30 pt-6 lg:pt-0 lg:pl-8 flex flex-col justify-center">
+                <div className="bg-[#071624]/90 border border-[#2E5B37]/40 rounded-2xl p-5 space-y-4 shadow-inner relative overflow-hidden">
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs font-bold text-white">
+                      <span>Taxa por Venda</span>
+                    </div>
+                  </div>
 
-      {isProfileActive && paymentAccountLoaded && !isPaymentAccountEligible && (
-        <section className={`flex flex-col gap-4 rounded-2xl border p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between ${paymentAccountNeedsCorrection ? 'border-rose-200 bg-rose-50' : 'border-amber-200 bg-amber-50'}`}>
-          <div className="flex items-start gap-3">
-            <AlertTriangle className={`mt-0.5 h-5 w-5 shrink-0 ${paymentAccountNeedsCorrection ? 'text-rose-600' : 'text-amber-600'}`} />
-            <div>
-              <h2 className={`text-sm font-extrabold ${paymentAccountNeedsCorrection ? 'text-rose-900' : 'text-amber-900'}`}>
-                {paymentAccount ? (paymentAccountStatus === 'SUSPENDED' ? 'Repasses suspensos' : paymentAccountStatus === 'REJECTED' ? 'Repasses desabilitados: ajuste sua conta' : 'Repasses aguardando aprovação') : 'Repasses desabilitados'}
-              </h2>
-              <p className={`mt-1 text-xs leading-5 ${paymentAccountNeedsCorrection ? 'text-rose-800' : 'text-amber-800'}`}>
-                {paymentAccount?.rejectionReason || (paymentAccount ? 'Confirme o cadastro pelo e-mail enviado pelo Asaas. As novas vendas serão liberadas após a aprovação.' : 'Configure uma conta de recebimento no Asaas para habilitar seus repasses.')}
-              </p>
+                  <div className="flex flex-wrap items-center gap-y-2 gap-x-3.5">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-4xl sm:text-5xl font-extrabold text-[#52B76D] font-heading tracking-tight">
+                        50%
+                      </span>
+                      <div 
+                        className="inline-flex items-center justify-center p-1.5 rounded-full bg-[#2E5B37]/40 text-[#52B76D] border border-[#2E5B37]/60 shadow-[0_0_12px_rgba(82,183,109,0.35)]"
+                        title="Comissão por Venda"
+                      >
+                        <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5px]" />
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-3 text-left">
+                      <div className="flex flex-col">
+                        <span className="text-xs font-extrabold text-white uppercase tracking-wider whitespace-nowrap">
+                          Sua Comissão
+                        </span>
+                        <span className="text-[11px] text-slate-400 whitespace-nowrap">
+                          50% por venda direta
+                        </span>
+                      </div>
+                      <span className="text-[#2E5B37] font-semibold text-lg select-none" aria-hidden="true">|</span>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-extrabold text-[#52B76D] uppercase tracking-wider whitespace-nowrap">
+                          Comissão por Indicação
+                        </span>
+                        <span className="text-[11px] text-slate-400 whitespace-nowrap">
+                          1% sobre vendas do indicado
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
           </div>
-          <Link href={paymentAccount?.onboardingUrl || '/professor/conta'} target={paymentAccount?.onboardingUrl ? '_blank' : undefined} rel={paymentAccount?.onboardingUrl ? 'noreferrer' : undefined} className={`inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl px-4 py-3 text-xs font-bold text-white transition ${paymentAccountNeedsCorrection ? 'bg-rose-700 hover:bg-rose-800' : 'bg-[#132E20] hover:bg-[#23472B]'}`}>
-            <span>{paymentAccount?.onboardingUrl ? 'Acessar conta de recebimento Asaas' : paymentAccount ? 'Ver conta Asaas' : 'Configurar conta Asaas'}</span>
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </section>
-      )}
+        )}
+
+        {hasProfile && !isPaymentAccountEligible && (
+          <div id="teacher-payment-account">
+            <TeacherPaymentAccountPanel
+              teacher={teacher}
+              variant="extension"
+              onAccountChange={setPaymentAccount}
+              onAccountLoaded={() => setPaymentAccountLoaded(true)}
+              isFormOpen={isPaymentAccountFormOpen}
+              onFormOpenChange={setIsPaymentAccountFormOpen}
+              onSessionExpired={() => router.replace('/?login=true&perfil=professor&session=expired')}
+            />
+          </div>
+        )}
+      </div>
 
       {isProfileActive && paymentAccountLoaded && isPaymentAccountEligible && (
         <section className="flex flex-col gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 sm:flex-row sm:items-center sm:justify-between">
@@ -499,19 +496,6 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
             <ExternalLink className="h-4 w-4" />
           </Link>
         </section>
-      )}
-
-      {hasProfile && !isPaymentAccountEligible && (
-        <div id="teacher-payment-account">
-          <TeacherPaymentAccountPanel
-            teacher={teacher}
-            onAccountChange={setPaymentAccount}
-            onAccountLoaded={() => setPaymentAccountLoaded(true)}
-            isFormOpen={isPaymentAccountFormOpen}
-            onFormOpenChange={setIsPaymentAccountFormOpen}
-            onSessionExpired={() => router.replace('/?login=true&perfil=professor&session=expired')}
-          />
-        </div>
       )}
 
       {/* Navigation Tabs Header */}
@@ -556,6 +540,10 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
         >
           Alunos & Assinaturas
         </button>
+        <Link href="/professor/turmas" className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-xs font-bold text-slate-600 transition-all hover:bg-slate-100">
+          <Users className="h-3.5 w-3.5" />
+          Turmas patrocinadas
+        </Link>
         <button
           onClick={() => setActiveTab('ranking')}
           className={`min-h-11 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center space-x-1.5 ${
@@ -752,7 +740,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
             
             {/* Activation Roadmap / Product Creation */}
             <div className="lg:col-span-2">
-              {isProfileActive ? (
+              {hasProfile ? (
                 loadingMonitors ? (
                   <div className="flex flex-col items-center justify-center p-12 bg-white border border-slate-200 rounded-3xl shadow-xs space-y-3 min-h-56">
                     <Loader2 className="w-8 h-8 text-[#132E20] animate-spin" />
@@ -792,7 +780,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
                       onClick={openMonitorCreation}
                       disabled={!canCreateProducts}
                       className={`group flex min-h-56 w-full flex-col items-center justify-center gap-3 border-2 border-dashed border-slate-300 bg-white text-slate-500 shadow-sm transition-all ${canCreateProducts ? 'cursor-pointer hover:border-[#2E5B37] hover:bg-emerald-50/40 hover:text-[#132E20]' : 'cursor-not-allowed opacity-60'}`}
-                      title={canCreateProducts ? 'Criar novo Monitor de IA' : 'Aguarde a aprovação do perfil e da conta de recebimento'}
+                      title={canCreateProducts ? 'Criar novo Monitor de IA' : 'Complete o perfil do professor para criar um rascunho'}
                     >
                       <span className="flex h-16 w-16 items-center justify-center border border-slate-300 bg-slate-50 transition-colors group-hover:border-[#2E5B37] group-hover:bg-white">
                         <Plus className="h-8 w-8" aria-hidden="true" />
@@ -907,7 +895,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
             <div className="space-y-6">
               
               {/* Status & Dicas do Perfil / Página Pendente */}
-              {!loadingMonitors && !hasPublishedAgent && isProfileActive && (
+              {!loadingMonitors && !hasPublishedAgent && hasProfile && (
                 <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm relative overflow-hidden">
                   <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center">
                     <Lock className="w-5 h-5" />
@@ -917,7 +905,9 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
                       Página Pública Pendente
                     </h3>
                     <p className="text-xs text-slate-600 leading-relaxed">
-                      Sua página de vendas será ativada automaticamente assim que você publicar seu 1º Agente IA de estudo.
+                      {isProfileActive
+                        ? 'Sua página de vendas será ativada automaticamente assim que você publicar seu 1º Agente IA de estudo.'
+                        : 'Você pode criar rascunhos agora. A publicação ficará disponível após a aprovação do perfil e da conta de recebimento.'}
                     </p>
                   </div>
                 </div>

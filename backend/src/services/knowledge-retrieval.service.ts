@@ -1,6 +1,7 @@
 import {
   loadKnowledgeContext,
   searchReadyKnowledgeChunks,
+  searchReadyVisualAssetIndexes,
   type KnowledgeSearchInput,
 } from '../repositories/knowledge-retrieval.repository.js';
 import {
@@ -9,10 +10,15 @@ import {
   type HybridRetrievalInput,
   type HybridRetrievalResult,
 } from '../worker/services/hybrid-retrieval.service.js';
+import { env } from '../config/env.js';
 
 export class KnowledgeRetrievalService {
   private readonly hybrid = new HybridRetrievalService({
-    searchCandidates: async (input: HybridRetrievalInput) => searchReadyKnowledgeChunks(input),
+    searchCandidates: async (input: HybridRetrievalInput) => {
+      if (!env.DOCUMENT_VISUAL_ASSETS_ENABLED) return searchReadyKnowledgeChunks(input);
+      const [chunks, figures] = await Promise.all([searchReadyKnowledgeChunks(input), searchReadyVisualAssetIndexes(input)]);
+      return [...chunks, ...figures];
+    },
     loadKnowledgeContext: async (candidates: HybridRetrievalCandidate[]) => loadKnowledgeContext(candidates as any),
   });
 

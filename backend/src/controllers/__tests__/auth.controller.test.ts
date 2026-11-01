@@ -3,6 +3,8 @@ import test from 'node:test';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { AuthController } from '../auth.controller.js';
 import type { AuthService } from '../../services/auth.service.js';
+import { AuthRepositoryError } from '../../repositories/auth.repository.js';
+import { AppError } from '../../core/errors/app-error.js';
 
 test('o cadastro de aluno responde sem expor tokens de sessão', async () => {
   const service = {
@@ -62,4 +64,62 @@ test('o cadastro de aluno responde sem expor tokens de sessão', async () => {
     },
   });
   assert.deepEqual(cookies.map((cookie) => cookie.name), ['mm_access_token', 'mm_refresh_token']);
+});
+
+test('identifica e-mail já cadastrado com código específico para o cliente', async () => {
+  const service = {
+    async signup() {
+      throw new AuthRepositoryError('User already registered');
+    },
+  } as unknown as AuthService;
+  const controller = new AuthController(service);
+  const request = {
+    id: 'request-duplicate-email',
+    method: 'POST',
+    url: '/api/v1/auth/signup',
+    headers: { 'content-type': 'application/json' },
+    body: {
+      email: 'teacher@example.com',
+      password: 'Secret123!',
+      name: 'Teacher Test',
+      role: 'teacher',
+      docType: 'CPF',
+      documentNumber: '529.982.247-25',
+      phone: '11999998888',
+    },
+  } as unknown as FastifyRequest;
+  const reply = {
+    code() { return this; },
+    send() { return this; },
+  } as unknown as FastifyReply;
+
+  await assert.rejects(
+    () => controller.signup(request, reply),
+    (error: unknown) => error instanceof AppError && error.code === 'EMAIL_ALREADY_REGISTERED' && error.statusCode === 409,
+  );
+});
+
+test('mantém falhas desconhecidas do provedor como indisponibilidade geral', async () => {
+  const service = {
+    async signup() {
+      throw new AuthRepositoryError('Temporary upstream failure');
+    },
+  } as unknown as AuthService;
+  const controller = new AuthController(service);
+  const request = {
+    id: 'request-provider-failure',
+    method: 'POST',
+    url: '/api/v1/auth/signup',
+    headers: { 'content-type': 'application/json' },
+    body: { email: 'teacher@example.com', password: 'Secret123!', name: 'Teacher Test', role: 'student' },
+  } as unknown as FastifyRequest;
+  const reply = {
+    code() { return this; },
+    send() { return this; },
+  } as unknown as FastifyReply;
+
+  await assert.rejects(
+    () => controller.signup(request, reply),
+    (error: unknown) => error instanceof AppError && error.code === 'SIGNUP_UNAVAILABLE' && error.statusCode === 409,
+  );
 });

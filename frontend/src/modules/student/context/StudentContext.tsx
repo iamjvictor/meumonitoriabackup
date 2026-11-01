@@ -14,6 +14,7 @@ const SESSION_VALIDATION_TIMEOUT_MS = 15_000;
 export interface StudentData {
   userId: string;
   email: string;
+  emailVerified?: boolean;
   fullName?: string | null;
   firstName: string;
   initials: string;
@@ -55,6 +56,8 @@ export interface StudentChatMessage {
   timestamp: string;
   questionContextNumber?: number;
   attachmentType?: 'QUESTION' | 'FLASHCARD';
+  imageAttachmentIds?: string[];
+  imagePreviewUrl?: string;
 }
 
 export interface StudentMonitorSubject {
@@ -172,6 +175,7 @@ export function StudentProvider({ children }: { children: ReactNode }) {
           data?: {
             userId?: string;
             email?: string;
+            emailVerified?: boolean;
             fullName?: string | null;
             whatsapp?: string | null;
             cpf?: string | null;
@@ -216,6 +220,7 @@ export function StudentProvider({ children }: { children: ReactNode }) {
       setStudent({
         userId: data.userId,
         email: data.email || '',
+        emailVerified: Boolean(data.emailVerified),
         fullName: data.fullName || null,
         firstName,
         initials,
@@ -277,6 +282,24 @@ export function StudentProvider({ children }: { children: ReactNode }) {
     },
     [apiUrl, studentRole]
   );
+
+  const claimedSponsoredSeatsUserRef = useRef<string | null>(null);
+  useEffect(() => {
+    const role = student?.role?.toLowerCase();
+    if (status !== 'authenticated' || !student?.emailVerified || role !== 'student' || claimedSponsoredSeatsUserRef.current === student.userId) return;
+    claimedSponsoredSeatsUserRef.current = student.userId;
+    void fetch(`${apiUrl}/api/v1/student/sponsored-seats/claim`, {
+      method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json', ...buildStudentAuthHeaders(localStorage.getItem('mm_access_token')) }, body: JSON.stringify({}),
+    }).then(async (response) => {
+      if (!response.ok) return;
+      const payload = await response.json().catch(() => ({})) as { data?: { claimedCount?: number } };
+      if (payload.data?.claimedCount) {
+        monitorsRef.current = null;
+        monitorsRequestRef.current = null;
+        await fetchMonitors(true);
+      }
+    }).catch((claimError) => console.warn('Não foi possível vincular vagas patrocinadas nesta sessão:', claimError));
+  }, [apiUrl, fetchMonitors, status, student]);
 
   const updateProfile = useCallback(
     async (payload: { fullName?: string; phone?: string; cpf?: string; avatarUrl?: string }) => {

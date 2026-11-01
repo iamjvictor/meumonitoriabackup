@@ -1,3 +1,6 @@
+import { digitsOnly } from '../../../../../models/person-data.validation.js';
+import { ASAAS_SUBACCOUNT_WEBHOOK_EVENTS } from './asaas-webhook-events.js';
+
 type AsaasAccountRequestClient = {
   request<T>(path: string, request: { method: 'GET' | 'POST' | 'PUT'; body?: unknown; credential?: string }): Promise<T>;
 };
@@ -7,25 +10,6 @@ export type AsaasAccountProviderOptions = {
   webhookEmail?: string;
   webhookAuthToken?: string;
 };
-
-const ACCOUNT_STATUS_WEBHOOK_EVENTS = [
-  'ACCOUNT_STATUS_GENERAL_APPROVAL_APPROVED',
-  'ACCOUNT_STATUS_GENERAL_APPROVAL_AWAITING_APPROVAL',
-  'ACCOUNT_STATUS_GENERAL_APPROVAL_PENDING',
-  'ACCOUNT_STATUS_GENERAL_APPROVAL_REJECTED',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_APPROVED',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_AWAITING_APPROVAL',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_PENDING',
-  'ACCOUNT_STATUS_COMMERCIAL_INFO_REJECTED',
-  'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_APPROVED',
-  'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_AWAITING_APPROVAL',
-  'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_PENDING',
-  'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_REJECTED',
-  'ACCOUNT_STATUS_DOCUMENT_APPROVED',
-  'ACCOUNT_STATUS_DOCUMENT_AWAITING_APPROVAL',
-  'ACCOUNT_STATUS_DOCUMENT_PENDING',
-  'ACCOUNT_STATUS_DOCUMENT_REJECTED',
-] as const;
 
 export type CreateSubaccountCommand = {
   name: string;
@@ -72,15 +56,14 @@ export class AsaasAccountProvider {
 
   async createSubaccount(command: CreateSubaccountCommand): Promise<CreatedSubaccount> {
     const webhook = this.buildAccountStatusWebhook();
-    const payload = compact({ ...command, webhooks: webhook ? [webhook] : undefined });
-    if (!webhook) {
-      console.warn('Webhook de status não será provisionado na subconta', {
-        event: 'payments.asaas_subaccount_webhook_configuration_missing',
-        hasWebhookUrl: Boolean(this.options.webhookUrl),
-        hasWebhookEmail: Boolean(this.options.webhookEmail),
-        hasWebhookAuthToken: Boolean(this.options.webhookAuthToken),
-      });
-    }
+    if (!webhook) throw new Error('ASAAS_ACCOUNT_STATUS_WEBHOOK_CONFIGURATION_MISSING');
+    const sanitizedCommand: CreateSubaccountCommand = {
+      ...command,
+      cpfCnpj: digitsOnly(command.cpfCnpj),
+      mobilePhone: digitsOnly(command.mobilePhone),
+      postalCode: digitsOnly(command.postalCode),
+    };
+    const payload = compact({ ...sanitizedCommand, webhooks: webhook ? [webhook] : undefined });
     console.log('Preparando criação de subconta no Asaas', {
       event: 'payments.asaas_subaccount_request_prepared',
       path: '/accounts',
@@ -93,15 +76,12 @@ export class AsaasAccountProvider {
       body: payload,
     });
 
-    const ensuredWebhook = response.apiKey
-      ? await this.ensureAccountStatusWebhook(response.apiKey)
-      : null;
     const created = {
       providerAccountId: response.id,
       walletId: response.walletId,
       status: normalizeAccountStatus(response.status),
       onboardingUrl: response.onboardingUrl ?? null,
-      webhookId: ensuredWebhook?.webhookId ?? response.webhooks?.[0]?.id ?? null,
+      webhookId: response.webhooks?.[0]?.id ?? null,
     };
     if (response.apiKey) {
       // Keep the transient credential available to the application layer without
@@ -150,7 +130,7 @@ export class AsaasAccountProvider {
       apiVersion: 3,
       authToken: this.options.webhookAuthToken,
       sendType: 'SEQUENTIALLY',
-      events: ACCOUNT_STATUS_WEBHOOK_EVENTS,
+      events: ASAAS_SUBACCOUNT_WEBHOOK_EVENTS,
     };
   }
 }

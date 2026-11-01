@@ -2,13 +2,14 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createHash } from 'node:crypto';
 import { Prisma } from '@prisma/client';
-import { CreateCheckoutUseCase, CheckoutPendingError, CheckoutStudentRoleError } from '../application/commands/create-checkout.use-case.js';
+import { CreateCheckoutUseCase, CheckoutAnnualPlanUnavailableError, CheckoutPendingError, CheckoutStudentRoleError } from '../application/commands/create-checkout.use-case.js';
 import type { CheckoutMonitor, CreateCheckoutRepository } from '../infrastructure/persistence/payment-checkout.repository.js';
 
 const monitor: CheckoutMonitor = {
   id: '11111111-1111-4111-8111-111111111111',
   name: 'Monitor de Matemática',
   priceCents: 5990,
+
   teacher: {
     id: '22222222-2222-4222-8222-222222222222',
     teacherPercentage: new Prisma.Decimal('50'),
@@ -32,24 +33,24 @@ function repository(overrides: Partial<CreateCheckoutRepository> = {}): CreateCh
   };
 }
 
-test('cria checkout mensal com o preço e a comissão congelados no pedido', async () => {
+test('usa o preço do catálogo para criar o pedido e o checkout mensal', async () => {
   let command: any;
   let intentMonitorPrice: number | undefined;
   const provider = { async createHostedCheckout(input: any) { command = input; return { providerCheckoutId: 'co_1', checkoutUrl: 'https://sandbox.asaas.com/checkout/co_1', expiresAt: new Date('2026-10-01T00:00:00.000Z') }; } };
   const useCase = new CreateCheckoutUseCase(repository({ createIntent: async ({ monitor: inputMonitor }) => {
     intentMonitorPrice = inputMonitor.priceCents;
-    return { order: { id: 'order_1', subscriptionId: 'subscription_1', status: 'PENDING', amountCents: 500 }, checkout: null, payout: { walletId: 'wallet_teacher', percentage: '50.0000' } };
+    return { order: { id: 'order_1', subscriptionId: 'subscription_1', status: 'PENDING', amountCents: inputMonitor.priceCents }, checkout: null, payout: { walletId: 'wallet_teacher', percentage: '50.0000' } };
   }, saveCheckout: async (_orderId, checkout) => ({
-    order: { id: 'order_1', subscriptionId: 'subscription_1', status: 'PENDING', amountCents: 500 },
+    order: { id: 'order_1', subscriptionId: 'subscription_1', status: 'PENDING', amountCents: 5990 },
     checkout: { checkoutUrl: checkout.checkoutUrl, expiresAt: checkout.expiresAt },
     payout: { walletId: 'wallet_teacher', percentage: '50.0000' },
   }) }), provider);
 
   const result = await useCase.execute('user_1', { monitorId: monitor.id, idempotencyKey: 'key_1', returnBaseUrl: 'http://localhost:3000' });
 
-  assert.equal(intentMonitorPrice, 500);
-  assert.equal(command.amountCents, 500);
-  assert.equal(result.amountCents, 500);
+  assert.equal(intentMonitorPrice, monitor.priceCents);
+  assert.equal(command.amountCents, monitor.priceCents);
+  assert.equal(result.amountCents, monitor.priceCents);
   assert.equal(result.checkoutUrl, 'https://sandbox.asaas.com/checkout/co_1');
   assert.deepEqual(command.splits, [{ walletId: 'wallet_teacher', percentage: '50.0000' }]);
   assert.match(command.successUrl, /orderId=order_1/);
@@ -78,15 +79,22 @@ test('não permite iniciar checkout com papel diferente de student', async () =>
   await assert.rejects(() => useCase.execute('user_1', { monitorId: monitor.id, idempotencyKey: 'key_1', returnBaseUrl: 'http://localhost:3000' }), CheckoutStudentRoleError);
 });
 
-test('cria checkout sem split quando a conta do professor não está elegível', async () => {
-  let command: any;
-  const provider = { async createHostedCheckout(input: any) { command = input; return { providerCheckoutId: 'co_2', checkoutUrl: 'https://sandbox.asaas.com/checkout/co_2', expiresAt: null }; } };
+test('recusa compra mensal ou anual do aluno se o professor não puder receber split', async () => {
+  let intentCreated = false;
+  let providerCalled = false;
   const repo = repository({
     findPublishedMonitor: async () => ({ ...monitor, teacher: { ...monitor.teacher, currentPaymentAccount: { walletId: 'wallet_teacher', status: 'PENDING', generalStatus: 'PENDING' } } }),
-    createIntent: async () => ({ order: { id: 'order_2', subscriptionId: 'subscription_2', status: 'PENDING', amountCents: 5990 }, checkout: null, payout: { walletId: null, percentage: '0.0000' } }),
+    createIntent: async () => { intentCreated = true; throw new Error('intent should not be created'); },
   });
-  await new CreateCheckoutUseCase(repo, provider).execute('user_1', { monitorId: monitor.id, idempotencyKey: 'key_2', returnBaseUrl: 'http://localhost:3000' });
-  assert.deepEqual(command.splits, []);
+  const provider = { async createHostedCheckout() { providerCalled = true; throw new Error('provider should not be called'); } };
+  for (const interval of ['MONTHLY', 'ANNUAL'] as const) {
+    await assert.rejects(
+      () => new CreateCheckoutUseCase(repo, provider).execute('user_1', { monitorId: monitor.id, interval, idempotencyKey: `key_${interval}`, returnBaseUrl: 'http://localhost:3000' }),
+      { name: 'CheckoutTeacherPayoutUnavailableError' },
+    );
+  }
+  assert.equal(intentCreated, false);
+  assert.equal(providerCalled, false);
 });
 
 test('não cria outro checkout quando a mesma intenção ainda não tem URL conciliada', async () => {
@@ -135,4 +143,34 @@ test('registra falha quando não consegue salvar o checkout depois da resposta d
   );
   assert.equal(failedOrderId, 'order_1');
   assert.equal(failedMessage, 'payment_checkouts indisponível');
+});
+
+test('cria checkout anual à vista ou em até 12 parcelas com desconto e split preservados', async () => {
+  let command: any;
+  let intentInterval: string | undefined;
+  const repo = repository({
+    createIntent: async (input: any) => {
+      intentInterval = input.interval;
+      return { order: { id: 'annual-order', subscriptionId: 'annual-local-sub', status: 'PENDING', amountCents: input.interval === 'ANNUAL' ? Math.round(input.monitor.priceCents * 12 * 0.8) : input.monitor.priceCents }, checkout: null, payout: { walletId: 'wallet_teacher', percentage: '50.0000' } };
+    },
+    saveCheckout: async (_id, checkout) => ({ order: { id: 'annual-order', subscriptionId: 'annual-local-sub', status: 'PENDING', amountCents: 57504 }, checkout: { checkoutUrl: checkout.checkoutUrl, expiresAt: checkout.expiresAt }, payout: { walletId: 'wallet_teacher', percentage: '50.0000' } }),
+  });
+  const useCase = new CreateCheckoutUseCase(repo, { async createHostedCheckout(input: any) { command = input; return { providerCheckoutId: 'annual-co', checkoutUrl: 'https://checkout/annual', expiresAt: null }; } });
+  const result = await useCase.execute('user_1', { monitorId: monitor.id, interval: 'ANNUAL', idempotencyKey: 'annual-12345678', returnBaseUrl: 'https://app.test' });
+
+  assert.equal(intentInterval, 'ANNUAL');
+  assert.equal(command.amountCents, 57504);
+  assert.equal(command.chargeType, 'DETACHED');
+  assert.deepEqual(command.chargeTypes, ['DETACHED', 'INSTALLMENT']);
+  assert.equal(command.maxInstallmentCount, 12);
+  assert.deepEqual(command.splits, [{ walletId: 'wallet_teacher', percentage: '50.0000' }]);
+  assert.equal(result.amountCents, 57504);
+});
+
+test('não cria checkout anual quando o preço mensal é inválido', async () => {
+  let providerCalled = false;
+  const repo = repository({ findPublishedMonitor: async () => ({ ...monitor, priceCents: 0 }) });
+  const useCase = new CreateCheckoutUseCase(repo, { async createHostedCheckout() { providerCalled = true; throw new Error('not expected'); } });
+  await assert.rejects(() => useCase.execute('user_1', { monitorId: monitor.id, interval: 'ANNUAL', idempotencyKey: 'annual-no-price-key', returnBaseUrl: 'https://app.test' }), CheckoutAnnualPlanUnavailableError);
+  assert.equal(providerCalled, false);
 });

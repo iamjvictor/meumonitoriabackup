@@ -24,10 +24,18 @@ export type AuthorizedQuestionContext = {
 };
 
 export type ChatGenerationInput = {
+  requestId?: string;
   message: string;
   history: ChatHistoryMessage[];
   questionContext: AuthorizedQuestionContext | null;
   ragContext?: string | null;
   monitorId: string;
   subjectId: string;
+  studentId?: string;
+  teacherId?: string;
+  visualContext?: {
+    text: string;
+    images: Array<{ assetId: string; page: number | null; checksum: string; description: string | null; source: 'STUDENT_UPLOAD' | 'QUESTION' | 'KNOWLEDGE' }>;
+    contextManifest: Array<{ assetId: string; page: number | null; checksum: string; source: 'STUDENT_UPLOAD' | 'QUESTION' | 'KNOWLEDGE' }>;
+  };
 };

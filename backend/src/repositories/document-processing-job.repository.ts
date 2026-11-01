@@ -110,6 +110,48 @@ export async function startDocumentProcessingJob(
   });
 }
 
+export async function updateDocumentProcessingStage(
+  documentId: string,
+  operation: DocumentProcessingOperation,
+  stage: string,
+  requestId: string,
+  timeoutMs: number,
+) {
+  const existing = await prisma.documentProcessingJob.findUnique({
+    where: { idempotencyKey: idempotencyKey(documentId, operation) },
+    select: { inputSnapshot: true },
+  });
+  const priorSnapshot = existing?.inputSnapshot && typeof existing.inputSnapshot === 'object' && !Array.isArray(existing.inputSnapshot)
+    ? existing.inputSnapshot as Prisma.JsonObject
+    : {};
+  return prisma.documentProcessingJob.update({
+    where: { idempotencyKey: idempotencyKey(documentId, operation) },
+    data: { inputSnapshot: {
+      ...priorSnapshot,
+      currentStage: stage, requestId, stageStartedAt: new Date().toISOString(), timeoutMs, stallEventKey: null,
+    } },
+  });
+}
+
+export async function listProcessingJobsForStageWatchdog() {
+  return prisma.documentProcessingJob.findMany({
+    where: { status: 'PROCESSING' },
+    select: { id: true, documentId: true, attempts: true, inputSnapshot: true },
+  });
+}
+
+export async function claimDocumentProcessingStallEvent(job: { id: string; attempts: number }, key: string) {
+  const updated = await prisma.$executeRaw`
+    UPDATE document_processing_jobs
+    SET input_snapshot = jsonb_set(COALESCE(input_snapshot, '{}'::jsonb), '{stallEventKey}', to_jsonb(${key}::text), true)
+    WHERE id = ${job.id}::uuid
+      AND status = 'PROCESSING'::"DocumentProcessingJobStatus"
+      AND attempts = ${job.attempts}
+      AND input_snapshot->>'stallEventKey' IS DISTINCT FROM ${key}
+  `;
+  return updated === 1;
+}
+
 export async function completeDocumentProcessingJob(
   documentId: string,
   operation: DocumentProcessingOperation,

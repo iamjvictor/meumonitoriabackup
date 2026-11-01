@@ -14,6 +14,12 @@ export type HostedCheckoutCommand = {
   expiredUrl: string;
   nextDueDate: string;
   splits: PaymentSplit[];
+  billingType?: 'PIX' | 'CREDIT_CARD';
+  chargeType?: 'RECURRENT' | 'DETACHED';
+  chargeTypes?: ReadonlyArray<'RECURRENT' | 'DETACHED' | 'INSTALLMENT'>;
+  maxInstallmentCount?: number;
+  cycle?: 'MONTHLY';
+  items?: Array<{ name: string; description: string; quantity: number; unitAmountCents: number }>;
 };
 
 export type HostedCheckoutResult = {
@@ -24,4 +30,5 @@ export type HostedCheckoutResult = {
 
 export type PaymentProvider = {
   createHostedCheckout(command: HostedCheckoutCommand): Promise<HostedCheckoutResult>;
+  cancelHostedCheckout?(checkoutId: string): Promise<void>;
 };

@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client';
 import { prisma } from '../lib/prisma.js';
+import { env } from '../config/env.js';
 
 export type KnowledgeSearchInput = {
   teacherId: string;
@@ -33,10 +34,14 @@ export type KnowledgeSearchCandidate = {
   content: string;
   pageStart: number | null;
   pageEnd: number | null;
+  pages?: number[];
+  headings?: string[];
+  engine?: string | null;
   sectionPath: unknown;
   isComplete: boolean;
   incompleteReason: string | null;
   reason: string | null;
+  visualAssetIds?: string[];
 };
 
 export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
@@ -53,7 +58,7 @@ export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
     ? Prisma.sql`AND dc.document_id = ${input.documentId}::uuid`
     : Prisma.empty;
   const sectionFilter = input.sectionPath?.length
-    ? Prisma.sql`AND db.section_path @> ${JSON.stringify(input.sectionPath)}::jsonb`
+    ? Prisma.sql`AND COALESCE(db.section_path, dc.headings) @> ${JSON.stringify(input.sectionPath)}::jsonb`
     : Prisma.empty;
   const blockTypeFilter = input.blockTypes?.length
     ? Prisma.sql`AND db.type IN (${Prisma.join(input.blockTypes.map((type) => Prisma.sql`${type}`))})`
@@ -69,6 +74,9 @@ export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
     dc.embedding::extensions.halfvec(2048)
     <=> ${JSON.stringify(input.queryEmbedding)}::extensions.halfvec(2048)
   )`;
+  const visualAssetIds = env.DOCUMENT_VISUAL_ASSETS_ENABLED
+    ? Prisma.sql`ARRAY(SELECT dca.visual_asset_id::text FROM document_chunk_visual_assets dca WHERE dca.chunk_id = dc.id ORDER BY dca.created_at)`
+    : Prisma.sql`ARRAY[]::text[]`;
 
   return prisma.$queryRaw<KnowledgeSearchCandidate[]>(Prisma.sql`
     SELECT
@@ -77,7 +85,7 @@ export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
       dc.block_id AS "blockId",
       db.parent_block_id AS "parentBlockId",
       dc.chunk_index AS "chunkIndex",
-      db.type AS "blockType",
+      COALESCE(db.type, dc.chunk_type, 'KNOWLEDGE') AS "blockType",
       ${similarity} AS similarity,
       ${lexicalScore} AS "lexicalScore",
       (
@@ -87,7 +95,11 @@ export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
       dc.content,
       dc.page_start AS "pageStart",
       dc.page_end AS "pageEnd",
-      db.section_path AS "sectionPath",
+      dc.pages AS pages,
+      dc.headings AS headings,
+      dc.engine AS engine,
+      ${visualAssetIds} AS "visualAssetIds",
+      COALESCE(db.section_path, dc.headings) AS "sectionPath",
       COALESCE(dc.status = 'READY'::"ChunkStatus" AND db.is_complete = true, dc.status = 'READY'::"ChunkStatus") AS "isComplete",
       db.incomplete_reason AS "incompleteReason",
       NULL::text AS reason
@@ -109,6 +121,40 @@ export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
       ) DESC,
       ${similarity} DESC,
       dc.chunk_index ASC
+    LIMIT ${limit}
+  `);
+}
+
+export async function searchReadyVisualAssetIndexes(input: KnowledgeSearchInput): Promise<KnowledgeSearchCandidate[]> {
+  const limit = Math.min(Math.max(input.limit ?? 8, 1), 50);
+  const queryText = input.queryText?.trim() ?? '';
+  const lexicalScore = queryText
+    ? Prisma.sql`ts_rank_cd(to_tsvector('portuguese', dvi.description), websearch_to_tsquery('portuguese', ${queryText}))`
+    : Prisma.sql`0`;
+  const similarity = Prisma.sql`1 - (dvi.embedding::extensions.halfvec(2048) <=> ${JSON.stringify(input.queryEmbedding)}::extensions.halfvec(2048))`;
+  const documentFilter = input.documentId
+    ? Prisma.sql`AND d.document_id = ${input.documentId}::uuid`
+    : Prisma.empty;
+  return prisma.$queryRaw<KnowledgeSearchCandidate[]>(Prisma.sql`
+    SELECT
+      dva.id AS "chunkId", d.id AS "documentId", NULL::uuid AS "blockId", NULL::uuid AS "parentBlockId",
+      dva.page_number AS "chunkIndex", 'FIGURE'::text AS "blockType",
+      ${similarity} AS similarity, ${lexicalScore} AS "lexicalScore",
+      (0.6 * ${similarity} + 0.4 * ${lexicalScore}) AS "fusedScore",
+      dvi.description AS content, dva.page_number AS "pageStart", dva.page_number AS "pageEnd",
+      jsonb_build_array(dva.page_number) AS pages, NULL::jsonb AS headings, 'docling-visual'::text AS engine,
+      '[]'::jsonb AS "sectionPath", true AS "isComplete", NULL::text AS "incompleteReason", NULL::text AS reason,
+      ARRAY[dva.id::text] AS "visualAssetIds"
+    FROM document_visual_asset_indexes dvi
+    JOIN document_visual_assets dva ON dva.id = dvi.visual_asset_id
+    JOIN monitor_documents d ON d.id = dva.document_id
+    WHERE d.teacher_id = ${input.teacherId}::uuid
+      AND d.monitor_id = ${input.monitorId}::uuid
+      AND d.subject_id = ${input.subjectId}::uuid
+      AND dvi.description_status = 'READY'
+      AND dvi.embedding IS NOT NULL
+      ${documentFilter}
+    ORDER BY (0.6 * ${similarity} + 0.4 * ${lexicalScore}) DESC
     LIMIT ${limit}
   `);
 }

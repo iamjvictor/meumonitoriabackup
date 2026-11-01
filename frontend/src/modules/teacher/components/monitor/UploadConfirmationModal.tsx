@@ -55,7 +55,7 @@ export function UploadConfirmationModal({ onClose, onConfirm, requireScopeConfir
             {requireScopeConfirmation && (
               <label className="flex items-start gap-2.5 text-xs leading-relaxed text-slate-700">
                 <input type="checkbox" checked={scopeConfirmed} onChange={(event) => setScopeConfirmed(event.target.checked)} className="mt-0.5 h-4 w-4 accent-emerald-800" />
-                <span>Confirmo que estes arquivos serão adicionados somente à base de conhecimento de {teacherName}, nas matérias indicadas na fila.</span>
+                <span>Confirmo que estes materiais pertencem à base de conhecimento do professor {teacherName} e serão usados somente neste monitor.</span>
               </label>
             )}
 

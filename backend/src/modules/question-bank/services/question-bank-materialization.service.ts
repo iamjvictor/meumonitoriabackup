@@ -24,6 +24,15 @@ export type MaterializationResult = {
   failures: Array<{ questionBankItemId?: string; reason: string }>;
 };
 
+export type MaterializationProgress = {
+  totalEligible: number;
+  processed: number;
+  created: number;
+  updated: number;
+  skipped: number;
+  failed: number;
+};
+
 export type QuestionBankMaterializationAlternative = {
   providerId?: string | null;
   label: string;
@@ -133,7 +142,7 @@ export class QuestionBankMaterializationService {
     this.repository = repository;
   }
 
-  async materialize(input: MaterializeMonitorQuestionsInput): Promise<MaterializationResult> {
+  async materialize(input: MaterializeMonitorQuestionsInput, onProgress?: (progress: MaterializationProgress) => Promise<void> | void): Promise<MaterializationResult> {
     console.log('Materialização recebida pelo serviço', {
       event: 'question_bank.materialization_input_received',
       monitorId: input.monitorId,
@@ -165,18 +174,11 @@ export class QuestionBankMaterializationService {
         monitorId: input.monitorId,
         error: error instanceof Error ? error.message : error,
       });
-      return {
-        processed: 0,
-        created: 0,
-        updated: 0,
-        skipped: 0,
-        failures: [{
-          reason: error instanceof Error ? `QUESTION_BANK_LOOKUP_FAILED: ${error.message}` : 'QUESTION_BANK_LOOKUP_FAILED',
-        }],
-      };
+      throw error;
     }
     const uniqueItems = new Map(items.map((item) => [item.id, item]));
     const result: MaterializationResult = { processed: 0, created: 0, updated: 0, skipped: 0, failures: [] };
+    await onProgress?.({ totalEligible: uniqueItems.size, processed: 0, created: 0, updated: 0, skipped: 0, failed: 0 });
 
     for (const item of uniqueItems.values()) {
       result.processed += 1;
@@ -184,6 +186,7 @@ export class QuestionBankMaterializationService {
       if (!target) {
         result.skipped += 1;
         result.failures.push({ questionBankItemId: item.id, reason: 'QUESTION_BANK_ITEM_NOT_SELECTED' });
+        await reportProgress();
         continue;
       }
 
@@ -198,6 +201,7 @@ export class QuestionBankMaterializationService {
         });
         result.skipped += 1;
         result.failures.push({ questionBankItemId: item.id, reason: validationFailure });
+        await reportProgress();
         continue;
       }
 
@@ -216,6 +220,7 @@ export class QuestionBankMaterializationService {
         });
         if (existing) result.updated += 1;
         else result.created += 1;
+        await reportProgress();
       } catch (error) {
         console.log('Falha ao persistir questão do acervo', {
           event: 'question_bank.materialization_item_failed',
@@ -228,6 +233,7 @@ export class QuestionBankMaterializationService {
           questionBankItemId: item.id,
           reason: error instanceof Error ? `QUESTION_MATERIALIZATION_FAILED: ${error.message}` : 'QUESTION_MATERIALIZATION_FAILED',
         });
+        await reportProgress();
       }
     }
 
@@ -237,6 +243,18 @@ export class QuestionBankMaterializationService {
       result,
     });
     return result;
+
+    async function reportProgress() {
+      const failed = result.failures.filter(({ reason }) => reason.startsWith('QUESTION_MATERIALIZATION_FAILED')).length;
+      await onProgress?.({
+        totalEligible: uniqueItems.size,
+        processed: result.processed,
+        created: result.created,
+        updated: result.updated,
+        skipped: result.skipped - failed,
+        failed,
+      });
+    }
   }
 }
 

@@ -79,6 +79,34 @@ test('permite completion para candidata sem alternativas quando o enunciado tem 
   assert.match(decision.promotionReasons.join(' '), /MISSING_ALTERNATIVES/);
 });
 
+test('aceita tabela de dados quando cabecalho e linhas foram extraidos no chunk fonte', () => {
+  const text = [
+    'Determine a entalpia de combustão usando os valores da tabela:',
+    'SUBSTÂNCIA ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol)',
+    'C 2 H 6 (g) − 1420',
+    'H 2 O (l) − 280',
+    'CO 2 (g) − 390',
+  ].join('\n');
+  const decision = evaluateQuestionCandidatePromotion({
+    candidate: { ...baseCandidate, text, alternatives: [] },
+    sourceChunks: [{ ...baseChunk, content: text }],
+  });
+  assert.equal(decision.statementEvidence.valid, true);
+  assert.equal(decision.visualPending, false);
+  assert.equal(decision.completionBlocked, false);
+});
+
+test('mantem pendente a referencia a tabela sem os dados no chunk fonte', () => {
+  const text = 'Determine a entalpia de combustão usando os valores da tabela periódica.';
+  const decision = evaluateQuestionCandidatePromotion({
+    candidate: { ...baseCandidate, text, alternatives: [] },
+    sourceChunks: [{ ...baseChunk, content: text }],
+  });
+  assert.equal(decision.visualPending, true);
+  assert.equal(decision.completionBlocked, true);
+  assert.equal(decision.candidateStatus, 'VISUAL_PENDING');
+});
+
 test('permite enunciado declarativo de multipla escolha com cinco alternativas', () => {
   const alternatives = [
     { label: 'A', text: 'diretamente proporcional ao tempo' },

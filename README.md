@@ -146,8 +146,8 @@ O projeto está em evolução contínua, com foco em consolidar:
 - [PRD do produto](docs/PRD.md)
 - [Visão do MVP](docs/MVP.md)
 - [Análise consolidada e planos atuais](docs/superpowers/plans/2026-09-08-analise-consolidada.md)
-- [Spec de recebimento com Asaas](docs/superpowers/specs/2026-09-09-recebimento-asaas-design.md)
-- [Plano do Payments Service com Asaas](docs/superpowers/plans/2026-09-09-payments-service-recebimento.md)
+- [Spec de recebimento com Asaas](docs/asaas/specs/2026-09-09-recebimento-asaas-design.md)
+- [Plano do Payments Service com Asaas](docs/asaas/plans/2026-09-09-payments-service-recebimento.md)
 - [Documentação de autenticação](AUTH.md)
 
 ## Desenvolvimento local

@@ -67,6 +67,7 @@ function formatEvidence(rag: ChatRagResult) {
       `Evidência ${seen.size}`,
       `Documento: ${citation.documentId}`,
       `Página: ${formatPageRange(citation.pageStart, citation.pageEnd)}`,
+      ...(citation.headings?.length ? [`Seção: ${citation.headings.join(' > ')}`] : []),
       citation.content,
     ].join('\n')];
   });

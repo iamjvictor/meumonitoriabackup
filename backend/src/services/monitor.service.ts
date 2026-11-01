@@ -4,11 +4,20 @@ import { QuestionBankMaterializationService } from '../modules/question-bank/ser
 import { MonitorRepository } from '../repositories/monitor.repository.js';
 import type { PublicTeacherProfileCache } from '../cache/public-teacher-profile.cache.js';
 
+export type QuestionBankMaterializationEnqueuer = { enqueue(runId: string, generation?: number): Promise<unknown> };
+const defaultMaterializationEnqueuer: QuestionBankMaterializationEnqueuer = {
+  async enqueue(runId) {
+    const { enqueueQuestionBankMaterialization } = await import('../queues/question-bank-materialization.queue.js');
+    return enqueueQuestionBankMaterialization(runId);
+  },
+};
+
 export class MonitorService {
   constructor(
     private readonly repository: MonitorRepository,
     private readonly materializationService: QuestionBankMaterializationService = new QuestionBankMaterializationService(),
     private readonly publicProfileCache?: PublicTeacherProfileCache,
+    private readonly materializationEnqueuer: QuestionBankMaterializationEnqueuer = defaultMaterializationEnqueuer,
   ) {}
 
   async createDraft(userId: string, input: CreateMonitorInput) {
@@ -39,27 +48,8 @@ export class MonitorService {
       })),
     });
 
-    const persistedSelections = result.monitor.subjects.flatMap((subject) => subject.topics.flatMap((topic) => (
-      topic.questionBankSelections.map((selection) => {
-        const [topicName] = topic.name.split(' > ');
-        return {
-          monitorTopicId: topic.id,
-          monitorSubjectId: subject.id,
-          monitorSubtopicId: selection.monitorSubtopicId ?? null,
-          monitorSubsubtopicId: selection.monitorSubsubtopicId ?? null,
-          selection: normalizeQuestionBankSelection({
-            subject: subject.name,
-            topic: topicName ?? topic.name,
-            examType: selection.examType,
-            board: selection.board,
-            subtopic: selection.subtopic,
-            subsubtopic: selection.subsubtopic,
-          }),
-        };
-      })
-    )));
-
-    if (persistedSelections.length === 0) {
+    const materializationRun = result.materializationRun;
+    if (!materializationRun) {
       console.log('Monitor sem seleções do acervo; materialização não executada', {
         event: 'monitor.question_bank_materialization_skipped',
         monitorId: result.monitor.id,
@@ -68,26 +58,32 @@ export class MonitorService {
       return { ...result, materialization: null };
     }
 
-    console.log('Iniciando materialização das seleções do acervo', {
-      event: 'monitor.question_bank_materialization_started',
+    console.log('Materialização do acervo registrada para processamento assíncrono', {
+      event: 'monitor.question_bank_materialization_queued',
       monitorId: result.monitor.id,
-      teacherId: result.monitor.teacher.id,
-      selections: persistedSelections,
+      runId: materializationRun.id,
+      totalSelected: materializationRun.totalSelected,
     });
 
-    const materialization = await this.materializationService.materialize({
-      teacherId: result.monitor.teacher.id,
-      monitorId: result.monitor.id,
-      selections: persistedSelections,
-    });
+    try {
+      void this.materializationEnqueuer.enqueue(materializationRun.id).catch((error) => {
+        console.error('Falha ao publicar materialização; execução será recuperada pelo worker', {
+          event: 'monitor.question_bank_materialization_enqueue_failed',
+          monitorId: result.monitor.id,
+          runId: materializationRun.id,
+          error: error instanceof Error ? error.message : String(error),
+        });
+      });
+    } catch (error) {
+      console.error('Falha ao iniciar publicação; execução será recuperada pelo worker', {
+        event: 'monitor.question_bank_materialization_enqueue_failed',
+        monitorId: result.monitor.id,
+        runId: materializationRun.id,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
 
-    console.log('Materialização das seleções concluída', {
-      event: 'monitor.question_bank_materialization_completed',
-      monitorId: result.monitor.id,
-      materialization,
-    });
-
-    return { ...result, materialization };
+    return { ...result, materialization: materializationRun };
   }
 
   async findAllOwnedByUserId(userId: string) {
@@ -96,6 +92,40 @@ export class MonitorService {
 
   async findOwnedByUserId(userId: string, monitorId: string) {
     return this.repository.findOwnedByUserId(userId, monitorId);
+  }
+
+  async getQuestionBankMaterialization(userId: string, monitorId: string) {
+    return this.repository.findQuestionBankMaterializationRunOwnedByUser(userId, monitorId);
+  }
+
+  async retryQuestionBankMaterialization(userId: string, monitorId: string) {
+    const current = await this.repository.findQuestionBankMaterializationRunOwnedByUser(userId, monitorId);
+    if (!current) return null;
+    if (current.status !== 'FAILED') return { kind: 'NOT_RETRYABLE' as const, run: current };
+
+    const run = await this.repository.reserveQuestionBankMaterializationRetry(userId, monitorId);
+    if (!run) {
+      const latest = await this.repository.findQuestionBankMaterializationRunOwnedByUser(userId, monitorId);
+      return latest ? { kind: 'NOT_RETRYABLE' as const, run: latest } : null;
+    }
+    try {
+      void this.materializationEnqueuer.enqueue(run.id, Math.floor(run.attempts / 3)).catch((error) => {
+        console.error('Falha ao publicar retry; execução será recuperada pelo worker', {
+          event: 'monitor.question_bank_materialization_retry_enqueue_failed',
+          monitorId,
+          runId: run.id,
+          error: error instanceof Error ? error.message : String(error),
+        });
+      });
+    } catch (error) {
+      console.error('Falha ao iniciar publicação de retry; execução será recuperada pelo worker', {
+        event: 'monitor.question_bank_materialization_retry_enqueue_failed',
+        monitorId,
+        runId: run.id,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+    return { kind: 'QUEUED' as const, run };
   }
 
   async addSubject(userId: string, monitorId: string, name: string, topics: string[] = [], examProfiles: Array<{ subject: string; examType: string; board?: string | null }> = []) {

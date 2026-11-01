@@ -6,6 +6,20 @@ const getBackendUrl = () => process.env.NEXT_PUBLIC_API_URL || 'http://localhost
 
 type RawBankSelection = { examType: string; board: string | null; subtopic: string | null; subsubtopic: string | null; selectionKey: string };
 
+export type QuestionBankMaterializationRun = {
+  id: string;
+  status: 'QUEUED' | 'PROCESSING' | 'RETRYING' | 'COMPLETED' | 'COMPLETED_WITH_WARNINGS' | 'FAILED';
+  totalSelected: number;
+  totalEligible: number | null;
+  processed: number;
+  created: number;
+  updated: number;
+  skipped: number;
+  failed: number;
+  attempts: number;
+  errorMessage: string | null;
+};
+
 type RawMonitor = {
   id: string;
   name: string;
@@ -13,6 +27,8 @@ type RawMonitor = {
   avatarUrl: string | null;
   detailedDescription: string | null;
   status: string;
+  priceCents?: number;
+  annualPriceCents?: number | null;
   createdAt: string;
   updatedAt: string;
   knowledgeBaseCount?: number;
@@ -49,6 +65,8 @@ type RawMonitor = {
 export type TeacherMonitor = Omit<MonitorDraft, 'subjects'> & {
   id: string;
   status: string;
+  priceCents?: number;
+  annualPriceCents?: number | null;
   createdAt: string;
   updatedAt: string;
   avatarUrl?: string | null;
@@ -58,6 +76,7 @@ export type TeacherMonitor = Omit<MonitorDraft, 'subjects'> & {
   flashcardsCount?: number;
   hasReportedQuestions: boolean;
   reportedQuestionIds: string[];
+  materialization?: QuestionBankMaterializationRun | null;
   subjects: Array<{
     id: string;
     name: string;
@@ -91,6 +110,8 @@ const mapMonitor = (data: RawMonitor): TeacherMonitor => ({
   avatarUrl: data.avatarUrl || null,
   detailedDescription: data.detailedDescription || null,
   status: data.status,
+  priceCents: data.priceCents ?? 0,
+  annualPriceCents: data.annualPriceCents ?? null,
   createdAt: data.createdAt,
   updatedAt: data.updatedAt,
   subjects: data.subjects.map((subject) => ({
@@ -162,6 +183,7 @@ export const TeacherMonitorService = {
         })),
       })),
       questionBankSelections: monitor.questionBankSelections ?? [],
+      totalSelectedQuestions: monitor.totalSelectedQuestions ?? 0,
     };
 
     console.debug('[TeacherMonitorService] Enviando criação de monitor', {
@@ -193,7 +215,27 @@ export const TeacherMonitorService = {
       materialization: responseBody.materialization ?? null,
     });
     const { data } = responseBody;
-    return mapMonitor(data);
+    return { ...mapMonitor(data), materialization: responseBody.materialization ?? null };
+  },
+
+  async getQuestionBankMaterialization(monitorId: string): Promise<QuestionBankMaterializationRun | null> {
+    const response = await fetch(`${getBackendUrl()}/api/v1/monitors/${encodeURIComponent(monitorId)}/question-bank-materialization`, { credentials: 'include' });
+    if (response.status === 401) throw new TeacherSessionError();
+    if (response.status === 404) return null;
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || 'Não foi possível consultar o progresso da importação.');
+    }
+    const { data } = await response.json();
+    return data;
+  },
+
+  async retryQuestionBankMaterialization(monitorId: string): Promise<QuestionBankMaterializationRun> {
+    const response = await fetch(`${getBackendUrl()}/api/v1/monitors/${encodeURIComponent(monitorId)}/question-bank-materialization/retry`, { method: 'POST', credentials: 'include' });
+    if (response.status === 401) throw new TeacherSessionError();
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(body.message || 'Não foi possível repetir a importação.');
+    return body.data;
   },
 
   async listMine(): Promise<TeacherMonitor[]> {

@@ -11,7 +11,7 @@
   4 tests, 0 failures), and backend typecheck passes.
 - The integration suite uses deterministic repository/provider fakes only. No Asaas
   request, remote database, payment, transfer, or withdrawal operation is made.
-- `docs/PAGAMENTOS-E-ASSINATURAS.md` documents the authenticated overview endpoint,
+- `docs/asaas/reference/PAGAMENTOS-E-ASSINATURAS.md` documents the authenticated overview endpoint,
   four indicators, `metrics: null` behavior, the secure subaccount-credential
   prerequisite, backend-only secret handling, environment separation, and the
   explicit no-withdrawal/no-money-movement boundary.

@@ -163,3 +163,21 @@ test('createChatCompletion envia completion textual com configuração do chat',
 
   globalThis.fetch = originalFetch;
 });
+
+test('createChatCompletion encaminha imagem como parte multimodal sem modificar o payload', { concurrency: false }, async () => {
+  setBackendEnv();
+  const { OpenRouterClient } = await import('../openrouter.client.js');
+  const originalFetch = globalThis.fetch;
+  let receivedBody: Record<string, any> | undefined;
+  globalThis.fetch = async (_url, init) => {
+    receivedBody = JSON.parse(String(init?.body)) as Record<string, any>;
+    return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { content: 'Entendi a figura.' } }] }), { status: 200 });
+  };
+  const messages = [{ role: 'user' as const, content: [
+    { type: 'text' as const, text: 'Leia o gráfico.' },
+    { type: 'image_url' as const, image_url: { url: 'data:image/png;base64,cG5n' } },
+  ] }];
+  await new OpenRouterClient().createChatCompletion({ model: 'google/gemini-2.5-flash', messages });
+  assert.deepEqual(receivedBody?.messages, messages);
+  globalThis.fetch = originalFetch;
+});

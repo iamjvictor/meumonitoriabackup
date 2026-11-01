@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+
 export type QuestionBankSelectionInput = {
   subject: string;
   topic: string;
@@ -63,9 +65,14 @@ export function normalizeQuestionBankSelection(input: QuestionBankSelectionInput
     throw new Error('subsubtopic requires subtopic');
   }
 
-  const selectionKey = [examType, board, subject, topic, subtopic, subsubtopic]
-    .map(selectionKeyPart)
-    .join('|');
+  const keyParts = [examType, board, subject, topic, subtopic, subsubtopic]
+    .map(selectionKeyPart);
+  const legacySelectionKey = keyParts.join('|');
+  const hasLongTaxonomyLabel = [topic, subtopic, subsubtopic]
+    .some((value) => value !== null && value.length > 120);
+  const selectionKey = hasLongTaxonomyLabel
+    ? `sha256:${createHash('sha256').update(JSON.stringify(keyParts)).digest('hex')}`
+    : legacySelectionKey;
 
   return {
     subject,

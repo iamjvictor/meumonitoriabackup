@@ -14,12 +14,17 @@ test('criação → credencial cifrada → overview → rotação mantém segred
   } as any;
   const repository = {
     findCurrentByUserId: async () => ({ currentPaymentAccount: accounts.get('teacher-1') ?? null }),
+    reserveSubaccountCreation: async () => ({ acquired: true, id: 'op-1', status: 'STARTED' }),
+    updateSubaccountCreation: async () => {},
     persistCreatedAccount: async (_userId: string, _input: unknown, created: any) => {
       const account = { id: 'account-1', providerAccountId: created.providerAccountId, walletId: created.walletId, status: 'APPROVED', generalStatus: 'APPROVED', onboardingUrl: null, credentialRef: 'credential-1', environment: 'SANDBOX' };
       accounts.set('teacher-1', account);
       credentials.set(account.id, { id: account.credentialRef, accountId: account.id, environment: 'SANDBOX', ...store.encrypt(account.id, 'SANDBOX', created.apiKey) });
       return { id: account.id, providerAccountId: account.providerAccountId };
     },
+    setProviderWebhookId: async (_accountId: string, webhookId: string) => { accounts.get('teacher-1').providerWebhookId = webhookId; },
+    claimProviderWebhookSync: async () => true,
+    recordProviderWebhookSyncFailure: async () => {},
     findCredentialByUserIdAndAccountId: async (_userId: string, accountId: string) => credentials.get(accountId) ?? null,
     findAccountByUserAndEnvironment: async (_userId: string, environment: string) => accounts.get('teacher-1')?.environment === environment ? { id: 'account-1', environment } : null,
     rotateCredentialWithOperation: async (_userId: string, _environment: string, _key: string, encrypted: any, credentialId: string, result: any) => {
@@ -29,10 +34,10 @@ test('criação → credencial cifrada → overview → rotação mantém segred
     },
     findCredentialOperation: async () => null,
   } as any;
-  const provider = { createSubaccount: async () => ({ providerAccountId: 'asaas-1', walletId: 'wallet-1', status: 'APPROVED', onboardingUrl: null, webhookId: null, apiKey: 'first-secret' }), getOverview: async ({ credential }: any) => ({ kind: 'available', metrics: { availableBalanceCents: credential === 'first-secret' ? 100 : 200, receivedThisMonthCents: 0, pendingReceivablesCents: 0, pendingTransfersCount: 0, currency: 'BRL', asOf: new Date().toISOString() } }) } as any;
+  const provider = { createSubaccount: async () => ({ providerAccountId: 'asaas-1', walletId: 'wallet-1', status: 'APPROVED', onboardingUrl: null, webhookId: null, apiKey: 'first-secret' }), ensureAccountStatusWebhook: async () => ({ webhookId: 'webhook-1' }), getOverview: async ({ credential }: any) => ({ kind: 'available', metrics: { availableBalanceCents: credential === 'first-secret' ? 100 : 200, receivedThisMonthCents: 0, pendingReceivablesCents: 0, pendingTransfersCount: 0, currency: 'BRL', asOf: new Date().toISOString() } }) } as any;
   const input = { name: 'Ana', email: 'ana@example.com', cpfCnpj: '12345678901', mobilePhone: '11999999999', incomeValue: 5000, address: 'Rua A', addressNumber: '10', province: 'Centro', postalCode: '01001000' };
   const created = await new StartPaymentAccountUseCase(repository, provider).execute('teacher-1', input);
-  assert.deepEqual(created, { id: 'account-1', providerAccountId: 'asaas-1' });
+  assert.deepEqual(created, { id: 'account-1', providerAccountId: 'asaas-1', providerWebhookId: 'webhook-1', webhookSyncState: 'ACTIVE' });
   assert.equal(JSON.stringify(credentials.get('account-1')).includes('first-secret'), false);
   const overview = () => new GetPaymentAccountOverviewUseCase(repository, provider, { dashboardUrl: null, resolveCredential: createPaymentAccountCredentialResolver(repository, store, 'sandbox') });
   assert.equal((await overview().execute('teacher-1')).metrics?.availableBalanceCents, 100);

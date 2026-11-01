@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { prisma } from '../../lib/prisma.js';
 import { authMiddleware } from '../../middleware/auth.middleware.js';
 import { aiModels } from '../../config/ai-models.config.js';
+import { env } from '../../config/env.js';
 import { OpenRouterClient } from '../../worker/client/openrouter.client.js';
 import { chatHistoryRedis } from './infrastructure/chat-history.redis.js';
 import { RedisChatHistoryRepository } from './repositories/redis-chat-history.repository.js';
@@ -17,6 +18,8 @@ import { PrismaFlashcardEvidenceProvider } from './rag/providers/prisma-flashcar
 import { RedisChatEvidenceRepository } from './rag/repositories/redis-chat-evidence.repository.js';
 import type { QuestionEvidenceResult } from './rag/models/question-evidence.model.js';
 import type { FlashcardEvidenceResult } from './rag/models/flashcard-evidence.model.js';
+import { ChatImageAttachmentRepository, CHAT_IMAGE_MAX_BYTES } from './repositories/chat-image-attachment.repository.js';
+import { normalizeChatImageUpload } from './services/chat-image-upload.service.js';
 import {
   isChatQuestionAttemptAuthorized,
   resolveChatSelectedOption,
@@ -54,12 +57,14 @@ const sendMessageBody = z.object({
     monitorId: z.string().uuid().optional(),
     subjectId: z.string().uuid().optional(),
   }).strict().nullable().optional(),
+  imageAttachmentIds: z.array(z.string().uuid()).max(1).optional(),
 });
 
 const chatHistory = new RedisChatHistoryRepository(chatHistoryRedis);
 const chatEvidenceCache = new RedisChatEvidenceRepository(chatHistoryRedis);
 const questionEvidenceProvider = new PrismaQuestionEvidenceProvider(prisma);
 const flashcardEvidenceProvider = new PrismaFlashcardEvidenceProvider(prisma);
+const chatImageAttachments = new ChatImageAttachmentRepository();
 const chatModule = createChatModule({
   access: new PrismaChatAccessRepository(prisma),
   history: chatHistory,
@@ -68,6 +73,7 @@ const chatModule = createChatModule({
     undefined,
     {
       model: aiModels.chat,
+      imageModel: aiModels.chatImage,
       maxTokens: aiModels.chatMaxTokens,
       temperature: aiModels.chatTemperature,
       timeoutMs: aiModels.chatTimeoutMs,
@@ -81,6 +87,56 @@ const chatModule = createChatModule({
 });
 
 export async function chatRoutes(app: FastifyInstance) {
+  app.post('/student/monitors/:monitorId/chat/subjects/:subjectId/images', { onRequest: authMiddleware }, async (request, reply) => {
+    if (!request.user) return reply.code(401).send({ error: 'UNAUTHENTICATED' });
+    if (!env.CHAT_IMAGE_INPUT_ENABLED) return reply.code(404).send({ error: 'CHAT_IMAGE_INPUT_DISABLED' });
+    const params = chatParams.safeParse(request.params);
+    if (!params.success) return reply.code(422).send({ error: 'VALIDATION_ERROR', details: params.error.flatten() });
+    const scope = await chatModule.authorize({ userId: request.user.id, monitorId: params.data.monitorId, subjectId: params.data.subjectId });
+    try {
+      const file = await request.file({ limits: { files: 1, fileSize: CHAT_IMAGE_MAX_BYTES } });
+      if (!file) return reply.code(400).send({ error: 'CHAT_IMAGE_REQUIRED' });
+      const bytes = await file.toBuffer();
+      const image = await normalizeChatImageUpload({ mimeType: file.mimetype, bytes });
+      const attachment = await chatImageAttachments.create({
+        userId: request.user.id, studentId: scope.studentId, monitorId: scope.monitorId, subjectId: scope.subjectId,
+        mimeType: image.mimeType, width: image.width, height: image.height, bytes: image.bytes,
+      });
+      console.log('Imagem do chat guardada em storage privado', {
+        event: 'chat.image_attachment_uploaded', requestId: request.id, studentId: scope.studentId,
+        monitorId: scope.monitorId, subjectId: scope.subjectId, attachmentId: attachment.id,
+        mimeType: attachment.mimeType, sizeBytes: attachment.sizeBytes, width: attachment.width, height: attachment.height,
+      });
+      return reply.code(201).send({ data: { attachmentId: attachment.id, expiresAt: attachment.expiresAt.toISOString(), mimeType: attachment.mimeType, width: attachment.width, height: attachment.height } });
+    } catch (error) {
+      if (error && typeof error === 'object' && 'code' in error && (error as { code?: string }).code === 'FST_REQ_FILE_TOO_LARGE') {
+        return reply.code(413).send({ error: 'CHAT_IMAGE_SIZE_INVALID' });
+      }
+      if (error instanceof Error && error.message.startsWith('CHAT_IMAGE_')) {
+        return reply.code(error.message === 'CHAT_IMAGE_SIZE_INVALID' ? 413 : 422).send({ error: error.message });
+      }
+      throw error;
+    }
+  });
+
+  app.get('/student/monitors/:monitorId/chat/subjects/:subjectId/images/:attachmentId', { onRequest: authMiddleware }, async (request, reply) => {
+    if (!request.user) return reply.code(401).send({ error: 'UNAUTHENTICATED' });
+    if (!env.CHAT_IMAGE_INPUT_ENABLED) return reply.code(404).send({ error: 'CHAT_IMAGE_INPUT_DISABLED' });
+    const params = z.object({ ...chatParams.shape, attachmentId: z.string().uuid() }).safeParse(request.params);
+    if (!params.success) return reply.code(422).send({ error: 'VALIDATION_ERROR', details: params.error.flatten() });
+    const scope = await chatModule.authorize({ userId: request.user.id, monitorId: params.data.monitorId, subjectId: params.data.subjectId });
+    const loaded = await chatImageAttachments.loadAuthorizedImage({
+      attachmentId: params.data.attachmentId, userId: request.user.id, studentId: scope.studentId,
+      monitorId: scope.monitorId, subjectId: scope.subjectId,
+    });
+    if (!loaded) return reply.code(404).send({ error: 'CHAT_IMAGE_NOT_FOUND' });
+    return reply.header('Content-Type', loaded.attachment.mimeType)
+      .header('Content-Length', loaded.bytes.length)
+      .header('Cache-Control', 'private, no-store')
+      .header('X-Content-Type-Options', 'nosniff')
+      .send(loaded.bytes);
+  });
+
   app.delete('/student/monitors/:monitorId/chat/subjects/:subjectId/messages', { onRequest: authMiddleware }, async (request, reply) => {
     if (!request.user) return reply.code(401).send({ error: 'UNAUTHENTICATED' });
 
@@ -178,6 +234,18 @@ export async function chatRoutes(app: FastifyInstance) {
         monitorId: params.data.monitorId,
         subjectId: params.data.subjectId,
       });
+
+      const imageAttachmentIds = body.data.imageAttachmentIds ?? [];
+      if (imageAttachmentIds.length && !env.CHAT_IMAGE_INPUT_ENABLED) {
+        return reply.code(404).send({ error: 'CHAT_IMAGE_INPUT_DISABLED' });
+      }
+      for (const attachmentId of imageAttachmentIds) {
+        const attachment = await chatImageAttachments.findAuthorized({
+          attachmentId, userId: request.user.id, studentId: scope.studentId,
+          monitorId: scope.monitorId, subjectId: scope.subjectId,
+        });
+        if (!attachment) return reply.code(403).send({ error: 'CHAT_IMAGE_ATTACHMENT_DENIED' });
+      }
 
       console.log('[chat.routes.ts] [Chat] Acesso autorizado para mensagem', {
         event: 'chat.access_authorized',
@@ -368,6 +436,7 @@ export async function chatRoutes(app: FastifyInstance) {
       const result = await chatModule.sendAuthorizedMessage(scope, {
         requestId: request.id,
         contextAttachment: body.data.contextAttachment ?? null,
+        imageAttachmentIds,
         questionEvidence,
         flashcardEvidence,
         monitorId: params.data.monitorId,
@@ -408,6 +477,12 @@ export async function chatRoutes(app: FastifyInstance) {
         return reply.code(403).send({
           error: 'CHAT_ACCESS_DENIED',
           message: 'O aluno não possui acesso a este monitor ou matéria.',
+        });
+      }
+      if (error instanceof Error && error.message === 'CHAT_QUESTION_CONTEXT_UNAVAILABLE') {
+        return reply.code(409).send({
+          error: 'CHAT_QUESTION_CONTEXT_UNAVAILABLE',
+          message: 'A questão vinculada não está mais disponível. Anexe a questão novamente para continuar.',
         });
       }
       if (error instanceof ChatGenerationError) {

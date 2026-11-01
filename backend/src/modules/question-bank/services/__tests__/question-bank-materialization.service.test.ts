@@ -200,16 +200,34 @@ test('falha de persistência de um item não aprova nem interrompe o lote', asyn
   assert.match(result.failures[0]?.reason ?? '', /database unavailable/);
 });
 
-test('falha na consulta do acervo retorna resumo estruturado', async () => {
+test('falha na consulta do acervo rejeita para permitir retry da fila', async () => {
   const repository: QuestionBankMaterializationRepository = {
     async findItems() { throw new Error('question bank unavailable'); },
     async findBySourceKey() { return null; },
     async upsertQuestion(data) { return { id: data.questionBankItemId, created: true }; },
   };
 
-  const result = await new QuestionBankMaterializationService(repository).materialize(input);
+  await assert.rejects(
+    new QuestionBankMaterializationService(repository).materialize(input),
+    /question bank unavailable/,
+  );
+});
 
-  assert.equal(result.processed, 0);
-  assert.equal(result.created, 0);
-  assert.match(result.failures[0]?.reason ?? '', /question bank unavailable/);
+test('emite total elegível e checkpoints por item', async () => {
+  const snapshots: Array<{ totalEligible: number; processed: number; created: number }> = [];
+  const repository: QuestionBankMaterializationRepository = {
+    async findItems() { return [item(), item({ id: 'item-2', providerQuestionId: '124' })]; },
+    async findBySourceKey() { return null; },
+    async upsertQuestion(data) { return { id: data.questionBankItemId, created: true }; },
+  };
+
+  await new QuestionBankMaterializationService(repository).materialize(input, (progress) => {
+    snapshots.push({ totalEligible: progress.totalEligible, processed: progress.processed, created: progress.created });
+  });
+
+  assert.deepEqual(snapshots, [
+    { totalEligible: 2, processed: 0, created: 0 },
+    { totalEligible: 2, processed: 1, created: 1 },
+    { totalEligible: 2, processed: 2, created: 2 },
+  ]);
 });

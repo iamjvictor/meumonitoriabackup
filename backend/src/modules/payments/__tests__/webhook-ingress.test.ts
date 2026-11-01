@@ -3,6 +3,7 @@ import test from 'node:test';
 import { AsaasWebhookIngress, WebhookAuthenticationError } from '../application/commands/accept-webhook.use-case.js';
 
 const payload = {
+  id: 'evt_payment_123',
   event: 'PAYMENT_CONFIRMED',
   payment: { id: 'pay_123', subscription: 'sub_123', value: 59.9 },
 };
@@ -49,6 +50,14 @@ test('webhook Asaas exige identificador externo do evento', async () => {
     () => ingress.accept({ token: 'a'.repeat(32), payload: { event: 'PAYMENT_CONFIRMED' } }),
     /provider event id/i,
   );
+});
+
+test('não usa o ID de pagamento como substituto do ID estável do evento Asaas', async () => {
+  const ingress = new AsaasWebhookIngress({
+    accessToken: 'a'.repeat(32),
+    inbox: { async accept() { throw new Error('não deveria persistir'); } },
+  });
+  await assert.rejects(() => ingress.accept({ token: 'a'.repeat(32), payload: { event: 'PAYMENT_CONFIRMED', payment: { id: 'pay_123' } } }), /provider event id/i);
 });
 
 test('webhook Asaas extrai o id da subconta do payload quando o header não existe', async () => {

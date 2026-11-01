@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const monitorTopicSchema = z.object({
-  name: z.string().trim().min(2).max(120),
+  name: z.string().trim().min(2).max(1086),
   definition: z.string().trim().max(4000).optional(),
 });
 
@@ -12,11 +12,11 @@ const monitorSubjectSchema = z.object({
 
 const questionBankSelectionSchema = z.object({
   subject: z.string().trim().min(2).max(120),
-  topic: z.string().trim().min(2).max(120),
+  topic: z.string().trim().min(2).max(360),
   examType: z.string().trim().min(1).max(60),
   board: z.string().trim().max(120).optional().nullable(),
-  subtopic: z.string().trim().max(120).optional().nullable(),
-  subsubtopic: z.string().trim().max(120).optional().nullable(),
+  subtopic: z.string().trim().max(360).optional().nullable(),
+  subsubtopic: z.string().trim().max(360).optional().nullable(),
 }).superRefine((selection, context) => {
   if (selection.subsubtopic && !selection.subtopic) {
     context.addIssue({
@@ -32,6 +32,7 @@ export const createMonitorSchema = z.object({
   description: z.string().trim().max(500).optional(),
   subjects: z.array(monitorSubjectSchema).min(1).max(20),
   questionBankSelections: z.array(questionBankSelectionSchema).max(5000).optional(),
+  totalSelectedQuestions: z.number().int().min(0).max(500000).optional(),
 });
 
 export const addMonitorSubjectsSchema = z.object({

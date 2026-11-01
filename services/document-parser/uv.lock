@@ -698,12 +698,14 @@ source = { editable = "." }
 dependencies = [
     { name = "docling" },
     { name = "pypdfium2" },
+    { name = "transformers" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "docling", specifier = "==2.122.0" },
     { name = "pypdfium2", specifier = "==5.10.1" },
+    { name = "transformers", specifier = "==4.57.3" },
 ]
 
 [[package]]

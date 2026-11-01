@@ -19,6 +19,8 @@ type TeacherPublicProfile = {
   monitors?: Array<{
     id: string;
     name: string;
+    priceCents: number;
+    annualPriceCents?: number | null;
     description: string | null;
     avatarUrl?: string | null;
     detailedDescription?: string | null;

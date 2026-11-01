@@ -21,6 +21,7 @@ export type ChatHistoryQuestionContext = {
   subjectId: string;
   topicId?: string | null;
   number?: number | null;
+  selectedOption?: string | null;
 };
 
 export type ChatHistoryMessage = {
@@ -30,4 +31,5 @@ export type ChatHistoryMessage = {
   createdAt: string;
   questionContext?: ChatHistoryQuestionContext | null;
   contextAttachment?: ChatHistoryContextAttachment | null;
+  imageAttachmentIds?: string[];
 };

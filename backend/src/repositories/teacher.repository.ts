@@ -171,6 +171,7 @@ export class TeacherRepository {
           select: {
             id: true,
             name: true,
+            priceCents: true,
             description: true,
             avatarUrl: true,
             detailedDescription: true,

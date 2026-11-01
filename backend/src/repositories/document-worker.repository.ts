@@ -6,6 +6,107 @@ import { prisma } from '../lib/prisma.js';
 const DOCUMENT_PAGE_INSERT_BATCH_SIZE = 25;
 const DOCUMENT_TEXT_TRANSACTION_TIMEOUT_MS = 15_000;
 
+export type DoclingChunkInput = {
+  index: number;
+  text: string;
+  rawText: string;
+  headings: string[];
+  pages: number[];
+  type: 'text' | 'table' | 'formula' | 'mixed';
+  tokens: number;
+  provenance: Array<Record<string, unknown>>;
+};
+
+export type SaveDoclingChunksInput = {
+  expectedHash: string;
+  engine: string;
+  tokenizerId: string;
+  chunkerVersion: string;
+  pageCount: number;
+  chunks: DoclingChunkInput[];
+};
+
+export function validateDoclingChunkBatch(input: SaveDoclingChunksInput) {
+  if (!/^[a-f0-9]{64}$/i.test(input.expectedHash)) throw new Error('Hash do documento inválido.');
+  if (!Number.isInteger(input.pageCount) || input.pageCount < 0) throw new Error('Contagem de páginas inválida.');
+  if (!input.engine || !input.tokenizerId || !input.chunkerVersion) throw new Error('Proveniência do chunk incompleta.');
+  if (input.chunks.length === 0) throw new Error('Lote de chunks Docling vazio.');
+  input.chunks.forEach((chunk, index) => {
+    if (chunk.index !== index) throw new Error('Índice dos chunks precisa ser contíguo.');
+    if (!chunk.text.trim() || !chunk.rawText.trim()) throw new Error('Texto de chunk vazio.');
+    if (!Number.isInteger(chunk.tokens) || chunk.tokens < 1 || chunk.tokens > 500) throw new Error('Contagem de tokens inválida ou acima do limite.');
+    if (new Set(chunk.pages).size !== chunk.pages.length || chunk.pages.some((page) => !Number.isInteger(page) || page < 1 || page > input.pageCount)) {
+      throw new Error('Páginas do chunk inválidas.');
+    }
+    if (!['text', 'table', 'formula', 'mixed'].includes(chunk.type)) throw new Error('Tipo de chunk inválido.');
+  });
+}
+
+export async function findReusableDoclingChunks(documentId: string, expectedHash: string, chunkerVersion: string) {
+  const chunks = await prisma.documentChunk.findMany({
+    where: { documentId, docHash: expectedHash, engine: 'docling', chunkerVersion, sourceKey: { not: null } },
+    orderBy: { chunkIndex: 'asc' },
+    select: { id: true, chunkIndex: true, sourceKey: true, status: true, content: true, pages: true, provenance: true },
+  });
+  const complete = chunks.length > 0 && chunks.every((chunk, index) => chunk.chunkIndex === index && Boolean(chunk.sourceKey));
+  return { reusable: complete, chunkCount: complete ? chunks.length : 0, chunks: complete ? chunks : [] };
+}
+
+export async function saveDoclingChunks(documentId: string, input: SaveDoclingChunksInput): Promise<{ savedCount: number; reused: boolean; chunkIds: string[] }> {
+  validateDoclingChunkBatch(input);
+  const document = await prisma.monitorDocument.findUnique({
+    where: { id: documentId },
+    select: { id: true, teacherId: true, monitorId: true, subjectId: true, topicLinks: { select: { topicId: true } } },
+  });
+  if (!document) throw new Error('Documento nao encontrado para salvar chunks Docling.');
+
+  const rows = input.chunks.map((chunk) => {
+    const sourceKey = [documentId, input.expectedHash, input.engine, input.chunkerVersion, chunk.index].join(':');
+    return {
+      id: randomUUID(), documentId: document.id, teacherId: document.teacherId,
+      monitorId: document.monitorId, subjectId: document.subjectId, blockId: null,
+      chunkIndex: chunk.index, content: chunk.rawText, embeddingContent: chunk.text,
+      contentHash: createHash('sha256').update(chunk.rawText).digest('hex'),
+      charCount: chunk.rawText.length, tokenCount: chunk.tokens,
+      pageStart: chunk.pages.length ? Math.min(...chunk.pages) : null,
+      pageEnd: chunk.pages.length ? Math.max(...chunk.pages) : null,
+      pages: chunk.pages as Prisma.InputJsonValue, headings: chunk.headings as Prisma.InputJsonValue,
+      chunkType: chunk.type, engine: input.engine, tokenizerId: input.tokenizerId,
+      chunkerVersion: input.chunkerVersion, provenance: chunk.provenance as Prisma.InputJsonValue,
+      docHash: input.expectedHash, sourceKey, status: 'EMBEDDING_PENDING' as const,
+    };
+  });
+
+  return prisma.$transaction(async (transaction) => {
+    await acquireDocumentAdvisoryLocks(transaction, [documentId]);
+    const existing = await transaction.documentChunk.findMany({
+      where: { documentId },
+      select: {
+        id: true, sourceKey: true, chunkIndex: true,
+        flashcardSources: { select: { flashcardId: true }, take: 1 },
+        questionSources: { select: { questionId: true }, take: 1 },
+        questionSpanLinks: { select: { questionSpanId: true }, take: 1 },
+      },
+    });
+    const inputKeys = rows.map((row) => row.sourceKey).sort();
+    const existingKeys = existing.map((row) => row.sourceKey).filter((key): key is string => Boolean(key)).sort();
+    if (existing.length === rows.length && inputKeys.every((key, index) => key === existingKeys[index])) {
+      return { savedCount: existing.length, reused: true, chunkIds: existing.sort((a, b) => a.chunkIndex - b.chunkIndex).map((row) => row.id) };
+    }
+    if (existing.some((row) => row.flashcardSources.length || row.questionSources.length || row.questionSpanLinks.length)) {
+      throw new Error('Substituicao de chunks abortada: ha fontes de flashcards ou questoes vinculadas; chunks foram preservados.');
+    }
+    await transaction.documentChunk.deleteMany({ where: { documentId } });
+    if (rows.length) {
+      await transaction.documentChunk.createMany({ data: rows });
+      const topicIds = Array.from(new Set(document.topicLinks.map((topic) => topic.topicId).filter((id): id is string => Boolean(id))));
+      const topicRows = rows.flatMap((row) => topicIds.map((topicId) => ({ chunkId: row.id, topicId })));
+      if (topicRows.length) await transaction.documentChunkTopic.createMany({ data: topicRows, skipDuplicates: true });
+    }
+    return { savedCount: rows.length, reused: false, chunkIds: rows.map((row) => row.id) };
+  }, { maxWait: 10_000, timeout: DOCUMENT_TEXT_TRANSACTION_TIMEOUT_MS });
+}
+
 export function assertChunkReplacementSafe(hasExistingFlashcardSource: boolean) {
   if (hasExistingFlashcardSource) {
     throw new Error('Substituicao de chunks abortada: o documento possui FlashcardSource vinculada; chunks, sources e cards foram preservados.');

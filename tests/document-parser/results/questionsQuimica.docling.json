@@ -1,0 +1,386 @@
+{
+  "inputPath": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/questionsQuimica.pdf",
+  "generatedAt": "2026-10-26T19:28:44.097Z",
+  "textSource": "docling",
+  "pagesNeedingOcr": [
+    2,
+    13,
+    14,
+    16
+  ],
+  "summary": {
+    "pages": 16,
+    "blocks": 6,
+    "questionBlocks": 0,
+    "questionBlocksWithChunks": 0,
+    "questionBlocksWithoutChunks": 0,
+    "questionBlocksWithoutExactCoverage": 0,
+    "deterministicCandidates": 0,
+    "questionBlocksWithoutCandidate": 0,
+    "falseQuestionStarts": 0,
+    "expectedCount": null,
+    "expectedNumbers": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10"
+    ],
+    "missingNumbers": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10"
+    ],
+    "missingCandidateNumbers": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10"
+    ],
+    "chunks": 7
+  },
+  "pages": [
+    {
+      "page": 1,
+      "chars": 1961,
+      "normalizedChars": 1959,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 2,
+      "chars": 0,
+      "normalizedChars": 0,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 3,
+      "chars": 439,
+      "normalizedChars": 411,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 4,
+      "chars": 636,
+      "normalizedChars": 580,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 5,
+      "chars": 579,
+      "normalizedChars": 551,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 6,
+      "chars": 501,
+      "normalizedChars": 472,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 7,
+      "chars": 658,
+      "normalizedChars": 607,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 8,
+      "chars": 428,
+      "normalizedChars": 396,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 9,
+      "chars": 628,
+      "normalizedChars": 597,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 10,
+      "chars": 823,
+      "normalizedChars": 783,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 11,
+      "chars": 589,
+      "normalizedChars": 549,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 12,
+      "chars": 667,
+      "normalizedChars": 639,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 13,
+      "chars": 0,
+      "normalizedChars": 0,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 14,
+      "chars": 0,
+      "normalizedChars": 0,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 15,
+      "chars": 261,
+      "normalizedChars": 261,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 16,
+      "chars": 0,
+      "normalizedChars": 0,
+      "columns": 1,
+      "hasImages": true
+    }
+  ],
+  "questionBlocks": [],
+  "candidates": [],
+  "otherBlocks": [
+    {
+      "blockIndex": 0,
+      "type": "THEORY",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 6,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "30/11/2025\nQUÍMICA\nCADERNO DE PROVA\nEste caderno, com dezesseis páginas numeradas sequencialmente, contém dez questões de Química. A Classificação Periódica dos Elementos encontra-se na página 15.\nNão abra o caderno antes de receber autorização.\nINSTRUÇÕES\nVerifique se você recebeu mais dois cadernos de prova.\nVerifique se as seguintes informações estão corretas nas sobrecapas dos três cadernos: nome, número de inscrição, número do documento de identidade e número do CPF.\nSe houver algum erro, notifique o fiscal.\nDestaque, das sobrecapas, os comprovantes que têm seu nome e leve-os com você.\nAo receber autorização para abrir os cadernos, verifique se a impressão, a paginação e a numeração das questões estão corretas.\nSe houver algum erro, notifique o fiscal.\nTodas as respostas e o desenvolvimento das soluções, quando necessário, deverão ser apresentados nos espaços apropriados e escritos com caneta de corpo transparente, azul ou preta.\nNão serão consideradas as questões respondidas fora desses espaços.\nAo terminar, entregue os três cadernos ao fiscal.\nINFORMAÇÕES GERAIS\nO tempo disponível para fazer as provas é de cinco horas. Nada mais poderá ser registrado após o término desse prazo.\nNas salas de prova, os candidatos não poderão usar qualquer tipo de relógio, óculos escuros e boné, nem portar arma de fogo, fumar e utilizar corretores ortográficos e borrachas.\nSerá atribuída nota zero ao candidato que utilizar quaisquer meios para identificar sua prova, como escrever suas iniciais, seu nome ou o de outros em qualquer lugar do caderno de provas, assim como fazer desenhos de qualquer espécie. Será atribuída nota zero, também, à questão respondida a lápis ou em local inadequado.\nSerá eliminado do Vestibular Estadual 2026 o candidato que, durante a prova, utilizar qualquer meio de obtenção de informações, eletrônico ou não.\nSerá também eliminado o candidato que se ausentar da sala levando consigo qualquer material de prova.\nO bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.\nContaminação por tolueno suspendeu fornecimento de água em municípios do Rio de Janeiro\nElevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.\nA tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.\nEm um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 , em",
+      "chars": 3595,
+      "tokens": 851,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 2209,
+          "tokens": 483
+        },
+        {
+          "reason": null,
+          "chars": 1553,
+          "tokens": 399
+        }
+      ],
+      "chunkIndexes": [
+        0,
+        1
+      ],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 1,
+      "type": "SOLUTION",
+      "questionNumber": null,
+      "pageStart": 6,
+      "pageEnd": 9,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10 7 s - 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s - 1 .\nOs combustíveis produzidos a partir de fontes renováveis são considerados uma alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde ao hidrogênio molecular produzido a partir da reação de eletrólise da água, representada pela seguinte equação:\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nEm reações ácido-base de Lewis, os íons Ag + e A l 3+ comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+ é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.\nQUESTÃO\nEm um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 , HC l e NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a",
+      "chars": 1802,
+      "tokens": 461,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 1802,
+          "tokens": 461
+        }
+      ],
+      "chunkIndexes": [
+        2
+      ],
+      "chunkCoverageExact": true
+    },
+    {
+      "blockIndex": 2,
+      "type": "SOLUTION",
+      "questionNumber": null,
+      "pageStart": 9,
+      "pageEnd": 10,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "solução aquosa de NaHCO 3 , apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.\nQUESTÃO 08\nO CO 2 e o H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com",
+      "chars": 589,
+      "tokens": 157,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 589,
+          "tokens": 157
+        }
+      ],
+      "chunkIndexes": [
+        3
+      ],
+      "chunkCoverageExact": true
+    },
+    {
+      "blockIndex": 3,
+      "type": "SOLUTION",
+      "questionNumber": null,
+      "pageStart": 10,
+      "pageEnd": 10,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa",
+      "chars": 140,
+      "tokens": 47,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 140,
+          "tokens": 47
+        }
+      ],
+      "chunkIndexes": [
+        4
+      ],
+      "chunkCoverageExact": true
+    },
+    {
+      "blockIndex": 4,
+      "type": "SOLUTION",
+      "questionNumber": null,
+      "pageStart": 10,
+      "pageEnd": 12,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.\nPara determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve, na tabela, os valores de entalpia-padrão de formação das substâncias envolvidas na combustão total do etano:\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.\nO sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma",
+      "chars": 1024,
+      "tokens": 259,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 1024,
+          "tokens": 259
+        }
+      ],
+      "chunkIndexes": [
+        5
+      ],
+      "chunkCoverageExact": true
+    },
+    {
+      "blockIndex": 5,
+      "type": "SOLUTION",
+      "questionNumber": null,
+      "pageStart": 12,
+      "pageEnd": 15,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.\nCLASSIFICAÇÃO PERIÓDICA DOS ELEMENTOS\n(Adaptado da IUPAC - 2017)\nOrdem crescente de energia dos subníveis: 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s 5f 6d 7p\nConstante de Avogadro = 6,0 × 10 23 partículas × mol - 1\nConstante de Faraday = 96500 C × mol - 1",
+      "chars": 628,
+      "tokens": 245,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 628,
+          "tokens": 245
+        }
+      ],
+      "chunkIndexes": [
+        6
+      ],
+      "chunkCoverageExact": true
+    }
+  ],
+  "chunks": [
+    {
+      "index": 0,
+      "blockIndex": 0,
+      "content": "Este caderno, com dezesseis páginas numeradas sequencialmente, contém dez questões de Química. A Classificação Periódica dos Elementos encontra-se na página 15.\nNão abra o caderno antes de receber autorização.\nINSTRUÇÕES\nVerifique se você recebeu mais dois cadernos de prova.\nVerifique se as seguintes informações estão corretas nas sobrecapas dos três cadernos: nome, número de inscrição, número do documento de identidade e número do CPF.\nSe houver algum erro, notifique o fiscal.\nDestaque, das sobrecapas, os comprovantes que têm seu nome e leve-os com você.\nAo receber autorização para abrir os cadernos, verifique se a impressão, a paginação e a numeração das questões estão corretas.\nSe houver algum erro, notifique o fiscal.\nTodas as respostas e o desenvolvimento das soluções, quando necessário, deverão ser apresentados nos espaços apropriados e escritos com caneta de corpo transparente, azul ou preta.\nNão serão consideradas as questões respondidas fora desses espaços.\nAo terminar, entregue os três cadernos ao fiscal.\nINFORMAÇÕES GERAIS\nO tempo disponível para fazer as provas é de cinco horas. Nada mais poderá ser registrado após o término desse prazo.\nNas salas de prova, os candidatos não poderão usar qualquer tipo de relógio, óculos escuros e boné, nem portar arma de fogo, fumar e utilizar corretores ortográficos e borrachas.\nSerá atribuída nota zero ao candidato que utilizar quaisquer meios para identificar sua prova, como escrever suas iniciais, seu nome ou o de outros em qualquer lugar do caderno de provas, assim como fazer desenhos de qualquer espécie. Será atribuída nota zero, também, à questão respondida a lápis ou em local inadequado.\nSerá eliminado do Vestibular Estadual 2026 o candidato que, durante a prova, utilizar qualquer meio de obtenção de informações, eletrônico ou não.\nSerá também eliminado o candidato que se ausentar da sala levando consigo qualquer material de prova.\nO bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado.",
+      "tokens": 483,
+      "charStart": 36,
+      "charEnd": 2245
+    },
+    {
+      "index": 1,
+      "blockIndex": 0,
+      "content": ", em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.\nContaminação por tolueno suspendeu fornecimento de água em municípios do Rio de Janeiro\nElevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.\nA tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.\nEm um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 , em",
+      "tokens": 399,
+      "charStart": 2042,
+      "charEnd": 3595
+    },
+    {
+      "index": 2,
+      "blockIndex": 1,
+      "content": "solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10 7 s - 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s - 1 .\nOs combustíveis produzidos a partir de fontes renováveis são considerados uma alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde ao hidrogênio molecular produzido a partir da reação de eletrólise da água, representada pela seguinte equação:\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nEm reações ácido-base de Lewis, os íons Ag + e A l 3+ comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+ é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.\nQUESTÃO\nEm um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 , HC l e NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a",
+      "tokens": 461,
+      "charStart": 0,
+      "charEnd": 1802
+    },
+    {
+      "index": 3,
+      "blockIndex": 2,
+      "content": "solução aquosa de NaHCO 3 , apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.\nQUESTÃO 08\nO CO 2 e o H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com",
+      "tokens": 157,
+      "charStart": 0,
+      "charEnd": 589
+    },
+    {
+      "index": 4,
+      "blockIndex": 3,
+      "content": "solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa",
+      "tokens": 47,
+      "charStart": 0,
+      "charEnd": 140
+    },
+    {
+      "index": 5,
+      "blockIndex": 4,
+      "content": "solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.\nPara determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve, na tabela, os valores de entalpia-padrão de formação das substâncias envolvidas na combustão total do etano:\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.\nO sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma",
+      "tokens": 259,
+      "charStart": 0,
+      "charEnd": 1024
+    },
+    {
+      "index": 6,
+      "blockIndex": 5,
+      "content": "solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.\nCLASSIFICAÇÃO PERIÓDICA DOS ELEMENTOS\n(Adaptado da IUPAC - 2017)\nOrdem crescente de energia dos subníveis: 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s 5f 6d 7p\nConstante de Avogadro = 6,0 × 10 23 partículas × mol - 1\nConstante de Faraday = 96500 C × mol - 1",
+      "tokens": 245,
+      "charStart": 0,
+      "charEnd": 628
+    }
+  ]
+}

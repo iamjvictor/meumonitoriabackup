@@ -20,7 +20,13 @@ export class TeacherRegistrationController {
     const result = registerTeacherProfileSchema.safeParse(request.body);
     if (!result.success) {
       console.log('Perfil invalido', { event: 'teacher_profile.validation_failed', requestId: request.id, durationMs: Date.now() - startedAt, invalidFields: Object.keys(result.error.flatten().fieldErrors) });
-      return reply.code(400).send({ error: 'VALIDATION_ERROR', message: 'Dados do perfil invalidos.', details: result.error.flatten().fieldErrors });
+      return reply.code(400).send({
+        error: {
+          code: 'VALIDATION_ERROR',
+          message: 'Dados do perfil inválidos. Revise os campos indicados.',
+          details: result.error.flatten().fieldErrors,
+        },
+      });
     }
 
     console.log('Perfil validado', {

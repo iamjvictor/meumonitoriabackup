@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 import { prisma } from '../../../../lib/prisma.js';
 import type { HostedCheckoutResult } from '../../domain/ports/payment-provider.port.js';
+import { calculateAnnualPriceCents } from '../../domain/annual-plan-price.js';
 
 export type CheckoutStudent = { id: string; role: string };
 export type CheckoutMonitor = {
@@ -28,7 +29,7 @@ export interface CreateCheckoutRepository {
   hasActiveSubscription(studentId: string, monitorId: string): Promise<boolean>;
   findIdempotency(studentId: string, key: string): Promise<{ requestFingerprint: string; state: string; order: CheckoutIntent['order'] | null; checkout: CheckoutIntent['checkout'] | null } | null>;
   resetFailedIdempotency(studentId: string, key: string): Promise<void>;
-  createIntent(input: { studentId: string; monitor: CheckoutMonitor; idempotencyKey: string; requestFingerprint: string }): Promise<CheckoutIntent>;
+  createIntent(input: { studentId: string; monitor: CheckoutMonitor; interval: 'MONTHLY' | 'ANNUAL'; idempotencyKey: string; requestFingerprint: string }): Promise<CheckoutIntent>;
   saveCheckout(orderId: string, checkout: HostedCheckoutResult): Promise<CheckoutIntent>;
   markCheckoutCreationFailed(orderId: string, message: string): Promise<void>;
 }
@@ -106,11 +107,16 @@ export class PaymentCheckoutRepository implements CreateCheckoutRepository {
     });
   }
 
-  async createIntent(input: { studentId: string; monitor: CheckoutMonitor; idempotencyKey: string; requestFingerprint: string }) {
+  async createIntent(input: { studentId: string; monitor: CheckoutMonitor; interval: 'MONTHLY' | 'ANNUAL'; idempotencyKey: string; requestFingerprint: string }) {
+    const amountCents = input.interval === 'ANNUAL' ? calculateAnnualPriceCents(input.monitor.priceCents) : input.monitor.priceCents;
+    if (!amountCents || amountCents <= 0) throw new Error('ANNUAL_PLAN_UNAVAILABLE');
+    const serviceMonths = input.interval === 'ANNUAL' ? 12 : 1;
     const account = input.monitor.teacher.currentPaymentAccount;
-    const accountEligible = Boolean(account && (account.status.toUpperCase() === 'APPROVED' || account.generalStatus?.toUpperCase() === 'APPROVED'));
-    const walletId = accountEligible ? account?.walletId ?? null : null;
-    const percentage = accountEligible ? new Prisma.Decimal(input.monitor.teacher.teacherPercentage).toFixed(4) : '0.0000';
+    const teacherPercentage = new Prisma.Decimal(input.monitor.teacher.teacherPercentage);
+    const accountApproved = Boolean(account && (account.status.toUpperCase() === 'APPROVED' || account.generalStatus?.toUpperCase() === 'APPROVED'));
+    const payoutEligible = accountApproved && Boolean(account?.walletId) && teacherPercentage.gt(0);
+    const walletId = payoutEligible ? account!.walletId : null;
+    const percentage = payoutEligible ? teacherPercentage.toFixed(4) : '0.0000';
     const referral = input.monitor.teacher.referralReceived?.status === 'ACTIVE' ? input.monitor.teacher.referralReceived : null;
     const orderId = randomUUID();
     const referralPercentage = referral ? new Prisma.Decimal(referral.percentage).toFixed(4) : '0.0000';
@@ -122,16 +128,19 @@ export class PaymentCheckoutRepository implements CreateCheckoutRepository {
           studentId: input.studentId,
           environment,
           status: 'PENDING',
-          grossCents: input.monitor.priceCents,
+          grossCents: amountCents,
           currency: 'BRL',
           externalReference: orderId,
           requestFingerprint: input.requestFingerprint,
+          billingInterval: input.interval,
+          serviceMonths,
+          splitPolicy: payoutEligible ? 'TEACHER_ELIGIBLE' : 'NONE',
           items: {
             create: {
               monitorId: input.monitor.id,
               teacherId: input.monitor.teacher.id,
               descriptionSnapshot: input.monitor.name,
-              priceCentsSnapshot: input.monitor.priceCents,
+              priceCentsSnapshot: amountCents,
               teacherPercentageSnapshot: percentage,
               referrerTeacherIdSnapshot: referral?.indicatorTeacherId ?? null,
               referralPercentageSnapshot: referralPercentage,
@@ -148,7 +157,7 @@ export class PaymentCheckoutRepository implements CreateCheckoutRepository {
                   studentId: input.studentId,
                   monitorId: input.monitor.id,
                   teacherId: input.monitor.teacher.id,
-                  priceCentsSnapshot: input.monitor.priceCents,
+                  priceCentsSnapshot: amountCents,
                   teacherPercentageSnapshot: percentage,
                   referrerTeacherIdSnapshot: referral?.indicatorTeacherId ?? null,
                   referralPercentageSnapshot: referralPercentage,

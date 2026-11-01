@@ -29144,3 +29144,355 @@ Unique constraint failed on the fields: (`topic_id`, `text_hash`)
 - Tempo total: 4570 ms (4.57 s)
 - Erro: parser_fallback_required
 
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:08:03.083Z
+- Finalizado em: 2026-10-18T15:08:06.654Z
+- Duracao: 3571 ms (3.57 s)
+- Detalhes: {"storagePath":"143aae83-2c9c-4a9a-a31e-d85fd4d5c15b/4df15fdb-fcb9-41d4-bbc1-f57fdb808dd1/ece87402-242a-477c-b05a-bae1a3feaa09/whole-subject/9b5da0f3-43c3-4e7c-bdd6-e31a44206d79-razao-proporcao-sample-pages.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:08:06.663Z
+- Finalizado em: 2026-10-18T15:08:07.552Z
+- Duracao: 889 ms (0.89 s)
+- Detalhes: {"parser":"DOCLING","sizeBytes":3839851}
+
+## Documento: razao-proporcao-sample-pages.pdf
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: FAILED
+- Iniciado em: 2026-10-18T15:08:02.070Z
+- Finalizado em: 2026-10-18T15:08:07.853Z
+- Tempo total: 5783 ms (5.78 s)
+- Erro: parser_fallback_required
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:08:46.977Z
+- Finalizado em: 2026-10-18T15:08:47.903Z
+- Duracao: 926 ms (0.93 s)
+- Detalhes: {"storagePath":"143aae83-2c9c-4a9a-a31e-d85fd4d5c15b/4df15fdb-fcb9-41d4-bbc1-f57fdb808dd1/ece87402-242a-477c-b05a-bae1a3feaa09/whole-subject/9b5da0f3-43c3-4e7c-bdd6-e31a44206d79-razao-proporcao-sample-pages.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:08:47.914Z
+- Finalizado em: 2026-10-18T15:08:48.560Z
+- Duracao: 646 ms (0.65 s)
+- Detalhes: {"parser":"DOCLING","sizeBytes":3839851}
+
+## Documento: razao-proporcao-sample-pages.pdf
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: FAILED
+- Iniciado em: 2026-10-18T15:08:45.309Z
+- Finalizado em: 2026-10-18T15:08:48.861Z
+- Tempo total: 3552 ms (3.55 s)
+- Erro: parser_fallback_required
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:08:59.799Z
+- Finalizado em: 2026-10-18T15:09:00.705Z
+- Duracao: 906 ms (0.91 s)
+- Detalhes: {"storagePath":"143aae83-2c9c-4a9a-a31e-d85fd4d5c15b/4df15fdb-fcb9-41d4-bbc1-f57fdb808dd1/ece87402-242a-477c-b05a-bae1a3feaa09/whole-subject/9b5da0f3-43c3-4e7c-bdd6-e31a44206d79-razao-proporcao-sample-pages.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:09:00.715Z
+- Finalizado em: 2026-10-18T15:09:04.158Z
+- Duracao: 3443 ms (3.44 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:09:04.369Z
+- Finalizado em: 2026-10-18T15:09:06.368Z
+- Duracao: 1999 ms (2.00 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:09:06.704Z
+- Finalizado em: 2026-10-18T15:09:17.049Z
+- Duracao: 10345 ms (10.35 s)
+- Detalhes: {"blockCount":47,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:09:17.200Z
+- Finalizado em: 2026-10-18T15:09:21.145Z
+- Duracao: 3945 ms (3.94 s)
+- Detalhes: {"chunkCount":41,"blockCount":47,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: FAILED
+- Iniciado em: 2026-10-18T15:09:21.298Z
+- Finalizado em: 2026-10-18T15:09:23.063Z
+- Duracao: 1765 ms (1.76 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:09:23.683Z
+- Finalizado em: 2026-10-18T15:09:23.821Z
+- Duracao: 138 ms (0.14 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: razao-proporcao-sample-pages.pdf
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-10-18T15:08:58.684Z
+- Finalizado em: 2026-10-18T15:09:23.958Z
+- Tempo total: 25274 ms (25.27 s)
+- Falhas nao bloqueantes: 1
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:32:24.667Z
+- Finalizado em: 2026-10-18T15:32:26.249Z
+- Duracao: 1582 ms (1.58 s)
+- Detalhes: {"storagePath":"143aae83-2c9c-4a9a-a31e-d85fd4d5c15b/4df15fdb-fcb9-41d4-bbc1-f57fdb808dd1/ece87402-242a-477c-b05a-bae1a3feaa09/whole-subject/9b5da0f3-43c3-4e7c-bdd6-e31a44206d79-razao-proporcao-sample-pages.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:32:26.258Z
+- Finalizado em: 2026-10-18T15:32:28.382Z
+- Duracao: 2124 ms (2.12 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:32:28.582Z
+- Finalizado em: 2026-10-18T15:32:31.155Z
+- Duracao: 2573 ms (2.57 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:32:31.551Z
+- Finalizado em: 2026-10-18T15:32:43.429Z
+- Duracao: 11878 ms (11.88 s)
+- Detalhes: {"blockCount":47,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:32:43.751Z
+- Finalizado em: 2026-10-18T15:32:49.681Z
+- Duracao: 5930 ms (5.93 s)
+- Detalhes: {"chunkCount":41,"blockCount":47,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:32:49.881Z
+- Finalizado em: 2026-10-18T15:33:03.030Z
+- Duracao: 13149 ms (13.15 s)
+- Detalhes: {"chunkCount":41,"batchCount":1,"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:33:03.787Z
+- Finalizado em: 2026-10-18T15:33:03.946Z
+- Duracao: 159 ms (0.16 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: razao-proporcao-sample-pages.pdf
+- Documento ID: `9b5da0f3-43c3-4e7c-bdd6-e31a44206d79`
+- Status: READY
+- Iniciado em: 2026-10-18T15:32:23.288Z
+- Finalizado em: 2026-10-18T15:33:04.096Z
+- Tempo total: 40808 ms (40.81 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: READY
+- Iniciado em: 2026-10-24T21:35:33.136Z
+- Finalizado em: 2026-10-24T21:35:33.748Z
+- Duracao: 612 ms (0.61 s)
+- Tentativa: 1
+- Job ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Detalhes: {"storagePath":"77dd7775-ab48-42f0-899e-977e9ba5906d/da114efe-f1a0-4287-b415-a3d62af67fc6/c5bd69cf-f86b-458b-ac49-3a560e81ca58/whole-subject/9b47c754-5ca2-421c-bd1f-7cec5649155e-CONTRATO-_ESGV2.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: READY
+- Iniciado em: 2026-10-24T21:35:33.756Z
+- Finalizado em: 2026-10-24T21:36:45.489Z
+- Duracao: 71733 ms (71.73 s)
+- Tentativa: 1
+- Job ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Detalhes: {"parser":"DOCLING","sizeBytes":233039}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: READY
+- Iniciado em: 2026-10-24T21:36:45.491Z
+- Finalizado em: 2026-10-24T21:36:49.847Z
+- Duracao: 4356 ms (4.36 s)
+- Tentativa: 1
+- Job ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: READY
+- Iniciado em: 2026-10-24T21:36:50.080Z
+- Finalizado em: 2026-10-24T21:36:51.811Z
+- Duracao: 1730 ms (1.73 s)
+- Tentativa: 1
+- Job ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: READY
+- Iniciado em: 2026-10-24T21:36:52.089Z
+- Finalizado em: 2026-10-24T21:36:59.285Z
+- Duracao: 7196 ms (7.20 s)
+- Tentativa: 1
+- Job ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Detalhes: {"blockCount":27,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: READY
+- Iniciado em: 2026-10-24T21:36:59.429Z
+- Finalizado em: 2026-10-24T21:37:08.608Z
+- Duracao: 9178 ms (9.18 s)
+- Tentativa: 1
+- Job ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Detalhes: {"chunkCount":26,"blockCount":27,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: FAILED
+- Iniciado em: 2026-10-24T21:37:08.803Z
+- Finalizado em: 2026-10-24T21:37:11.114Z
+- Duracao: 2311 ms (2.31 s)
+- Tentativa: 1
+- Job ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: READY
+- Iniciado em: 2026-10-24T21:37:11.714Z
+- Finalizado em: 2026-10-24T21:37:12.126Z
+- Duracao: 412 ms (0.41 s)
+- Tentativa: 1
+- Job ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Detalhes: {"status":"READY"}
+
+## Documento: CONTRATO- ESGV2.pdf
+- Documento ID: `9b47c754-5ca2-421c-bd1f-7cec5649155e`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-10-24T21:35:31.612Z
+- Finalizado em: 2026-10-24T21:37:12.266Z
+- Tempo total: 100654 ms (100.65 s)
+- Falhas nao bloqueantes: 1
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:22:37.869Z
+- Finalizado em: 2026-10-24T22:22:39.909Z
+- Duracao: 2040 ms (2.04 s)
+- Tentativa: 1
+- Job ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Detalhes: {"storagePath":"77dd7775-ab48-42f0-899e-977e9ba5906d/da114efe-f1a0-4287-b415-a3d62af67fc6/c5bd69cf-f86b-458b-ac49-3a560e81ca58/whole-subject/1d1f7395-709c-43d8-8dfc-0e3262cbe7a6-apostila_mb_2013_2.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:22:39.914Z
+- Finalizado em: 2026-10-24T22:24:27.435Z
+- Duracao: 107521 ms (107.52 s)
+- Tentativa: 1
+- Job ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Detalhes: {"parser":"DOCLING","sizeBytes":1527022}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:24:27.436Z
+- Finalizado em: 2026-10-24T22:24:30.850Z
+- Duracao: 3414 ms (3.41 s)
+- Tentativa: 1
+- Job ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:24:30.993Z
+- Finalizado em: 2026-10-24T22:24:33.911Z
+- Duracao: 2917 ms (2.92 s)
+- Tentativa: 1
+- Job ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:24:34.190Z
+- Finalizado em: 2026-10-24T22:25:00.744Z
+- Duracao: 26554 ms (26.55 s)
+- Tentativa: 1
+- Job ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Detalhes: {"blockCount":164,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:25:00.892Z
+- Finalizado em: 2026-10-24T22:25:05.355Z
+- Duracao: 4463 ms (4.46 s)
+- Tentativa: 1
+- Job ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Detalhes: {"chunkCount":118,"blockCount":164,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:25:05.493Z
+- Finalizado em: 2026-10-24T22:25:40.761Z
+- Duracao: 35268 ms (35.27 s)
+- Tentativa: 1
+- Job ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Detalhes: {"chunkCount":118,"batchCount":2,"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:25:41.459Z
+- Finalizado em: 2026-10-24T22:25:41.870Z
+- Duracao: 412 ms (0.41 s)
+- Tentativa: 1
+- Job ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Detalhes: {"status":"READY"}
+
+## Documento: apostila_mb_2013_2.pdf
+- Documento ID: `1d1f7395-709c-43d8-8dfc-0e3262cbe7a6`
+- Status: READY
+- Iniciado em: 2026-10-24T22:22:36.869Z
+- Finalizado em: 2026-10-24T22:25:42.010Z
+- Tempo total: 185141 ms (185.14 s)
+- Falhas nao bloqueantes: 0
+

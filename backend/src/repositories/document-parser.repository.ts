@@ -172,6 +172,7 @@ export async function persistLayoutDocument(input: {
           id: asset.id,
           documentId: input.documentId,
           parseRunId: input.parseRunId,
+          sourceKey: asset.sourceKey,
           layoutElementId: asset.layoutElementId,
           pageNumber: asset.pageNumber,
           assetType: asset.assetType,
@@ -232,6 +233,7 @@ function buildPersistedLayoutRows(layout: LayoutDocument) {
     return {
       id: persistentAssetId,
       sourceId: asset.id,
+      sourceKey: asset.id,
       pageNumber: asset.pageNumber,
       assetType: asset.type,
       storagePath: asset.storagePath,

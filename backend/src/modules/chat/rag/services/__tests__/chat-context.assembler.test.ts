@@ -119,3 +119,12 @@ test('preserva o gabarito oficial quando o limite de contexto é pequeno', () =>
   assert.match(context, /C/);
   assert.match(context, /Explique o motivo/);
 });
+
+test('monta citação Docling por chunk e inclui o caminho de títulos sem exigir bloco', () => {
+  const citation = { ...makeRagResult().citations[0]!, blockId: null, headings: ['Capítulo 3', 'Energia'] };
+  const context = new ChatContextAssembler().assemble({
+    message: 'Explique energia.', history: [], questionContext: null,
+    rag: makeRagResult({ citations: [citation] }),
+  });
+  assert.match(context, /Capítulo 3 > Energia/);
+});

@@ -78,6 +78,7 @@ export class ChatModule {
       ...scope,
       requestId: input.requestId,
       contextAttachment: input.contextAttachment,
+      imageAttachmentIds: input.imageAttachmentIds,
       questionEvidence: input.questionEvidence,
       flashcardEvidence: input.flashcardEvidence,
       message: input.message,

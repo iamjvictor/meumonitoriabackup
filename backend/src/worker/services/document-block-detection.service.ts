@@ -58,7 +58,7 @@ type SectionContext = { level: number; blockIndex: number; title: string };
 
 // Aceita a pontuação tipográfica comum em PDFs exportados (hífen, travessão
 // e dois-pontos), além dos marcadores tradicionais `1.` e `1)`.
-const QUESTION_START = /^(?:quest[aã]o\s*)?(\d{1,3})\s*(?:[.)]|[-–—:])\s*(?:\(([^)\n]{2,100})\))?\s*(.*)$/i;
+const QUESTION_START = /^(?:quest[aã]o\s*)?((?:0?[1-9]|[1-9]\d{1,2}))\s*(?:[.)]|[-–—:])\s*(?:\(([^)\n]{2,100})\))?\s*(.*)$/i;
 const NUMBERED_SECTION = /^(\d+(?:\.\d+)*)(?:\s+|[-:])(.+)$/;
 const YEAR_PATTERN = /\b(19\d{2}|20\d{2})\b/;
 const ALTERNATIVE = /^(?:(?:[A-Ea-e][.)])|(?:\([A-Ea-e]\))|[ⒶⒷⒸⒹⒺ]|(?:\(?[1-5]\)?[.)]))\s+.+/;
@@ -66,7 +66,9 @@ const ANSWER_VALUE = '(?:\\[?[A-H]\\]?|\\(?[1-5]\\)?|r?\\$?\\s*[\\d.,]+%?)';
 const ANSWER_KEY_ITEM = new RegExp(`^(\\d{1,3})\\s*[.)-]\\s*${ANSWER_VALUE}\\s*$`, 'i');
 const ANSWER_KEY_ENTRY = new RegExp(`(?:^|\\s)\\d{1,3}\\s*[.)-]\\s*${ANSWER_VALUE}(?=\\s|$)`, 'gim');
 const LOOSE_ANSWER_KEY_ENTRY = new RegExp(`(?:^|\\s)\\d{1,3}\\s*[.)]\\s*${ANSWER_VALUE}`, 'gim');
-const SOLUTION_MARKER = /^(?:(?:quest[aã]o\s*)?(\d{1,3})[.)]\s*)?(?:resolu[cç][aã]o|solu[cç][aã]o|coment[aá]rio)\b/i;
+// A bare word such as "solução" often begins ordinary chemistry prose
+// ("em solução aquosa"). Only treat a standalone label as a solution block.
+const SOLUTION_MARKER = /^(?:(?:quest[aã]o\s*)?(\d{1,3})[.)]\s*)?(?:resolu[cç][aã]o|solu[cç][aã]o|coment[aá]rio)(?:\s+(?:da|de|do)\s+(?:quest[aã]o\s*)?\d{1,3})?\s*[:.-]?\s*$/i;
 const QUESTION_SIGNAL = /\?|\b(?:calcule|calcular|determine|encontre|resolva|assinale|marque|indique|qual|quanto|quantos|quantas|verifique|sabe-se|é\s+igual\s+a|corresponde\s+a)\b/i;
 const INLINE_ALTERNATIVE = /(?:^|\s)(?:[A-Ea-e][.)]|\([A-Ea-e]\)|[ⒶⒷⒸⒹⒺ])\s*/g;
 
@@ -86,6 +88,9 @@ function isFormulaLine(line: string) {
 }
 
 function headingForLine(line: string): { type: BlockType; level: number; title: string } | null {
+  if (/^(?:instru[cç][oõ]es|informa[cç][oõ]es\s+gerais)\s*:?$/i.test(line.trim())) {
+    return { type: 'SECTION', level: 1, title: line.trim() };
+  }
   const numbered = line.match(NUMBERED_SECTION);
   const title = (numbered?.[2] ?? '').trim();
   // A numeric prefix by itself is not a heading. PDF extraction commonly
@@ -134,7 +139,7 @@ function startsWithQuestionStatement(text: string) {
   // looks like "9) e podemos...". It must not open a new question block.
   // Real question statements in the source documents start with a capitalized
   // word (or an institution/parenthesized marker).
-  return /^(?:[A-ZÀ-Ý][A-Za-zÀ-ÿ]{1,}|\()/.test(statement);
+  return /^(?:[A-ZÀ-Ý][A-Za-zÀ-ÿ]*\b|\()/.test(statement);
 }
 
 function looksLikeInstructionalList(candidate: BlockCandidate, nextElements: DocumentElement[]) {
@@ -165,6 +170,7 @@ function isHeaderOrFooterLine(line: string) {
   const compact = line.trim();
   if (/^\d{1,3}$/.test(compact)) return true;
   if (/^(?:c[aá]ssio\s+vidigal(?:\s+\d{1,3})?|ifmg\s*[–-]?\s*campus\s+ouro\s+preto)$/i.test(compact)) return true;
+  if (/^vestibular\s+estadual\s+20\d{2}\s+exame\s+discursivo(?:\s+\d{1,3})?$/i.test(compact)) return true;
   return /^raz[aã]o,?\s+propor[cç][aã]o,?\s+regras?\s+de\s+tr[eê]s(?:\s+e\s+porcentagem)?$/i.test(compact);
 }
 
@@ -199,7 +205,7 @@ function createElements(pages: StructuralPage[]) {
       // PDF extraction often keeps "40) ... Resolução" on one visual line.
       // Split the structural marker before classification so it can close an
       // answer key instead of becoming part of its final entry.
-      const segments = cleanedLine.split(/(?=(?:(?<!\d)(?:(?:quest[aã]o\s*)?\d{1,3}[.)]\s+(?=[A-ZÁÀÃÂÉÊÍÓÔÕÚÇ(\[]))|(?:(?:quest[aã]o\s*)?\d{1,3}[.)]\s*)?(?:resolu[cç][aã]o|solu[cç][aã]o|coment[aá]rio)\b))/i);
+      const segments = cleanedLine.split(/(?=(?:(?<![\d,])(?:(?:quest[aã]o\s*)?(?:0?[1-9]|[1-9]\d{1,2})[.)]\s+(?=[A-ZÁÀÃÂÉÊÍÓÔÕÚÇ(\[]))|(?:(?:quest[aã]o\s*)?\d{1,3}[.)]\s*)?(?:resolu[cç][aã]o|solu[cç][aã]o|coment[aá]rio)(?:\s+(?:da|de|do)\s+(?:quest[aã]o\s*)?\d{1,3})?\s*[:.-]?\s*$))/i);
       let segmentOffset = 0;
       for (const segment of segments) {
         const text = segment.trim();
@@ -214,7 +220,50 @@ function createElements(pages: StructuralPage[]) {
     }
     documentOffset += content.length + 2;
   }
-  return elements;
+  return joinMarginalQuestionNumbers(elements);
+}
+
+function joinMarginalQuestionNumbers(elements: DocumentElement[]): DocumentElement[] {
+  const joined: DocumentElement[] = [];
+  for (let index = 0; index < elements.length; index += 1) {
+    const marker = elements[index]!;
+    const markerMatch = /^QUESTÃO(?:\s+(.+))?$/u.exec(marker.text);
+    if (!markerMatch || QUESTION_START.test(marker.text)) {
+      joined.push(marker);
+      continue;
+    }
+    const numberIndex = [index + 1, index + 2].find((candidateIndex) => {
+      const candidate = elements[candidateIndex];
+      return candidate?.pageNumber === marker.pageNumber
+        // The exam prints two-digit question numbers in the margin. A single
+        // digit here is often a chemical subscript extracted on its own line.
+        && /^(?:0[1-9]|[1-9]\d)\s+\S/u.test(candidate.text);
+    });
+    if (numberIndex === undefined) {
+      joined.push(marker);
+      continue;
+    }
+    const numberElement = elements[numberIndex]!;
+    const numberMatch = /^((?:0[1-9]|[1-9]\d))\s+(.+)$/u.exec(numberElement.text)!;
+    const lead = [markerMatch[1], ...elements.slice(index + 1, numberIndex).map((element) => element.text)]
+      .filter(Boolean).join(' ').trim();
+    joined.push({
+      ...marker,
+      type: 'QUESTION_START_CANDIDATE',
+      text: `Questão ${numberMatch[1]}. ${lead || numberMatch[2]}`,
+      charEnd: numberElement.charEnd,
+    });
+    if (lead && numberMatch[2]) {
+      joined.push({
+        ...numberElement,
+        type: classifyLine(numberMatch[2]),
+        text: numberMatch[2],
+        charStart: numberElement.charEnd - numberMatch[2].length,
+      });
+    }
+    index = numberIndex;
+  }
+  return joined;
 }
 
 function questionMetadata(line: string) {
@@ -269,6 +318,9 @@ function canOpenQuestion(
   context: { nextElements: DocumentElement[]; sectionPath: string[]; state: ParserState },
 ) {
   if (context.state === 'IN_ANSWER_KEY') return false;
+  const explicitQuestionLabel = /^quest[aã]o\s+\d{1,3}[.)]/i.test(candidate.text);
+  const isExamInstructionSection = context.sectionPath.some((section) => /^(?:instru[cç][oõ]es|informa[cç][oõ]es\s+gerais)\b/i.test(section.trim()));
+  if (isExamInstructionSection && !explicitQuestionLabel) return false;
   if (!startsWithQuestionStatement(candidate.text)) return false;
   if (looksLikeAnswerKeyItem(candidate, context.nextElements)) return false;
   if (looksLikeInstructionalList(candidate, context.nextElements)) return false;
@@ -287,7 +339,11 @@ function canOpenQuestion(
   const hasInstitution = Boolean(match?.[2]);
   const hasQuestionMarker = QUESTION_START.test(candidate.text);
 
-  return hasQuestionMarker && (sectionSuggestsExercises || hasQuestionSignal || hasAlternativesNearby || hasInstitution);
+  // A printed "Questão 04" marker is itself sufficient evidence once the
+  // statement passes the structural checks above. Its command may appear
+  // several lines later, after chemistry formulas or a long introduction.
+  const hasExplicitLabel = explicitQuestionLabel;
+  return hasQuestionMarker && (hasExplicitLabel || sectionSuggestsExercises || hasQuestionSignal || hasAlternativesNearby || hasInstitution);
 }
 
 function isValidatedQuestionStart(elements: DocumentElement[], index: number, state: ParserState, sectionPath: string[]) {
@@ -300,9 +356,12 @@ function isValidatedQuestionStart(elements: DocumentElement[], index: number, st
     }));
 }
 
-function isStrongExplicitQuestionStart(elements: DocumentElement[], index: number, state: ParserState) {
+function isStrongExplicitQuestionStart(elements: DocumentElement[], index: number, state: ParserState, sectionPath: string[]) {
   const element = elements[index];
   if (!element || state === 'IN_ANSWER_KEY' || !QUESTION_START.test(element.text)) return false;
+  const explicitQuestionLabel = /^quest[aã]o\s+\d{1,3}[.)]/i.test(element.text);
+  const isExamInstructionSection = sectionPath.some((section) => /^(?:instru[cç][oõ]es|informa[cç][oõ]es\s+gerais)\b/i.test(section.trim()));
+  if (isExamInstructionSection && !explicitQuestionLabel) return false;
   const candidate = candidateFrom(element, 'QUESTION_START', 0.92);
   const nextElements = elements.slice(index + 1);
   const localText = [element.text, ...nextElements.slice(0, 3).map((item) => item.text)].join(' ');
@@ -400,7 +459,9 @@ function inferQuestionBlock(type: BlockType, content: string) {
 }
 
 function contentFrom(parts: DocumentElement[]) {
-  return parts.map((part) => part.text).join('\n').trim();
+  return parts.map((part) => part.text).join('\n')
+    .replace(/(\b\d[\d.]*,)\n(\d{2}\.)(?=\s)/gu, '$1$2')
+    .trim();
 }
 
 export function assembleStructuralBlocks(documentId: string, documentTextId: string, pages: StructuralPage[]): DocumentBlockInput[] {
@@ -417,7 +478,8 @@ export function assembleStructuralBlocks(documentId: string, documentTextId: str
     const normalizedContent = contentFrom(current.parts);
     const first = current.parts[0]!;
     const last = current.parts.at(-1)!;
-    const inferredQuestion = inferQuestionBlock(current.type, normalizedContent);
+    const isExamInstructionSection = current.sectionPath.some((section) => /^(?:instru[cç][oõ]es|informa[cç][oõ]es\s+gerais)\b/i.test(section.trim()));
+    const inferredQuestion = isExamInstructionSection ? null : inferQuestionBlock(current.type, normalizedContent);
     const finalType: BlockType = inferredQuestion ? 'QUESTION' : current.type;
     const finalQuestionNumber = inferredQuestion?.questionNumber ?? current.questionNumber;
     const validity = finalType === 'QUESTION' && finalQuestionNumber === '0'
@@ -473,6 +535,15 @@ export function assembleStructuralBlocks(documentId: string, documentTextId: str
     const element = elements[index]!;
     if (element.type === 'TABLE_OF_CONTENTS') continue;
 
+    // PDF layout can break cents after a comma: "R$ 38,\n00. Determine...".
+    // This is a continuation of the current question, not a new number.
+    const activeBlock = current as DraftBlock | null;
+    if (activeBlock && /\b\d[\d.]*,\s*$/u.test(activeBlock.parts.at(-1)?.text ?? '')
+      && /^\d{2}\.\s/u.test(element.text)) {
+      append(element);
+      continue;
+    }
+
     // An answer key is a dense sequence of short entries. As soon as a strong
     // structural signal appears, close it and process that signal normally.
     if (state === 'IN_ANSWER_KEY' && shouldCloseAnswerKey(element, { elements, index, sectionPath: sectionPath() })) {
@@ -480,7 +551,7 @@ export function assembleStructuralBlocks(documentId: string, documentTextId: str
       state = 'IN_CONTENT';
     }
 
-    if (isStrongExplicitQuestionStart(elements, index, state)) {
+    if (isStrongExplicitQuestionStart(elements, index, state, sectionPath())) {
       flush();
       const metadata = questionMetadata(element.text);
       open('QUESTION', element, {

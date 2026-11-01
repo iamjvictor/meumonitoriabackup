@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Fluxo de desenvolvimento
+
+Para novas features e mudanças de código neste repositório, use [o fluxo de desenvolvimento com agentes](docs/agent-workflow.md), dimensionando os artefatos e a delegação ao escopo. O arquiteto esclarece requisitos e critérios de aceite com o usuário quando necessário antes da implementação. Preserve as instruções específicas dos subdiretórios.

@@ -1,0 +1,1014 @@
+{
+  "inputPath": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/questionsQuimica.pdf",
+  "generatedAt": "2026-10-27T20:07:21.737Z",
+  "textSource": "pdfjs",
+  "pagesNeedingOcr": [
+    2,
+    13,
+    14,
+    16
+  ],
+  "summary": {
+    "pages": 16,
+    "blocks": 22,
+    "questionBlocks": 10,
+    "questionBlocksWithChunks": 10,
+    "questionBlocksWithoutChunks": 0,
+    "questionBlocksWithoutExactCoverage": 0,
+    "deterministicCandidates": 10,
+    "questionBlocksWithoutCandidate": 0,
+    "falseQuestionStarts": 0,
+    "expectedCount": null,
+    "expectedNumbers": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10"
+    ],
+    "missingNumbers": [],
+    "missingCandidateNumbers": [],
+    "chunks": 16
+  },
+  "pages": [
+    {
+      "page": 1,
+      "chars": 1982,
+      "normalizedChars": 1982,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 2,
+      "chars": 0,
+      "normalizedChars": 0,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 3,
+      "chars": 549,
+      "normalizedChars": 513,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 4,
+      "chars": 668,
+      "normalizedChars": 632,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 5,
+      "chars": 674,
+      "normalizedChars": 638,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 6,
+      "chars": 610,
+      "normalizedChars": 574,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 7,
+      "chars": 750,
+      "normalizedChars": 714,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 8,
+      "chars": 476,
+      "normalizedChars": 440,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 9,
+      "chars": 755,
+      "normalizedChars": 719,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 10,
+      "chars": 864,
+      "normalizedChars": 828,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 11,
+      "chars": 738,
+      "normalizedChars": 702,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 12,
+      "chars": 729,
+      "normalizedChars": 693,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 13,
+      "chars": 53,
+      "normalizedChars": 44,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 14,
+      "chars": 53,
+      "normalizedChars": 44,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 15,
+      "chars": 2170,
+      "normalizedChars": 2170,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 16,
+      "chars": 0,
+      "normalizedChars": 0,
+      "columns": 1,
+      "hasImages": true
+    }
+  ],
+  "questionBlocks": [
+    {
+      "blockIndex": 5,
+      "type": "QUESTION",
+      "questionNumber": "01",
+      "pageStart": 3,
+      "pageEnd": 3,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 01. O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br − ,\nem água do mar, e o bromo molecular Br , obtido a partir da reação representada pela equação\na seguir.\n2 Br - (aq) + C l (g) Br ( l ) + 2 C l - (aq)\n2 2\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado.\nNomeie, ainda, a ligação interatômica presente no Br e apresente a fórmula molecular do agente\noxidante da reação.",
+      "chars": 466,
+      "tokens": 132,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 466,
+          "tokens": 132
+        }
+      ],
+      "chunkIndexes": [
+        3
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 6,
+      "type": "QUESTION",
+      "questionNumber": "02",
+      "pageStart": 4,
+      "pageEnd": 4,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 02. Contaminação por tolueno suspendeu fornecimento\nde água em municípios do Rio de Janeiro\nElevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu,\nna cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a\ncontaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa\nsubstância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+      "chars": 589,
+      "tokens": 163,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 589,
+          "tokens": 163
+        }
+      ],
+      "chunkIndexes": [
+        4
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 8,
+      "type": "QUESTION",
+      "questionNumber": "03",
+      "pageStart": 5,
+      "pageEnd": 5,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 03. A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos,\nincluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais\nespaciais desses isômeros:\nO\nOH\nO OH\ntretinoína isotretinoína\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente\nentre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula\nda tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar\num éster com 22 átomos de carbono por molécula.",
+      "chars": 595,
+      "tokens": 158,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 595,
+          "tokens": 158
+        }
+      ],
+      "chunkIndexes": [
+        5
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 9,
+      "type": "QUESTION",
+      "questionNumber": "04",
+      "pageStart": 6,
+      "pageEnd": 6,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 04. Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio,\nH O , em solução. Observe a reação química de decomposição dessa substância, catalisada\n2 2\npor MnO :\nMnO (s)\n2 H O (aq) 2 H O ( l ) + O (g)\n2 2 2 2\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual\na 4,0 x 10 7 s − 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine,\nainda, a velocidade dessa reação, em mol ∙ L − 1 ∙ s − 1 .",
+      "chars": 527,
+      "tokens": 171,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 527,
+          "tokens": 171
+        }
+      ],
+      "chunkIndexes": [
+        6
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 11,
+      "type": "QUESTION",
+      "questionNumber": "05",
+      "pageStart": 7,
+      "pageEnd": 7,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 05. Os combustíveis produzidos a partir de fontes renováveis são considerados uma alternativa\nsustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que\ncorresponde ao hidrogênio molecular produzido a partir da reação de eletrólise da água,\nrepresentada pela seguinte equação:\nH O ( l ) H (g) + 1 / O (g) ∆ H 0 = 286 kJ/mol\n2 2 2 2\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica\nno qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H , a razão,\nem coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+      "chars": 669,
+      "tokens": 187,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 669,
+          "tokens": 187
+        }
+      ],
+      "chunkIndexes": [
+        7
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 12,
+      "type": "QUESTION",
+      "questionNumber": "06",
+      "pageStart": 8,
+      "pageEnd": 8,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 06. Em reações ácido-base de Lewis, os íons Ag + e A l 3+ comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+ é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente,\nainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon\nsulfeto.",
+      "chars": 397,
+      "tokens": 117,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 397,
+          "tokens": 117
+        }
+      ],
+      "chunkIndexes": [
+        8
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 14,
+      "type": "QUESTION",
+      "questionNumber": "07",
+      "pageStart": 9,
+      "pageEnd": 9,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 07. Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C.\nObserve suas fórmulas estruturais:\nO\nOH NH 2\nOH\nA B C\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações\ncom soluções aquosas de NaHCO , HC l e NaOH, conforme representado nesta sequência reacional:\nB’ HC l B\nNaHCO\nA , B , C C\nA , C NaOH\nA’ HC l A\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o\ncomposto B reagiu com a solução aquosa de NaHCO , apresente a equação química que representa\na hidrólise do ânion do composto B’. Escreva, ainda, a nomenclatura do composto A’.",
+      "chars": 670,
+      "tokens": 201,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 670,
+          "tokens": 201
+        }
+      ],
+      "chunkIndexes": [
+        9
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 15,
+      "type": "QUESTION",
+      "questionNumber": "08",
+      "pageStart": 10,
+      "pageEnd": 10,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 08. O CO e o H PO são substâncias presentes na composição de bebidas refrigerantes por suas 2 3 4\nfunções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a\nconcentração de H PO em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n3 4\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total\ndo CO ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a\nneutralização total do H PO .\n3 4\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a\nformação de um sal neutro.\nExplique a razão para a remoção do CO antes da titulação. Determine, ainda, a concentração,\nem g/L, de H PO no refrigerante.\n3 4",
+      "chars": 780,
+      "tokens": 218,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 780,
+          "tokens": 218
+        }
+      ],
+      "chunkIndexes": [
+        10
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 17,
+      "type": "QUESTION",
+      "questionNumber": "09",
+      "pageStart": 11,
+      "pageEnd": 11,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 09. Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi\nrealizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio.\nConsidere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de\ntemperatura e pressão.\nObserve, na tabela, os valores de entalpia-padrão de formação das substâncias envolvidas na\ncombustão total do etano:\nSUBSTÂNCIA ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol)\nC 2 H 6 (g) − 1420\nH 2 O ( l ) − 280\nCO 2 (g) − 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição\ndo GNV em porcentagem volumétrica.",
+      "chars": 658,
+      "tokens": 202,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 658,
+          "tokens": 202
+        }
+      ],
+      "chunkIndexes": [
+        11
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    },
+    {
+      "blockIndex": 18,
+      "type": "QUESTION",
+      "questionNumber": "10",
+      "pageStart": 12,
+      "pageEnd": 12,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Questão 10. O sal oxalato de cálcio, CaC O , quando presente na urina em níveis elevados, pode provocar a 2 4\nformação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada\nna presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade,\nKps, é igual a 4,0 x 10 − 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água.\nEm seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio,\ntotalmente dissociado, na concentração de 0,2 mol/L.",
+      "chars": 649,
+      "tokens": 190,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 649,
+          "tokens": 190
+        }
+      ],
+      "chunkIndexes": [
+        12
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    }
+  ],
+  "candidates": [
+    {
+      "questionNumber": "01",
+      "sourceBlockId": "audit-block-5",
+      "statement": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br − ,\nem água do mar, e o bromo molecular Br , obtido a partir da reação representada pela equação\na seguir.\n2 Br - (aq) + C l (g) Br ( l ) + 2 C l - (aq)\n2 2\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado.\nNomeie, ainda, a ligação interatômica presente no Br e apresente a fórmula molecular do agente\noxidante da reação.",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        3
+      ]
+    },
+    {
+      "questionNumber": "02",
+      "sourceBlockId": "audit-block-6",
+      "statement": "Contaminação por tolueno suspendeu fornecimento\nde água em municípios do Rio de Janeiro\nElevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu,\nna cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a\ncontaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa\nsubstância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        4
+      ]
+    },
+    {
+      "questionNumber": "03",
+      "sourceBlockId": "audit-block-8",
+      "statement": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos,\nincluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais\nespaciais desses isômeros:\nO\nOH\nO OH\ntretinoína isotretinoína\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente\nentre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula\nda tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar\num éster com 22 átomos de carbono por molécula.",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        5
+      ]
+    },
+    {
+      "questionNumber": "04",
+      "sourceBlockId": "audit-block-9",
+      "statement": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio,\nH O , em solução. Observe a reação química de decomposição dessa substância, catalisada\n2 2\npor MnO :\nMnO (s)\n2 H O (aq) 2 H O ( l ) + O (g)\n2 2 2 2\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual\na 4,0 x 10 7 s − 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine,\nainda, a velocidade dessa reação, em mol ∙ L − 1 ∙ s − 1 .",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        6
+      ]
+    },
+    {
+      "questionNumber": "05",
+      "sourceBlockId": "audit-block-11",
+      "statement": "Os combustíveis produzidos a partir de fontes renováveis são considerados uma alternativa\nsustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que\ncorresponde ao hidrogênio molecular produzido a partir da reação de eletrólise da água,\nrepresentada pela seguinte equação:\nH O ( l ) H (g) + 1 / O (g) ∆ H 0 = 286 kJ/mol\n2 2 2 2\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica\nno qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H , a razão,\nem coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        7
+      ]
+    },
+    {
+      "questionNumber": "06",
+      "sourceBlockId": "audit-block-12",
+      "statement": "Em reações ácido-base de Lewis, os íons Ag + e A l 3+ comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+ é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente,\nainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon\nsulfeto.",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        8
+      ]
+    },
+    {
+      "questionNumber": "07",
+      "sourceBlockId": "audit-block-14",
+      "statement": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C.\nObserve suas fórmulas estruturais:\nO\nOH NH 2\nOH\nA B C\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações\ncom soluções aquosas de NaHCO , HC l e NaOH, conforme representado nesta sequência reacional:\nB’ HC l B\nNaHCO\nA , B , C C\nA , C NaOH\nA’ HC l A\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o\ncomposto B reagiu com a solução aquosa de NaHCO , apresente a equação química que representa\na hidrólise do ânion do composto B’. Escreva, ainda, a nomenclatura do composto A’.",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        9
+      ]
+    },
+    {
+      "questionNumber": "08",
+      "sourceBlockId": "audit-block-15",
+      "statement": "O CO e o H PO são substâncias presentes na composição de bebidas refrigerantes por suas 2 3 4\nfunções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a\nconcentração de H PO em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n3 4\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total\ndo CO ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a\nneutralização total do H PO .\n3 4\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a\nformação de um sal neutro.\nExplique a razão para a remoção do CO antes da titulação. Determine, ainda, a concentração,\nem g/L, de H PO no refrigerante.\n3 4",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        10
+      ]
+    },
+    {
+      "questionNumber": "09",
+      "sourceBlockId": "audit-block-17",
+      "statement": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi\nrealizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio.\nConsidere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de\ntemperatura e pressão.\nObserve, na tabela, os valores de entalpia-padrão de formação das substâncias envolvidas na\ncombustão total do etano:\nSUBSTÂNCIA ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol)\nC 2 H 6 (g) − 1420\nH 2 O ( l ) − 280\nCO 2 (g) − 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição\ndo GNV em porcentagem volumétrica.",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        11
+      ]
+    },
+    {
+      "questionNumber": "10",
+      "sourceBlockId": "audit-block-18",
+      "statement": "O sal oxalato de cálcio, CaC O , quando presente na urina em níveis elevados, pode provocar a 2 4\nformação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada\nna presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade,\nKps, é igual a 4,0 x 10 − 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água.\nEm seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio,\ntotalmente dissociado, na concentração de 0,2 mol/L.",
+      "alternatives": [],
+      "sourceChunkIndexes": [
+        12
+      ]
+    }
+  ],
+  "candidateReadiness": [
+    {
+      "questionNumber": "01",
+      "candidateStatus": "VISUAL_PENDING",
+      "completionBlocked": true,
+      "processingState": "STRUCTURALLY_INVALID",
+      "promotionReasons": [
+        "MISSING_VISUAL_EVIDENCE",
+        "NON_QUESTION_BLOCK",
+        "MISSING_ALTERNATIVES",
+        "VISUAL_EVIDENCE_PENDING"
+      ],
+      "statementEvidence": {
+        "valid": false,
+        "reasons": [
+          "MISSING_VISUAL_EVIDENCE"
+        ],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "02",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "CONVERTIBLE_TO_MULTIPLE_CHOICE",
+      "promotionReasons": [
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "03",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "STRUCTURALLY_INVALID",
+      "promotionReasons": [
+        "NON_QUESTION_BLOCK",
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "04",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "CONVERTIBLE_TO_MULTIPLE_CHOICE",
+      "promotionReasons": [
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "05",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "CONVERTIBLE_TO_MULTIPLE_CHOICE",
+      "promotionReasons": [
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "06",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "STRUCTURALLY_INVALID",
+      "promotionReasons": [
+        "NON_QUESTION_BLOCK",
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "07",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "STRUCTURALLY_INVALID",
+      "promotionReasons": [
+        "NON_QUESTION_BLOCK",
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "08",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "CONVERTIBLE_TO_MULTIPLE_CHOICE",
+      "promotionReasons": [
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "09",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "CONVERTIBLE_TO_MULTIPLE_CHOICE",
+      "promotionReasons": [
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    },
+    {
+      "questionNumber": "10",
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "CONVERTIBLE_TO_MULTIPLE_CHOICE",
+      "promotionReasons": [
+        "MISSING_ALTERNATIVES"
+      ],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    }
+  ],
+  "otherBlocks": [
+    {
+      "blockIndex": 0,
+      "type": "THEORY",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 1,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "30/11/2025\nQUÍMICA\nCADERNO DE PROVA\nEste caderno, com dezesseis páginas numeradas sequencialmente, contém dez questões de Química. A\nClassificação Periódica dos Elementos encontra-se na página 15.\nNão abra o caderno antes de receber autorização.",
+      "chars": 245,
+      "tokens": 68,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 245,
+          "tokens": 68
+        }
+      ],
+      "chunkIndexes": [
+        0
+      ],
+      "chunkCoverageExact": true
+    },
+    {
+      "blockIndex": 1,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 1,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "INSTRUÇÕES",
+      "chars": 10,
+      "tokens": 3,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 2,
+      "type": "THEORY",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 1,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "1. Verifique se você recebeu mais dois cadernos de prova.\n2. Verifique se as seguintes informações estão corretas nas sobrecapas dos três cadernos: nome, número de\ninscrição, número do documento de identidade e número do CPF.\nSe houver algum erro, notifique o fiscal.\n3. Destaque, das sobrecapas, os comprovantes que têm seu nome e leve-os com você.\n4. Ao receber autorização para abrir os cadernos, verifique se a impressão, a paginação e a numeração das\nquestões estão corretas.\nSe houver algum erro, notifique o fiscal.\n5. Todas as respostas e o desenvolvimento das soluções, quando necessário, deverão ser apresentados nos\nespaços apropriados e escritos com caneta de corpo transparente, azul ou preta.\nNão serão consideradas as questões respondidas fora desses espaços.\n6. Ao terminar, entregue os três cadernos ao fiscal.",
+      "chars": 827,
+      "tokens": 192,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 827,
+          "tokens": 192
+        }
+      ],
+      "chunkIndexes": [
+        1
+      ],
+      "chunkCoverageExact": true
+    },
+    {
+      "blockIndex": 3,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 1,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "INFORMAÇÕES GERAIS",
+      "chars": 18,
+      "tokens": 6,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 4,
+      "type": "THEORY",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 1,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "O tempo disponível para fazer as provas é de cinco horas. Nada mais poderá ser registrado após o término\ndesse prazo.\nNas salas de prova, os candidatos não poderão usar qualquer tipo de relógio, óculos escuros e boné, nem\nportar arma de fogo, fumar e utilizar corretores ortográficos e borrachas.\nSerá atribuída nota zero ao candidato que utilizar quaisquer meios para identificar sua prova, como escrever suas\niniciais, seu nome ou o de outros em qualquer lugar do caderno de provas, assim como fazer desenhos de\nqualquer espécie. Será atribuída nota zero, também, à questão respondida a lápis ou em local inadequado.\nSerá eliminado do Vestibular Estadual 2026 o candidato que, durante a prova, utilizar qualquer meio de\nobtenção de informações, eletrônico ou não.\nSerá também eliminado o candidato que se ausentar da sala levando consigo qualquer material de prova.\nBoa prova!",
+      "chars": 878,
+      "tokens": 191,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 878,
+          "tokens": 191
+        }
+      ],
+      "chunkIndexes": [
+        2
+      ],
+      "chunkCoverageExact": true
+    },
+    {
+      "blockIndex": 7,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 4,
+      "pageEnd": 4,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Vestibular Estadual 2026 Exame Discursivo",
+      "chars": 41,
+      "tokens": 12,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 10,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 6,
+      "pageEnd": 6,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Vestibular Estadual 2026 Exame Discursivo",
+      "chars": 41,
+      "tokens": 12,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 13,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 8,
+      "pageEnd": 8,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Vestibular Estadual 2026 Exame Discursivo",
+      "chars": 41,
+      "tokens": 12,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 16,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 10,
+      "pageEnd": 10,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Vestibular Estadual 2026 Exame Discursivo",
+      "chars": 41,
+      "tokens": 12,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 19,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 12,
+      "pageEnd": 12,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Vestibular Estadual 2026 Exame Discursivo",
+      "chars": 41,
+      "tokens": 12,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 20,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 14,
+      "pageEnd": 14,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Vestibular Estadual 2026 Exame Discursivo",
+      "chars": 41,
+      "tokens": 12,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 21,
+      "type": "THEORY",
+      "questionNumber": null,
+      "pageStart": 15,
+      "pageEnd": 15,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "CLASSIFICAÇÃO PERIÓDICA DOS ELEMENTOS\n(Adaptado da IUPAC - 2017)\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18\nI A VIII A\n1 2,1 2\nH II A III A IV A V A VI A VII A He\n1 4\n3 1,0 4 1,5 5 2,0 6 2,5 7 3,0 8 3,5 9 4,0 10\nLi Be B C N O F Ne\n7 9 11 12 14 16 19 20\n11 0,9 12 1,2 13 1,5 14 1,8 15 2,1 16 2,5 17 3,0 18\nNa Mg III B IV B V B VI B VII B VIII B I B II B AI Si P S CI Ar\n23 24 27 28 31 32 35,5 40\n19 0,8 20 1,0 21 1,3 22 1,4 23 1,6 24 1,6 25 1,5 26 1,8 27 1,8 28 1,8 29 1,9 30 1,6 31 1,6 32 1,8 33 2,0 34 2,4 35 2,8 36\nK Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr\n39 40 45 48 51 52 55 56 59 58,5 63,5 65,5 70 72,5 75 79 80 84\n37 0,8 38 1,0 39 1,2 40 1,4 41 1,6 42 1,6 43 1,9 44 2,2 45 2,2 46 2,2 47 1,9 48 1,7 49 1,7 50 1,8 51 1,9 52 2,1 53 2,5 54\nRb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe\n85,5 87,5 89 91 93 96 (98) 101 103 106,5 108 112,5 115 119 122 127,5 127 131\n55 0,7 56 0,9 57-71 72 1,3 73 1,5 74 1,7 75 1,9 76 2,2 77 2,2 78 2,2 79 2,4 80 1,9 81 1,8 82 1,8 83 1,9 84 2,0 85 2,2 86\nCs Ba lantanídeos Hf Ta W Re Os Ir Pt Au Hg TI Pb Bi Po At Rn\n133 137 178,5 181 184 186 190 192 195 197 200,5 204 207 209 (\n209) (\n210) (222)\n87 0,7 88 0,9 89-103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118\nFr Ra actinídeos Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og\n(\n223) (\n226) (\n267) (\n268) (\n269) (\n270) (\n269) (\n278) (\n281) (\n281) (\n285) (\n286) (\n289) (\n288) (\n293) (\n294) (294)\nNÚMERO ELETRONE- 57 1,1 58 1,1 59 1,1 60 1,1 61 1,1 62 1,2 63 1,2 64 1,2 65 1,2 66 1,2 67 1,2 68 1,2 69 1,2 70 1,2 71 1,3\nATÔMICO GATIVIDADE\nLa Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu\nlantanídeos 139 140 141 144 (145) 150 152 157 159 162,5 165 167 169 173 175\nSÍMBOLO 89 1,1 90 1,3 91 1,5 92 1,7 93 1,3 94 1,3 95 1,3 96 1,3 97 1,3 98 1,3 99 1,3 100 1,3 101 1,3 102 1,3 103 1,3\nMASSA ATÔMICA Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr\nAPROXIMADA actinídeos 227 232 231 238 237 (\n244) (\n243) (\n247) (\n247) (\n251) (\n252) (\n257) (\n258) (\n259) (262)\nOrdem crescente de energia dos subníveis: 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s 5f 6d 7p\nConstante de Avogadro = 6,0 × 10 23 partículas × mol − 1\nConstante de Faraday = 96500 C × mol − 1",
+      "chars": 2152,
+      "tokens": 1321,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 730,
+          "tokens": 499
+        },
+        {
+          "reason": null,
+          "chars": 852,
+          "tokens": 504
+        },
+        {
+          "reason": null,
+          "chars": 660,
+          "tokens": 376
+        }
+      ],
+      "chunkIndexes": [
+        13,
+        14,
+        15
+      ],
+      "chunkCoverageExact": false
+    }
+  ],
+  "chunks": [
+    {
+      "index": 0,
+      "blockIndex": 0,
+      "content": "30/11/2025\nQUÍMICA\nCADERNO DE PROVA\nEste caderno, com dezesseis páginas numeradas sequencialmente, contém dez questões de Química. A\nClassificação Periódica dos Elementos encontra-se na página 15.\nNão abra o caderno antes de receber autorização.",
+      "tokens": 68,
+      "charStart": 0,
+      "charEnd": 245
+    },
+    {
+      "index": 1,
+      "blockIndex": 2,
+      "content": "1. Verifique se você recebeu mais dois cadernos de prova.\n2. Verifique se as seguintes informações estão corretas nas sobrecapas dos três cadernos: nome, número de\ninscrição, número do documento de identidade e número do CPF.\nSe houver algum erro, notifique o fiscal.\n3. Destaque, das sobrecapas, os comprovantes que têm seu nome e leve-os com você.\n4. Ao receber autorização para abrir os cadernos, verifique se a impressão, a paginação e a numeração das\nquestões estão corretas.\nSe houver algum erro, notifique o fiscal.\n5. Todas as respostas e o desenvolvimento das soluções, quando necessário, deverão ser apresentados nos\nespaços apropriados e escritos com caneta de corpo transparente, azul ou preta.\nNão serão consideradas as questões respondidas fora desses espaços.\n6. Ao terminar, entregue os três cadernos ao fiscal.",
+      "tokens": 192,
+      "charStart": 0,
+      "charEnd": 827
+    },
+    {
+      "index": 2,
+      "blockIndex": 4,
+      "content": "O tempo disponível para fazer as provas é de cinco horas. Nada mais poderá ser registrado após o término\ndesse prazo.\nNas salas de prova, os candidatos não poderão usar qualquer tipo de relógio, óculos escuros e boné, nem\nportar arma de fogo, fumar e utilizar corretores ortográficos e borrachas.\nSerá atribuída nota zero ao candidato que utilizar quaisquer meios para identificar sua prova, como escrever suas\niniciais, seu nome ou o de outros em qualquer lugar do caderno de provas, assim como fazer desenhos de\nqualquer espécie. Será atribuída nota zero, também, à questão respondida a lápis ou em local inadequado.\nSerá eliminado do Vestibular Estadual 2026 o candidato que, durante a prova, utilizar qualquer meio de\nobtenção de informações, eletrônico ou não.\nSerá também eliminado o candidato que se ausentar da sala levando consigo qualquer material de prova.\nBoa prova!",
+      "tokens": 191,
+      "charStart": 0,
+      "charEnd": 878
+    },
+    {
+      "index": 3,
+      "blockIndex": 5,
+      "content": "Questão 01. O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br − ,\nem água do mar, e o bromo molecular Br , obtido a partir da reação representada pela equação\na seguir.\n2 Br - (aq) + C l (g) Br ( l ) + 2 C l - (aq)\n2 2\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado.\nNomeie, ainda, a ligação interatômica presente no Br e apresente a fórmula molecular do agente\noxidante da reação.",
+      "tokens": 132,
+      "charStart": 0,
+      "charEnd": 466
+    },
+    {
+      "index": 4,
+      "blockIndex": 6,
+      "content": "Questão 02. Contaminação por tolueno suspendeu fornecimento\nde água em municípios do Rio de Janeiro\nElevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu,\nna cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a\ncontaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa\nsubstância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+      "tokens": 163,
+      "charStart": 0,
+      "charEnd": 589
+    },
+    {
+      "index": 5,
+      "blockIndex": 8,
+      "content": "Questão 03. A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos,\nincluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais\nespaciais desses isômeros:\nO\nOH\nO OH\ntretinoína isotretinoína\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente\nentre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula\nda tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar\num éster com 22 átomos de carbono por molécula.",
+      "tokens": 158,
+      "charStart": 0,
+      "charEnd": 595
+    },
+    {
+      "index": 6,
+      "blockIndex": 9,
+      "content": "Questão 04. Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio,\nH O , em solução. Observe a reação química de decomposição dessa substância, catalisada\n2 2\npor MnO :\nMnO (s)\n2 H O (aq) 2 H O ( l ) + O (g)\n2 2 2 2\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual\na 4,0 x 10 7 s − 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine,\nainda, a velocidade dessa reação, em mol ∙ L − 1 ∙ s − 1 .",
+      "tokens": 171,
+      "charStart": 0,
+      "charEnd": 527
+    },
+    {
+      "index": 7,
+      "blockIndex": 11,
+      "content": "Questão 05. Os combustíveis produzidos a partir de fontes renováveis são considerados uma alternativa\nsustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que\ncorresponde ao hidrogênio molecular produzido a partir da reação de eletrólise da água,\nrepresentada pela seguinte equação:\nH O ( l ) H (g) + 1 / O (g) ∆ H 0 = 286 kJ/mol\n2 2 2 2\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica\nno qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H , a razão,\nem coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+      "tokens": 187,
+      "charStart": 0,
+      "charEnd": 669
+    },
+    {
+      "index": 8,
+      "blockIndex": 12,
+      "content": "Questão 06. Em reações ácido-base de Lewis, os íons Ag + e A l 3+ comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+ é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente,\nainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon\nsulfeto.",
+      "tokens": 117,
+      "charStart": 0,
+      "charEnd": 397
+    },
+    {
+      "index": 9,
+      "blockIndex": 14,
+      "content": "Questão 07. Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C.\nObserve suas fórmulas estruturais:\nO\nOH NH 2\nOH\nA B C\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações\ncom soluções aquosas de NaHCO , HC l e NaOH, conforme representado nesta sequência reacional:\nB’ HC l B\nNaHCO\nA , B , C C\nA , C NaOH\nA’ HC l A\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o\ncomposto B reagiu com a solução aquosa de NaHCO , apresente a equação química que representa\na hidrólise do ânion do composto B’. Escreva, ainda, a nomenclatura do composto A’.",
+      "tokens": 201,
+      "charStart": 0,
+      "charEnd": 670
+    },
+    {
+      "index": 10,
+      "blockIndex": 15,
+      "content": "Questão 08. O CO e o H PO são substâncias presentes na composição de bebidas refrigerantes por suas 2 3 4\nfunções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a\nconcentração de H PO em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n3 4\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total\ndo CO ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a\nneutralização total do H PO .\n3 4\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a\nformação de um sal neutro.\nExplique a razão para a remoção do CO antes da titulação. Determine, ainda, a concentração,\nem g/L, de H PO no refrigerante.\n3 4",
+      "tokens": 218,
+      "charStart": 0,
+      "charEnd": 780
+    },
+    {
+      "index": 11,
+      "blockIndex": 17,
+      "content": "Questão 09. Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi\nrealizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio.\nConsidere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de\ntemperatura e pressão.\nObserve, na tabela, os valores de entalpia-padrão de formação das substâncias envolvidas na\ncombustão total do etano:\nSUBSTÂNCIA ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol)\nC 2 H 6 (g) − 1420\nH 2 O ( l ) − 280\nCO 2 (g) − 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição\ndo GNV em porcentagem volumétrica.",
+      "tokens": 202,
+      "charStart": 0,
+      "charEnd": 658
+    },
+    {
+      "index": 12,
+      "blockIndex": 18,
+      "content": "Questão 10. O sal oxalato de cálcio, CaC O , quando presente na urina em níveis elevados, pode provocar a 2 4\nformação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada\nna presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade,\nKps, é igual a 4,0 x 10 − 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água.\nEm seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio,\ntotalmente dissociado, na concentração de 0,2 mol/L.",
+      "tokens": 190,
+      "charStart": 0,
+      "charEnd": 649
+    },
+    {
+      "index": 13,
+      "blockIndex": 21,
+      "content": "CLASSIFICAÇÃO PERIÓDICA DOS ELEMENTOS\n(Adaptado da IUPAC - 2017)\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18\nI A VIII A\n1 2,1 2\nH II A III A IV A V A VI A VII A He\n1 4\n3 1,0 4 1,5 5 2,0 6 2,5 7 3,0 8 3,5 9 4,0 10\nLi Be B C N O F Ne\n7 9 11 12 14 16 19 20\n11 0,9 12 1,2 13 1,5 14 1,8 15 2,1 16 2,5 17 3,0 18\nNa Mg III B IV B V B VI B VII B VIII B I B II B AI Si P S CI Ar\n23 24 27 28 31 32 35,5 40\n19 0,8 20 1,0 21 1,3 22 1,4 23 1,6 24 1,6 25 1,5 26 1,8 27 1,8 28 1,8 29 1,9 30 1,6 31 1,6 32 1,8 33 2,0 34 2,4 35 2,8 36\nK Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr\n39 40 45 48 51 52 55 56 59 58,5 63,5 65,5 70 72,5 75 79 80 84\n37 0,8 38 1,0 39 1,2 40 1,4 41 1,6 42 1,6 43 1,9 44 2,2 45 2,2 46 2,2 47 1,9 48 1,7 49 1,7 50 1,8",
+      "tokens": 499,
+      "charStart": 0,
+      "charEnd": 730
+    },
+    {
+      "index": 14,
+      "blockIndex": 21,
+      "content": "1,8 1,8 51 1,9 52 2,1 53 2,5 54\nRb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe\n85,5 87,5 89 91 93 96 (98) 101 103 106,5 108 112,5 115 119 122 127,5 127 131\n55 0,7 56 0,9 57-71 72 1,3 73 1,5 74 1,7 75 1,9 76 2,2 77 2,2 78 2,2 79 2,4 80 1,9 81 1,8 82 1,8 83 1,9 84 2,0 85 2,2 86\nCs Ba lantanídeos Hf Ta W Re Os Ir Pt Au Hg TI Pb Bi Po At Rn\n133 137 178,5 181 184 186 190 192 195 197 200,5 204 207 209 (\n209) (\n210) (222)\n87 0,7 88 0,9 89-103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118\nFr Ra actinídeos Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og\n(\n223) (\n226) (\n267) (\n268) (\n269) (\n270) (\n269) (\n278) (\n281) (\n281) (\n285) (\n286) (\n289) (\n288) (\n293) (\n294) (294)\nNÚMERO ELETRONE- 57 1,1 58 1,1 59 1,1 60 1,1 61 1,1 62 1,2 63 1,2 64 1,2 65 1,2 66 1,2 67 1,2 68 1,2 69 1,2 70 1,2 71 1,3\nATÔMICO GATIVIDADE\nLa Ce Pr Nd Pm Sm Eu Gd Tb",
+      "tokens": 504,
+      "charStart": 727,
+      "charEnd": 1575
+    },
+    {
+      "index": 15,
+      "blockIndex": 21,
+      "content": "67 1,2 68 1,2 69 1,2 70 1,2 71 1,3\nATÔMICO GATIVIDADE\nLa Ce Pr Nd Pm Sm Eu Gd Tb Tb Dy Ho Er Tm Yb Lu\nlantanídeos 139 140 141 144 (145) 150 152 157 159 162,5 165 167 169 173 175\nSÍMBOLO 89 1,1 90 1,3 91 1,5 92 1,7 93 1,3 94 1,3 95 1,3 96 1,3 97 1,3 98 1,3 99 1,3 100 1,3 101 1,3 102 1,3 103 1,3\nMASSA ATÔMICA Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr\nAPROXIMADA actinídeos 227 232 231 238 237 (\n244) (\n243) (\n247) (\n247) (\n251) (\n252) (\n257) (\n258) (\n259) (262)\nOrdem crescente de energia dos subníveis: 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s 5f 6d 7p\nConstante de Avogadro = 6,0 × 10 23 partículas × mol − 1\nConstante de Faraday = 96500 C × mol − 1",
+      "tokens": 376,
+      "charStart": 1495,
+      "charEnd": 2152
+    }
+  ]
+}

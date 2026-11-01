@@ -91,6 +91,8 @@ def get_document_converter(
     pipeline_options = PdfPipelineOptions(
         do_ocr=do_ocr,
         force_backend_text=force_backend_text,
+        generate_picture_images=True,
+        images_scale=1.0,
     )
     return DocumentConverter(
         format_options={

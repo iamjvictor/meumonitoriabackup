@@ -44,6 +44,8 @@ export function resolveQuestionTopic(
   };
 }
 import { markQuestionCandidatePromoted, upsertQuestionSpanCandidate } from '../../repositories/question-candidate.repository.js';
+import { PrismaDocumentVisualLinkStore } from '../../repositories/document-visual-link.repository.js';
+import { DocumentVisualLinkingService, type QuestionVisualSpanForLinking } from './document-visual-linking.service.js';
 import {
   assessQuestionQuality,
   extractExplicitAnswerFromExplanation,
@@ -109,6 +111,7 @@ export type ExtractionChunk = {
   charEnd?: number | null;
   block?: { pageStart: number | null; pageEnd: number | null } | null;
   pageHasImages?: boolean | null;
+  provenance?: unknown;
 };
 
 export type QuestionTopicInput = {
@@ -270,6 +273,7 @@ const QUESTION_SCHEMA: Record<string, unknown> = {
 
 export class QuestionExtractionService {
   private readonly candidateStartedAt = new WeakMap<object, number>();
+  private readonly visualLinkingService: Pick<DocumentVisualLinkingService, 'linkVisualAssetsToQuestions'> | null;
 
   constructor(
     private readonly client = new OpenRouterClient(),
@@ -279,7 +283,13 @@ export class QuestionExtractionService {
     private readonly qualityCorrectionAgent = new QuestionQualityCorrectionAgentService(),
     private readonly qualityNormalizationAgent = new QuestionQualityNormalizationAgentService(),
     private readonly sourceReconstructionAgent = new QuestionSourceReconstructionAgentService(),
-  ) {}
+    visualLinkingService?: Pick<DocumentVisualLinkingService, 'linkVisualAssetsToQuestions'> | null,
+  ) {
+    this.visualLinkingService = visualLinkingService
+      ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED
+        ? new DocumentVisualLinkingService(new PrismaDocumentVisualLinkStore(), (event, fields) => console.log(event, fields))
+        : null);
+  }
 
   async processDocument(documentId: string) {
     const startedAt = Date.now();
@@ -577,6 +587,7 @@ export class QuestionExtractionService {
         evidence: { statementEvidence, sourceChunkIndexes: candidate.sourceChunkIndexes, visualEvidenceAvailable },
         metadata: { alternativesCount: candidate.alternatives.length, sourceStructureReasons: sourceStructure.reasons },
       }));
+      await this.linkQuestionVisuals(persistedCandidate.id, null, sourceChunks, candidate.text, visualPending || visualEvidenceAvailable);
       if (completionBlocked) {
         candidatesRetained += 1;
         console.log('Candidata retida antes dos agentes de conclusao', {
@@ -1139,6 +1150,7 @@ export class QuestionExtractionService {
         embeddingModel: embedding ? env.OPENROUTER_EMBEDDING_MODEL : undefined,
         embeddingVersion: embedding ? QUESTION_EMBEDDING_VERSION : undefined,
       }));
+      await this.linkQuestionVisuals(persistedCandidate.id, question.id, sourceChunks, completedCandidate.text, visualPending || visualEvidenceAvailable);
       savedQuestions.push({ ...completedCandidate, id: question.id, source: {
         knowledgeBaseId,
         chunkIds: sourceChunks.map((chunk) => chunk.id),
@@ -1177,6 +1189,40 @@ export class QuestionExtractionService {
         topicFallbacks,
       },
     };
+  }
+
+  private async linkQuestionVisuals(
+    questionSpanId: string,
+    questionId: string | null,
+    sourceChunks: ExtractionChunk[],
+    text: string,
+    visualRequired: boolean,
+  ) {
+    if (!this.visualLinkingService || !visualRequired) return;
+    const pages = new Set<number>();
+    for (const chunk of sourceChunks) {
+      const start = chunk.block?.pageStart;
+      const end = chunk.block?.pageEnd ?? start;
+      if (typeof start === 'number' && typeof end === 'number' && end >= start) {
+        for (let page = start; page <= end && page <= start + 99; page++) pages.add(page);
+      }
+      for (const provenance of normalizeQuestionProvenance(chunk.provenance)) {
+        if (typeof provenance.page === 'number' && provenance.page > 0) pages.add(provenance.page);
+      }
+    }
+    const span: QuestionVisualSpanForLinking = {
+      questionSpanId, questionId, pages: [...pages],
+      provenance: sourceChunks.flatMap((chunk) => normalizeQuestionProvenance(chunk.provenance)),
+      text: [text, ...sourceChunks.map((chunk) => chunk.content)].join('\n'), visualRequired,
+    };
+    try {
+      await this.visualLinkingService.linkVisualAssetsToQuestions(sourceChunks[0]?.documentId ?? '', [span]);
+    } catch (error) {
+      console.warn('Vínculo visual da questão falhou; candidata permanece disponível para revisão', {
+        event: 'document_visual_assets.question_linking_failed_non_blocking',
+        questionSpanId, questionId, errorClass: error instanceof Error ? error.name : 'UNKNOWN',
+      });
+    }
   }
 
   private async extractGroupWithRetry(
@@ -1739,11 +1785,13 @@ export function splitQuestionBlockContent(content: string) {
   // precedidos por espaço podem ser medidas, percentuais ou quantidades do
   // próprio enunciado (ex.: "16 pontos", "600 cm") e não novas questões.
   const markers = [...content.matchAll(/(?:^|\n)\s*((?:quest[aã]o\s*)?\d{1,3}[.)]\s+(?:\([^\n)]{2,100}\)\s*)?[A-ZÁÀÃÂÉÊÍÓÔÕÚÇ])/giu)]
+    .filter((match) => /^quest[aã]o\s*/iu.test(match[1]!) || /[A-ZÁÀÃÂÉÊÍÓÔÕÚÇ]$/u.test(match[1]!))
     .map((match) => (match.index ?? 0) + (match[0].length - match[1]!.length));
 
   // Em documentos extraídos como uma única linha, aceitamos apenas um novo
   // item após pontuação de encerramento da questão anterior.
   for (const match of content.matchAll(/[?!.]\s+((?:quest[aã]o\s*)?\d{1,3}[.)]\s+(?:\([^\n)]{2,100}\)\s*)?[A-ZÁÀÃÂÉÊÍÓÔÕÚÇ])/giu)) {
+    if (!/^quest[aã]o\s*/iu.test(match[1]!) && !/[A-ZÁÀÃÂÉÊÍÓÔÕÚÇ]$/u.test(match[1]!)) continue;
     const start = (match.index ?? 0) + match[0].length - match[1]!.length;
     if (!markers.includes(start)) markers.push(start);
   }
@@ -1827,14 +1875,18 @@ function parseQuestionBlock(content: string) {
     .trim();
   if (isGenericActivityHeading(firstLine)) return null;
   const body = [firstLine, ...lines.slice(1)].join('\n').trim();
-  const labeledAlternatives = parseAlternatives(body);
+  const detectedAlternatives = parseAlternatives(body);
+  // A single A-E label or 1-5 marker inside a chemistry formula or sentence
+  // is not an alternatives section. Only cut the statement when at least two
+  // options confirm the structure.
+  const labeledAlternatives = detectedAlternatives.length >= 2 ? detectedAlternatives : [];
   const unlabeledAlternatives = labeledAlternatives.length === 0
     ? inferUnlabeledAlternatives(body.split('\n').map((line) => line.trim()).filter(Boolean))
     : null;
   const alternatives = labeledAlternatives.length > 0
     ? labeledAlternatives
     : unlabeledAlternatives?.alternatives ?? [];
-  const firstAlternativeIndex = findFirstAlternativeIndex(body);
+  const firstAlternativeIndex = labeledAlternatives.length >= 2 ? findFirstAlternativeIndex(body) : -1;
   const statement = unlabeledAlternatives?.statement
     ?? (firstAlternativeIndex >= 0 ? body.slice(0, firstAlternativeIndex) : body).trim();
   if (!hasQuestionIntent(statement, alternatives)) return null;
@@ -1853,8 +1905,9 @@ function parseQuestionBlock(content: string) {
 function removeQuestionAncillaryContent(content: string) {
   // Soluções, comentários pedagógicos e curiosidades pertencem ao material de
   // apoio, não ao enunciado. Mantê-los faz o parser capturar a questão seguinte
-  // ou transformar explicações em alternativas.
-  const match = /(?:^|\n)\s*(?:solu[cç][aã]o|resolu[cç][aã]o|coment[aá]rio|curiosidade|refer[eê]ncias? bibliogr[aá]ficas)\b/imu.exec(content);
+  // ou transformar explicações em alternativas. Exija um rótulo isolado;
+  // "solução aquosa" e "solução saturada" são conteúdo químico legítimo.
+  const match = /(?:^|\n)\s*(?:(?:quest[aã]o\s*)?\d{1,3}[.)]\s*)?(?:solu[cç][aã]o|resolu[cç][aã]o|coment[aá]rio|curiosidade|refer[eê]ncias? bibliogr[aá]ficas)(?:\s+(?:da|de|do)\s+(?:quest[aã]o\s*)?\d{1,3})?\s*(?::[^\n]*)?(?=\n|$)/imu.exec(content);
   return (match?.index === undefined ? content : content.slice(0, match.index)).trim();
 }
 
@@ -1873,7 +1926,7 @@ function isInvalidQuestionFragment(content: string) {
 }
 
 function parseAlternatives(content: string) {
-  const pattern = /(?:^|\s|\n)(?:\[\s*([A-Ha-h])\s*\]|([Ⓐ-Ⓗ])|([A-Ha-h])\s*[).:-]|\(?([1-5])\)?\s*[).:-])\s*/gu;
+  const pattern = /(?:^|\s|\n)(?:\[\s*([A-Ha-h])\s*\]|([Ⓐ-Ⓗ])|([A-Ha-h])\s*[).:-]|\(?([1-5])\)?\s*[).:-]\s*(?=[A-ZÀ-Ý]))\s*/gu;
   const markers = Array.from(content.matchAll(pattern)).map((match) => ({
     label: match[1]?.toUpperCase() ?? (match[2] ? circledAlternativeToLetter(match[2]) : (match[3]?.toUpperCase() ?? match[4]!)),
     start: (match.index ?? 0) + match[0].length,
@@ -1885,7 +1938,7 @@ function parseAlternatives(content: string) {
 }
 
 function findFirstAlternativeIndex(content: string) {
-  const match = content.match(/(?:^|\s|\n)(?:\[\s*[A-Ha-h]\s*\]|[Ⓐ-Ⓗ]|[A-Ha-h]\s*[).:-]|\(?[1-5]\)?\s*[).:-])\s*/u);
+  const match = content.match(/(?:^|\s|\n)(?:\[\s*[A-Ha-h]\s*\]|[Ⓐ-Ⓗ]|[A-Ha-h]\s*[).:-]|\(?[1-5]\)?\s*[).:-]\s*(?=[A-ZÀ-Ý]))\s*/u);
   return match?.index ?? -1;
 }
 
@@ -1975,7 +2028,7 @@ function hasQuestionIntent(statement: string, alternatives: Array<{ label: strin
   if (/^(?:[•∙●◦]\s*)?[\d.,%\s]+(?:[=+*/^]|\b(?:de|por)\b)/iu.test(compact) && !/[?]|\b(quanto|qual|calcule|determine|resolva|encontre)\b/i.test(compact)) return false;
 
   return alternatives.length >= 2
-    || /\?|\b(quanto|quantos|qual|quais|como|calcule|determine|resolva|encontre|obtenha|indique|assinale|marque|escreva|converta|transforme|complete|simplifique)\b/i.test(compact)
+    || /\?|\b(quanto|quantos|qual|quais|como|calcule|determine|resolva|encontre|obtenha|indique|assinale|marque|escreva|converta|transforme|complete|simplifique|apresente|explique|justifique|nomeie|descreva|classifique)\b/i.test(compact)
     || /^ex(?:erc[ií]cio)?\.?\s*\d+\s*[:.)-]/i.test(compact);
 }
 
@@ -2202,4 +2255,19 @@ function normalizeCompletionError(error: unknown) {
 
 function sleep(milliseconds: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, milliseconds));
+}
+
+function normalizeQuestionProvenance(value: unknown) {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((entry) => {
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) return [];
+    const item = entry as Record<string, unknown>;
+    return [{
+      ...(typeof item.page === 'number' ? { page: item.page } : {}),
+      ...(typeof item.item_ref === 'string' ? { item_ref: item.item_ref } : {}),
+      ...(typeof item.reading_order === 'number' ? { reading_order: item.reading_order } : {}),
+      ...(Array.isArray(item.bbox) && item.bbox.length === 4 && item.bbox.every((part) => typeof part === 'number')
+        ? { bbox: item.bbox as number[] } : {}),
+    }];
+  });
 }

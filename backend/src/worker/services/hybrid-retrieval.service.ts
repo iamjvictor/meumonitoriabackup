@@ -11,10 +11,14 @@ export type HybridRetrievalCandidate = {
   content: string;
   pageStart: number | null;
   pageEnd: number | null;
+  pages?: number[];
+  headings?: string[];
+  engine?: string | null;
   sectionPath: unknown;
   isComplete: boolean;
   incompleteReason: string | null;
   reason: string | null;
+  visualAssetIds?: string[];
 };
 
 export type KnowledgeContextBlock = {

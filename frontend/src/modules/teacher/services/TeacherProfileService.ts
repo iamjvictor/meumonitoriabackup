@@ -1,4 +1,5 @@
 import { TeacherSessionError } from './TeacherSessionError';
+import { apiErrorFromResponse } from '@/shared/errors/api-error';
 
 export interface TeacherProfile {
   id: string;
@@ -166,8 +167,7 @@ export const TeacherProfileService = {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || 'Falha ao salvar dados de onboarding do professor.');
+      throw await apiErrorFromResponse(response, 'Não foi possível salvar os dados do seu perfil.');
     }
 
     const result = await response.json();

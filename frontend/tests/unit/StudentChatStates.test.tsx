@@ -114,6 +114,31 @@ describe('StudentRightSidebar', () => {
     ));
   });
 
+  it('uploads an image privately and sends its attachment ID with the chat message', async () => {
+    vi.stubEnv('NEXT_PUBLIC_CHAT_IMAGE_INPUT_ENABLED', 'true');
+    vi.stubGlobal('URL', Object.assign(URL, { createObjectURL: vi.fn(() => 'blob:preview'), revokeObjectURL: vi.fn() }));
+    const user = userEvent.setup();
+    const fetchMock = vi.mocked(fetch);
+    fetchMock
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { attachmentId: 'attachment-1', expiresAt: '2026-10-28T00:00:00.000Z' } }), { status: 201 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { message: 'Vi a figura.' } }), { status: 200 }));
+    render(<StudentRightSidebar />);
+
+    await user.click(screen.getByRole('button', { name: /Anexar arquivo ou imagem/i }));
+    await user.click(screen.getByRole('button', { name: /Imagem \(até 5 MB\)/i }));
+    const file = new File(['fake-png'], 'grafico.png', { type: 'image/png' });
+    await user.upload(screen.getByLabelText('Selecionar imagem para anexar'), file);
+    expect(await screen.findByText(/grafico.png/)).toBeVisible();
+    await user.type(screen.getByPlaceholderText(/Digite sua dúvida/i), 'O que mostra?');
+    await user.click(screen.getByRole('button', { name: /Enviar mensagem/i }));
+
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
+    const chatCall = fetchMock.mock.calls[1];
+    const body = JSON.parse(String(chatCall?.[1]?.body));
+    expect(body.imageAttachmentIds).toEqual(['attachment-1']);
+    expect(chatCall?.[1]?.credentials).toBe('include');
+  });
+
   it('renders a real empty state when there are no monitors', () => {
     studentContext.value = { ...baseContext(), monitors: [] };
     render(<StudentRightSidebar />);

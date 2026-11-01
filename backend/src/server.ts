@@ -82,6 +82,7 @@ await app.register(cors, {
   allowedHeaders: corsAllowedHeaders,
 });
 await app.register(rateLimit, { max: env.LOAD_TEST_RATE_LIMIT_MAX, timeWindow: '1 minute' });
+app.setErrorHandler(createErrorHandler());
 
 app.get('/health', async () => ({ status: 'ok' }));
 app.get('/health/worker', async (_request, reply) => {
@@ -147,8 +148,12 @@ if (env.PAYMENTS_PROVIDER === 'ASAAS') {
     timeoutMs: env.ASAAS_HTTP_TIMEOUT_MS,
     returnBaseUrl: env.PAYMENTS_RETURN_BASE_URL ?? env.PUBLIC_FRONT_URL ?? 'http://localhost:3000',
     invalidateAccess: (studentId, reason) => entitlementService.invalidate(studentId, reason),
+    invalidateSponsoredAccess: async (studentUserId) => {
+      const studentId = await entitlementRepository.findStudentIdByUserId(studentUserId);
+      if (studentId) await entitlementService.invalidate(studentId, 'sponsored_seat_claimed');
+    },
   });
-  await app.register(async (paymentsApp) => paymentsRoutes(paymentsApp, paymentsModule.controller, paymentsModule.subscriptionController, paymentsModule.teacherPayoutController), { prefix: '/api/v1' });
+  await app.register(async (paymentsApp) => paymentsRoutes(paymentsApp, paymentsModule.controller, paymentsModule.subscriptionController, paymentsModule.teacherPayoutController, paymentsModule.sponsoredSeatController), { prefix: '/api/v1' });
 }
 
 

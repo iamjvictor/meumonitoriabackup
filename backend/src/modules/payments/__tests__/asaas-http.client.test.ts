@@ -58,6 +58,70 @@ test('cliente Asaas preserva descrições sanitizadas para diagnóstico sem dado
   );
 });
 
+test('cliente preserva status HTTP quando erros do provedor contêm entradas inválidas', async () => {
+  const client = new AsaasHttpClient({
+    apiKey: 'secret',
+    baseUrl: 'https://api-sandbox.asaas.com/v3',
+    timeoutMs: 1000,
+    fetchImpl: async () => new Response(JSON.stringify({ errors: [null, 'invalid', 42] }), { status: 400 }),
+  });
+
+  await assert.rejects(
+    client.request('/checkouts', { method: 'POST' }),
+    (error: unknown) => error instanceof AsaasApiError && error.status === 400,
+  );
+});
+
+test('cliente registra descrições de validação sanitizadas e limitadas sem dados sensíveis', async () => {
+  const warnings: Array<{ message: string; context?: Record<string, unknown> }> = [];
+  const originalWarn = console.warn;
+  console.warn = (message?: unknown, context?: unknown) => {
+    warnings.push({
+      message: String(message),
+      context: context && typeof context === 'object' ? context as Record<string, unknown> : undefined,
+    });
+  };
+
+  try {
+    const client = new AsaasHttpClient({
+      apiKey: 'api-key-super-secreta',
+      baseUrl: 'https://api-sandbox.asaas.com/v3',
+      timeoutMs: 1000,
+      fetchImpl: async () => new Response(JSON.stringify({
+        errors: [
+          { code: 'invalid_object', description: 'Campo email ana.silva@example.com inválido para CPF 123.456.789-01.' },
+          { description: 'Cartão 4111 1111 1111 1111 recusado; token tok_live_secret_value.' },
+          { description: 'API key=asaas_private_key não autorizada.' },
+          { description: 'Falha no campo customer.' },
+          { description: `Falha no campo billingType. ${'x'.repeat(300)}` },
+          { description: 'Esta sexta mensagem não deve aparecer.' },
+        ],
+      }), { status: 400 }),
+    });
+
+    await assert.rejects(client.request('/checkouts', { method: 'POST', body: { creditCard: { number: '4111111111111111' } } }), AsaasApiError);
+  } finally {
+    console.warn = originalWarn;
+  }
+
+  const failureLog = warnings.find(({ context }) => context?.event === 'payments.asaas_http_failed');
+  assert.ok(failureLog, 'deve registrar o erro HTTP do Asaas');
+  const context = failureLog.context;
+  assert.deepEqual((context?.providerErrorDescriptions as string[]).slice(0, 4), [
+    'Campo email [email] inválido para [sensitive-field] [number].',
+    '[sensitive-field] [number] recusado; [sensitive-field] [redacted]',
+    '[sensitive-field]=[redacted] não autorizada.',
+    'Falha no campo customer.',
+  ]);
+  assert.equal((context?.providerErrorDescriptions as string[])[4]?.length, 240, 'cada descrição deve ser limitada a 240 caracteres');
+  assert.equal((context?.providerErrorDescriptions as string[])[4]?.startsWith('Falha no campo billingType.'), true);
+  assert.equal((context?.providerErrorDescriptions as string[]).length, 5, 'o log deve conter no máximo cinco descrições');
+  const serialized = JSON.stringify(context);
+  for (const sensitive of ['ana.silva@example.com', '123.456.789-01', '4111 1111 1111 1111', 'tok_live_secret_value', 'asaas_private_key', 'api-key-super-secreta']) {
+    assert.equal(serialized.includes(sensitive), false, `o log não deve conter ${sensitive}`);
+  }
+});
+
 test('cliente Asaas converte timeout em erro estável', async () => {
   const client = new AsaasHttpClient({
     apiKey: 'secret',

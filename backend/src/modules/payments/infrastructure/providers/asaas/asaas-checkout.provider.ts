@@ -5,7 +5,7 @@ import type {
 } from '../../../domain/ports/payment-provider.port.js';
 
 type AsaasRequestClient = {
-  request<T>(path: string, request: { method: 'POST'; body: unknown }): Promise<T>;
+  request<T>(path: string, request: { method: 'POST'; body?: unknown }): Promise<T>;
 };
 
 type AsaasCheckoutResponse = {
@@ -30,12 +30,28 @@ export class AsaasCheckoutProvider implements PaymentProvider {
       walletId: split.walletId,
       percentageValue: Number(split.percentage),
     }));
-    console.log('Preparando checkout recorrente Asaas', {
+    const chargeType = command.chargeType ?? 'RECURRENT';
+    const chargeTypes = command.chargeTypes ?? [chargeType];
+    if (chargeTypes.includes('INSTALLMENT') && (!Number.isInteger(command.maxInstallmentCount) || (command.maxInstallmentCount ?? 0) < 1 || (command.maxInstallmentCount ?? 0) > 21)) {
+      throw new Error('maxInstallmentCount must be an integer between 1 and 21');
+    }
+    const items = command.items?.map((item) => ({
+      name: item.name,
+      description: item.description,
+      quantity: item.quantity,
+      value: item.unitAmountCents / 100,
+    })) ?? [{
+      name: command.monitorName,
+      description: command.description,
+      quantity: 1,
+      value: command.amountCents / 100,
+    }];
+    console.log('Preparando checkout Asaas', {
       event: 'payments.asaas_checkout_request_prepared',
       externalReference: command.externalReference,
-      billingTypes: ['CREDIT_CARD'],
-      chargeTypes: ['RECURRENT'],
-      cycle: 'MONTHLY',
+      billingTypes: [command.billingType ?? 'CREDIT_CARD'],
+      chargeTypes,
+      cycle: chargeType === 'RECURRENT' ? command.cycle ?? 'MONTHLY' : undefined,
       nextDueDate: command.nextDueDate,
       splitCount: splits.length,
       splits: splits.map((split) => ({ walletId: `${split.walletId.slice(0, 8)}...`, percentageValue: split.percentageValue })),
@@ -44,17 +60,13 @@ export class AsaasCheckoutProvider implements PaymentProvider {
     const response = await this.client.request<AsaasCheckoutResponse>('/checkouts', {
       method: 'POST',
       body: {
-        billingTypes: ['CREDIT_CARD'],
-        chargeTypes: ['RECURRENT'],
+        billingTypes: [command.billingType ?? 'CREDIT_CARD'],
+        chargeTypes,
         externalReference: command.externalReference,
         ...(command.customerId ? { customer: command.customerId } : {}),
-        items: [{
-          name: command.monitorName,
-          description: command.description,
-          quantity: 1,
-          value: command.amountCents / 100,
-        }],
-        subscription: { cycle: 'MONTHLY', nextDueDate: command.nextDueDate },
+        items,
+        ...(chargeType === 'RECURRENT' ? { subscription: { cycle: command.cycle ?? 'MONTHLY', nextDueDate: command.nextDueDate } } : {}),
+        ...(chargeTypes.includes('INSTALLMENT') ? { installment: { maxInstallmentCount: command.maxInstallmentCount } } : {}),
         callback: {
           successUrl: command.successUrl,
           cancelUrl: command.cancelUrl,
@@ -79,6 +91,10 @@ export class AsaasCheckoutProvider implements PaymentProvider {
       checkoutUrl,
       expiresAt: response.expiresAt ? new Date(response.expiresAt) : null,
     };
+  }
+
+  async cancelHostedCheckout(checkoutId: string): Promise<void> {
+    await this.client.request(`/checkouts/${encodeURIComponent(checkoutId)}/cancel`, { method: 'POST' });
   }
 }
 

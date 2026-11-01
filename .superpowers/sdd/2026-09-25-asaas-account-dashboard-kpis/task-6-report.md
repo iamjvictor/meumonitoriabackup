@@ -5,7 +5,7 @@
 - Criado `backend/src/modules/payments/__tests__/payment-account-overview.integration.test.ts` com repository/provider/resolver fake determinísticos.
 - Cobertos: professor aprovado com os quatro KPIs, indisponibilidade do provider com `metrics: null`, isolamento Sandbox/Production e isolamento entre professores.
 - Nenhuma consulta real ao Asaas, banco remoto ou operação que movimente dinheiro foi executada.
-- Atualizado `docs/PAGAMENTOS-E-ASSINATURAS.md` com endpoint, estados, pré-requisito de credencial segura, separação de ambientes e fora de escopo (sem saque).
+- Atualizado `docs/asaas/reference/PAGAMENTOS-E-ASSINATURAS.md` com endpoint, estados, pré-requisito de credencial segura, separação de ambientes e fora de escopo (sem saque).
 
 ## Verificação
 

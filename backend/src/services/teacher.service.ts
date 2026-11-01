@@ -1,5 +1,6 @@
 import { TeacherRepository } from '../repositories/teacher.repository.js';
 import type { PublicTeacherProfileCache } from '../cache/public-teacher-profile.cache.js';
+import { calculateAnnualPriceCents } from '../modules/payments/domain/annual-plan-price.js';
 
 export class TeacherService {
   constructor(private readonly repository: TeacherRepository, private readonly publicProfileCache?: PublicTeacherProfileCache) {}
@@ -71,7 +72,7 @@ export class TeacherService {
             cacheReadMs,
             totalDurationMs: Date.now() - startedAt,
           });
-          return cached;
+          return attachAnnualPrices(cached);
         }
         console.log('Cache Redis do perfil público ausente', {
           event: 'teacher.public_profile_cache_miss',
@@ -90,7 +91,7 @@ export class TeacherService {
     }
 
     const databaseReadStartedAt = Date.now();
-    const teacher = await this.repository.findPublicBySlug(pageSlug);
+    const teacher = attachAnnualPrices(await this.repository.findPublicBySlug(pageSlug));
     const databaseReadMs = Date.now() - databaseReadStartedAt;
 
     if (teacher && this.publicProfileCache) {
@@ -139,4 +140,18 @@ export class TeacherService {
       });
     }
   }
+}
+
+function attachAnnualPrices(profile: unknown) {
+  if (!profile || typeof profile !== 'object') return profile;
+  const publicProfile = profile as { monitors?: Array<Record<string, unknown> & { priceCents?: number }> } & Record<string, unknown>;
+  return {
+    ...publicProfile,
+    monitors: publicProfile.monitors?.map((monitor) => ({
+      ...monitor,
+      annualPriceCents: Number.isInteger(monitor.priceCents) && (monitor.priceCents ?? 0) > 0
+        ? calculateAnnualPriceCents(monitor.priceCents!)
+        : null,
+    })),
+  };
 }

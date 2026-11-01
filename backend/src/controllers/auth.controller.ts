@@ -27,7 +27,13 @@ export class AuthController {
         durationMs: Date.now() - startedAt,
         invalidFields: Object.keys(result.error.flatten().fieldErrors),
       });
-      throw new AppError({ code: 'VALIDATION_ERROR', statusCode: 400, publicMessage: 'Dados basicos de cadastro invalidos.', internalDetails: result.error.flatten().fieldErrors });
+      return reply.code(400).send({
+        error: {
+          code: 'VALIDATION_ERROR',
+          message: 'Dados básicos do cadastro inválidos. Revise os campos indicados.',
+          details: result.error.flatten().fieldErrors,
+        },
+      });
     }
 
     console.log('Signup validado', { event: 'auth.signup.validation_succeeded', requestId: request.id, ...getSignupLogData(result.data) });
@@ -63,9 +69,10 @@ export class AuthController {
       return reply.code(201).send({ data: publicSignup });
     } catch (error) {
       if (error instanceof AuthRepositoryError) {
-        const isEmailProviderDisabled =
-          error.message.toLowerCase().includes('email logins are disabled') ||
-          error.message.toLowerCase().includes('email_provider_disabled');
+        const normalizedProviderMessage = error.message.toLowerCase().replace(/[_-]+/g, ' ');
+        const isEmailProviderDisabled = normalizedProviderMessage.includes('email logins are disabled') ||
+          normalizedProviderMessage.includes('email provider disabled');
+        const isEmailAlreadyRegistered = /\b(user|email)(\s+address)?\b.{0,80}\b(already registered|already exists|has been registered|exists)\b/.test(normalizedProviderMessage);
 
         if (isEmailProviderDisabled) {
           console.log('Signup bloqueado: login por email desativado no Supabase', {
@@ -74,6 +81,10 @@ export class AuthController {
             durationMs: Date.now() - startedAt,
           });
           throw new AppError({ code: 'EMAIL_PROVIDER_DISABLED', statusCode: 503, publicMessage: 'O login por e-mail esta desativado no provedor de autenticacao.' });
+        }
+
+        if (isEmailAlreadyRegistered) {
+          throw new AppError({ code: 'EMAIL_ALREADY_REGISTERED', statusCode: 409, publicMessage: 'Ja existe uma conta cadastrada com este e-mail.' });
         }
 
         console.log('Signup rejeitado pelo Auth', { event: 'auth.signup.auth_rejected', requestId: request.id, durationMs: Date.now() - startedAt, providerError: 'AUTH_REPOSITORY_ERROR' });

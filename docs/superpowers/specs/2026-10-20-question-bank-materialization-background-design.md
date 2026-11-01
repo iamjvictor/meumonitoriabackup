@@ -66,6 +66,8 @@ O worker reutiliza a lógica de validação e persistência de `QuestionBankMate
 
 Falha transitória deve acionar as tentativas e o backoff da fila. A execução só passa a `FAILED` após esgotar as tentativas; erros parciais por item resultam em `COMPLETED_WITH_WARNINGS` com contagens finais. Jobs concluídos não são reexecutados por uma nova publicação da mesma chave.
 
+Depois de persistir o estado terminal e as contagens no banco, remover jobs concluídos ou definitivamente falhos do Redis. A limpeza não pode remover jobs ativos, aguardando retry ou em backoff. O registro persistido é a fonte de verdade para a interface, histórico e retry manual; a fila não deve reter payloads ou resultados após a finalização.
+
 ### API
 
 - `POST /api/v1/monitors` mantém autenticação e validações existentes, mas retorna após persistir o monitor, as seleções e o job pendente.
@@ -88,6 +90,7 @@ Falha transitória deve acionar as tentativas e o backoff da fila. A execução 
 - Seleções e monitor são a fonte de verdade para o worker; valores do cliente servem apenas como total selecionado exibido e não autorizam quais questões serão copiadas.
 - Enfileirar novamente uma execução não pode criar cópias repetidas.
 - Um retry manual não deve concorrer com uma execução já ativa.
+- Jobs BullMQ concluídos ou definitivamente falhos são removidos do Redis depois de persistir o resultado terminal; o progresso e o resultado continuam consultáveis no banco.
 - A criação do monitor não deve retornar erro de criação apenas porque Redis ficou indisponível depois do commit; o job persistido será recuperado.
 
 ## Observabilidade

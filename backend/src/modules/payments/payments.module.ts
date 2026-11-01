@@ -10,6 +10,11 @@ import { PaymentSubscriptionService } from './application/services/payment-subsc
 import { PaymentSubscriptionController } from './http/payment-subscription.controller.js';
 import { TeacherPayoutRepository } from './infrastructure/persistence/teacher-payout.repository.js';
 import { TeacherPayoutController } from './http/teacher-payout.controller.js';
+import { SponsoredSeatController } from './http/sponsored-seat.controller.js';
+import { PrismaSponsoredSeatBatchRepository } from './infrastructure/persistence/sponsored-seat-batch.repository.js';
+import { CreateSponsoredSeatBatchUseCase } from './application/commands/create-sponsored-seat-batch.use-case.js';
+import { ClaimSponsoredSeatsUseCase } from './application/commands/claim-sponsored-seats.use-case.js';
+import { PrismaSponsoredSeatClaimRepository } from './infrastructure/persistence/sponsored-seat-claim.repository.js';
 import { PaymentAccountRepository } from './infrastructure/persistence/payment-account.repository.js';
 import { AsaasAccountOverviewProvider } from './infrastructure/providers/asaas/asaas-account-overview.provider.js';
 import { GetPaymentAccountOverviewUseCase } from './application/queries/get-payment-account-overview.use-case.js';
@@ -24,6 +29,7 @@ export type PaymentsModuleConfig = {
   dashboardUrl?: string;
   returnBaseUrl: string;
   invalidateAccess?: (studentId: string, reason: string) => Promise<void>;
+  invalidateSponsoredAccess?: (studentUserId: string) => Promise<void>;
 };
 
 export function createPaymentsModule(config: PaymentsModuleConfig) {
@@ -33,10 +39,15 @@ export function createPaymentsModule(config: PaymentsModuleConfig) {
   const repository = new PaymentCheckoutRepository();
   const createCheckout = new CreateCheckoutUseCase(repository, checkoutProvider);
   const controller = new PaymentsController(createCheckout, config.returnBaseUrl);
+  const sponsoredSeatBatchRepository = new PrismaSponsoredSeatBatchRepository();
+  const createSponsoredSeatBatch = new CreateSponsoredSeatBatchUseCase(sponsoredSeatBatchRepository, checkoutProvider);
+  const sponsoredSeatClaimRepository = new PrismaSponsoredSeatClaimRepository();
+  const claimSponsoredSeats = new ClaimSponsoredSeatsUseCase(sponsoredSeatClaimRepository, config.invalidateSponsoredAccess);
   const subscriptionRepository = new PaymentSubscriptionRepository();
   const subscriptionProvider = new AsaasSubscriptionProvider(httpClient);
   const subscriptionService = new PaymentSubscriptionService(subscriptionRepository, subscriptionProvider, config.invalidateAccess);
   const subscriptionController = new PaymentSubscriptionController(subscriptionRepository, subscriptionService);
+  const sponsoredSeatController = new SponsoredSeatController(createSponsoredSeatBatch, sponsoredSeatBatchRepository, subscriptionProvider, config.returnBaseUrl, claimSponsoredSeats);
   const teacherPayoutRepository = new TeacherPayoutRepository();
   const teacherPayoutController = new TeacherPayoutController(teacherPayoutRepository);
   const credentialStore = new LocalPaymentAccountCredentialStore();
@@ -58,5 +69,5 @@ export function createPaymentsModule(config: PaymentsModuleConfig) {
     }),
   });
 
-  return { httpClient, checkoutProvider, paymentsClient, repository, createCheckout, controller, subscriptionRepository, subscriptionProvider, subscriptionService, subscriptionController, teacherPayoutRepository, teacherPayoutController, paymentAccountRepository, accountOverviewProvider, getPaymentAccountOverview };
+  return { httpClient, checkoutProvider, paymentsClient, repository, createCheckout, controller, sponsoredSeatBatchRepository, createSponsoredSeatBatch, sponsoredSeatClaimRepository, claimSponsoredSeats, sponsoredSeatController, subscriptionRepository, subscriptionProvider, subscriptionService, subscriptionController, teacherPayoutRepository, teacherPayoutController, paymentAccountRepository, accountOverviewProvider, getPaymentAccountOverview };
 }

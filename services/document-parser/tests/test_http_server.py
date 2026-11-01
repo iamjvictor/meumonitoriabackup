@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import sys
 import threading
 import time
 import unittest
+from unittest.mock import patch
 from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
 from hashlib import sha256
@@ -64,6 +66,13 @@ class SlowParser(FakeParser):
         return self.result
 
 
+class LateFailParser(FakeParser):
+    def parse(self, filename: str, payload: bytes) -> dict[str, object]:
+        self.calls.append((filename, payload))
+        time.sleep(0.35)
+        raise RuntimeError("late conversion failure")
+
+
 class GateParser(FakeParser):
     def __init__(self, error: Exception | None = None) -> None:
         super().__init__(error=error)
@@ -104,6 +113,13 @@ def build_multipart(field_name: str, filename: str, content: bytes, boundary: st
     return f"multipart/form-data; boundary={boundary}", body
 
 
+class DoclingOcrConfigurationTests(unittest.TestCase):
+    def test_default_parser_reads_ocr_flag_from_service_environment(self) -> None:
+        with patch.dict(os.environ, {"DOCUMENT_PARSER_ENABLE_OCR": "true"}):
+            parser = service.CachedParseService()
+        self.assertTrue(parser._parser._enable_ocr)
+
+
 class DoclingHttpServiceTests(unittest.TestCase):
     def setUp(self) -> None:
         self.parser = FakeParser()
@@ -142,6 +158,14 @@ class DoclingHttpServiceTests(unittest.TestCase):
         self.assertEqual(response["result"], self.parser.result)
         self.assertEqual(self.parser.calls, [("aula.pdf", content)])
 
+    def test_ready_endpoint_reports_whether_required_parser_resources_are_initialized(self) -> None:
+        self.assertEqual(self.request("GET", "/ready")[0], 503)
+        self.server.ready = True
+        status, _, payload = self.request("GET", "/ready")
+        self.assertEqual(status, 200)
+        self.assertEqual(json.loads(payload)["status"], "ready")
+
+
     def test_post_parse_rejects_missing_file_with_readable_error(self) -> None:
         content_type, body = build_multipart("other", "aula.pdf", b"conteudo")
 
@@ -157,6 +181,97 @@ class DoclingHttpServiceTests(unittest.TestCase):
         self.assertEqual(response["status"], "failed")
         self.assertEqual(response["error"]["code"], "INVALID_INPUT")
         self.assertIn("file", response["error"]["message"])
+
+    def test_streamed_parser_exception_returns_json_error(self) -> None:
+        self.server.shutdown()
+        self.thread.join(timeout=5)
+        self.server.server_close()
+        self.parser = LateFailParser()
+        self.server, self.thread, self.port = service.serve_in_thread(
+            parser=self.parser,
+            host="127.0.0.1",
+            port=0,
+            stream_after_seconds=0.05,
+        )
+        content = b"%PDF-1.4\\nfixture\\n"
+        content_type, body = build_multipart("file", "aula.pdf", content)
+
+        status, _, payload = self.request(
+            "POST",
+            "/v1/parse",
+            body=body,
+            headers={"Content-Type": content_type, "Content-Length": str(len(body))},
+        )
+
+        self.assertEqual(status, 500)
+        response = json.loads(payload.decode("utf-8"))
+        self.assertEqual(response["status"], "failed")
+        self.assertEqual(response["error"]["code"], "PARSER_ERROR")
+
+    def test_post_chunk_echoes_request_id_and_rejects_hash_mismatch(self) -> None:
+        content = b"%PDF-1.4\\nfixture\\n"
+        content_type, body = build_multipart("file", "aula.pdf", content)
+        request_id = "b3615f67-b6df-47e1-90b7-7e5d8de13e4f"
+
+        status, headers, payload = self.request(
+            "POST", "/chunk", body=body,
+            headers={
+                "Content-Type": content_type, "Content-Length": str(len(body)),
+                "X-Document-Id": "document-1", "X-Request-Id": request_id,
+                "X-Expected-SHA256": "0" * 64,
+            },
+        )
+
+        response = json.loads(payload.decode("utf-8"))
+        self.assertEqual(status, 400)
+        self.assertEqual(response["request_id"], request_id)
+        self.assertEqual(response["error"]["code"], "DOC_HASH_MISMATCH")
+        self.assertEqual(dict(headers).get("X-Request-Id"), request_id)
+        self.assertEqual(self.parser.calls, [])
+
+    def test_post_chunk_enforces_configured_conversion_timeout(self) -> None:
+        import os
+        from unittest.mock import patch
+        content = b"%PDF-1.4\\nfixture\\n"
+        content_type, body = build_multipart("file", "aula.pdf", content)
+        request_id = "b3615f67-b6df-47e1-90b7-7e5d8de13e4f"
+        self.server.chunker_service = SimpleNamespace(chunk=lambda *_args: (time.sleep(0.1), {})[1])
+        with patch.dict(os.environ, {"DOC_CHUNKER_TIMEOUT_MS": "10"}):
+            status, _, payload = self.request(
+                "POST", "/chunk", body=body,
+                headers={"Content-Type": content_type, "Content-Length": str(len(body)),
+                         "X-Document-Id": "document-1", "X-Request-Id": request_id,
+                         "X-Expected-SHA256": sha256(content).hexdigest()},
+            )
+        self.assertEqual(status, 504)
+        self.assertEqual(json.loads(payload)["error"]["code"], "DOC_CHUNKER_TIMEOUT")
+
+    def test_chunk_v2_returns_visual_package_without_changing_v1_json_contract(self) -> None:
+        import io
+        import zipfile
+        content = b"%PDF-1.4\\nfixture\\n"
+        content_type, body = build_multipart("file", "aula.pdf", content)
+        request_id = "b3615f67-b6df-47e1-90b7-7e5d8de13e4f"
+        package = io.BytesIO()
+        with zipfile.ZipFile(package, "w") as archive:
+            archive.writestr("manifest.json", '{"schema_version":"doc-chunker/v2"}')
+        calls = []
+        def chunk(*_args, **kwargs):
+            calls.append(kwargs)
+            return package.getvalue()
+        self.server.chunker_service = SimpleNamespace(chunk=chunk)
+
+        status, headers, payload = self.request(
+            "POST", "/chunk/v2", body=body,
+            headers={"Content-Type": content_type, "Content-Length": str(len(body)),
+                     "X-Document-Id": "document-1", "X-Request-Id": request_id,
+                     "X-Expected-SHA256": sha256(content).hexdigest()},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(dict(headers)["Content-Type"], "application/vnd.doc-chunker.v2+zip")
+        self.assertEqual(dict(headers)["X-Request-Id"], request_id)
+        self.assertEqual(payload, package.getvalue())
+        self.assertEqual(calls, [{"visual_package": True}])
 
     def test_cached_service_reconverts_same_payload_after_completion(self) -> None:
         parser = FakeParser()
@@ -249,7 +364,7 @@ class DoclingHttpServiceTests(unittest.TestCase):
         )
 
         self.assertEqual(status, 200)
-        self.assertTrue(payload.startswith(b" \n"))
+        self.assertTrue(payload.startswith(b"{"))
         self.assertEqual(json.loads(payload.decode("utf-8"))["status"], "completed")
 
     def test_json_response_treats_client_disconnect_as_expected_boundary(self) -> None:
@@ -368,7 +483,7 @@ class DoclingHttpServiceTests(unittest.TestCase):
             "docling_parser.conversion_finished",
             "docling_parser.exports_finished",
         ])
-        self.assertEqual(logs[0][1]["filename"], "aula.pdf")
+        self.assertNotIn("filename", logs[0][1])
         self.assertEqual(logs[0][1]["payload_bytes"], 17)
         self.assertGreaterEqual(logs[-1][1]["markdown_chars"], 1)
 

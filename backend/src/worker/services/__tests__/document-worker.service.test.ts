@@ -36,6 +36,8 @@ test('FLASHCARDS executa o job de geração após os embeddings e mantém quest�
       async markDocumentReady() {},
       async markDocumentFailed() {},
       async markDocumentNeedsOcr() {},
+      async saveDoclingChunks() { return { savedCount: 0, reused: false, chunkIds: [] }; },
+      async findReusableDoclingChunks() { return { reusable: false, chunkCount: 0, chunks: [] }; },
       async findChunkForFlashcardGeneration() { return null; },
       async findFlashcardGenerationChunkIds() { return []; },
     },
@@ -44,6 +46,7 @@ test('FLASHCARDS executa o job de geração após os embeddings e mantém quest�
     namedExports: {
       DOCUMENT_PROCESSING_VERSION: 4,
       async ensureDocumentProcessingJobs() {},
+      async updateDocumentProcessingStage() {},
       async startDocumentProcessingJob(_documentId: string, operation: string) {
         jobs.push({ action: 'start', operation });
       },

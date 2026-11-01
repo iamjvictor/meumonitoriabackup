@@ -5,8 +5,11 @@ import type { ChatGenerationPort } from '../../ports/chat-generation.port.js';
 import type { ChatHistoryMessage, ChatHistoryScope } from '../../models/chat-history.model.js';
 import type { ChatHistoryPort } from '../../ports/chat-history.port.js';
 import { ChatRagService } from '../../rag/services/chat-rag.service.js';
+import { ChatContextResolver } from '../../rag/services/chat-context-resolver.service.js';
 import type { ChatKnowledgePort } from '../../rag/ports/chat-knowledge.port.js';
 import type { ChatRagInput } from '../../rag/models/chat-rag.model.js';
+import type { ChatGenerationInput } from '../../models/chat-generation.model.js';
+import { ChatQuestionContextService } from '../chat-question-context.service.js';
 
 class InMemoryChatHistory implements ChatHistoryPort {
   messages: ChatHistoryMessage[] = [];
@@ -25,9 +28,9 @@ class InMemoryChatHistory implements ChatHistoryPort {
 }
 
 class FixedGeneration implements ChatGenerationPort {
-  calls: Array<{ message: string; history: ChatHistoryMessage[]; ragContext?: string | null }> = [];
+  calls: ChatGenerationInput[] = [];
 
-  async generate(input: { message: string; history: ChatHistoryMessage[] }) {
+  async generate(input: ChatGenerationInput) {
     this.calls.push(input);
     return { content: `Resposta para: ${input.message}` };
   }
@@ -160,6 +163,7 @@ test('salva a referência explícita do anexo junto à mensagem do aluno', async
 test('herda a referência do último anexo compatível quando a nova mensagem não informa anexo', async () => {
   const history = new InMemoryChatHistory();
   const knowledge = new FixedKnowledge();
+  const generation = new FixedGeneration();
   history.messages.push({
     id: 'previous-message',
     role: 'student',
@@ -174,7 +178,12 @@ test('herda a referência do último anexo compatível quando a nova mensagem n�
       subjectId: 'subject-1',
     },
   });
-  const service = new ChatService(history, new FixedGeneration(), new ChatRagService(knowledge));
+  const hydrator = new ChatQuestionContextService({
+    async findAuthorizedQuestion(input) {
+      return { id: input.questionId, topicId: 'topic-1', topic: 'Álgebra', statement: 'Enunciado recarregado.', alternatives: [], sourceDocumentId: 'doc-1', sourceBlockId: 'block-1' };
+    },
+  });
+  const service = new ChatService(history, generation, new ChatRagService(knowledge), undefined, undefined, hydrator);
 
   await service.sendMessage({
     studentId: 'student-1',
@@ -193,4 +202,27 @@ test('herda a referência do último anexo compatível quando a nova mensagem n�
     subjectId: 'subject-1',
   });
   assert.equal(knowledge.calls[0]?.questionId, 'question-1');
+  assert.equal(generation.calls[0]?.questionContext?.statement, 'Enunciado recarregado.');
+  assert.equal(generation.calls[0]?.questionContext?.sourceDocumentId, 'doc-1');
+});
+
+test('persiste e encaminha o ID da imagem do aluno ao resolvedor visual e ao gateway', async () => {
+  const history = new InMemoryChatHistory();
+  const generation = new FixedGeneration();
+  let receivedIds: string[] = [];
+  const visualContext = {
+    async resolveVisualContext(input: { studentImageIds: string[] }) {
+      receivedIds = input.studentImageIds;
+      return { text: 'Foto anexada.', images: [], contextManifest: [] };
+    },
+  };
+  const service = new ChatService(history, generation, new ChatRagService(new FixedKnowledge()), new ChatContextResolver(), visualContext as any);
+  await service.sendMessage({
+    studentId: 'student-1', teacherId: 'teacher-1', monitorId: 'monitor-1', subjectId: 'subject-1',
+    message: 'O que há nesta foto?', questionContext: null, imageAttachmentIds: ['upload-1'],
+  });
+  assert.deepEqual(receivedIds, ['upload-1']);
+  assert.deepEqual(history.messages[0]?.imageAttachmentIds, ['upload-1']);
+  assert.equal(generation.calls[0]?.studentId, 'student-1');
+  assert.equal(generation.calls[0]?.teacherId, 'teacher-1');
 });

@@ -36,6 +36,7 @@ export class QuestionCompletionRequestService {
 
     let lastFailure: QuestionAgentFailure | null = null;
     for (const model of models) {
+      let retryFeedback: string | null = null;
       for (let attempt = 1; attempt <= 3; attempt += 1) {
         try {
           const data = await this.client.createStructuredChatCompletion<T>({
@@ -45,9 +46,14 @@ export class QuestionCompletionRequestService {
             temperature: taskConfiguration.temperature,
             maxTokens: taskConfiguration.maxTokens,
             requireParameters: true,
-            messages: compactMessages(input.messages, getPromptBudget(input.task, attempt)),
+            messages: [
+              ...compactMessages(input.messages, getPromptBudget(input.task, attempt) - (retryFeedback?.length ?? 0)),
+              ...(retryFeedback ? [{ role: 'system' as const, content: retryFeedback }] : []),
+            ],
             validate: (value) => {
-              const parsed = input.parser.safeParse(value);
+              const candidate = input.task === 'question_quality_normalization'
+                ? trimNormalizationEvidence(value) : value;
+              const parsed = input.parser.safeParse(candidate);
               if (parsed.success) return parsed.data;
               const schemaError = new Error('Resposta estruturada nao atende ao schema local.');
               Object.assign(schemaError, { issues: parsed.error?.issues?.slice(0, 4) });
@@ -73,14 +79,18 @@ export class QuestionCompletionRequestService {
             // repetir a mesma chamada só aumenta latência e custo.
             && failure.statusCode !== 404
             && !authenticationFailure;
+          retryFeedback = failure.code === 'INVALID_SCHEMA' && failure.validationError
+            ? `A resposta anterior violou o schema local. Corrija estes erros exatos: ${JSON.stringify(failure.validationError).slice(0, 1500)}. Retorne somente JSON valido.`
+            : null;
           console.log('Agente especializado de conclusao falhou', {
             event: 'monitor.question_completion_agent_failed',
             task: input.task,
             model,
             attempt,
             willRetry: hasNextAttempt,
-            error,
-            failure,
+            code: failure.code,
+            statusCode: failure.statusCode,
+            validationIssues: JSON.stringify(failure.validationError ?? null),
           });
           if (hasNextAttempt) {
             await (this.options.sleep ?? sleep)(resolveRetryDelayMilliseconds(error, attempt));
@@ -101,6 +111,22 @@ export class QuestionCompletionRequestService {
       },
     };
   }
+}
+
+function trimNormalizationEvidence(value: unknown): unknown {
+  if (!value || typeof value !== 'object' || !('evidence' in value) || !Array.isArray(value.evidence)) return value;
+  const originalEvidence = value.evidence as unknown[];
+  const evidence = originalEvidence.map((item: unknown) =>
+    typeof item === 'string' && item.length > 300 ? item.slice(0, 300).trimEnd() : item);
+  const trimmed = evidence.filter((item: unknown, index: number) => item !== originalEvidence[index]);
+  if (trimmed.length === 0) return value;
+  console.log('Evidencia da normalizacao limitada ao schema', {
+    event: 'monitor.question_normalization_evidence_trimmed',
+    issues: JSON.stringify(originalEvidence.flatMap((item: unknown, index: number) =>
+      typeof item === 'string' && item.length > 300
+        ? [{ path: `evidence.${index}`, actualLength: item.length, limit: 300 }] : [])),
+  });
+  return { ...value, evidence };
 }
 
 function normalizeFailure(

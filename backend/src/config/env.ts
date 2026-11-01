@@ -1,10 +1,9 @@
 import dotenv from 'dotenv';
 import { z } from 'zod';
 
-// No desenvolvimento, o .env do projeto deve prevalecer sobre variáveis
-// antigas que ficaram exportadas no terminal/PM2. Em produção, mantemos a
-// precedência das variáveis injetadas pelo ambiente de deploy.
-dotenv.config({ override: process.env.NODE_ENV !== 'production' });
+// No desenvolvimento, o .env do projeto prevalece sobre variáveis antigas do
+// terminal. Testes e produção preservam valores injetados, como URLs isoladas.
+dotenv.config({ override: process.env.NODE_ENV === 'development' });
 
 export function isValidAsaasCredentialEncryptionKey(value: string): boolean {
   if (!/^[A-Za-z0-9+/]+={0,2}$/.test(value) || value.length % 4 !== 0) return false;
@@ -31,6 +30,14 @@ const envSchema = z.object({
   DOCUMENT_INGESTION_V3_ENABLED: z.preprocess((value) => value === 'true', z.boolean()).default(false),
   DOCUMENT_PARSER_BASE_URL: z.string().url().optional(),
   DOCUMENT_PARSER_REQUEST_TIMEOUT_MS: z.coerce.number().int().positive().default(600_000),
+  DOCUMENT_TEXT_SOURCE: z.enum(['pdfjs', 'docling', 'auto']).default('pdfjs'),
+  DOCUMENT_CHUNKER_BASE_URL: z.string().url().optional(),
+  DOCUMENT_CHUNKER_REQUEST_TIMEOUT_MS: z.coerce.number().int().positive().default(600_000),
+  DOCUMENT_CHUNKER_MAX_RESPONSE_BYTES: z.coerce.number().int().positive().default(20 * 1024 * 1024),
+  DOCUMENT_VISUAL_ASSETS_ENABLED: z.enum(['true', 'false']).default('false').transform((value) => value === 'true'),
+  DOCUMENT_VISUAL_DESCRIPTION_MODEL: z.string().min(1).default('google/gemini-2.5-flash'),
+  CHAT_IMAGE_INPUT_ENABLED: z.enum(['true', 'false']).default('false').transform((value) => value === 'true'),
+  CHAT_IMAGE_MODEL: z.string().min(1).default('google/gemini-2.5-flash'),
   DOCUMENT_PARSER_MAX_ATTEMPTS: z.coerce.number().int().positive().default(1),
   OPENROUTER_API_KEY: z.string().min(1).optional(),
   AI_REASONING_EFFORT: z.enum(['none', 'low', 'medium', 'high']).default('low'),
@@ -105,6 +112,12 @@ const envSchema = z.object({
   PAYMENTS_SIMULATION_ENABLED: z.preprocess((value) => value === 'true', z.boolean()).default(false),
   PAYMENTS_TEST_PRICE_CENTS: z.coerce.number().int().positive().default(1990),
 }).superRefine((value, context) => {
+  if (value.DOCUMENT_TEXT_SOURCE !== 'pdfjs' && !value.DOCUMENT_CHUNKER_BASE_URL && !value.DOCUMENT_PARSER_BASE_URL) {
+    context.addIssue({ code: z.ZodIssueCode.custom, path: ['DOCUMENT_CHUNKER_BASE_URL'], message: 'DOCUMENT_CHUNKER_BASE_URL é obrigatória para DOCUMENT_TEXT_SOURCE=docling|auto' });
+  }
+  if (value.DOCUMENT_VISUAL_ASSETS_ENABLED && !value.DOCUMENT_CHUNKER_BASE_URL && !value.DOCUMENT_PARSER_BASE_URL) {
+    context.addIssue({ code: z.ZodIssueCode.custom, path: ['DOCUMENT_CHUNKER_BASE_URL'], message: 'DOCUMENT_CHUNKER_BASE_URL é obrigatória quando DOCUMENT_VISUAL_ASSETS_ENABLED=true' });
+  }
   if (!value.ASAAS_CREDENTIAL_ENCRYPTION_KEY) {
     context.addIssue({ code: z.ZodIssueCode.custom, path: ['ASAAS_CREDENTIAL_ENCRYPTION_KEY'], message: 'ASAAS_CREDENTIAL_ENCRYPTION_KEY é obrigatória' });
   } else if (!isValidAsaasCredentialEncryptionKey(value.ASAAS_CREDENTIAL_ENCRYPTION_KEY)) {

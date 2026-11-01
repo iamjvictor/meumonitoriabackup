@@ -45,9 +45,8 @@ export class AsaasWebhookIngress {
     const eventType = readString(payload.event);
     if (!eventType) throw new Error('Webhook event type is required');
 
-    const payment = asRecord(payload.payment);
-    const providerEventId = readString(payload.id) ?? `${eventType}:${readString(payment.id) ?? ''}`;
-    if (!providerEventId || providerEventId.endsWith(':')) throw new Error('Provider event id is required');
+    const providerEventId = readString(payload.id);
+    if (!providerEventId) throw new Error('Provider event id is required');
 
     const accepted = await this.dependencies.inbox.accept({
       providerEventId,

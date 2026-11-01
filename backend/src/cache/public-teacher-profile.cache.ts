@@ -32,7 +32,7 @@ export class PublicTeacherProfileCache {
 }
 
 export function buildPublicTeacherProfileCacheKey(pageSlug: string) {
-  return `teacher:public-profile:v1:${pageSlug}`;
+  return `teacher:public-profile:v2:${pageSlug}`;
 }
 
 export function createPublicTeacherProfileCache() {

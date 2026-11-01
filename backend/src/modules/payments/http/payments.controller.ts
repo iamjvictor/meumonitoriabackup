@@ -8,10 +8,11 @@ import {
   CheckoutPendingError,
   CheckoutStudentNotFoundError,
   CheckoutStudentRoleError,
+  CheckoutAnnualPlanUnavailableError,
   CreateCheckoutUseCase,
 } from '../application/commands/create-checkout.use-case.js';
 
-export const createCheckoutBodySchema = z.object({ monitorId: z.string().uuid() }).strict();
+export const createCheckoutBodySchema = z.object({ monitorId: z.string().uuid(), interval: z.enum(['MONTHLY', 'ANNUAL']).optional(), billingType: z.enum(['PIX', 'CREDIT_CARD']).optional() }).strict();
 
 export class PaymentsController {
   constructor(private readonly createCheckout: CreateCheckoutUseCase, private readonly returnBaseUrl: string) {}
@@ -24,7 +25,7 @@ export class PaymentsController {
     const idempotencyKey = headerValue(request.headers['idempotency-key']);
     console.log('Criação de checkout Asaas solicitada', { event: 'payments.checkout_creation_requested', requestId: request.id, userId: request.user.id, monitorId: parsed.data.monitorId, hasIdempotencyKey: Boolean(idempotencyKey) });
     try {
-      const result = await this.createCheckout.execute(request.user.id, { monitorId: parsed.data.monitorId, idempotencyKey: idempotencyKey ?? '', returnBaseUrl: this.returnBaseUrl });
+      const result = await this.createCheckout.execute(request.user.id, { monitorId: parsed.data.monitorId, interval: parsed.data.interval ?? 'MONTHLY', billingType: parsed.data.billingType ?? 'CREDIT_CARD', idempotencyKey: idempotencyKey ?? '', returnBaseUrl: this.returnBaseUrl });
       console.log('Checkout Asaas criado', { event: 'payments.checkout_creation_completed', requestId: request.id, userId: request.user.id, orderId: result.orderId, subscriptionId: result.subscriptionId, amountCents: result.amountCents, hasCheckoutUrl: Boolean(result.checkoutUrl) });
       return reply.code(201).send({ data: result });
     } catch (error) {
@@ -34,6 +35,7 @@ export class PaymentsController {
       if (error instanceof CheckoutStudentNotFoundError) throw new AppError({ code: 'STUDENT_NOT_FOUND', statusCode: 404, publicMessage: 'Perfil de aluno não encontrado.' });
       if (error instanceof CheckoutStudentRoleError) throw new AppError({ code: 'FORBIDDEN', statusCode: 403, publicMessage: 'Somente alunos podem iniciar uma assinatura.' });
       if (error instanceof CheckoutMonitorNotFoundError) throw new AppError({ code: 'MONITOR_NOT_FOUND', statusCode: 404, publicMessage: 'Monitor não encontrado ou não publicado.' });
+      if (error instanceof CheckoutAnnualPlanUnavailableError) throw new AppError({ code: 'ANNUAL_PLAN_UNAVAILABLE', statusCode: 409, publicMessage: 'O plano anual ainda não está disponível para este monitor.' });
       throw error;
     }
   }

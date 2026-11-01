@@ -71,6 +71,7 @@ export class QuestionQualityNormalizationAgentService {
             'Nunca troque um gabarito atual valido apenas para completar cinco alternativas. Adicionar uma alternativa nao altera o gabarito.',
             'Se a explicacao ou o calculo indicar explicitamente uma letra, ela deve ser coerente com correctAnswer e com o texto da alternativa.',
             'Nao mencione OCR, documento, fonte, IA, alternativas adicionadas, regra de cinco alternativas ou o processo de revisao dentro da explicacao.',
+            'Cada item de evidence deve ter no maximo 300 caracteres. Cite apenas o trecho essencial; nao copie o enunciado inteiro.',
             'Retorne somente JSON compacto. Em changes, use null para campos que nao devem ser alterados e liste os campos alterados em changedFields.',
           ].join(' '),
         },

@@ -106,6 +106,7 @@ export async function findQuestionExtractionData(documentId: string) {
           chunkIndex: true,
           blockId: true,
           content: true,
+          provenance: true,
           charStart: true,
           charEnd: true,
           block: { select: { pageStart: true, pageEnd: true } },

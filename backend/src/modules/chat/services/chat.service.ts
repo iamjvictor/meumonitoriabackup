@@ -9,6 +9,12 @@ import { ChatRagService } from '../rag/services/chat-rag.service.js';
 import { ChatContextResolver } from '../rag/services/chat-context-resolver.service.js';
 import type { QuestionEvidenceResult } from '../rag/models/question-evidence.model.js';
 import type { FlashcardEvidenceResult } from '../rag/models/flashcard-evidence.model.js';
+import { ChatVisualContextService } from '../rag/services/chat-visual-context.service.js';
+import { PrismaChatVisualContextRepository } from '../rag/repositories/prisma-chat-visual-context.repository.js';
+import { env } from '../../../config/env.js';
+import { prisma } from '../../../lib/prisma.js';
+import { ChatQuestionContextService } from './chat-question-context.service.js';
+import { PrismaChatQuestionContextRepository } from '../repositories/prisma-chat-question-context.repository.js';
 
 const MAX_HISTORY_MESSAGES = 40;
 
@@ -20,6 +26,7 @@ export type SendChatMessageInput = ChatScope & {
   questionEvidence?: QuestionEvidenceResult | null;
   flashcardEvidence?: FlashcardEvidenceResult | null;
   historyLimit?: number;
+  imageAttachmentIds?: string[];
 };
 
 export type SendChatMessageResult = {
@@ -35,6 +42,7 @@ export type SendChatMessageResult = {
     retrievalScoreAverage: number | null;
     retrievalSignal: 'strong' | 'moderate' | 'weak' | 'none';
     contextChars: number;
+    visualImageCount: number;
   };
 };
 
@@ -44,6 +52,8 @@ export class ChatService {
     private readonly generation: ChatGenerationPort,
     private readonly rag: ChatRagService,
     private readonly contextResolver = new ChatContextResolver(),
+    private readonly visualContextResolver = createVisualContextResolver(),
+    private readonly questionContextHydrator = createQuestionContextHydrator(),
   ) {}
 
   async listMessages(scope: ChatScope) {
@@ -88,47 +98,86 @@ export class ChatService {
       contextId: resolvedContext?.id ?? null,
       inherited: !input.contextAttachment && !input.questionContext && Boolean(resolvedContext),
     });
+    let questionContext = input.questionContext;
+    if (!questionContext && resolvedContext?.type === 'QUESTION') {
+      const previousQuestionContext = [...history].reverse().find((message) => (
+        message.role === 'student'
+        && (message.questionContext?.questionId === resolvedContext.id || message.contextAttachment?.id === resolvedContext.id)
+      ))?.questionContext;
+      questionContext = await this.questionContextHydrator.load({
+        questionId: resolvedContext.id,
+        attemptId: resolvedContext.attemptId,
+        number: previousQuestionContext?.number,
+        topicId: previousQuestionContext?.topicId,
+        selectedOption: previousQuestionContext?.selectedOption,
+        scope: { studentId: input.studentId, teacherId: input.teacherId, monitorId: input.monitorId, subjectId: input.subjectId },
+      });
+      if (!questionContext) throw new Error('CHAT_QUESTION_CONTEXT_UNAVAILABLE');
+      console.log('[chat.service.ts] [Chat] Contexto oficial da questão recarregado', {
+        event: 'chat.question_context_reloaded', requestId: input.requestId ?? null,
+        questionId: questionContext.questionId, sourceDocumentId: questionContext.sourceDocumentId ?? null,
+        hasStatement: Boolean(questionContext.statement), alternativeCount: questionContext.options.length,
+      });
+    }
     const rag = await this.rag.enrich({
       message: content,
       requestId: input.requestId,
       history,
-      questionContext: input.questionContext,
+      questionContext,
       studentId: input.studentId,
       teacherId: input.teacherId,
       monitorId: input.monitorId,
       subjectId: input.subjectId,
-      topicId: input.questionContext?.topicId ?? null,
-      questionDocumentId: input.questionContext?.sourceDocumentId ?? null,
-      questionBlockId: input.questionContext?.sourceBlockId ?? null,
+      topicId: questionContext?.topicId ?? null,
+      questionDocumentId: questionContext?.sourceDocumentId ?? null,
+      questionBlockId: questionContext?.sourceBlockId ?? null,
       questionId: resolvedContext?.type === 'QUESTION' ? resolvedContext.id : null,
       flashcardId: resolvedContext?.type === 'FLASHCARD' ? resolvedContext.id : null,
       questionEvidence: input.questionEvidence ?? null,
       flashcardEvidence: input.flashcardEvidence ?? null,
+    });
+    const visualContext = await this.visualContextResolver.resolveVisualContext({
+      scope: { studentId: input.studentId, teacherId: input.teacherId, monitorId: input.monitorId, subjectId: input.subjectId },
+      currentQuestionId: resolvedContext?.type === 'QUESTION' ? resolvedContext.id : null,
+      resolvedAttachment: resolvedContext,
+      studentImageIds: resolveStudentImageIds(input.imageAttachmentIds, history, resolvedContext),
+      rag: rag.result,
+    });
+    console.log('[chat.service.ts] [Chat] Contexto visual resolvido', {
+      event: 'chat.visual_context_resolved', requestId: input.requestId ?? null,
+      selectedCount: visualContext.images.length,
+      contextManifest: visualContext.contextManifest,
     });
     const studentMessage: ChatHistoryMessage = {
       id: randomUUID(),
       role: 'student',
       content,
       createdAt: new Date().toISOString(),
-      questionContext: input.questionContext
+      questionContext: questionContext
         ? {
-            questionId: input.questionContext.questionId,
-            questionAttemptId: input.questionContext.questionAttemptId ?? null,
-            monitorId: input.questionContext.monitorId,
-            subjectId: input.questionContext.subjectId,
-            topicId: input.questionContext.topicId ?? null,
-            number: input.questionContext.number ?? null,
+            questionId: questionContext.questionId,
+            questionAttemptId: questionContext.questionAttemptId ?? null,
+            monitorId: questionContext.monitorId,
+            subjectId: questionContext.subjectId,
+            topicId: questionContext.topicId ?? null,
+            number: questionContext.number ?? null,
+            selectedOption: questionContext.selectedOption ?? null,
           }
         : null,
       contextAttachment: resolvedContext,
+      imageAttachmentIds: resolveStudentImageIds(input.imageAttachmentIds, history, resolvedContext),
     };
 
     await this.history.append(scope, studentMessage);
     const generated = await this.generation.generate({
+      requestId: input.requestId,
       message: content,
       history,
-      questionContext: input.questionContext,
+      questionContext,
       ragContext: rag.context,
+      visualContext,
+      studentId: input.studentId,
+      teacherId: input.teacherId,
       monitorId: input.monitorId,
       subjectId: input.subjectId,
     });
@@ -158,6 +207,7 @@ export class ChatService {
       scoreAverage,
       retrievalSignal,
       contextChars: rag.context.length,
+      visualImageCount: visualContext.images.length,
       responseChars: assistantMessage.content.length,
     });
 
@@ -174,9 +224,39 @@ export class ChatService {
         retrievalScoreAverage: scoreAverage,
         retrievalSignal,
         contextChars: rag.context.length,
+        visualImageCount: visualContext.images.length,
       },
     };
   }
+}
+
+function createVisualContextResolver() {
+  if (!env.DOCUMENT_VISUAL_ASSETS_ENABLED && !env.CHAT_IMAGE_INPUT_ENABLED) {
+    return new ChatVisualContextService({
+      async questionAssets() { return []; },
+      async knowledgeAssets() { return []; },
+      async studentAssets() { return []; },
+    });
+  }
+  return new ChatVisualContextService(new PrismaChatVisualContextRepository());
+}
+
+function createQuestionContextHydrator() {
+  return new ChatQuestionContextService(new PrismaChatQuestionContextRepository(prisma));
+}
+
+function resolveStudentImageIds(
+  explicitIds: string[] | undefined,
+  history: ChatHistoryMessage[],
+  resolvedContext: Awaited<ReturnType<ChatContextResolver['resolve']>>,
+) {
+  if (explicitIds?.length) return explicitIds.slice(0, 1);
+  const latestImageMessage = [...history].reverse().find((message) => message.role === 'student' && message.imageAttachmentIds?.length);
+  if (!latestImageMessage) return [];
+  const oldAttachment = latestImageMessage.contextAttachment;
+  if (oldAttachment?.type === 'QUESTION' && (resolvedContext?.type !== 'QUESTION' || oldAttachment.id !== resolvedContext.id)) return [];
+  if (resolvedContext?.type === 'QUESTION' && oldAttachment?.type !== 'QUESTION') return [];
+  return latestImageMessage.imageAttachmentIds!.slice(0, 1);
 }
 
 function questionAttachment(questionContext: AuthorizedQuestionContext | null): ChatContextAttachment | null {

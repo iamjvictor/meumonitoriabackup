@@ -13,7 +13,7 @@ import {
   LoaderCircle,
   Sparkles,
 } from 'lucide-react';
-import { TeacherMonitor, TeacherMonitorService } from '@/modules/teacher/services/TeacherMonitorService';
+import { TeacherMonitor, TeacherMonitorService, type QuestionBankMaterializationRun } from '@/modules/teacher/services/TeacherMonitorService';
 import type { MonitorDraft } from '@/modules/teacher/components/TeacherMonitorCreationModal';
 import { TeacherSessionError } from '@/modules/teacher/services/TeacherSessionError';
 import { TeacherProfileService, TeacherProfile } from '@/modules/teacher/services/TeacherProfileService';
@@ -21,6 +21,7 @@ import { AlertModal } from '@/shared';
 import { MonitorHeader } from '@/modules/teacher/components/monitor/MonitorHeader';
 import { MonitorStructureSidebar } from '@/modules/teacher/components/monitor/MonitorStructureSidebar';
 import { MonitorKnowledgeTab } from '@/modules/teacher/components/monitor/MonitorKnowledgeTab';
+import { QuestionBankMaterializationProgress } from '@/modules/teacher/components/monitor/QuestionBankMaterializationProgress';
 import { MonitorQuestionsReviewTab } from '@/modules/teacher/components/monitor/MonitorQuestionsReviewTab';
 import { MonitorFlashcardsReviewTab } from '@/modules/teacher/components/monitor/MonitorFlashcardsReviewTab';
 import { MonitorSettingsPanel } from '@/modules/teacher/components/monitor/MonitorSettingsPanel';
@@ -49,7 +50,7 @@ type QueuedUpload = {
   id: string;
   file: File;
   subjectId: string;
-  subjectName: string;
+  subjectName?: string;
   topicId?: string;
   status: UploadStatus;
   error?: string;
@@ -99,6 +100,12 @@ type DocumentItem = {
   topicName?: string;
 };
 
+function ensureFiveOptions(opts?: { letter: string; text: string }[]) {
+  const letters = ['A', 'B', 'C', 'D', 'E'];
+  const existingMap = new Map((opts || []).map((opt) => [opt.letter.toUpperCase(), opt.text]));
+  return letters.map((letter) => ({ letter, text: existingMap.get(letter) || '' }));
+}
+
 function mapDocumentItem(d: any): DocumentItem {
   return {
     id: d.id,
@@ -140,6 +147,9 @@ export default function TeacherMonitorPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeView, setActiveView] = useState<WorkspaceView>('knowledge');
+  const [questionBankMaterialization, setQuestionBankMaterialization] = useState<QuestionBankMaterializationRun | null>(null);
+  const [isRetryingMaterialization, setIsRetryingMaterialization] = useState(false);
+  const [materializationPollVersion, setMaterializationPollVersion] = useState(0);
   const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const uploadInputRef = useRef<HTMLInputElement>(null);
@@ -210,16 +220,6 @@ export default function TeacherMonitorPage() {
     const rawDocs = await TeacherMonitorService.listDocuments(params.monitorId);
     setDocuments((rawDocs || []).map(mapDocumentItem));
   }, [params.monitorId]);
-  // Garantir sempre 5 alternativas (A, B, C, D, E) por questão
-  const ensureFiveOptions = (opts?: { letter: string; text: string }[]) => {
-    const letters = ['A', 'B', 'C', 'D', 'E'];
-    const existingMap = new Map((opts || []).map((opt) => [opt.letter.toUpperCase(), opt.text]));
-    return letters.map((letter) => ({
-      letter,
-      text: existingMap.get(letter) || '',
-    }));
-  };
-
   // Funções auxiliares para identificar dados incompletos / campos nulos
   const isQuestionNoTopic = useCallback((q: QuestionItem) => (
     !q.topicId || !q.topicName || q.topicName.trim() === '' || q.topicName === 'Geral' || q.topicName === 'Sem tópico'
@@ -401,6 +401,92 @@ export default function TeacherMonitorPage() {
     return () => window.clearInterval(intervalId);
   }, [documents, refreshDocuments]);
 
+  useEffect(() => {
+    let isCurrent = true;
+    let isPolling = false;
+    let intervalId: number | undefined;
+    const pollMaterialization = async () => {
+      if (isPolling) return;
+      isPolling = true;
+      try {
+        const run = await TeacherMonitorService.getQuestionBankMaterialization(params.monitorId);
+        if (!isCurrent) return;
+        setQuestionBankMaterialization(run);
+        if (!run || ['COMPLETED', 'COMPLETED_WITH_WARNINGS', 'FAILED'].includes(run.status)) {
+          if (intervalId !== undefined) window.clearInterval(intervalId);
+          if (run && run.status !== 'FAILED') {
+            const [rawQuestions, refreshedMonitor] = await Promise.all([
+              TeacherMonitorService.listQuestions(params.monitorId),
+              TeacherMonitorService.getMine(params.monitorId),
+            ]);
+            if (!isCurrent) return;
+            const isAiOrigin = (value: unknown) => {
+              if (!value) return false;
+              const source = String(value).toUpperCase();
+              return source.includes('AI') || source.includes('SYNTHETIC') || source.includes('GENERATED');
+            };
+            setQuestions((rawQuestions || []).map((question: any) => {
+              const docName = question.sources?.[0]?.document?.originalName;
+              const hasAiPart = isAiOrigin(question.correctAnswerOrigin || question.correct_answer_origin)
+                || isAiOrigin(question.explanationOrigin || question.explanation_origin)
+                || isAiOrigin(question.alternativesOrigin || question.alternatives_origin)
+                || isAiOrigin(question.statementOrigin || question.statement_origin);
+              return {
+                id: question.id,
+                subjectId: question.subjectId || question.subject?.id,
+                subjectName: question.subject?.name,
+                topicId: question.topicId || question.topic?.id,
+                topicName: question.topic?.name || question.subject?.name || 'Geral',
+                sourceDocName: docName || 'Gerada por IA',
+                originType: hasAiPart || !docName ? 'ai_generated' as const : 'source_doc' as const,
+                prompt: question.text,
+                options: ensureFiveOptions((Array.isArray(question.alternatives) ? question.alternatives : []).map((alternative: any) => ({ letter: alternative.label || alternative.letter || 'A', text: alternative.text || '' }))),
+                correctAnswer: question.correctAnswer || '',
+                explanation: question.explanation || '',
+                status: question.status === 'APPROVED' ? 'approved' as const : question.status === 'REPORTED' ? 'reported' as const : question.status === 'REJECTED' ? 'rejected' as const : 'pending_review' as const,
+              };
+            }));
+            setMonitor(refreshedMonitor);
+            setMonitorSettings(refreshedMonitor);
+          }
+        }
+      } catch (pollError) {
+        if (pollError instanceof TeacherSessionError) {
+          router.replace('/?login=true&perfil=professor&session=expired');
+          if (intervalId !== undefined) window.clearInterval(intervalId);
+        } else {
+          console.error('Erro ao acompanhar importação do banco de questões:', pollError);
+        }
+      } finally {
+        isPolling = false;
+      }
+    };
+
+    void pollMaterialization();
+    intervalId = window.setInterval(() => void pollMaterialization(), 3000);
+    return () => {
+      isCurrent = false;
+      if (intervalId !== undefined) window.clearInterval(intervalId);
+    };
+  }, [params.monitorId, router, setMonitorSettings, setQuestions, materializationPollVersion]);
+
+  const retryQuestionBankMaterialization = async () => {
+    setIsRetryingMaterialization(true);
+    try {
+      const run = await TeacherMonitorService.retryQuestionBankMaterialization(params.monitorId);
+      setQuestionBankMaterialization(run);
+      setMaterializationPollVersion((version) => version + 1);
+    } catch (retryError) {
+      if (retryError instanceof TeacherSessionError) {
+        router.replace('/?login=true&perfil=professor&session=expired');
+      } else {
+        showAlert('Não foi possível repetir a importação', retryError instanceof Error ? retryError.message : 'Tente novamente.', 'error');
+      }
+    } finally {
+      setIsRetryingMaterialization(false);
+    }
+  };
+
 
   // Estado para adicionar/remover Matérias e Tópicos na Sidebar
   const [isAddSubjectModalOpen, setIsAddSubjectModalOpen] = useState(false);
@@ -453,7 +539,9 @@ export default function TeacherMonitorPage() {
       if (selectedSubjectId === subjectId) {
         const nextSubject = updatedMonitor.subjects[0];
         setSelectedSubjectId(nextSubject?.id || null);
-        setSelectedTopic(nextSubject?.topicRefs?.[0]?.name || nextSubject?.topics?.[0] || null);
+        const nextTopic = nextSubject?.topicRefs?.[0]?.name || nextSubject?.topics?.[0] || null;
+        setSelectedTopic(nextTopic);
+        if (!nextTopic) setActiveView('knowledge');
       }
     } catch (err) {
       console.error('Erro ao remover matéria:', err);
@@ -527,6 +615,7 @@ export default function TeacherMonitorPage() {
 
       if (selectedTopic === topicName) {
         setSelectedTopic(nextTopic);
+        if (!nextTopic) setActiveView('knowledge');
       }
     } catch (err) {
       console.error('Erro ao remover tópico:', err);
@@ -881,9 +970,9 @@ export default function TeacherMonitorPage() {
     : 'Organize os materiais e a experiência de estudo desta específica.';
 
   const selectSubject = (subjectId: string) => {
-    const subject = monitor?.subjects.find((candidate) => candidate.id === subjectId);
     setSelectedSubjectId(subjectId);
-    setSelectedTopic(subject?.topicRefs?.[0]?.name || subject?.topics?.[0] || null);
+    setSelectedTopic(null);
+    setActiveView('knowledge');
   };
 
   const queueFiles = (files: File[]) => {
@@ -1338,7 +1427,7 @@ export default function TeacherMonitorPage() {
                 <div className="flex items-center gap-2 text-sm font-bold text-[#132E20]">
                   <span className="bg-emerald-50 text-emerald-900 px-3 py-1 rounded-lg border border-emerald-200">{selectedSubject?.name || 'Matéria'}</span>
                   <span className="text-slate-300">/</span>
-                              <span className="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg border border-slate-200">{selectedTopic || 'Selecione um tópico'}</span>
+                              <span className="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg border border-slate-200">{selectedTopic || 'Toda a matéria'}</span>
                 </div>
               </div>
 
@@ -1353,6 +1442,7 @@ export default function TeacherMonitorPage() {
               {workspaceViews.map((view) => {
                 const Icon = view.icon;
                 const isActive = activeView === view.id;
+                const isDisabled = view.id !== 'knowledge' && !selectedTopicId;
                 let badgeCount = monitor[view.key] ?? 0;
                 let pendingBadge = 0;
 
@@ -1370,11 +1460,15 @@ export default function TeacherMonitorPage() {
                   <button
                     key={view.id}
                     type="button"
+                    disabled={isDisabled}
+                    title={isDisabled ? 'Selecione um tópico para acessar esta aba.' : undefined}
                     onClick={() => setActiveView(view.id)}
-                    className={`flex shrink-0 items-center gap-2.5 border-b-2 px-6 py-4 text-sm font-bold transition-all cursor-pointer ${
-                      isActive
-                        ? 'border-emerald-700 text-emerald-950 font-extrabold bg-emerald-50/40'
-                        : 'border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                    className={`flex shrink-0 items-center gap-2.5 border-b-2 px-6 py-4 text-sm font-bold transition-all ${
+                      isDisabled
+                        ? 'cursor-not-allowed border-transparent text-slate-300 opacity-60'
+                        : isActive
+                          ? 'cursor-pointer border-emerald-700 text-emerald-950 font-extrabold bg-emerald-50/40'
+                          : 'cursor-pointer border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
                     }`}
                   >
                     <Icon className={`h-4 w-4 ${isActive ? 'text-emerald-700' : 'text-slate-400'}`} aria-hidden="true" />
@@ -1402,6 +1496,14 @@ export default function TeacherMonitorPage() {
 
           {/* CONTEÚDO EXPANDIDO DO WORKSPACE (Scrollable com Espaço Amplo) */}
           <div onScroll={handleWorkspaceScroll} className="flex-1 overflow-y-auto p-4 space-y-6 sm:p-6 lg:p-8">
+
+            {questionBankMaterialization && (
+              <QuestionBankMaterializationProgress
+                run={questionBankMaterialization}
+                isRetrying={isRetryingMaterialization}
+                onRetry={questionBankMaterialization.status === 'FAILED' ? retryQuestionBankMaterialization : undefined}
+              />
+            )}
             
             {/* VIEW 1: BASE DE CONHECIMENTO */}
             {activeView === 'knowledge' && (
@@ -1569,7 +1671,7 @@ export default function TeacherMonitorPage() {
       {isUploadConfirmModalOpen && (
         <UploadConfirmationModal
           requireScopeConfirmation={activeView === 'knowledge'}
-          teacherName={teacher?.fullName ?? 'este professor'}
+          teacherName={teacher?.fullName ?? 'responsável pelo monitor'}
           onClose={() => setIsUploadConfirmModalOpen(false)}
           onConfirm={() => {
             setIsUploadConfirmModalOpen(false);

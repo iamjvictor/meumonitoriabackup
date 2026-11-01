@@ -28,7 +28,7 @@ export interface MonitorStructureSidebarProps {
   handleDeleteSubject: (subjectId: string) => void;
   handleAddTopic: (subjectId: string, nameOverride?: string) => void;
   setSelectedSubjectId: (subjectId: string) => void;
-  setSelectedTopic: (topic: string) => void;
+  setSelectedTopic: (topic: string | null) => void;
   handleDeleteTopic: (subjectId: string, topicId: string | undefined, topic: string) => void;
 }
 
@@ -240,25 +240,35 @@ export function MonitorStructureSidebar({
                       ? 'border-amber-300/80 bg-white ring-1 ring-amber-200/50'
                       : isSubjectEmpty
                       ? 'border-rose-200/90 bg-white'
+                      : isDirectSubjectSelected
+                      ? 'border-emerald-600 bg-white ring-2 ring-emerald-200/60'
+                      : isParentSubjectOfActiveTopic
+                      ? 'border-emerald-300/80 bg-white ring-1 ring-emerald-200/40'
                       : 'border-slate-200/90 bg-white'
                   }`}
                 >
                   <div
-                    className={`flex w-full items-center justify-between px-3.5 py-3 text-left text-sm font-semibold transition-all ${
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => selectSubject(subject.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectSubject(subject.id);
+                      }
+                    }}
+                    className={`flex w-full items-center justify-between px-3.5 py-3 text-left text-sm font-semibold transition-all cursor-pointer select-none ${
                       isDirectSubjectSelected
-                        ? 'bg-emerald-800 text-white shadow-xs'
+                        ? 'bg-emerald-800 text-white shadow-xs hover:bg-emerald-700'
                         : isParentSubjectOfActiveTopic
-                        ? 'bg-emerald-50/90 text-emerald-950 font-bold border-b border-emerald-100'
+                        ? 'bg-emerald-50/90 text-emerald-950 font-bold border-b border-emerald-100 hover:bg-emerald-100/80'
                         : hasSubjectReported
-                        ? 'bg-rose-50/80 text-rose-950 border-b border-rose-200'
+                        ? 'bg-rose-50/80 text-rose-950 border-b border-rose-200 hover:bg-rose-100/80'
                         : 'text-slate-800 hover:bg-slate-50'
                     }`}
+                    title={`Matéria: ${subject.name} - Clique para selecionar somente esta matéria`}
                   >
-                    <button
-                      type="button"
-                      onClick={() => selectSubject(subject.id)}
-                      className="flex items-center gap-2 min-w-0 flex-1 text-left cursor-pointer"
-                    >
+                    <div className="flex items-center gap-2 min-w-0 flex-1 text-left">
                       <BookOpen className={`h-4 w-4 shrink-0 ${isDirectSubjectSelected ? 'text-emerald-200' : hasSubjectReported ? 'text-rose-700' : 'text-emerald-700'}`} aria-hidden="true" />
                       <span className="truncate">{subject.name}</span>
                       <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
@@ -284,12 +294,16 @@ export function MonitorStructureSidebar({
                           <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-600"></span>
                         </span>
                       ) : null}
-                    </button>
+                    </div>
 
-                    <div className="flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div
+                      className="flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <button
                         type="button"
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           setActiveTopicInputSubjectId(activeTopicInputSubjectId === subject.id ? null : subject.id);
                           setNewTopicName('');
                           setNewTopicDefinition('');
@@ -306,7 +320,10 @@ export function MonitorStructureSidebar({
                       <button
                         type="button"
                         disabled={monitor.subjects.length <= 1}
-                        onClick={() => handleDeleteSubject(subject.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteSubject(subject.id);
+                        }}
                         className={`p-1 rounded-md transition-colors cursor-pointer ${
                           isDirectSubjectSelected
                             ? 'text-emerald-200 hover:text-rose-200 hover:bg-emerald-700'
@@ -391,7 +408,18 @@ export function MonitorStructureSidebar({
                             <button type="button" onClick={() => setExpandedTopics((current) => ({ ...current, [topicKey]: !isExpanded }))} className="p-1.5 text-slate-400 hover:text-emerald-700 cursor-pointer" aria-label={`${isExpanded ? 'Recolher' : 'Expandir'} ${topic}`}>
                               {subtopics.length > 0 ? (isExpanded ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />) : <span className="inline-block w-3.5" />}
                             </button>
-                            <button type="button" onClick={() => { setSelectedSubjectId(subject.id); setSelectedTopic(topic); }} className={`flex min-w-0 flex-1 items-center justify-between py-1.5 pr-1 text-left cursor-pointer ${hasTopicReported ? 'border-l-2 border-rose-500 pl-2' : 'border-l-2 border-slate-300 pl-2'}`}>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (isTopicSelected) {
+                                  selectSubject(subject.id);
+                                } else {
+                                  setSelectedSubjectId(subject.id);
+                                  setSelectedTopic(topic);
+                                }
+                              }}
+                              className={`flex min-w-0 flex-1 items-center justify-between py-1.5 pr-1 text-left cursor-pointer ${hasTopicReported ? 'border-l-2 border-rose-500 pl-2' : 'border-l-2 border-slate-300 pl-2'}`}
+                            >
                               <span className="truncate">{topic}</span>
                               {renderStatus(topicDocs, topicQuestions)}
                             </button>
@@ -414,13 +442,25 @@ export function MonitorStructureSidebar({
                                 const subtopicExpanded = expandedSubtopics[subtopicKey] ?? false;
                                 const subsubtopics = subtopic.subsubtopics ?? [];
                                 const selectionName = `${topic} > ${subtopic.name}`;
+                                const isSubtopicSelected = selectedTopic === selectionName && isCurrentSubject;
                                 return (
                                   <div key={subtopicKey}>
-                                    <div className={`flex items-center rounded-md text-xs ${selectedTopic === selectionName && isCurrentSubject ? 'bg-emerald-100 text-emerald-950 font-semibold' : 'text-slate-600 hover:bg-white'}`}>
+                                    <div className={`flex items-center rounded-md text-xs ${isSubtopicSelected ? 'bg-emerald-100 text-emerald-950 font-semibold' : 'text-slate-600 hover:bg-white'}`}>
                                       <button type="button" onClick={() => setExpandedSubtopics((current) => ({ ...current, [subtopicKey]: !subtopicExpanded }))} className="p-1.5 text-slate-400 hover:text-emerald-700 cursor-pointer" aria-label={`${subtopicExpanded ? 'Recolher' : 'Expandir'} ${subtopic.name}`}>
                                         {subsubtopics.length > 0 ? (subtopicExpanded ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />) : <span className="inline-block w-3.5" />}
                                       </button>
-                                      <button type="button" onClick={() => { setSelectedSubjectId(subject.id); setSelectedTopic(selectionName); }} className="flex min-w-0 flex-1 items-center justify-between py-1.5 pr-1 text-left cursor-pointer">
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          if (isSubtopicSelected) {
+                                            selectSubject(subject.id);
+                                          } else {
+                                            setSelectedSubjectId(subject.id);
+                                            setSelectedTopic(selectionName);
+                                          }
+                                        }}
+                                        className="flex min-w-0 flex-1 items-center justify-between py-1.5 pr-1 text-left cursor-pointer"
+                                      >
                                         <span className="truncate">{subtopic.name}</span>
                                       </button>
                                       <button type="button" onClick={() => { setActiveChildInputKey(subtopicKey); setNewChildName(''); setExpandedTopics((current) => ({ ...current, [topicKey]: true })); setExpandedSubtopics((current) => ({ ...current, [subtopicKey]: true })); }} className="mr-1 p-0.5 text-slate-400 opacity-0 hover:opacity-100 hover:text-emerald-700 rounded cursor-pointer" title="Adicionar sub-subtópico"><Plus className="h-3.5 w-3.5" /></button>
@@ -436,8 +476,21 @@ export function MonitorStructureSidebar({
                                       <div className="ml-5 space-y-0.5 border-l border-slate-200 pl-2">
                                         {subsubtopics.map((subsubtopic) => {
                                           const leafName = `${selectionName} > ${subsubtopic.name}`;
+                                          const isLeafSelected = selectedTopic === leafName && isCurrentSubject;
                                           return (
-                                            <button key={subsubtopic.id} type="button" onClick={() => { setSelectedSubjectId(subject.id); setSelectedTopic(leafName); }} className={`flex w-full items-center justify-between rounded-md py-1.5 pl-2 pr-1 text-left text-xs cursor-pointer ${selectedTopic === leafName && isCurrentSubject ? 'bg-emerald-100 text-emerald-950 font-semibold' : 'text-slate-600 hover:bg-white hover:text-slate-900'}`}>
+                                            <button
+                                              key={subsubtopic.id}
+                                              type="button"
+                                              onClick={() => {
+                                                if (isLeafSelected) {
+                                                  selectSubject(subject.id);
+                                                } else {
+                                                  setSelectedSubjectId(subject.id);
+                                                  setSelectedTopic(leafName);
+                                                }
+                                              }}
+                                              className={`flex w-full items-center justify-between rounded-md py-1.5 pl-2 pr-1 text-left text-xs cursor-pointer ${isLeafSelected ? 'bg-emerald-100 text-emerald-950 font-semibold' : 'text-slate-600 hover:bg-white hover:text-slate-900'}`}
+                                            >
                                               <span className="truncate">{subsubtopic.name}</span>
                                             </button>
                                           );

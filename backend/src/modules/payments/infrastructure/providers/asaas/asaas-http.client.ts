@@ -105,9 +105,11 @@ function extractProviderError(body: unknown): { code?: string; descriptions: str
   if (!body || typeof body !== 'object') return undefined;
   const candidate = body as { message?: unknown; errors?: Array<{ code?: unknown; description?: unknown }> };
   if (Array.isArray(candidate.errors) && candidate.errors.length > 0) {
-    const rawCode = candidate.errors.find((error) => typeof error.code === 'string')?.code;
-    const code = typeof rawCode === 'string' ? rawCode : undefined;
-    const descriptions = candidate.errors
+    const errors = candidate.errors.filter((error): error is { code?: unknown; description?: unknown } =>
+      error !== null && typeof error === 'object' && !Array.isArray(error));
+    const rawCode = errors.find((error) => typeof error.code === 'string')?.code;
+    const code = typeof rawCode === 'string' ? rawCode.replace(/[^a-z\d_.-]/gi, '').slice(0, 80) : undefined;
+    const descriptions = errors
       .map((error) => typeof error.description === 'string' ? sanitizeProviderDescription(error.description) : null)
       .filter((description): description is string => Boolean(description))
       .slice(0, 5);
@@ -118,8 +120,10 @@ function extractProviderError(body: unknown): { code?: string; descriptions: str
 
 function sanitizeProviderDescription(value: string): string {
   return value
-    .replace(/\b(api[ _-]?key|token|password|senha|cpf|cnpj)\b/gi, '[sensitive-field]')
+    .replace(/((?:api[ _-]?key|access[ _-]?token|token|password|senha|secret|client[ _-]?secret)(?:\s*[:=]\s*|\s+))(?:"[^"]*"|'[^']*'|[^\s,;]+)/gi, '$1[redacted]')
+    .replace(/\b(api[ _-]?key|access[ _-]?token|token|password|senha|secret|client[ _-]?secret|cpf|cnpj|cart[aã]o)\b/gi, '[sensitive-field]')
     .replace(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/g, '[email]')
+    .replace(/(?<!\w)\d(?:[ .-]?\d){7,18}(?!\w)/g, '[number]')
     .replace(/\d{8,}/g, '[number]')
     .slice(0, 240);
 }

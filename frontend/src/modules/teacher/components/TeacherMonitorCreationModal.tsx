@@ -56,6 +56,7 @@ export type MonitorDraft = {
   description: string;
   subjects: Array<{ id?: string; name: string; topics: TopicDraft[] }>;
   questionBankSelections?: QuestionBankSelectionDraft[];
+  totalSelectedQuestions?: number;
 };
 
 interface TeacherMonitorCreationModalProps {
@@ -1010,6 +1011,7 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
           })),
         })),
         questionBankSelections,
+        totalSelectedQuestions: totalSelectedQuestionsCount,
       });
       resetAndClose();
     } catch (creationError) {
@@ -1102,10 +1104,16 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
 
   // Total de questões selecionadas em todo o catálogo
   const totalSelectedQuestionsCount = useMemo(() => {
-    return profileScopedCatalogSubjects.reduce((acc, subject) => {
-      return acc + getSubjectSelectedQuestionsCount(subject);
+    return catalogSubjects.reduce((total, subject) => {
+      const selectedIds = new Set(selectedCatalogSubtopics[subject.id] || []);
+      return total + subject.topics.reduce((topicTotal, topic) => topicTotal + topic.subtopics.reduce((subtopicTotal, subtopic) => {
+        const leaves = subtopic.subsubtopics?.length ? subtopic.subsubtopics : [subtopic];
+        return subtopicTotal + leaves.reduce((leafTotal, leaf) => (
+          selectedIds.has(leaf.id) ? leafTotal + getQuestionCountForProfiles(leaf, selectedExamProfiles) : leafTotal
+        ), 0);
+      }, 0), 0);
     }, 0);
-  }, [profileScopedCatalogSubjects, selectedCatalogSubtopics, activeCatalogProfileIds]);
+  }, [catalogSubjects, selectedCatalogSubtopics, selectedExamProfiles]);
 
   // Total de questões disponíveis em todo o catálogo real carregado
   const totalAvailableQuestionsCount = useMemo(() => {
@@ -2580,6 +2588,13 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                         </div>
                       </div>
 
+                      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-emerald-200 bg-emerald-50/70 px-3.5 py-3">
+                        <span className="text-xs font-bold text-emerald-950">Questões selecionadas no acervo</span>
+                        <span className="rounded-full bg-white px-2.5 py-1 text-xs font-extrabold text-emerald-900 ring-1 ring-emerald-200">
+                          {totalSelectedQuestionsCount.toLocaleString('pt-BR')} questões
+                        </span>
+                      </div>
+
                       {/* Resumo Estrutural */}
                       <div className="pt-3 border-t border-slate-100">
                         <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
@@ -2700,8 +2715,8 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                                 {/* Nível 3: Subtópicos */}
                                 {topic.subtopics.length > 0 ? (
                                   <div className="ml-2 space-y-1 border-l border-emerald-200/80 pl-2.5">
-                                    {topic.subtopics.map((subtopic) => (
-                                      <div key={subtopic.id} className="space-y-0.5">
+                                    {topic.subtopics.map((subtopic, subtopicIdx) => (
+                                      <div key={`${subtopic.id}-${subtopicIdx}`} className="space-y-0.5">
                                         <div className="relative flex items-center gap-1.5 text-[11px] font-medium text-slate-700">
                                           <span className="absolute -left-2.5 top-2 h-px w-2 bg-emerald-200" />
                                           <span className="truncate">{subtopic.name}</span>

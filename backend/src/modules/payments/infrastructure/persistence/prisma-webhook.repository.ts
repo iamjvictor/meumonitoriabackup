@@ -3,10 +3,21 @@ import { prisma } from '../../../../lib/prisma.js';
 import type { PaymentWebhookInbox, PaymentWebhookInboxInput } from '../../application/commands/accept-webhook.use-case.js';
 import { PrismaPaymentOutboxRepository } from './prisma-outbox.repository.js';
 
-const RECOVERABLE_WEBHOOK_STATES = ['RECEIVED', 'FAILED'] as const;
+export const MAX_PAYMENT_WEBHOOK_ATTEMPTS = 10;
 
-export function isRecoverableWebhookState(state: string) {
-  return (RECOVERABLE_WEBHOOK_STATES as readonly string[]).includes(state);
+export function getWebhookRetryState(attempts: number) {
+  return attempts >= MAX_PAYMENT_WEBHOOK_ATTEMPTS ? 'DEAD_LETTER' : 'WAITING_CORRELATION';
+}
+
+export function isRecoverableWebhookState(
+  state: string,
+  schedule: { nextAttemptAt?: Date | null; leaseUntil?: Date | null } = {},
+  now = new Date(),
+) {
+  if (state === 'RECEIVED') return true;
+  if (state === 'FAILED' || state === 'WAITING_CORRELATION') return Boolean(schedule.nextAttemptAt && schedule.nextAttemptAt <= now);
+  if (state === 'PROCESSING') return Boolean(schedule.leaseUntil && schedule.leaseUntil < now);
+  return false;
 }
 
 export class PrismaPaymentWebhookRepository implements PaymentWebhookInbox {
@@ -24,6 +35,7 @@ export class PrismaPaymentWebhookRepository implements PaymentWebhookInbox {
           data: {
             environment: this.environment,
             providerAccountId: linkedProviderAccountId,
+            sourceProviderAccountId: input.providerAccountId,
             providerEventId: input.providerEventId,
             eventType: input.eventType,
             payload: input.payload as Prisma.InputJsonValue,
@@ -44,14 +56,16 @@ export class PrismaPaymentWebhookRepository implements PaymentWebhookInbox {
       if ((error as { code?: string }).code !== 'P2002') throw error;
       const linkedProviderAccountId = await this.resolveLinkedProviderAccountId(input.providerAccountId);
       const existing = await prisma.paymentWebhookEvent.findFirst({
-        where: {
-          environment: this.environment,
-          providerAccountId: linkedProviderAccountId,
-          providerEventId: input.providerEventId,
-        },
+        where: { environment: this.environment, providerEventId: input.providerEventId },
         select: { id: true, state: true },
       });
       if (!existing) throw error;
+      if (linkedProviderAccountId) {
+        await prisma.paymentWebhookEvent.updateMany({
+          where: { id: existing.id, providerAccountId: null },
+          data: { providerAccountId: linkedProviderAccountId },
+        });
+      }
       console.log('Webhook Asaas duplicado identificado', { event: 'payments.webhook_duplicate', tableName: 'payment_webhook_events', eventId: existing.id, providerEventId: input.providerEventId, state: existing.state });
       return { id: existing.id, duplicate: true, state: existing.state };
     }
@@ -82,6 +96,7 @@ export class PrismaPaymentWebhookRepository implements PaymentWebhookInbox {
         OR: [
           { state: 'RECEIVED' },
           { state: 'FAILED', nextAttemptAt: { lte: new Date() } },
+          { state: 'WAITING_CORRELATION', nextAttemptAt: { lte: new Date() } },
           { state: 'PROCESSING', leaseUntil: { lt: new Date() } },
         ],
       },
@@ -99,9 +114,13 @@ export class PrismaPaymentWebhookRepository implements PaymentWebhookInbox {
   findRecoverable(limit = 100) {
     return prisma.paymentWebhookEvent.findMany({
       where: {
-        state: { in: [...RECOVERABLE_WEBHOOK_STATES] },
         attempts: { lt: 10 },
-        OR: [{ nextAttemptAt: null }, { nextAttemptAt: { lte: new Date() } }],
+        OR: [
+          { state: 'RECEIVED' },
+          { state: 'FAILED', nextAttemptAt: { lte: new Date() } },
+          { state: 'WAITING_CORRELATION', nextAttemptAt: { lte: new Date() } },
+          { state: 'PROCESSING', leaseUntil: { lt: new Date() } },
+        ],
       },
       orderBy: { createdAt: 'asc' },
       take: limit,
@@ -109,14 +128,42 @@ export class PrismaPaymentWebhookRepository implements PaymentWebhookInbox {
     });
   }
 
-  markWaitingCorrelation(eventId: string) {
+  async markExhaustedForAttention(limit = 100) {
+    const now = new Date();
+    const exhausted = await prisma.paymentWebhookEvent.findMany({
+      where: {
+        attempts: { gte: MAX_PAYMENT_WEBHOOK_ATTEMPTS },
+        OR: [
+          { state: 'RECEIVED' },
+          { state: 'FAILED' },
+          { state: 'WAITING_CORRELATION' },
+          { state: 'PROCESSING', leaseUntil: { lt: now } },
+        ],
+      },
+      orderBy: { createdAt: 'asc' },
+      take: limit,
+      select: { id: true },
+    });
+    if (exhausted.length === 0) return 0;
+    const result = await prisma.paymentWebhookEvent.updateMany({
+      where: { id: { in: exhausted.map(({ id }) => id) }, attempts: { gte: MAX_PAYMENT_WEBHOOK_ATTEMPTS } },
+      data: { state: 'DEAD_LETTER', leaseUntil: null, processedAt: null, nextAttemptAt: null, failureMessage: 'WEBHOOK_RETRY_LIMIT_REACHED' },
+    });
+    if (result.count > 0) console.error('Webhooks esgotados enviados para revisão operacional', { event: 'payments.webhook_dead_letter_batch', count: result.count });
+    return result.count;
+  }
+
+  markWaitingCorrelation(eventId: string, attempts = 0) {
+    const state = getWebhookRetryState(attempts);
+    if (state === 'DEAD_LETTER') console.error('Webhook atingiu o limite de tentativas aguardando correlação', { event: 'payments.webhook_dead_letter', eventId, attempts, reason: 'CORRELATION_RETRY_LIMIT_REACHED' });
     return prisma.paymentWebhookEvent.update({
       where: { id: eventId },
       data: {
-        state: 'WAITING_CORRELATION',
+        state,
         leaseUntil: null,
         processedAt: null,
-        nextAttemptAt: new Date(Date.now() + 60_000),
+        failureMessage: state === 'DEAD_LETTER' ? 'WEBHOOK_CORRELATION_RETRY_LIMIT_REACHED' : null,
+        nextAttemptAt: state === 'DEAD_LETTER' ? null : new Date(Date.now() + 60_000),
       },
     });
   }
@@ -132,7 +179,9 @@ export class PrismaPaymentWebhookRepository implements PaymentWebhookInbox {
     return prisma.paymentWebhookEvent.update({ where: { id: eventId }, data: { state: 'IGNORED', leaseUntil: null, processedAt: new Date() } });
   }
 
-  markFailed(eventId: string, message: string) {
-    return prisma.paymentWebhookEvent.update({ where: { id: eventId }, data: { state: 'FAILED', leaseUntil: null, failureMessage: message, nextAttemptAt: new Date(Date.now() + 60_000) } });
+  markFailed(eventId: string, message: string, attempts = 0) {
+    const state = attempts >= MAX_PAYMENT_WEBHOOK_ATTEMPTS ? 'DEAD_LETTER' : 'FAILED';
+    if (state === 'DEAD_LETTER') console.error('Webhook atingiu o limite de tentativas de processamento', { event: 'payments.webhook_dead_letter', eventId, attempts, reason: 'PROCESSING_RETRY_LIMIT_REACHED' });
+    return prisma.paymentWebhookEvent.update({ where: { id: eventId }, data: { state, leaseUntil: null, failureMessage: state === 'DEAD_LETTER' ? 'WEBHOOK_PROCESSING_RETRY_LIMIT_REACHED' : message, nextAttemptAt: state === 'DEAD_LETTER' ? null : new Date(Date.now() + 60_000), processedAt: null } });
   }
 }
