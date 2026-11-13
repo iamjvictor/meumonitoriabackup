@@ -1,0 +1,492 @@
+{
+  "runId": "e2e_qualidade_kimi_gera_qwen_revisa-2026-11-02T221856008Z-9466d8b8-346d-45de-9a8d-e1d4fd16d4aa",
+  "test": "e2e_qualidade_kimi_gera_qwen_revisa",
+  "executionMode": "dry-run",
+  "paidCallsMade": 0,
+  "pipelineExecuted": false,
+  "generatedAt": "2026-11-02T22:18:56.253Z",
+  "modelIds": [
+    "qwen/qwen3-vl-235b-a22b-instruct",
+    "moonshotai/kimi-k2.6",
+    "qwen/qwen3-vl-30b-a3b-instruct",
+    "moonshotai/kimi-k2.5"
+  ],
+  "catalog": {
+    "status": "VALIDATED",
+    "listedIds": [
+      "qwen/qwen3-vl-235b-a22b-instruct",
+      "moonshotai/kimi-k2.6",
+      "qwen/qwen3-vl-30b-a3b-instruct",
+      "moonshotai/kimi-k2.5"
+    ],
+    "missingIds": []
+  },
+  "modelCapabilities": {
+    "qwen/qwen3-vl-235b-a22b-instruct": {
+      "inputModalities": [
+        "text",
+        "image"
+      ],
+      "responseFormatParameter": true,
+      "jsonSchemaPerProvider": "NAO_VERIFICADO",
+      "status": "CATALOG_METADATA_AVAILABLE"
+    },
+    "moonshotai/kimi-k2.6": {
+      "inputModalities": [
+        "text",
+        "image"
+      ],
+      "responseFormatParameter": true,
+      "jsonSchemaPerProvider": "NAO_VERIFICADO",
+      "status": "CATALOG_METADATA_AVAILABLE"
+    },
+    "qwen/qwen3-vl-30b-a3b-instruct": {
+      "inputModalities": [
+        "text",
+        "image"
+      ],
+      "responseFormatParameter": true,
+      "jsonSchemaPerProvider": "NAO_VERIFICADO",
+      "status": "CATALOG_METADATA_AVAILABLE"
+    },
+    "moonshotai/kimi-k2.5": {
+      "inputModalities": [
+        "text",
+        "image"
+      ],
+      "responseFormatParameter": true,
+      "jsonSchemaPerProvider": "NAO_VERIFICADO",
+      "status": "CATALOG_METADATA_AVAILABLE"
+    }
+  },
+  "capabilityValidation": {
+    "visualInput": [
+      {
+        "stage": "visual",
+        "model": "qwen/qwen3-vl-235b-a22b-instruct",
+        "supported": true
+      },
+      {
+        "stage": "chatImage",
+        "model": "moonshotai/kimi-k2.6",
+        "supported": true
+      }
+    ],
+    "structuredJsonSchema": {
+      "qwen/qwen3-vl-235b-a22b-instruct": "PARTIAL_CATALOG_SUPPORT_JSON_SCHEMA_PROVIDER_SPECIFIC_UNVERIFIED",
+      "moonshotai/kimi-k2.6": "PARTIAL_CATALOG_SUPPORT_JSON_SCHEMA_PROVIDER_SPECIFIC_UNVERIFIED",
+      "qwen/qwen3-vl-30b-a3b-instruct": "PARTIAL_CATALOG_SUPPORT_JSON_SCHEMA_PROVIDER_SPECIFIC_UNVERIFIED",
+      "moonshotai/kimi-k2.5": "PARTIAL_CATALOG_SUPPORT_JSON_SCHEMA_PROVIDER_SPECIFIC_UNVERIFIED"
+    }
+  },
+  "stages": {
+    "extraction": {
+      "model": "qwen/qwen3-vl-30b-a3b-instruct",
+      "envVariables": [
+        "QUESTION_EXTRACTION_MODEL",
+        "QUESTION_SOURCE_RECONSTRUCTION_MODEL",
+        "QUESTION_CATEGORIZE_MODEL",
+        "TOPIC_PROFILE_MODEL",
+        "DOCUMENT_BLOCK_TOPIC_CLASSIFICATION_MODEL"
+      ],
+      "configured": [
+        "QUESTION_EXTRACTION_MODEL",
+        "QUESTION_SOURCE_RECONSTRUCTION_MODEL",
+        "QUESTION_CATEGORIZE_MODEL",
+        "TOPIC_PROFILE_MODEL",
+        "DOCUMENT_BLOCK_TOPIC_CLASSIFICATION_MODEL"
+      ],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "alternatives": {
+      "model": "moonshotai/kimi-k2.5",
+      "envVariables": [
+        "QUESTION_ALTERNATIVES_MODEL"
+      ],
+      "configured": [
+        "QUESTION_ALTERNATIVES_MODEL"
+      ],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "answer": {
+      "model": "moonshotai/kimi-k2.6",
+      "envVariables": [
+        "QUESTION_ANSWER_MODEL"
+      ],
+      "configured": [
+        "QUESTION_ANSWER_MODEL"
+      ],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "explanation": {
+      "model": "moonshotai/kimi-k2.5",
+      "envVariables": [
+        "QUESTION_EXPLANATION_MODEL"
+      ],
+      "configured": [
+        "QUESTION_EXPLANATION_MODEL"
+      ],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "review": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "QUESTION_QUALITY_REVIEW_MODEL"
+      ],
+      "configured": [
+        "QUESTION_QUALITY_REVIEW_MODEL"
+      ],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "normalize": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "QUESTION_COMPLETION_MODEL"
+      ],
+      "configured": [
+        "QUESTION_COMPLETION_MODEL"
+      ],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "chatImage": {
+      "model": "moonshotai/kimi-k2.6",
+      "envVariables": [
+        "CHAT_IMAGE_MODEL"
+      ],
+      "configured": [
+        "CHAT_IMAGE_MODEL"
+      ],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "visual": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "DOCUMENT_VISUAL_DESCRIPTION_MODEL"
+      ],
+      "configured": [
+        "DOCUMENT_VISUAL_DESCRIPTION_MODEL"
+      ],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    }
+  },
+  "provider": {
+    "status": "UNRESOLVED",
+    "order": null,
+    "allow_fallbacks": false,
+    "reason": "Dry-run não seleciona provedor. Exige consulta de endpoints/preços e revisão de política de retenção antes de orçamento ou execução."
+  },
+  "cost": {
+    "currency": "USD",
+    "estimatedMaximum": null,
+    "status": "NAO_VERIFICADO",
+    "reason": "Sem provedor e preço de endpoint validados; nenhum valor foi inventado."
+  },
+  "repetitions": 2,
+  "rounds": [
+    {
+      "round": 1,
+      "status": "NAO_VERIFICADO",
+      "questions": [
+        {
+          "number": "01",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "02",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "03",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "04",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "05",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "06",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "07",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "08",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "09",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "10",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        }
+      ],
+      "calls": [],
+      "metrics": {
+        "status": "NAO_VERIFICADO"
+      }
+    },
+    {
+      "round": 2,
+      "status": "NAO_VERIFICADO",
+      "questions": [
+        {
+          "number": "01",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "02",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "03",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "04",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "05",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "06",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "07",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "08",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "09",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        },
+        {
+          "number": "10",
+          "statement": null,
+          "alternatives": null,
+          "correctAnswer": null,
+          "explanation": null,
+          "reviewDecision": null,
+          "status": "NAO_VERIFICADO"
+        }
+      ],
+      "calls": [],
+      "metrics": {
+        "status": "NAO_VERIFICADO"
+      }
+    }
+  ],
+  "baseline": {
+    "status": "FOUND",
+    "runId": "9df3b11e-d426-4542-aa57-1d1982f17f01",
+    "documents": [
+      {
+        "name": "Quimica-3.pdf",
+        "sha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d",
+        "chunks": 16,
+        "embeddedChunks": 16
+      },
+      {
+        "name": "Estequiometria.pdf",
+        "sha256": "63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd",
+        "chunks": 3,
+        "embeddedChunks": 3
+      },
+      {
+        "name": "pH e pOH.pdf",
+        "sha256": "5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc",
+        "chunks": 3,
+        "embeddedChunks": 3
+      }
+    ],
+    "reuseStatus": "NAO_VERIFICADO"
+  },
+  "baselineDatabaseAudit": {
+    "status": "READ_ONLY_CONFIRMED",
+    "documents": [
+      {
+        "name": "Estequiometria.pdf",
+        "id": "5796b615-8eea-498a-ad44-8690d3af0ee9",
+        "status": "READY",
+        "chunks": 3,
+        "vectors": 3,
+        "chunkerVersions": "hybrid-v1",
+        "embeddingModels": [
+          "qwen/qwen3-embedding-8b"
+        ]
+      },
+      {
+        "name": "pH e pOH.pdf",
+        "id": "06fdb700-1039-4214-b856-170e75c17338",
+        "status": "READY",
+        "chunks": 3,
+        "vectors": 3,
+        "chunkerVersions": "hybrid-v1",
+        "embeddingModels": [
+          "qwen/qwen3-embedding-8b"
+        ]
+      },
+      {
+        "name": "Quimica-3.pdf",
+        "id": "9ff3a570-9c14-42a6-8a89-ed9a53fa58bc",
+        "status": "READY",
+        "chunks": 16,
+        "vectors": 16,
+        "chunkerVersions": null,
+        "embeddingModels": [
+          "qwen/qwen3-embedding-8b"
+        ]
+      }
+    ]
+  },
+  "metrics": {
+    "status": "NAO_VERIFICADO",
+    "jsonValidFirstAttempt": null,
+    "retries": null,
+    "finalFailures": null,
+    "answerAccuracy": null,
+    "reviewAgreement": null,
+    "tokens": null,
+    "costUsd": null,
+    "costBrl": null,
+    "latencyP50Ms": null,
+    "latencyP95Ms": null,
+    "totalPipelineMs": null,
+    "betweenRoundVariance": null
+  },
+  "parameters": {
+    "documentTextSource": "pdfjs",
+    "documentParserEnableOcr": true,
+    "documentIngestionV3Enabled": true,
+    "embeddingModel": "qwen/qwen3-embedding-8b",
+    "reasoningEffort": "none",
+    "temperature": "baseline por etapa a confirmar na execução"
+  },
+  "isolation": {
+    "status": "BLOCKED",
+    "databaseSchema": "model_comparison_e2e_qualidade_kimi_gera_qwen_revisa",
+    "runIdPrefix": "e2e_qualidade_kimi_gera_qwen_revisa-2026-11-02T221856008Z-9466d8b8-346d-45de-9a8d-e1d4fd16d4aa",
+    "reason": "Arquivo env define schema isolado, mas o runner atual de ingestão grava no Postgres local compartilhado; isolamento real ainda não está implementado."
+  },
+  "baselineReuse": {
+    "status": "BLOCKED",
+    "reason": "Auditoria read-only encontrou chunks/vetores do baseline (READ_ONLY_CONFIRMED); Quimica-3 não tem chunker_version registrado. Ainda não há exportação/importação isolada verificada: rows de chunks dependem de documento/tenant/bloco e de text, blocks, parse runs, visual assets, spans e sources; copiar apenas chunks não preserva o grafo."
+  },
+  "assertions": {
+    "status": "NOT_RUN",
+    "reason": "Dry-run valida apenas configuração/catálogo; não simula resultado do pipeline."
+  },
+  "blockers": [
+    "O schema question_completion_full combina alternativas, gabarito e explicação num pedido só. Não há mapeamento objetivo para três modelos separados; o interceptor bloqueia esse schema até haver decisão explícita de atribuição.",
+    "Provider order e preços precisam ser resolvidos por endpoint de cada modelo; retenção exige revisão da política do provedor escolhido.",
+    "Reuso fiel bloqueado: chunks têm FK para documento/tenant/bloco e o grafo inclui text, blocks, parse runs, visual assets, spans e sources com chaves únicas; copiar só chunks quebra relações e copiar o banco inteiro preserva IDs do baseline em vez do prefixo da rodada."
+  ]
+}

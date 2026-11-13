@@ -1,5 +1,7 @@
 import { prisma } from '../lib/prisma.js';
+import { acquireDocumentAdvisoryLocks } from './document-advisory-lock.js';
 import { Prisma } from '@prisma/client';
+import { env } from '../config/env.js';
 
 const RETRYABLE_PRISMA_CODES = new Set(['P2024', 'P2028', 'P2034']);
 
@@ -10,8 +12,9 @@ async function withPrismaRetry<T>(operation: () => Promise<T>, maxAttempts = 4):
       return await operation();
     } catch (error) {
       lastError = error;
-      const candidate = error as { code?: string; message?: string };
+      const candidate = error as { code?: string; message?: string; meta?: { modelName?: string } };
       const retryable = RETRYABLE_PRISMA_CODES.has(candidate.code ?? '')
+        || (candidate.code === 'P2002' && candidate.meta?.modelName === 'Question')
         || /Unable to start a transaction|expired transaction/i.test(candidate.message ?? '');
       if (!retryable || attempt === maxAttempts) throw error;
 
@@ -169,17 +172,30 @@ export async function removeUnreviewedQuestionsForDocument(documentId: string) {
   });
 }
 
-export async function findPendingQuestionForCompletion(sourceKey: string) {
-  const question = await prisma.question.findUnique({
-    where: { sourceKey },
-    select: {
-      id: true,
-      status: true,
-      reviewedAt: true,
-      alternatives: true,
-      correctAnswer: true,
-      explanation: true,
+export async function findPendingQuestionForCompletion(
+  sourceKey: string,
+  source?: { documentId: string; documentBlockId: string | null },
+) {
+  const select = {
+    id: true,
+    text: true,
+    status: true,
+    reviewedAt: true,
+    alternatives: true,
+    correctAnswer: true,
+    explanation: true,
+    completenessStatus: true,
+  } as const;
+  const question = await prisma.question.findFirst({
+    where: {
+      OR: [
+        { sourceKey },
+        ...(source?.documentBlockId
+          ? [{ sources: { some: { documentId: source.documentId, documentBlockId: source.documentBlockId } } }]
+          : []),
+      ],
     },
+    select,
   });
   return question?.status === 'PENDING_REVIEW' && !question.reviewedAt
     ? question
@@ -243,9 +259,12 @@ export async function findDocumentRagContextForQuestionAnswer(
         <=> ${JSON.stringify(queryEmbedding)}::extensions.halfvec(2048)
       ) AS similarity
     FROM document_chunks dc
+    JOIN monitor_documents d ON d.id = dc.document_id
     WHERE dc.document_id = ${documentId}::uuid
       AND dc.status = 'READY'::"ChunkStatus"
       AND dc.embedding IS NOT NULL
+      AND ((d.active_generation_id IS NULL AND dc.generation_id IS NULL) OR dc.generation_id = d.active_generation_id)
+      AND (d.active_generation_id IS NULL OR dc.embedding_model = ${env.OPENROUTER_EMBEDDING_MODEL})
     ORDER BY dc.embedding::extensions.halfvec(2048)
       <=> ${JSON.stringify(queryEmbedding)}::extensions.halfvec(2048)
     LIMIT ${limit}
@@ -285,13 +304,80 @@ export async function saveQuestion(input: {
   embeddingVersion?: string;
 }) {
   return withPrismaRetry(() => prisma.$transaction(async (transaction) => {
-    const existing = await transaction.question.findUnique({
+    const sourceChunkIds = Array.from(new Set([
+      ...input.sourceChunkIds,
+      ...(input.sources ?? []).map((source) => source.chunkId),
+    ]));
+    const sourceChunks = sourceChunkIds.length
+      ? await transaction.documentChunk.findMany({
+        where: { id: { in: sourceChunkIds } },
+        select: { documentId: true },
+      })
+      : [];
+    const documentIds = Array.from(new Set([
+      ...(input.sources ?? []).map((source) => source.documentId).filter((id): id is string => Boolean(id)),
+      ...sourceChunks.map((chunk: { documentId: string }) => chunk.documentId),
+    ]));
+    const questionExtractionOrdinal = typeof input.metadata?.questionExtractionOrdinal === 'number'
+      ? input.metadata.questionExtractionOrdinal
+      : null;
+    const extractionDocumentId = documentIds.length === 1 ? documentIds[0] : null;
+    const hasStableExtractionIdentity = Number.isInteger(questionExtractionOrdinal)
+      && Number(questionExtractionOrdinal) >= 0
+      && Boolean(extractionDocumentId);
+    // Global lock order: document locks first, then sorted question identity locks.
+    // Chunk replacement only acquires document locks, so it cannot form a cycle.
+    await acquireDocumentAdvisoryLocks(transaction, documentIds);
+
+    const lockKeys = [
+      `question-source:${input.sourceKey}`,
+      `question-content:${input.topicId ?? 'none'}:${input.textHash}`,
+      ...(hasStableExtractionIdentity
+        ? [`question-document-ordinal:${extractionDocumentId}:${questionExtractionOrdinal}`]
+        : []),
+    ].sort();
+    for (const lockKey of lockKeys) {
+      await transaction.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${lockKey}, 0))`;
+    }
+
+    const sourceExisting = await transaction.question.findUnique({
       where: { sourceKey: input.sourceKey },
+      select: {
+        id: true, status: true, reviewedAt: true, completenessStatus: true,
+        alternatives: true, correctAnswer: true, explanation: true,
+      },
+    });
+    const contentExisting = await transaction.question.findFirst({
+      where: { topicId: input.topicId, textHash: input.textHash },
       select: { id: true, status: true, reviewedAt: true },
     });
-    if (existing && (existing.status !== 'PENDING_REVIEW' || existing.reviewedAt)) {
-      return existing;
-    }
+    const ordinalExisting = hasStableExtractionIdentity
+      ? await transaction.question.findFirst({
+        where: {
+          sources: { some: { documentId: extractionDocumentId } },
+          metadata: { path: ['questionExtractionOrdinal'], equals: questionExtractionOrdinal! },
+        },
+        select: {
+          id: true, sourceKey: true, status: true, reviewedAt: true, completenessStatus: true,
+          alternatives: true, correctAnswer: true, explanation: true,
+        },
+      })
+      : null;
+    const completeExisting = [sourceExisting, ordinalExisting].find((question) =>
+      question && isQuestionCompletionReusable(question),
+    ) ?? null;
+    const contentCollision = Boolean(contentExisting && contentExisting.id !== sourceExisting?.id);
+    const existing = completeExisting
+      ? completeExisting
+      : contentCollision
+        ? contentExisting
+        : sourceExisting ?? ordinalExisting ?? contentExisting;
+    const preserveExisting = Boolean(existing && (contentCollision || (
+      existing.status !== 'PENDING_REVIEW'
+      || existing.reviewedAt
+      || existing === completeExisting
+      || (!sourceExisting && !ordinalExisting && contentExisting)
+    )));
 
     const data = {
         teacherId: input.teacherId,
@@ -319,11 +405,18 @@ export async function saveQuestion(input: {
         metadata: input.metadata as Prisma.InputJsonValue | undefined,
         status: 'PENDING_REVIEW',
     } as const;
-    const question = await transaction.question.upsert({
-      where: { sourceKey: input.sourceKey },
-      create: data,
-      update: data,
-    });
+    const question = preserveExisting && existing
+      ? existing
+      : ordinalExisting && !sourceExisting
+        ? await transaction.question.update({
+          where: { id: ordinalExisting.id },
+          data: { ...data, sourceKey: ordinalExisting.sourceKey },
+        })
+        : await transaction.question.upsert({
+        where: { sourceKey: input.sourceKey },
+        create: data,
+        update: data,
+      });
 
     const topicIds = Array.from(new Set([
       ...(input.topicId ? [input.topicId] : []),
@@ -345,9 +438,16 @@ export async function saveQuestion(input: {
     const sources: QuestionSourceInput[] = input.sources?.length
       ? input.sources
       : input.sourceChunkIds.map((chunkId) => ({ chunkId }));
-    if (sources.length > 0) {
+    const alreadyLinkedSourceKeys = question.id === sourceExisting?.id
+      ? new Set((await transaction.questionSource.findMany({
+        where: { questionId: question.id },
+        select: { chunkId: true, role: true },
+      })).map((source: { chunkId: string; role: string }) => `${source.chunkId}:${source.role}`))
+      : new Set<string>();
+    const newSources = sources.filter((source) => !alreadyLinkedSourceKeys.has(`${source.chunkId}:${source.role ?? 'CONTEXT'}`));
+    if (newSources.length > 0) {
       await transaction.questionSource.createMany({
-        data: sources.map((source) => ({
+        data: newSources.map((source) => ({
           questionId: question.id,
           chunkId: source.chunkId,
           documentId: source.documentId ?? null,
@@ -404,6 +504,19 @@ export async function saveQuestion(input: {
 
     return question;
   }, { maxWait: 10_000, timeout: 15_000 }));
+}
+
+export function isQuestionCompletionReusable(question: {
+  alternatives: unknown;
+  correctAnswer: string | null;
+  explanation: string | null;
+  completenessStatus: string;
+}) {
+  return question.completenessStatus.startsWith('COMPLETE_')
+    && Array.isArray(question.alternatives)
+    && question.alternatives.length === 5
+    && Boolean(question.correctAnswer?.trim())
+    && Boolean(question.explanation?.trim());
 }
 
 export async function findStudentAvailableQuestions(input: {

@@ -1,0 +1,49 @@
+{
+  "runId": "b8b0f754-c990-4cc4-b295-6a7c3fcfc22f",
+  "startedAt": "2026-11-02T20:10:01.869Z",
+  "db": "127.0.0.1:56322",
+  "docs": [],
+  "chat": {
+    "attempted": false
+  },
+  "cleanup": {
+    "complete": true,
+    "runPrefix": "question-chat-e2e/b8b0f754-c990-4cc4-b295-6a7c3fcfc22f",
+    "isolatedTeacherDeleted": true,
+    "isolatedStudentDeleted": true
+  },
+  "config": {
+    "chatImageModelConfigured": false,
+    "questionModelConfigured": true,
+    "embeddingModelConfigured": true
+  },
+  "fixture": {
+    "prefix": "question-chat-e2e/b8b0f754-c990-4cc4-b295-6a7c3fcfc22f",
+    "teacherId": "96416861-39cf-46b5-a77d-0485cd5c436d",
+    "studentId": "7ec8a85c-a137-4a29-8dcb-129ae7ec5765",
+    "monitorId": "0203bf83-13e7-4e72-9ea9-b571153a372a",
+    "subjectId": "9301f50f-26b0-4c70-9728-4d1cbe11a177",
+    "topicId": "11334829-3962-4be6-a757-40c11c8fc957",
+    "documentIds": [
+      {
+        "id": "89adc5d8-9a18-4b5e-adc3-b29a7a484bd6",
+        "name": "Quimica-3.pdf",
+        "tag": "QUESTIONS"
+      },
+      {
+        "id": "e0f22c57-3a08-446e-b465-d34e40bc7bab",
+        "name": "Estequiometria.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      },
+      {
+        "id": "8557b8cd-1fc1-4a12-840e-df2b5785aeaf",
+        "name": "pH e pOH.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      }
+    ]
+  },
+  "finishedAt": "2026-11-02T20:10:03.082Z",
+  "failure": {
+    "message": "write after end"
+  }
+}

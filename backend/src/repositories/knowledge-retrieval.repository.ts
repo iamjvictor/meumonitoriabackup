@@ -75,7 +75,15 @@ export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
     <=> ${JSON.stringify(input.queryEmbedding)}::extensions.halfvec(2048)
   )`;
   const visualAssetIds = env.DOCUMENT_VISUAL_ASSETS_ENABLED
-    ? Prisma.sql`ARRAY(SELECT dca.visual_asset_id::text FROM document_chunk_visual_assets dca WHERE dca.chunk_id = dc.id ORDER BY dca.created_at)`
+    ? Prisma.sql`ARRAY(
+        SELECT dca.visual_asset_id::text
+        FROM document_chunk_visual_assets dca
+        JOIN document_visual_assets linked_asset
+          ON linked_asset.id = dca.visual_asset_id
+         AND linked_asset.generation_id IS NOT DISTINCT FROM dc.generation_id
+        WHERE dca.chunk_id = dc.id
+        ORDER BY dca.created_at
+      )`
     : Prisma.sql`ARRAY[]::text[]`;
 
   return prisma.$queryRaw<KnowledgeSearchCandidate[]>(Prisma.sql`
@@ -85,7 +93,7 @@ export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
       dc.block_id AS "blockId",
       db.parent_block_id AS "parentBlockId",
       dc.chunk_index AS "chunkIndex",
-      COALESCE(db.type, dc.chunk_type, 'KNOWLEDGE') AS "blockType",
+      COALESCE(db.type::text, dc.chunk_type, 'KNOWLEDGE') AS "blockType",
       ${similarity} AS similarity,
       ${lexicalScore} AS "lexicalScore",
       (
@@ -104,12 +112,15 @@ export async function searchReadyKnowledgeChunks(input: KnowledgeSearchInput) {
       db.incomplete_reason AS "incompleteReason",
       NULL::text AS reason
     FROM document_chunks dc
+    JOIN monitor_documents d ON d.id = dc.document_id
     LEFT JOIN document_blocks db ON db.id = dc.block_id
     WHERE dc.teacher_id = ${input.teacherId}::uuid
       AND dc.monitor_id = ${input.monitorId}::uuid
       AND dc.subject_id = ${input.subjectId}::uuid
       AND dc.status = 'READY'::"ChunkStatus"
       AND dc.embedding IS NOT NULL
+      AND ((d.active_generation_id IS NULL AND dc.generation_id IS NULL) OR dc.generation_id = d.active_generation_id)
+      AND (d.active_generation_id IS NULL OR dc.embedding_model = ${env.OPENROUTER_EMBEDDING_MODEL})
       ${documentFilter}
       ${sectionFilter}
       ${blockTypeFilter}
@@ -133,7 +144,7 @@ export async function searchReadyVisualAssetIndexes(input: KnowledgeSearchInput)
     : Prisma.sql`0`;
   const similarity = Prisma.sql`1 - (dvi.embedding::extensions.halfvec(2048) <=> ${JSON.stringify(input.queryEmbedding)}::extensions.halfvec(2048))`;
   const documentFilter = input.documentId
-    ? Prisma.sql`AND d.document_id = ${input.documentId}::uuid`
+    ? Prisma.sql`AND d.id = ${input.documentId}::uuid`
     : Prisma.empty;
   return prisma.$queryRaw<KnowledgeSearchCandidate[]>(Prisma.sql`
     SELECT
@@ -153,6 +164,8 @@ export async function searchReadyVisualAssetIndexes(input: KnowledgeSearchInput)
       AND d.subject_id = ${input.subjectId}::uuid
       AND dvi.description_status = 'READY'
       AND dvi.embedding IS NOT NULL
+      AND ((d.active_generation_id IS NULL AND dva.generation_id IS NULL) OR dva.generation_id = d.active_generation_id)
+      AND (d.active_generation_id IS NULL OR dvi.embedding_model = ${env.OPENROUTER_EMBEDDING_MODEL})
       ${documentFilter}
     ORDER BY (0.6 * ${similarity} + 0.4 * ${lexicalScore}) DESC
     LIMIT ${limit}

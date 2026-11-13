@@ -20,6 +20,13 @@ import { AsaasAccountOverviewProvider } from './infrastructure/providers/asaas/a
 import { GetPaymentAccountOverviewUseCase } from './application/queries/get-payment-account-overview.use-case.js';
 import { LocalPaymentAccountCredentialStore } from './infrastructure/credentials/payment-account-credential.store.js';
 import { createPaymentAccountCredentialResolver } from './application/queries/get-payment-account-overview.use-case.js';
+import { SponsoredSeatInvitationController } from './http/sponsored-seat-invitation.controller.js';
+import { SponsoredSeatInvitationUseCase } from './application/commands/sponsored-seat-invitation.use-case.js';
+import { PrismaSponsoredSeatInvitationRepository } from './infrastructure/persistence/sponsored-seat-invitation.repository.js';
+import { AuthRepository } from '../../repositories/auth.repository.js';
+import { EmailOutboxCipher } from '../email/outbox-crypto.js';
+import { EmailOutboxRepository } from '../email/outbox.repository.js';
+import { SponsoredSeatEmailIntents } from './infrastructure/persistence/sponsored-seat-email-intents.js';
 
 export type PaymentsModuleConfig = {
   apiKey: string;
@@ -28,6 +35,10 @@ export type PaymentsModuleConfig = {
   timeoutMs: number;
   dashboardUrl?: string;
   returnBaseUrl: string;
+  frontBaseUrl?: string;
+  emailEnabled?: boolean;
+  emailFrom?: string;
+  emailOutboxEncryptionKey?: string;
   invalidateAccess?: (studentId: string, reason: string) => Promise<void>;
   invalidateSponsoredAccess?: (studentUserId: string) => Promise<void>;
 };
@@ -48,6 +59,22 @@ export function createPaymentsModule(config: PaymentsModuleConfig) {
   const subscriptionService = new PaymentSubscriptionService(subscriptionRepository, subscriptionProvider, config.invalidateAccess);
   const subscriptionController = new PaymentSubscriptionController(subscriptionRepository, subscriptionService);
   const sponsoredSeatController = new SponsoredSeatController(createSponsoredSeatBatch, sponsoredSeatBatchRepository, subscriptionProvider, config.returnBaseUrl, claimSponsoredSeats);
+  const sponsoredSeatEmailIntents = config.emailEnabled
+    ? new SponsoredSeatEmailIntents(
+      new EmailOutboxRepository(new EmailOutboxCipher(config.emailOutboxEncryptionKey!), undefined, config.environment.toUpperCase() as 'SANDBOX' | 'PRODUCTION'),
+      { from: config.emailFrom!, frontBaseUrl: config.frontBaseUrl ?? config.returnBaseUrl, environment: config.environment.toUpperCase() },
+    )
+    : undefined;
+  const sponsoredSeatInvitationRepository = new PrismaSponsoredSeatInvitationRepository(sponsoredSeatEmailIntents, undefined, config.environment.toUpperCase());
+  const authRepository = new AuthRepository();
+  const sponsoredSeatInvitation = new SponsoredSeatInvitationUseCase(sponsoredSeatInvitationRepository, {
+    async createStudent(input) {
+      const result = await authRepository.signup({ ...input, role: 'student', cpf: '', whatsapp: '', docType: 'CPF' });
+      if (!result.session) throw new Error('Sessão não criada após o cadastro.');
+      return { userId: result.userId, email: result.email, role: 'student', session: result.session };
+    },
+  }, { frontBaseUrl: config.frontBaseUrl ?? config.returnBaseUrl, emailEnabled: config.emailEnabled ?? false });
+  const sponsoredSeatInvitationController = new SponsoredSeatInvitationController(sponsoredSeatInvitation);
   const teacherPayoutRepository = new TeacherPayoutRepository();
   const teacherPayoutController = new TeacherPayoutController(teacherPayoutRepository);
   const credentialStore = new LocalPaymentAccountCredentialStore();
@@ -69,5 +96,5 @@ export function createPaymentsModule(config: PaymentsModuleConfig) {
     }),
   });
 
-  return { httpClient, checkoutProvider, paymentsClient, repository, createCheckout, controller, sponsoredSeatBatchRepository, createSponsoredSeatBatch, sponsoredSeatClaimRepository, claimSponsoredSeats, sponsoredSeatController, subscriptionRepository, subscriptionProvider, subscriptionService, subscriptionController, teacherPayoutRepository, teacherPayoutController, paymentAccountRepository, accountOverviewProvider, getPaymentAccountOverview };
+  return { httpClient, checkoutProvider, paymentsClient, repository, createCheckout, controller, sponsoredSeatBatchRepository, createSponsoredSeatBatch, sponsoredSeatClaimRepository, claimSponsoredSeats, sponsoredSeatController, sponsoredSeatInvitationRepository, sponsoredSeatInvitation, sponsoredSeatInvitationController, subscriptionRepository, subscriptionProvider, subscriptionService, subscriptionController, teacherPayoutRepository, teacherPayoutController, paymentAccountRepository, accountOverviewProvider, getPaymentAccountOverview };
 }

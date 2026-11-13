@@ -1,0 +1,734 @@
+{
+  "runId": "bc8f2f8d-4036-44cf-a403-f1dcda991c79",
+  "database": "dbtemp local 127.0.0.1:56322",
+  "redis": "isolated 127.0.0.1:56379",
+  "parser": "local 127.0.0.1:8080",
+  "teacherId": "ce0ff270-377d-4439-a5a9-78a2aee86c9e",
+  "monitorId": "2e96883f-5c20-4b61-b296-e916db81cebd",
+  "subjectId": "61c2aa13-e304-4808-bc55-5f6445229b2e",
+  "topicId": "963760d7-d3cb-427d-8980-8be0bb263245",
+  "localAuthEmail": "qa-agentic-bc8f2f8d-4036-44cf-a403-f1dcda991c79@local.test",
+  "endpointUpload": {
+    "method": "POST",
+    "route": "/api/v1/monitors/:monitorId/documents",
+    "httpStatus": 201,
+    "documentId": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d",
+    "tag": "QUESTIONS",
+    "status": "QUEUED",
+    "durationMs": 417
+  },
+  "runs": [
+    {
+      "label": "upload_processing",
+      "status": "PARTIAL_SUCCESS",
+      "errorMessage": "Operacoes pendentes: ; Avisos: QUESTIONS_TEXT_COVERAGE_UNVERIFIED, QUESTIONS_PAGES_WITHOUT_TEXT, QUESTIONS_PAGE_TEXT_UNCLASSIFIED",
+      "questionCount": 10,
+      "chunkCount": 13,
+      "embeddedChunkCount": 13,
+      "sourceCount": 12,
+      "pendingReviewCount": 10,
+      "exactlyFiveAlternativesCount": 10,
+      "questionsWithAnswerCount": 6,
+      "visualAssets": {
+        "total": 20,
+        "figureCount": 20,
+        "pageCount": 0,
+        "assets": [
+          {
+            "id": "08400f85-259c-4d2b-8144-9c508227fef1",
+            "assetType": "figure",
+            "pageNumber": 1,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/df2f11e360cdd54f7f0462280160c768-fc4c2eea889f961072f9fa6f8e17d75a5955774101064bcf3e35f2161d20afc8.png",
+            "bbox": [
+              33.978886944590464,
+              748.6448605588153,
+              101.85218097977884,
+              673.8012738285861
+            ]
+          },
+          {
+            "id": "92442944-6d7f-40bc-98e2-09952be8c565",
+            "assetType": "figure",
+            "pageNumber": 1,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/edc12a80abd42f0c43e538a53eedbcc9-2b13eed1cbc0fbcad241fabfc527caa83fbb3f70ac80ac43c05cbc54ef98e949.png",
+            "bbox": [
+              127.87012174116805,
+              735.6918973635599,
+              235.0920882555712,
+              688.725190648261
+            ]
+          },
+          {
+            "id": "8d4b4dc5-7f0e-49d3-a6a2-501df74d3bca",
+            "assetType": "figure",
+            "pageNumber": 1,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/3fe3102e1078b08fc7d2a3db479d7028-26cc72eb2e7479eed69ca095c9c49342282abec5079e18dfc6822c8e069c1118.png",
+            "bbox": [
+              277.2997067249003,
+              746.0169293823022,
+              345.65591174915187,
+              675.0165566817427
+            ]
+          },
+          {
+            "id": "ff32aa0b-d686-4429-8452-61075d0d15dc",
+            "assetType": "figure",
+            "pageNumber": 1,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/a93e930dcb508b3d58f97e8b00079c91-2ca1c2802898b5b03fdc9276c9f81e367c8cffcfd7835f366b3684d96369581e.png",
+            "bbox": [
+              377.9478952629257,
+              749.9106556594808,
+              532.0123192852623,
+              675.0672538301161
+            ]
+          },
+          {
+            "id": "b2ad2ac0-db0f-4f07-b4d6-a947b1a1f028",
+            "assetType": "figure",
+            "pageNumber": 3,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/e08ba99b0d3910e01f6963a6fa57aed8-44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68.png",
+            "bbox": [
+              33.37452519623316,
+              719.1404450106745,
+              71.02799963698162,
+              680.6584272292305
+            ]
+          },
+          {
+            "id": "2b6641a7-90b6-425e-a35a-cf251fe067ab",
+            "assetType": "figure",
+            "pageNumber": 4,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/76b2f42027770d756ef2963152c485ba-3216a2a63930a32f1c3c183aae67d79aa3af1b31c592205841565de458dc77ba.png",
+            "bbox": [
+              32.8237731682466,
+              719.3214191145461,
+              71.78385434363665,
+              680.5692859505972
+            ]
+          },
+          {
+            "id": "54cc70f9-8eef-4a0d-a7c0-6a761a7f91a1",
+            "assetType": "figure",
+            "pageNumber": 5,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/86d4e2c95120d90abb554ec235740185-f72b4bc0d3fa7487f4f6c9ecda43d3867432d68ec48ec0b53462c84d48376ae7.png",
+            "bbox": [
+              33.295707346726424,
+              719.1253479503979,
+              71.41397741447697,
+              680.4449486970967
+            ]
+          },
+          {
+            "id": "fa5b197d-dc17-499c-8bb2-4956786608f3",
+            "assetType": "figure",
+            "pageNumber": 5,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/f125fe67cb6714e8703da0835d55a00c-45789fbdbc0ca341cf4577b42806e3bad633cca1a7e2bfd1f665da03bde668b5.png",
+            "bbox": [
+              126.76981571040287,
+              671.224129391587,
+              506.48901032006586,
+              594.0442211162991
+            ]
+          },
+          {
+            "id": "bcb9d282-05eb-460e-b40e-41d1cdc1127d",
+            "assetType": "figure",
+            "pageNumber": 6,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/cbbd0993f65167ecd71ac2f9ada08a4c-7b01a396c904bdf80397d0e70664955df5eb53cafa32f6e0add5f1b0c223eb37.png",
+            "bbox": [
+              32.49375537713499,
+              719.0110449046368,
+              73.42288255053948,
+              680.5065111540025
+            ]
+          },
+          {
+            "id": "cae938f5-a83b-48c9-b5b9-146a636a8a75",
+            "assetType": "figure",
+            "pageNumber": 7,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/44866dee4b3203ef954231c04ae80ac9-04a2fcde03f1408c01bc1c720187e8cbc373d0e91d570e303b37d92aa9f55e45.png",
+            "bbox": [
+              32.579181442119776,
+              719.1529839579598,
+              71.68373148533693,
+              680.3043706666319
+            ]
+          },
+          {
+            "id": "6f7602d2-eba7-4387-8db7-2a6cd6e59ff7",
+            "assetType": "figure",
+            "pageNumber": 8,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/ee0c0eff5200566e637a0fb476863c90-8afd1ac3519e6717a9f048a91210ea7324a5a516bc86ffdd3eff59f75f5faf29.png",
+            "bbox": [
+              32.50211103065516,
+              719.144741573031,
+              71.78295391704727,
+              680.3460019540614
+            ]
+          },
+          {
+            "id": "e35c05d4-dffb-4f78-9bfd-a1741330cf0f",
+            "assetType": "figure",
+            "pageNumber": 9,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/4bfb2dd1cbae0247cdd1a129a47efe96-8d67a43b2bad7b00933db80510cfa240760be6cca666d54b1008c62684ddf8cd.png",
+            "bbox": [
+              33.40290007989961,
+              719.1625797409689,
+              71.86679278939991,
+              680.588439392726
+            ]
+          },
+          {
+            "id": "e037c43b-7366-4aa1-96b2-ec25e31ee785",
+            "assetType": "figure",
+            "pageNumber": 9,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/cfc490790537db7dbbe134725d0ac911-103936d77cc0c7d3615218987714bda5fff05ee01f0e61fc9e2983d66dab50d2.png",
+            "bbox": [
+              163.62576400716875,
+              688.2696559163587,
+              469.6330543925661,
+              623.5697096444094
+            ]
+          },
+          {
+            "id": "da3d31c7-e70d-48a5-b9eb-a29f28f1651a",
+            "assetType": "figure",
+            "pageNumber": 9,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/0b7b6758d40891874aa3ffd13f7d379f-54f3d76a191783bf652869436ae2815bd1a85d0a046b73f102fe340b8ecffd4c.png",
+            "bbox": [
+              178.41624747180313,
+              574.8728150107969,
+              459.65724347019807,
+              513.1076915079561
+            ]
+          },
+          {
+            "id": "88fb153d-58df-4560-8dad-f3020aed21d3",
+            "assetType": "figure",
+            "pageNumber": 11,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/804fcf2fe8c066e106014343d2d76217-974869257bc8aed9da5928af032b9d2ff9e2543dc645e4bdcfbd435e5a21d0fd.png",
+            "bbox": [
+              32.53959701048882,
+              719.3592418254058,
+              72.05246380442534,
+              679.8265792079885
+            ]
+          },
+          {
+            "id": "3e596ecb-72a9-40a3-9484-7c21ac52ef61",
+            "assetType": "figure",
+            "pageNumber": 12,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/92d53bdada944f6152c16232a95b0edf-e49b06ee7af9369f0c1a9e5963412500565bc35f9a83997fb7da1e75c74078ac.png",
+            "bbox": [
+              33.39704349170168,
+              719.1435749820096,
+              70.63677954535991,
+              680.4448800740954
+            ]
+          },
+          {
+            "id": "3848a9b6-78fd-4bbb-ac80-5218e525b623",
+            "assetType": "figure",
+            "pageNumber": 15,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/b493e0a5266dfb1c82c99624cafef42d-0f1d8b99662c94c3ef4d98e766efe27d272223f7467c9369e2db26173fa51a78.png",
+            "bbox": [
+              32.65725529508019,
+              631.6829460848469,
+              546.9943189070192,
+              307.0059185155285
+            ]
+          },
+          {
+            "id": "6b7e1d73-1fee-4eaa-b16b-ddf27ee22b20",
+            "assetType": "figure",
+            "pageNumber": 16,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/311ed88f6ac35e6eb3a67a11bc778f91-4a4e39352ec067fe648cae7f855f983946330994842f54d657e8c24e85ce613c.png",
+            "bbox": [
+              173.73947755092186,
+              503.02386171385547,
+              252.1718681700569,
+              416.87225850195597
+            ]
+          },
+          {
+            "id": "1f348ff8-a0eb-4ddf-a12f-5cc96dc193db",
+            "assetType": "figure",
+            "pageNumber": 16,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/ef51260b1cc09b366029510c4d443a09-731978899815fc8352cb93eec1558c2b392d09ee91fcaa8f779e2d981e7f539e.png",
+            "bbox": [
+              282.79020283763936,
+              487.8238059371208,
+              408.299749444452,
+              433.29755509180757
+            ]
+          },
+          {
+            "id": "1af6231a-8116-4656-9821-a95f532d8b1f",
+            "assetType": "figure",
+            "pageNumber": 16,
+            "mimeType": "image/png",
+            "storagePath": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d/dcd0206c-55b8-4e78-b998-8e3a2b0acdec/assets/b78093d3a39c6545f9f197b5152f2c9a-6393b270541caf0d199db5b9ea9dee953eea37ad06f6d7a831011c4dd161ade5.png",
+            "bbox": [
+              248.7362981489787,
+              311.87659615010784,
+              332.34727100570154,
+              223.21171364104612
+            ]
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "2ac5346a-ae99-4105-becb-1e24d711852c",
+          "sourceKey": "506150fb6d081be61d0b563c6c9fecc6127e43044d082bc0f13ff4b23d427b26",
+          "textHash": "5847b5fb1293b9b20592cae53c180a3e645fd116c098139bef5ebc6948bf9b78",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "O CO2 deve ser removido porque, dissolvido, forma espécies ácidas que também consomem NaOH, o que superestimaria a acidez atribuída ao H3PO4; a concentração é 0,49 g/L.",
+              "label": "A"
+            },
+            {
+              "text": "O CO2 deve ser removido porque reage com o H3PO4, impedindo a neutralização total; a concentração é 0,49 g/L.",
+              "label": "B"
+            },
+            {
+              "text": "O CO2 deve ser removido porque forma ácido carbônico, que consome NaOH, mas isso não afeta o cálculo; a concentração é 0,98 g/L.",
+              "label": "C"
+            },
+            {
+              "text": "O CO2 deve ser removido apenas para evitar efervescência durante a titulação, sem interferir no volume de NaOH; a concentração é 0,49 g/L.",
+              "label": "D"
+            },
+            {
+              "text": "O CO2 deve ser removido porque neutraliza o NaOH formando sal neutro, reduzindo o volume gasto; a concentração é 0,16 g/L.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "correctAnswerOrigin": "AI_GENERATED",
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1,
+          "visualAssets": []
+        },
+        {
+          "id": "7b337c89-ad20-41b9-9032-f080a7103c27",
+          "sourceKey": "656beeb5a7b7b91558849d6f044e1c74a77088a2ca1ecece82acb7f45013d53e",
+          "textHash": "4b75598f646669ce395839108e383c68f393c5d32394b3ed268353463e52f76c",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "A função orgânica é o ácido carboxílico e a isomeria é a isomeria geométrica. O número de carbonos terciários na tretinoína é 2, e o álcool necessário é o pentanol.",
+              "label": "A"
+            },
+            {
+              "text": "A função orgânica é o álcool e a isomeria é a isomeria óptica. O número de carbonos terciários na tretinoína é 1, e o álcool necessário é o butanol.",
+              "label": "B"
+            },
+            {
+              "text": "A função orgânica é o ácido carboxílico e a isomeria é a isomeria espacial. O número de carbonos terciários na tretinoína é 2, e o álcool necessário é o pentanol.",
+              "label": "C"
+            },
+            {
+              "text": "A função orgânica é o éster e a isomeria é a isomeria constitucional. O número de carbonos terciários na tretinoína é 3, e o álcool necessário é o hexanol.",
+              "label": "D"
+            },
+            {
+              "text": "A função orgânica é o ácido carboxílico e a isomeria é a isomeria espacial. O número de carbonos terciários na tretinoína é 2, e o álcool necessário é o propanol.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1,
+          "visualAssets": [
+            {
+              "id": "fa5b197d-dc17-499c-8bb2-4956786608f3",
+              "assetType": "figure",
+              "pageNumber": 5,
+              "bbox": [
+                126.76981571040287,
+                671.224129391587,
+                506.48901032006586,
+                594.0442211162991
+              ]
+            }
+          ]
+        },
+        {
+          "id": "57e9f3f2-c6f4-4efc-9818-20cb84231f88",
+          "sourceKey": "7ddf0260ef42fac03d2b3b79b56de75545c99a355e0c1ac34579c2ea7e93847b",
+          "textHash": "f878238d1a3e2e5198f04c2aa2a720cc5dbf6a6be85601311face0d06936abc3",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "H–H; o hidrogênio é produzido no cátodo (polo negativo); razão = 6,75 × 10^2 C/kJ.",
+              "label": "A"
+            },
+            {
+              "text": "H–H; o hidrogênio é produzido no ânodo (polo positivo); razão = 6,75 × 10^2 C/kJ.",
+              "label": "B"
+            },
+            {
+              "text": "H=H; o hidrogênio é produzido no cátodo (polo negativo); razão = 3,38 × 10^2 C/kJ.",
+              "label": "C"
+            },
+            {
+              "text": "H–H; o hidrogênio é produzido no cátodo (polo negativo); razão = 1,35 × 10^3 C/kJ.",
+              "label": "D"
+            },
+            {
+              "text": "H–H; o hidrogênio é produzido no ânodo (polo positivo); razão = 3,38 × 10^2 C/kJ.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "correctAnswerOrigin": "AI_GENERATED",
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1,
+          "visualAssets": []
+        },
+        {
+          "id": "d68c173f-f967-4023-8249-1cdf4ba532bd",
+          "sourceKey": "80a9d758833f4a1927f63bab7051ad811be67137fbaf4d42b74e8b87d95fda69",
+          "textHash": "50a8a285b86bb92c2828813ac50292b9aba756efdba71aa25febb4696ab172fc",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "O composto C (anilina) tem caráter básico. A hidrólise do ânion benzoato (B') é: C6H5COO⁻ + H2O ⇌ C6H5COOH + OH⁻. A nomenclatura do composto A' (fenolato de sódio) é fenolato de sódio.",
+              "label": "A"
+            },
+            {
+              "text": "O composto C (anilina) tem caráter ácido. A hidrólise do ânion benzoato (B') é: C6H5COO⁻ + H2O ⇌ C6H5COOH + H3O⁺. A nomenclatura do composto A' é fenol.",
+              "label": "B"
+            },
+            {
+              "text": "O composto C (anilina) tem caráter básico. A hidrólise do ânion benzoato (B') é: C6H5COO⁻ + H⁺ ⇌ C6H5COOH. A nomenclatura do composto A' é benzoato de sódio.",
+              "label": "C"
+            },
+            {
+              "text": "O composto C (anilina) tem caráter básico. A hidrólise do ânion benzoato (B') é: C6H5COO⁻ + H2O ⇌ C6H5OH + OH⁻. A nomenclatura do composto A' é fenolato de sódio.",
+              "label": "D"
+            },
+            {
+              "text": "O composto C (anilina) tem caráter ácido. A hidrólise do ânion benzoato (B') é: C6H5COO⁻ + H2O ⇌ C6H5COOH + OH⁻. A nomenclatura do composto A' é ácido benzoico.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1,
+          "visualAssets": [
+            {
+              "id": "e037c43b-7366-4aa1-96b2-ec25e31ee785",
+              "assetType": "figure",
+              "pageNumber": 9,
+              "bbox": [
+                163.62576400716875,
+                688.2696559163587,
+                469.6330543925661,
+                623.5697096444094
+              ]
+            },
+            {
+              "id": "da3d31c7-e70d-48a5-b9eb-a29f28f1651a",
+              "assetType": "figure",
+              "pageNumber": 9,
+              "bbox": [
+                178.41624747180313,
+                574.8728150107969,
+                459.65724347019807,
+                513.1076915079561
+              ]
+            }
+          ]
+        },
+        {
+          "id": "80c5808b-807b-4a65-b426-6f63e6f9d4ee",
+          "sourceKey": "8786c63f7ffe885150aa094945bb2cabbd9743f4c30706cea2ee30a0912350c3",
+          "textHash": "1231572541fd6c6f8dcab128c3f809074a44653e16a63a2ae6e5991b707028ef",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "Catalisador: MnO2. Aumenta a energia de ativação, dificultando a decomposição do H2O2. Velocidade da reação = 8,0 × 10^6 mol·L^-1·s^-1.",
+              "label": "A"
+            },
+            {
+              "text": "Catalisador: MnO2. Diminui a energia de ativação, facilitando a decomposição do H2O2. Velocidade da reação = 8,0 × 10^6 mol·L^-1·s^-1.",
+              "label": "B"
+            },
+            {
+              "text": "Catalisador: H2O2. Diminui a energia de ativação, facilitando a decomposição. Velocidade da reação = 4,0 × 10^7 mol·L^-1·s^-1.",
+              "label": "C"
+            },
+            {
+              "text": "Catalisador: MnO2. Não altera a energia de ativação, apenas aumenta a frequência de colisões efetivas. Velocidade da reação = 8,0 × 10^6 mol·L^-1·s^-1.",
+              "label": "D"
+            },
+            {
+              "text": "Catalisador: MnO2. Diminui a energia de ativação, facilitando a decomposição do H2O2. Velocidade da reação = 2,0 × 10^6 mol·L^-1·s^-1.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 2,
+          "visualAssets": []
+        },
+        {
+          "id": "2da1ade1-373c-4256-8dd3-1ba49e31859b",
+          "sourceKey": "959f7e13c186e481f75b63fe370e3c5a755e75c0b8ea62703ab650c9327d19bb",
+          "textHash": "bf21fa2b48de3e5427f5593e094930ff9d052a7100112d6ad3866dc320770b7d",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "Kps = [Ca2+][C2O4^2−]; em água, s = 2,0 × 10^−5 mol/L; na presença de CaCl2 0,2 mol/L, s = 2,0 × 10^−9 mol/L.",
+              "label": "A"
+            },
+            {
+              "text": "Kps = [Ca2+][C2O4^2−]; em água, s = 4,0 × 10^−5 mol/L; na presença de CaCl2 0,2 mol/L, s = 4,0 × 10^−9 mol/L.",
+              "label": "B"
+            },
+            {
+              "text": "Kps = [Ca2+]^2[C2O4^2−]; em água, s = 2,0 × 10^−5 mol/L; na presença de CaCl2 0,2 mol/L, s = 1,0 × 10^−9 mol/L.",
+              "label": "C"
+            },
+            {
+              "text": "Kps = [Ca2+][C2O4^2−]; em água, s = 2,0 × 10^−5 mol/L; na presença de CaCl2 0,2 mol/L, s = 2,0 × 10^−10 mol/L.",
+              "label": "D"
+            },
+            {
+              "text": "Kps = [Ca2+][C2O4^2−]; em água, s = 1,0 × 10^−5 mol/L; na presença de CaCl2 0,2 mol/L, s = 5,0 × 10^−10 mol/L.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "correctAnswerOrigin": "AI_GENERATED",
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1,
+          "visualAssets": []
+        },
+        {
+          "id": "cdb36015-59e0-40d5-bf3d-42ad2ddf9dbc",
+          "sourceKey": "982130dfe073a3c2c603ca26d6bf22840e96318b9f49382123b593653df79def",
+          "textHash": "7eedcf0ef3e2fb8d1b927be62eeb46d9d12da298b23972fb31210bd8cf799390",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "Grupo 17 (VII A), 4º período; ligação covalente apolar; Cl2.",
+              "label": "A"
+            },
+            {
+              "text": "Grupo 17 (VII A), 4º período; ligação iônica; Cl2.",
+              "label": "B"
+            },
+            {
+              "text": "Grupo 17 (VII A), 3º período; ligação covalente polar; Br2.",
+              "label": "C"
+            },
+            {
+              "text": "Grupo 16 (VI A), 4º período; ligação covalente apolar; Cl2.",
+              "label": "D"
+            },
+            {
+              "text": "Grupo 18 (VIII A), 4º período; ligação iônica; Cl−.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "correctAnswerOrigin": "AI_GENERATED",
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1,
+          "visualAssets": [
+            {
+              "id": "3848a9b6-78fd-4bbb-ac80-5218e525b623",
+              "assetType": "figure",
+              "pageNumber": 15,
+              "bbox": [
+                32.65725529508019,
+                631.6829460848469,
+                546.9943189070192,
+                307.0059185155285
+              ]
+            }
+          ]
+        },
+        {
+          "id": "b8412a9c-70bd-49cf-804a-02bd9cc19b45",
+          "sourceKey": "a19c382adacea006295cfebac4946090c0e77348e86a60655182cb4f823eeac7",
+          "textHash": "b4dd427af012a3a08bf4e2be44836b26e4abb43016fa51d643d88842ea08e466",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "O Al3+ é mais ácido porque possui menor raio iônico e maior carga (+3), resultando em maior densidade de carga e maior poder polarizante; a equação balanceada é: 2 Ag+ + S2- → Ag2S.",
+              "label": "A"
+            },
+            {
+              "text": "O Al3+ é mais ácido porque sua configuração eletrônica apresenta orbitais vazios disponíveis para receber pares de elétrons, enquanto o Ag+ tem o subnível d completo; a equação balanceada é: Ag+ + S2- → AgS.",
+              "label": "B"
+            },
+            {
+              "text": "O Al3+ é mais ácido porque tem maior energia de ionização que o Ag+; a equação balanceada é: 2 Ag+ + S2- → Ag2S.",
+              "label": "C"
+            },
+            {
+              "text": "O Ag+ é mais ácido porque possui maior carga nuclear efetiva que o Al3+; a equação balanceada é: Ag+ + S2- → AgS.",
+              "label": "D"
+            },
+            {
+              "text": "O Al3+ é mais ácido porque possui elétrons desemparelhados em orbitais d, facilitando a aceitação de pares de elétrons; a equação balanceada é: 2 Ag+ + S2- → Ag2S.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1,
+          "visualAssets": []
+        },
+        {
+          "id": "9d796554-84b2-42bb-8ad2-76bd928b6d72",
+          "sourceKey": "bf0c5aa7e7de03a1f59b4466225e8d58b59fb05574bd42fe336deb53e56caad1",
+          "textHash": "b2e4619ddafa4181ed95a83a69780ce10e5eeb31e53cc274c7724467bc0961fd",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "ΔH°combustão do etano = -200 kJ/mol; composição do GNV: 80% de CH4 e 20% de C2H6 (em volume).",
+              "label": "A"
+            },
+            {
+              "text": "ΔH°combustão do etano = -200 kJ/mol; composição do GNV: 20% de CH4 e 80% de C2H6 (em volume).",
+              "label": "B"
+            },
+            {
+              "text": "ΔH°combustão do etano = -200 kJ/mol; composição do GNV: 60% de CH4 e 40% de C2H6 (em volume).",
+              "label": "C"
+            },
+            {
+              "text": "ΔH°combustão do etano = -1560 kJ/mol; composição do GNV: 80% de CH4 e 20% de C2H6 (em volume).",
+              "label": "D"
+            },
+            {
+              "text": "ΔH°combustão do etano = -1560 kJ/mol; composição do GNV: 20% de CH4 e 80% de C2H6 (em volume).",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "correctAnswerOrigin": "AI_GENERATED",
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 2,
+          "visualAssets": []
+        },
+        {
+          "id": "eb5edebf-3565-44b1-8bb0-73b731814a55",
+          "sourceKey": "ded22e83bd2908ccfbad8661fa38271ebbaee6560a7994a361d6e377fd7b08b6",
+          "textHash": "838a40b5ba823592c3634f90fd81787e3f575b598da5b41fbdb888415c387801",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "alternatives": [
+            {
+              "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3 (C6H5–CH3); caráter apolar; 6 elétrons pi por molécula, o que corresponde a 6 mol de elétrons pi em 1 mol de tolueno.",
+              "label": "A"
+            },
+            {
+              "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3 (C6H5–CH3); caráter polar; 6 elétrons pi por molécula, o que corresponde a 6 × 10^23 elétrons pi em 1 mol de tolueno.",
+              "label": "B"
+            },
+            {
+              "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3 (C6H5–CH3); caráter apolar; 3 elétrons pi por molécula, o que corresponde a 3 mol de elétrons pi em 1 mol de tolueno.",
+              "label": "C"
+            },
+            {
+              "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3 (C6H5–CH3); caráter polar; 3 elétrons pi por molécula, o que corresponde a 3 × 10^23 elétrons pi em 1 mol de tolueno.",
+              "label": "D"
+            },
+            {
+              "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3 (C6H5–CH3); caráter apolar; 12 elétrons pi por molécula, o que corresponde a 12 mol de elétrons pi em 1 mol de tolueno.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "correctAnswerOrigin": "AI_GENERATED",
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1,
+          "visualAssets": []
+        }
+      ]
+    },
+    {
+      "label": "terminal_checkpoint_replay",
+      "llmCalls": 0,
+      "graphStatus": "completed_with_issues",
+      "questionCount": 10,
+      "identitiesStable": true,
+      "sourceCountStable": true
+    }
+  ],
+  "pdf": {
+    "file": "dbtemp/storage/monitor-documents/Quimica-3.pdf",
+    "bytes": 599300,
+    "sha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d"
+  },
+  "lastObservedDocumentStatus": "PARTIAL_SUCCESS",
+  "openRouterUsage": {
+    "structured": {
+      "count": 20,
+      "durationMs": 1966553,
+      "promptTokens": 192571,
+      "completionTokens": 441173,
+      "reasoningTokens": 422956,
+      "totalTokens": 633744
+    },
+    "embeddings": {
+      "count": 28,
+      "promptTokens": 9867,
+      "totalTokens": 9867
+    },
+    "costUsd": null,
+    "costNote": "Custo não aparece nos dados de uso coletados e fica desconhecido, não zero."
+  },
+  "completedAt": "2026-11-07T14:49:15.940Z",
+  "documentId": "1eb0267e-67cb-4af2-b89e-ad81b498fa2d",
+  "result": "PASS_WITH_PROCESSING_WARNINGS"
+}

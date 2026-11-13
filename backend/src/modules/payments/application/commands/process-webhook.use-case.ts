@@ -27,7 +27,17 @@ function getProviderEventDate(payload: unknown, fallback: Date): Date {
 }
 
 export class ProcessPaymentWebhookUseCase {
-  constructor(private readonly repository: PrismaPaymentWebhookRepository, private readonly accounts?: PaymentAccountRepository, private readonly payments?: PaymentEventRepository) {}
+  constructor(
+    private readonly repository: PrismaPaymentWebhookRepository,
+    private readonly accounts?: PaymentAccountRepository,
+    private readonly payments?: PaymentEventRepository,
+    private readonly invalidateAccess?: (studentId: string, reason: string) => Promise<void>,
+  ) {}
+
+  private async invalidateStudentAccess(studentId: string | undefined, eventType: string) {
+    if (!studentId) return;
+    await this.invalidateAccess?.(studentId, `ASAAS_WEBHOOK:${eventType}`);
+  }
 
   async execute(eventId: string) {
     console.log('Processamento de webhook Asaas iniciado', { event: 'payments.webhook_processing_started', eventId });
@@ -71,6 +81,7 @@ export class ProcessPaymentWebhookUseCase {
           await this.repository.markWaitingCorrelation(event.id, event.attempts);
           return { skipped: false, state: 'WAITING_CORRELATION' };
         }
+        await this.invalidateStudentAccess(result.studentId, event.eventType);
         await this.repository.markProcessed(event.id, 'CHECKOUT_STATE_APPLIED');
         return { skipped: false, state: 'CHECKOUT_STATE_APPLIED' };
       }
@@ -87,6 +98,7 @@ export class ProcessPaymentWebhookUseCase {
           return { skipped: false, state: 'WAITING_CORRELATION' };
         }
         const state = result.state ?? (result.accessGranted ? 'PAYMENT_ACCESS_APPLIED' : 'PAYMENT_STATE_APPLIED');
+        await this.invalidateStudentAccess(result.studentId, event.eventType);
         await this.repository.markProcessed(event.id, state);
         console.log('Evento financeiro processado', { event: 'payments.payment_event_processing_completed', eventId: event.id, eventType: event.eventType, chargeId: result.chargeId, studentId: result.studentId, monitorId: result.monitorId, accessGranted: result.accessGranted, state });
         return { skipped: false, state };
@@ -114,6 +126,7 @@ export class ProcessPaymentWebhookUseCase {
           await this.repository.markWaitingCorrelation(event.id, event.attempts);
           return { skipped: false, state: 'WAITING_CORRELATION' };
         }
+        await this.invalidateStudentAccess(result.studentId, event.eventType);
         await this.repository.markProcessed(event.id, 'SUBSCRIPTION_STATE_APPLIED');
         return { skipped: false, state: 'SUBSCRIPTION_STATE_APPLIED' };
       }
@@ -127,6 +140,7 @@ export class ProcessPaymentWebhookUseCase {
           await this.repository.markWaitingCorrelation(event.id, event.attempts);
           return { skipped: false, state: 'WAITING_CORRELATION' };
         }
+        await this.invalidateStudentAccess(result.studentId, event.eventType);
         await this.repository.markProcessed(event.id, result.state ?? 'PAYMENT_STATE_APPLIED');
         return { skipped: false, state: result.state ?? 'PAYMENT_STATE_APPLIED' };
       }

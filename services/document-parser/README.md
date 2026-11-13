@@ -27,8 +27,9 @@ inclui `X-Request-Id` e `request_id`, hash, versão do tokenizer e chunks com
 texto contextualizado, texto original, títulos e páginas. O serviço rejeita o
 hash antes de converter, limita uploads a 50 MiB e não envia espaços de
 heartbeat antes do resultado. Configurações: `DOC_CHUNKER_MAX_UPLOAD_BYTES`,
-`DOC_CHUNKER_MAX_RESPONSE_BYTES`, `DOC_CHUNKER_TIMEOUT_MS`,
-`DOC_CHUNKER_MAX_CONCURRENCY` e `DOCUMENT_PARSER_ENABLE_OCR`.
+`DOC_CHUNKER_MAX_RESPONSE_BYTES`, `DOC_CHUNKER_MAX_CONCURRENCY` e
+`DOCUMENT_PARSER_ENABLE_OCR`. A fila e a conversão aguardam a conclusão sem
+prazo local; `DOC_CHUNKER_TIMEOUT_MS` não interrompe mais essas etapas.
 
 O tokenizer `Qwen/Qwen3-Embedding-8B` é fixado no código em
 `c90816d848505624c2434128dfc61132162a0ee9` e pré-carregado durante o build.
@@ -177,3 +178,36 @@ uma prévia dos dois primeiros. Esse teste é ignorado quando
 O servidor não persiste artefatos em disco nem mantém fila. Estados de falha
 distinguem erro de entrada e erro do parser para facilitar o diagnóstico no
 fluxo do backend depois.
+
+## Conversão recuperável de livros
+
+O perfil versionado fica em `scripts/knowledge_profile.py`. Ele mantém
+configurações explícitas para OCR, enriquecimento de fórmulas, estrutura de
+tabelas, escala OCR, escala das imagens, threads e timeouts; não altera os
+defaults dos endpoints existentes. Lotes aceitam intervalos inclusivos de 1 a
+20 páginas e são convertidos em subprocesso isolado com watchdog de grupo de
+processos. Páginas sem evidência são marcadas como falha, nunca presumidas
+vazias.
+
+`POST /knowledge/batch/v1` recebe multipart com campos `request` (JSON) e
+`file` (PDF), usa `Authorization: Bearer $KNOWLEDGE_BATCH_SERVICE_TOKEN` e
+devolve `application/vnd.knowledge-batch.v1+json`. O manifest inclui identidade,
+páginas absolutas, status por página e arquivos com SHA-256 e Base64. O
+`artifactChecksum` é SHA-256 da lista canônica de arquivos do manifest. Limites
+de envio e resposta podem ser definidos com
+`KNOWLEDGE_BATCH_MAX_UPLOAD_BYTES` e `KNOWLEDGE_BATCH_MAX_RESPONSE_BYTES`.
+
+O benchmark compara fórmula ligada/desligada e escala OCR atual/reduzida. A
+pessoa operadora aponta páginas representativas de texto, fórmula, tabela,
+imagem e scan. O relatório JSON fica ao lado de uma pasta privada
+`<relatório>.artifacts/`; cada condição preserva `document.md`, `document.json`,
+`layout.json`, assets e `manual-review.json`, com caminhos relativos no relatório
+e métricas resumidas. Preencha o template de revisão comparando cada saída ao
+PDF; o benchmark não declara ganho de qualidade automaticamente.
+
+```bash
+cd services/document-parser
+uv run python scripts/benchmark_knowledge.py livro.pdf \
+  --text-page 1 --formula-page 12 --table-page 24 --image-page 38 --scan-page 51 \
+  --output /tmp/knowledge-benchmark.json
+```

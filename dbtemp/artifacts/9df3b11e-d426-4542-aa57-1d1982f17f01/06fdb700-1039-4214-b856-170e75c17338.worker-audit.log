@@ -1,0 +1,290 @@
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 32
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 566
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 13,
+  totalTokens: 13
+}
+[knowledge-retrieval.service.ts] Busca vetorial de conhecimento iniciada {
+  event: 'monitor.knowledge_retrieval_started',
+  teacherId: '5e9e9a55-cbe4-4f65-864c-e28631f3f2af',
+  monitorId: '4a48274d-a788-4dc0-ba63-63f8f8b17526',
+  subjectId: '16a05fe3-5936-4e0d-bfb8-d3c01dab3f2b',
+  topicId: '2d17bd2a-bf62-48c7-8488-1fa44c532632',
+  requestedLimit: 8,
+  embeddingDimensions: 2048
+}
+Busca hibrida de conhecimento concluida {
+  event: 'monitor.hybrid_knowledge_retrieval_completed',
+  durationMs: 26,
+  candidateCount: 6,
+  rankedCount: 6,
+  contextBlockCount: 0
+}
+[knowledge-retrieval.service.ts] Busca vetorial de conhecimento concluida {
+  event: 'monitor.knowledge_retrieval_completed',
+  candidateCount: 6,
+  uniqueBlockCount: 6,
+  contextBlockCount: 0,
+  durationMs: 26
+}
+{
+  "documentId": "06fdb700-1039-4214-b856-170e75c17338",
+  "result": {
+    "skipped": "audit-only"
+  },
+  "document": {
+    "originalName": "pH e pOH.pdf",
+    "tag": "KNOWLEDGE_BASE",
+    "status": "READY",
+    "errorMessage": null,
+    "teacherId": "5e9e9a55-cbe4-4f65-864c-e28631f3f2af",
+    "monitorId": "4a48274d-a788-4dc0-ba63-63f8f8b17526",
+    "subjectId": "16a05fe3-5936-4e0d-bfb8-d3c01dab3f2b",
+    "topicId": "2d17bd2a-bf62-48c7-8488-1fa44c532632",
+    "_count": {
+      "chunks": 3,
+      "blocks": 0,
+      "textExtractions": 0,
+      "visualAssets": 3
+    }
+  },
+  "visualAssets": 3,
+  "chunks": [
+    {
+      "chunkIndex": 0,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 3,
+      "tokenCount": 489,
+      "embeddedAt": "2026-11-02T20:40:43.238Z",
+      "content": "Ahrrenius\nHCI\nM2O\nNaOH\nH2O\nBronsted - Lowry\nHCl +\nH₂O\nAcido asea\nNH3+ H2O\nBase ACido\nH\nN\nLewis\nHCl H2O\n:Cl-H\n:Cl:\n+\nHCl\nH\n>\n十\n1\nH\n0\nH⁺\nNa⁺\n+ Cl⁻\n+\n(Acido)\nOH\n>\n>\n(Base)\nH_3O⁺\n+ Cl⁻\nNH_{4\nH2 +\n>\n→Cl⁻ + H₃O⁺\nH\nH\n+\n(Acido)\nOH\n(Base)\nCl⁻\nLewis\nLOWE.1\nH\nH\nBransted-\nAhrtenius\nH-\nH\nH\nu\nH-N-BH\nB\nÁcido libera H+ em água, e base libera OH- em água\nÁcido doa H+ e base recebe H+\nÁcido recebe um par de elétrons enquanto a base doa par de elétrons\nEquilíbrio químico\nHCL H⁺ + Cl⁻ 100%\nHAcO H⁺ + AcO - Ka = 1,8 · 105\n[ ] = Concentragão\n[H+]\n0,01\n0,01\n[HCi] = [H+]\n[H+]·[Aco-] Ka H [HAcO]\nKa = [H+] [HAcO]\n[H+7² Ka·[HAcO]\n[H+]=√ Ka· [MAcO]\n[+H] b01- = Hd pH<7\np=-10g(op1\npH=20\n0,01 mol/L\ndo A'cida\n0 meio\nacido\nNaOH\nNa⁺\n>\n+\nOH\n001\n9,01\n0,01\n0,01 mol/L base\n[OH-] = 0,01\npOH = - log [OH-]\npOH = 2\npH + pOH 14\nL < Hd\nO meio\nbasico e\npH 十 2 =14\np\npH = 12"
+    },
+    {
+      "chunkIndex": 1,
+      "status": "READY",
+      "pageStart": 3,
+      "pageEnd": 3,
+      "tokenCount": 167,
+      "embeddedAt": "2026-11-02T20:40:43.238Z",
+      "content": "Corpo de bombeiro militar do Ceará\nDurante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\nCom base nessa informação, é correto afirmar:\n- A) A substância é neutra, com concentração igual de H⁺ e OH⁻.\n- B) Trata-se de um ácido forte, com alto poder de corrosão.\n- C) A substância possui caráter levemente ácido.\n- A substância é uma base forte, com alta concentração de íons OH⁻.\n- E) O valor de pH indica que a solução não apresenta riscos químicos."
+    },
+    {
+      "chunkIndex": 2,
+      "status": "READY",
+      "pageStart": 4,
+      "pageEnd": 4,
+      "tokenCount": 350,
+      "embeddedAt": "2026-11-02T20:40:43.238Z",
+      "content": "Química e Engenharia Química - Ácidos e Bases\n563) O suco de uva pode ser usado como um indicador natural do pH de uma solução. Isso se dá por conta de uma substância natural chamada antocianina, presente nas uvas, que ao reagir com o meio forma produtos de cores distintas, seguindo um mesmo padrão de cores. Dessa forma, em meio ácido o suco de uva, ficará vermelho- rosa, enquanto em meio básico ficará verde-escuro.\nSe fizermos um teste com suco de uva, será observada uma coloração verde-escuro\n- no limpa-forno.\n- b) no suco de limão.\n- c) na água destilada.\n- d) no vinagre de maçã.\n- e) na solução de bateria automotiva.\nFGV - Tec Ge (CPRM)/CPRM/Hidrologia/2025\nuis  noa ns os   ood  sa - Lud   oso\n472) O parâmetro físico-químico que mede a concentração de íons livres na água, indicando a capacidade de conduzir corrente elétrica, é\n- a) a alcalinidade.\n- b) o pH.\n- a condutividade elétrica.\n- d) o oxigênio dissolvido.\n- e) a turbidez."
+    }
+  ],
+  "blockTypes": [],
+  "questionSources": 0,
+  "pageThreeAssets": [
+    {
+      "id": "19af016f-a33c-4cc5-8812-b28189a23c54",
+      "pageNumber": 3,
+      "assetType": "figure",
+      "storagePath": "06fdb700-1039-4214-b856-170e75c17338/6d9a634a-793a-4da1-9a37-86754b1f5110/assets/23f164a184a21019e2eadd4e117d0541-bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f.png",
+      "checksum": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f",
+      "descriptionStatus": "READY",
+      "description": "A figura é uma página de caderno pautado com anotações manuscritas e um texto impresso.\n\nAs anotações manuscritas, em tinta preta, azul e verde, mostram cálculos e equações químicas:\n- \"NaOH\" com \"0,01\" abaixo, seguido por uma seta para a direita.\n- \"Na⁺\" com \"0,01\" abaixo, seguido por \"+ OH⁻\" com \"0,01\" abaixo.\n- \"0,01 mol/L\" em azul, com \"da base\" abaixo em preto.\n- \"[OH⁻] = 0,01\".\n- \"pOH = - log [OH⁻]\".\n- \"pOH = 2\" em verde, com uma seta curva verde apontando para baixo.\n- \"pH + pOH = 14\" em verde.\n- \"pH > 7\" em azul, seguido por \"O meio\" e \"é básico\" em azul.\n- \"pH + 2 = 14\" em verde.\n- \"pH = 14 - 2\" em verde.\n- \"pH = 12\" em verde.\n\nAbaixo das anotações, há um texto impresso em preto:\n- \"Corpo de bombeiro militar do Ceará\"\n- Um parágrafo que começa com \"Durante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\"\n- \"Com base nessa informação, é correto afirmar:\"\n- Uma lista de opções de A a E:\n    - \"A) A substância é neutra, com concentração igual de H⁺ e OH⁻.\"\n    - \"B) Trata-se de um ácido forte, com alto poder de corrosão.\"\n    - \"C) A substância possui caráter levemente ácido.\"\n    - \"D) A substância é uma base forte, com alta concentração de íons OH⁻.\" (Esta opção tem um círculo verde preenchido à esquerda).\n    - \"E) O valor de pH indica que a solução não apresenta riscos químicos.\""
+    }
+  ],
+  "pageThreeStorageChecks": [
+    {
+      "assetId": "19af016f-a33c-4cc5-8812-b28189a23c54",
+      "storagePath": "06fdb700-1039-4214-b856-170e75c17338/6d9a634a-793a-4da1-9a37-86754b1f5110/assets/23f164a184a21019e2eadd4e117d0541-bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f.png",
+      "downloaded": true,
+      "byteLength": 94446,
+      "sha256": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f",
+      "expectedChecksum": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f",
+      "checksumMatches": true
+    }
+  ],
+  "elapsedMs": 226,
+  "retrieval": {
+    "queryText": "resolução e anotação de pH e pOH",
+    "candidateCount": 6,
+    "citations": [
+      {
+        "chunkId": "b9eebeb3-a5cf-4814-8f2b-a1d89df67d49",
+        "documentId": "06fdb700-1039-4214-b856-170e75c17338",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 0,
+        "blockType": "text",
+        "similarity": 0.714929426684129,
+        "lexicalScore": 0,
+        "fusedScore": 0.314929426684129,
+        "content": "Ahrrenius\nHCI\nM2O\nNaOH\nH2O\nBronsted - Lowry\nHCl +\nH₂O\nAcido asea\nNH3+ H2O\nBase ACido\nH\nN\nLewis\nHCl H2O\n:Cl-H\n:Cl:\n+\nHCl\nH\n>\n十\n1\nH\n0\nH⁺\nNa⁺\n+ Cl⁻\n+\n(Acido)\nOH\n>\n>\n(Base)\nH_3O⁺\n+ Cl⁻\nNH_{4\nH2 +\n>\n→Cl⁻ + H₃O⁺\nH\nH\n+\n(Acido)\nOH\n(Base)\nCl⁻\nLewis\nLOWE.1\nH\nH\nBransted-\nAhrtenius\nH-\nH\nH\nu\nH-N-BH\nB\nÁcido libera H+ em água, e base libera OH- em água\nÁcido doa H+ e base recebe H+\nÁcido recebe um par de elétrons enquanto a base doa par de elétrons\nEquilíbrio químico\nHCL H⁺ + Cl⁻ 100%\nHAcO H⁺ + AcO - Ka = 1,8 · 105\n[ ] = Concentragão\n[H+]\n0,01\n0,01\n[HCi] = [H+]\n[H+]·[Aco-] Ka H [HAcO]\nKa = [H+] [HAcO]\n[H+7² Ka·[HAcO]\n[H+]=√ Ka· [MAcO]\n[+H] b01- = Hd pH<7\np=-10g(op1\npH=20\n0,01 mol/L\ndo A'cida\n0 meio\nacido\nNaOH\nNa⁺\n>\n+\nOH\n001\n9,01\n0,01\n0,01 mol/L base\n[OH-] = 0,01\npOH = - log [OH-]\npOH = 2\npH + pOH 14\nL < Hd\nO meio\nbasico e\npH 十 2 =14\np\npH = 12",
+        "pageStart": 1,
+        "pageEnd": 3,
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "headings": [],
+        "engine": "docling",
+        "visualAssetIds": [],
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null
+      },
+      {
+        "chunkId": "19af016f-a33c-4cc5-8812-b28189a23c54",
+        "documentId": "06fdb700-1039-4214-b856-170e75c17338",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 3,
+        "blockType": "FIGURE",
+        "similarity": 0.683553846068977,
+        "lexicalScore": 0,
+        "fusedScore": 0.283553846068977,
+        "content": "A figura é uma página de caderno pautado com anotações manuscritas e um texto impresso.\n\nAs anotações manuscritas, em tinta preta, azul e verde, mostram cálculos e equações químicas:\n- \"NaOH\" com \"0,01\" abaixo, seguido por uma seta para a direita.\n- \"Na⁺\" com \"0,01\" abaixo, seguido por \"+ OH⁻\" com \"0,01\" abaixo.\n- \"0,01 mol/L\" em azul, com \"da base\" abaixo em preto.\n- \"[OH⁻] = 0,01\".\n- \"pOH = - log [OH⁻]\".\n- \"pOH = 2\" em verde, com uma seta curva verde apontando para baixo.\n- \"pH + pOH = 14\" em verde.\n- \"pH > 7\" em azul, seguido por \"O meio\" e \"é básico\" em azul.\n- \"pH + 2 = 14\" em verde.\n- \"pH = 14 - 2\" em verde.\n- \"pH = 12\" em verde.\n\nAbaixo das anotações, há um texto impresso em preto:\n- \"Corpo de bombeiro militar do Ceará\"\n- Um parágrafo que começa com \"Durante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\"\n- \"Com base nessa informação, é correto afirmar:\"\n- Uma lista de opções de A a E:\n    - \"A) A substância é neutra, com concentração igual de H⁺ e OH⁻.\"\n    - \"B) Trata-se de um ácido forte, com alto poder de corrosão.\"\n    - \"C) A substância possui caráter levemente ácido.\"\n    - \"D) A substância é uma base forte, com alta concentração de íons OH⁻.\" (Esta opção tem um círculo verde preenchido à esquerda).\n    - \"E) O valor de pH indica que a solução não apresenta riscos químicos.\"",
+        "pageStart": 3,
+        "pageEnd": 3,
+        "pages": [
+          3
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "19af016f-a33c-4cc5-8812-b28189a23c54"
+        ]
+      },
+      {
+        "chunkId": "b001118c-c340-4e0d-a9b5-d4684875a36e",
+        "documentId": "06fdb700-1039-4214-b856-170e75c17338",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 1,
+        "blockType": "text",
+        "similarity": 0.653062881290854,
+        "lexicalScore": 0,
+        "fusedScore": 0.253062881290854,
+        "content": "Corpo de bombeiro militar do Ceará\nDurante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\nCom base nessa informação, é correto afirmar:\n- A) A substância é neutra, com concentração igual de H⁺ e OH⁻.\n- B) Trata-se de um ácido forte, com alto poder de corrosão.\n- C) A substância possui caráter levemente ácido.\n- A substância é uma base forte, com alta concentração de íons OH⁻.\n- E) O valor de pH indica que a solução não apresenta riscos químicos.",
+        "pageStart": 3,
+        "pageEnd": 3,
+        "pages": [
+          3
+        ],
+        "headings": [],
+        "engine": "docling",
+        "visualAssetIds": [],
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null
+      },
+      {
+        "chunkId": "1c7112d1-8ab7-469f-a0eb-86c3fd90db28",
+        "documentId": "06fdb700-1039-4214-b856-170e75c17338",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 1,
+        "blockType": "FIGURE",
+        "similarity": 0.648994229892716,
+        "lexicalScore": 0,
+        "fusedScore": 0.248994229892716,
+        "content": "A figura é uma página de caderno pautado com anotações manuscritas sobre reações químicas.\n\n**Título:** Não há um título geral para a figura, mas há três seções principais com títulos:\n1.  \"Arrhenius\"\n2.  \"Brønsted - Lowry\"\n3.  \"Lewis\"\n\n**Seção Arrhenius:**\n*   Duas reações químicas são listadas, cada uma precedida por um ponto.\n    *   Primeira reação (ponto vermelho): \"HCl\" (ácido) reage com \"H₂O\" (escrito acima da seta) para formar \"H⁺\" + \"Cl⁻\". O produto \"H⁺\" + \"Cl⁻\" é rotulado como \"(Ácido)\" em vermelho.\n    *   Segunda reação (ponto roxo): \"NaOH\" (base) reage com \"H₂O\" (escrito acima da seta) para formar \"Na⁺\" + \"OH⁻\". O produto \"Na⁺\" + \"OH⁻\" é rotulado como \"(Base)\" em roxo.\n\n**Seção Brønsted - Lowry:**\n*   Três reações químicas são listadas.\n    *   Primeira reação (ponto vermelho): \"HCl\" (rotulado como \"Ácido\" abaixo) + \"H₂O\" (rotulado como \"Base\" abaixo) reagem para formar \"H₃O⁺\" + \"Cl⁻\". O produto \"H₃O⁺\" + \"Cl⁻\" é rotulado como \"(Ácido)\" em vermelho.\n    *   Segunda reação (ponto roxo): \"NH₃\" (rotulado como \"Base\" abaixo) + \"H₂O\" (rotulado como \"Ácido\" abaixo) reagem para formar \"NH₄⁺\" + \"OH⁻\". O produto \"NH₄⁺\" + \"OH⁻\" é rotulado como \"(Base)\" em roxo.\n    *   Terceira reação: Uma estrutura hexagonal com um \"N\" e um \"H\" no topo, e uma ligação dupla, reage com \"HCl\" para formar uma estrutura hexagonal similar com \"H₂⁺\" no topo do \"N\", mais \"Cl⁻\".\n\n**Seção Lewis:**\n*   Uma reação química é listada: \"HCl\" + \"H₂O\" reagem para formar \"Cl⁻\" + \"H₃O⁺\".\n*   Abaixo, há uma representação de mecanismo de reação com setas curvas vermelhas:\n    *   À esquerda, \":Cl⁻ - H\" com três pares de elétrons não ligantes no Cl. Uma seta curva vermelha parte de um par de elétrons do Cl e aponta para o H.\n    *   À direita, \"H₂O\" com dois pares de elétrons não ligantes no O. Uma seta curva vermelha parte de um par de elétrons do O e aponta para o H do HCl.\n    *   Uma seta vertical para baixo indica o resultado da reação.\n    *   Abaixo da seta, à esquerda, \":Cl⁻\" com quatro pares de elétrons não ligantes.\n    *   À direita, \"H₃O⁺\" com um par de elétrons não ligantes no O.\n*   No",
+        "pageStart": 1,
+        "pageEnd": 1,
+        "pages": [
+          1
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "1c7112d1-8ab7-469f-a0eb-86c3fd90db28"
+        ]
+      },
+      {
+        "chunkId": "c0e415c2-242f-4a73-b840-180387b25fc8",
+        "documentId": "06fdb700-1039-4214-b856-170e75c17338",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 4,
+        "blockType": "FIGURE",
+        "similarity": 0.641478629605306,
+        "lexicalScore": 0,
+        "fusedScore": 0.241478629605306,
+        "content": "A figura é uma página de texto com linhas horizontais azuis e uma linha vertical vermelha à esquerda, simulando um caderno. O texto é dividido em duas seções principais.\n\nA primeira seção, com o título \"FGV - TDTND/AMAZUL/Operador de Central Termonuclear/2026\" e subtítulo \"Química e Engenharia Química - Ácidos e Bases\", apresenta a questão \"563) O suco de uva pode ser usado como um indicador natural do pH de uma solução. Isso se dá por conta de uma substância natural chamada antocianina, presente nas uvas, que ao reagir com o meio forma produtos de cores distintas, seguindo um mesmo padrão de cores. Dessa forma, em meio ácido o suco de uva, ficará vermelho-rosa, enquanto em meio básico ficará verde-escuro.\" Abaixo, há a pergunta \"Se fizermos um teste com suco de uva, será observada uma coloração verde-escuro\" seguida de cinco opções de resposta:\na) no limpa-forno.\nb) no suco de limão.\nc) na água destilada.\nd) no vinagre de maçã.\ne) na solução de bateria automotiva.\nA opção \"a) no limpa-forno.\" está marcada com um círculo verde.\n\nA segunda seção, com o título \"FGV - Tec Ge (CPRM)/CPRM/Hidrologia/2025\" e subtítulo \"Química e Engenharia Química - Matéria: Propriedades Gerais, Transformações, Estados Sólido, Líquido e Gasoso.\", apresenta a questão \"472) O parâmetro físico-químico que mede a concentração de íons livres na água, indicando a capacidade de conduzir corrente elétrica, é\" seguida de cinco opções de resposta:\na) a alcalinidade.\nb) o pH.\nc) a condutividade elétrica.\nd) o oxigênio dissolvido.\ne) a turbidez.\nA opção \"c) a condutividade elétrica.\" está marcada com um círculo verde.\n\nNão há outras figuras, gráficos ou tabelas visíveis.",
+        "pageStart": 4,
+        "pageEnd": 4,
+        "pages": [
+          4
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "c0e415c2-242f-4a73-b840-180387b25fc8"
+        ]
+      },
+      {
+        "chunkId": "6907a970-94b3-4ab8-bba3-66743ef96297",
+        "documentId": "06fdb700-1039-4214-b856-170e75c17338",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 2,
+        "blockType": "text",
+        "similarity": 0.578733147268115,
+        "lexicalScore": 0,
+        "fusedScore": 0.178733147268115,
+        "content": "Química e Engenharia Química - Ácidos e Bases\n563) O suco de uva pode ser usado como um indicador natural do pH de uma solução. Isso se dá por conta de uma substância natural chamada antocianina, presente nas uvas, que ao reagir com o meio forma produtos de cores distintas, seguindo um mesmo padrão de cores. Dessa forma, em meio ácido o suco de uva, ficará vermelho- rosa, enquanto em meio básico ficará verde-escuro.\nSe fizermos um teste com suco de uva, será observada uma coloração verde-escuro\n- no limpa-forno.\n- b) no suco de limão.\n- c) na água destilada.\n- d) no vinagre de maçã.\n- e) na solução de bateria automotiva.\nFGV - Tec Ge (CPRM)/CPRM/Hidrologia/2025\nuis  noa ns os   ood  sa - Lud   oso\n472) O parâmetro físico-químico que mede a concentração de íons livres na água, indicando a capacidade de conduzir corrente elétrica, é\n- a) a alcalinidade.\n- b) o pH.\n- a condutividade elétrica.\n- d) o oxigênio dissolvido.\n- e) a turbidez.",
+        "pageStart": 4,
+        "pageEnd": 4,
+        "pages": [
+          4
+        ],
+        "headings": [
+          "FGV - TDTND/AMAZUL/Operador de Central Termonuclear/2026"
+        ],
+        "engine": "docling",
+        "visualAssetIds": [],
+        "sectionPath": [
+          "FGV - TDTND/AMAZUL/Operador de Central Termonuclear/2026"
+        ],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null
+      }
+    ],
+    "contextBlocks": []
+  }
+}

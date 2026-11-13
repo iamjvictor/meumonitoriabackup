@@ -1,0 +1,469 @@
+{
+  "inputPath": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/iff-provas-workspace/iff-selecao-2010-pages-1-30.pdf",
+  "generatedAt": "2026-11-06T19:13:19.001Z",
+  "textSource": "pdfjs",
+  "pagesNeedingOcr": [
+    30
+  ],
+  "summary": {
+    "pages": 30,
+    "blocks": 6,
+    "questionBlocks": 0,
+    "questionBlocksWithChunks": 0,
+    "questionBlocksWithoutChunks": 0,
+    "questionBlocksWithoutExactCoverage": 0,
+    "deterministicCandidates": 0,
+    "questionBlocksWithoutCandidate": 0,
+    "falseQuestionStarts": 0,
+    "expectedCount": 40,
+    "expectedNumbers": [],
+    "missingNumbers": [],
+    "missingCandidateNumbers": [],
+    "chunks": 9
+  },
+  "pages": [
+    {
+      "page": 1,
+      "chars": 170,
+      "normalizedChars": 170,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 2,
+      "chars": 1685,
+      "normalizedChars": 1591,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 3,
+      "chars": 2377,
+      "normalizedChars": 2283,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 4,
+      "chars": 1724,
+      "normalizedChars": 1628,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 5,
+      "chars": 1502,
+      "normalizedChars": 1408,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 6,
+      "chars": 1357,
+      "normalizedChars": 1261,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 7,
+      "chars": 1641,
+      "normalizedChars": 1547,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 8,
+      "chars": 970,
+      "normalizedChars": 876,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 9,
+      "chars": 1694,
+      "normalizedChars": 1550,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 10,
+      "chars": 1706,
+      "normalizedChars": 1588,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 11,
+      "chars": 735,
+      "normalizedChars": 641,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 12,
+      "chars": 1071,
+      "normalizedChars": 977,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 13,
+      "chars": 733,
+      "normalizedChars": 639,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 14,
+      "chars": 296,
+      "normalizedChars": 202,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 15,
+      "chars": 629,
+      "normalizedChars": 535,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 16,
+      "chars": 821,
+      "normalizedChars": 727,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 17,
+      "chars": 1584,
+      "normalizedChars": 1490,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 18,
+      "chars": 2117,
+      "normalizedChars": 2023,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 19,
+      "chars": 1632,
+      "normalizedChars": 1538,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 20,
+      "chars": 1175,
+      "normalizedChars": 1081,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 21,
+      "chars": 1136,
+      "normalizedChars": 1042,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 22,
+      "chars": 2420,
+      "normalizedChars": 2322,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 23,
+      "chars": 1593,
+      "normalizedChars": 1499,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 24,
+      "chars": 911,
+      "normalizedChars": 817,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 25,
+      "chars": 1773,
+      "normalizedChars": 1679,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 26,
+      "chars": 1862,
+      "normalizedChars": 1766,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 27,
+      "chars": 1066,
+      "normalizedChars": 972,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 28,
+      "chars": 346,
+      "normalizedChars": 250,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 29,
+      "chars": 315,
+      "normalizedChars": 219,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 30,
+      "chars": 72,
+      "normalizedChars": 0,
+      "columns": 1,
+      "hasImages": true
+    }
+  ],
+  "questionBlocks": [],
+  "candidates": [],
+  "candidateReadiness": [],
+  "otherBlocks": [
+    {
+      "blockIndex": 0,
+      "type": "THEORY",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 1,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Provas de Processos Seletivos do IFF entre 2010 e 2023\nProjeto de Extensão IFF SJB de Portas Abertas\nCoordenadores: Gláucio José Pereira da Silva e Edson Ribeiro Ferreira",
+      "chars": 170,
+      "tokens": 52,
+      "blockSkipReason": "TOO_SHORT",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 1,
+      "type": "SECTION",
+      "questionNumber": null,
+      "pageStart": 2,
+      "pageEnd": 2,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "INSTRUÇÕES",
+      "chars": 10,
+      "tokens": 3,
+      "blockSkipReason": "UNSUPPORTED_BLOCK_TYPE",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 2,
+      "type": "THEORY",
+      "questionNumber": null,
+      "pageStart": 2,
+      "pageEnd": 2,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Caro Candidato,\nAo receber do fiscal o cartão de respostas personalizado e um caderno\nde questões, observe o seguinte:\n1- O caderno das questões deverá estar numerado seqüencialmente e trazer 40\nquestões para serem respondidas. Caso haja alguma falha nesse caderno,\ncomunique-se imediatamente com o fiscal que lhe dará outro.\n2- A distribuição das questões ocorre da seguinte maneira:\nLíngua Portuguesa 10 questões\nMatemática 08 questões\nFísica, Química e Biologia 12 questões\nGeografia e História 10 questões\n3- A forma correta de marcar as respostas no cartão é cobrir, completa e\nfortemente, com caneta PRETA , o espaço referente à letra a ser assinalada,\nconforme o exemplo abaixo:\nFORMA CORRETA: A C D E\nA leitora ótica não registrará respostas com marcação pouco nítida ou com\nmais de uma alternativa marcada. NÃO RASURE.\n4- O tempo disponível para esta prova, incluindo o preenchimento do cartão de",
+      "chars": 905,
+      "tokens": 219,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 905,
+          "tokens": 219
+        }
+      ],
+      "chunkIndexes": [
+        0
+      ],
+      "chunkCoverageExact": true
+    },
+    {
+      "blockIndex": 3,
+      "type": "ANSWER_KEY",
+      "questionNumber": null,
+      "pageStart": 2,
+      "pageEnd": 28,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "respostas, é de 3 horas.\n5- Reserve os 20 minutos finais para preencher o cartão de respostas.\n6- Caso deseje levar sua prova, só poderá fazê-lo a partir do término das duas\nprimeiras horas de prova.\n7- As provas estarão à disposição dos candidatos, na Portaria Principal do\ncampus Campos-Centro, a partir das 15 horas do dia 21/12/2009.\n8- O gabarito será afixado na Portaria Principal do campus Campos-Centro e\ndisponibilizado no site http://www.iff.edu.br, duas horas após o encerramento da\nprova.\n9- Divulgação do resultado: 14/01/2010. Na Portaria Principal do campus\nCampos-Centro, via internet pelo endereço http://www.iff.edu.br e pela imprensa\nlocal.\nSELEÇÃO 2010 1\nJornada dupla\nLauro Neto\nSer mãe é padecer não só no paraíso, mas também na escola. A pesquisa\ninédita “O aluno do ensino médio público estadual — percepções, hábitos e\nexpectativas”, encomendada pelo governo do estado ao Instituto Mapear, mostra que\n12% dos cerca de 1,5 milhão dos estudantes têm filho. Entre as meninas, a maioria\nmenor de 20 anos, 15% já são mães, percentual maior do que os 11,2% das jovens\nfluminenses entre 15 e 19 anos que declararam ter filho na última Pesquisa Nacional\npor Amostra de Domicílios (Pnad 2008). Dados do Instituto Mapear revelam que, entre\nos alunos que têm filho, 76% já interromperam os estudos, contra apenas 12% dos\nque não são pais.\n— Isso leva a crer que a gravidez é um dos principais fatores de abandono\nescolar. É provável que haja essa incidência pela necessidade de trabalhar para\nconseguir recursos. Na pesquisa qualitativa, a gravidez aparece claramente como um\ndos motivos para interromper os estudos. Em todos os casos, havia a percepção de\nque é importante voltar à escola. Uma das meninas entrevistadas disse que, se\npudesse voltar atrás, não teria filho e levaria o estudo mais a sério — conta o\nantropólogo Cláudio Gama, diretor do Instituto Mapear.\nPaloma Aguiar, que completará 18 anos na próxima terça-feira, está sentindo\nisso na pele. Há dois meses, a jovem deu à luz a Emanuel e, assim, não pôde voltar\nàs aulas em agosto, no Colégio Estadual Ignacio Azevedo do Amaral, no Jardim\nBotânico, onde cursava o 3º. ano do ensino médio.\n[...]\nQuando soube que a Megazine estava fazendo uma reportagem sobre\ngravidez na adolescência, Ingrid Amorim, de 18 anos, mandou o seguinte scrap para o\nOrkut da revista: “acho muito legal focar o outro lado sobre gravidez na adolescência,\nporque normalmente só mostram o lado carente, das meninas de escola pública”.\nIngrid mora numa cobertura no Méier e estudou a vida inteira em colégio particular até\ndar à luz a Kauã, em fevereiro de 2008.\n— Precisava amamentar e não tinha quem ficasse com ele. Esperei seis meses\ne comecei o supletivo. Estudo em casa com as apostilas e depois vou ao curso fazer\nas provas. Mas só consigo estudar quando o Kauã está dormindo, porque ele é muito\nlevado — diz Ingrid.\n[...]\nRevista Megazine in Jornal O Globo , 22 de setembro de 2009.\nSELEÇÃO 2010 2\nQUESTÃO 1\nO texto “Jornada dupla” aborda um tema presente na vida da mulher desde que ela foi\ninserida no mundo do trabalho, mas que nos dias atuais faz parte do universo feminino\ncada vez mais cedo.\nAntes a mulher precisava administrar o trabalho e a maternidade; hoje, são jovens\nadolescentes que necessitam articular o estudo e o fato de serem mães tão cedo.\nSobre a frase de abertura “Ser mãe é padecer não só no paraíso, mas também na\nescola.”, só NÃO é possível dizer que\na) parafraseia um ditado popular.\nb) nela ocorre a elipse (omissão) de verbo.\nc) entre as orações há ideia de adição.\nd) a maternidade se traduz apenas por uma visão positiva de paraíso.\ne) sugere ser a gravidez precoce um complicador na vida escolar dos jovens.\nQUESTÃO 2\nO texto da revista Megazine , publicada toda terça-feira pelo jornal O Globo , suscita\nideias a respeito do tema nele abordado. Em qual dos itens se traduz\nINCONVENIENTEMENTE algumas dessas ideias?\na) O título “Jornada dupla” diz respeito ao desempenho das funções que as meninasmães assumem a partir da gravidez.\nb) Ingrid Amorim, jovem que sempre estudou em escolas particulares, não teve sua\nrotina alterada com o nascimento do filho.\nc) O caso de Paloma Aguiar serve para exemplificar a pesquisa “O aluno do ensino\nmédio público estadual – percepções, hábitos e expectativas” realizada pelo\nInstituto Mapear.\nd) De acordo com a pesquisa do Instituto Mapear, não é a gravidez a única causa\nque leva o jovem a abandonar a escola.\ne) A gravidez na adolescência não é uma questão que envolve apenas estudantes\ndas classes menos favorecidas e de escolas públicas.\nSELEÇÃO 2010 3\nQUESTÃO 3\nO sentido de um texto pode ser também melhor percebido quando se faz uso da\nanálise morfossintática, em que se estuda a classe gramatical da palavra e a função\ndo termo na oração.\nSobre esse assunto, marque o comentário totalmente correto.\na) Em “Dados do Instituto Mapear revelam que, entre os alunos que têm filho, 76% já\ninterromperam os estudos, contra apenas 12% dos que não são pais.”, todos os\nverbos se flexionaram no plural e são transitivos diretos.\nb) O pronome demonstrativo do período “— Isso leva a crer que a gravidez é um dos\nprincipais fatores de abandono escolar.” é o sujeito da primeira oração.\nc) Por possuir preposição, o termo destacado exerce função de objeto indireto em “É\nprovável que haja essa incidência pela necessidade de trabalhar para conseguir\nrecursos.”\nd) No trecho “é importante voltar à escola.”, a expressão sublinhada é composta de\npreposição, artigo e substantivo e funciona como adjunto adnominal.\ne) Como adjetivo, “levado” caracteriza o sujeito em “ele é muito levado”; sendo,\nportanto, o objeto direto da oração.\nQUESTÃO 4\nNa vida sempre se pode escolher.\nConsidere as diferentes alternativas\nque existem, escolha e decida. O Dia\nMundial da Prevenção da gravidez na\nAdolescência 2008, incentiva o\nconhecimento sobre contracepção\nresponsável e moderna.\nhttp://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg . Acessado em 28/09/2009.\nSELEÇÃO 2010 4\nInstituiu-se o dia 26 de setembro como o Dia Mundial da Prevenção da Gravidez na\nAdolescência. O texto que você acabou de ler trata desse tema.\nNos itens abaixo, há um que traz informações NÃO pertinentes a esse texto. Marqueo.\na) O pronome possessivo que aparece repetido no lema da campanha objetiva\natribuir ao interlocutor a responsabilidade sobre os próprios erros e acertos.\nb) O uso de verbos no imperativo como “escolha” e “decida” busca uma aproximação\nmaior com o leitor.\nc) Haveria alteração de sentido se a primeira frase do texto fosse: Na vida, pode-se\nsempre escolher.\nd) A campanha de 2008 estimula a busca por informações para que se possa decidir\ncom consciência.\ne) O locutor do texto fez uso de duas linguagens: a verbal e a não-verbal.\nQUESTÃO 5\nEsta semana está cheia de datas alertas... Hoje, dia 26 de setembro, mais de 70\npaíses da Europa, América Latina e Ásia participam do dia Mundial da Prevenção da\nGravidez na Adolescência. A data é promovida por organizações não governamentais\ne sociedades médicas internacionais com apoio de marcas farmacêuticas. Este ano o\ntema é \"Sua Vida, Sua Voz\".\n[...]\n(Isis Nóbile Diniz)\nhttp://scienceblogs.com.br/xisxis/2009/09/dica_para_prevencao_de_gravide.php.Acessado em 28/09/2009.\nSELEÇÃO 2010 5\nConsiderando esse material retirado da internet, que item melhor reproduz as\ninformações nele contidas?\na) Apenas na semana de 26 de setembro existem datas apropriadas para a\nrealização de campanhas e alerta à população.\nb) No último dia 26 de setembro, houve, em centenas de países, manifestações\nsobre a gravidez na adolescência.\nc) Em todos os anos, o lema da campanha de prevenção da gravidez na\nadolescência é “Sua Vida, Sua Voz”.\nd) A imagem da campanha de prevenção da gravidez na adolescência deste ano\nsugere o relacionamento afetivo entre os adolescentes.\ne) Apenas a classe médica tem se preocupado com a gravidez na adolescência já\nque o assunto se relaciona diretamente com a saúde.\nQUESTÃO 6\nSeguem algumas afirmativas que relacionam o fragmento escrito por Isis Nóbile Diniz\nao texto da campanha de 2008. Indique a correta.\na) O tema da campanha de 2009 difere do de 2008 em apenas uma palavra, mas nos\ndois a mensagem é a mesma: você tem o poder sobre sua vida.\nb) Nota-se, nas duas campanhas, a participação efetiva de todos os países do\nmundo.\nc) Ao apresentar o dia 26 de setembro como uma data alerta, Isis Nóbile sugere que\nsó o conhecimento pode evitar uma gravidez indesejada e irresponsável como\ntambém é dito na campanha de 2008.\nd) Os dois textos empregam verbos no presente, no passado e no futuro para marcar\nque o problema da gravidez precoce faz parte da vida de toda a sociedade.\ne) Em ambos os textos, prevalece a intenção de informar ao interlocutor a\nimportância de assumir uma gravidez indesejada.\nSELEÇÃO 2010 6\nQUESTÃO 7\nhttp://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg. Acessado em 28/09/2009.\nLer gráficos e tabelas é importante no mundo atual, no qual a associação do verbal\ncom o não-verbal é cada vez mais frequente. Considerando a ilustração acima,\nassinale a afirmativa INCORRETA .\na) É possível perceber, no período apresentado no gráfico, que o número de partos\nde adolescentes tem diminuído em todo o país.\nb) Na região mais pobre do país, a tabela mostra que o percentual de partos, ainda\nque em queda, é o maior do Brasil.\nc) A região mais populosa também apresenta um percentual elevado de partos de\nmulheres ainda bem jovens.\nd) Ao analisar os dados, nota-se que a menor redução ocorreu na região de maior\nextensão do país.\ne) A redução dos números em 2008 leva à conclusão de que não há mais\nnecessidade de campanhas como “SUA VIDA SUA DECISÃO”.\nSELEÇÃO 2010 7\nQUESTÃO 8\nDESCUIDO\nSou fruto de um descuido\nAto feito impensado\nMas que a partir de agora\nTerá que ser\nTratado com cuidado\nGostaria de ter\nSido planejado\nMas por descuido\nVim sem ser convidado\nNão sei se vou ter nome\nOu se vou ser abortado\nMas no fundo eu gostaria\nDe ser tratado com carinho\nAmor e cuidado\nBruna e Paloma T C24\nhttp://websmed.portoalegre.rs.gov.br/escolas/montecristo/jv/jv6/poesia.html.\nEsse texto faz parte de um trabalho de produção textual desenvolvido pela professora\nMárcia Regina Ribeiro com seus alunos. Nele, os textos tinham como tema “Gravidez\nna adolescência”, porém apresentavam locutores diferentes: ora era o bebê que\nfalava, ora era a adolescente grávida, ora um rapaz.\nApenas uma das afirmações que seguem é INDEVIDA em relação ao texto. Assinalea.\na) Intitulado “Descuido”, é um poema estruturado em 14 versos e uma estrofe.\nb) O destino do pequeno locutor do texto está revelado, embora ele afirme que não\nsaiba.\nc) O bebê revela ter consciência de sua condição de intruso na vida do casal.\nd) A fala do bebê evidencia o seu desconforto por ser a consequência, mesmo que\ninvoluntária, de um ato irrefletido.\ne) O desejo do bebê é viver como qualquer criança que tenha sido desejada por seus\npais.\nQUESTÃO 9\n“Na América Latina, 50% dos jovens com menos de 17 anos têm vida sexual ativa.\nDados do Ministério da Saúde mostram que no Brasil pelo menos uma em cada cinco\nmulheres que dão à luz tem menos de 19 anos.“\nhttp://www.agenciabrasil.gov.br/noticias/2009/09/24/materia.2009-09-24.5055875275/view.\nSELEÇÃO 2010 8\nhttp://www.cambito.com.br/tiras/default.asp?tirinha=20031019.\nComo já deve ter dado para notar, as questões de Língua Portuguesa giram em torno\nde um mesmo tema. A respeito da tirinha do Cambito e sua turma e do fragmento da\nAgência Brasil, que também abordam esse tema, é possível afirmar que\na) metade das mulheres brasileiras tem 19 anos e engravida.\nb) todos os jovens latino-americanos iniciam sua vida sexual antes dos dezessete\nanos.\nc) o Ministério da Saúde, por meio de suas pesquisas, revela que um quinto das\nmulheres brasileiras e latino-americanas engravida devido à vida sexual ativa.\nd) a personagem, segundo a última fala da tirinha, espera que a amiga não esteja\ngrávida.\ne) houve, por parte de ambas as personagens da tirinha, preocupação com o uso de\npreservativo.\nQUESTÃO 10\nAinda com referência aos textos da questão anterior, são feitas considerações\ngramaticais. Marque a INADEQUADA .\na) As vírgulas foram empregadas pelo mesmo motivo em “Ontem, peguei o mais gato\ndo baile!” e “Agora, tô com uma ressaca sinistra!”.\nb) Ao comparar, de forma implícita, o rapaz com quem ficou a um gato, a\npersonagem da turma do Cambito fez uso de metáfora.\nc) Completando a frase do segundo quadrinho da tirinha, poderia haver substituição\ndas reticências por “de usar a camisinha.”\nd) Os adjetivos “doidona” e “sinistra” encontram-se no singular, pois caracterizam o\nmesmo substantivo; concordando, desta forma, com ele.\ne) No fragmento da Agência Brasil, aparecem as formas verbais “têm” e “tem” que\nconcordam com seus respectivos sujeitos no plural e no singular.\nSELEÇÃO 2010 9\nQUESTÃO 11\n 4 x + 2 y = 2\nSendo P(x,y) a solução do sistema  , o valor de x+y é:\n 2 x − y = 0\na) 0\nb)\nc)\nd)\ne)\nQUESTÃO 12\nCada mililitro de sangue humano contém, em média, 5.10 glóbulos vermelhos. Um ser\nhumano adulto tem, em média, 5,5 litros de sangue. De acordo com esses dados, o\nnúmero médio de glóbulos vermelhos de um adulto é:\na) 2,75 x 10\nb) 2,75 x 10\nc) 27,5 x 10\nd) 27,5 x 10\ne) 2,75 x 10\nQUESTÃO 13\nO polígono ABCD é um quadrado de lado 8 cm. Sabendo-se que G é ponto médio de\n2 2\nBC , Q 1 é um quadrado de área 4 cm e R 1 é um retângulo de área 8 cm , qual a\nrazão entre AB e IJ ?\nSELEÇÃO 2010 10\nA F B\n4 2\na)\n5 Q 1\n5 2 I\nE\nb)\nJ\n4 5 G\nc)\n5 5 R 1\nd) R 2\ne) 2 5\nD H C\nQUESTÃO 14\nEm ciências atuariais, uma tábua de vida é uma tabela, construída a partir de censos\npopulacionais, que mostra a probabilidade de morte de um indivíduo em uma certa\nfaixa etária. Tábuas de vida são usadas em planos de previdência e seguros de vida.\nA tábua da vida abaixo indica, por exemplo, que um indivíduo entre um ano (inclusive)\ne 2 anos (exclusive) tem 0,05% de chance de morrer.\nFaixa etária\n[ [0,1) [1,2) [2,3) [3,4) [4,5) [5,6) [6,7) [7,8) [8,9) [9,10)\nx , x + 1 )\nPropabilidade de\n0,69 0,05 0,03 0,03 0,02 0,02 0,02 0,01 0,01 0,01\nmorrer em %\nFonte: National Vital Statístics Reports, vol.54, nº 14, 2006 .\nSupondo-se que existe um grupo de 1.000.000 de pessoas que acabaram de\ncompletar 2 anos, segundo esta tabela, o número de pessoas deste grupo que farão\naniversário de 4 anos é, aproximadamente, igual a:\na) 997.000\nb) 999.500\nc) 999.700\nd) 999.950\ne) 999.970\nSELEÇÃO 2010 11\nQUESTÃO 15\n{ ( ) 2 } B = { x ∈ IN * / 4 − 3 x ≥ − 6 }\nConsidere os conjuntos A = x ∈ IR / x − 2 = 9 e .\nSe n indica o número de elementos do conjunto A ∪ B , então o valor de n é:\na) 3\nb) 4\nc) 5\nd) 6\ne) ∞\nQUESTÃO 16\nObserve o demonstrativo do consumo de energia elétrica da residência do Sr.\nEconômico.\nConsidere que o consumo médio, de janeiro/2009 a maio/2009, foi igual ao que\nocorreu de junho/2009 a setembro/2009.\nSabendo que o valor cobrado por cada Kwh, já incluídos todos os impostos e\nencargos, é de R$ 0,52, é correto afirmar que a conta de luz do mês de setembro/2009\nque o Sr. Econômico pagou foi, em reais:\nSELEÇÃO 2010 12\na) 52,00\nb) 57,20\nc) 62,40\nd) 72,80\ne) mais de 72,80\nQUESTÃO 17\nNa figura, r//s.\n0 ˆ 0\nSe â = 4x + 31 e c = 3x + 59 30’ , então a medida do ângulo b é:\na) 35°\nb) 40°\nc) 45°\nd) 50°\ne) 55°\nSELEÇÃO 2010 13\nQUESTÃO 18\nUm terreno tem a forma de um trapézio retângulo conforme a figura abaixo.\n3 1 2\nDado que sen 60° = , cos 60° = e tg 60° = 3 , calcule, em m a área do\n2 2\nterreno.\na) 68 + 6 3\nb) 126\nc) 168\nd) 168 3\ne) 336 3\nQUESTÃO 19\nUma pequena esfera de isopor, aluminizada, suspensa por um fio \"nylon\", é atraída\npor um pente plástico negativamente carregado. Pode-se afirmar que a carga elétrica\nda esfera é:\na) apenas negativa;\nb) apenas nula;\nc) apenas positiva;\nd) negativa, ou então nula;\ne) positiva, ou então nula.\nSELEÇÃO 2010 14\nQUESTÃO 20\nConsidere as afirmações a seguir:\nI. O som se propaga no ar com uma velocidade de aproximadamente\n340m/s.\nII. As velocidades de propagação do som no ar e no vácuo são\naproximadamente iguais.\nIII. O eco é devido à reflexão do som.\nQuais delas são corretas?\na) Apenas I\nb) Apenas I e II\nc) Apenas I e III\nd) Apenas II e III\ne) I, II e III\nQUESTÃO 21\nUma bola de borracha é rolada contra a parede de uma sala retangular, atingindo o\nponto médio de cada lado, descrevendo a trajetória indicada pelas setas abaixo.\nSabendo que a bola manteve uma velocidade constante e que demorou 10s para\nvoltar ao ponto de origem, determine a sua velocidade média.\na) 1,8km/h\nb) 3,6km/h\nc) 5,4km/h\nd) 7,2km/h\ne) 9,0km/h\nSELEÇÃO 2010 15\nQUESTÃO 22\nA Ferrari F430 Scuderia que chega agora ao Brasil, vem com 20 cavalos a mais de\npotência em relação ao modelo F430, graças a redução de sua massa para 1.250kg,\ncerca de 200kg a menos que o modelo antecessor. Com um motor v8 de 4,3 litros e\npotência de 510 cavalos, alcança uma velocidade final de 320km/h. É este propulsor\nque faz esta máquina arrancar de 0 a 100km/h em apenas 3,5s.\nCom base nos dados do texto anterior responda:\nQual a distância percorrida pelo carro, a partir do repouso, para que este atinja a\nvelocidade de 100km/h? (Para efeito de cálculo admita que 100km/h = 28m/s).\na) 45m\nb) 49m\nc) 52m\nd) 56m\ne) 62m\nQUESTÃO 23\nNa filtração das águas da piscina utilizam-se filtros que contêm areia como meio\nfiltrante. A areia utilizada para esse fim deve ter granulometria apropriada, além de ser\nisenta de matéria orgânica. Para se chegar a esses critérios de qualidade, a areia\ndeve ser previamente peneirada e posteriormente queimada em fornos rotatórios. Os\nprocessos de obtenção dessa qualidade da areia são respectivamente:\na) físico e químico.\nb) químico e físico.\nc) químico e químico.\nd) físico e físico.\ne) nuclear e físico.\nQUESTÃO 24\nQual dos seguintes procedimentos é o mais indicado quando se quer distinguir um\ncopo contendo água destilada de outro que contenha uma solução de água\naçucarada, sem experimentar o gosto?\na) Filtrar os líquidos.\nb) Medir o volume.\nc) Determinar a densidade.\nd) Usar um microscópio.\ne) Decantar os líquidos.\nSELEÇÃO 2010 16\nQUESTÃO 25\nGasolina, gelo e grafite são, respectivamente, exemplos de:\na) mistura, substância simples e substância composta.\nb) mistura, substância composta e substância simples.\nc) substância composta, mistura e substância simples.\nd) substância composta, substância simples e mistura.\ne) substância simples, mistura e substância composta .\nQUESTÃO 26\nUm determinado elemento pertence ao primeiro grupo ou família da tabela periódica. A\nrespeito das suas propriedades, é INCORRETO afirmar que:\na) encontra-se no estado sólido à temperatura ambiente.\nb) trata-se de um metal alcalino.\nc) forma cátion monovalente nos sais correspondentes.\nd) é um elemento muito reativo em água.\ne) forma compostos covalentes com não-metais.\nQUESTÃO 27\nA filtração caseira da água é um procedimento eficiente para evitar a transmissão de\nvárias doenças. Assinale a opção que contenha somente doenças que terão sua\nincidência reduzida com a adoção dessa medida.\na) Dengue, hepatite A, giardíase, botulismo\nb) Malária, giardíase, cólera, disenteria bacilar\nc) Giardíase, cólera, ascaridíase, amebíase\nd) Dengue, giardíase, cólera, amebíase.\ne) Cólera, amebíase, malária, filariose\nQUESTÃO 28\n“A mata atlântica é hoje uma das florestas tropicais mais devastadas do planeta,\nreduzida a algumas poucas áreas remanescentes, em geral descontínuas. Esse\nprocesso de fragmentação pode ser a causa do aumento da densidade de formigas\nconhecidas como saúvas, o que ameaçaria ainda mais esse bioma já fragilizado. Com\na fragmentação, há um predomínio de plantas de luz ou pioneiras, em detrimento das\nplantas de sombra, próprias de florestas maduras e conservadas. As plantas pioneiras\nnão possuem compostos de defesa contra organismos que se alimentam de suas\nfolhas. Com mais plantas sem defesas nas proximidades dos ninhos, as formigas\ngastam menos energia para buscar seus alimentos e mais energia para a produção de\nrainhas e consequentemente um maior número de colônias adultas.”\nAdaptado de Ciência Hoje. Dezembro de 2008. p. 60.\nSELEÇÃO 2010 17\nBaseado no texto e nos seus conhecimentos, analise as afirmativas a seguir e marque\na alternativa correta.\nI. Podemos verificar, de acordo com o texto acima, que o número de\nsaúvas reduziu devido a escassez de alimentos provocada pelo\ndesmatamento da mata atlântica.\nII. As formigas mantêm relação harmoniosa denominada sociedade. A\nsociedade das formigas é estruturada em castas (rainha, macho,\noperária, soldado), sendo cada uma responsável por um determinado\ntrabalho ou função.\nIII. A mata atlântica é um bioma brasileiro que se caracteriza por sua\nvegetação densa, com chuvas abundantes, presença de palmeiras e ipês.\na) Todas as afirmativas são corretas.\nb) Apenas as afirmativas I e II estão corretas.\nc) Apenas as afirmativas I e III estão corretas.\nd) Apenas as afirmativas II e III estão corretas.\ne) Todas as afirmativas são falsas.\nQUESTÃO 29\nSobre os tecidos animais é INCORRETO afirmar:\na) O tecido muscular é formado por fibras musculares, células ricas em filamentos\nprotéicos;\nb) Os tecidos epiteliais apresentam células justapostas e funções de revestimento,\nsecreção e absorção.\nc) Os tecidos conjuntivos, que apresentam pouca quantidade de material extracelular,\npodem exercer função de sustentação, defesa, nutrição e preenchimento de\nespaços entre órgãos.\nd) O tecido nervoso é especializado na recepção e transmissão de impulsos elétricos.\ne) O sangue é um tipo de tecido conjuntivo constituído pelos elementos figurados\n(hemácias, leucócitos e plaquetas) e plasma (substância intercelular líquida).\nSELEÇÃO 2010 18\nQUESTÃO 30\n“Eu trago bananas prá vender\nBananas de todas qualidades\nQuem vai querer\nOlha banana Nanica\nOlha banana Maçã\nOlha banana Ouro\nOlha banana Prata\nOlha a banana da Terra\nFigo São Tomé\nOlha a banana d’Água.”\n(O Vendedor de Bananas -Jorge Ben)\nNas feiras e supermercados geralmente encontramos bananas sem sementes. Uma\ndas espécies de bananeiras que não produz sementes é a Musa sapientum\n(variedades ouro, prata, maçã, figo, São Tomé). No entanto, existem bananeiras\nsilvestres cujo fruto apresenta sementes duras, que ocupam boa parte da massa\ncomestível da banana. É o caso da espécie Musa balbisiana .\nBanana sem semente Banana com semente\nCom referência aos processos reprodutivos das duas espécies citadas no enunciado\npode-se afirmar corretamente que:\na) Somente a espécie Musa balbisiana se reproduz por processo sexuado;\nb) As duas espécies reproduzem-se por processo sexuado;\nc) As duas espécies não se reproduzem por processo sexuado;\nd) Na espécie Musa sapientum ocorre o desenvolvimento do embrião;\ne) A espécie Musa balbisiana não forma zigoto;\nSELEÇÃO 2010 19\nQUESTÃO 31\nO Brasil encontra-se dividido em cinco grandes regiões: sul, sudeste, centro-oeste,\nnorte e nordeste. Essa divisão oficial foi realizada pelo IBGE (Instituto Brasileiro de\nGeografia e Estatística) e é com base nessas regiões que boa parte das informações\ndo país é organizada. Com base no mapa abaixo e em seus conhecimentos sobre as\nregiões brasileiras, assinale a alternativa correta :\nFonte: IBGE\na) A grande concentração industrial brasileira está na região nordeste devido ao\nmaior número de estados que ela contém.\nb) A região centro-oeste é composta por três estados e pelo Distrito Federal, onde se\nencontra a capital do Brasil.\nc) A região sul caracteriza-se por sua ocupação recente, o que explica os\ninsatisfatórios índices de crescimento industrial.\nd) A região sudeste apresenta os maiores índices de mortalidade infantil e de\nanalfabetismo, sendo também considerada uma região fracamente desenvolvida.\ne) A região norte apresenta uma grande extensão territorial e também um grande\nnúmero populacional.\nSELEÇÃO 2010 20\nQUESTÃO 32\nLeia atentamente as manchetes abaixo:\n“Número de mortos por tsunami causado por terremoto passa de 100 na\nOceania Há mortos e feridos em Samoa Americana e em Samoa.”\nDisponível em: <http://g1.globo.com/Noticias/Mundo/0,,MUL1323397-5602,00.html>. Acessado em 30/09/2009.\n“Terremoto na Indonésia deixa ao menos 75 mortos.”\nDisponível em: <http://noticias.uol.com.br/ultnot/internacional/2009/09/30/ult1859u1560.jhtm>. Acessado em\n30/09/2009.\n“Vulcão Asama entra em erupção e deixa Japão em alerta - 02/02/2009.”\nOs fenômenos expostos acima estão relacionados ao(s):\na) processos externos devido aos inúmeros impactos provocados na crosta terrestre.\nb) elevação dos impactos ambientais provocados pelo aquecimento global.\nc) processos internos da Terra que provocam a movimentação das placas tectônicas.\nd) desgaste das rochas, que por estarem expostas acabam se desgastando.\ne) dinamismo existente na Terra, o que certamente tem uma relação direta com a\nredução repentina do número de habitantes do Planeta.\nQUESTÃO 33\nA escolha da cidade do Rio de Janeiro como sede das olimpíadas de 2016 é vista por\nmuitos como uma oportunidade de crescimento econômico, principalmente pelo\nturismo. Por outro lado, as enormes desigualdades sociais e territoriais existentes\ntanto na cidade do Rio de Janeiro quanto em outras metrópoles brasileiras geram\ncríticas quanto ao grande investimento que será feito para sediar os jogos mundiais,\nem detrimento a outras necessidades do país.\nIndique a alternativa que NÃO corresponde à realidade das grandes metrópoles\nbrasileiras:\na) São cidades que passaram por um rápido e desordenado crescimento, tornandose “inchadas” de pessoas e de problemas.\nb) A rápida urbanização faz com que cidades vizinhas à metrópole aumentem de\ntamanho e formem um só conjunto.\nc) Os escassos investimentos governamentais na área habitacional levaram à\nformação de precárias moradias.\nd) Há um grande número de mendigos, desempregados e subempregados vivendo\nnestas cidades.\ne) A falta de infraestrutura adequada e de saneamento básico não são problemas tão\npreocupantes nas metrópoles devido à presença de mão de obra qualificada para\nresolvê-los.\nSELEÇÃO 2010 21\nQUESTÃO 34\n“As fontes de energia são extremamente importantes nas atividades humanas, pois\noriginam combustíveis e eletricidade que servem para iluminar, movimentar máquinas,\ncaminhões entre outras aplicações.\nAs energias facilitam o trabalho do homem que em outras circunstâncias teria uma\ngrande dificuldade, utiliza-se a energia para levantar peso, apertar parafuso, mover\nveículos, ferver água, etc.”\nDisponível em: <http://www.mundoeducacao.com.br/geografia/fontes-energia-1.htm>. Acessado em 13/10/2009.\nSobre as fontes energéticas são feitas as seguintes afirmações.\nI. As termoelétricas que produzem energia a partir da queima em caldeira\nde carvão, óleo combustível ou gás natural, elevam a concentração de\npoluentes na atmosfera e por consequência acentuam o aquecimento\nglobal.\nII. As hidrelétricas apesar de serem vistas por alguns como “energia limpa”,\ngeram inúmeros impactos ambientais devido à construção das represas,\nque provocam inundações em imensas áreas de matas, destroem\nespécies vegetais, prejudicam os animais, e interferem na ocupação\nhumana.\nIII. A energia eólica, ou seja, aquela que é proveniente do vento, ocasiona\nalguns impactos ambientais, tais como: aumento da poluição sonora,\nvisual e atmosférica, sendo diretamente responsável pelo aquecimento\nglobal.\nIV. A energia solar é considerada uma fonte energética alternativa e\nrenovável.\nEstão corretas as alternativas:\na) I, III e IV.\nb) II e III.\nc) II, III e IV.\nd) I, II e IV.\ne) I, II, III e IV .\nSELEÇÃO 2010 22\nQUESTÃO 35\nObserve o mapa abaixo:\nAdaptado – Disponível em: <http://www.geografiaparatodos.com.br/index.php?pag=mapasm>. Acessado em\n13/10/2009 .\nUma das tendências do mundo atualmente é a articulação dos países em blocos\neconômicos, como os que estão expostos no mapa acima. Assinale a alternativa\nINCORRETA a respeito desse assunto.\na) A Comunidade para o Desenvolvimento da África Austral (SADC), localiza-se no\nterritório africano.\nb) O Nafta é uma zona de livre comércio formada por Canadá, Estados Unidos e\nMéxico.\nc) A União Européia possui uma moeda única, o euro, e tem como um dos seus\nmembros a Alemanha.\nd) O Mercosul tem como membros permanentes apenas países da América do Sul.\ne) Todos os blocos econômicos apresentam o mesmo nível de integração política,\nsocial, ambiental e econômica.\nSELEÇÃO 2010 23\nQUESTÃO 36\n“O Congresso de Viena foi realizado na capital austríaca, entre setembro de 1814 e\njunho de 1815, tendo como participantes dezenas de príncipes, reis, imperadores,\nchefes militares, diplomatas, dirigentes da igreja, nobres, tomados de alegria porque\nNapoleão Bonaparte, que passara a simbolizar a Revolução Francesa, estava exilado\nna Ilha de Elba”.\n(AQUINO; RONALDO. Fazendo a História : A Europa e as Américas nos séculos XVIII e XIX. Rio de Janeiro: Ao\nLivro Técnico, 1986)\nQuatro países foram os grandes beneficiários dos acordos que resultaram do\nCongresso de Viena; são eles:\na) Áustria, Alemanha, Rússia e Inglaterra.\nb) França, Espanha, Portugal e Prússia.\nc) Inglaterra, França, Prússia e Rússia.\nd) Portugal, Inglaterra, França e Rússia.\ne) Prússia, Inglaterra, Áustria e Rússia.\nQUESTÃO 37\nEm meados do século XIX, os Estados Unidos vivenciaram sua maior guerra civil: a\nGuerra de Secessão; sobre ela é correto afirmar:\na) os estados do Norte, predominantemente industrializados, eram contra uma\npolítica de livre comércio, enquanto os estados do Sul, agrícolas, eram contra uma\npolítica protecionista.\nb) com a vitória dos estados do Norte sobre os estados do Sul, a escravidão foi\nabolida e foi adotada uma política protecionista.\nc) os estados do Norte tiveram apoio da Inglaterra, já que a guerra era contra a\nFrança.\nd) os nortistas obtiveram alguns êxitos iniciais nessa guerra, mas, graças à\nsuperioridade populacional, industrial e financeira dos sulistas, terminaram\nderrotados.\ne) Abraham Lincoln, eleito presidente pelos sulistas, tentou evitar a guerra com o\nNorte, que era totalmente contrário à abolição da escravatura no país.\nSELEÇÃO 2010 24\nQUESTÃO 38\nNo que se refere ao uso da mão de obra no Brasil, pode-se afirmar que:\na) tanto na produção do café como do algodão, no século XX, utilizou-se,\nprincipalmente, mão de obra servil.\nb) tanto na produção do café do Oeste Paulista como da pecuária, no século XIX,\nutilizou-se, principalmente, mão de obra indígena.\nc) tanto na produção da cana de açúcar, no Nordeste, como do café, no Vale do\nParaíba, entre os séculos XVI e XIX, utilizou-se, principalmente, mão de obra\nescrava.\nd) tanto na produção da cana de açúcar, como na do algodão, no século XIX, utilizouse, principalmente, mão de obra indígena sob a forma de trabalho servil.\ne) desde a exploração do pau brasil, como na mineração e na produção industrial,\nutilizou-se, principalmente, mão de obra escrava.\nQUESTÃO 39\nNo final do século XIX e início do século XX, a expansão do capitalismo provocou\nimportantes transformações em todo o mundo. No Brasil, esse fenômeno foi\nresponsável pela abolição da escravatura e pela proclamação da República,\nacompanhadas por um processo de crescente modernização da economia. Por toda\nparte ocorreram reajustes sociais que forçaram a adaptação, transformando as antigas\nformas de convívio social. Foi nesse contexto que o regime republicano teve que\nenfrentar revoltas das populações marginalizadas. Afinal de contas, como seria\npossível se submeter aos poderes e obrigações de um Estado pouco interessado em\natender às demandas daqueles que devia representar? O banditismo social\nrepresentou um dos movimentos de manifestação contrários ao governo republicano,\nque destacou uma figura conhecida da História e do imaginário brasileiros, a saber:\na) Antônio Conselheiro;\nb) Padre Antônio Maria;\nc) Lampião;\nd) Padre Cícero;\ne) Luís Carlos Prestes\nSELEÇÃO 2010 25\nQUESTÃO 40\n\"Industrializar aceleradamente o país; transferir do exterior para o nosso território as\nbases do desenvolvimento autônomo; fazer da indústria manufatureira o centro\ndinâmico das atividades econômicas nacionais - isto resume o meu propósito, a minha\nopção\".\n(OLIVEIRA, Juscelino Kubitschek de. Por que construí Brasília . Rio de Janeiro: Bloch: 1975, p. 57).\nO trecho acima pode ser considerado o resumo do programa de governo de Juscelino\nKubitschek, caracterizado por:\na) ter como base de seu programa administrativo, o trinômio: saúde, estabilidade\nmonetária e habitação.\nb) reprimir as oposições, anulando os direitos democráticos e a liberdade de\nimprensa.\nc) reduzir aceleradamente a produção de bens de consumo duráveis, voltando-se\ntotalmente para a indústria de base.\nd) acelerar o desenvolvimento industrial, internacionalizar nossa economia, gerando,\ncontudo, endividamento e inflação.\ne) acentuar o nacionalismo econômico brasileiro.\nSELEÇÃO 2010 26\nENSINO MÉDIO/TÉCNICO CONCOMITANTE/INTEGRADO PROEJA",
+      "chars": 32664,
+      "tokens": 8992,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 4597,
+          "tokens": 1185
+        },
+        {
+          "reason": null,
+          "chars": 4582,
+          "tokens": 1198
+        },
+        {
+          "reason": null,
+          "chars": 4152,
+          "tokens": 1200
+        },
+        {
+          "reason": null,
+          "chars": 3202,
+          "tokens": 1200
+        },
+        {
+          "reason": null,
+          "chars": 4270,
+          "tokens": 1199
+        },
+        {
+          "reason": null,
+          "chars": 4781,
+          "tokens": 1200
+        },
+        {
+          "reason": null,
+          "chars": 4611,
+          "tokens": 1200
+        },
+        {
+          "reason": null,
+          "chars": 2781,
+          "tokens": 689
+        }
+      ],
+      "chunkIndexes": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 4,
+      "type": "ANSWER_KEY",
+      "questionNumber": null,
+      "pageStart": 28,
+      "pageEnd": 29,
+      "status": "NEEDS_REVIEW",
+      "incompleteReason": "ANSWER_KEY_CONTAINS_NON_ANSWER_CONTENT",
+      "content": "GABARITO\n1 D 21 D\n2 B 22 B\n3 B 23 A\n4 C 24 C\n5 D 25 B\n6 A 26 E\n7 E 27 C\n8 B 28 D\n9 D 29 C\n10 D 30 A\n11 D 31 B\n12 E 32 C\n13 C 33 E\n14 B 34 D\n15 C 35 E\n16 B 36 E\n17 A 37 B\n18 D 38 C\n19 E 39 C\n20 C 40 D\nTÉCNICO SUBSEQUENTE",
+      "chars": 219,
+      "tokens": 133,
+      "blockSkipReason": "INVALID_QUESTION",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    },
+    {
+      "blockIndex": 5,
+      "type": "ANSWER_KEY",
+      "questionNumber": null,
+      "pageStart": 29,
+      "pageEnd": 29,
+      "status": "NEEDS_REVIEW",
+      "incompleteReason": "ANSWER_KEY_CONTAINS_NON_ANSWER_CONTENT",
+      "content": "GABARITO\n1 E 21 E\n2 C 22 A\n3 E 23 B\n4 B 24 C\n5 C 25 B\n6 D 26 B\n7 C 27 A\n8 A 28 D\n9 E 29 C\n10 A 30 C\n11 B 31 D\n12 B 32 E\n13 A 33 A\n14 E 34 B\n15 B 35 E\n16 C 36 E\n17 B 37 B\n18 D 38 A\n19 A 39 C\n20 B 40 E",
+      "chars": 199,
+      "tokens": 124,
+      "blockSkipReason": "INVALID_QUESTION",
+      "chunkDecisions": [],
+      "chunkIndexes": [],
+      "chunkCoverageExact": false
+    }
+  ],
+  "chunks": [
+    {
+      "index": 0,
+      "blockIndex": 2,
+      "content": "Caro Candidato,\nAo receber do fiscal o cartão de respostas personalizado e um caderno\nde questões, observe o seguinte:\n1- O caderno das questões deverá estar numerado seqüencialmente e trazer 40\nquestões para serem respondidas. Caso haja alguma falha nesse caderno,\ncomunique-se imediatamente com o fiscal que lhe dará outro.\n2- A distribuição das questões ocorre da seguinte maneira:\nLíngua Portuguesa 10 questões\nMatemática 08 questões\nFísica, Química e Biologia 12 questões\nGeografia e História 10 questões\n3- A forma correta de marcar as respostas no cartão é cobrir, completa e\nfortemente, com caneta PRETA , o espaço referente à letra a ser assinalada,\nconforme o exemplo abaixo:\nFORMA CORRETA: A C D E\nA leitora ótica não registrará respostas com marcação pouco nítida ou com\nmais de uma alternativa marcada. NÃO RASURE.\n4- O tempo disponível para esta prova, incluindo o preenchimento do cartão de",
+      "tokens": 219,
+      "charStart": 0,
+      "charEnd": 905
+    },
+    {
+      "index": 1,
+      "blockIndex": 3,
+      "content": "respostas, é de 3 horas.\n5- Reserve os 20 minutos finais para preencher o cartão de respostas.\n6- Caso deseje levar sua prova, só poderá fazê-lo a partir do término das duas\nprimeiras horas de prova.\n7- As provas estarão à disposição dos candidatos, na Portaria Principal do\ncampus Campos-Centro, a partir das 15 horas do dia 21/12/2009.\n8- O gabarito será afixado na Portaria Principal do campus Campos-Centro e\ndisponibilizado no site http://www.iff.edu.br, duas horas após o encerramento da\nprova.\n9- Divulgação do resultado: 14/01/2010. Na Portaria Principal do campus\nCampos-Centro, via internet pelo endereço http://www.iff.edu.br e pela imprensa\nlocal.\nSELEÇÃO 2010 1\nJornada dupla\nLauro Neto\nSer mãe é padecer não só no paraíso, mas também na escola. A pesquisa\ninédita “O aluno do ensino médio público estadual — percepções, hábitos e\nexpectativas”, encomendada pelo governo do estado ao Instituto Mapear, mostra que\n12% dos cerca de 1,5 milhão dos estudantes têm filho. Entre as meninas, a maioria\nmenor de 20 anos, 15% já são mães, percentual maior do que os 11,2% das jovens\nfluminenses entre 15 e 19 anos que declararam ter filho na última Pesquisa Nacional\npor Amostra de Domicílios (Pnad 2008). Dados do Instituto Mapear revelam que, entre\nos alunos que têm filho, 76% já interromperam os estudos, contra apenas 12% dos\nque não são pais.\n— Isso leva a crer que a gravidez é um dos principais fatores de abandono\nescolar. É provável que haja essa incidência pela necessidade de trabalhar para\nconseguir recursos. Na pesquisa qualitativa, a gravidez aparece claramente como um\ndos motivos para interromper os estudos. Em todos os casos, havia a percepção de\nque é importante voltar à escola. Uma das meninas entrevistadas disse que, se\npudesse voltar atrás, não teria filho e levaria o estudo mais a sério — conta o\nantropólogo Cláudio Gama, diretor do Instituto Mapear.\nPaloma Aguiar, que completará 18 anos na próxima terça-feira, está sentindo\nisso na pele. Há dois meses, a jovem deu à luz a Emanuel e, assim, não pôde voltar\nàs aulas em agosto, no Colégio Estadual Ignacio Azevedo do Amaral, no Jardim\nBotânico, onde cursava o 3º. ano do ensino médio.\n[...]\nQuando soube que a Megazine estava fazendo uma reportagem sobre\ngravidez na adolescência, Ingrid Amorim, de 18 anos, mandou o seguinte scrap para o\nOrkut da revista: “acho muito legal focar o outro lado sobre gravidez na adolescência,\nporque normalmente só mostram o lado carente, das meninas de escola pública”.\nIngrid mora numa cobertura no Méier e estudou a vida inteira em colégio particular até\ndar à luz a Kauã, em fevereiro de 2008.\n— Precisava amamentar e não tinha quem ficasse com ele. Esperei seis meses\ne comecei o supletivo. Estudo em casa com as apostilas e depois vou ao curso fazer\nas provas. Mas só consigo estudar quando o Kauã está dormindo, porque ele é muito\nlevado — diz Ingrid.\n[...]\nRevista Megazine in Jornal O Globo , 22 de setembro de 2009.\nSELEÇÃO 2010 2\nQUESTÃO 1\nO texto “Jornada dupla” aborda um tema presente na vida da mulher desde que ela foi\ninserida no mundo do trabalho, mas que nos dias atuais faz parte do universo feminino\ncada vez mais cedo.\nAntes a mulher precisava administrar o trabalho e a maternidade; hoje, são jovens\nadolescentes que necessitam articular o estudo e o fato de serem mães tão cedo.\nSobre a frase de abertura “Ser mãe é padecer não só no paraíso, mas também na\nescola.”, só NÃO é possível dizer que\na) parafraseia um ditado popular.\nb) nela ocorre a elipse (omissão) de verbo.\nc) entre as orações há ideia de adição.\nd) a maternidade se traduz apenas por uma visão positiva de paraíso.\ne) sugere ser a gravidez precoce um complicador na vida escolar dos jovens.\nQUESTÃO 2\nO texto da revista Megazine , publicada toda terça-feira pelo jornal O Globo , suscita\nideias a respeito do tema nele abordado. Em qual dos itens se traduz\nINCONVENIENTEMENTE algumas dessas ideias?\na) O título “Jornada dupla” diz respeito ao desempenho das funções que as meninasmães assumem a partir da gravidez.\nb) Ingrid Amorim, jovem que sempre estudou em escolas particulares, não teve sua\nrotina alterada com o nascimento do filho.\nc) O caso de Paloma Aguiar serve para exemplificar a pesquisa “O aluno do ensino\nmédio público estadual – percepções, hábitos e expectativas” realizada pelo\nInstituto Mapear.\nd) De acordo com a pesquisa do Instituto Mapear, não é a gravidez a única causa\nque leva o jovem a abandonar a escola.\ne) A gravidez na adolescência não é uma questão que envolve apenas estudantes\ndas classes menos favorecidas e de escolas públicas.\nSELEÇÃO 2010 3\nQUESTÃO 3",
+      "tokens": 1185,
+      "charStart": 0,
+      "charEnd": 4597
+    },
+    {
+      "index": 2,
+      "blockIndex": 3,
+      "content": "3 O sentido de um texto pode ser também melhor percebido quando se faz uso da\nanálise morfossintática, em que se estuda a classe gramatical da palavra e a função\ndo termo na oração.\nSobre esse assunto, marque o comentário totalmente correto.\na) Em “Dados do Instituto Mapear revelam que, entre os alunos que têm filho, 76% já\ninterromperam os estudos, contra apenas 12% dos que não são pais.”, todos os\nverbos se flexionaram no plural e são transitivos diretos.\nb) O pronome demonstrativo do período “— Isso leva a crer que a gravidez é um dos\nprincipais fatores de abandono escolar.” é o sujeito da primeira oração.\nc) Por possuir preposição, o termo destacado exerce função de objeto indireto em “É\nprovável que haja essa incidência pela necessidade de trabalhar para conseguir\nrecursos.”\nd) No trecho “é importante voltar à escola.”, a expressão sublinhada é composta de\npreposição, artigo e substantivo e funciona como adjunto adnominal.\ne) Como adjetivo, “levado” caracteriza o sujeito em “ele é muito levado”; sendo,\nportanto, o objeto direto da oração.\nQUESTÃO 4\nNa vida sempre se pode escolher.\nConsidere as diferentes alternativas\nque existem, escolha e decida. O Dia\nMundial da Prevenção da gravidez na\nAdolescência 2008, incentiva o\nconhecimento sobre contracepção\nresponsável e moderna.\nhttp://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg . Acessado em 28/09/2009.\nSELEÇÃO 2010 4\nInstituiu-se o dia 26 de setembro como o Dia Mundial da Prevenção da Gravidez na\nAdolescência. O texto que você acabou de ler trata desse tema.\nNos itens abaixo, há um que traz informações NÃO pertinentes a esse texto. Marqueo.\na) O pronome possessivo que aparece repetido no lema da campanha objetiva\natribuir ao interlocutor a responsabilidade sobre os próprios erros e acertos.\nb) O uso de verbos no imperativo como “escolha” e “decida” busca uma aproximação\nmaior com o leitor.\nc) Haveria alteração de sentido se a primeira frase do texto fosse: Na vida, pode-se\nsempre escolher.\nd) A campanha de 2008 estimula a busca por informações para que se possa decidir\ncom consciência.\ne) O locutor do texto fez uso de duas linguagens: a verbal e a não-verbal.\nQUESTÃO 5\nEsta semana está cheia de datas alertas... Hoje, dia 26 de setembro, mais de 70\npaíses da Europa, América Latina e Ásia participam do dia Mundial da Prevenção da\nGravidez na Adolescência. A data é promovida por organizações não governamentais\ne sociedades médicas internacionais com apoio de marcas farmacêuticas. Este ano o\ntema é \"Sua Vida, Sua Voz\".\n[...]\n(Isis Nóbile Diniz)\nhttp://scienceblogs.com.br/xisxis/2009/09/dica_para_prevencao_de_gravide.php.Acessado em 28/09/2009.\nSELEÇÃO 2010 5\nConsiderando esse material retirado da internet, que item melhor reproduz as\ninformações nele contidas?\na) Apenas na semana de 26 de setembro existem datas apropriadas para a\nrealização de campanhas e alerta à população.\nb) No último dia 26 de setembro, houve, em centenas de países, manifestações\nsobre a gravidez na adolescência.\nc) Em todos os anos, o lema da campanha de prevenção da gravidez na\nadolescência é “Sua Vida, Sua Voz”.\nd) A imagem da campanha de prevenção da gravidez na adolescência deste ano\nsugere o relacionamento afetivo entre os adolescentes.\ne) Apenas a classe médica tem se preocupado com a gravidez na adolescência já\nque o assunto se relaciona diretamente com a saúde.\nQUESTÃO 6\nSeguem algumas afirmativas que relacionam o fragmento escrito por Isis Nóbile Diniz\nao texto da campanha de 2008. Indique a correta.\na) O tema da campanha de 2009 difere do de 2008 em apenas uma palavra, mas nos\ndois a mensagem é a mesma: você tem o poder sobre sua vida.\nb) Nota-se, nas duas campanhas, a participação efetiva de todos os países do\nmundo.\nc) Ao apresentar o dia 26 de setembro como uma data alerta, Isis Nóbile sugere que\nsó o conhecimento pode evitar uma gravidez indesejada e irresponsável como\ntambém é dito na campanha de 2008.\nd) Os dois textos empregam verbos no presente, no passado e no futuro para marcar\nque o problema da gravidez precoce faz parte da vida de toda a sociedade.\ne) Em ambos os textos, prevalece a intenção de informar ao interlocutor a\nimportância de assumir uma gravidez indesejada.\nSELEÇÃO 2010 6\nQUESTÃO 7\nhttp://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg. Acessado em 28/09/2009.\nLer gráficos e tabelas é importante no mundo atual, no qual a associação do verbal\ncom o não-verbal é cada vez mais frequente. Considerando a ilustração acima,\nassinale a afirmativa INCORRETA .\na) É possível perceber, no período apresentado no gráfico, que o número de partos",
+      "tokens": 1198,
+      "charStart": 4596,
+      "charEnd": 9178
+    },
+    {
+      "index": 3,
+      "blockIndex": 3,
+      "content": "INCORRETA .\na) É possível perceber, no período apresentado no gráfico, que o número de partos de adolescentes tem diminuído em todo o país.\nb) Na região mais pobre do país, a tabela mostra que o percentual de partos, ainda\nque em queda, é o maior do Brasil.\nc) A região mais populosa também apresenta um percentual elevado de partos de\nmulheres ainda bem jovens.\nd) Ao analisar os dados, nota-se que a menor redução ocorreu na região de maior\nextensão do país.\ne) A redução dos números em 2008 leva à conclusão de que não há mais\nnecessidade de campanhas como “SUA VIDA SUA DECISÃO”.\nSELEÇÃO 2010 7\nQUESTÃO 8\nDESCUIDO\nSou fruto de um descuido\nAto feito impensado\nMas que a partir de agora\nTerá que ser\nTratado com cuidado\nGostaria de ter\nSido planejado\nMas por descuido\nVim sem ser convidado\nNão sei se vou ter nome\nOu se vou ser abortado\nMas no fundo eu gostaria\nDe ser tratado com carinho\nAmor e cuidado\nBruna e Paloma T C24\nhttp://websmed.portoalegre.rs.gov.br/escolas/montecristo/jv/jv6/poesia.html.\nEsse texto faz parte de um trabalho de produção textual desenvolvido pela professora\nMárcia Regina Ribeiro com seus alunos. Nele, os textos tinham como tema “Gravidez\nna adolescência”, porém apresentavam locutores diferentes: ora era o bebê que\nfalava, ora era a adolescente grávida, ora um rapaz.\nApenas uma das afirmações que seguem é INDEVIDA em relação ao texto. Assinalea.\na) Intitulado “Descuido”, é um poema estruturado em 14 versos e uma estrofe.\nb) O destino do pequeno locutor do texto está revelado, embora ele afirme que não\nsaiba.\nc) O bebê revela ter consciência de sua condição de intruso na vida do casal.\nd) A fala do bebê evidencia o seu desconforto por ser a consequência, mesmo que\ninvoluntária, de um ato irrefletido.\ne) O desejo do bebê é viver como qualquer criança que tenha sido desejada por seus\npais.\nQUESTÃO 9\n“Na América Latina, 50% dos jovens com menos de 17 anos têm vida sexual ativa.\nDados do Ministério da Saúde mostram que no Brasil pelo menos uma em cada cinco\nmulheres que dão à luz tem menos de 19 anos.“\nhttp://www.agenciabrasil.gov.br/noticias/2009/09/24/materia.2009-09-24.5055875275/view.\nSELEÇÃO 2010 8\nhttp://www.cambito.com.br/tiras/default.asp?tirinha=20031019.\nComo já deve ter dado para notar, as questões de Língua Portuguesa giram em torno\nde um mesmo tema. A respeito da tirinha do Cambito e sua turma e do fragmento da\nAgência Brasil, que também abordam esse tema, é possível afirmar que\na) metade das mulheres brasileiras tem 19 anos e engravida.\nb) todos os jovens latino-americanos iniciam sua vida sexual antes dos dezessete\nanos.\nc) o Ministério da Saúde, por meio de suas pesquisas, revela que um quinto das\nmulheres brasileiras e latino-americanas engravida devido à vida sexual ativa.\nd) a personagem, segundo a última fala da tirinha, espera que a amiga não esteja\ngrávida.\ne) houve, por parte de ambas as personagens da tirinha, preocupação com o uso de\npreservativo.\nQUESTÃO 10\nAinda com referência aos textos da questão anterior, são feitas considerações\ngramaticais. Marque a INADEQUADA .\na) As vírgulas foram empregadas pelo mesmo motivo em “Ontem, peguei o mais gato\ndo baile!” e “Agora, tô com uma ressaca sinistra!”.\nb) Ao comparar, de forma implícita, o rapaz com quem ficou a um gato, a\npersonagem da turma do Cambito fez uso de metáfora.\nc) Completando a frase do segundo quadrinho da tirinha, poderia haver substituição\ndas reticências por “de usar a camisinha.”\nd) Os adjetivos “doidona” e “sinistra” encontram-se no singular, pois caracterizam o\nmesmo substantivo; concordando, desta forma, com ele.\ne) No fragmento da Agência Brasil, aparecem as formas verbais “têm” e “tem” que\nconcordam com seus respectivos sujeitos no plural e no singular.\nSELEÇÃO 2010 9\nQUESTÃO 11\n 4 x + 2 y = 2\nSendo P(x,y) a solução do sistema  , o valor de x+y é:\n 2 x − y = 0\na) 0\nb)\nc)\nd)\ne)\nQUESTÃO 12\nCada mililitro de sangue humano contém, em média, 5.10 glóbulos vermelhos. Um ser\nhumano adulto tem, em média, 5,5 litros de sangue. De acordo com esses dados, o\nnúmero médio de glóbulos vermelhos de um adulto é:\na) 2,75 x 10\nb) 2,75 x 10\nc) 27,5 x 10\nd) 27,5 x 10\ne) 2,75 x 10\nQUESTÃO 13",
+      "tokens": 1200,
+      "charStart": 9084,
+      "charEnd": 13237
+    },
+    {
+      "index": 4,
+      "blockIndex": 3,
+      "content": "O polígono ABCD é um quadrado de lado 8 cm. Sabendo-se que G é ponto médio de\n2 2\nBC , Q 1 é um quadrado de área 4 cm e R 1 é um retângulo de área 8 cm , qual a\nrazão entre AB e IJ ?\nSELEÇÃO 2010 10\nA F B\n4 2\na)\n5 Q 1\n5 2 I\nE\nb)\nJ\n4 5 G\nc)\n5 5 R 1\nd) R 2\ne) 2 5\nD H C\nQUESTÃO 14\nEm ciências atuariais, uma tábua de vida é uma tabela, construída a partir de censos\npopulacionais, que mostra a probabilidade de morte de um indivíduo em uma certa\nfaixa etária. Tábuas de vida são usadas em planos de previdência e seguros de vida.\nA tábua da vida abaixo indica, por exemplo, que um indivíduo entre um ano (inclusive)\ne 2 anos (exclusive) tem 0,05% de chance de morrer.\nFaixa etária\n[ [0,1) [1,2) [2,3) [3,4) [4,5) [5,6) [6,7) [7,8) [8,9) [9,10)\nx , x + 1 )\nPropabilidade de\n0,69 0,05 0,03 0,03 0,02 0,02 0,02 0,01 0,01 0,01\nmorrer em %\nFonte: National Vital Statístics Reports, vol.54, nº 14, 2006 .\nSupondo-se que existe um grupo de 1.000.000 de pessoas que acabaram de\ncompletar 2 anos, segundo esta tabela, o número de pessoas deste grupo que farão\naniversário de 4 anos é, aproximadamente, igual a:\na) 997.000\nb) 999.500\nc) 999.700\nd) 999.950\ne) 999.970\nSELEÇÃO 2010 11\nQUESTÃO 15\n{ ( ) 2 } B = { x ∈ IN * / 4 − 3 x ≥ − 6 }\nConsidere os conjuntos A = x ∈ IR / x − 2 = 9 e .\nSe n indica o número de elementos do conjunto A ∪ B , então o valor de n é:\na) 3\nb) 4\nc) 5\nd) 6\ne) ∞\nQUESTÃO 16\nObserve o demonstrativo do consumo de energia elétrica da residência do Sr.\nEconômico.\nConsidere que o consumo médio, de janeiro/2009 a maio/2009, foi igual ao que\nocorreu de junho/2009 a setembro/2009.\nSabendo que o valor cobrado por cada Kwh, já incluídos todos os impostos e\nencargos, é de R$ 0,52, é correto afirmar que a conta de luz do mês de setembro/2009\nque o Sr. Econômico pagou foi, em reais:\nSELEÇÃO 2010 12\na) 52,00\nb) 57,20\nc) 62,40\nd) 72,80\ne) mais de 72,80\nQUESTÃO 17\nNa figura, r//s.\n0 ˆ 0\nSe â = 4x + 31 e c = 3x + 59 30’ , então a medida do ângulo b é:\na) 35°\nb) 40°\nc) 45°\nd) 50°\ne) 55°\nSELEÇÃO 2010 13\nQUESTÃO 18\nUm terreno tem a forma de um trapézio retângulo conforme a figura abaixo.\n3 1 2\nDado que sen 60° = , cos 60° = e tg 60° = 3 , calcule, em m a área do\n2 2\nterreno.\na) 68 + 6 3\nb) 126\nc) 168\nd) 168 3\ne) 336 3\nQUESTÃO 19\nUma pequena esfera de isopor, aluminizada, suspensa por um fio \"nylon\", é atraída\npor um pente plástico negativamente carregado. Pode-se afirmar que a carga elétrica\nda esfera é:\na) apenas negativa;\nb) apenas nula;\nc) apenas positiva;\nd) negativa, ou então nula;\ne) positiva, ou então nula.\nSELEÇÃO 2010 14\nQUESTÃO 20\nConsidere as afirmações a seguir:\nI. O som se propaga no ar com uma velocidade de aproximadamente\n340m/s.\nII. As velocidades de propagação do som no ar e no vácuo são\naproximadamente iguais.\nIII. O eco é devido à reflexão do som.\nQuais delas são corretas?\na) Apenas I\nb) Apenas I e II\nc) Apenas I e III\nd) Apenas II e III\ne) I, II e III\nQUESTÃO 21\nUma bola de borracha é rolada contra a parede de uma sala retangular, atingindo o\nponto médio de cada lado, descrevendo a trajetória indicada pelas setas abaixo.\nSabendo que a bola manteve uma velocidade constante e que demorou 10s para\nvoltar ao ponto de origem, determine a sua velocidade média.",
+      "tokens": 1200,
+      "charStart": 13236,
+      "charEnd": 16440
+    },
+    {
+      "index": 5,
+      "blockIndex": 3,
+      "content": "a sua velocidade média. a) 1,8km/h\nb) 3,6km/h\nc) 5,4km/h\nd) 7,2km/h\ne) 9,0km/h\nSELEÇÃO 2010 15\nQUESTÃO 22\nA Ferrari F430 Scuderia que chega agora ao Brasil, vem com 20 cavalos a mais de\npotência em relação ao modelo F430, graças a redução de sua massa para 1.250kg,\ncerca de 200kg a menos que o modelo antecessor. Com um motor v8 de 4,3 litros e\npotência de 510 cavalos, alcança uma velocidade final de 320km/h. É este propulsor\nque faz esta máquina arrancar de 0 a 100km/h em apenas 3,5s.\nCom base nos dados do texto anterior responda:\nQual a distância percorrida pelo carro, a partir do repouso, para que este atinja a\nvelocidade de 100km/h? (Para efeito de cálculo admita que 100km/h = 28m/s).\na) 45m\nb) 49m\nc) 52m\nd) 56m\ne) 62m\nQUESTÃO 23\nNa filtração das águas da piscina utilizam-se filtros que contêm areia como meio\nfiltrante. A areia utilizada para esse fim deve ter granulometria apropriada, além de ser\nisenta de matéria orgânica. Para se chegar a esses critérios de qualidade, a areia\ndeve ser previamente peneirada e posteriormente queimada em fornos rotatórios. Os\nprocessos de obtenção dessa qualidade da areia são respectivamente:\na) físico e químico.\nb) químico e físico.\nc) químico e químico.\nd) físico e físico.\ne) nuclear e físico.\nQUESTÃO 24\nQual dos seguintes procedimentos é o mais indicado quando se quer distinguir um\ncopo contendo água destilada de outro que contenha uma solução de água\naçucarada, sem experimentar o gosto?\na) Filtrar os líquidos.\nb) Medir o volume.\nc) Determinar a densidade.\nd) Usar um microscópio.\ne) Decantar os líquidos.\nSELEÇÃO 2010 16\nQUESTÃO 25\nGasolina, gelo e grafite são, respectivamente, exemplos de:\na) mistura, substância simples e substância composta.\nb) mistura, substância composta e substância simples.\nc) substância composta, mistura e substância simples.\nd) substância composta, substância simples e mistura.\ne) substância simples, mistura e substância composta .\nQUESTÃO 26\nUm determinado elemento pertence ao primeiro grupo ou família da tabela periódica. A\nrespeito das suas propriedades, é INCORRETO afirmar que:\na) encontra-se no estado sólido à temperatura ambiente.\nb) trata-se de um metal alcalino.\nc) forma cátion monovalente nos sais correspondentes.\nd) é um elemento muito reativo em água.\ne) forma compostos covalentes com não-metais.\nQUESTÃO 27\nA filtração caseira da água é um procedimento eficiente para evitar a transmissão de\nvárias doenças. Assinale a opção que contenha somente doenças que terão sua\nincidência reduzida com a adoção dessa medida.\na) Dengue, hepatite A, giardíase, botulismo\nb) Malária, giardíase, cólera, disenteria bacilar\nc) Giardíase, cólera, ascaridíase, amebíase\nd) Dengue, giardíase, cólera, amebíase.\ne) Cólera, amebíase, malária, filariose\nQUESTÃO 28\n“A mata atlântica é hoje uma das florestas tropicais mais devastadas do planeta,\nreduzida a algumas poucas áreas remanescentes, em geral descontínuas. Esse\nprocesso de fragmentação pode ser a causa do aumento da densidade de formigas\nconhecidas como saúvas, o que ameaçaria ainda mais esse bioma já fragilizado. Com\na fragmentação, há um predomínio de plantas de luz ou pioneiras, em detrimento das\nplantas de sombra, próprias de florestas maduras e conservadas. As plantas pioneiras\nnão possuem compostos de defesa contra organismos que se alimentam de suas\nfolhas. Com mais plantas sem defesas nas proximidades dos ninhos, as formigas\ngastam menos energia para buscar seus alimentos e mais energia para a produção de\nrainhas e consequentemente um maior número de colônias adultas.”\nAdaptado de Ciência Hoje. Dezembro de 2008. p. 60.\nSELEÇÃO 2010 17\nBaseado no texto e nos seus conhecimentos, analise as afirmativas a seguir e marque\na alternativa correta.\nI. Podemos verificar, de acordo com o texto acima, que o número de\nsaúvas reduziu devido a escassez de alimentos provocada pelo\ndesmatamento da mata atlântica.\nII. As formigas mantêm relação harmoniosa denominada sociedade. A\nsociedade das formigas é estruturada em castas (rainha, macho,\noperária, soldado), sendo cada uma responsável por um determinado\ntrabalho ou função.\nIII. A mata atlântica é um bioma brasileiro que se caracteriza por sua\nvegetação densa, com chuvas abundantes, presença de palmeiras e ipês.\na) Todas as afirmativas são corretas.",
+      "tokens": 1199,
+      "charStart": 16416,
+      "charEnd": 20687
+    },
+    {
+      "index": 6,
+      "blockIndex": 3,
+      "content": "são corretas. b) Apenas as afirmativas I e II estão corretas.\nc) Apenas as afirmativas I e III estão corretas.\nd) Apenas as afirmativas II e III estão corretas.\ne) Todas as afirmativas são falsas.\nQUESTÃO 29\nSobre os tecidos animais é INCORRETO afirmar:\na) O tecido muscular é formado por fibras musculares, células ricas em filamentos\nprotéicos;\nb) Os tecidos epiteliais apresentam células justapostas e funções de revestimento,\nsecreção e absorção.\nc) Os tecidos conjuntivos, que apresentam pouca quantidade de material extracelular,\npodem exercer função de sustentação, defesa, nutrição e preenchimento de\nespaços entre órgãos.\nd) O tecido nervoso é especializado na recepção e transmissão de impulsos elétricos.\ne) O sangue é um tipo de tecido conjuntivo constituído pelos elementos figurados\n(hemácias, leucócitos e plaquetas) e plasma (substância intercelular líquida).\nSELEÇÃO 2010 18\nQUESTÃO 30\n“Eu trago bananas prá vender\nBananas de todas qualidades\nQuem vai querer\nOlha banana Nanica\nOlha banana Maçã\nOlha banana Ouro\nOlha banana Prata\nOlha a banana da Terra\nFigo São Tomé\nOlha a banana d’Água.”\n(O Vendedor de Bananas -Jorge Ben)\nNas feiras e supermercados geralmente encontramos bananas sem sementes. Uma\ndas espécies de bananeiras que não produz sementes é a Musa sapientum\n(variedades ouro, prata, maçã, figo, São Tomé). No entanto, existem bananeiras\nsilvestres cujo fruto apresenta sementes duras, que ocupam boa parte da massa\ncomestível da banana. É o caso da espécie Musa balbisiana .\nBanana sem semente Banana com semente\nCom referência aos processos reprodutivos das duas espécies citadas no enunciado\npode-se afirmar corretamente que:\na) Somente a espécie Musa balbisiana se reproduz por processo sexuado;\nb) As duas espécies reproduzem-se por processo sexuado;\nc) As duas espécies não se reproduzem por processo sexuado;\nd) Na espécie Musa sapientum ocorre o desenvolvimento do embrião;\ne) A espécie Musa balbisiana não forma zigoto;\nSELEÇÃO 2010 19\nQUESTÃO 31\nO Brasil encontra-se dividido em cinco grandes regiões: sul, sudeste, centro-oeste,\nnorte e nordeste. Essa divisão oficial foi realizada pelo IBGE (Instituto Brasileiro de\nGeografia e Estatística) e é com base nessas regiões que boa parte das informações\ndo país é organizada. Com base no mapa abaixo e em seus conhecimentos sobre as\nregiões brasileiras, assinale a alternativa correta :\nFonte: IBGE\na) A grande concentração industrial brasileira está na região nordeste devido ao\nmaior número de estados que ela contém.\nb) A região centro-oeste é composta por três estados e pelo Distrito Federal, onde se\nencontra a capital do Brasil.\nc) A região sul caracteriza-se por sua ocupação recente, o que explica os\ninsatisfatórios índices de crescimento industrial.\nd) A região sudeste apresenta os maiores índices de mortalidade infantil e de\nanalfabetismo, sendo também considerada uma região fracamente desenvolvida.\ne) A região norte apresenta uma grande extensão territorial e também um grande\nnúmero populacional.\nSELEÇÃO 2010 20\nQUESTÃO 32\nLeia atentamente as manchetes abaixo:\n“Número de mortos por tsunami causado por terremoto passa de 100 na\nOceania Há mortos e feridos em Samoa Americana e em Samoa.”\nDisponível em: <http://g1.globo.com/Noticias/Mundo/0,,MUL1323397-5602,00.html>. Acessado em 30/09/2009.\n“Terremoto na Indonésia deixa ao menos 75 mortos.”\nDisponível em: <http://noticias.uol.com.br/ultnot/internacional/2009/09/30/ult1859u1560.jhtm>. Acessado em\n30/09/2009.\n“Vulcão Asama entra em erupção e deixa Japão em alerta - 02/02/2009.”\nOs fenômenos expostos acima estão relacionados ao(s):\na) processos externos devido aos inúmeros impactos provocados na crosta terrestre.\nb) elevação dos impactos ambientais provocados pelo aquecimento global.\nc) processos internos da Terra que provocam a movimentação das placas tectônicas.\nd) desgaste das rochas, que por estarem expostas acabam se desgastando.\ne) dinamismo existente na Terra, o que certamente tem uma relação direta com a\nredução repentina do número de habitantes do Planeta.\nQUESTÃO 33\nA escolha da cidade do Rio de Janeiro como sede das olimpíadas de 2016 é vista por\nmuitos como uma oportunidade de crescimento econômico, principalmente pelo\nturismo. Por outro lado, as enormes desigualdades sociais e territoriais existentes\ntanto na cidade do Rio de Janeiro quanto em outras metrópoles brasileiras geram\ncríticas quanto ao grande investimento que será feito para sediar os jogos mundiais,\nem detrimento a outras necessidades do país.\nIndique a alternativa que NÃO corresponde à realidade das grandes metrópoles\nbrasileiras:\na) São cidades que passaram por um rápido e desordenado crescimento, tornandose “inchadas” de pessoas e de problemas.\nb) A rápida urbanização faz com que cidades vizinhas à metrópole aumentem de",
+      "tokens": 1200,
+      "charStart": 20673,
+      "charEnd": 25455
+    },
+    {
+      "index": 7,
+      "blockIndex": 3,
+      "content": "de tamanho e formem um só conjunto.\nc) Os escassos investimentos governamentais na área habitacional levaram à\nformação de precárias moradias.\nd) Há um grande número de mendigos, desempregados e subempregados vivendo\nnestas cidades.\ne) A falta de infraestrutura adequada e de saneamento básico não são problemas tão\npreocupantes nas metrópoles devido à presença de mão de obra qualificada para\nresolvê-los.\nSELEÇÃO 2010 21\nQUESTÃO 34\n“As fontes de energia são extremamente importantes nas atividades humanas, pois\noriginam combustíveis e eletricidade que servem para iluminar, movimentar máquinas,\ncaminhões entre outras aplicações.\nAs energias facilitam o trabalho do homem que em outras circunstâncias teria uma\ngrande dificuldade, utiliza-se a energia para levantar peso, apertar parafuso, mover\nveículos, ferver água, etc.”\nDisponível em: <http://www.mundoeducacao.com.br/geografia/fontes-energia-1.htm>. Acessado em 13/10/2009.\nSobre as fontes energéticas são feitas as seguintes afirmações.\nI. As termoelétricas que produzem energia a partir da queima em caldeira\nde carvão, óleo combustível ou gás natural, elevam a concentração de\npoluentes na atmosfera e por consequência acentuam o aquecimento\nglobal.\nII. As hidrelétricas apesar de serem vistas por alguns como “energia limpa”,\ngeram inúmeros impactos ambientais devido à construção das represas,\nque provocam inundações em imensas áreas de matas, destroem\nespécies vegetais, prejudicam os animais, e interferem na ocupação\nhumana.\nIII. A energia eólica, ou seja, aquela que é proveniente do vento, ocasiona\nalguns impactos ambientais, tais como: aumento da poluição sonora,\nvisual e atmosférica, sendo diretamente responsável pelo aquecimento\nglobal.\nIV. A energia solar é considerada uma fonte energética alternativa e\nrenovável.\nEstão corretas as alternativas:\na) I, III e IV.\nb) II e III.\nc) II, III e IV.\nd) I, II e IV.\ne) I, II, III e IV .\nSELEÇÃO 2010 22\nQUESTÃO 35\nObserve o mapa abaixo:\nAdaptado – Disponível em: <http://www.geografiaparatodos.com.br/index.php?pag=mapasm>. Acessado em\n13/10/2009 .\nUma das tendências do mundo atualmente é a articulação dos países em blocos\neconômicos, como os que estão expostos no mapa acima. Assinale a alternativa\nINCORRETA a respeito desse assunto.\na) A Comunidade para o Desenvolvimento da África Austral (SADC), localiza-se no\nterritório africano.\nb) O Nafta é uma zona de livre comércio formada por Canadá, Estados Unidos e\nMéxico.\nc) A União Européia possui uma moeda única, o euro, e tem como um dos seus\nmembros a Alemanha.\nd) O Mercosul tem como membros permanentes apenas países da América do Sul.\ne) Todos os blocos econômicos apresentam o mesmo nível de integração política,\nsocial, ambiental e econômica.\nSELEÇÃO 2010 23\nQUESTÃO 36\n“O Congresso de Viena foi realizado na capital austríaca, entre setembro de 1814 e\njunho de 1815, tendo como participantes dezenas de príncipes, reis, imperadores,\nchefes militares, diplomatas, dirigentes da igreja, nobres, tomados de alegria porque\nNapoleão Bonaparte, que passara a simbolizar a Revolução Francesa, estava exilado\nna Ilha de Elba”.\n(AQUINO; RONALDO. Fazendo a História : A Europa e as Américas nos séculos XVIII e XIX. Rio de Janeiro: Ao\nLivro Técnico, 1986)\nQuatro países foram os grandes beneficiários dos acordos que resultaram do\nCongresso de Viena; são eles:\na) Áustria, Alemanha, Rússia e Inglaterra.\nb) França, Espanha, Portugal e Prússia.\nc) Inglaterra, França, Prússia e Rússia.\nd) Portugal, Inglaterra, França e Rússia.\ne) Prússia, Inglaterra, Áustria e Rússia.\nQUESTÃO 37\nEm meados do século XIX, os Estados Unidos vivenciaram sua maior guerra civil: a\nGuerra de Secessão; sobre ela é correto afirmar:\na) os estados do Norte, predominantemente industrializados, eram contra uma\npolítica de livre comércio, enquanto os estados do Sul, agrícolas, eram contra uma\npolítica protecionista.\nb) com a vitória dos estados do Norte sobre os estados do Sul, a escravidão foi\nabolida e foi adotada uma política protecionista.\nc) os estados do Norte tiveram apoio da Inglaterra, já que a guerra era contra a\nFrança.\nd) os nortistas obtiveram alguns êxitos iniciais nessa guerra, mas, graças à\nsuperioridade populacional, industrial e financeira dos sulistas, terminaram\nderrotados.\ne) Abraham Lincoln, eleito presidente pelos sulistas, tentou evitar a guerra com o\nNorte, que era totalmente contrário à abolição da escravatura no país.\nSELEÇÃO 2010 24\nQUESTÃO 38\nNo que se refere ao uso da mão de obra no Brasil, pode-se afirmar que:\na) tanto na produção do café como do algodão, no século XX, utilizou-se,\nprincipalmente, mão de obra servil.",
+      "tokens": 1200,
+      "charStart": 25452,
+      "charEnd": 30064
+    },
+    {
+      "index": 8,
+      "blockIndex": 3,
+      "content": "8\nNo que se refere ao uso da mão de obra no Brasil, pode-se afirmar que:\na) tanto na produção do café como do algodão, no século XX, utilizou-se,\nprincipalmente, mão de obra servil. b) tanto na produção do café do Oeste Paulista como da pecuária, no século XIX,\nutilizou-se, principalmente, mão de obra indígena.\nc) tanto na produção da cana de açúcar, no Nordeste, como do café, no Vale do\nParaíba, entre os séculos XVI e XIX, utilizou-se, principalmente, mão de obra\nescrava.\nd) tanto na produção da cana de açúcar, como na do algodão, no século XIX, utilizouse, principalmente, mão de obra indígena sob a forma de trabalho servil.\ne) desde a exploração do pau brasil, como na mineração e na produção industrial,\nutilizou-se, principalmente, mão de obra escrava.\nQUESTÃO 39\nNo final do século XIX e início do século XX, a expansão do capitalismo provocou\nimportantes transformações em todo o mundo. No Brasil, esse fenômeno foi\nresponsável pela abolição da escravatura e pela proclamação da República,\nacompanhadas por um processo de crescente modernização da economia. Por toda\nparte ocorreram reajustes sociais que forçaram a adaptação, transformando as antigas\nformas de convívio social. Foi nesse contexto que o regime republicano teve que\nenfrentar revoltas das populações marginalizadas. Afinal de contas, como seria\npossível se submeter aos poderes e obrigações de um Estado pouco interessado em\natender às demandas daqueles que devia representar? O banditismo social\nrepresentou um dos movimentos de manifestação contrários ao governo republicano,\nque destacou uma figura conhecida da História e do imaginário brasileiros, a saber:\na) Antônio Conselheiro;\nb) Padre Antônio Maria;\nc) Lampião;\nd) Padre Cícero;\ne) Luís Carlos Prestes\nSELEÇÃO 2010 25\nQUESTÃO 40\n\"Industrializar aceleradamente o país; transferir do exterior para o nosso território as\nbases do desenvolvimento autônomo; fazer da indústria manufatureira o centro\ndinâmico das atividades econômicas nacionais - isto resume o meu propósito, a minha\nopção\".\n(OLIVEIRA, Juscelino Kubitschek de. Por que construí Brasília . Rio de Janeiro: Bloch: 1975, p. 57).\nO trecho acima pode ser considerado o resumo do programa de governo de Juscelino\nKubitschek, caracterizado por:\na) ter como base de seu programa administrativo, o trinômio: saúde, estabilidade\nmonetária e habitação.\nb) reprimir as oposições, anulando os direitos democráticos e a liberdade de\nimprensa.\nc) reduzir aceleradamente a produção de bens de consumo duráveis, voltando-se\ntotalmente para a indústria de base.\nd) acelerar o desenvolvimento industrial, internacionalizar nossa economia, gerando,\ncontudo, endividamento e inflação.\ne) acentuar o nacionalismo econômico brasileiro.\nSELEÇÃO 2010 26\nENSINO MÉDIO/TÉCNICO CONCOMITANTE/INTEGRADO PROEJA",
+      "tokens": 689,
+      "charStart": 29882,
+      "charEnd": 32664
+    }
+  ]
+}

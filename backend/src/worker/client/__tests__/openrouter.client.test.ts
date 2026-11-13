@@ -91,6 +91,61 @@ test('createStructuredChatCompletion rejeita resposta truncada', { concurrency: 
   globalThis.fetch = originalFetch;
 });
 
+test('reporta reasoning_tokens apenas como contagem e respeita reasoning/timeout/orçamento da extração', { concurrency: false }, async () => {
+  setBackendEnv();
+  const { OpenRouterClient, StructuredCompletionError } = await import('../openrouter.client.js');
+  const originalFetch = globalThis.fetch;
+  const originalLog = console.log;
+  let requestBody: Record<string, unknown> | undefined;
+  const logs: string[] = [];
+  let observedUsage: { reasoningTokens?: number; completionTokens: number } | undefined;
+  globalThis.fetch = async (_url, init) => {
+    requestBody = JSON.parse(String(init?.body)) as Record<string, unknown>;
+    return new Response(JSON.stringify({
+      choices: [{ finish_reason: 'length', native_finish_reason: 'length', message: { content: '', reasoning: 'texto privado de raciocínio que nunca deve ir ao log' } }],
+      usage: { prompt_tokens: 3000, completion_tokens: 4000, total_tokens: 7000, completion_tokens_details: { reasoning_tokens: 3900 } },
+    }), { status: 200 });
+  };
+  console.log = (...args: unknown[]) => { logs.push(args.map((value) => typeof value === 'object' ? JSON.stringify(value) : String(value)).join(' ')); };
+  try {
+    await assert.rejects(new OpenRouterClient().createStructuredChatCompletion({
+      schemaName: 'questions', schema: {}, messages: [{ role: 'user', content: 'documento completo' }],
+      maxTokens: 4000, timeoutMs: 180_000, reasoningEffort: 'none',
+      onUsage(usage) { observedUsage = usage; },
+    }), (error: unknown) => error instanceof StructuredCompletionError
+      && error.code === 'MODEL_OUTPUT_TRUNCATED'
+      && error.details.reasoningTokens === 3900
+      && error.details.completionTokens === 4000);
+  } finally {
+    globalThis.fetch = originalFetch;
+    console.log = originalLog;
+  }
+  assert.deepEqual(requestBody?.max_tokens, 4000, 'o cliente encaminha exatamente o orçamento configurado');
+  assert.deepEqual(requestBody?.reasoning, { effort: 'none' });
+  assert.equal(observedUsage?.reasoningTokens, 3900);
+  assert.ok(logs.some((line) => line.includes('"reasoningTokens":3900')));
+  assert.ok(!logs.some((line) => line.includes('texto privado de raciocínio')));
+});
+
+test('omits max_tokens only when explicitly requested by a structured call', { concurrency: false }, async () => {
+  setBackendEnv();
+  const { OpenRouterClient } = await import('../openrouter.client.js');
+  const originalFetch = globalThis.fetch;
+  let requestBody: Record<string, unknown> | undefined;
+  globalThis.fetch = async (_url, init) => {
+    requestBody = JSON.parse(String(init?.body)) as Record<string, unknown>;
+    return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { content: '{"ok":true}' } }] }), { status: 200 });
+  };
+  try {
+    await new OpenRouterClient().createStructuredChatCompletion({
+      schemaName: 'no_output_cap', schema: {}, messages: [{ role: 'user', content: 'responda' }], maxTokens: null,
+    });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+  assert.equal(Object.hasOwn(requestBody ?? {}, 'max_tokens'), false);
+});
+
 test('aborta chamada estruturada após timeout configurado', { concurrency: false }, async () => {
   setBackendEnv();
   const { OpenRouterClient, StructuredCompletionError } = await import('../openrouter.client.js');
@@ -102,6 +157,26 @@ test('aborta chamada estruturada após timeout configurado', { concurrency: fals
   await assert.rejects(new OpenRouterClient().createStructuredChatCompletion({ schemaName: 'x', schema: {}, messages: [{ role: 'user', content: 'x' }], timeoutMs: 5 }), (error: unknown) => error instanceof StructuredCompletionError && error.code === 'TIMEOUT');
   assert.equal(aborted, true);
   globalThis.fetch = originalFetch;
+});
+
+test('permite chamada estruturada sem timeout local quando solicitado explicitamente', { concurrency: false }, async () => {
+  setBackendEnv();
+  process.env.OPENROUTER_STRUCTURED_TIMEOUT_MS = '5';
+  const { OpenRouterClient } = await import('../openrouter.client.js');
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { content: '{"ok":true}' } }] }), { status: 200 });
+  };
+  try {
+    const result = await new OpenRouterClient().createStructuredChatCompletion({
+      schemaName: 'no_local_timeout', schema: {}, messages: [{ role: 'user', content: 'x' }], timeoutMs: null,
+    });
+    assert.deepEqual(result, { ok: true });
+  } finally {
+    globalThis.fetch = originalFetch;
+    delete process.env.OPENROUTER_STRUCTURED_TIMEOUT_MS;
+  }
 });
 
 test('respeita signal previamente abortado', { concurrency: false }, async () => {

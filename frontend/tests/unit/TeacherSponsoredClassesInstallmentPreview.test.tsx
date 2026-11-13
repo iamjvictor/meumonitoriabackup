@@ -30,10 +30,11 @@ async function review(interval: 'ANNUAL' | 'MONTHLY', method: 'Pix' | 'Cartão d
   if (interval === 'ANNUAL') fireEvent.click(screen.getByRole('button', { name: /anual · 12 meses/i }));
   fireEvent.click(screen.getByRole('button', { name: /forma de pagamento/i }));
   fireEvent.click(screen.getByRole('button', { name: new RegExp(method, 'i') }));
+  fireEvent.click(screen.getByRole('button', { name: /continuar para alunos/i }));
   fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'student@example.test' } });
   fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-  fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
-  return screen.findByLabelText('Revisão da compra');
+  fireEvent.click(screen.getByRole('button', { name: /calcular valores e revisar/i }));
+  return screen.findByLabelText(/etapa 3: revisão da compra/i);
 }
 
 describe('TeacherSponsoredClassesPage installment estimate', () => {

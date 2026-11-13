@@ -175,6 +175,7 @@ export const AuthService = {
         localStorage.removeItem('mm_teacher_profile');
         const token = extractAccessToken(data);
         if (token) localStorage.setItem('mm_access_token', token);
+        else localStorage.removeItem('mm_access_token');
         const role = data.data?.role || data.user?.role;
         if (role) localStorage.setItem('mm_user_role', role);
         const userInfo = {

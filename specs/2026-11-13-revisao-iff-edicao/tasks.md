@@ -1,0 +1,2 @@
+- AC-002/003: implementar e verificar rotas e serialização de imagens.
+- AC-001/003/004: integrar interface e preservar decisões existentes.

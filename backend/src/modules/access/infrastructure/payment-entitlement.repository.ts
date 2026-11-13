@@ -1,5 +1,21 @@
 import { prisma } from '../../../lib/prisma.js';
+import { env } from '../../../config/env.js';
 import type { EntitlementRepository, EntitlementRepositoryRow } from '../application/entitlement.service.js';
+
+export function buildActiveSponsoredEntitlementWhere(studentId: string, now = new Date(), environment = env.ASAAS_ENV.toUpperCase()) {
+  return {
+    studentId,
+    status: 'ACTIVE',
+    accessRevokedAt: null,
+    batch: { environment },
+    startsAt: { lte: now },
+    endsAt: { gt: now },
+  };
+}
+
+export function buildPaymentEntitlementSubscriptionWhere(studentId: string, environment = env.ASAAS_ENV.toUpperCase()) {
+  return { studentId, environment };
+}
 
 export class PaymentEntitlementRepository implements EntitlementRepository {
   async findStudentIdByUserId(userId: string) {
@@ -8,8 +24,9 @@ export class PaymentEntitlementRepository implements EntitlementRepository {
   }
 
   async listForStudent(studentId: string): Promise<EntitlementRepositoryRow[]> {
+    const now = new Date();
     const subscriptions = await prisma.paymentSubscription.findMany({
-      where: { studentId },
+      where: buildPaymentEntitlementSubscriptionWhere(studentId),
       orderBy: { createdAt: 'desc' },
       include: {
         items: { include: { monitor: { include: { teacher: { select: { id: true, fullName: true, avatarUrl: true, bannerUrl: true } }, subjects: { include: { topics: { select: { id: true, name: true, subtopics: { select: { id: true, name: true }, orderBy: { position: 'asc' } } }, orderBy: { position: 'asc' } } }, orderBy: { position: 'asc' } } } } } },
@@ -40,7 +57,7 @@ export class PaymentEntitlementRepository implements EntitlementRepository {
       approvedFlashcardCount: countsByMonitor.get(item.monitorId)?.flashcards ?? 0,
     })));
     const sponsoredSeats = await prisma.sponsoredSeat.findMany({
-      where: { studentId, status: 'ACTIVE', OR: [{ endsAt: null }, { endsAt: { gt: new Date() } }] },
+      where: buildActiveSponsoredEntitlementWhere(studentId, now),
       include: {
         batch: {
           include: {

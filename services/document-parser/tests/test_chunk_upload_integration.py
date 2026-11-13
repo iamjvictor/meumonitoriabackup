@@ -149,7 +149,8 @@ class ChunkUploadIntegrationTests(unittest.TestCase):
         self.assertEqual(chunk["pages"], [2])
         self.assertEqual(chunk["tokens"], len(chunk["text"].split()))
         self.assertEqual(chunk["provenance"], [{
-            "page": 2, "item_ref": "#/texts/0", "bbox": [10, 20, 300, 80], "coord_origin": "BOTTOMLEFT",
+            "page": 2, "item_ref": "#/texts/0", "reading_order": None,
+            "bbox": [10, 20, 300, 80], "coord_origin": "BOTTOMLEFT",
         }])
         print("UPLOAD_SAMPLE=" + json.dumps({
             "status": status,

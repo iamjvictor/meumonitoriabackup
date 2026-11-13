@@ -1,0 +1,1842 @@
+{
+  "fixture": {
+    "prefix": "question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7",
+    "teacherId": "c6abb96e-bb25-468c-9639-592623107012",
+    "studentId": "75dd90be-09bd-46b4-8dac-58f7bc1f2880",
+    "monitorId": "13d89b29-ab6a-4c26-9620-92bdc44e3270",
+    "subjectId": "754c1cc1-3dad-4eef-9044-9d5799c41446",
+    "topicId": "32515c5b-c78f-4cef-a731-387acd2b160c",
+    "documentIds": [
+      {
+        "id": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+        "name": "Quimica-3.pdf",
+        "tag": "QUESTIONS"
+      },
+      {
+        "id": "f0a899ad-4923-4f03-a066-bf673ed0dfd3",
+        "name": "Estequiometria.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      },
+      {
+        "id": "8a0c08d3-f624-45ff-b790-ba888c412fd8",
+        "name": "pH e pOH.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      }
+    ]
+  },
+  "docs": [
+    {
+      "id": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+      "name": "Quimica-3.pdf",
+      "tag": "QUESTIONS",
+      "sourceSha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d",
+      "workerExitCode": 0,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/0dde967f-5521-43f5-bccf-abc9e4931ae7/Quimica-3-pdf.worker.log",
+      "status": "PARTIAL_SUCCESS",
+      "errorMessage": "Operacoes pendentes: ; Avisos: QUESTIONS_TEXT_COVERAGE_UNVERIFIED, QUESTIONS_PAGES_WITHOUT_TEXT, QUESTIONS_PAGE_TEXT_UNCLASSIFIED",
+      "blockTypes": [],
+      "chunks": 13,
+      "embeddedChunks": 13,
+      "chunksByStatus": [
+        {
+          "state": "READY",
+          "count": 13
+        }
+      ],
+      "visualAssets": [
+        {
+          "id": "cab57245-9595-4395-a6c3-f29794356c9f",
+          "pageNumber": 1,
+          "checksum": "fc4c2eea889f961072f9fa6f8e17d75a5955774101064bcf3e35f2161d20afc8",
+          "bbox": [
+            33.978886944590464,
+            748.6448605588153,
+            101.85218097977884,
+            673.8012738285861
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "5c736eb9-bc2d-4125-abb6-5c633cfb8d03",
+          "pageNumber": 1,
+          "checksum": "2b13eed1cbc0fbcad241fabfc527caa83fbb3f70ac80ac43c05cbc54ef98e949",
+          "bbox": [
+            127.87012174116805,
+            735.6918973635599,
+            235.0920882555712,
+            688.725190648261
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "4e392047-820f-48e8-8ec8-c9d250079943",
+          "pageNumber": 1,
+          "checksum": "26cc72eb2e7479eed69ca095c9c49342282abec5079e18dfc6822c8e069c1118",
+          "bbox": [
+            277.2997067249003,
+            746.0169293823022,
+            345.65591174915187,
+            675.0165566817427
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "2d44316a-fdfc-4b07-bf00-51193c244927",
+          "pageNumber": 1,
+          "checksum": "2ca1c2802898b5b03fdc9276c9f81e367c8cffcfd7835f366b3684d96369581e",
+          "bbox": [
+            377.9478952629257,
+            749.9106556594808,
+            532.0123192852623,
+            675.0672538301161
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "4bd15858-4c45-49df-966d-47d9b2ce2518",
+          "pageNumber": 3,
+          "checksum": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68",
+          "bbox": [
+            33.37452519623316,
+            719.1404450106745,
+            71.02799963698162,
+            680.6584272292305
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "07c19292-345b-44a3-8425-76f46ea65da8",
+          "pageNumber": 4,
+          "checksum": "3216a2a63930a32f1c3c183aae67d79aa3af1b31c592205841565de458dc77ba",
+          "bbox": [
+            32.8237731682466,
+            719.3214191145461,
+            71.78385434363665,
+            680.5692859505972
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "c89a1066-fb12-4184-8b70-01e1504d9ba6",
+          "pageNumber": 5,
+          "checksum": "f72b4bc0d3fa7487f4f6c9ecda43d3867432d68ec48ec0b53462c84d48376ae7",
+          "bbox": [
+            33.295707346726424,
+            719.1253479503979,
+            71.41397741447697,
+            680.4449486970967
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "da7ef2e0-84d1-4705-a635-cf38987838dd",
+          "pageNumber": 5,
+          "checksum": "45789fbdbc0ca341cf4577b42806e3bad633cca1a7e2bfd1f665da03bde668b5",
+          "bbox": [
+            126.76981571040287,
+            671.224129391587,
+            506.48901032006586,
+            594.0442211162991
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "98c7a526-0b11-45df-85d3-6076f739f74c",
+          "pageNumber": 6,
+          "checksum": "7b01a396c904bdf80397d0e70664955df5eb53cafa32f6e0add5f1b0c223eb37",
+          "bbox": [
+            32.49375537713499,
+            719.0110449046368,
+            73.42288255053948,
+            680.5065111540025
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "3b825f27-649d-46f8-a3d3-d12fa5a713d9",
+          "pageNumber": 7,
+          "checksum": "04a2fcde03f1408c01bc1c720187e8cbc373d0e91d570e303b37d92aa9f55e45",
+          "bbox": [
+            32.579181442119776,
+            719.1529839579598,
+            71.68373148533693,
+            680.3043706666319
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "3aa1fb89-4def-4f9d-9ad7-48d46218b9fb",
+          "pageNumber": 8,
+          "checksum": "8afd1ac3519e6717a9f048a91210ea7324a5a516bc86ffdd3eff59f75f5faf29",
+          "bbox": [
+            32.50211103065516,
+            719.144741573031,
+            71.78295391704727,
+            680.3460019540614
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "1d3b8a93-b390-40d7-8a7d-63c7fbc09c9d",
+          "pageNumber": 9,
+          "checksum": "8d67a43b2bad7b00933db80510cfa240760be6cca666d54b1008c62684ddf8cd",
+          "bbox": [
+            33.40290007989961,
+            719.1625797409689,
+            71.86679278939991,
+            680.588439392726
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "55752fa8-00f2-4283-bdbb-f82fe4321205",
+          "pageNumber": 9,
+          "checksum": "103936d77cc0c7d3615218987714bda5fff05ee01f0e61fc9e2983d66dab50d2",
+          "bbox": [
+            163.62576400716875,
+            688.2696559163587,
+            469.6330543925661,
+            623.5697096444094
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "eac043ce-7c78-4590-aa93-6d10a6306d22",
+          "pageNumber": 9,
+          "checksum": "54f3d76a191783bf652869436ae2815bd1a85d0a046b73f102fe340b8ecffd4c",
+          "bbox": [
+            178.41624747180313,
+            574.8728150107969,
+            459.65724347019807,
+            513.1076915079561
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "0f186ea4-27a3-46e8-acb5-af03e8dc52fd",
+          "pageNumber": 11,
+          "checksum": "974869257bc8aed9da5928af032b9d2ff9e2543dc645e4bdcfbd435e5a21d0fd",
+          "bbox": [
+            32.53959701048882,
+            719.3592418254058,
+            72.05246380442534,
+            679.8265792079885
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "5d09adbd-26aa-43f9-a5cd-6e7cadaf3501",
+          "pageNumber": 12,
+          "checksum": "e49b06ee7af9369f0c1a9e5963412500565bc35f9a83997fb7da1e75c74078ac",
+          "bbox": [
+            33.39704349170168,
+            719.1435749820096,
+            70.63677954535991,
+            680.4448800740954
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+          "pageNumber": 15,
+          "checksum": "0f1d8b99662c94c3ef4d98e766efe27d272223f7467c9369e2db26173fa51a78",
+          "bbox": [
+            32.65725529508019,
+            631.6829460848469,
+            546.9943189070192,
+            307.0059185155285
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "2a5e745f-e9e2-43ae-b094-ba1f9158b47b",
+          "pageNumber": 16,
+          "checksum": "4a4e39352ec067fe648cae7f855f983946330994842f54d657e8c24e85ce613c",
+          "bbox": [
+            173.73947755092186,
+            503.02386171385547,
+            252.1718681700569,
+            416.87225850195597
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "5d07ca0d-280e-4269-9733-9a9bce3bf9cc",
+          "pageNumber": 16,
+          "checksum": "731978899815fc8352cb93eec1558c2b392d09ee91fcaa8f779e2d981e7f539e",
+          "bbox": [
+            282.79020283763936,
+            487.8238059371208,
+            408.299749444452,
+            433.29755509180757
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "331dbeec-0dfd-4180-ae32-5e9b1314f74b",
+          "pageNumber": 16,
+          "checksum": "6393b270541caf0d199db5b9ea9dee953eea37ad06f6d7a831011c4dd161ade5",
+          "bbox": [
+            248.7362981489787,
+            311.87659615010784,
+            332.34727100570154,
+            223.21171364104612
+          ],
+          "mimeType": "image/png"
+        }
+      ],
+      "spans": [],
+      "questions": [
+        {
+          "id": "f8b97568-0e42-44dd-a118-c00d21f28532",
+          "sourceKey": "e23d294784e308f28cf40106bbea20c5d88bd1b6d3afd121b76f6dff3cc95848",
+          "textHash": "629afbce6fcaafed3da737de53fd563dae43062f2ee1d9439e70e94daf11f540",
+          "text": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:48.100Z",
+          "sources": [
+            {
+              "id": "cfb06251-da80-4657-97d8-9f3957214a59",
+              "chunkId": "d13c2734-66f6-4cf6-93c8-338aac03d413",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 10,
+              "pageEnd": 12,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+              "confidence": 1,
+              "excerptSha256": "97a2f05ff6e557458081a77b62443b5b2e848922a4e6298e0389fa39cc55808e"
+            },
+            {
+              "id": "8d99d6a4-d216-4246-91b4-b7bc02c8f9ab",
+              "chunkId": "d32d601c-259c-4705-8f42-0983a08a1d26",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 10,
+              "pageEnd": 12,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+              "confidence": 1,
+              "excerptSha256": "97a2f05ff6e557458081a77b62443b5b2e848922a4e6298e0389fa39cc55808e"
+            }
+          ]
+        },
+        {
+          "id": "9956cc8c-4585-408d-bfa9-1c6732d02888",
+          "sourceKey": "e3bcedf73c625b02b954005159bd18fe3dda0dbf43d4d0f81d501a3b473e59af",
+          "textHash": "4dd1a784da1c552ffbbf06ffc660d5278895bda0252a61289c099381484794bd",
+          "text": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol^{2}/L^{2} .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:48.115Z",
+          "sources": [
+            {
+              "id": "5aaad5e2-4ee8-4b81-a928-682adf5f809a",
+              "chunkId": "d32d601c-259c-4705-8f42-0983a08a1d26",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 11,
+              "pageEnd": 12,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol^{2}/L^{2} .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.",
+              "confidence": 1,
+              "excerptSha256": "1a9cb5215fbc27a72126eecae820cf9c4b7815f89a3e62a0bfac715dbfc65362"
+            }
+          ]
+        },
+        {
+          "id": "7c7bd834-4e1b-4361-860b-0eceb5f09263",
+          "sourceKey": "7e3432c970db6d3bb133973a0024fe212a13f3dd61ef6d87d4af21d94ef802bb",
+          "textHash": "81a8979ab399a10fc3855d4f6bd304faf86cc5e222a3a5c55175ed8db3a11686",
+          "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:47.973Z",
+          "sources": [
+            {
+              "id": "843826ea-583f-410c-8fe3-d35e1f8f4db9",
+              "chunkId": "41d231ac-2139-4449-a37c-08745ba44239",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 4,
+              "pageEnd": 7,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+              "confidence": 1,
+              "excerptSha256": "85d9509deae920b52713d7df0d16e75747f07c8542eabe41fb475d8d1667a9f6"
+            },
+            {
+              "id": "93f5bf2d-d974-4310-bf9f-f8ac469d1d89",
+              "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 4,
+              "pageEnd": 7,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+              "confidence": 1,
+              "excerptSha256": "85d9509deae920b52713d7df0d16e75747f07c8542eabe41fb475d8d1667a9f6"
+            }
+          ]
+        },
+        {
+          "id": "a150ca4a-2abd-4bfc-9bb9-e9ae950bab2c",
+          "sourceKey": "860c6c0bafb5ff6a52301c0cc31bc91a6b8a443a1920b0d2ed30adcb0beb5231",
+          "textHash": "ed572de9abaacf7e91d6df026bd91c50ca41cccc07b43b0c35268986ce57c02b",
+          "text": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:48.085Z",
+          "sources": [
+            {
+              "id": "5eca29e3-5e6a-4d21-afa8-31cab7bba023",
+              "chunkId": "d13c2734-66f6-4cf6-93c8-338aac03d413",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 10,
+              "pageEnd": 11,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.",
+              "confidence": 1,
+              "excerptSha256": "163e32aabc22626803b2d550cbd446336e0ce098757979f3431b25862bc14441"
+            }
+          ]
+        },
+        {
+          "id": "a3ea8c68-0ec4-4452-9725-bbd5d2347535",
+          "sourceKey": "7efd3af54b274809cf5560f29f4af2e7fbafadd92162e03bba255d40f63643cb",
+          "textHash": "e82d3877a7499fa11ef81a87c25628b75344f5b136c23e0d6985777f892f6158",
+          "text": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:48.064Z",
+          "sources": [
+            {
+              "id": "c42283c5-65ad-43a9-8882-b314bf5da0f0",
+              "chunkId": "edd7177e-0878-4b13-bbf0-907cd1254f97",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 8,
+              "pageEnd": 9,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.",
+              "confidence": 1,
+              "excerptSha256": "991e3845fe38bf4cdfc99c1fd3eb66eb93fa0897f4e6324b772f8c7aa07a6298"
+            }
+          ]
+        },
+        {
+          "id": "60674cc5-025f-4c7c-8a19-f46850ee9ab8",
+          "sourceKey": "53b1b90c70eb15642f94e9a8903e12f4b3e81ed0c2871291442d652c40e42d46",
+          "textHash": "34fe6fd687b2a5a7754a5d959937360f72def96991e022528cea792ff95a7d46",
+          "text": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:48.008Z",
+          "sources": [
+            {
+              "id": "115d47bc-bd05-4473-b732-42ac0157a0e6",
+              "chunkId": "edd7177e-0878-4b13-bbf0-907cd1254f97",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 8,
+              "pageEnd": 9,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.",
+              "confidence": 1,
+              "excerptSha256": "dda129825b7f3dde95ce69a7b8e37880b9f9892dfab50567ec508b8eb592873e"
+            }
+          ]
+        },
+        {
+          "id": "7d287077-37a7-4b46-b687-def61f2da2ea",
+          "sourceKey": "526dfb17ebf90ee8137fe2c5efa3bfbc5ae530b7c047ba6864ad6d8a425227c7",
+          "textHash": "ebcf27dcbd473e4fe28337952b5e14ce36aabc9bb13f17871bd14ee47b666fb0",
+          "text": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:47.930Z",
+          "sources": [
+            {
+              "id": "4f715f89-3751-4f81-a61b-c19c21bca34f",
+              "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 4,
+              "pageEnd": 6,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+              "confidence": 1,
+              "excerptSha256": "18029d49d5aaf5394029b9c0698fccfd86ef085fc1ba8af14b34046bb1bffa3d"
+            }
+          ]
+        },
+        {
+          "id": "8ef1bfab-c9cd-4278-87f8-637f5b93ef75",
+          "sourceKey": "196768fa65beaa7d944fca867a3798159847a368a30460a125fdfc6cd7210235",
+          "textHash": "b16ea397995dc31fb95d03e0ee5e0a8751962cb505d5763053e81b8607d8e6d6",
+          "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:47.902Z",
+          "sources": [
+            {
+              "id": "3cb3e3b5-45eb-4b01-84e5-11f57352db45",
+              "chunkId": "b42b0ba6-fd8f-4c00-bae9-242303112b60",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 1,
+              "pageEnd": 4,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.",
+              "confidence": 1,
+              "excerptSha256": "cc82960b5b30587166e9f6e68eaddd5698836db6e406bd52787a627b151a48d2"
+            }
+          ]
+        },
+        {
+          "id": "66c096cc-8761-4da8-ae03-59da71561d47",
+          "sourceKey": "f949b06ce3d10d9b44e636598cc48565787e9edd9fd0916705d12074cb83dda3",
+          "textHash": "003e8b5ba3801f5feb0a111a857cb788107b75c41fa84428731a21f862146f8f",
+          "text": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:47.952Z",
+          "sources": [
+            {
+              "id": "f4423565-668a-40fd-8d2b-246bec3ddc37",
+              "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 4,
+              "pageEnd": 6,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.",
+              "confidence": 1,
+              "excerptSha256": "2f7c97676158082cd7680f0578e32903c47113c15fab2f9dab55634b883ee864"
+            }
+          ]
+        },
+        {
+          "id": "6f54bae6-da98-4a40-a70e-9da2951f2781",
+          "sourceKey": "d763b565d36273dd300d51d9e66bdbc3798c1a342ea79cad775c4ce0767a02db",
+          "textHash": "5736c485793497255bf00d4e40c7902097af44b765fba440b29ba1d3371df867",
+          "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+          "alternativeCount": 0,
+          "alternatives": [],
+          "correctAnswer": null,
+          "explanation": null,
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "MISSING_ALTERNATIVES",
+          "needsReview": true,
+          "statementOrigin": "SOURCE_DOCUMENT",
+          "alternativesOrigin": null,
+          "categoryOrigin": null,
+          "difficultyOrigin": null,
+          "correctAnswerOrigin": null,
+          "explanationOrigin": null,
+          "updatedAt": "2026-11-06T17:54:47.991Z",
+          "sources": [
+            {
+              "id": "a73ddd15-f85f-4069-b92b-42eccc70e876",
+              "chunkId": "41d231ac-2139-4449-a37c-08745ba44239",
+              "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+              "documentBlockId": null,
+              "role": "STATEMENT",
+              "pageStart": 6,
+              "pageEnd": 7,
+              "charStartInChunk": null,
+              "charEndInChunk": null,
+              "excerpt": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+              "confidence": 1,
+              "excerptSha256": "6cf734d01b6cf1c6888e28a16aee9ffebb1362217b173a8ad7883dadb516d602"
+            }
+          ]
+        }
+      ],
+      "elapsedMs": 261498
+    },
+    {
+      "id": "f0a899ad-4923-4f03-a066-bf673ed0dfd3",
+      "name": "Estequiometria.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sourceSha256": "63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd",
+      "workerExitCode": 0,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/0dde967f-5521-43f5-bccf-abc9e4931ae7/Estequiometria-pdf.worker.log",
+      "status": "FAILED",
+      "errorMessage": "O Doc-chunker recusou a solicitação.",
+      "blockTypes": [],
+      "chunks": 0,
+      "embeddedChunks": 0,
+      "chunksByStatus": [],
+      "visualAssets": [],
+      "spans": [],
+      "questions": [],
+      "elapsedMs": 13193
+    },
+    {
+      "id": "8a0c08d3-f624-45ff-b790-ba888c412fd8",
+      "name": "pH e pOH.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sourceSha256": "5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc",
+      "workerExitCode": 0,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/0dde967f-5521-43f5-bccf-abc9e4931ae7/pH-e-pOH-pdf.worker.log",
+      "status": "FAILED",
+      "errorMessage": "O Doc-chunker recusou a solicitação.",
+      "blockTypes": [],
+      "chunks": 0,
+      "embeddedChunks": 0,
+      "chunksByStatus": [],
+      "visualAssets": [],
+      "spans": [],
+      "questions": [],
+      "elapsedMs": 12604
+    }
+  ],
+  "reprocess": {
+    "workerExitCode": 0,
+    "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/0dde967f-5521-43f5-bccf-abc9e4931ae7/Quimica-3-repeat.worker.log",
+    "beforeCount": 10,
+    "afterCount": 20,
+    "before": [
+      {
+        "id": "8ef1bfab-c9cd-4278-87f8-637f5b93ef75",
+        "sourceKey": "196768fa65beaa7d944fca867a3798159847a368a30460a125fdfc6cd7210235",
+        "textHash": "b16ea397995dc31fb95d03e0ee5e0a8751962cb505d5763053e81b8607d8e6d6",
+        "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "3cb3e3b5-45eb-4b01-84e5-11f57352db45",
+            "chunkId": "b42b0ba6-fd8f-4c00-bae9-242303112b60",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 1,
+            "pageEnd": 4,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.",
+            "confidence": 1,
+            "excerptSha256": "cc82960b5b30587166e9f6e68eaddd5698836db6e406bd52787a627b151a48d2"
+          }
+        ]
+      },
+      {
+        "id": "7d287077-37a7-4b46-b687-def61f2da2ea",
+        "sourceKey": "526dfb17ebf90ee8137fe2c5efa3bfbc5ae530b7c047ba6864ad6d8a425227c7",
+        "textHash": "ebcf27dcbd473e4fe28337952b5e14ce36aabc9bb13f17871bd14ee47b666fb0",
+        "text": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "4f715f89-3751-4f81-a61b-c19c21bca34f",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 6,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+            "confidence": 1,
+            "excerptSha256": "18029d49d5aaf5394029b9c0698fccfd86ef085fc1ba8af14b34046bb1bffa3d"
+          }
+        ]
+      },
+      {
+        "id": "60674cc5-025f-4c7c-8a19-f46850ee9ab8",
+        "sourceKey": "53b1b90c70eb15642f94e9a8903e12f4b3e81ed0c2871291442d652c40e42d46",
+        "textHash": "34fe6fd687b2a5a7754a5d959937360f72def96991e022528cea792ff95a7d46",
+        "text": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "115d47bc-bd05-4473-b732-42ac0157a0e6",
+            "chunkId": "edd7177e-0878-4b13-bbf0-907cd1254f97",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 8,
+            "pageEnd": 9,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.",
+            "confidence": 1,
+            "excerptSha256": "dda129825b7f3dde95ce69a7b8e37880b9f9892dfab50567ec508b8eb592873e"
+          }
+        ]
+      },
+      {
+        "id": "7c7bd834-4e1b-4361-860b-0eceb5f09263",
+        "sourceKey": "7e3432c970db6d3bb133973a0024fe212a13f3dd61ef6d87d4af21d94ef802bb",
+        "textHash": "81a8979ab399a10fc3855d4f6bd304faf86cc5e222a3a5c55175ed8db3a11686",
+        "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "843826ea-583f-410c-8fe3-d35e1f8f4db9",
+            "chunkId": "41d231ac-2139-4449-a37c-08745ba44239",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+            "confidence": 1,
+            "excerptSha256": "85d9509deae920b52713d7df0d16e75747f07c8542eabe41fb475d8d1667a9f6"
+          },
+          {
+            "id": "93f5bf2d-d974-4310-bf9f-f8ac469d1d89",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+            "confidence": 1,
+            "excerptSha256": "85d9509deae920b52713d7df0d16e75747f07c8542eabe41fb475d8d1667a9f6"
+          }
+        ]
+      },
+      {
+        "id": "a3ea8c68-0ec4-4452-9725-bbd5d2347535",
+        "sourceKey": "7efd3af54b274809cf5560f29f4af2e7fbafadd92162e03bba255d40f63643cb",
+        "textHash": "e82d3877a7499fa11ef81a87c25628b75344f5b136c23e0d6985777f892f6158",
+        "text": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "c42283c5-65ad-43a9-8882-b314bf5da0f0",
+            "chunkId": "edd7177e-0878-4b13-bbf0-907cd1254f97",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 8,
+            "pageEnd": 9,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.",
+            "confidence": 1,
+            "excerptSha256": "991e3845fe38bf4cdfc99c1fd3eb66eb93fa0897f4e6324b772f8c7aa07a6298"
+          }
+        ]
+      },
+      {
+        "id": "a150ca4a-2abd-4bfc-9bb9-e9ae950bab2c",
+        "sourceKey": "860c6c0bafb5ff6a52301c0cc31bc91a6b8a443a1920b0d2ed30adcb0beb5231",
+        "textHash": "ed572de9abaacf7e91d6df026bd91c50ca41cccc07b43b0c35268986ce57c02b",
+        "text": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "5eca29e3-5e6a-4d21-afa8-31cab7bba023",
+            "chunkId": "d13c2734-66f6-4cf6-93c8-338aac03d413",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 11,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.",
+            "confidence": 1,
+            "excerptSha256": "163e32aabc22626803b2d550cbd446336e0ce098757979f3431b25862bc14441"
+          }
+        ]
+      },
+      {
+        "id": "6f54bae6-da98-4a40-a70e-9da2951f2781",
+        "sourceKey": "d763b565d36273dd300d51d9e66bdbc3798c1a342ea79cad775c4ce0767a02db",
+        "textHash": "5736c485793497255bf00d4e40c7902097af44b765fba440b29ba1d3371df867",
+        "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "a73ddd15-f85f-4069-b92b-42eccc70e876",
+            "chunkId": "41d231ac-2139-4449-a37c-08745ba44239",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 6,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+            "confidence": 1,
+            "excerptSha256": "6cf734d01b6cf1c6888e28a16aee9ffebb1362217b173a8ad7883dadb516d602"
+          }
+        ]
+      },
+      {
+        "id": "f8b97568-0e42-44dd-a118-c00d21f28532",
+        "sourceKey": "e23d294784e308f28cf40106bbea20c5d88bd1b6d3afd121b76f6dff3cc95848",
+        "textHash": "629afbce6fcaafed3da737de53fd563dae43062f2ee1d9439e70e94daf11f540",
+        "text": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "cfb06251-da80-4657-97d8-9f3957214a59",
+            "chunkId": "d13c2734-66f6-4cf6-93c8-338aac03d413",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+            "confidence": 1,
+            "excerptSha256": "97a2f05ff6e557458081a77b62443b5b2e848922a4e6298e0389fa39cc55808e"
+          },
+          {
+            "id": "8d99d6a4-d216-4246-91b4-b7bc02c8f9ab",
+            "chunkId": "d32d601c-259c-4705-8f42-0983a08a1d26",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+            "confidence": 1,
+            "excerptSha256": "97a2f05ff6e557458081a77b62443b5b2e848922a4e6298e0389fa39cc55808e"
+          }
+        ]
+      },
+      {
+        "id": "9956cc8c-4585-408d-bfa9-1c6732d02888",
+        "sourceKey": "e3bcedf73c625b02b954005159bd18fe3dda0dbf43d4d0f81d501a3b473e59af",
+        "textHash": "4dd1a784da1c552ffbbf06ffc660d5278895bda0252a61289c099381484794bd",
+        "text": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol^{2}/L^{2} .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "5aaad5e2-4ee8-4b81-a928-682adf5f809a",
+            "chunkId": "d32d601c-259c-4705-8f42-0983a08a1d26",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 11,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol^{2}/L^{2} .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.",
+            "confidence": 1,
+            "excerptSha256": "1a9cb5215fbc27a72126eecae820cf9c4b7815f89a3e62a0bfac715dbfc65362"
+          }
+        ]
+      },
+      {
+        "id": "66c096cc-8761-4da8-ae03-59da71561d47",
+        "sourceKey": "f949b06ce3d10d9b44e636598cc48565787e9edd9fd0916705d12074cb83dda3",
+        "textHash": "003e8b5ba3801f5feb0a111a857cb788107b75c41fa84428731a21f862146f8f",
+        "text": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "f4423565-668a-40fd-8d2b-246bec3ddc37",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 6,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.",
+            "confidence": 1,
+            "excerptSha256": "2f7c97676158082cd7680f0578e32903c47113c15fab2f9dab55634b883ee864"
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "id": "d793bb94-a596-4b1f-9632-05deb500f2bc",
+        "sourceKey": "10a029567f4df732ed609bb2e90ca35c2544ad9e1164b2f62557d2a936ef01db",
+        "textHash": "b2e4619ddafa4181ed95a83a69780ce10e5eeb31e53cc274c7724467bc0961fd",
+        "text": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "26b2d017-afe0-40b6-b3f5-eaceec99ba76",
+            "chunkId": "d13c2734-66f6-4cf6-93c8-338aac03d413",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "48c12800ecc01bdd4f5f2bc1f80794974eaf1fe5b2ec644d6f304e9d2fc153ad"
+          },
+          {
+            "id": "016dea3d-55cf-4c6d-8215-c6d6d43d2feb",
+            "chunkId": "d32d601c-259c-4705-8f42-0983a08a1d26",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "48c12800ecc01bdd4f5f2bc1f80794974eaf1fe5b2ec644d6f304e9d2fc153ad"
+          }
+        ]
+      },
+      {
+        "id": "8ef1bfab-c9cd-4278-87f8-637f5b93ef75",
+        "sourceKey": "196768fa65beaa7d944fca867a3798159847a368a30460a125fdfc6cd7210235",
+        "textHash": "b16ea397995dc31fb95d03e0ee5e0a8751962cb505d5763053e81b8607d8e6d6",
+        "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "3cb3e3b5-45eb-4b01-84e5-11f57352db45",
+            "chunkId": "b42b0ba6-fd8f-4c00-bae9-242303112b60",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 1,
+            "pageEnd": 4,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.",
+            "confidence": 1,
+            "excerptSha256": "cc82960b5b30587166e9f6e68eaddd5698836db6e406bd52787a627b151a48d2"
+          }
+        ]
+      },
+      {
+        "id": "35c66e54-bc31-40b2-830e-ad2ad643ab9d",
+        "sourceKey": "2cb798977ca29947277824b8420aa19dad3c27a6606b8fda73360582e4a779b0",
+        "textHash": "4b75598f646669ce395839108e383c68f393c5d32394b3ed268353463e52f76c",
+        "text": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "a60e54c5-2ab0-4a49-b195-2f8b4c7e4ed5",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 6,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "4eec0befed05345b83c6be1947d583690ff152dd1075e0df3b3399539ca4f9af"
+          }
+        ]
+      },
+      {
+        "id": "fa25acc2-94f8-4d02-b2c8-7a9b5d45dc30",
+        "sourceKey": "42a745e6f6267ec55dc822dfd170168f06e9c55b3636559ddafd1f26bd2dd1de",
+        "textHash": "fe6a2e6b0e1295522c5d977c353981f1642d6131ff011bc2b9fd822cb1e49922",
+        "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10 7 s - 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s - 1 .\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "da50deb7-bfc5-4731-8f8d-2e0de6647a04",
+            "chunkId": "41d231ac-2139-4449-a37c-08745ba44239",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10 7 s - 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s - 1 .\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "6c41549d5b4218dc5e6a03359b06d47188b9683cf1be8dd4def25a6864dcca11"
+          },
+          {
+            "id": "eb4f58b2-e4f7-4d11-9abb-0f3b665603bb",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10 7 s - 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s - 1 .\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "6c41549d5b4218dc5e6a03359b06d47188b9683cf1be8dd4def25a6864dcca11"
+          }
+        ]
+      },
+      {
+        "id": "4a2b6819-ffbb-43ee-8b60-564c9d899a09",
+        "sourceKey": "49f915ca0f6db25a74660cfc9e5b13311d0c6b511249afe0599c4082c58038b2",
+        "textHash": "bf21fa2b48de3e5427f5593e094930ff9d052a7100112d6ad3866dc320770b7d",
+        "text": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "491f4565-a24a-4417-8253-519d09ad9834",
+            "chunkId": "d32d601c-259c-4705-8f42-0983a08a1d26",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 11,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "804862e6e214f7e9058541957411acbe101e8920af7c78a4d06ef1d5eef8494a"
+          }
+        ]
+      },
+      {
+        "id": "5b5b87eb-eba2-4115-8be5-e7558a28e02a",
+        "sourceKey": "4d97dc5c09ca997b9444269b1df3f9dec38f1aefe7bdb2a8a30f95f8176c7fa7",
+        "textHash": "838a40b5ba823592c3634f90fd81787e3f575b598da5b41fbdb888415c387801",
+        "text": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação  desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "bcf9b560-e6cb-4490-a64a-5077efb22e6a",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 6,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação  desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "8a56938857fa74cc1a8e29b5a5666e52672b3d00dd1dfeffd73298a3498a392f"
+          }
+        ]
+      },
+      {
+        "id": "7d287077-37a7-4b46-b687-def61f2da2ea",
+        "sourceKey": "526dfb17ebf90ee8137fe2c5efa3bfbc5ae530b7c047ba6864ad6d8a425227c7",
+        "textHash": "ebcf27dcbd473e4fe28337952b5e14ce36aabc9bb13f17871bd14ee47b666fb0",
+        "text": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "4f715f89-3751-4f81-a61b-c19c21bca34f",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 6,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+            "confidence": 1,
+            "excerptSha256": "18029d49d5aaf5394029b9c0698fccfd86ef085fc1ba8af14b34046bb1bffa3d"
+          }
+        ]
+      },
+      {
+        "id": "60674cc5-025f-4c7c-8a19-f46850ee9ab8",
+        "sourceKey": "53b1b90c70eb15642f94e9a8903e12f4b3e81ed0c2871291442d652c40e42d46",
+        "textHash": "34fe6fd687b2a5a7754a5d959937360f72def96991e022528cea792ff95a7d46",
+        "text": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "115d47bc-bd05-4473-b732-42ac0157a0e6",
+            "chunkId": "edd7177e-0878-4b13-bbf0-907cd1254f97",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 8,
+            "pageEnd": 9,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.",
+            "confidence": 1,
+            "excerptSha256": "dda129825b7f3dde95ce69a7b8e37880b9f9892dfab50567ec508b8eb592873e"
+          }
+        ]
+      },
+      {
+        "id": "7c7bd834-4e1b-4361-860b-0eceb5f09263",
+        "sourceKey": "7e3432c970db6d3bb133973a0024fe212a13f3dd61ef6d87d4af21d94ef802bb",
+        "textHash": "81a8979ab399a10fc3855d4f6bd304faf86cc5e222a3a5c55175ed8db3a11686",
+        "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "843826ea-583f-410c-8fe3-d35e1f8f4db9",
+            "chunkId": "41d231ac-2139-4449-a37c-08745ba44239",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+            "confidence": 1,
+            "excerptSha256": "85d9509deae920b52713d7df0d16e75747f07c8542eabe41fb475d8d1667a9f6"
+          },
+          {
+            "id": "93f5bf2d-d974-4310-bf9f-f8ac469d1d89",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .",
+            "confidence": 1,
+            "excerptSha256": "85d9509deae920b52713d7df0d16e75747f07c8542eabe41fb475d8d1667a9f6"
+          }
+        ]
+      },
+      {
+        "id": "a3ea8c68-0ec4-4452-9725-bbd5d2347535",
+        "sourceKey": "7efd3af54b274809cf5560f29f4af2e7fbafadd92162e03bba255d40f63643cb",
+        "textHash": "e82d3877a7499fa11ef81a87c25628b75344f5b136c23e0d6985777f892f6158",
+        "text": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "c42283c5-65ad-43a9-8882-b314bf5da0f0",
+            "chunkId": "edd7177e-0878-4b13-bbf0-907cd1254f97",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 8,
+            "pageEnd": 9,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.",
+            "confidence": 1,
+            "excerptSha256": "991e3845fe38bf4cdfc99c1fd3eb66eb93fa0897f4e6324b772f8c7aa07a6298"
+          }
+        ]
+      },
+      {
+        "id": "a150ca4a-2abd-4bfc-9bb9-e9ae950bab2c",
+        "sourceKey": "860c6c0bafb5ff6a52301c0cc31bc91a6b8a443a1920b0d2ed30adcb0beb5231",
+        "textHash": "ed572de9abaacf7e91d6df026bd91c50ca41cccc07b43b0c35268986ce57c02b",
+        "text": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "5eca29e3-5e6a-4d21-afa8-31cab7bba023",
+            "chunkId": "d13c2734-66f6-4cf6-93c8-338aac03d413",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 11,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.",
+            "confidence": 1,
+            "excerptSha256": "163e32aabc22626803b2d550cbd446336e0ce098757979f3431b25862bc14441"
+          }
+        ]
+      },
+      {
+        "id": "ec6ee1e9-bc66-4be8-be5c-65e2d03b3291",
+        "sourceKey": "882b19bbb0e883745433d91da6d793b0adf8c89128c246454b8ccaa33230365b",
+        "textHash": "b4dd427af012a3a08bf4e2be44836b26e4abb43016fa51d643d88842ea08e466",
+        "text": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.\nQUESTÃO\n06\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "1bf62e6e-c888-465f-8d92-8c1e0296e132",
+            "chunkId": "edd7177e-0878-4b13-bbf0-907cd1254f97",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 8,
+            "pageEnd": 9,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.\nQUESTÃO\n06\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "7902f4e61289a0d73d535ff3f5f102e22ad07193c3b9d1f110616f97352fc685"
+          }
+        ]
+      },
+      {
+        "id": "0ae39860-f7e3-4290-8edc-b5e6d68b4aab",
+        "sourceKey": "987a01b0b6d82514a17401a2738f9f9989c0cfded14d062ab8a49055ccb8dea4",
+        "textHash": "19585d9b8e5cbe7de5f26c241a944f277be192af9e3de672d575f1dc09a69ba0",
+        "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "733fe565-290b-4144-badb-26c5d572f8ea",
+            "chunkId": "41d231ac-2139-4449-a37c-08745ba44239",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 6,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "55ffe8506452f2fcef81076620925b18129b6c63bae3a9ad268e86b863e9da0d"
+          }
+        ]
+      },
+      {
+        "id": "7b7e7bd1-e62e-48d4-96af-0bc5dd2b5e10",
+        "sourceKey": "a0db8a203969f77b2aa80d1873cf9e99468b8df16091158620e9cd231b4cc3a9",
+        "textHash": "7eedcf0ef3e2fb8d1b927be62eeb46d9d12da298b23972fb31210bd8cf799390",
+        "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "14c3a609-48f7-49ff-bc0f-f452cbe9194c",
+            "chunkId": "b42b0ba6-fd8f-4c00-bae9-242303112b60",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 1,
+            "pageEnd": 4,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "8e0eb68e1b7ddfd40bea7a7c55a1ee54671052372ddcb984caacb79cd5921d81"
+          }
+        ]
+      },
+      {
+        "id": "6b1c912b-c39e-4578-be1a-4bf46b3cee88",
+        "sourceKey": "be33eef6c98dc6dc82dcad98eddb0f48bbe90abb736140c3abe1d8bfd1f3a4ad",
+        "textHash": "5847b5fb1293b9b20592cae53c180a3e645fd116c098139bef5ebc6948bf9b78",
+        "text": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "22934de3-2890-42ad-842b-611f0981348c",
+            "chunkId": "d13c2734-66f6-4cf6-93c8-338aac03d413",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 11,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "e5447af6d0202970c81d292195a847c3eeb4288a463fab3afb54195068c83340"
+          }
+        ]
+      },
+      {
+        "id": "6f54bae6-da98-4a40-a70e-9da2951f2781",
+        "sourceKey": "d763b565d36273dd300d51d9e66bdbc3798c1a342ea79cad775c4ce0767a02db",
+        "textHash": "5736c485793497255bf00d4e40c7902097af44b765fba440b29ba1d3371df867",
+        "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "a73ddd15-f85f-4069-b92b-42eccc70e876",
+            "chunkId": "41d231ac-2139-4449-a37c-08745ba44239",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 6,
+            "pageEnd": 7,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+            "confidence": 1,
+            "excerptSha256": "6cf734d01b6cf1c6888e28a16aee9ffebb1362217b173a8ad7883dadb516d602"
+          }
+        ]
+      },
+      {
+        "id": "8122714a-8c9f-4be1-9184-b46a6d39ace0",
+        "sourceKey": "d96735887879b303353ad834521f5449af696683de934b1510a2bcf072052af1",
+        "textHash": "50a8a285b86bb92c2828813ac50292b9aba756efdba71aa25febb4696ab172fc",
+        "text": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.\nDesenvolvimento e resposta:",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "cff51813-4dc8-4f19-a4b8-ec4b051be3dc",
+            "chunkId": "edd7177e-0878-4b13-bbf0-907cd1254f97",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 8,
+            "pageEnd": 9,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.\nDesenvolvimento e resposta:",
+            "confidence": 1,
+            "excerptSha256": "77897d3286b972c5390b6127db92f9cc957a2934efbd374026f51918d22df4b6"
+          }
+        ]
+      },
+      {
+        "id": "f8b97568-0e42-44dd-a118-c00d21f28532",
+        "sourceKey": "e23d294784e308f28cf40106bbea20c5d88bd1b6d3afd121b76f6dff3cc95848",
+        "textHash": "629afbce6fcaafed3da737de53fd563dae43062f2ee1d9439e70e94daf11f540",
+        "text": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "cfb06251-da80-4657-97d8-9f3957214a59",
+            "chunkId": "d13c2734-66f6-4cf6-93c8-338aac03d413",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+            "confidence": 1,
+            "excerptSha256": "97a2f05ff6e557458081a77b62443b5b2e848922a4e6298e0389fa39cc55808e"
+          },
+          {
+            "id": "8d99d6a4-d216-4246-91b4-b7bc02c8f9ab",
+            "chunkId": "d32d601c-259c-4705-8f42-0983a08a1d26",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 10,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.",
+            "confidence": 1,
+            "excerptSha256": "97a2f05ff6e557458081a77b62443b5b2e848922a4e6298e0389fa39cc55808e"
+          }
+        ]
+      },
+      {
+        "id": "9956cc8c-4585-408d-bfa9-1c6732d02888",
+        "sourceKey": "e3bcedf73c625b02b954005159bd18fe3dda0dbf43d4d0f81d501a3b473e59af",
+        "textHash": "4dd1a784da1c552ffbbf06ffc660d5278895bda0252a61289c099381484794bd",
+        "text": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol^{2}/L^{2} .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "5aaad5e2-4ee8-4b81-a928-682adf5f809a",
+            "chunkId": "d32d601c-259c-4705-8f42-0983a08a1d26",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 11,
+            "pageEnd": 12,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol^{2}/L^{2} .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.",
+            "confidence": 1,
+            "excerptSha256": "1a9cb5215fbc27a72126eecae820cf9c4b7815f89a3e62a0bfac715dbfc65362"
+          }
+        ]
+      },
+      {
+        "id": "66c096cc-8761-4da8-ae03-59da71561d47",
+        "sourceKey": "f949b06ce3d10d9b44e636598cc48565787e9edd9fd0916705d12074cb83dda3",
+        "textHash": "003e8b5ba3801f5feb0a111a857cb788107b75c41fa84428731a21f862146f8f",
+        "text": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.",
+        "alternatives": [],
+        "correctAnswer": null,
+        "explanation": null,
+        "status": "PENDING_REVIEW",
+        "completenessStatus": "MISSING_ALTERNATIVES",
+        "needsReview": true,
+        "statementOrigin": "SOURCE_DOCUMENT",
+        "alternativesOrigin": null,
+        "categoryOrigin": null,
+        "difficultyOrigin": null,
+        "correctAnswerOrigin": null,
+        "explanationOrigin": null,
+        "sources": [
+          {
+            "id": "f4423565-668a-40fd-8d2b-246bec3ddc37",
+            "chunkId": "f5b49a1c-ee3c-4a2a-8518-1f30c92561ca",
+            "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+            "documentBlockId": null,
+            "role": "STATEMENT",
+            "pageStart": 4,
+            "pageEnd": 6,
+            "charStartInChunk": null,
+            "charEndInChunk": null,
+            "excerpt": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.",
+            "confidence": 1,
+            "excerptSha256": "2f7c97676158082cd7680f0578e32903c47113c15fab2f9dab55634b883ee864"
+          }
+        ]
+      }
+    ],
+    "beforeSpans": [],
+    "afterSpans": [],
+    "stable": false,
+    "sameQuestionIdentitySet": false,
+    "sameSourceIdentityMultiset": false,
+    "duplicateLogicalSourceRelationsBefore": [],
+    "duplicateLogicalSourceRelationsAfter": [],
+    "beforeSourceLinkCount": 12,
+    "afterSourceLinkCount": 24,
+    "changedTextHashes": []
+  }
+}

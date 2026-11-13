@@ -21,7 +21,10 @@ type ChatResponse = {
     message?: { content?: string | null };
   }>;
   error?: { message?: string };
-  usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
+  usage?: {
+    prompt_tokens?: number; completion_tokens?: number; total_tokens?: number; reasoning_tokens?: number;
+    completion_tokens_details?: { reasoning_tokens?: number };
+  };
 };
 
 export type StructuredRequestUsage = {
@@ -32,6 +35,7 @@ export type StructuredRequestUsage = {
   promptTokens: number;
   completionTokens: number;
   totalTokens: number;
+  reasoningTokens?: number;
   finishReason?: string | null;
 };
 
@@ -68,6 +72,11 @@ export class StructuredCompletionError extends Error {
       retryAfterMs?: number;
       validationError?: unknown;
       responseContent?: string | null;
+      promptTokens?: number;
+      completionTokens?: number;
+      reasoningTokens?: number;
+      totalTokens?: number;
+      timeoutMs?: number;
     } = { model: '' },
   ) {
     super(message);
@@ -365,13 +374,14 @@ export class OpenRouterClient {
     messages: ChatMessage[];
     schemaName: string;
     schema: Record<string, unknown>;
-    maxTokens?: number;
+    maxTokens?: number | null;
     model?: string;
     temperature?: number;
     requireParameters?: boolean;
     validate?: (value: unknown) => T;
     onUsage?: (usage: StructuredRequestUsage) => void;
-    timeoutMs?: number;
+    timeoutMs?: number | null;
+    reasoningEffort?: 'none' | 'low' | 'medium' | 'high';
     signal?: AbortSignal;
   }): Promise<T> {
     if (!env.OPENROUTER_API_KEY) {
@@ -382,7 +392,8 @@ export class OpenRouterClient {
       event: 'monitor.llm_structured_request_started',
       model: input.model ?? env.OPENROUTER_QUESTION_MODEL,
       schemaName: input.schemaName,
-      maxTokens: input.maxTokens ?? 2048,
+      maxTokens: input.maxTokens === null ? 'provider_default' : input.maxTokens ?? 2048,
+      timeoutMs: input.timeoutMs === null ? 'none' : input.timeoutMs ?? env.OPENROUTER_STRUCTURED_TIMEOUT_MS,
       temperature: input.temperature ?? 0,
       requireParameters: input.requireParameters ?? false,
       messageCount: input.messages.length,
@@ -391,7 +402,8 @@ export class OpenRouterClient {
 
     const requestStartedAt = Date.now();
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), input.timeoutMs ?? env.OPENROUTER_STRUCTURED_TIMEOUT_MS);
+    const timeoutMs = input.timeoutMs === null ? undefined : input.timeoutMs ?? env.OPENROUTER_STRUCTURED_TIMEOUT_MS;
+    const timeout = timeoutMs === undefined ? undefined : setTimeout(() => controller.abort(), timeoutMs);
     input.signal?.addEventListener('abort', () => controller.abort(), { once: true });
     if (input.signal?.aborted) controller.abort();
     let response: Response;
@@ -407,12 +419,12 @@ export class OpenRouterClient {
         model: input.model ?? env.OPENROUTER_QUESTION_MODEL,
         messages: input.messages,
         temperature: input.temperature ?? 0,
-        max_tokens: input.maxTokens ?? 2048,
+        ...(input.maxTokens === null ? {} : { max_tokens: input.maxTokens ?? 2048 }),
         response_format: {
           type: 'json_schema',
           json_schema: { name: input.schemaName, strict: true, schema: input.schema },
         },
-        reasoning: { effort: aiModels.reasoningEffort },
+        reasoning: { effort: input.reasoningEffort ?? aiModels.reasoningEffort },
         ...(input.requireParameters ? { provider: { require_parameters: true } } : {}),
       }),
       });
@@ -422,9 +434,12 @@ export class OpenRouterClient {
       ])) as ChatResponse;
       return await this.parseStructuredResponse(payload, response, input, requestStartedAt);
     } catch (error) {
-      if (controller.signal.aborted) throw new StructuredCompletionError('TIMEOUT', 'OpenRouter excedeu o timeout configurado.', { model: input.model ?? env.OPENROUTER_QUESTION_MODEL });
+      if (controller.signal.aborted) throw new StructuredCompletionError('TIMEOUT', 'OpenRouter excedeu o timeout configurado.', {
+        model: input.model ?? env.OPENROUTER_QUESTION_MODEL,
+        timeoutMs,
+      });
       throw error;
-    } finally { clearTimeout(timeout); }
+    } finally { if (timeout) clearTimeout(timeout); }
   }
 
   private async parseStructuredResponse<T>(payload: ChatResponse, response: Response, input: {
@@ -442,6 +457,7 @@ export class OpenRouterClient {
       promptTokens: payload.usage?.prompt_tokens ?? 0,
       completionTokens: payload.usage?.completion_tokens ?? 0,
       totalTokens: payload.usage?.total_tokens ?? 0,
+      reasoningTokens: payload.usage?.completion_tokens_details?.reasoning_tokens ?? payload.usage?.reasoning_tokens ?? 0,
       finishReason: payload.choices?.[0]?.finish_reason,
     };
     input.onUsage?.(usage);
@@ -457,6 +473,7 @@ export class OpenRouterClient {
       totalTokens: payload.usage?.total_tokens,
       finishReason: payload.choices?.[0]?.finish_reason,
       nativeFinishReason: payload.choices?.[0]?.native_finish_reason,
+      reasoningTokens: usage.reasoningTokens,
     });
 
     const model = input.model ?? env.OPENROUTER_QUESTION_MODEL;
@@ -486,7 +503,11 @@ export class OpenRouterClient {
       throw new StructuredCompletionError(
         'MODEL_OUTPUT_TRUNCATED',
         'A resposta estruturada terminou por limite de tokens.',
-        { model, finishReason },
+        {
+          model, finishReason, nativeFinishReason: payload.choices?.[0]?.native_finish_reason,
+          promptTokens: usage.promptTokens, completionTokens: usage.completionTokens,
+          reasoningTokens: usage.reasoningTokens, totalTokens: usage.totalTokens,
+        },
       );
     }
 

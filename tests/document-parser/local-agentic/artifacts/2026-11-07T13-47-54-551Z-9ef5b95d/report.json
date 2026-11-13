@@ -1,0 +1,16 @@
+{
+  "runId": "34e38e9f-fe94-47a7-af05-ad1ba56d07bd",
+  "database": "dbtemp local 127.0.0.1:56322",
+  "redis": "isolated 127.0.0.1:56379",
+  "parser": "local 127.0.0.1:8080",
+  "endpointUpload": null,
+  "runs": [],
+  "pdf": {
+    "file": "dbtemp/storage/monitor-documents/Quimica-3.pdf",
+    "bytes": 599300,
+    "sha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d"
+  },
+  "completedAt": "2026-11-07T13:48:01.477Z",
+  "result": "FAIL",
+  "error": "real endpoint upload rejected: {\"error\":\"VALIDATION_ERROR\",\"message\":\"Escopo ou tag do documento invalidos.\",\"details\":{\"tag\":[\"Invalid option: expected one of \\\"knowledge\\\"|\\\"questions\\\"|\\\"flashcards\\\"\"]}}\n\n400 !== 201\n"
+}

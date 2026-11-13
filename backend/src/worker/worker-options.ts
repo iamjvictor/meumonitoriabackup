@@ -1,11 +1,16 @@
-export const WORKER_DRAIN_DELAY_SECONDS = 60;
-export const WORKER_STALLED_INTERVAL_MS = 5 * 60_000;
+export const WORKER_DRAIN_DELAY_SECONDS = 300;
+export const PAYMENT_WORKER_STALLED_INTERVAL_MS = 5 * 60_000;
+export const DEFAULT_WORKER_STALLED_INTERVAL_MS = 10 * 60_000;
 
-export function createQueueWorkerOptions<T>(connection: T, concurrency: number) {
+export type QueueKind = 'documents' | 'weeklySimulation' | 'paymentWebhook' | 'questionBankMaterialization';
+
+export function createQueueWorkerOptions<T>(connection: T, concurrency: number, queueKind: QueueKind) {
   return {
     connection,
     concurrency,
     drainDelay: WORKER_DRAIN_DELAY_SECONDS,
-    stalledInterval: WORKER_STALLED_INTERVAL_MS,
+    stalledInterval: queueKind === 'paymentWebhook'
+      ? PAYMENT_WORKER_STALLED_INTERVAL_MS
+      : DEFAULT_WORKER_STALLED_INTERVAL_MS,
   };
 }

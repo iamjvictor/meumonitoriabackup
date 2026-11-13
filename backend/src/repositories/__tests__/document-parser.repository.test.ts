@@ -105,12 +105,15 @@ test('salva ou atualiza parse run pela idempotency key sem substituir o ID canô
       configurationHash: 'cfg-1',
       createdAt: '2026-08-26T00:00:00.000Z',
       updatedAt: '2026-08-26T00:01:00.000Z',
+      metrics: { pageCount: 16, visualAssetPages: [2, 16] },
     };
 
     await new PrismaDocumentParseRunStore().save(record);
 
     assert.deepEqual(captured.where, { idempotencyKey: 'document-1:stable-key' });
     assert.equal(captured.create?.id, 'parser-retry-id');
+    assert.deepEqual(captured.create?.metrics, { pageCount: 16, visualAssetPages: [2, 16] });
+    assert.deepEqual(captured.update?.metrics, { pageCount: 16, visualAssetPages: [2, 16] });
     assert.equal('id' in (captured.update ?? {}), false);
   } finally {
     (prisma.documentParseRun as typeof prisma.documentParseRun & { upsert: any }).upsert = originalUpsert;

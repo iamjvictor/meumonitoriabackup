@@ -11,7 +11,6 @@ function setup(overrides: Record<string, unknown> = {}) {
       monitor: { id: 'monitor-1', name: 'Física', status: 'PUBLISHED', priceCents: 10000 },
     }),
     findBatchByIdempotency: async () => null,
-    findBlockingSeat: async () => null,
     createPendingBatch: async (input: unknown) => { calls.created.push(input); return { id: 'batch-1', externalReference: 'batch-1' }; },
     saveCheckout: async (_id: string, checkout: unknown) => { calls.saved.push(checkout); },
     markCheckoutCreationFailed: async () => {},

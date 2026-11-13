@@ -1,17 +1,19 @@
 import { Prisma } from '@prisma/client';
 import { prisma } from '../../../../lib/prisma.js';
+import { env } from '../../../../config/env.js';
 import type { ChatVisualAssetReference, VisualContextScope } from '../services/chat-visual-context.service.js';
 
 export class PrismaChatVisualContextRepository {
   async questionAssets(questionId: string, scope: VisualContextScope): Promise<ChatVisualAssetReference[]> {
     return prisma.$queryRaw<ChatVisualAssetReference[]>(Prisma.sql`
       SELECT dva.id::text AS "assetId", dva.page_number AS page, dva.checksum,
-        dvi.description
+        dvi.description, COUNT(*) OVER()::integer AS "totalCount"
       FROM questions q
       JOIN question_visual_assets qva ON qva.question_id = q.id
       JOIN document_visual_assets dva ON dva.id = qva.visual_asset_id
       LEFT JOIN document_visual_asset_indexes dvi ON dvi.visual_asset_id = dva.id
       WHERE q.id = ${questionId}::uuid
+        AND q.status = 'APPROVED'
         AND q.teacher_id = ${scope.teacherId}::uuid
         AND q.monitor_id = ${scope.monitorId}::uuid
         AND q.subject_id = ${scope.subjectId}::uuid
@@ -32,6 +34,8 @@ export class PrismaChatVisualContextRepository {
         AND d.teacher_id = ${scope.teacherId}::uuid
         AND d.monitor_id = ${scope.monitorId}::uuid
         AND d.subject_id = ${scope.subjectId}::uuid
+        AND ((d.active_generation_id IS NULL AND dva.generation_id IS NULL) OR dva.generation_id = d.active_generation_id)
+        AND (d.active_generation_id IS NULL OR dvi.embedding_model = ${env.OPENROUTER_EMBEDDING_MODEL})
       ORDER BY dva.page_number, dva.created_at
       LIMIT 4
     `);

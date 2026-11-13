@@ -1,0 +1,1 @@
+AC-002/003: validar enunciado, gabarito, alternativas, marcadores e hash com casos válidos e inválidos, sem escrever no banco real. AC-001/004: validar abertura e cancelamento no navegador, sem alterar registros.

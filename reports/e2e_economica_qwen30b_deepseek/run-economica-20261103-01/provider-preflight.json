@@ -1,0 +1,1476 @@
+{
+  "generatedAt": "2026-11-03T01:27:12.299Z",
+  "source": {
+    "catalog": "https://openrouter.ai/api/v1/models",
+    "endpoints": "https://openrouter.ai/api/v1/models/{id}/endpoints",
+    "openRouterPrivacy": "https://openrouter.ai/privacy"
+  },
+  "inferenceCallsMade": false,
+  "models": [
+    {
+      "id": "qwen/qwen3-vl-30b-a3b-instruct",
+      "exists": true,
+      "status": "CATALOG_ENDPOINT_CONFIRMED",
+      "name": "Qwen: Qwen3 VL 30B A3B Instruct",
+      "taskType": "chat",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "imageInput": true,
+      "modelSupportedParameters": [
+        "frequency_penalty",
+        "logit_bias",
+        "logprobs",
+        "max_tokens",
+        "min_p",
+        "presence_penalty",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p"
+      ],
+      "contextLength": "NAO_VERIFICADO",
+      "structuredOutputProviders": [
+        "DeepInfra",
+        "Novita",
+        "SiliconFlow"
+      ],
+      "providers": [
+        {
+          "name": "DeepInfra",
+          "pricingUsdPerToken": {
+            "input": "0.00000015",
+            "output": "0.0000006",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "top_k",
+            "seed",
+            "min_p",
+            "logit_bias",
+            "structured_outputs",
+            "tools",
+            "tool_choice",
+            "response_format"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Novita",
+          "pricingUsdPerToken": {
+            "input": "0.0000002",
+            "output": "0.0000007",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "structured_outputs",
+            "response_format",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "seed",
+            "top_k",
+            "repetition_penalty",
+            "tools",
+            "tool_choice",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "SiliconFlow",
+          "pricingUsdPerToken": {
+            "input": "0.00000029",
+            "output": "0.000001",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "structured_outputs",
+            "response_format",
+            "temperature",
+            "top_p",
+            "top_k",
+            "frequency_penalty",
+            "tools",
+            "tool_choice",
+            "max_tokens"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        }
+      ],
+      "source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-30b-a3b-instruct/endpoints"
+    },
+    {
+      "id": "qwen/qwen3-vl-235b-a22b-instruct",
+      "exists": true,
+      "status": "CATALOG_ENDPOINT_CONFIRMED",
+      "name": "Qwen: Qwen3 VL 235B A22B Instruct",
+      "taskType": "chat",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "imageInput": true,
+      "modelSupportedParameters": [
+        "frequency_penalty",
+        "logit_bias",
+        "logprobs",
+        "max_tokens",
+        "min_p",
+        "presence_penalty",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p"
+      ],
+      "contextLength": "NAO_VERIFICADO",
+      "structuredOutputProviders": [
+        "DeepInfra",
+        "Venice",
+        "Parasail"
+      ],
+      "providers": [
+        {
+          "name": "DeepInfra",
+          "pricingUsdPerToken": {
+            "input": "0.0000002",
+            "output": "0.00000088",
+            "cachedInput": "0.00000011"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "top_k",
+            "seed",
+            "min_p",
+            "logit_bias",
+            "structured_outputs",
+            "tools",
+            "tool_choice",
+            "response_format"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Venice",
+          "pricingUsdPerToken": {
+            "input": "0.00000021",
+            "output": "0.0000019",
+            "cachedInput": "0.0000001"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "top_k",
+            "response_format",
+            "structured_outputs",
+            "tools",
+            "tool_choice"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Parasail",
+          "pricingUsdPerToken": {
+            "input": "0.00000021",
+            "output": "0.0000019",
+            "cachedInput": "0.0000001"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "structured_outputs",
+            "response_format",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "seed",
+            "stop",
+            "top_k",
+            "logit_bias",
+            "tools",
+            "tool_choice",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        }
+      ],
+      "source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-235b-a22b-instruct/endpoints"
+    },
+    {
+      "id": "deepseek/deepseek-v3.2",
+      "exists": true,
+      "status": "CATALOG_ENDPOINT_CONFIRMED",
+      "name": "DeepSeek: DeepSeek V3.2",
+      "taskType": "chat",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "imageInput": false,
+      "modelSupportedParameters": [
+        "frequency_penalty",
+        "include_reasoning",
+        "logit_bias",
+        "logprobs",
+        "max_tokens",
+        "min_p",
+        "presence_penalty",
+        "reasoning",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p"
+      ],
+      "contextLength": "NAO_VERIFICADO",
+      "structuredOutputProviders": [
+        "SiliconFlow",
+        "DeepInfra",
+        "AtlasCloud",
+        "Baidu",
+        "Phala",
+        "Mara"
+      ],
+      "providers": [
+        {
+          "name": "GMICloud",
+          "pricingUsdPerToken": {
+            "input": "0.0000002088",
+            "output": "0.0000003096",
+            "cachedInput": "0.0000000216"
+          },
+          "structuredOutputs": false,
+          "responseFormat": false,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "seed",
+            "tools",
+            "tool_choice"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "SiliconFlow",
+          "pricingUsdPerToken": {
+            "input": "0.000000259",
+            "output": "0.0000008",
+            "cachedInput": "0.00000014"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "temperature",
+            "top_p",
+            "top_k",
+            "frequency_penalty",
+            "response_format",
+            "tools",
+            "tool_choice",
+            "structured_outputs",
+            "max_tokens"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "DeepInfra",
+          "pricingUsdPerToken": {
+            "input": "0.00000026",
+            "output": "0.00000038",
+            "cachedInput": "0.00000013"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "top_k",
+            "seed",
+            "min_p",
+            "tool_choice",
+            "tools",
+            "response_format",
+            "logit_bias",
+            "structured_outputs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "AtlasCloud",
+          "pricingUsdPerToken": {
+            "input": "0.00000026",
+            "output": "0.00000038",
+            "cachedInput": "0.00000013"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "response_format",
+            "tools",
+            "tool_choice",
+            "seed",
+            "logit_bias",
+            "stop",
+            "min_p",
+            "top_k",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "structured_outputs",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Baidu",
+          "pricingUsdPerToken": {
+            "input": "0.00000028",
+            "output": "0.00000042",
+            "cachedInput": "0.000000028"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "temperature",
+            "top_p",
+            "max_tokens",
+            "stop",
+            "seed",
+            "response_format",
+            "structured_outputs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "DigitalOcean",
+          "pricingUsdPerToken": {
+            "input": "0.0000003",
+            "output": "0.00000096",
+            "cachedInput": "0.00000009"
+          },
+          "structuredOutputs": false,
+          "responseFormat": false,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "temperature",
+            "top_p",
+            "max_tokens",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Phala",
+          "pricingUsdPerToken": {
+            "input": "0.000001",
+            "output": "0.000001",
+            "cachedInput": "0.0000005"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "seed",
+            "top_k",
+            "min_p",
+            "repetition_penalty",
+            "structured_outputs",
+            "tools",
+            "tool_choice",
+            "response_format"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Mara",
+          "pricingUsdPerToken": {
+            "input": "0.000003",
+            "output": "0.0000045",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "stop",
+            "top_k",
+            "top_p",
+            "logprobs",
+            "top_logprobs",
+            "response_format",
+            "structured_outputs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "SambaNova",
+          "pricingUsdPerToken": {
+            "input": "0.000003",
+            "output": "0.0000045",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": false,
+          "responseFormat": false,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "top_k",
+            "stop",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        }
+      ],
+      "source": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v3.2/endpoints"
+    },
+    {
+      "id": "moonshotai/kimi-k2.5",
+      "exists": true,
+      "status": "CATALOG_ENDPOINT_CONFIRMED",
+      "name": "MoonshotAI: Kimi K2.5",
+      "taskType": "chat",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "imageInput": true,
+      "modelSupportedParameters": [
+        "frequency_penalty",
+        "include_reasoning",
+        "logit_bias",
+        "logprobs",
+        "max_tokens",
+        "min_p",
+        "presence_penalty",
+        "reasoning",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p"
+      ],
+      "contextLength": "NAO_VERIFICADO",
+      "structuredOutputProviders": [
+        "AtlasCloud",
+        "SiliconFlow",
+        "Venice",
+        "Novita"
+      ],
+      "providers": [
+        {
+          "name": "AtlasCloud",
+          "pricingUsdPerToken": {
+            "input": "0.00000049",
+            "output": "0.0000025",
+            "cachedInput": "0.0000002"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "top_k",
+            "min_p",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "seed",
+            "logit_bias",
+            "response_format",
+            "structured_outputs",
+            "tools",
+            "tool_choice"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "SiliconFlow",
+          "pricingUsdPerToken": {
+            "input": "0.0000005",
+            "output": "0.0000025",
+            "cachedInput": "0.00000015"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "temperature",
+            "top_p",
+            "top_k",
+            "frequency_penalty",
+            "response_format",
+            "tools",
+            "tool_choice",
+            "structured_outputs",
+            "max_tokens"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Venice",
+          "pricingUsdPerToken": {
+            "input": "0.000000532",
+            "output": "0.000003325",
+            "cachedInput": "0.000000209"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "top_k",
+            "response_format",
+            "structured_outputs",
+            "tools",
+            "tool_choice",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Novita",
+          "pricingUsdPerToken": {
+            "input": "0.00000057",
+            "output": "0.00000285",
+            "cachedInput": "0.000000095"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "seed",
+            "top_k",
+            "repetition_penalty",
+            "tools",
+            "tool_choice",
+            "response_format",
+            "structured_outputs",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Amazon Bedrock",
+          "pricingUsdPerToken": {
+            "input": "0.0000006",
+            "output": "0.000003",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": false,
+          "responseFormat": false,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "top_k",
+            "stop",
+            "seed",
+            "tools",
+            "tool_choice"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        }
+      ],
+      "source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.5/endpoints"
+    },
+    {
+      "id": "moonshotai/kimi-k2.6",
+      "exists": true,
+      "status": "CATALOG_ENDPOINT_CONFIRMED",
+      "name": "MoonshotAI: Kimi K2.6",
+      "taskType": "chat",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "imageInput": true,
+      "modelSupportedParameters": [
+        "frequency_penalty",
+        "include_reasoning",
+        "logit_bias",
+        "logprobs",
+        "max_tokens",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "reasoning",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p"
+      ],
+      "contextLength": "NAO_VERIFICADO",
+      "structuredOutputProviders": [
+        "Chutes",
+        "DigitalOcean",
+        "StreamLake",
+        "CoreWeave",
+        "Crusoe",
+        "DeepInfra",
+        "Venice",
+        "Parasail",
+        "SiliconFlow",
+        "Inceptron",
+        "Novita",
+        "GMICloud",
+        "Baidu",
+        "AtlasCloud",
+        "Cloudflare",
+        "Moonshot AI",
+        "Phala"
+      ],
+      "providers": [
+        {
+          "name": "Chutes",
+          "pricingUsdPerToken": {
+            "input": "0.00000039",
+            "output": "0.0000018",
+            "cachedInput": "0.000000039"
+          },
+          "structuredOutputs": true,
+          "responseFormat": false,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "seed",
+            "top_k",
+            "repetition_penalty",
+            "tools",
+            "tool_choice",
+            "structured_outputs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "DigitalOcean",
+          "pricingUsdPerToken": {
+            "input": "0.00000057",
+            "output": "0.0000024",
+            "cachedInput": "0.000000114"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "temperature",
+            "top_p",
+            "max_tokens",
+            "structured_outputs",
+            "response_format",
+            "tool_choice",
+            "tools",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "StreamLake",
+          "pricingUsdPerToken": {
+            "input": "0.0000005985",
+            "output": "0.00000252",
+            "cachedInput": "0.0000001008"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "stop",
+            "top_p",
+            "temperature",
+            "max_tokens",
+            "tool_choice",
+            "tools",
+            "structured_outputs",
+            "response_format",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "CoreWeave",
+          "pricingUsdPerToken": {
+            "input": "0.00000065",
+            "output": "0.00000341",
+            "cachedInput": "0.00000015"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "top_k",
+            "repetition_penalty",
+            "frequency_penalty",
+            "presence_penalty",
+            "stop",
+            "seed",
+            "response_format",
+            "structured_outputs",
+            "tools",
+            "tool_choice",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Crusoe",
+          "pricingUsdPerToken": {
+            "input": "0.0000007",
+            "output": "0.0000035",
+            "cachedInput": "0.00000035"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "seed",
+            "min_p",
+            "repetition_penalty",
+            "top_k",
+            "logit_bias",
+            "response_format",
+            "structured_outputs",
+            "tools",
+            "tool_choice"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "DeepInfra",
+          "pricingUsdPerToken": {
+            "input": "0.00000075",
+            "output": "0.0000035",
+            "cachedInput": "0.00000015"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "top_k",
+            "seed",
+            "min_p",
+            "tool_choice",
+            "tools",
+            "structured_outputs",
+            "response_format",
+            "logit_bias"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Venice",
+          "pricingUsdPerToken": {
+            "input": "0.00000075",
+            "output": "0.0000035",
+            "cachedInput": "0.00000016"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "top_k",
+            "tool_choice",
+            "tools",
+            "structured_outputs",
+            "response_format"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Parasail",
+          "pricingUsdPerToken": {
+            "input": "0.00000075",
+            "output": "0.0000035",
+            "cachedInput": "0.00000016"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "seed",
+            "stop",
+            "top_k",
+            "logit_bias",
+            "tools",
+            "tool_choice",
+            "response_format",
+            "structured_outputs",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "SiliconFlow",
+          "pricingUsdPerToken": {
+            "input": "0.00000077",
+            "output": "0.0000034",
+            "cachedInput": "0.00000014"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "temperature",
+            "top_p",
+            "top_k",
+            "frequency_penalty",
+            "response_format",
+            "tools",
+            "tool_choice",
+            "structured_outputs",
+            "max_tokens"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Inceptron",
+          "pricingUsdPerToken": {
+            "input": "0.00000078",
+            "output": "0.0000035",
+            "cachedInput": "0.000000156"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "temperature",
+            "max_tokens",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "logit_bias",
+            "parallel_tool_calls",
+            "presence_penalty",
+            "seed",
+            "response_format",
+            "structured_outputs",
+            "tools",
+            "tool_choice",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Novita",
+          "pricingUsdPerToken": {
+            "input": "0.0000008",
+            "output": "0.0000034",
+            "cachedInput": "0.00000016"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "seed",
+            "top_k",
+            "repetition_penalty",
+            "tools",
+            "tool_choice",
+            "response_format",
+            "structured_outputs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "GMICloud",
+          "pricingUsdPerToken": {
+            "input": "0.000000855",
+            "output": "0.0000036",
+            "cachedInput": "0.000000144"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "seed",
+            "response_format",
+            "structured_outputs",
+            "tools",
+            "tool_choice",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Baidu",
+          "pricingUsdPerToken": {
+            "input": "0.00000095",
+            "output": "0.000004",
+            "cachedInput": "0.00000016"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "temperature",
+            "top_p",
+            "max_tokens",
+            "frequency_penalty",
+            "presence_penalty",
+            "stop",
+            "response_format",
+            "structured_outputs",
+            "tools",
+            "tool_choice"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "AtlasCloud",
+          "pricingUsdPerToken": {
+            "input": "0.00000095",
+            "output": "0.000004",
+            "cachedInput": "0.00000016"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "top_k",
+            "min_p",
+            "frequency_penalty",
+            "presence_penalty",
+            "repetition_penalty",
+            "seed",
+            "logit_bias",
+            "tool_choice",
+            "tools",
+            "response_format",
+            "structured_outputs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Cloudflare",
+          "pricingUsdPerToken": {
+            "input": "0.00000095",
+            "output": "0.000004",
+            "cachedInput": "0.00000016"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "top_k",
+            "seed",
+            "repetition_penalty",
+            "frequency_penalty",
+            "presence_penalty",
+            "tools",
+            "tool_choice",
+            "structured_outputs",
+            "response_format",
+            "min_p",
+            "stop",
+            "logit_bias",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Moonshot AI",
+          "pricingUsdPerToken": {
+            "input": "0.00000095",
+            "output": "0.000004",
+            "cachedInput": "0.00000016"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "structured_outputs",
+            "response_format",
+            "tool_choice",
+            "tools",
+            "logprobs",
+            "top_logprobs"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "Phala",
+          "pricingUsdPerToken": {
+            "input": "0.00000109",
+            "output": "0.0000046",
+            "cachedInput": "0.00000037"
+          },
+          "structuredOutputs": true,
+          "responseFormat": true,
+          "supportedParameters": [
+            "reasoning",
+            "include_reasoning",
+            "max_tokens",
+            "temperature",
+            "top_p",
+            "stop",
+            "frequency_penalty",
+            "presence_penalty",
+            "seed",
+            "top_k",
+            "min_p",
+            "repetition_penalty",
+            "structured_outputs",
+            "response_format",
+            "tool_choice",
+            "tools"
+          ],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        }
+      ],
+      "source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.6/endpoints"
+    },
+    {
+      "id": "qwen/qwen3-embedding-8b",
+      "exists": true,
+      "status": "CATALOG_ENDPOINT_CONFIRMED",
+      "name": "Qwen: Qwen3 Embedding 8B",
+      "taskType": "embedding",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "embeddings"
+        ]
+      },
+      "imageInput": false,
+      "modelSupportedParameters": [],
+      "contextLength": "NAO_VERIFICADO",
+      "structuredOutputProviders": [],
+      "providers": [
+        {
+          "name": "Nebius",
+          "pricingUsdPerToken": {
+            "input": "0.00000001",
+            "output": "0",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": false,
+          "responseFormat": false,
+          "supportedParameters": [],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "DeepInfra",
+          "pricingUsdPerToken": {
+            "input": "0.00000001",
+            "output": "0",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": false,
+          "responseFormat": false,
+          "supportedParameters": [],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        },
+        {
+          "name": "SiliconFlow",
+          "pricingUsdPerToken": {
+            "input": "0.00000004",
+            "output": "0",
+            "cachedInput": "NAO_VERIFICADO"
+          },
+          "structuredOutputs": false,
+          "responseFormat": false,
+          "supportedParameters": [],
+          "retention": {
+            "status": "NAO_VERIFICADO",
+            "reason": "OpenRouter informa que as práticas de retenção variam por provedor; o endpoint público de modelos não declara a política específica deste provedor.",
+            "source": "https://openrouter.ai/privacy"
+          }
+        }
+      ],
+      "source": "https://openrouter.ai/api/v1/models/qwen/qwen3-embedding-8b/endpoints"
+    }
+  ],
+  "budget": {
+    "status": "NAO_VERIFICADO",
+    "reason": "Informe --budget-config com provedor fixado, chamadas máximas, tokens máximos de entrada e saída por chamada. Sem isso não há limite total verificável."
+  },
+  "retentionSummary": {
+    "status": "NAO_VERIFICADO",
+    "reason": "A política geral do OpenRouter descreve retenção própria e declara práticas distintas por provedor. Nenhuma política específica de retenção foi confirmada por endpoint nesta consulta.",
+    "source": "https://openrouter.ai/privacy"
+  }
+}

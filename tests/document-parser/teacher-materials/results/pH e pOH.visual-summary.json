@@ -1,0 +1,68 @@
+{
+  "package": "../../tests/document-parser/teacher-materials/results/pH e pOH.chunk-v2.zip",
+  "packageBytes": 226374,
+  "schema": "doc-chunker/v2",
+  "pageCount": 4,
+  "chunks": [
+    {
+      "index": 0,
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "tokens": 489
+    },
+    {
+      "index": 1,
+      "pages": [
+        3
+      ],
+      "tokens": 167
+    },
+    {
+      "index": 2,
+      "pages": [
+        4
+      ],
+      "tokens": 350
+    }
+  ],
+  "assetCount": 3,
+  "assetPages": [
+    1,
+    3,
+    4
+  ],
+  "assets": [
+    {
+      "asset_key": "66c7c69fc9666c89d387edc3a2688bd2",
+      "source_item_ref": "#/pages/1",
+      "page_number": 1,
+      "mime_type": "image/png",
+      "width": 596,
+      "height": 842,
+      "sha256": "4d3b84d97e3fef9cc6acc200d5741f16a6abc866eb7b46c72a5479352d4c1197"
+    },
+    {
+      "asset_key": "23f164a184a21019e2eadd4e117d0541",
+      "source_item_ref": "#/pages/3",
+      "page_number": 3,
+      "mime_type": "image/png",
+      "width": 596,
+      "height": 842,
+      "sha256": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f"
+    },
+    {
+      "asset_key": "1aff5a7bd693e5b224e362fb314227ad",
+      "source_item_ref": "#/pages/4",
+      "page_number": 4,
+      "mime_type": "image/png",
+      "width": 596,
+      "height": 842,
+      "sha256": "34903b3c739f901bee54bfd56cedef467cffdb4a98cd23c4bdbddbab8bd884e1"
+    }
+  ],
+  "warnings": [],
+  "maxTokens": 489
+}

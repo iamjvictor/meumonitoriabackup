@@ -12,7 +12,6 @@ function createHarness() {
   const repository = {
     findTeacherMonitor: async () => ({ teacherId: 'teacher-qa', teacherPercentage: 40, monitor: { id: 'monitor-qa', name: 'Exatas ENEM', status: 'PUBLISHED', priceCents: 10000 } }),
     findBatchByIdempotency: async () => null,
-    findBlockingSeat: async () => false,
     createPendingBatch: async (input: unknown) => { state.batches.push(input); return { id: `batch-${state.batches.length}`, externalReference: `batch-${state.batches.length}` }; },
     saveCheckout: async (_id: string, checkout: unknown) => { state.saved.push(checkout); },
     markCheckoutCreationFailed: async () => {},
@@ -77,7 +76,6 @@ test('QA idempotência: repetição idêntica reutiliza checkout; alteração de
   const repository = {
     findTeacherMonitor: async () => ({ teacherId: 'teacher-qa', teacherPercentage: 40, monitor: { id: 'monitor-qa', name: 'Exatas ENEM', status: 'PUBLISHED', priceCents: 10000 } }),
     findBatchByIdempotency: async () => existing,
-    findBlockingSeat: async () => false,
   };
   let providerCalls = 0;
   const useCase = new CreateSponsoredSeatBatchUseCase(repository as any, { createHostedCheckout: async () => { providerCalls++; return { providerCheckoutId: 'x', checkoutUrl: 'https://checkout.example/new', expiresAt: null }; } } as any);

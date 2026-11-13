@@ -31,9 +31,26 @@ const envSchema = z.object({
   DOCUMENT_PARSER_BASE_URL: z.string().url().optional(),
   DOCUMENT_PARSER_REQUEST_TIMEOUT_MS: z.coerce.number().int().positive().default(600_000),
   DOCUMENT_TEXT_SOURCE: z.enum(['pdfjs', 'docling', 'auto']).default('pdfjs'),
+  DOCUMENT_EXTRACTION_CONTENT_LOG_ENABLED: z.enum(['true', 'false']).default('false').transform((value) => value === 'true'),
+  DOCUMENT_EXTRACTION_CONTENT_LOG_MAX_CHARS: z.coerce.number().int().positive().max(50_000).default(2_000),
   DOCUMENT_CHUNKER_BASE_URL: z.string().url().optional(),
   DOCUMENT_CHUNKER_REQUEST_TIMEOUT_MS: z.coerce.number().int().positive().default(600_000),
   DOCUMENT_CHUNKER_MAX_RESPONSE_BYTES: z.coerce.number().int().positive().default(20 * 1024 * 1024),
+  KNOWLEDGE_BATCH_PROCESSING_ENABLED: z.enum(['true', 'false']).default('false').transform((value) => value === 'true'),
+  KNOWLEDGE_BATCH_SIZE: z.coerce.number().int().min(1).max(20).default(10),
+  KNOWLEDGE_BATCH_TIMEOUT_MS: z.coerce.number().int().min(2_000).max(7_200_000).default(600_000),
+  KNOWLEDGE_DOC_TIMEOUT_SECONDS: z.coerce.number().positive().max(7200).default(540),
+  KNOWLEDGE_DO_OCR: z.enum(['true', 'false']).default('true').transform((value) => value === 'true'),
+  KNOWLEDGE_FORMULA_ENRICHMENT: z.enum(['true', 'false']).default('true').transform((value) => value === 'true'),
+  KNOWLEDGE_TABLE_STRUCTURE: z.enum(['true', 'false']).default('true').transform((value) => value === 'true'),
+  KNOWLEDGE_OCR_SCALE: z.coerce.number().positive().max(8).default(3),
+  KNOWLEDGE_IMAGES_SCALE: z.coerce.number().positive().max(8).default(1),
+  KNOWLEDGE_NUM_THREADS: z.coerce.number().int().min(1).max(64).default(4),
+  KNOWLEDGE_DOCUMENT_BUDGET_SECONDS: z.coerce.number().int().positive().default(14_400),
+  KNOWLEDGE_BATCH_MAX_ATTEMPTS: z.coerce.number().int().min(1).max(2).default(2),
+  KNOWLEDGE_BATCH_RETRY_DELAY_MS: z.coerce.number().int().positive().default(30_000),
+  KNOWLEDGE_BATCH_REQUEST_TIMEOUT_MS: z.coerce.number().int().positive().default(660_000),
+  KNOWLEDGE_BATCH_SERVICE_TOKEN: z.string().optional(),
   DOCUMENT_VISUAL_ASSETS_ENABLED: z.enum(['true', 'false']).default('false').transform((value) => value === 'true'),
   DOCUMENT_VISUAL_DESCRIPTION_MODEL: z.string().min(1).default('google/gemini-2.5-flash'),
   CHAT_IMAGE_INPUT_ENABLED: z.enum(['true', 'false']).default('false').transform((value) => value === 'true'),
@@ -60,7 +77,10 @@ const envSchema = z.object({
   FLASHCARD_GENERATION_MODEL: z.string().min(1).default('openai/gpt-5-mini'),
   FLASHCARD_GENERATION_FALLBACK_MODEL: z.string().min(1).nullable().optional().default('google/gemini-3.7-flash'),
   QUESTION_EXTRACTION_MODEL: z.string().min(1).optional(),
-  QUESTION_EXTRACTION_MAX_TOKENS: z.coerce.number().int().positive().default(4000),
+  QUESTION_EXTRACTION_INPUT_MAX_TOKENS: z.coerce.number().int().positive().default(100000),
+  QUESTION_EXTRACTION_MAX_TOKENS: z.coerce.number().int().positive().default(16000),
+  QUESTION_EXTRACTION_TIMEOUT_MS: z.coerce.number().int().positive().default(180000),
+  QUESTION_EXTRACTION_REASONING_EFFORT: z.enum(['none', 'low', 'medium', 'high']).default('none'),
   QUESTION_EXTRACTION_TEMPERATURE: z.coerce.number().min(0).max(2).default(0.1),
   QUESTION_SOURCE_RECONSTRUCTION_MODEL: z.string().min(1).optional(),
   QUESTION_SOURCE_RECONSTRUCTION_MAX_TOKENS: z.coerce.number().int().positive().default(1200),
@@ -87,7 +107,7 @@ const envSchema = z.object({
   DOCUMENT_BLOCK_TOPIC_CLASSIFICATION_MODEL: z.string().min(1).optional(),
   QUESTION_COMPLETION_TEMPERATURE: z.coerce.number().min(0).max(2).default(0),
   QUESTION_COMPLETION_MAX_TOKENS: z.coerce.number().int().positive().default(700),
-  QUESTION_COMPLETION_FALLBACK_MODEL: z.string().optional().default('gpt-5.6-luna'),
+  QUESTION_COMPLETION_FALLBACK_MODEL: z.string().optional().default(''),
   ENABLE_PAID_STRUCTURED_FALLBACK: z.enum(['true', 'false']).default('true'),
   BLOCK_TOPIC_CLASSIFICATION_MAX_TOKENS: z.coerce.number().int().positive().default(3000),
   DOCUMENT_BLOCK_TOPIC_CLASSIFICATION_MAX_TOKENS: z.coerce.number().int().positive().optional(),
@@ -111,7 +131,22 @@ const envSchema = z.object({
   ASAAS_HTTP_TIMEOUT_MS: z.coerce.number().int().positive().default(10_000),
   PAYMENTS_SIMULATION_ENABLED: z.preprocess((value) => value === 'true', z.boolean()).default(false),
   PAYMENTS_TEST_PRICE_CENTS: z.coerce.number().int().positive().default(1990),
+  EMAIL_ENABLED: z.enum(['true', 'false']).default('false').transform((value) => value === 'true'),
+  RESEND_API_KEY: z.string().min(1).optional(),
+  RESEND_WEBHOOK_SECRET: z.string().regex(/^whsec_[A-Za-z0-9+/]+={0,2}$/).optional(),
+  EMAIL_FROM: z.string().min(1).optional(),
+  EMAIL_OUTBOX_ENCRYPTION_KEY: z.string().optional(),
+  EMAIL_SANDBOX_ALLOWED_RECIPIENTS: z.string().default(''),
 }).superRefine((value, context) => {
+  if (value.EMAIL_ENABLED) {
+    if (!value.RESEND_API_KEY) context.addIssue({ code: z.ZodIssueCode.custom, path: ['RESEND_API_KEY'], message: 'RESEND_API_KEY é obrigatória quando EMAIL_ENABLED=true' });
+    if (!value.RESEND_WEBHOOK_SECRET) context.addIssue({ code: z.ZodIssueCode.custom, path: ['RESEND_WEBHOOK_SECRET'], message: 'RESEND_WEBHOOK_SECRET é obrigatória quando EMAIL_ENABLED=true' });
+    if (!value.EMAIL_FROM) context.addIssue({ code: z.ZodIssueCode.custom, path: ['EMAIL_FROM'], message: 'EMAIL_FROM é obrigatória quando EMAIL_ENABLED=true' });
+    if (!value.EMAIL_OUTBOX_ENCRYPTION_KEY) context.addIssue({ code: z.ZodIssueCode.custom, path: ['EMAIL_OUTBOX_ENCRYPTION_KEY'], message: 'EMAIL_OUTBOX_ENCRYPTION_KEY é obrigatória quando EMAIL_ENABLED=true' });
+    else if (!isValidAsaasCredentialEncryptionKey(value.EMAIL_OUTBOX_ENCRYPTION_KEY)) context.addIssue({ code: z.ZodIssueCode.custom, path: ['EMAIL_OUTBOX_ENCRYPTION_KEY'], message: 'EMAIL_OUTBOX_ENCRYPTION_KEY deve ser Base64 de exatamente 32 bytes' });
+    if (!value.PUBLIC_FRONT_URL) context.addIssue({ code: z.ZodIssueCode.custom, path: ['PUBLIC_FRONT_URL'], message: 'PUBLIC_FRONT_URL é obrigatória quando EMAIL_ENABLED=true' });
+    if (value.ASAAS_ENV === 'sandbox' && !value.EMAIL_SANDBOX_ALLOWED_RECIPIENTS.split(',').map((item) => item.trim()).filter(Boolean).length) context.addIssue({ code: z.ZodIssueCode.custom, path: ['EMAIL_SANDBOX_ALLOWED_RECIPIENTS'], message: 'EMAIL_SANDBOX_ALLOWED_RECIPIENTS é obrigatória quando EMAIL_ENABLED=true e ASAAS_ENV=sandbox' });
+  }
   if (value.DOCUMENT_TEXT_SOURCE !== 'pdfjs' && !value.DOCUMENT_CHUNKER_BASE_URL && !value.DOCUMENT_PARSER_BASE_URL) {
     context.addIssue({ code: z.ZodIssueCode.custom, path: ['DOCUMENT_CHUNKER_BASE_URL'], message: 'DOCUMENT_CHUNKER_BASE_URL é obrigatória para DOCUMENT_TEXT_SOURCE=docling|auto' });
   }
@@ -176,6 +211,7 @@ export const corsAllowedHeaders = [
   'Accept',
   'Cookie',
   'Idempotency-Key',
+  'X-Sponsored-Invitation-Token',
   'X-Simulated-Session',
   'ngrok-skip-browser-warning',
 ];

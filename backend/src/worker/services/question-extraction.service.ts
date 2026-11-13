@@ -27,6 +27,7 @@ import {
 } from '../schemas/question-completion.schema.js';
 import {
   findPendingQuestionForCompletion,
+  isQuestionCompletionReusable,
   findQuestionContext,
   findQuestionExtractionData,
   findQuestionByTextHash,
@@ -55,6 +56,7 @@ import {
 } from './question-quality.service.js';
 import { buildQuestionSourceEvidence } from './question-source-context.service.js';
 import { validateQuestionStatementEvidence } from './question-statement-evidence.service.js';
+import { StructuredQuestionExtractionService } from './structured-question-extraction.service.js';
 
 const CHUNKS_PER_GROUP = 3;
 const MAX_PARALLEL_GROUPS = 3;
@@ -274,6 +276,7 @@ const QUESTION_SCHEMA: Record<string, unknown> = {
 export class QuestionExtractionService {
   private readonly candidateStartedAt = new WeakMap<object, number>();
   private readonly visualLinkingService: Pick<DocumentVisualLinkingService, 'linkVisualAssetsToQuestions'> | null;
+  private readonly structuredQuestionExtractionService: Pick<StructuredQuestionExtractionService, 'processDocument'>;
 
   constructor(
     private readonly client = new OpenRouterClient(),
@@ -284,7 +287,9 @@ export class QuestionExtractionService {
     private readonly qualityNormalizationAgent = new QuestionQualityNormalizationAgentService(),
     private readonly sourceReconstructionAgent = new QuestionSourceReconstructionAgentService(),
     visualLinkingService?: Pick<DocumentVisualLinkingService, 'linkVisualAssetsToQuestions'> | null,
+    structuredQuestionExtractionService: Pick<StructuredQuestionExtractionService, 'processDocument'> = new StructuredQuestionExtractionService(),
   ) {
+    this.structuredQuestionExtractionService = structuredQuestionExtractionService;
     this.visualLinkingService = visualLinkingService
       ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED
         ? new DocumentVisualLinkingService(new PrismaDocumentVisualLinkStore(), (event, fields) => console.log(event, fields))
@@ -292,6 +297,10 @@ export class QuestionExtractionService {
   }
 
   async processDocument(documentId: string) {
+    return this.structuredQuestionExtractionService.processDocument(documentId);
+  }
+
+  async processLegacyDocument(documentId: string) {
     const startedAt = Date.now();
     console.log('Agente de questoes acionado pelo processamento do documento', {
       event: 'monitor.question_extraction_document_started',
@@ -548,7 +557,7 @@ export class QuestionExtractionService {
 
       const sourceBlockId = candidate.sourceBlockId ?? sourceChunks.find((chunk) => chunk.blockId)?.blockId ?? null;
       const normalizedCandidateText = normalizeQuestionText(candidate.text);
-      let sourceKey = buildQuestionSourceKey({
+      const sourceKey = buildQuestionSourceKey({
         documentId: sourceChunks[0]!.documentId,
         sourceBlockId,
         questionNumber: candidate.questionNumber ?? null,
@@ -644,7 +653,10 @@ export class QuestionExtractionService {
         });
       }
 
-      const existingQuestion = await findPendingQuestionForCompletion(sourceKey);
+      const existingQuestion = await findPendingQuestionForCompletion(sourceKey, {
+        documentId: sourceChunks[0]!.documentId,
+        documentBlockId: sourceBlockId,
+      });
       const embedding = (await this.generateQuestionEmbeddings([candidateForProcessing]))[0];
 
       const candidateForCompletion = existingQuestion
@@ -666,7 +678,27 @@ export class QuestionExtractionService {
           completenessStatus: 'INVALID_FRAGMENT',
           generations: [],
         }
-        : await this.completeQuestionCandidate(candidateForCompletion, sourceChunks, persistedCandidate.id);
+        : existingQuestion && isQuestionCompletionReusable(existingQuestion)
+          ? {
+            candidate: {
+              ...candidateForCompletion,
+              kind: 'MULTIPLE_CHOICE',
+              alternatives: parseStoredAlternatives(existingQuestion.alternatives),
+              correctAnswer: existingQuestion.correctAnswer,
+              explanation: existingQuestion.explanation,
+            },
+            usedAi: false,
+            generatedAlternatives: false,
+            generatedCorrectAnswer: false,
+            generatedExplanation: false,
+            confidence: 1,
+            inputSnapshot: {},
+            outputSnapshot: {},
+            missingFields: [],
+            completenessStatus: existingQuestion.completenessStatus as CandidateCompletion['completenessStatus'],
+            generations: [],
+          }
+          : await this.completeQuestionCandidate(candidateForCompletion, sourceChunks, persistedCandidate.id);
       let completedCandidate = completed.candidate;
       let completenessStatus = completed.completenessStatus;
       let sourceContext = buildQuestionSourceEvidence(completedCandidate.text, sourceChunks, orderedChunks);
@@ -947,13 +979,6 @@ export class QuestionExtractionService {
       }
       normalizedText = normalizeQuestionText(completedCandidate.text);
       textHash = createHash('sha256').update(normalizedText).digest('hex');
-      sourceKey = buildQuestionSourceKey({
-        documentId: sourceChunks[0]!.documentId,
-        sourceBlockId,
-        questionNumber: completedCandidate.questionNumber ?? null,
-        statement: normalizedText,
-      });
-
       let duplicateQuestionId: string | null = null;
       const duplicateByText = await findQuestionByTextHash(questionTopicId, textHash);
       if (duplicateByText && (!existingQuestion || duplicateByText.id !== existingQuestion.id)) {
@@ -985,9 +1010,7 @@ export class QuestionExtractionService {
         quality.severity = 'CRITICAL';
         quality.recommendedAction = 'DUPLICATE';
       }
-      const alternativesOrigin = completedCandidate.alternatives.length > 0
-        ? (completed.generatedAlternatives ? 'AI_GENERATED' as const : 'SOURCE_DOCUMENT' as const)
-        : undefined;
+      const alternativesOrigin = resolveQuestionAlternativesOrigin(completedCandidate.alternatives.length, completed.generatedAlternatives);
       const answerOrigin = completed.generatedCorrectAnswer ? 'AI_GENERATED' as const : 'SOURCE_DOCUMENT' as const;
       const explanationOrigin = completed.generatedExplanation ? 'AI_GENERATED' as const : 'SOURCE_DOCUMENT' as const;
       const sources: QuestionSourceDraft[] = sourceChunks.map((chunk) => ({
@@ -1612,6 +1635,11 @@ export class QuestionExtractionService {
   }
 }
 
+export function resolveQuestionAlternativesOrigin(alternativeCount: number, generated: boolean): 'AI_GENERATED' | 'SOURCE_DOCUMENT' | undefined {
+  if (alternativeCount === 0) return undefined;
+  return generated ? 'AI_GENERATED' : 'SOURCE_DOCUMENT';
+}
+
 function buildPendingReviewCompletion(candidate: z.infer<typeof extractedQuestionSchema>): CandidateCompletion {
   const alternatives = normalizeAlternatives(candidate.alternatives);
   const correctAnswer = resolveAnswerLabel(candidate.correctAnswer, alternatives) || null;
@@ -1642,17 +1670,20 @@ function buildPendingReviewCompletion(candidate: z.infer<typeof extractedQuestio
   };
 }
 
-function mergeExistingQuestionFields(
+export function mergeExistingQuestionFields(
   candidate: z.infer<typeof extractedQuestionSchema>,
   existing: {
+    text?: string;
     alternatives: Prisma.JsonValue;
     correctAnswer: string | null;
     explanation: string | null;
+    completenessStatus?: string;
   },
 ) {
   const alternatives = parseStoredAlternatives(existing.alternatives);
   return {
     ...candidate,
+    ...(existing.text && existing.completenessStatus?.startsWith('COMPLETE_') ? { text: existing.text } : {}),
     alternatives: alternatives.length === 5 ? alternatives : candidate.alternatives,
     correctAnswer: existing.correctAnswer ?? candidate.correctAnswer,
     explanation: existing.explanation ?? candidate.explanation,
@@ -2207,16 +2238,15 @@ function normalizeQuestionText(text: string) {
   return text.toLowerCase().replace(/\s+/g, ' ').trim();
 }
 
-function buildQuestionSourceKey(input: {
+export function buildQuestionSourceKey(input: {
   documentId: string;
-  sourceBlockId: string | null;
+  sourceBlockId?: string | null;
   questionNumber: string | null;
   statement: string;
 }) {
   return createHash('sha256')
     .update([
       input.documentId,
-      input.sourceBlockId ?? '',
       input.questionNumber ?? '',
       input.statement,
     ].join(':'))

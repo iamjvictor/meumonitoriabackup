@@ -1,0 +1,163 @@
+{
+  "runId": "09502d38-9de6-4489-8d90-c9072d4d1290",
+  "database": "dbtemp local 127.0.0.1:56322",
+  "redis": "isolated 127.0.0.1:56379",
+  "parser": "local 127.0.0.1:8080",
+  "teacherId": "fbbd6b6e-601f-4b79-9ff5-aeef57c13eb1",
+  "monitorId": "c341df97-c4ae-4e80-ac07-e0b602fa4096",
+  "subjectId": "ffbb133f-f9a4-42a9-9ce2-a22a5d620ad0",
+  "topicId": "6c122cb8-5d63-4994-9e32-a8620f219a90",
+  "localAuthEmail": "qa-agentic-09502d38-9de6-4489-8d90-c9072d4d1290@local.test",
+  "endpointUpload": {
+    "method": "POST",
+    "route": "/api/v1/monitors/:monitorId/documents",
+    "httpStatus": 201,
+    "documentId": "e7799997-bf3c-406b-9671-5b92346a3cd5",
+    "tag": "QUESTIONS",
+    "status": "QUEUED",
+    "durationMs": 508
+  },
+  "runs": [
+    {
+      "label": "upload_processing",
+      "status": "PARTIAL_SUCCESS",
+      "errorMessage": "Operacoes pendentes: ; Avisos: QUESTIONS_TEXT_COVERAGE_UNVERIFIED, QUESTIONS_PAGES_WITHOUT_TEXT, QUESTIONS_PAGE_TEXT_UNCLASSIFIED",
+      "questionCount": 10,
+      "chunkCount": 13,
+      "embeddedChunkCount": 13,
+      "sourceCount": 12,
+      "pendingReviewCount": 10,
+      "questions": [
+        {
+          "id": "c6b712d5-6aac-4dce-abcb-74ebc61a8e1d",
+          "sourceKey": "3a5bf71c7d6174f947973a4c721208f914887e263caf7de3f6284480caa8f496",
+          "textHash": "4b75598f646669ce395839108e383c68f393c5d32394b3ed268353463e52f76c",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 0,
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": null,
+          "sourceRelations": 1
+        },
+        {
+          "id": "5ed241f8-efe4-4572-9f1e-ddf7132c0aac",
+          "sourceKey": "4315b06f87b7a0cef8d4ccf5a2d55e00ab5e71cd7f42962e8d2680536e97ad6c",
+          "textHash": "1231572541fd6c6f8dcab128c3f809074a44653e16a63a2ae6e5991b707028ef",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 2
+        },
+        {
+          "id": "31c2e4c4-f3d8-4717-81ec-da1c9c702343",
+          "sourceKey": "451d85a0d5a0b6806759383b87c00fe532ea1bc61aeaf95777d61406a34feca9",
+          "textHash": "50a8a285b86bb92c2828813ac50292b9aba756efdba71aa25febb4696ab172fc",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 0,
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": null,
+          "sourceRelations": 1
+        },
+        {
+          "id": "873dd3c0-d718-45e8-acad-ca6692e1cb5d",
+          "sourceKey": "7ed76a103cf323072832abb3dfcc33b5d1c37276f448fa23ee45360a651c62ff",
+          "textHash": "bf21fa2b48de3e5427f5593e094930ff9d052a7100112d6ad3866dc320770b7d",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "correctAnswer": "A",
+          "correctAnswerOrigin": "AI_GENERATED",
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1
+        },
+        {
+          "id": "c5a8749b-1562-406a-8baf-04b44d8422e2",
+          "sourceKey": "850990887255b4bbcafccb92a3d8a8ae3de87fdde744eabfc89a6706e3c62498",
+          "textHash": "5847b5fb1293b9b20592cae53c180a3e645fd116c098139bef5ebc6948bf9b78",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 0,
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": null,
+          "sourceRelations": 1
+        },
+        {
+          "id": "7ae63035-52dc-4d88-94a7-2ab7b42e8180",
+          "sourceKey": "93d8b155c44b1d51cf7bef73c33027dadf32818902b3f085a2de35f4e0fdd8ef",
+          "textHash": "f878238d1a3e2e5198f04c2aa2a720cc5dbf6a6be85601311face0d06936abc3",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 0,
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": null,
+          "sourceRelations": 1
+        },
+        {
+          "id": "6aa0a62e-6519-40c5-b8c1-eaf0d509b71e",
+          "sourceKey": "9befa8471ea697b3dbabdfcdac6a4b2170c73437c4b22aaf0c16b48e167e6477",
+          "textHash": "7eedcf0ef3e2fb8d1b927be62eeb46d9d12da298b23972fb31210bd8cf799390",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 0,
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": null,
+          "sourceRelations": 1
+        },
+        {
+          "id": "72f7a633-ab76-41cb-a919-434d9f958b89",
+          "sourceKey": "a0073996f14e2f5d761544ffdfea147731b46359e33ffb60406d5ba7f1fde156",
+          "textHash": "b2e4619ddafa4181ed95a83a69780ce10e5eeb31e53cc274c7724467bc0961fd",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 0,
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": null,
+          "sourceRelations": 2
+        },
+        {
+          "id": "6807fb59-e387-4858-aadd-8809d6e35712",
+          "sourceKey": "f949604b49dbb7c72b624b67858ff2056620b36016c4c493f03778061a77d668",
+          "textHash": "45454d30a0a1558ab3496bbd468116ce2da0362cc04316f18c4807905bf83e57",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "correctAnswer": "A",
+          "correctAnswerOrigin": "AI_GENERATED",
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1
+        },
+        {
+          "id": "2fd27e89-5074-4578-8879-70cfe0df7521",
+          "sourceKey": "fb3f97f0a80db83b03786bf2590cd23cdb4236d502d96a73cabd3cef65d85698",
+          "textHash": "838a40b5ba823592c3634f90fd81787e3f575b598da5b41fbdb888415c387801",
+          "status": "PENDING_REVIEW",
+          "needsReview": true,
+          "alternativesCount": 5,
+          "correctAnswer": null,
+          "correctAnswerOrigin": null,
+          "alternativesOrigin": "AI_GENERATED",
+          "sourceRelations": 1
+        }
+      ]
+    }
+  ],
+  "pdf": {
+    "file": "dbtemp/storage/monitor-documents/Quimica-3.pdf",
+    "bytes": 599300,
+    "sha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d"
+  },
+  "lastObservedDocumentStatus": "PARTIAL_SUCCESS",
+  "completedAt": "2026-11-07T13:54:04.932Z",
+  "result": "FAIL",
+  "error": "firstIdentity is not defined"
+}

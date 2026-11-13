@@ -47,7 +47,7 @@ model Teacher {
   flashcards                       Flashcard[]
   questionAiGenerations            QuestionAiGeneration[]
   retrievalEvalCases               RetrievalEvalCase[]
-  sponsoredSeatBatches              SponsoredSeatBatch[]
+  sponsoredSeatBatches             SponsoredSeatBatch[]
 
   @@index([userId])
   @@index([status])
@@ -272,28 +272,141 @@ model MonitorDocument {
   createdAt         DateTime       @default(now()) @map("created_at")
   updatedAt         DateTime       @updatedAt @map("updated_at")
 
-  teacher           Teacher                    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  monitor           Monitor                    @relation(fields: [monitorId], references: [id], onDelete: Cascade)
-  subject           MonitorSubject             @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-  topic             MonitorTopic?              @relation(fields: [topicId], references: [id], onDelete: SetNull)
-  topicLinks        MonitorDocumentTopic[]
-  chunks            DocumentChunk[]
-  textExtractions   DocumentText[]
-  blocks            DocumentBlock[]
-  processingJobs    DocumentProcessingJob[]
-  parseRuns         DocumentParseRun[]
-  layoutElements    DocumentLayoutElement[]
-  visualAssets      DocumentVisualAsset[]
-  evidenceRelations DocumentEvidenceRelation[]
-  questionSources   QuestionSource[]
-  questionSpans     QuestionSpan[]
+  teacher                   Teacher                       @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  monitor                   Monitor                       @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+  subject                   MonitorSubject                @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  topic                     MonitorTopic?                 @relation(fields: [topicId], references: [id], onDelete: SetNull)
+  topicLinks                MonitorDocumentTopic[]
+  chunks                    DocumentChunk[]
+  textExtractions           DocumentText[]
+  blocks                    DocumentBlock[]
+  processingJobs            DocumentProcessingJob[]
+  parseRuns                 DocumentParseRun[]
+  layoutElements            DocumentLayoutElement[]
+  visualAssets              DocumentVisualAsset[]
+  evidenceRelations         DocumentEvidenceRelation[]
+  questionSources           QuestionSource[]
+  questionSpans             QuestionSpan[]
+  knowledgeProcessingRuns   KnowledgeProcessingRun[]
+  knowledgeGenerations      KnowledgeDocumentGeneration[] @relation("DocumentKnowledgeGenerations")
+  activeKnowledgeGeneration KnowledgeDocumentGeneration?  @relation("ActiveKnowledgeGeneration", fields: [activeGenerationId, id], references: [id, documentId], onDelete: NoAction)
+  activeGenerationId        String?                       @map("active_generation_id") @db.Uuid
 
+  @@unique([id, teacherId, monitorId])
+  @@unique([activeGenerationId, id])
   @@index([teacherId])
   @@index([monitorId, tag, status])
   @@index([subjectId, tag])
   @@index([topicId, tag])
   @@index([processingVersion, status])
   @@map("monitor_documents")
+}
+
+model KnowledgeDocumentGeneration {
+  id             String    @id @default(uuid()) @db.Uuid
+  documentId     String    @map("document_id") @db.Uuid
+  teacherId      String    @map("teacher_id") @db.Uuid
+  monitorId      String    @map("monitor_id") @db.Uuid
+  runId          String?   @unique @map("run_id") @db.Uuid
+  status         String    @default("STAGING")
+  pageCount      Int?      @map("page_count")
+  chunkCount     Int?      @map("chunk_count")
+  assetCount     Int?      @map("asset_count")
+  leaseOwner     String?   @map("lease_owner")
+  leaseExpiresAt DateTime? @map("lease_expires_at")
+  heartbeatAt    DateTime? @map("heartbeat_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  publishedAt    DateTime? @map("published_at")
+
+  document     MonitorDocument       @relation("DocumentKnowledgeGenerations", fields: [documentId, teacherId, monitorId], references: [id, teacherId, monitorId], onDelete: Cascade)
+  activeFor    MonitorDocument?      @relation("ActiveKnowledgeGeneration")
+  chunks       DocumentChunk[]
+  visualAssets DocumentVisualAsset[]
+
+  @@unique([id, documentId])
+  @@index([documentId, status, createdAt])
+  @@map("knowledge_document_generations")
+}
+
+model KnowledgeProcessingRun {
+  id                 String                       @id @default(uuid()) @db.Uuid
+  documentId         String                       @map("document_id") @db.Uuid
+  teacherId          String                       @map("teacher_id") @db.Uuid
+  monitorId          String                       @map("monitor_id") @db.Uuid
+  contentHash        String                       @map("content_hash") @db.VarChar(64)
+  configurationHash  String                       @map("configuration_hash") @db.VarChar(64)
+  parserVersion      String                       @map("parser_version")
+  schemaVersion      String                       @default("knowledge-batch-v1") @map("schema_version") @db.VarChar(64)
+  explicitRestartKey String?                      @map("explicit_restart_key") @db.VarChar(255)
+  profile            Json
+  pageCount          Int                          @map("page_count")
+  pageBudgetSeconds  Int                          @map("page_budget_seconds")
+  consumedSeconds    Int                          @default(0) @map("consumed_seconds")
+  status             KnowledgeProcessingRunStatus @default(QUEUED)
+  generation         Int                          @default(1)
+  leaseOwner         String?                      @map("lease_owner")
+  leaseExpiresAt     DateTime?                    @map("lease_expires_at")
+  heartbeatAt        DateTime?                    @map("heartbeat_at")
+  errorMessage       String?                      @map("error_message")
+  createdAt          DateTime                     @default(now()) @map("created_at")
+  updatedAt          DateTime                     @updatedAt @map("updated_at")
+
+  document          MonitorDocument            @relation(fields: [documentId, teacherId, monitorId], references: [id, teacherId, monitorId], onDelete: Cascade)
+  batches           KnowledgeProcessingBatch[]
+  checkpointBatches KnowledgeProcessingBatch[] @relation("KnowledgeBatchCheckpointSource")
+
+  @@unique([id, documentId, teacherId, monitorId])
+  @@unique([documentId, teacherId, monitorId, explicitRestartKey])
+  @@index([documentId, status, updatedAt])
+  @@map("knowledge_processing_runs")
+}
+
+model KnowledgeProcessingBatch {
+  id                    String                         @id @default(uuid()) @db.Uuid
+  runId                 String                         @map("run_id") @db.Uuid
+  documentId            String                         @map("document_id") @db.Uuid
+  teacherId             String                         @map("teacher_id") @db.Uuid
+  monitorId             String                         @map("monitor_id") @db.Uuid
+  checkpointSourceRunId String?                        @map("checkpoint_source_run_id") @db.Uuid
+  pageStart             Int                            @map("page_start")
+  pageEnd               Int                            @map("page_end")
+  batchKey              String                         @map("batch_key") @db.VarChar(64)
+  status                KnowledgeProcessingBatchStatus @default(PENDING)
+  attempts              Int                            @default(0)
+  artifactPath          String?                        @map("artifact_path")
+  artifactChecksum      String?                        @map("artifact_checksum") @db.VarChar(64)
+  manifest              Json?
+  durationMs            Int?                           @map("duration_ms")
+  errorMessage          String?                        @map("error_message")
+  startedAt             DateTime?                      @map("started_at")
+  completedAt           DateTime?                      @map("completed_at")
+  createdAt             DateTime                       @default(now()) @map("created_at")
+  updatedAt             DateTime                       @updatedAt @map("updated_at")
+
+  run                 KnowledgeProcessingRun  @relation(fields: [runId, documentId, teacherId, monitorId], references: [id, documentId, teacherId, monitorId], onDelete: Cascade)
+  checkpointSourceRun KnowledgeProcessingRun? @relation("KnowledgeBatchCheckpointSource", fields: [checkpointSourceRunId, documentId, teacherId, monitorId], references: [id, documentId, teacherId, monitorId], onDelete: Restrict)
+
+  @@unique([runId, batchKey])
+  @@unique([runId, pageStart, pageEnd])
+  @@index([runId, status, pageStart])
+  @@map("knowledge_processing_batches")
+}
+
+enum KnowledgeProcessingRunStatus {
+  QUEUED
+  RUNNING
+  PAUSED_TIMEOUT
+  FAILED
+  READY_TO_PUBLISH
+  COMPLETED
+  CANCELLED
+}
+
+enum KnowledgeProcessingBatchStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
 }
 
 model DocumentText {
@@ -388,6 +501,7 @@ model DocumentLayoutElement {
 model DocumentVisualAsset {
   id              String   @id @default(uuid()) @db.Uuid
   documentId      String   @map("document_id") @db.Uuid
+  generationId    String?  @map("generation_id") @db.Uuid
   parseRunId      String   @map("parse_run_id") @db.Uuid
   sourceKey       String   @map("source_key")
   layoutElementId String?  @map("layout_element_id") @db.Uuid
@@ -402,9 +516,10 @@ model DocumentVisualAsset {
   metadata        Json?
   createdAt       DateTime @default(now()) @map("created_at")
 
-  document          MonitorDocument            @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  parseRun          DocumentParseRun           @relation(fields: [parseRunId], references: [id], onDelete: Cascade)
-  layoutElement     DocumentLayoutElement?     @relation(fields: [layoutElementId], references: [id], onDelete: SetNull)
+  document          MonitorDocument              @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  generation        KnowledgeDocumentGeneration? @relation(fields: [generationId, documentId], references: [id, documentId], onDelete: Restrict)
+  parseRun          DocumentParseRun             @relation(fields: [parseRunId], references: [id], onDelete: Cascade)
+  layoutElement     DocumentLayoutElement?       @relation(fields: [layoutElementId], references: [id], onDelete: SetNull)
   chunkLinks        DocumentChunkVisualAsset[]
   questionLinks     QuestionVisualAsset[]
   questionSpanLinks QuestionSpanVisualAsset[]
@@ -412,6 +527,7 @@ model DocumentVisualAsset {
 
   @@unique([documentId, parseRunId, sourceKey])
   @@index([documentId, pageNumber, assetType])
+  @@index([documentId, generationId, pageNumber])
   @@index([parseRunId, assetType])
   @@index([layoutElementId])
   @@map("document_visual_assets")
@@ -657,6 +773,7 @@ model DocumentBlockTopic {
 model DocumentChunk {
   id                String                       @id @default(uuid()) @db.Uuid
   documentId        String                       @map("document_id") @db.Uuid
+  generationId      String?                      @map("generation_id") @db.Uuid
   teacherId         String                       @map("teacher_id") @db.Uuid
   monitorId         String                       @map("monitor_id") @db.Uuid
   subjectId         String                       @map("subject_id") @db.Uuid
@@ -689,23 +806,25 @@ model DocumentChunk {
   createdAt         DateTime                     @default(now()) @map("created_at")
   updatedAt         DateTime                     @updatedAt @map("updated_at")
 
-  document          MonitorDocument            @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  teacher           Teacher                    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  monitor           Monitor                    @relation(fields: [monitorId], references: [id], onDelete: Cascade)
-  subject           MonitorSubject             @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-  block             DocumentBlock?             @relation(fields: [blockId], references: [id], onDelete: SetNull)
+  document          MonitorDocument              @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  generation        KnowledgeDocumentGeneration? @relation(fields: [generationId, documentId], references: [id, documentId], onDelete: Restrict)
+  teacher           Teacher                      @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  monitor           Monitor                      @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+  subject           MonitorSubject               @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  block             DocumentBlock?               @relation(fields: [blockId], references: [id], onDelete: SetNull)
   topicLinks        DocumentChunkTopic[]
   questionSources   QuestionSource[]
   visualAssets      DocumentChunkVisualAsset[]
   questionSpanLinks QuestionSpanChunk[]
   flashcardSources  FlashcardSource[]
 
-  @@unique([documentId, chunkIndex])
-  @@unique([blockId, chunkIndexInBlock])
+  @@unique([documentId, generationId, chunkIndex])
+  @@unique([blockId, generationId, chunkIndexInBlock])
   @@index([monitorId, subjectId])
   @@index([teacherId, monitorId])
   @@index([blockId, chunkIndexInBlock])
   @@index([documentId, pageStart, pageEnd])
+  @@index([documentId, generationId, status])
   @@map("document_chunks")
 }
 
@@ -1912,38 +2031,38 @@ model PaymentOrder {
 }
 
 model SponsoredSeatBatch {
-  id                    String          @id @default(uuid()) @db.Uuid
-  teacherId             String          @map("teacher_id") @db.Uuid
-  monitorId             String          @map("monitor_id") @db.Uuid
-  environment           String          @default("SANDBOX")
-  billingInterval       String          @map("billing_interval")
-  billingType           String          @default("CREDIT_CARD") @map("billing_type")
-  serviceMonths         Int             @map("service_months")
-  status                String          @default("PENDING")
-  currency              String          @default("BRL")
-  seatCount             Int             @map("seat_count")
-  grossPriceCents       Int             @map("gross_price_cents")
-  platformAmountCents   Int             @map("platform_amount_cents")
-  teacherPercentage     Decimal         @map("teacher_percentage") @db.Decimal(7, 4)
-  totalAmountCents      Int             @map("total_amount_cents")
-  externalReference     String          @map("external_reference")
-  idempotencyKey        String          @map("idempotency_key")
-  requestFingerprint    String          @map("request_fingerprint")
-  providerCheckoutId    String?         @map("provider_checkout_id")
-  checkoutUrl           String?         @map("checkout_url") @db.Text
-  checkoutExpiresAt     DateTime?       @map("checkout_expires_at")
-  providerSubscriptionId String?        @map("provider_subscription_id")
-  currentPeriodStart    DateTime?       @map("current_period_start")
-  currentPeriodEnd      DateTime?       @map("current_period_end")
-  cancelAtPeriodEnd     Boolean         @default(false) @map("cancel_at_period_end")
-  paidAt                DateTime?       @map("paid_at")
-  cancelledAt           DateTime?       @map("cancelled_at")
-  createdAt             DateTime        @default(now()) @map("created_at")
-  updatedAt             DateTime        @updatedAt @map("updated_at")
+  id                     String    @id @default(uuid()) @db.Uuid
+  teacherId              String    @map("teacher_id") @db.Uuid
+  monitorId              String    @map("monitor_id") @db.Uuid
+  environment            String    @default("SANDBOX")
+  billingInterval        String    @map("billing_interval")
+  billingType            String    @default("CREDIT_CARD") @map("billing_type")
+  serviceMonths          Int       @map("service_months")
+  status                 String    @default("PENDING")
+  currency               String    @default("BRL")
+  seatCount              Int       @map("seat_count")
+  grossPriceCents        Int       @map("gross_price_cents")
+  platformAmountCents    Int       @map("platform_amount_cents")
+  teacherPercentage      Decimal   @map("teacher_percentage") @db.Decimal(7, 4)
+  totalAmountCents       Int       @map("total_amount_cents")
+  externalReference      String    @map("external_reference")
+  idempotencyKey         String    @map("idempotency_key")
+  requestFingerprint     String    @map("request_fingerprint")
+  providerCheckoutId     String?   @map("provider_checkout_id")
+  checkoutUrl            String?   @map("checkout_url") @db.Text
+  checkoutExpiresAt      DateTime? @map("checkout_expires_at")
+  providerSubscriptionId String?   @map("provider_subscription_id")
+  currentPeriodStart     DateTime? @map("current_period_start")
+  currentPeriodEnd       DateTime? @map("current_period_end")
+  cancelAtPeriodEnd      Boolean   @default(false) @map("cancel_at_period_end")
+  paidAt                 DateTime? @map("paid_at")
+  cancelledAt            DateTime? @map("cancelled_at")
+  createdAt              DateTime  @default(now()) @map("created_at")
+  updatedAt              DateTime  @updatedAt @map("updated_at")
 
-  teacher Teacher          @relation(fields: [teacherId], references: [id], onDelete: Restrict)
-  monitor Monitor          @relation(fields: [monitorId], references: [id], onDelete: Restrict)
-  seats   SponsoredSeat[]
+  teacher  Teacher                @relation(fields: [teacherId], references: [id], onDelete: Restrict)
+  monitor  Monitor                @relation(fields: [monitorId], references: [id], onDelete: Restrict)
+  seats    SponsoredSeat[]
   payments SponsoredSeatPayment[]
 
   @@unique([environment, externalReference])
@@ -1956,19 +2075,20 @@ model SponsoredSeatBatch {
 }
 
 model SponsoredSeat {
-  id                    String             @id @default(uuid()) @db.Uuid
-  batchId               String             @map("batch_id") @db.Uuid
-  emailNormalized       String             @map("email_normalized")
-  studentId             String?            @map("student_id") @db.Uuid
-  status                String             @default("PENDING_PAYMENT")
-  startsAt              DateTime?          @map("starts_at")
-  endsAt                DateTime?          @map("ends_at")
-  accessRevokedAt       DateTime?          @map("access_revoked_at")
-  createdAt             DateTime           @default(now()) @map("created_at")
-  updatedAt             DateTime           @updatedAt @map("updated_at")
+  id              String    @id @default(uuid()) @db.Uuid
+  batchId         String    @map("batch_id") @db.Uuid
+  emailNormalized String    @map("email_normalized")
+  studentId       String?   @map("student_id") @db.Uuid
+  status          String    @default("PENDING_PAYMENT")
+  startsAt        DateTime? @map("starts_at")
+  endsAt          DateTime? @map("ends_at")
+  accessRevokedAt DateTime? @map("access_revoked_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
 
-  batch   SponsoredSeatBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
-  student Student?          @relation(fields: [studentId], references: [id], onDelete: SetNull)
+  batch      SponsoredSeatBatch       @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  student    Student?                 @relation(fields: [studentId], references: [id], onDelete: SetNull)
+  invitation SponsoredSeatInvitation?
 
   @@unique([batchId, emailNormalized])
   @@index([emailNormalized, status])
@@ -1977,23 +2097,38 @@ model SponsoredSeat {
   @@map("sponsored_seats")
 }
 
+model SponsoredSeatInvitation {
+  id        String    @id @default(uuid()) @db.Uuid
+  seatId    String    @unique @map("seat_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  seat SponsoredSeat @relation(fields: [seatId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
+  @@map("sponsored_seat_invitations")
+}
+
 model SponsoredSeatPayment {
-  id                 String             @id @default(uuid()) @db.Uuid
-  batchId            String             @map("batch_id") @db.Uuid
-  environment        String             @default("SANDBOX")
-  providerPaymentId  String             @map("provider_payment_id")
-  providerCheckoutId String?            @map("provider_checkout_id")
-  status             String             @default("CONFIRMED")
-  grossCents         Int                @map("gross_cents")
-  confirmedAt        DateTime?          @map("confirmed_at")
-  receivedAt         DateTime?          @map("received_at")
-  servicePeriodStart DateTime?          @map("service_period_start")
-  servicePeriodEnd   DateTime?          @map("service_period_end")
-  lastProviderEventAt DateTime?         @map("last_provider_event_at")
-  lastProviderEventId String?           @map("last_provider_event_id")
-  createdAt          DateTime           @default(now()) @map("created_at")
-  updatedAt          DateTime           @updatedAt @map("updated_at")
-  batch              SponsoredSeatBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  id                  String             @id @default(uuid()) @db.Uuid
+  batchId             String             @map("batch_id") @db.Uuid
+  environment         String             @default("SANDBOX")
+  providerPaymentId   String             @map("provider_payment_id")
+  providerCheckoutId  String?            @map("provider_checkout_id")
+  status              String             @default("CONFIRMED")
+  grossCents          Int                @map("gross_cents")
+  confirmedAt         DateTime?          @map("confirmed_at")
+  receivedAt          DateTime?          @map("received_at")
+  servicePeriodStart  DateTime?          @map("service_period_start")
+  servicePeriodEnd    DateTime?          @map("service_period_end")
+  lastProviderEventAt DateTime?          @map("last_provider_event_at")
+  lastProviderEventId String?            @map("last_provider_event_id")
+  createdAt           DateTime           @default(now()) @map("created_at")
+  updatedAt           DateTime           @updatedAt @map("updated_at")
+  batch               SponsoredSeatBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
 
   @@unique([environment, providerPaymentId])
   @@index([batchId, status])
@@ -2224,6 +2359,43 @@ model PaymentOutboxEvent {
   @@index([state, nextAttemptAt])
   @@index([aggregateId, version])
   @@map("payment_outbox_events")
+}
+
+model EmailOutboxMessage {
+  id                String    @id @default(uuid()) @db.Uuid
+  environment       String
+  idempotencyKey    String    @map("idempotency_key")
+  purpose           String
+  recipientHash     String    @map("recipient_hash")
+  encryptedPayload  String    @map("encrypted_payload") @db.Text
+  status            String    @default("PENDING")
+  attempts          Int       @default(0)
+  leaseUntil        DateTime? @map("lease_until")
+  providerMessageId String?   @map("provider_message_id")
+  lastError         String?   @map("last_error") @db.Text
+  nextAttemptAt     DateTime? @map("next_attempt_at")
+  sentAt            DateTime? @map("sent_at")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+
+  @@unique([environment, idempotencyKey])
+  @@index([environment, status, nextAttemptAt])
+  @@index([recipientHash])
+  @@index([providerMessageId])
+  @@map("email_outbox_messages")
+}
+
+model EmailWebhookEvent {
+  environment       String
+  eventId           String   @map("event_id")
+  eventType         String   @map("event_type")
+  providerMessageId String   @map("provider_message_id")
+  providerCreatedAt DateTime @map("provider_created_at")
+  receivedAt        DateTime @default(now()) @map("received_at")
+
+  @@id([environment, eventId])
+  @@index([environment, providerMessageId, providerCreatedAt])
+  @@map("email_webhook_events")
 }
 
 model PaymentAuditEntry {

@@ -1,0 +1,1832 @@
+{
+  "status": "COMPLETED",
+  "input": {
+    "source": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/iff-provas-workspace/extraction/docling-run-001/layout.json",
+    "pagesInChunks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "chunkCount": 29,
+    "inputTokens": 10431,
+    "inputBudget": 100000,
+    "outputMaxTokens": 24000,
+    "imageAssetsAttached": 0
+  },
+  "additionalInstruction": "Leia o documento completo e extraia também os metadados explicitamente sustentados pelo próprio conteúdo. A instituição é a entidade indicada no cabeçalho/rodapé; diferencie o ano do edital do ano da seleção: registre em year o ano da prova/seleção (o caderno está marcado SELEÇÃO 2010; edital de 2009 não é o ano da prova).\n\nExtraia correctAnswer somente do gabarito textual que corresponde ao caderno ENSINO MÉDIO/TÉCNICO CONCOMITANTE/INTEGRADO PROEJA, no final do documento (página física 28). Associe pelo número da questão, sem resolver a questão. Ignore o gabarito de TÉCNICO SUBSEQUENTE da página 29, pois não corresponde às questões 1–40 deste caderno. Se a correspondência de caderno/número não for explícita, deixe correctAnswer null.\n\nAo separar enunciados e alternativas, use apenas alternativas com rótulos explícitos impressos (a), b), etc.). Texto contextual sem rótulo, inclusive afirmações numeradas em algarismos romanos, pertence ao enunciado; nunca o transforme em alternativa. Mantenha cada questão limitada ao trecho entre seu marcador QUESTÃO N e o próximo marcador, sem incorporar conteúdo de questão vizinha.",
+  "result": {
+    "questions": [
+      {
+        "id": "question-01",
+        "sourceChunkIds": [
+          "iff-2010-page-4"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-02",
+        "sourceChunkIds": [
+          "iff-2010-page-4"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-03",
+        "sourceChunkIds": [
+          "iff-2010-page-5"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-04",
+        "sourceChunkIds": [
+          "iff-2010-page-5"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-05",
+        "sourceChunkIds": [
+          "iff-2010-page-6"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-06",
+        "sourceChunkIds": [
+          "iff-2010-page-6",
+          "iff-2010-page-7"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-07",
+        "sourceChunkIds": [
+          "iff-2010-page-7"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-08",
+        "sourceChunkIds": [
+          "iff-2010-page-8"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-09",
+        "sourceChunkIds": [
+          "iff-2010-page-9"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-10",
+        "sourceChunkIds": [
+          "iff-2010-page-9",
+          "iff-2010-page-10"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-11",
+        "sourceChunkIds": [
+          "iff-2010-page-10"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-12",
+        "sourceChunkIds": [
+          "iff-2010-page-11"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-13",
+        "sourceChunkIds": [
+          "iff-2010-page-11"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-14",
+        "sourceChunkIds": [
+          "iff-2010-page-11",
+          "iff-2010-page-12"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-15",
+        "sourceChunkIds": [
+          "iff-2010-page-12"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-16",
+        "sourceChunkIds": [
+          "iff-2010-page-13"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-17",
+        "sourceChunkIds": [
+          "iff-2010-page-13",
+          "iff-2010-page-14"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-18",
+        "sourceChunkIds": [
+          "iff-2010-page-14"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-19",
+        "sourceChunkIds": [
+          "iff-2010-page-15"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-20",
+        "sourceChunkIds": [
+          "iff-2010-page-15"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-21",
+        "sourceChunkIds": [
+          "iff-2010-page-16"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-22",
+        "sourceChunkIds": [
+          "iff-2010-page-16"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-23",
+        "sourceChunkIds": [
+          "iff-2010-page-17"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-24",
+        "sourceChunkIds": [
+          "iff-2010-page-17"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-25",
+        "sourceChunkIds": [
+          "iff-2010-page-17"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-26",
+        "sourceChunkIds": [
+          "iff-2010-page-18"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-27",
+        "sourceChunkIds": [
+          "iff-2010-page-18"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-28",
+        "sourceChunkIds": [
+          "iff-2010-page-18"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-29",
+        "sourceChunkIds": [
+          "iff-2010-page-18",
+          "iff-2010-page-19"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-30",
+        "sourceChunkIds": [
+          "iff-2010-page-19"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-31",
+        "sourceChunkIds": [
+          "iff-2010-page-20"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-32",
+        "sourceChunkIds": [
+          "iff-2010-page-21"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-33",
+        "sourceChunkIds": [
+          "iff-2010-page-22"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-34",
+        "sourceChunkIds": [
+          "iff-2010-page-22"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-35",
+        "sourceChunkIds": [
+          "iff-2010-page-23"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-36",
+        "sourceChunkIds": [
+          "iff-2010-page-24"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-37",
+        "sourceChunkIds": [
+          "iff-2010-page-25"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-38",
+        "sourceChunkIds": [
+          "iff-2010-page-25"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-39",
+        "sourceChunkIds": [
+          "iff-2010-page-26"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-40",
+        "sourceChunkIds": [
+          "iff-2010-page-26"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-41",
+        "sourceChunkIds": [
+          "iff-2010-page-27"
+        ],
+        "visualAssetIds": []
+      }
+    ],
+    "chunksProcessed": 29,
+    "windowsProcessed": 1,
+    "llmCalls": 1
+  },
+  "questions": [
+    {
+      "number": null,
+      "statement": "O texto 'Jornada dupla' aborda um tema presente na vida da mulher desde que ela foi inserida no mundo do trabalho, mas que nos dias atuais faz parte do universo feminino cada vez mais cedo.\nSobre a frase de abertura 'Ser mãe é padecer não só no paraíso, mas também na escola.', só NÃO é possível dizer que",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Antes a mulher precisava administrar o trabalho e a maternidade; hoje, são jovens adolescentes que necessitam articular o estudo e o fato de serem mães tão cedo."
+        },
+        {
+          "label": "b",
+          "text": "parafraseia um ditado popular."
+        },
+        {
+          "label": "c",
+          "text": "entre as orações há ideia de adição."
+        },
+        {
+          "label": "d",
+          "text": "nela ocorre a elipse (omissão) de verbo."
+        },
+        {
+          "label": "e",
+          "text": "a maternidade se traduz apenas por uma visão positiva de paraíso."
+        },
+        {
+          "label": "f",
+          "text": "sugere ser a gravidez precoce um complicador na vida escolar dos jovens."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-4"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 0
+      }
+    },
+    {
+      "number": null,
+      "statement": "O texto da revista Megazine, publicada toda terça-feira pelo jornal O Globo, suscita ideias a respeito do tema nele abordado. Em qual dos itens se traduz INCONVENIENTEMENTE algumas dessas ideias?",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "O título 'Jornada dupla' diz respeito ao desempenho das funções que as meninasmães assumem a partir da gravidez."
+        },
+        {
+          "label": "b",
+          "text": "O caso de Paloma Aguiar serve para exemplificar a pesquisa 'O aluno do ensino médio público estadual - percepções, hábitos e expectativas' realizada pelo Instituto Mapear."
+        },
+        {
+          "label": "c",
+          "text": "Ingrid Amorim, jovem que sempre estudou em escolas particulares, não teve sua rotina alterada com o nascimento do filho."
+        },
+        {
+          "label": "d",
+          "text": "De acordo com a pesquisa do Instituto Mapear, não é a gravidez a única causa que leva o jovem a abandonar a escola."
+        },
+        {
+          "label": "e",
+          "text": "A gravidez na adolescência não é uma questão que envolve apenas estudantes das classes menos favorecidas e de escolas públicas."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-4"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 1
+      }
+    },
+    {
+      "number": null,
+      "statement": "O sentido de um texto pode ser também melhor percebido quando se faz uso da análise morfossintática, em que se estuda a classe gramatical da palavra e a função do termo na oração.\nSobre esse assunto, marque o comentário totalmente correto.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Em 'Dados do Instituto Mapear revelam que, entre os alunos que têm filho, 76% já interromperam os estudos, contra apenas 12% dos que não são pais.', todos os verbos se flexionaram no plural e são transitivos diretos."
+        },
+        {
+          "label": "b",
+          "text": "Por possuir preposição, o termo destacado exerce função de objeto indireto em 'É provável que haja essa incidência pela necessidade de trabalhar para conseguir recursos.'"
+        },
+        {
+          "label": "c",
+          "text": "O pronome demonstrativo do período '- Isso leva a crer que a gravidez é um dos principais fatores de abandono escolar.' é o sujeito da primeira oração."
+        },
+        {
+          "label": "d",
+          "text": "No trecho 'é importante voltar à escola.', a expressão sublinhada é composta de preposição, artigo e substantivo e funciona como adjunto adnominal."
+        },
+        {
+          "label": "e",
+          "text": "Como adjetivo, 'levado' caracteriza o sujeito em 'ele é muito levado'; sendo, portanto, o objeto direto da oração."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-5"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 2
+      }
+    },
+    {
+      "number": null,
+      "statement": "http://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg. Acessado em 28/09/2009.",
+      "alternatives": [],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-5"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 3
+      }
+    },
+    {
+      "number": null,
+      "statement": "Instituiu-se o dia 26 de setembro como o Dia Mundial da Prevenção da Gravidez na Adolescência. O texto que você acabou de ler trata desse tema. Nos itens abaixo, há um que traz informações NÃO pertinentes a esse texto. Marqueo.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "O pronome possessivo que aparece repetido no lema da campanha objetiva atribuir ao interlocutor a responsabilidade sobre os próprios erros e acertos."
+        },
+        {
+          "label": "b",
+          "text": "Haveria alteração de sentido se a primeira frase do texto fosse: Na vida, pode-se sempre escolher."
+        },
+        {
+          "label": "c",
+          "text": "O uso de verbos no imperativo como 'escolha' e 'decida' busca uma aproximação maior com o leitor."
+        },
+        {
+          "label": "d",
+          "text": "A campanha de 2008 estimula a busca por informações para que se possa decidir com consciência."
+        },
+        {
+          "label": "e",
+          "text": "O locutor do texto fez uso de duas linguagens: a verbal e a não-verbal."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-6"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 4
+      }
+    },
+    {
+      "number": null,
+      "statement": "Esta semana está cheia de datas alertas... Hoje, dia 26 de setembro, mais de 70 países da Europa, América Latina e Ásia participam do dia Mundial da Prevenção da Gravidez na Adolescência. A data é promovida por organizações não governamentais e sociedades médicas internacionais com apoio de marcas farmacêuticas. Este ano o tema é \"Sua Vida, Sua Voz\". [...]\n(Isis Nóbile Diniz) http://scienceblogs.com.br/xisxis/2009/09/dica_para_prevencao_de_gravide.php.Acessado em 28/09/2009.\nConsiderando esse material retirado da internet, que item melhor reproduz as informações nele contidas?",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Apenas na semana de 26 de setembro existem datas apropriadas para a realização de campanhas e alerta à população."
+        },
+        {
+          "label": "b",
+          "text": "Em todos os anos, o lema da campanha de prevenção da gravidez na adolescência é 'Sua Vida, Sua Voz'."
+        },
+        {
+          "label": "c",
+          "text": "No último dia 26 de setembro, houve, em centenas de países, manifestações sobre a gravidez na adolescência."
+        },
+        {
+          "label": "d",
+          "text": "A imagem da campanha de prevenção da gravidez na adolescência deste ano sugere o relacionamento afetivo entre os adolescentes."
+        },
+        {
+          "label": "e",
+          "text": "Apenas a classe médica tem se preocupado com a gravidez na adolescência já que o assunto se relaciona diretamente com a saúde."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-6",
+        "iff-2010-page-7"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 5
+      }
+    },
+    {
+      "number": null,
+      "statement": "Seguem algumas afirmativas que relacionam o fragmento escrito por Isis Nóbile Diniz ao texto da campanha de 2008. Indique a correta.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "O tema da campanha de 2009 difere do de 2008 em apenas uma palavra, mas nos dois a mensagem é a mesma: você tem o poder sobre sua vida."
+        },
+        {
+          "label": "b",
+          "text": "Ao apresentar o dia 26 de setembro como uma data alerta, Isis Nóbile sugere que só o conhecimento pode evitar uma gravidez indesejada e irresponsável como também é dito na campanha de 2008."
+        },
+        {
+          "label": "c",
+          "text": "Nota-se, nas duas campanhas, a participação efetiva de todos os países do mundo."
+        },
+        {
+          "label": "d",
+          "text": "Os dois textos empregam verbos no presente, no passado e no futuro para marcar que o problema da gravidez precoce faz parte da vida de toda a sociedade."
+        },
+        {
+          "label": "e",
+          "text": "Em ambos os textos, prevalece a intenção de informar ao interlocutor a importância de assumir uma gravidez indesejada."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-7"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 6
+      }
+    },
+    {
+      "number": null,
+      "statement": "http://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg. Acessado em 28/09/2009.\nLer gráficos e tabelas é importante no mundo atual, no qual a associação do verbal com o não-verbal é cada vez mais frequente. Considerando a ilustração acima, assinale a afirmativa INCORRETA.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "É possível perceber, no período apresentado no gráfico, que o número de partos de adolescentes tem diminuído em todo o país."
+        },
+        {
+          "label": "b",
+          "text": "A região mais populosa também apresenta um percentual elevado de partos de mulheres ainda bem jovens."
+        },
+        {
+          "label": "c",
+          "text": "Na região mais pobre do país, a tabela mostra que o percentual de partos, ainda que em queda, é o maior do Brasil."
+        },
+        {
+          "label": "d",
+          "text": "Ao analisar os dados, nota-se que a menor redução ocorreu na região de maior extensão do país."
+        },
+        {
+          "label": "e",
+          "text": "A redução dos números em 2008 leva à conclusão de que não há mais necessidade de campanhas como 'SUA VIDA SUA DECISÃO'."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-8"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 7
+      }
+    },
+    {
+      "number": null,
+      "statement": "DESCUIDO\nSou fruto de um descuido Ato feito impensado Mas que a partir de agora Terá que ser Tratado com cuidado Gostaria de ter Sido planejado Mas por descuido Vim sem ser convidado Não sei se vou ter nome Ou se vou ser abortado Mas no fundo eu gostaria De ser tratado com carinho Amor e cuidado\nBruna e Paloma T C24\nhttp://websmed.portoalegre.rs.gov.br/escolas/montecristo/jv/jv6/poesia.html. Acessado em 28/09/2009.\nEsse texto faz parte de um trabalho de produção textual desenvolvido pela professora Márcia Regina Ribeiro com seus alunos. Nele, os textos tinham como tema 'Gravidez na adolescência', porém apresentavam locutores diferentes: ora era o bebê que falava, ora era a adolescente grávida, ora um rapaz.\nApenas uma das afirmações que seguem é INDEVIDA em relação ao texto. Assinalea.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Intitulado 'Descuido', é um poema estruturado em 14 versos e uma estrofe."
+        },
+        {
+          "label": "b",
+          "text": "O bebê revela ter consciência de sua condição de intruso na vida do casal."
+        },
+        {
+          "label": "c",
+          "text": "O destino do pequeno locutor do texto está revelado, embora ele afirme que não saiba."
+        },
+        {
+          "label": "d",
+          "text": "A fala do bebê evidencia o seu desconforto por ser a consequência, mesmo que involuntária, de um ato irrefletido."
+        },
+        {
+          "label": "e",
+          "text": "O desejo do bebê é viver como qualquer criança que tenha sido desejada por seus pais."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-9"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 8
+      }
+    },
+    {
+      "number": null,
+      "statement": "'Na América Latina, 50% dos jovens com menos de 17 anos têm vida sexual ativa. Dados do Ministério da Saúde mostram que no Brasil pelo menos uma em cada cinco mulheres que dão à luz tem menos de 19 anos.'\nAcessado em 28/09/2009.\nhttp://www.agenciabrasil.gov.br/noticias/2009/09/24/materia.2009-09-24.5055875275/view.\nhttp://www.cambito.com.br/tiras/default.asp?tirinha=20031019. Acessado em 28/09/2009.\nComo já deve ter dado para notar, as questões de Língua Portuguesa giram em torno de um mesmo tema. A respeito da tirinha do Cambito e sua turma e do fragmento da Agência Brasil, que também abordam esse tema, é possível afirmar que",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "metade das mulheres brasileiras tem 19 anos e engravida."
+        },
+        {
+          "label": "b",
+          "text": "o Ministério da Saúde, por meio de suas pesquisas, revela que um quinto das mulheres brasileiras e latino-americanas engravida devido à vida sexual ativa."
+        },
+        {
+          "label": "c",
+          "text": "todos os jovens latino-americanos iniciam sua vida sexual antes dos dezessete anos."
+        },
+        {
+          "label": "d",
+          "text": "a personagem, segundo a última fala da tirinha, espera que a amiga não esteja grávida."
+        },
+        {
+          "label": "e",
+          "text": "houve, por parte de ambas as personagens da tirinha, preocupação com o uso de preservativo."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-9",
+        "iff-2010-page-10"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 9
+      }
+    },
+    {
+      "number": null,
+      "statement": "Ainda com referência aos textos da questão anterior, são feitas considerações gramaticais. Marque a INADEQUADA.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "As vírgulas foram empregadas pelo mesmo motivo em 'Ontem, peguei o mais gato do baile!' e 'Agora, tô com uma ressaca sinistra!'."
+        },
+        {
+          "label": "b",
+          "text": "Completando a frase do segundo quadrinho da tirinha, poderia haver substituição das reticências por 'de usar a camisinha.'"
+        },
+        {
+          "label": "c",
+          "text": "Ao comparar, de forma implícita, o rapaz com quem ficou a um gato, a personagem da turma do Cambito fez uso de metáfora."
+        },
+        {
+          "label": "d",
+          "text": "Os adjetivos 'doidona' e 'sinistra' encontram-se no singular, pois caracterizam o mesmo substantivo; concordando, desta forma, com ele."
+        },
+        {
+          "label": "e",
+          "text": "No fragmento da Agência Brasil, aparecem as formas verbais 'têm' e 'tem' que concordam com seus respectivos sujeitos no plural e no singular."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-10"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 10
+      }
+    },
+    {
+      "number": null,
+      "statement": "\\S S e n d { \\ P ( x , y ) } { \\ a s l u c { \\tilde { a } } { \\circ } } { \\S s i m e } \\ \\begin{cases} 4 x + 2 y = 2 \\\\ 2 x - y = 0 \\end{cases} \\ , \\, \\circ \\, \\text {val order} \\, \\tilde { x } + \\tilde { y } \\, \\tilde { e } \\colon",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "0"
+        },
+        {
+          "label": "b",
+          "text": "4 1"
+        },
+        {
+          "label": "c",
+          "text": "\\frac { 1 } { 2 } & & s i s temas \\, \\text {lines}"
+        },
+        {
+          "label": "d",
+          "text": "4 3"
+        },
+        {
+          "label": "e",
+          "text": "2 3"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-11"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 11
+      }
+    },
+    {
+      "number": null,
+      "statement": "Cada mililitro de sangue humano contém, em média, 5.10 6 glóbulos vermelhos. Um ser humano adulto tem, em média, 5,5 litros de sangue. De acordo com esses dados, o número médio de glóbulos vermelhos de um adulto é:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "2,75 x 10 6"
+        },
+        {
+          "label": "b",
+          "text": "2,75 x 10 7"
+        },
+        {
+          "label": "c",
+          "text": "27,5 x 10 7"
+        },
+        {
+          "label": "d",
+          "text": "27,5 x 10 8"
+        },
+        {
+          "label": "e",
+          "text": "2,75 x 10 10"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-11"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 12
+      }
+    },
+    {
+      "number": null,
+      "statement": "O polígono ABCD é um quadrado de lado 8 cm. Sabendo-se que G é ponto médio de BC, Q 1 é um quadrado de área 4 cm 2 e R 1 é um retângulo de área 8 cm 2, qual a razão entre AB e IJ?\nnotação científica regra de 3",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "\\frac { 4 \\sqrt { 2 } } { 5 }"
+        },
+        {
+          "label": "b",
+          "text": "\\frac { 5 \\sqrt { 2 } } { 4 }"
+        },
+        {
+          "label": "c",
+          "text": "\\frac { 4 \\sqrt { 5 } } { 5 }"
+        },
+        {
+          "label": "d",
+          "text": "4 5 5"
+        },
+        {
+          "label": "e",
+          "text": "2 5"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-11",
+        "iff-2010-page-12"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 13
+      }
+    },
+    {
+      "number": null,
+      "statement": "Em ciências atuariais, uma tábua de vida é uma tabela, construída a partir de censos populacionais, que mostra a probabilidade de morte de um indivíduo em uma certa faixa etária. Tábuas de vida são usadas em planos de previdência e seguros de vida. A tábua da vida abaixo indica, por exemplo, que um indivíduo entre um ano (inclusive) e 2 anos (exclusive) tem 0,05% de chance de morrer.\nFonte: National Vital Statístics Reports, vol.54, nº 14, 2006.\nSupondo-se que existe um grupo de 1.000.000 de pessoas que acabaram de completar 2 anos, segundo esta tabela, o número de pessoas deste grupo que farão aniversário de 4 anos é, aproximadamente, igual a:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "997.000"
+        },
+        {
+          "label": "b",
+          "text": "999.700"
+        },
+        {
+          "label": "c",
+          "text": "999.500"
+        },
+        {
+          "label": "d",
+          "text": "999.950"
+        },
+        {
+          "label": "e",
+          "text": "999.970"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-12"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 14
+      }
+    },
+    {
+      "number": null,
+      "statement": "Considere os conjuntos ( ) { } 9 2 IR / x x A 2 = - ∈ = e { } 6 3 4 ≥ - - ∈ = x IN x B / * .\nSe n indica o número de elementos do conjunto B A ∪ , então o valor de n é:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "3"
+        },
+        {
+          "label": "b",
+          "text": "4"
+        },
+        {
+          "label": "c",
+          "text": "5"
+        },
+        {
+          "label": "d",
+          "text": "6"
+        },
+        {
+          "label": "e",
+          "text": "∞"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-13"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 15
+      }
+    },
+    {
+      "number": null,
+      "statement": "Observe o demonstrativo do consumo de energia elétrica da residência do Sr. Econômico.\nConsidere que o consumo médio, de janeiro/2009 a maio/2009, foi igual ao que ocorreu de junho/2009 a setembro/2009.\nSabendo que o valor cobrado por cada Kwh, já incluídos todos os impostos e encargos, é de R$ 0,52, é correto afirmar que a conta de luz do mês de setembro/2009 que o Sr. Econômico pagou foi, em reais:\nteoria dos conjuntos",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "52,00"
+        },
+        {
+          "label": "b",
+          "text": "62,40"
+        },
+        {
+          "label": "c",
+          "text": "57,20"
+        },
+        {
+          "label": "d",
+          "text": "72,80"
+        },
+        {
+          "label": "e",
+          "text": "mais de 72,80"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-13",
+        "iff-2010-page-14"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 16
+      }
+    },
+    {
+      "number": null,
+      "statement": "Na figura, r//s.\nSe â = 4x + 31 0 e c ˆ = 3x + 59 0 30' , então a medida do ângulo b é:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "35°"
+        },
+        {
+          "label": "b",
+          "text": "45°"
+        },
+        {
+          "label": "c",
+          "text": "40°"
+        },
+        {
+          "label": "d",
+          "text": "50°"
+        },
+        {
+          "label": "e",
+          "text": "55°"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-14"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 17
+      }
+    },
+    {
+      "number": null,
+      "statement": "Um terreno tem a forma de um trapézio retângulo conforme a figura abaixo.\nDado que sen 60° = 2 3 , cos 60° = 2 1 e tg 60° = 3 , calcule, em m 2 a área do terreno.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "68 + 6 3"
+        },
+        {
+          "label": "b",
+          "text": "126"
+        },
+        {
+          "label": "c",
+          "text": "168"
+        },
+        {
+          "label": "d",
+          "text": "168 3"
+        },
+        {
+          "label": "e",
+          "text": "336 3"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-15"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 18
+      }
+    },
+    {
+      "number": null,
+      "statement": "Uma pequena esfera de isopor, aluminizada, suspensa por um fio \"nylon\", é atraída por um pente plástico negativamente carregado. Pode-se afirmar que a carga elétrica da esfera é:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "apenas negativa;"
+        },
+        {
+          "label": "b",
+          "text": "apenas positiva;"
+        },
+        {
+          "label": "c",
+          "text": "apenas nula;"
+        },
+        {
+          "label": "d",
+          "text": "negativa, ou então nula;"
+        },
+        {
+          "label": "e",
+          "text": "positiva, ou então nula."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-15"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 19
+      }
+    },
+    {
+      "number": null,
+      "statement": "Considere as afirmações a seguir:\nO som se propaga no ar com uma velocidade de aproximadamente 340m/s.\nAs velocidades de propagação do som no ar e no vácuo são aproximadamente iguais.\nO eco é devido à reflexão do som.\nQuais delas são corretas?",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Apenas I"
+        },
+        {
+          "label": "b",
+          "text": "Apenas I e III"
+        },
+        {
+          "label": "c",
+          "text": "Apenas I e II"
+        },
+        {
+          "label": "d",
+          "text": "Apenas II e III"
+        },
+        {
+          "label": "e",
+          "text": "I, II e III"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-16"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 20
+      }
+    },
+    {
+      "number": null,
+      "statement": "Uma bola de borracha é rolada contra a parede de uma sala retangular, atingindo o ponto médio de cada lado, descrevendo a trajetória indicada pelas setas abaixo.\nSabendo que a bola manteve uma velocidade constante e que demorou 10s para voltar ao ponto de origem, determine a sua velocidade média.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "1,8km/h"
+        },
+        {
+          "label": "b",
+          "text": "5,4km/h"
+        },
+        {
+          "label": "c",
+          "text": "3,6km/h"
+        },
+        {
+          "label": "d",
+          "text": "7,2km/h"
+        },
+        {
+          "label": "e",
+          "text": "9,0km/h"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-16"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 21
+      }
+    },
+    {
+      "number": null,
+      "statement": "A Ferrari F430 Scuderia que chega agora ao Brasil, vem com 20 cavalos a mais de potência em relação ao modelo F430, graças a redução de sua massa para 1.250kg, cerca de 200kg a menos que o modelo antecessor. Com um motor v8 de 4,3 litros e potência de 510 cavalos, alcança uma velocidade final de 320km/h. É este propulsor que faz esta máquina arrancar de 0 a 100km/h em apenas 3,5s.\nCom base nos dados do texto anterior responda:\nQual a distância percorrida pelo carro, a partir do repouso, para que este atinja a velocidade de 100km/h? (Para efeito de cálculo admita que 100km/h = 28m/s).",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "45m"
+        },
+        {
+          "label": "b",
+          "text": "52m"
+        },
+        {
+          "label": "c",
+          "text": "49m"
+        },
+        {
+          "label": "d",
+          "text": "56m"
+        },
+        {
+          "label": "e",
+          "text": "62m"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-17"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 22
+      }
+    },
+    {
+      "number": null,
+      "statement": "Na filtração das águas da piscina utilizam-se filtros que contêm areia como meio filtrante. A areia utilizada para esse fim deve ter granulometria apropriada, além de ser isenta de matéria orgânica. Para se chegar a esses critérios de qualidade, a areia deve ser previamente peneirada e posteriormente queimada em fornos rotatórios. Os processos de obtenção dessa qualidade da areia são respectivamente:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "físico e químico."
+        },
+        {
+          "label": "b",
+          "text": "químico e químico."
+        },
+        {
+          "label": "c",
+          "text": "químico e físico."
+        },
+        {
+          "label": "d",
+          "text": "físico e físico."
+        },
+        {
+          "label": "e",
+          "text": "nuclear e físico."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-17"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 23
+      }
+    },
+    {
+      "number": null,
+      "statement": "Qual dos seguintes procedimentos é o mais indicado quando se quer distinguir um copo contendo água destilada de outro que contenha uma solução de água açucarada, sem experimentar o gosto?",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Filtrar os líquidos."
+        },
+        {
+          "label": "b",
+          "text": "Determinar a densidade."
+        },
+        {
+          "label": "c",
+          "text": "Medir o volume."
+        },
+        {
+          "label": "d",
+          "text": "Usar um microscópio."
+        },
+        {
+          "label": "e",
+          "text": "Decantar os líquidos."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-17"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 24
+      }
+    },
+    {
+      "number": null,
+      "statement": "Gasolina, gelo e grafite são, respectivamente, exemplos de:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "mistura, substância simples e substância composta."
+        },
+        {
+          "label": "b",
+          "text": "substância composta, mistura e substância simples."
+        },
+        {
+          "label": "c",
+          "text": "mistura, substância composta e substância simples."
+        },
+        {
+          "label": "d",
+          "text": "substância composta, substância simples e mistura."
+        },
+        {
+          "label": "e",
+          "text": "substância simples, mistura e substância composta ."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-18"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 25
+      }
+    },
+    {
+      "number": null,
+      "statement": "Um determinado elemento pertence ao primeiro grupo ou família da tabela periódica. A respeito das suas propriedades, é INCORRETO afirmar que:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "encontra-se no estado sólido à temperatura ambiente."
+        },
+        {
+          "label": "b",
+          "text": "forma cátion monovalente nos sais correspondentes."
+        },
+        {
+          "label": "c",
+          "text": "trata-se de um metal alcalino."
+        },
+        {
+          "label": "d",
+          "text": "é um elemento muito reativo em água."
+        },
+        {
+          "label": "e",
+          "text": "forma compostos covalentes com não-metais."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-18"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 26
+      }
+    },
+    {
+      "number": null,
+      "statement": "A filtração caseira da água é um procedimento eficiente para evitar a transmissão de várias doenças. Assinale a opção que contenha somente doenças que terão sua incidência reduzida com a adoção dessa medida.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Dengue, hepatite A, giardíase, botulismo"
+        },
+        {
+          "label": "b",
+          "text": "Giardíase, cólera, ascaridíase, amebíase"
+        },
+        {
+          "label": "c",
+          "text": "Malária, giardíase, cólera, disenteria bacilar"
+        },
+        {
+          "label": "d",
+          "text": "Dengue, giardíase, cólera, amebíase."
+        },
+        {
+          "label": "e",
+          "text": "Cólera, amebíase, malária, filariose"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-18"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 27
+      }
+    },
+    {
+      "number": null,
+      "statement": "'A mata atlântica é hoje uma das florestas tropicais mais devastadas do planeta, reduzida a algumas poucas áreas remanescentes, em geral descontínuas. Esse processo de fragmentação pode ser a causa do aumento da densidade de formigas conhecidas como saúvas, o que ameaçaria ainda mais esse bioma já fragilizado. Com a fragmentação, há um predomínio de plantas de luz ou pioneiras, em detrimento das plantas de sombra, próprias de florestas maduras e conservadas. As plantas pioneiras não possuem compostos de defesa contra organismos que se alimentam de suas folhas. Com mais plantas sem defesas nas proximidades dos ninhos, as formigas gastam menos energia para buscar seus alimentos e mais energia para a produção de rainhas e consequentemente um maior número de colônias adultas.'\nAdaptado de Ciência Hoje. Dezembro de 2008. p. 60.\nBaseado no texto e nos seus conhecimentos, analise as afirmativas a seguir e marque a alternativa correta.\nPodemos verificar, de acordo com o texto acima, que o número de saúvas reduziu devido a escassez de alimentos provocada pelo desmatamento da mata atlântica.\nA mata atlântica é um bioma brasileiro que se caracteriza por sua vegetação densa, com chuvas abundantes, presença de palmeiras e ipês.\nAs formigas mantêm relação harmoniosa denominada sociedade. A sociedade das formigas é estruturada em castas (rainha, macho, operária, soldado), sendo cada uma responsável por um determinado trabalho ou função.\nTodas as afirmativas são corretas.\nApenas as afirmativas I e III estão corretas.\nApenas as afirmativas I e II estão corretas.\nApenas as afirmativas II e III estão corretas.\nTodas as afirmativas são falsas.",
+      "alternatives": [],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-18",
+        "iff-2010-page-19"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 28
+      }
+    },
+    {
+      "number": null,
+      "statement": "Sobre os tecidos animais é INCORRETO afirmar:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "O tecido muscular é formado por fibras musculares, células ricas em filamentos protéicos;"
+        },
+        {
+          "label": "b",
+          "text": "Os tecidos conjuntivos, que apresentam pouca quantidade de material extracelular, podem exercer função de sustentação, defesa, nutrição e preenchimento de espaços entre órgãos."
+        },
+        {
+          "label": "c",
+          "text": "Os tecidos epiteliais apresentam células justapostas e funções de revestimento, secreção e absorção."
+        },
+        {
+          "label": "d",
+          "text": "O tecido nervoso é especializado na recepção e transmissão de impulsos elétricos."
+        },
+        {
+          "label": "e",
+          "text": "O sangue é um tipo de tecido conjuntivo constituído pelos elementos figurados (hemácias, leucócitos e plaquetas) e plasma (substância intercelular líquida)."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-19"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 29
+      }
+    },
+    {
+      "number": null,
+      "statement": "'Eu trago bananas prá vender Bananas de todas qualidades Quem vai querer Olha banana Nanica Olha banana Maçã Olha banana Ouro Olha banana Prata Olha a banana da Terra Figo São Tomé\nOlha a banana d'Água.'\n(O Vendedor de Bananas -Jorge Ben)\nNas feiras e supermercados geralmente encontramos bananas sem sementes. Uma das espécies de bananeiras que não produz sementes é a Musa sapientum (variedades ouro, prata, maçã, figo, São Tomé). No entanto, existem bananeiras silvestres cujo fruto apresenta sementes duras, que ocupam boa parte da massa comestível da banana. É o caso da espécie Musa balbisiana.\nBanana sem semente\nBanana com semente\nCom referência aos processos reprodutivos das duas espécies citadas no enunciado pode-se afirmar corretamente que:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Somente a espécie Musa balbisiana se reproduz por processo sexuado;"
+        },
+        {
+          "label": "b",
+          "text": "As duas espécies não se reproduzem por processo sexuado;"
+        },
+        {
+          "label": "c",
+          "text": "As duas espécies reproduzem-se por processo sexuado;"
+        },
+        {
+          "label": "d",
+          "text": "Na espécie Musa sapientum ocorre o desenvolvimento do embrião;"
+        },
+        {
+          "label": "e",
+          "text": "A espécie Musa balbisiana não forma zigoto;"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-20"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 30
+      }
+    },
+    {
+      "number": null,
+      "statement": "O Brasil encontra-se dividido em cinco grandes regiões: sul, sudeste, centro-oeste, norte e nordeste. Essa divisão oficial foi realizada pelo IBGE (Instituto Brasileiro de Geografia e Estatística) e é com base nessas regiões que boa parte das informações do país é organizada. Com base no mapa abaixo e em seus conhecimentos sobre as regiões brasileiras, assinale a alternativa correta :\nFonte: IBGE",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "A grande concentração industrial brasileira está na região nordeste devido ao maior número de estados que ela contém."
+        },
+        {
+          "label": "b",
+          "text": "A região sul caracteriza-se por sua ocupação recente, o que explica os insatisfatórios índices de crescimento industrial."
+        },
+        {
+          "label": "c",
+          "text": "A região centro-oeste é composta por três estados e pelo Distrito Federal, onde se encontra a capital do Brasil."
+        },
+        {
+          "label": "d",
+          "text": "A região sudeste apresenta os maiores índices de mortalidade infantil e de analfabetismo, sendo também considerada uma região fracamente desenvolvida."
+        },
+        {
+          "label": "e",
+          "text": "A região norte apresenta uma grande extensão territorial e também um grande número populacional."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-21"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 31
+      }
+    },
+    {
+      "number": null,
+      "statement": "Leia atentamente as manchetes abaixo:\n'Número de mortos por tsunami causado por terremoto passa de 100 na Oceania Há mortos e feridos em Samoa Americana e em Samoa.'\nDisponível em: <http://g1.globo.com/Noticias/Mundo/0,,MUL1323397-5602,00.html>. Acessado em 30/09/2009.\n'Terremoto na Indonésia deixa ao menos 75 mortos.'\nDisponível em: <http://noticias.uol.com.br/ultnot/internacional/2009/09/30/ult1859u1560.jhtm>. Acessado em 30/09/2009.\n'Vulcão Asama entra em erupção e deixa Japão em alerta - 02/02/2009.'\nDisponível em: <http://video.aol.co.uk/video-detail/vulco-asama-entra-em-erupo-e-deixa-japo-emalerta/3349838831>. Acessado em 13/10/2009.\nOs fenômenos expostos acima estão relacionados ao(s):",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "processos externos devido aos inúmeros impactos provocados na crosta terrestre."
+        },
+        {
+          "label": "b",
+          "text": "processos internos da Terra que provocam a movimentação das placas tectônicas."
+        },
+        {
+          "label": "c",
+          "text": "elevação dos impactos ambientais provocados pelo aquecimento global."
+        },
+        {
+          "label": "d",
+          "text": "desgaste das rochas, que por estarem expostas acabam se desgastando."
+        },
+        {
+          "label": "e",
+          "text": "dinamismo existente na Terra, o que certamente tem uma relação direta com a redução repentina do número de habitantes do Planeta."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-22"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 32
+      }
+    },
+    {
+      "number": null,
+      "statement": "Indique a alternativa que NÃO corresponde à realidade das grandes metrópoles brasileiras:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "A escolha da cidade do Rio de Janeiro como sede das olimpíadas de 2016 é vista por muitos como uma oportunidade de crescimento econômico, principalmente pelo turismo. Por outro lado, as enormes desigualdades sociais e territoriais existentes tanto na cidade do Rio de Janeiro quanto em outras metrópoles brasileiras geram críticas quanto ao grande investimento que será feito para sediar os jogos mundiais, em detrimento a outras necessidades do país."
+        },
+        {
+          "label": "b",
+          "text": "São cidades que passaram por um rápido e desordenado crescimento, tornandose 'inchadas' de pessoas e de problemas."
+        },
+        {
+          "label": "c",
+          "text": "Os escassos investimentos governamentais na área habitacional levaram à formação de precárias moradias."
+        },
+        {
+          "label": "d",
+          "text": "A rápida urbanização faz com que cidades vizinhas à metrópole aumentem de tamanho e formem um só conjunto."
+        },
+        {
+          "label": "e",
+          "text": "Há um grande número de mendigos, desempregados e subempregados vivendo nestas cidades."
+        },
+        {
+          "label": "f",
+          "text": "A falta de infraestrutura adequada e de saneamento básico não são problemas tão preocupantes nas metrópoles devido à presença de mão de obra qualificada para resolvê-los."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-22"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 33
+      }
+    },
+    {
+      "number": null,
+      "statement": "'As fontes de energia são extremamente importantes nas atividades humanas, pois originam combustíveis e eletricidade que servem para iluminar, movimentar máquinas, caminhões entre outras aplicações.\nAs energias facilitam o trabalho do homem que em outras circunstâncias teria uma grande dificuldade, utiliza-se a energia para levantar peso, apertar parafuso, mover veículos, ferver água, etc.'\nDisponível em: <http://www.mundoeducacao.com.br/geografia/fontes-energia-1.htm>. Acessado em 13/10/2009.\nSobre as fontes energéticas são feitas as seguintes afirmações.\nAs termoelétricas que produzem energia a partir da queima em caldeira de carvão, óleo combustível ou gás natural, elevam a concentração de poluentes na atmosfera e por consequência acentuam o aquecimento global.\nA energia eólica, ou seja, aquela que é proveniente do vento, ocasiona alguns impactos ambientais, tais como: aumento da poluição sonora, visual e atmosférica, sendo diretamente responsável pelo aquecimento global.\nAs hidrelétricas apesar de serem vistas por alguns como 'energia limpa', geram inúmeros impactos ambientais devido à construção das represas, que provocam inundações em imensas áreas de matas, destroem espécies vegetais, prejudicam os animais, e interferem na ocupação humana.\nA energia solar é considerada uma fonte energética alternativa e renovável.\nEstão corretas as alternativas:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "I, III e IV."
+        },
+        {
+          "label": "b",
+          "text": "II, III e IV."
+        },
+        {
+          "label": "c",
+          "text": "II e III."
+        },
+        {
+          "label": "d",
+          "text": "I, II e IV."
+        },
+        {
+          "label": "e",
+          "text": "I, II, III e IV ."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-23"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 34
+      }
+    },
+    {
+      "number": null,
+      "statement": "Observe o mapa abaixo:\nAdaptado - Disponível em: <http://www.geografiaparatodos.com.br/index.php?pag=mapasm>. Acessado em 13/10/2009 .\nUma das tendências do mundo atualmente é a articulação dos países em blocos econômicos, como os que estão expostos no mapa acima. Assinale a alternativa INCORRETA a respeito desse assunto.",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "A Comunidade para o Desenvolvimento da África Austral (SADC), localiza-se no território africano."
+        },
+        {
+          "label": "b",
+          "text": "A União Européia possui uma moeda única, o euro, e tem como um dos seus membros a Alemanha."
+        },
+        {
+          "label": "c",
+          "text": "O Nafta é uma zona de livre comércio formada por Canadá, Estados Unidos e México."
+        },
+        {
+          "label": "d",
+          "text": "O Mercosul tem como membros permanentes apenas países da América do Sul."
+        },
+        {
+          "label": "e",
+          "text": "Todos os blocos econômicos apresentam o mesmo nível de integração política, social, ambiental e econômica."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-24"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 35
+      }
+    },
+    {
+      "number": null,
+      "statement": "'O Congresso de Viena foi realizado na capital austríaca, entre setembro de 1814 e junho de 1815, tendo como participantes dezenas de príncipes, reis, imperadores, chefes militares, diplomatas, dirigentes da igreja, nobres, tomados de alegria porque Napoleão Bonaparte, que passara a simbolizar a Revolução Francesa, estava exilado na Ilha de Elba'.\n(AQUINO; RONALDO. Fazendo a História : A Europa e as Américas nos séculos XVIII e XIX. Rio de Janeiro: Ao Livro Técnico, 1986)\nQuatro países foram os grandes beneficiários dos acordos que resultaram do Congresso de Viena; são eles:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Áustria, Alemanha, Rússia e Inglaterra."
+        },
+        {
+          "label": "b",
+          "text": "Inglaterra, França, Prússia e Rússia."
+        },
+        {
+          "label": "c",
+          "text": "França, Espanha, Portugal e Prússia."
+        },
+        {
+          "label": "d",
+          "text": "Portugal, Inglaterra, França e Rússia."
+        },
+        {
+          "label": "e",
+          "text": "Prússia, Inglaterra, Áustria e Rússia."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-25"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 36
+      }
+    },
+    {
+      "number": null,
+      "statement": "Em meados do século XIX, os Estados Unidos vivenciaram sua maior guerra civil: a Guerra de Secessão; sobre ela é correto afirmar:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "os estados do Norte, predominantemente industrializados, eram contra uma política de livre comércio, enquanto os estados do Sul, agrícolas, eram contra uma política protecionista."
+        },
+        {
+          "label": "b",
+          "text": "os estados do Norte tiveram apoio da Inglaterra, já que a guerra era contra a França."
+        },
+        {
+          "label": "c",
+          "text": "com a vitória dos estados do Norte sobre os estados do Sul, a escravidão foi abolida e foi adotada uma política protecionista."
+        },
+        {
+          "label": "d",
+          "text": "os nortistas obtiveram alguns êxitos iniciais nessa guerra, mas, graças à superioridade populacional, industrial e financeira dos sulistas, terminaram derrotados."
+        },
+        {
+          "label": "e",
+          "text": "Abraham Lincoln, eleito presidente pelos sulistas, tentou evitar a guerra com o Norte, que era totalmente contrário à abolição da escravatura no país."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-25"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 37
+      }
+    },
+    {
+      "number": null,
+      "statement": "No que se refere ao uso da mão de obra no Brasil, pode-se afirmar que:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "tanto na produção do café como do algodão, no século XX, utilizou-se, principalmente, mão de obra servil."
+        },
+        {
+          "label": "b",
+          "text": "tanto na produção da cana de açúcar, no Nordeste, como do café, no Vale do Paraíba, entre os séculos XVI e XIX, utilizou-se, principalmente, mão de obra escrava."
+        },
+        {
+          "label": "c",
+          "text": "tanto na produção do café do Oeste Paulista como da pecuária, no século XIX, utilizou-se, principalmente, mão de obra indígena."
+        },
+        {
+          "label": "d",
+          "text": "tanto na produção da cana de açúcar, como na do algodão, no século XIX, utilizouse, principalmente, mão de obra indígena sob a forma de trabalho servil."
+        },
+        {
+          "label": "e",
+          "text": "desde a exploração do pau brasil, como na mineração e na produção industrial, utilizou-se, principalmente, mão de obra escrava."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-26"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 38
+      }
+    },
+    {
+      "number": null,
+      "statement": "No final do século XIX e início do século XX, a expansão do capitalismo provocou importantes transformações em todo o mundo. No Brasil, esse fenômeno foi responsável pela abolição da escravatura e pela proclamação da República, acompanhadas por um processo de crescente modernização da economia. Por toda parte ocorreram reajustes sociais que forçaram a adaptação, transformando as antigas formas de convívio social. Foi nesse contexto que o regime republicano teve que enfrentar revoltas das populações marginalizadas. Afinal de contas, como seria possível se submeter aos poderes e obrigações de um Estado pouco interessado em atender às demandas daqueles que devia representar? O banditismo social representou um dos movimentos de manifestação contrários ao governo republicano, que destacou uma figura conhecida da História e do imaginário brasileiros, a saber:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "Antônio Conselheiro;"
+        },
+        {
+          "label": "b",
+          "text": "Lampião;"
+        },
+        {
+          "label": "c",
+          "text": "Padre Antônio Maria;"
+        },
+        {
+          "label": "d",
+          "text": "Padre Cícero;"
+        },
+        {
+          "label": "e",
+          "text": "Luís Carlos Prestes"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-26"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 39
+      }
+    },
+    {
+      "number": null,
+      "statement": "\"Industrializar aceleradamente o país; transferir do exterior para o nosso território as bases do desenvolvimento autônomo; fazer da indústria manufatureira o centro dinâmico das atividades econômicas nacionais - isto resume o meu propósito, a minha opção\".\n(OLIVEIRA, Juscelino Kubitschek de. Por que construí Brasília . Rio de Janeiro: Bloch: 1975, p. 57).\nO trecho acima pode ser considerado o resumo do programa de governo de Juscelino Kubitschek, caracterizado por:",
+      "alternatives": [
+        {
+          "label": "a",
+          "text": "ter como base de seu programa administrativo, o trinômio: saúde, estabilidade monetária e habitação."
+        },
+        {
+          "label": "b",
+          "text": "reduzir aceleradamente a produção de bens de consumo duráveis, voltando-se totalmente para a indústria de base."
+        },
+        {
+          "label": "c",
+          "text": "reprimir as oposições, anulando os direitos democráticos e a liberdade de imprensa."
+        },
+        {
+          "label": "d",
+          "text": "acelerar o desenvolvimento industrial, internacionalizar nossa economia, gerando, contudo, endividamento e inflação."
+        },
+        {
+          "label": "e",
+          "text": "acentuar o nacionalismo econômico brasileiro."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": "IFF",
+      "year": 2010,
+      "sourceChunkIds": [
+        "iff-2010-page-27"
+      ],
+      "visualEvidence": [],
+      "metadata": {
+        "sourceEvidenceCorrections": [],
+        "questionExtractionOrdinal": 40
+      }
+    }
+  ]
+}

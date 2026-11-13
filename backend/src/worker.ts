@@ -24,6 +24,12 @@ import { claimDocumentProcessingStallEvent, listProcessingJobsForStageWatchdog }
 import { DocumentProcessingStageWatchdog } from './worker/services/document-processing-stage-watchdog.service.js';
 import { createPaymentAccountModule } from './modules/payments/payments-account.module.js';
 import { ChatImageCleanupService } from './modules/chat/services/chat-image-cleanup.service.js';
+import { RedisEntitlementCache } from './modules/access/infrastructure/redis-entitlement-cache.js';
+import { EmailOutboxCipher } from './modules/email/outbox-crypto.js';
+import { EmailOutboxRepository } from './modules/email/outbox.repository.js';
+import { EmailOutboxProcessor, PrismaEmailOutboxStore } from './modules/email/outbox.processor.js';
+import { ResendEmailProvider } from './modules/email/resend-email.provider.js';
+import { SponsoredSeatEmailIntents } from './modules/payments/infrastructure/persistence/sponsored-seat-email-intents.js';
 
 const questionGenerationEnumState = await loadQuestionGenerationEnumState(() => prisma.$queryRaw<Array<{ hasCorrection: boolean; hasNormalization: boolean }>>`
   SELECT EXISTS (
@@ -72,8 +78,27 @@ const weeklySimulationWorkerService = new WeeklySimulationWorkerService();
 const paymentWebhookRepository = new PrismaPaymentWebhookRepository(env.ASAAS_ENV.toUpperCase());
 const paymentWebhookRecovery = new PaymentWebhookRecoveryJob(paymentWebhookRepository);
 const paymentAccountRepository = new PaymentAccountRepository();
-const paymentEventRepository = new PaymentEventRepository();
-const processPaymentWebhookWithAccounts = new ProcessPaymentWebhookUseCase(paymentWebhookRepository, paymentAccountRepository, paymentEventRepository);
+const emailOutboxCipher = env.EMAIL_ENABLED ? new EmailOutboxCipher(env.EMAIL_OUTBOX_ENCRYPTION_KEY!) : null;
+const emailEnvironment = env.ASAAS_ENV.toUpperCase() as 'SANDBOX' | 'PRODUCTION';
+const emailOutboxRepository = emailOutboxCipher ? new EmailOutboxRepository(emailOutboxCipher, undefined, emailEnvironment) : null;
+const sponsoredSeatEmailIntents = emailOutboxRepository && env.EMAIL_FROM && env.PUBLIC_FRONT_URL
+  ? new SponsoredSeatEmailIntents(emailOutboxRepository, { from: env.EMAIL_FROM, frontBaseUrl: env.PUBLIC_FRONT_URL, environment: env.ASAAS_ENV.toUpperCase() })
+  : undefined;
+const paymentEventRepository = new PaymentEventRepository(sponsoredSeatEmailIntents);
+const paymentEntitlementCache = new RedisEntitlementCache(redisConnection, env.ASAAS_ENV);
+const processPaymentWebhookWithAccounts = new ProcessPaymentWebhookUseCase(
+  paymentWebhookRepository,
+  paymentAccountRepository,
+  paymentEventRepository,
+  async (studentId, reason) => {
+    await paymentEntitlementCache.invalidateOrThrow(studentId);
+    console.log('Snapshot de acesso invalidado após webhook', {
+      event: 'access.snapshot_invalidated',
+      studentId,
+      reason,
+    });
+  },
+);
 const paymentAccountWebhookSyncRecovery = createPaymentAccountModule().syncAccountWebhook;
 const recoverPaymentAccountWebhooks = () => {
   void paymentAccountRepository.markStaleSubaccountCreations().catch((error) => {
@@ -114,25 +139,40 @@ recoverPaymentWebhooks();
 const questionBankMaterializationRecoveryTimer = setInterval(recoverQuestionBankMaterializations, 30_000);
 recoverQuestionBankMaterializations();
 
+const emailOutboxProcessor = env.EMAIL_ENABLED ? new EmailOutboxProcessor(new PrismaEmailOutboxStore(emailEnvironment), new EmailOutboxCipher(env.EMAIL_OUTBOX_ENCRYPTION_KEY!), new ResendEmailProvider(env.RESEND_API_KEY!), { sandboxAllowedRecipients: env.ASAAS_ENV === 'sandbox' ? env.EMAIL_SANDBOX_ALLOWED_RECIPIENTS.split(',').map((email) => email.trim()).filter(Boolean) : undefined }) : null;
+let emailPollRunning = false;
+const recoverEmailOutbox = async () => {
+  if (!emailOutboxRepository || !emailOutboxProcessor || emailPollRunning) return;
+  emailPollRunning = true;
+  try {
+    const messages = await emailOutboxRepository.listPending(10);
+    for (const message of messages) await emailOutboxProcessor.process(message.id);
+  } catch (error) {
+    console.error('Falha ao processar outbox de e-mail', { event: 'email.outbox_poll_failed', errorType: error instanceof Error ? error.name : 'UnknownError' });
+  } finally { emailPollRunning = false; }
+};
+const emailOutboxTimer = emailOutboxProcessor ? setInterval(() => { void recoverEmailOutbox(); }, 5_000) : null;
+void recoverEmailOutbox();
+
 const worker = new Worker<DocumentJob>(
   DOCUMENT_QUEUE_NAME,
   async (job) => workerService.process(job.data.documentId, {
     jobId: job.id,
     attempt: job.attemptsMade + 1,
   }),
-  createQueueWorkerOptions(redisConnection, 2),
+  createQueueWorkerOptions(redisConnection, 2, 'documents'),
 );
 
 const weeklySimulationWorker = new Worker<WeeklySimulationJob>(
   WEEKLY_SIMULATION_QUEUE_NAME,
   async (job) => weeklySimulationWorkerService.process(job.data.simulationId),
-  createQueueWorkerOptions(redisConnection, 2),
+  createQueueWorkerOptions(redisConnection, 2, 'weeklySimulation'),
 );
 
 const paymentWebhookWorker = new Worker<PaymentWebhookJob>(
   PAYMENT_WEBHOOK_QUEUE_NAME,
   async (job) => processPaymentWebhookWithAccounts.execute(job.data.eventId),
-  createQueueWorkerOptions(paymentWebhookQueueConnection, 4),
+  createQueueWorkerOptions(paymentWebhookQueueConnection, 4, 'paymentWebhook'),
 );
 
 const questionBankMaterializationWorker = new Worker<QuestionBankMaterializationJob>(
@@ -142,7 +182,7 @@ const questionBankMaterializationWorker = new Worker<QuestionBankMaterialization
     job.attemptsMade + 1,
     job.opts.attempts ?? 3,
   ),
-  createQueueWorkerOptions(questionBankMaterializationQueueConnection, 2),
+  createQueueWorkerOptions(questionBankMaterializationQueueConnection, 2, 'questionBankMaterialization'),
 );
 
 weeklySimulationWorker.on('active', (job) => console.info('[weekly-simulation]', { event: 'weekly_simulation.worker_job_active', jobId: job.id, simulationId: job.data.simulationId }));
@@ -214,6 +254,8 @@ const shutdown = async (signal: string) => {
   clearInterval(paymentWebhookRecoveryTimer);
   clearInterval(paymentAccountWebhookSyncTimer);
   clearInterval(questionBankMaterializationRecoveryTimer);
+  if (emailOutboxTimer) clearInterval(emailOutboxTimer);
+  while (emailPollRunning) await new Promise((resolve) => setTimeout(resolve, 50));
   clearInterval(documentStageWatchdogTimer);
   clearInterval(chatImageCleanupTimer);
   await worker.close();

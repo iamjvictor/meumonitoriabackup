@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { inflateRawSync } from 'node:zlib';
+import { Agent } from 'undici';
 
 const DEFAULT_MAX_RESPONSE_BYTES = 20 * 1024 * 1024;
 const MAX_ENTRIES = 501;
@@ -7,6 +8,7 @@ const MAX_MANIFEST_BYTES = 2 * 1024 * 1024;
 const MAX_ASSET_BYTES = 10 * 1024 * 1024;
 
 export type DocChunkerV2Asset = {
+  assetKind: 'FIGURE' | 'PAGE';
   assetKey: string;
   sourceItemRef: string;
   readingOrder: number;
@@ -32,11 +34,13 @@ export type DocChunkerV2Response = {
 export type DocChunkerV2Chunk = {
   index: number; text: string; raw_text: string; headings: string[]; pages: number[];
   type: 'text' | 'table' | 'formula' | 'mixed'; tokens: number; provenance: Array<Record<string, unknown>>;
+  formulaEvidence?: Array<{ pageNumber: number; itemRef: string; bbox: number[] | null; originalText: string | null; enrichedText: string }>;
+  inlineFormulaEvidence?: Array<{ pageNumber: number; itemRef: string; bbox: number[] | null; baseText: string; raisedText: string; normalizedText: string; sourceText: string; evidenceSource: 'PDF_CHARACTER_GEOMETRY'; heightRatio: number; raiseRatio: number }>;
 };
 
 export class DocChunkerV2ClientError extends Error {
-  constructor(readonly code: string, message: string, readonly statusCode?: number) {
-    super(message);
+  constructor(readonly code: string, message: string, readonly statusCode?: number, cause?: unknown) {
+    super(message, cause === undefined ? undefined : { cause });
     this.name = 'DocChunkerV2ClientError';
   }
 }
@@ -44,7 +48,8 @@ export class DocChunkerV2ClientError extends Error {
 export type DocChunkerV2ClientOptions = {
   baseUrl: string;
   fetchImpl?: typeof fetch;
-  requestTimeoutMs?: number;
+  /** Defaults to 600s for backwards compatibility; null disables the client-side deadline. */
+  requestTimeoutMs?: number | null;
   requestIdFactory?: () => string;
   maxResponseBytes?: number;
   logger?: (event: string, fields: Record<string, unknown>) => void;
@@ -61,7 +66,7 @@ export class DocChunkerV2Client {
 
   async chunkWithAssets(input: {
     documentId: string; expectedSha256: string; fileName: string; mimeType: string;
-    fileBytes: Uint8Array; requestId?: string;
+    fileBytes: Uint8Array; requestId?: string; signal?: AbortSignal;
   }): Promise<DocChunkerV2Response> {
     const actualHash = createHash('sha256').update(input.fileBytes).digest('hex');
     if (actualHash !== input.expectedSha256) {
@@ -71,16 +76,19 @@ export class DocChunkerV2Client {
     const form = new FormData();
     form.append('file', new Blob([Buffer.from(input.fileBytes)], { type: input.mimeType }), input.fileName);
     const controller = new AbortController();
-    const timeoutMs = this.options.requestTimeoutMs ?? 600_000;
+    const timeoutMs = this.options.requestTimeoutMs === undefined ? 600_000 : this.options.requestTimeoutMs;
     let timedOut = false;
-    const timeout = setTimeout(() => { timedOut = true; controller.abort(); }, timeoutMs);
+    const timeout = timeoutMs === null ? undefined : setTimeout(() => { timedOut = true; controller.abort(); }, timeoutMs);
+    const signal = input.signal ? AbortSignal.any([controller.signal, input.signal]) : controller.signal;
     const startedAt = performance.now();
+    const dispatcher = new Agent({ headersTimeout: 0, bodyTimeout: 0, connectTimeout: 0 });
+    let requestCompleted = false;
     this.log('doc_chunker_v2.request_started', {
       request_id: requestId, document_id: input.documentId,
       doc_hash: actualHash, request_bytes: input.fileBytes.byteLength,
     });
     try {
-      const response = await this.fetchImpl(`${this.options.baseUrl.replace(/\/$/, '')}/chunk/v2`, {
+      const requestInit: RequestInit & { dispatcher: Agent } = {
         method: 'POST',
         headers: {
           'X-Document-Id': input.documentId,
@@ -88,8 +96,10 @@ export class DocChunkerV2Client {
           'X-Expected-SHA256': input.expectedSha256,
         },
         body: form,
-        signal: controller.signal,
-      });
+        signal,
+        dispatcher,
+      };
+      const response = await this.fetchImpl(`${this.options.baseUrl.replace(/\/$/, '')}/chunk/v2`, requestInit);
       if (response.headers.get('X-Request-Id') !== requestId) {
         throw new DocChunkerV2ClientError('DOC_CHUNKER_REQUEST_ID_MISMATCH', 'A correlação da resposta do Doc-chunker diverge da solicitação.', response.status);
       }
@@ -101,26 +111,44 @@ export class DocChunkerV2Client {
         throw new DocChunkerV2ClientError('DOC_CHUNKER_INVALID_CONTENT_TYPE', 'O Doc-chunker retornou um tipo de conteúdo inesperado.', response.status);
       }
       const packageBytes = await readBounded(response, this.options.maxResponseBytes ?? DEFAULT_MAX_RESPONSE_BYTES);
-      const parsed = parsePackage(packageBytes, actualHash, requestId, this.options.maxResponseBytes ?? DEFAULT_MAX_RESPONSE_BYTES);
+      let parsed: DocChunkerV2Response;
+      try {
+        parsed = parsePackage(packageBytes, actualHash, requestId, this.options.maxResponseBytes ?? DEFAULT_MAX_RESPONSE_BYTES);
+      } catch (error) {
+        if (error instanceof DocChunkerV2ClientError) throw error;
+        throw new DocChunkerV2ClientError('DOC_CHUNKER_INVALID_PACKAGE', 'Não foi possível validar o pacote visual do Doc-chunker.', undefined, error);
+      }
       this.log('doc_chunker_v2.request_completed', {
         request_id: requestId, document_id: input.documentId, doc_hash: parsed.docHash,
         chunk_count: parsed.chunks.length, asset_count: parsed.assets.length,
         warning_count: parsed.warnings.length, response_bytes: packageBytes.length,
         duration_ms: Math.round(performance.now() - startedAt),
       });
+      requestCompleted = true;
       return parsed;
     } catch (error) {
       const normalized = timedOut
-        ? new DocChunkerV2ClientError('DOC_CHUNKER_TIMEOUT', 'Tempo limite do Doc-chunker excedido.')
+        ? new DocChunkerV2ClientError('DOC_CHUNKER_TIMEOUT', 'Tempo limite do Doc-chunker excedido.', undefined, error)
+        : input.signal?.aborted
+          ? new DocChunkerV2ClientError('DOC_CHUNKER_ABORTED', 'A solicitação ao Doc-chunker foi cancelada.', undefined, error)
         : error instanceof DocChunkerV2ClientError ? error
-          : new DocChunkerV2ClientError('DOC_CHUNKER_INVALID_PACKAGE', 'Não foi possível validar o pacote visual do Doc-chunker.');
+          : new DocChunkerV2ClientError('DOC_CHUNKER_NETWORK_ERROR', 'Falha de comunicação com o Doc-chunker.', undefined, error);
       this.log('doc_chunker_v2.request_failed', {
         request_id: requestId, document_id: input.documentId, error_code: normalized.code,
         status_code: normalized.statusCode ?? null, duration_ms: Math.round(performance.now() - startedAt),
       });
       throw normalized;
     } finally {
-      clearTimeout(timeout);
+      if (timeout) clearTimeout(timeout);
+      try {
+        if (requestCompleted) await dispatcher.close();
+        else await dispatcher.destroy();
+      } catch (error) {
+        this.log('doc_chunker_v2.dispatcher_cleanup_failed', {
+          request_id: requestId, document_id: input.documentId,
+          error_code: safeErrorCode(error),
+        });
+      }
     }
   }
 
@@ -139,7 +167,13 @@ async function readBounded(response: Response, maxBytes: number): Promise<Buffer
   const parts: Buffer[] = [];
   let size = 0;
   while (true) {
-    const { done, value } = await reader.read();
+    let result: ReadableStreamReadResult<Uint8Array>;
+    try {
+      result = await reader.read();
+    } catch (error) {
+      throw new DocChunkerV2ClientError('DOC_CHUNKER_RESPONSE_READ_ERROR', 'A leitura da resposta do Doc-chunker foi interrompida.', response.status, error);
+    }
+    const { done, value } = result;
     if (done) break;
     size += value.byteLength;
     if (size > maxBytes) {
@@ -175,7 +209,8 @@ function parsePackage(bytes: Buffer, expectedHash: string, expectedRequestId: st
   const assets: DocChunkerV2Asset[] = [];
   const expectedPaths = new Set(['manifest.json']);
   for (const raw of manifest.visual_assets) {
-    if (!isRecord(raw) || typeof raw.asset_key !== 'string' || !/^[a-f0-9]{32}$/.test(raw.asset_key)
+    if (!isRecord(raw) || !['FIGURE', 'PAGE'].includes(String(raw.asset_kind))
+        || typeof raw.asset_key !== 'string' || !/^[a-f0-9]{32}$/.test(raw.asset_key)
         || typeof raw.source_item_ref !== 'string' || !Number.isInteger(raw.reading_order)
         || (raw.reading_order as number) < 0 || !Number.isInteger(raw.page_number)
         || (raw.page_number as number) < 1 || (raw.bbox !== null && (!Array.isArray(raw.bbox)
@@ -194,6 +229,7 @@ function parsePackage(bytes: Buffer, expectedHash: string, expectedRequestId: st
     }
     if (!isPng(content) || content.readUInt32BE(16) !== raw.width || content.readUInt32BE(20) !== raw.height) invalidPackage();
     assets.push({
+      assetKind: raw.asset_kind as 'FIGURE' | 'PAGE',
       assetKey: raw.asset_key, sourceItemRef: raw.source_item_ref,
       readingOrder: raw.reading_order as number,
       pageNumber: raw.page_number as number, bbox: raw.bbox as number[] | null,
@@ -280,12 +316,38 @@ function isValidChunk(value: unknown, index: number): value is DocChunkerV2Chunk
       || !['text', 'table', 'formula', 'mixed'].includes(String(value.type))
       || !Number.isInteger(value.tokens) || (value.tokens as number) < 1 || !Array.isArray(value.provenance)
       || !value.provenance.every(isRecord)) return false;
+  if (value.formulaEvidence !== undefined && (!Array.isArray(value.formulaEvidence)
+      || !value.formulaEvidence.every((entry) => isRecord(entry)
+        && Number.isInteger(entry.pageNumber) && (entry.pageNumber as number) >= 1
+        && typeof entry.itemRef === 'string'
+        && (entry.bbox === null || (Array.isArray(entry.bbox) && entry.bbox.length === 4
+          && entry.bbox.every((part) => typeof part === 'number' && Number.isFinite(part))))
+        && (entry.originalText === null || typeof entry.originalText === 'string')
+        && typeof entry.enrichedText === 'string'))) return false;
+  if (value.inlineFormulaEvidence !== undefined && (!Array.isArray(value.inlineFormulaEvidence)
+      || !value.inlineFormulaEvidence.every((entry) => isRecord(entry)
+        && Number.isInteger(entry.pageNumber) && (entry.pageNumber as number) >= 1
+        && typeof entry.itemRef === 'string' && entry.itemRef.length > 0
+        && (entry.bbox === null || (Array.isArray(entry.bbox) && entry.bbox.length === 4
+          && entry.bbox.every((part) => typeof part === 'number' && Number.isFinite(part))))
+        && typeof entry.baseText === 'string' && entry.baseText.length > 0
+        && typeof entry.raisedText === 'string' && entry.raisedText.length > 0
+        && typeof entry.normalizedText === 'string' && entry.normalizedText.length > 0
+        && typeof entry.sourceText === 'string' && entry.sourceText.length > 0
+        && entry.evidenceSource === 'PDF_CHARACTER_GEOMETRY'
+        && typeof entry.heightRatio === 'number' && Number.isFinite(entry.heightRatio) && entry.heightRatio > 0 && entry.heightRatio < 1
+        && typeof entry.raiseRatio === 'number' && Number.isFinite(entry.raiseRatio) && entry.raiseRatio > 0))) return false;
   return true;
 }
 
 function sha256(data: Buffer): string { return createHash('sha256').update(data).digest('hex'); }
 function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }
 function invalidPackage(): never { throw new DocChunkerV2ClientError('DOC_CHUNKER_INVALID_PACKAGE', 'O pacote ZIP do Doc-chunker é inválido ou não corresponde ao contrato v2.'); }
+function safeErrorCode(error: unknown): string {
+  if (error instanceof Error && 'code' in error && typeof error.code === 'string' && /^[A-Z0-9_]{1,64}$/.test(error.code)) return error.code;
+  if (error instanceof Error && /^[A-Za-z][A-Za-z0-9]{0,63}$/.test(error.name)) return error.name;
+  return 'UNKNOWN_ERROR';
+}
 
 function crc32(buffer: Buffer): number {
   let crc = 0xffffffff;

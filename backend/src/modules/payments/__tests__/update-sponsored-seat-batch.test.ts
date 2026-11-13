@@ -9,7 +9,6 @@ function setup(status = 'CHECKOUT_PENDING', interval = 'MONTHLY', billingType = 
   const repository = {
     findTeacherMonitor: async () => ({ teacherId: 'teacher-1', teacherPercentage: 40, monitor: { id: 'monitor-1', name: 'Física', status: 'PUBLISHED', priceCents: 10000 } }),
     findBatchForEditing: async () => ({ id: 'batch-1', monitorId: 'monitor-1', interval, billingType, status, providerCheckoutId: 'old-checkout', paidAt: null }),
-    findBlockingSeat: async () => null,
     replacePendingBatch: async (input: any) => { calls.push(`replace:${input.totalAmountCents}:${input.emails.join(',')}`); return true; },
     markEditedCheckoutFailed: async () => calls.push('failed'),
   };

@@ -2,10 +2,79 @@
 
 import type { ChangeEvent, Dispatch, RefObject, SetStateAction } from 'react';
 import { AlertCircle, AlertTriangle, Check, CheckCircle2, ChevronDown, Clock, Edit3, FileText, Filter, HelpCircle, LoaderCircle, Plus, Save, Send, Sparkles, Trash2, Upload, X, XCircle } from 'lucide-react';
+import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import { validateQuestionReviewDraft } from '@/modules/teacher/services/question-review-validation';
 
 type ReviewStatus = 'pending_review' | 'approved' | 'reported' | 'rejected';
 type ReviewFilter = 'all' | 'pending' | 'approved' | 'source_doc' | 'ai_generated' | 'incomplete' | 'no_topic' | 'no_options' | 'no_answer' | 'no_explanation';
-type QuestionItem = { id: string; subjectId?: string; subjectName?: string; topicId?: string; topicName: string; sourceDocName: string; originType: 'source_doc' | 'ai_generated'; prompt: string; options: { letter: string; text: string }[]; correctAnswer: string; explanation: string; status: ReviewStatus };
+type ReviewVisualAsset = { assetId: string; role: string; pageNumber: number; imageUrl: string | null; width: number | null; height: number | null; anchorText?: string | null; readingOrder?: number | null; bbox?: [left: number, top: number, right: number, bottom: number] | null };
+type QuestionItem = { id: string; subjectId?: string; subjectName?: string; topicId?: string; topicName: string; sourceDocName: string; originType: 'source_doc' | 'ai_generated'; prompt: string; options: { letter: string; text: string }[]; correctAnswer: string; explanation: string; visualAssets?: ReviewVisualAsset[]; status: ReviewStatus };
+
+function findUniqueAnchor(text: string, anchorText?: string | null) {
+  if (!anchorText) return -1;
+  const index = text.indexOf(anchorText);
+  if (index < 0 || text.indexOf(anchorText, index + anchorText.length) >= 0) return -1;
+  return index;
+}
+
+function QuestionRichText({
+  text,
+  assets,
+  className,
+  variant,
+}: {
+  text: string;
+  assets: ReviewVisualAsset[];
+  className?: string;
+  variant: 'statement' | 'alternative';
+}) {
+  const orderedAssets = assets
+    .filter((asset) => asset.imageUrl)
+    .map((asset, index) => ({ asset, index, anchorIndex: findUniqueAnchor(text, asset.anchorText) }))
+    .sort((left, right) => {
+      if (left.anchorIndex < 0) return right.anchorIndex < 0 ? left.index - right.index : 1;
+      if (right.anchorIndex < 0) return -1;
+      return left.anchorIndex - right.anchorIndex || left.index - right.index;
+    });
+  const parts: Array<{ key: string; text?: string; asset?: ReviewVisualAsset }> = [];
+  const fallbackAssets: ReviewVisualAsset[] = [];
+  let cursor = 0;
+
+  for (const { asset } of orderedAssets) {
+    const anchorText = asset.anchorText;
+    const anchorIndex = findUniqueAnchor(text, anchorText);
+    if (!anchorText || anchorIndex < cursor) {
+      fallbackAssets.push(asset);
+      continue;
+    }
+    if (anchorIndex > cursor) parts.push({ key: `text-${cursor}`, text: text.slice(cursor, anchorIndex) });
+    parts.push({ key: `anchor-${asset.assetId}`, text: anchorText });
+    parts.push({ key: `figure-${asset.assetId}`, asset });
+    cursor = anchorIndex + anchorText.length;
+  }
+
+  if (cursor < text.length || parts.length === 0) parts.push({ key: `text-${cursor}`, text: text.slice(cursor) });
+  fallbackAssets.forEach((asset) => parts.push({ key: `fallback-${asset.assetId}`, asset }));
+
+  return (
+    <div className={className}>
+      {parts.map((part) => part.asset ? (
+        <figure key={part.key} data-asset-id={part.asset.assetId} className={variant === 'statement'
+          ? 'my-3 w-fit max-w-full rounded-xl border border-slate-200 bg-slate-50 p-2'
+          : 'my-2 w-fit max-w-full rounded-lg border border-slate-200 bg-white p-2'}>
+          <Image src={part.asset.imageUrl!} unoptimized width={part.asset.width || (variant === 'statement' ? 960 : 800)} height={part.asset.height || (variant === 'statement' ? 640 : 560)}
+            alt={`Figura original da página ${part.asset.pageNumber} do documento fonte`} className={`h-auto max-w-full object-contain ${variant === 'statement' ? 'max-h-96' : 'max-h-72'}`} />
+          <figcaption className="px-1 pt-1 text-[11px] text-slate-500">Figura extraída do documento fonte · página {part.asset.pageNumber}</figcaption>
+        </figure>
+      ) : (
+        <ReactMarkdown key={part.key} remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{part.text ?? ''}</ReactMarkdown>
+      ))}
+    </div>
+  );
+}
 
 export interface MonitorQuestionsReviewTabProps {
   // The view is a literal extraction of the legacy page block; the remaining callback props are intentionally forwarded unchanged.
@@ -21,6 +90,7 @@ export interface MonitorQuestionsReviewTabProps {
   questions: QuestionItem[];
   selectedQuestionIds: string[];
   editQuestionDraft: QuestionItem | null;
+  showQuestionEditValidation?: boolean;
   monitor: { subjects?: Array<{ id: string; name: string; topicRefs?: Array<{ id: string; name: string }> }> } | null;
   setUploadsByView: Dispatch<SetStateAction<Record<'knowledge' | 'questions' | 'flashcards', Array<{ id: string; file: File; subjectId: string; topicId?: string; status: 'staged' | 'uploading' | 'uploaded' | 'failed'; error?: string }>>>>;
   setQuestions: Dispatch<SetStateAction<QuestionItem[]>>;
@@ -29,7 +99,10 @@ export interface MonitorQuestionsReviewTabProps {
 }
 
 export function MonitorQuestionsReviewTab(props: MonitorQuestionsReviewTabProps) {
-  const { questionFileInputRef, selectedTopicId, isSubmittingUploads, handleFilesSelected, showAlert, queuedUploads, setUploadsByView, formatFileSize, stagedCount, setIsUploadConfirmModalOpen, isDraggingFiles, setIsDraggingFiles, queueFiles, reviewFilter, setReviewFilter, pendingQuestionsCount, approvedQuestionsCount, incompleteQuestionsCount, noTopicQuestionsCount, noOptionsQuestionsCount, noAnswerQuestionsCount, noExplanationQuestionsCount, monitor, setEditingQuestionId, setEditQuestionDraft, filteredQuestions, questions, selectedQuestionIds, setSelectedQuestionIds, isBulkProcessing, handleBulkApproveQuestions, handleBulkRejectQuestions, editingQuestionId, editQuestionDraft, isQuestionIncomplete, toggleSelectQuestion, isQuestionNoTopic, isQuestionNoOptions, isQuestionNoAnswer, isQuestionNoExplanation, handleStartEditQuestion, handleOpenCreateQuestion, handleCancelEditQuestion, isSavingQuestion, handleSaveQuestionEdit, handleQuestionAction } = props;
+  const { questionFileInputRef, selectedTopicId, isSubmittingUploads, handleFilesSelected, showAlert, queuedUploads, setUploadsByView, formatFileSize, stagedCount, setIsUploadConfirmModalOpen, isDraggingFiles, setIsDraggingFiles, queueFiles, reviewFilter, setReviewFilter, pendingQuestionsCount, approvedQuestionsCount, incompleteQuestionsCount, noTopicQuestionsCount, noOptionsQuestionsCount, noAnswerQuestionsCount, noExplanationQuestionsCount, monitor, setEditingQuestionId, setEditQuestionDraft, filteredQuestions, questions, selectedQuestionIds, setSelectedQuestionIds, isBulkProcessing, handleBulkApproveQuestions, handleBulkRejectQuestions, editingQuestionId, editQuestionDraft, showQuestionEditValidation = false, isQuestionIncomplete, toggleSelectQuestion, isQuestionNoTopic, isQuestionNoOptions, isQuestionNoAnswer, isQuestionNoExplanation, handleStartEditQuestion, handleOpenCreateQuestion, handleCancelEditQuestion, isSavingQuestion, handleSaveQuestionEdit, handleQuestionAction } = props;
+  const questionEditValidationErrors = showQuestionEditValidation && editQuestionDraft
+    ? validateQuestionReviewDraft(editQuestionDraft)
+    : null;
   return (
               <div className="max-w-5xl mx-auto space-y-6">
                 {editQuestionDraft?.id.startsWith('q-') && (
@@ -53,8 +126,11 @@ export function MonitorQuestionsReviewTab(props: MonitorQuestionsReviewTabProps)
                             rows={5}
                             autoFocus
                             placeholder="Digite o enunciado da questão"
-                            className="mt-1.5 w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-slate-900 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"
+                            aria-invalid={Boolean(questionEditValidationErrors?.prompt)}
+                            aria-describedby={questionEditValidationErrors?.prompt ? 'question-prompt-error' : undefined}
+                            className={`mt-1.5 w-full rounded-xl border px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-slate-900 outline-none focus:ring-2 ${questionEditValidationErrors?.prompt ? 'border-rose-500 focus:border-rose-600 focus:ring-rose-100' : 'border-slate-300 focus:border-emerald-600 focus:ring-emerald-100'}`}
                           />
+                          {questionEditValidationErrors?.prompt && <p id="question-prompt-error" role="alert" className="mt-1 text-xs font-semibold text-rose-700">{questionEditValidationErrors.prompt}</p>}
                         </label>
 
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -68,18 +144,23 @@ export function MonitorQuestionsReviewTab(props: MonitorQuestionsReviewTabProps)
                                   options: editQuestionDraft.options.map((current, currentIndex) => currentIndex === index ? { ...current, text: event.target.value } : current),
                                 })}
                                 placeholder={`Texto da alternativa ${option.letter}`}
-                                className="mt-1.5 w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-slate-900 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"
+                                aria-invalid={Boolean(questionEditValidationErrors?.options[option.letter])}
+                                aria-describedby={questionEditValidationErrors?.options[option.letter] ? `question-option-${option.letter}-error` : undefined}
+                                className={`mt-1.5 w-full rounded-xl border px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-slate-900 outline-none focus:ring-2 ${questionEditValidationErrors?.options[option.letter] ? 'border-rose-500 focus:border-rose-600 focus:ring-rose-100' : 'border-slate-300 focus:border-emerald-600 focus:ring-emerald-100'}`}
                               />
+                              {questionEditValidationErrors?.options[option.letter] && <span id={`question-option-${option.letter}-error`} role="alert" className="mt-1 block text-xs font-semibold text-rose-700">{questionEditValidationErrors.options[option.letter]}</span>}
                             </label>
                           ))}
                         </div>
+                        {questionEditValidationErrors?.alternatives && <p role="alert" className="text-xs font-semibold text-rose-700">{questionEditValidationErrors.alternatives}</p>}
 
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                           <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700">
                             Gabarito
-                            <select value={editQuestionDraft.correctAnswer} onChange={(event) => setEditQuestionDraft({ ...editQuestionDraft, correctAnswer: event.target.value })} className="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-slate-900 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                            <select value={editQuestionDraft.correctAnswer} onChange={(event) => setEditQuestionDraft({ ...editQuestionDraft, correctAnswer: event.target.value })} aria-invalid={Boolean(questionEditValidationErrors?.correctAnswer)} aria-describedby={questionEditValidationErrors?.correctAnswer ? 'question-answer-error' : undefined} className={`mt-1.5 w-full rounded-xl border bg-white px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-slate-900 outline-none focus:ring-2 ${questionEditValidationErrors?.correctAnswer ? 'border-rose-500 focus:border-rose-600 focus:ring-rose-100' : 'border-slate-300 focus:border-emerald-600 focus:ring-emerald-100'}`}>
                               {editQuestionDraft.options.map((option) => <option key={option.letter} value={option.letter}>{option.letter}</option>)}
                             </select>
+                            {questionEditValidationErrors?.correctAnswer && <span id="question-answer-error" role="alert" className="mt-1 block text-xs font-semibold text-rose-700">{questionEditValidationErrors.correctAnswer}</span>}
                           </label>
                           <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700">
                             Explicação (opcional)
@@ -612,10 +693,13 @@ export function MonitorQuestionsReviewTab(props: MonitorQuestionsReviewTabProps)
                                 <textarea
                                   value={editQuestionDraft.prompt}
                                   onChange={(e) => setEditQuestionDraft({ ...editQuestionDraft, prompt: e.target.value })}
-                                  className="w-full rounded-xl border border-slate-300 bg-white p-3.5 text-sm font-bold text-slate-900 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-200 outline-none transition-all resize-y min-h-[90px] shadow-2xs"
+                                  aria-invalid={Boolean(questionEditValidationErrors?.prompt)}
+                                  aria-describedby={questionEditValidationErrors?.prompt ? 'question-prompt-inline-error' : undefined}
+                                  className={`w-full rounded-xl border bg-white p-3.5 text-sm font-bold text-slate-900 focus:ring-2 outline-none transition-all resize-y min-h-[90px] shadow-2xs ${questionEditValidationErrors?.prompt ? 'border-rose-500 focus:border-rose-600 focus:ring-rose-200' : 'border-slate-300 focus:border-emerald-600 focus:ring-emerald-200'}`}
                                   rows={3}
                                   placeholder="Digite o enunciado da questão..."
                                 />
+                                {questionEditValidationErrors?.prompt && <p id="question-prompt-inline-error" role="alert" className="text-xs font-semibold text-rose-700">{questionEditValidationErrors.prompt}</p>}
                               </div>
 
                               {/* 2. Alternativas */}
@@ -633,52 +717,58 @@ export function MonitorQuestionsReviewTab(props: MonitorQuestionsReviewTabProps)
                                   {editQuestionDraft.options.map((opt, idx) => {
                                     const isCorrect = opt.letter === editQuestionDraft.correctAnswer;
                                     return (
-                                      <div
-                                        key={opt.letter}
-                                        className={`flex items-center gap-3 p-2.5 rounded-xl border transition-all ${
-                                          isCorrect
-                                            ? 'bg-emerald-50 border-emerald-400 ring-2 ring-emerald-200/50'
-                                            : 'bg-white border-slate-200 hover:border-slate-300'
-                                        }`}
-                                      >
-                                        <button
-                                          type="button"
-                                          onClick={() => setEditQuestionDraft({ ...editQuestionDraft, correctAnswer: opt.letter })}
-                                          className={`shrink-0 flex items-center justify-center h-8 w-8 rounded-lg text-xs font-black cursor-pointer transition-all ${
+                                      <div key={opt.letter}>
+                                        <div
+                                          className={`flex items-center gap-3 p-2.5 rounded-xl border transition-all ${
                                             isCorrect
-                                              ? 'bg-emerald-700 text-white shadow-xs scale-105 ring-2 ring-emerald-600/30'
-                                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                              ? 'bg-emerald-50 border-emerald-400 ring-2 ring-emerald-200/50'
+                                              : 'bg-white border-slate-200 hover:border-slate-300'
                                           }`}
-                                          title={isCorrect ? 'Alternativa Correta (Gabarito)' : `Marcar ${opt.letter} como Gabarito`}
                                         >
-                                          {opt.letter}
-                                        </button>
-                                        <input
-                                          type="text"
-                                          value={opt.text}
-                                          onChange={(e) => {
-                                            const newOptions = [...editQuestionDraft.options];
-                                            newOptions[idx] = { ...opt, text: e.target.value };
-                                            setEditQuestionDraft({ ...editQuestionDraft, options: newOptions });
-                                          }}
-                                          className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-300 outline-none"
-                                          placeholder={`Texto da alternativa ${opt.letter}...`}
-                                        />
-                                        {isCorrect && (
-                                          <span className="shrink-0 text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider bg-emerald-100 px-2 py-1 rounded-md border border-emerald-200">
-                                            Gabarito
-                                          </span>
-                                        )}
+                                          <button
+                                            type="button"
+                                            onClick={() => setEditQuestionDraft({ ...editQuestionDraft, correctAnswer: opt.letter })}
+                                            className={`shrink-0 flex items-center justify-center h-8 w-8 rounded-lg text-xs font-black cursor-pointer transition-all ${
+                                              isCorrect
+                                                ? 'bg-emerald-700 text-white shadow-xs scale-105 ring-2 ring-emerald-600/30'
+                                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                            }`}
+                                            title={isCorrect ? 'Alternativa Correta (Gabarito)' : `Marcar ${opt.letter} como Gabarito`}
+                                          >
+                                            {opt.letter}
+                                          </button>
+                                          <input
+                                            type="text"
+                                            value={opt.text}
+                                            onChange={(e) => {
+                                              const newOptions = [...editQuestionDraft.options];
+                                              newOptions[idx] = { ...opt, text: e.target.value };
+                                              setEditQuestionDraft({ ...editQuestionDraft, options: newOptions });
+                                            }}
+                                            aria-invalid={Boolean(questionEditValidationErrors?.options[opt.letter])}
+                                            aria-describedby={questionEditValidationErrors?.options[opt.letter] ? `question-option-inline-${opt.letter}-error` : undefined}
+                                            className={`w-full rounded-lg border bg-white px-3 py-2 text-sm font-semibold text-slate-900 focus:ring-1 outline-none ${questionEditValidationErrors?.options[opt.letter] ? 'border-rose-500 focus:border-rose-600 focus:ring-rose-300' : 'border-slate-200 focus:border-emerald-600 focus:ring-emerald-300'}`}
+                                            placeholder={`Texto da alternativa ${opt.letter}...`}
+                                          />
+                                          {isCorrect && (
+                                            <span className="shrink-0 text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider bg-emerald-100 px-2 py-1 rounded-md border border-emerald-200">
+                                              Gabarito
+                                            </span>
+                                          )}
+                                        </div>
+                                        {questionEditValidationErrors?.options[opt.letter] && <p id={`question-option-inline-${opt.letter}-error`} role="alert" className="mt-1 text-xs font-semibold text-rose-700">{questionEditValidationErrors.options[opt.letter]}</p>}
                                       </div>
                                     );
                                   })}
                                 </div>
+                                {questionEditValidationErrors?.alternatives && <p role="alert" className="text-xs font-semibold text-rose-700">{questionEditValidationErrors.alternatives}</p>}
+                                {questionEditValidationErrors?.correctAnswer && <p role="alert" className="text-xs font-semibold text-rose-700">{questionEditValidationErrors.correctAnswer}</p>}
                               </div>
 
                               {/* 3. Resolução Comentada */}
                               <div className="space-y-1.5 pt-1">
                                 <label className="text-xs font-extrabold uppercase tracking-wider text-emerald-900 block">
-                                  Resolução Comentada / Justificativa:
+                                  Resolução Comentada / Justificativa (opcional):
                                 </label>
                                 <textarea
                                   value={editQuestionDraft.explanation}
@@ -691,7 +781,14 @@ export function MonitorQuestionsReviewTab(props: MonitorQuestionsReviewTabProps)
                             </div>
                           ) : (
                             <div className="p-6 space-y-4">
-                              <p className="text-base font-bold text-[#132E20] leading-relaxed">{q.prompt}</p>
+                              <div className="space-y-3">
+                                <QuestionRichText
+                                  text={q.prompt}
+                                  assets={(q.visualAssets ?? []).filter((asset) => asset.role === 'STATEMENT')}
+                                  className="text-base font-bold text-[#132E20] leading-relaxed"
+                                  variant="statement"
+                                />
+                              </div>
 
                               <div className="grid gap-2.5 sm:grid-cols-2">
                                 {q.options.map((opt) => {
@@ -712,7 +809,14 @@ export function MonitorQuestionsReviewTab(props: MonitorQuestionsReviewTabProps)
                                       >
                                         {opt.letter}
                                       </span>
-                                      <span className="pt-0.5">{opt.text}</span>
+                                      <div className="min-w-0 flex-1 pt-0.5">
+                                        <QuestionRichText
+                                          text={opt.text}
+                                          assets={(q.visualAssets ?? []).filter((asset) => asset.role === `ALTERNATIVE:${opt.letter}`)}
+                                          className="font-inherit"
+                                          variant="alternative"
+                                        />
+                                      </div>
                                     </div>
                                   );
                                 })}

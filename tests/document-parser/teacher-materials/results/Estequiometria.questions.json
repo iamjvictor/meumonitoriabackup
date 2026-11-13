@@ -1,0 +1,140 @@
+{
+  "inputPath": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/teacher-materials/Estequiometria.pdf",
+  "generatedAt": "2026-11-02T17:26:23.562Z",
+  "textSource": "docling",
+  "pagesNeedingOcr": [
+    1,
+    2,
+    3
+  ],
+  "summary": {
+    "pages": 4,
+    "blocks": 1,
+    "questionBlocks": 1,
+    "questionBlocksWithChunks": 1,
+    "questionBlocksWithoutChunks": 0,
+    "questionBlocksWithoutExactCoverage": 0,
+    "deterministicCandidates": 1,
+    "questionBlocksWithoutCandidate": 0,
+    "falseQuestionStarts": 0,
+    "expectedCount": null,
+    "expectedNumbers": [],
+    "missingNumbers": [],
+    "missingCandidateNumbers": [],
+    "chunks": 1
+  },
+  "pages": [
+    {
+      "page": 1,
+      "chars": 234,
+      "normalizedChars": 234,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 2,
+      "chars": 466,
+      "normalizedChars": 466,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 3,
+      "chars": 0,
+      "normalizedChars": 0,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 4,
+      "chars": 937,
+      "normalizedChars": 936,
+      "columns": 1,
+      "hasImages": true
+    }
+  ],
+  "questionBlocks": [
+    {
+      "blockIndex": 0,
+      "type": "QUESTION",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 4,
+      "status": "NEEDS_REVIEW",
+      "incompleteReason": "QUESTION_MATH_LAYOUT_CORRUPTED",
+      "content": "Esteguiometria\n●○ que e'mol?\nRelacionando grandezas\nBalanceamento de uma reagão\nInterpretando problemas\n→ Conceito de mol\nNº de Avogadro: 6,02·10 23 MMH=1g/mol MMN=14g/mgl Tantos mols de algo\"\n> Estequiomettia na pratica Balanceamento\n\"Lei de Lavoisier\"\n2HCl + Mg(OH)₂\nH2\n1-2\nO2\nCH_{4}+2O_₂}\n14g\nX + 2Y → X Y2\nGg sus Gg\n4g·2=8g\n4.2=8g\nMqCl₂+2H₂O\n→\n→\nH2O\nMACHO\nCO₂+2H₂O√\nC3H8 + 5O₂\n3CO₂+ 4H₂O√\n2Al(OH)₃+3H₂SO₄\nFeO+\nCO—\n3I- + 2H₂O\n→\nAl₂(SO4)₃+6H_₂}O√\n→\nCO2 + Fe\n→2OH−+ I₃ + H₂\nH₂O₂ + MnOi + 3H⁺—\nGr ande Zas\nm = massa\nV= Volume\nMM= massa molar\nn = n² de mds\nd = dens,dade\nm= C.v\n→2O₂+ Mn2+ +5H₂O\nImpartante: Nas CNTP, 1 mol\nde ga's ideal oculpa 22,4 L\nMM=\nm\nn\nm = MM·n d =\nm = d.v\n@quimica. bizurada\nQ\nO percarbonato de sódio, que corresponde a uma mistura de 2 mols de Na ₂ CO ₃ e 3 mols de H ₂ O ₂ , é empregado em lavagem de roupas como agente oxidante na remoção de manchas. Esse processo de oxidação ocorre em função do oxigênio formado na reação de decomposição do peróxido de hidrogênio presente na mistura\nConsiderando 1 kg de percarbonato de sódio, o volume máximo, em litros, de gás oxigênio formado, sob condições normais de temperatura e pressão, é aproximadamente de\nA) 328\nB) 321\nC) 214\nD) 107\nQual é o volume produzido de gás carbônico quando 80 g de propano reagem com 40 g do gás oxigênio?\n1 mol de ga's 22,4L\n3H2O{\n3H2O+\n→\nMM2Na₂CO₃ MMNa=23 3H₂O₂ 314 g/mol 十 二 MMC=p2 92 2496 6 Q6 MMo=16 =HWW 1000 VO₂=3nu202 1 3.185 mols 22,4 314 2 (mols totais em Jkg) VO2=4,777 .22.4 =107L\nC3H8+ 5O₂\n3CO2⁺\nOHh\n>\n12g\n132g\n÷4\n80g\nMM\n二\nn.22,4\n11g\n40g\n1=0.75.223\nn\n33g\nde\nCo\nn= 0,75 mols\nV= 16,8L\n@quimica.bizurada",
+      "chars": 1612,
+      "tokens": 765,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 1612,
+          "tokens": 765
+        }
+      ],
+      "chunkIndexes": [
+        0
+      ],
+      "chunkCoverageExact": true,
+      "deterministicCandidateCount": 1
+    }
+  ],
+  "candidates": [
+    {
+      "questionNumber": null,
+      "sourceBlockId": "audit-block-0",
+      "statement": "Esteguiometria\n●○ que e'mol?\nRelacionando grandezas\nBalanceamento de uma reagão\nInterpretando problemas\n→ Conceito de mol\nNº de Avogadro: 6,02·10 23 MMH=1g/mol MMN=14g/mgl Tantos mols de algo\"\n> Estequiomettia na pratica Balanceamento\n\"Lei de Lavoisier\"\n2HCl + Mg(OH)₂\nH2\n1-2\nO2\nCH_{4}+2O_₂}\n14g\nX + 2Y → X Y2\nGg sus Gg\n4g·2=8g\n4.2=8g\nMqCl₂+2H₂O\n→\n→\nH2O\nMACHO\nCO₂+2H₂O√\nC3H8 + 5O₂\n3CO₂+ 4H₂O√\n2Al(OH)₃+3H₂SO₄\nFeO+\nCO—\n3I- + 2H₂O\n→\nAl₂(SO4)₃+6H_₂}O√\n→\nCO2 + Fe\n→2OH−+ I₃ + H₂\nH₂O₂ + MnOi + 3H⁺—\nGr ande Zas\nm = massa\nV= Volume\nMM= massa molar\nn = n² de mds\nd = dens,dade\nm=",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "v\n→2O₂+ Mn2+ +5H₂O\nImpartante: Nas CNTP, 1 mol\nde ga's ideal oculpa 22,4 L\nMM=\nm\nn\nm = MM·n d =\nm = d."
+        },
+        {
+          "label": "B",
+          "text": "v\n@quimica. bizurada\nQ\nO percarbonato de sódio, que corresponde a uma mistura de 2 mols de Na ₂ CO ₃ e 3 mols de H ₂ O ₂ , é empregado em lavagem de roupas como agente oxidante na remoção de manchas. Esse processo de oxidação ocorre em função do oxigênio formado na reação de decomposição do peróxido de hidrogênio presente na mistura\nConsiderando 1 kg de percarbonato de sódio, o volume máximo, em litros, de gás oxigênio formado, sob condições normais de temperatura e pressão, é aproximadamente de\nA)"
+        },
+        {
+          "label": "C",
+          "text": "328\nB)"
+        },
+        {
+          "label": "D",
+          "text": "321\nC)"
+        },
+        {
+          "label": "E",
+          "text": "214\nD)"
+        }
+      ],
+      "sourceChunkIndexes": [
+        0
+      ]
+    }
+  ],
+  "candidateReadiness": [
+    {
+      "questionNumber": null,
+      "candidateStatus": "READY_FOR_COMPLETION",
+      "completionBlocked": false,
+      "processingState": "STRUCTURALLY_VALID",
+      "promotionReasons": [],
+      "statementEvidence": {
+        "valid": true,
+        "reasons": [],
+        "sourceMatch": "EXACT"
+      }
+    }
+  ],
+  "otherBlocks": [],
+  "chunks": [
+    {
+      "index": 0,
+      "blockIndex": 0,
+      "content": "Esteguiometria\n●○ que e'mol?\nRelacionando grandezas\nBalanceamento de uma reagão\nInterpretando problemas\n→ Conceito de mol\nNº de Avogadro: 6,02·10 23 MMH=1g/mol MMN=14g/mgl Tantos mols de algo\"\n> Estequiomettia na pratica Balanceamento\n\"Lei de Lavoisier\"\n2HCl + Mg(OH)₂\nH2\n1-2\nO2\nCH_{4}+2O_₂}\n14g\nX + 2Y → X Y2\nGg sus Gg\n4g·2=8g\n4.2=8g\nMqCl₂+2H₂O\n→\n→\nH2O\nMACHO\nCO₂+2H₂O√\nC3H8 + 5O₂\n3CO₂+ 4H₂O√\n2Al(OH)₃+3H₂SO₄\nFeO+\nCO—\n3I- + 2H₂O\n→\nAl₂(SO4)₃+6H_₂}O√\n→\nCO2 + Fe\n→2OH−+ I₃ + H₂\nH₂O₂ + MnOi + 3H⁺—\nGr ande Zas\nm = massa\nV= Volume\nMM= massa molar\nn = n² de mds\nd = dens,dade\nm= C.v\n→2O₂+ Mn2+ +5H₂O\nImpartante: Nas CNTP, 1 mol\nde ga's ideal oculpa 22,4 L\nMM=\nm\nn\nm = MM·n d =\nm = d.v\n@quimica. bizurada\nQ\nO percarbonato de sódio, que corresponde a uma mistura de 2 mols de Na ₂ CO ₃ e 3 mols de H ₂ O ₂ , é empregado em lavagem de roupas como agente oxidante na remoção de manchas. Esse processo de oxidação ocorre em função do oxigênio formado na reação de decomposição do peróxido de hidrogênio presente na mistura\nConsiderando 1 kg de percarbonato de sódio, o volume máximo, em litros, de gás oxigênio formado, sob condições normais de temperatura e pressão, é aproximadamente de\nA) 328\nB) 321\nC) 214\nD) 107\nQual é o volume produzido de gás carbônico quando 80 g de propano reagem com 40 g do gás oxigênio?\n1 mol de ga's 22,4L\n3H2O{\n3H2O+\n→\nMM2Na₂CO₃ MMNa=23 3H₂O₂ 314 g/mol 十 二 MMC=p2 92 2496 6 Q6 MMo=16 =HWW 1000 VO₂=3nu202 1 3.185 mols 22,4 314 2 (mols totais em Jkg) VO2=4,777 .22.4 =107L\nC3H8+ 5O₂\n3CO2⁺\nOHh\n>\n12g\n132g\n÷4\n80g\nMM\n二\nn.22,4\n11g\n40g\n1=0.75.223\nn\n33g\nde\nCo\nn= 0,75 mols\nV= 16,8L\n@quimica.bizurada",
+      "tokens": 765,
+      "charStart": 0,
+      "charEnd": 1612
+    }
+  ]
+}

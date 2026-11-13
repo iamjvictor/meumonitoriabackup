@@ -148,7 +148,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
   const [cart, setCart] = useState<{ id: string; name: string; price: string; originalPrice?: string; avatarUrl?: string | null }[]>([]);
   const [, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<MonitorItem | null>(null);
-  const [selectedInterval, setSelectedInterval] = useState<'MONTHLY' | 'ANNUAL'>('MONTHLY');
+  const [selectedInterval, setSelectedInterval] = useState<'MONTHLY' | 'ANNUAL' | null>(null);
   const [selectedBillingType, setSelectedBillingType] = useState<'PIX' | 'CREDIT_CARD' | null>(null);
 
   const [isStudentAuthOpen, setIsStudentAuthOpen] = useState(false);
@@ -166,6 +166,16 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
     return buildStudentAuthHeaders(localStorage.getItem('mm_access_token'));
   };
   const storefrontStartedAt = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!selectedProduct) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedProduct]);
 
   useEffect(() => {
     storefrontStartedAt.current = performance.now();
@@ -317,7 +327,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
   };
 
   const startHostedCheckout = async () => {
-    if (checkoutStarting.current || !selectedBillingType) return;
+    if (checkoutStarting.current || !selectedBillingType || !selectedInterval) return;
     const rawCart = localStorage.getItem('storefront_cart');
     if (!rawCart) return;
     checkoutStarting.current = true;
@@ -364,7 +374,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
   }
 
   const handleChoosePlan = (product: any, interval: 'MONTHLY' | 'ANNUAL' = 'MONTHLY') => {
-    if (!selectedBillingType) return;
+    if (!selectedBillingType || !selectedInterval) return;
     setSelectedInterval(interval);
     const selectedItem = {
       id: product.id,
@@ -401,8 +411,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
   };
 
   const openProduct = (product: MonitorItem) => {
-    const hasAnnualPlan = Number.isInteger(product.annualPriceCents) && Number(product.annualPriceCents) > 0;
-    setSelectedInterval(hasAnnualPlan ? 'ANNUAL' : 'MONTHLY');
+    setSelectedInterval(null);
     setSelectedBillingType(null);
     setSelectedProduct(product);
   };
@@ -1088,19 +1097,20 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
 
       {/* 9. Product Details Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-[#0f294240] p-2 backdrop-blur-sm sm:p-4" role="presentation">
           {/* Backdrop blur overlay */}
           <div 
-            className="fixed inset-0 bg-[#0f294240] backdrop-blur-sm transition-opacity cursor-pointer"
+            className="absolute inset-0 transition-opacity cursor-pointer"
             onClick={() => setSelectedProduct(null)}
           />
 
-          <div className="flex min-h-screen items-center justify-center p-4 text-center">
-            <div className="relative transform overflow-hidden rounded-3xl bg-[#F5F1E8] p-6 text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl border border-[#0f29420a]">
+          <div role="dialog" aria-modal="true" aria-labelledby="monitor-purchase-title" className="relative z-10 max-h-[calc(100dvh-1rem)] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-3xl border border-[#0f29420a] bg-[#F5F1E8] p-4 text-left shadow-2xl sm:max-h-[calc(100dvh-2rem)] sm:p-6">
               
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedProduct(null)}
+                type="button"
+                aria-label="Fechar detalhes do monitor"
                 className="absolute top-4 right-4 p-1.5 rounded-lg text-[#0f294240] hover:text-[#0F2942] hover:bg-[#0f294208] transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
@@ -1121,7 +1131,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
                   <span className="text-[10px] bg-[#0F2942] text-white font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                     Assistente de Estudos IA
                   </span>
-                  <h3 className="text-base font-extrabold text-[#0F2942] mt-0.5">
+                  <h3 id="monitor-purchase-title" className="text-base font-extrabold text-[#0F2942] mt-0.5">
                     {selectedProduct.name}
                   </h3>
                 </div>
@@ -1257,7 +1267,12 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
               </div>
 
               {/* Pricing section & Checkout CTA */}
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 border-t border-[#0f29420a] pt-4">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wide text-slate-500" aria-label="Etapa da compra">
+                  <span className="rounded-full bg-[#0F2942] px-2 py-1 text-white">1. Plano</span>
+                  <span className={selectedInterval ? 'text-[#0F2942]' : ''}>→ 2. Pagamento</span>
+                  <span className={selectedBillingType ? 'text-emerald-700' : ''}>→ 3. Confirmar</span>
+                </div>
                 <div className="grid gap-2 sm:grid-cols-2">
                   <button type="button" onClick={() => { if (selectedInterval !== 'MONTHLY') setSelectedBillingType(null); setSelectedInterval('MONTHLY'); }} aria-pressed={selectedInterval === 'MONTHLY'} className={`rounded-xl border p-3 text-left ${selectedInterval === 'MONTHLY' ? 'border-emerald-700 bg-emerald-50' : 'border-slate-200 bg-white'}`}>
                     <span className="block text-xs font-bold text-[#0F2942]">Mensal</span>
@@ -1270,7 +1285,7 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
                     <span className="block text-[10px] text-[#565959]">ou {formatMonitorPrice(selectedProduct.annualPriceCents)} à vista</span>
                   </button>}
                 </div>
-                <fieldset className="min-w-0 border-0 p-0">
+                {selectedInterval && <fieldset className="min-w-0 border-0 p-0">
                   <legend className="text-xs font-bold text-[#0F2942]">Forma de pagamento</legend>
                   <div className="mt-2 grid grid-cols-2 gap-2">
                     {(selectedInterval === 'MONTHLY'
@@ -1302,12 +1317,12 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
                     );
                     })}
                   </div>
-                </fieldset>
-                <button
+                </fieldset>}
+                {selectedBillingType && <button
                   type="button"
                   disabled={!selectedBillingType || isCheckoutStarting}
                   onClick={() => {
-                    if (!selectedBillingType) return;
+                    if (!selectedBillingType || !selectedInterval) return;
                     handleChoosePlan(selectedProduct, selectedInterval);
                     setSelectedProduct(null);
                   }}
@@ -1315,10 +1330,9 @@ export default function StorefrontClient({ teacher }: StorefrontClientProps) {
                 >
                   <CheckCircle2 className="w-4.5 h-4.5 text-white" />
                   <span>{selectedInterval === 'ANNUAL' ? 'Comprar 12 meses' : 'Assinar Agora'}</span>
-                </button>
+                </button>}
               </div>
 
-            </div>
           </div>
         </div>
       )}

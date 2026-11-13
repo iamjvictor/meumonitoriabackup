@@ -1,0 +1,488 @@
+Worker iniciou o processamento do documento {
+  event: 'monitor.document_processing_started',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  jobId: undefined,
+  attempt: undefined
+}
+Buscando documento no banco para o worker {
+  event: 'monitor.document_repository_lookup_started',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6'
+}
+Busca do documento concluida {
+  event: 'monitor.document_repository_lookup_completed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  found: true,
+  topicLinkCount: 1
+}
+Atualizando documento para PROCESSING {
+  event: 'monitor.document_status_update_started',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  status: 'PROCESSING'
+}
+Documento atualizado para PROCESSING {
+  event: 'monitor.document_status_update_completed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  status: 'PROCESSING'
+}
+Etapa auxiliar iniciada {
+  event: 'document_stage.started',
+  timestamp: '2026-11-06T17:55:26.246Z',
+  service: 'worker',
+  request_id: 'cc2e4f0e-64c9-4905-bfb0-545e626e9e6a',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT'
+}
+Etapa auxiliar concluída {
+  event: 'document_stage.completed',
+  timestamp: '2026-11-06T17:55:26.287Z',
+  service: 'worker',
+  request_id: 'cc2e4f0e-64c9-4905-bfb0-545e626e9e6a',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT',
+  outcome: 'completed',
+  duration_ms: 41
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  stage: 'DOWNLOAD_DOCUMENT',
+  status: 'READY',
+  startedAt: '2026-11-06T17:55:26.246Z',
+  finishedAt: '2026-11-06T17:55:26.287Z',
+  durationMs: 41,
+  attempt: undefined,
+  jobId: undefined,
+  details: {
+    storagePath: 'question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7/Quimica-3.pdf'
+  }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-06T17:55:26.309Z',
+  service: 'worker',
+  request_id: 'cbd529c6-8690-4beb-9a1f-e79516348824',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS'
+}
+Reuso Docling QUESTIONS: páginas representadas, cobertura integral de caracteres não verificável sem fonte independente. {
+  event: 'monitor.questions_text_coverage_unverified',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  coverageMode: 'PAGE_PRESENCE_ONLY',
+  coveredPages: 12,
+  pageCount: 16,
+  pagesWithoutText: [ 2, 13, 14, 16 ],
+  pagesWithoutTextWithVisualAssets: [ 16 ],
+  pagesWithoutTextUnclassified: [ 2, 13, 14 ]
+}
+document_visual_assets.chunk_linking_completed {
+  owner_id: '19907d11-acfd-41d8-8cf5-ede28f36d289',
+  detected_count: 20,
+  linked_count: 0,
+  ambiguous_count: 13,
+  missing_count: 0,
+  detected_by_page: {
+    '1': 4,
+    '3': 1,
+    '4': 1,
+    '5': 2,
+    '6': 1,
+    '7': 1,
+    '8': 1,
+    '9': 3,
+    '11': 1,
+    '12': 1,
+    '15': 1,
+    '16': 3
+  },
+  linked_by_page: {},
+  ambiguous_by_page: {
+    '1': 18,
+    '3': 6,
+    '4': 10,
+    '5': 4,
+    '6': 6,
+    '7': 2,
+    '8': 4,
+    '9': 4,
+    '10': 1,
+    '11': 3,
+    '12': 2,
+    '15': 4
+  },
+  missing_by_page: {}
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-06T17:55:26.356Z',
+  service: 'worker',
+  request_id: 'cbd529c6-8690-4beb-9a1f-e79516348824',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  outcome: 'completed',
+  duration_ms: 59,
+  chunkCount: 13,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  status: 'READY',
+  startedAt: '2026-11-06T17:55:26.291Z',
+  finishedAt: '2026-11-06T17:55:26.350Z',
+  durationMs: 59,
+  attempt: undefined,
+  jobId: undefined,
+  details: { chunkCount: 13, status: 'READY' }
+}
+Chunks Docling persistidos {
+  event: 'document_chunks.persist_completed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  chunkCount: 13,
+  reused: true,
+  engine: 'docling',
+  sourceMode: 'pdfjs'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-06T17:55:26.380Z',
+  service: 'worker',
+  request_id: '99f42d98-c488-466d-9341-09730bb4e002',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS'
+}
+Buscando chunks pendentes de embedding {
+  event: 'monitor.embedding_chunks_lookup_started',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  status: 'EMBEDDING_PENDING'
+}
+Chunks pendentes encontrados {
+  event: 'monitor.embedding_chunks_lookup_completed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  chunkCount: 0,
+  chunkIndexes: []
+}
+Processamento de embeddings iniciado {
+  event: 'monitor.document_embeddings_started',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  chunkCount: 0,
+  batchSize: 64
+}
+Nenhum chunk pendente para vetorizar {
+  event: 'monitor.document_embeddings_skipped',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6'
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-06T17:55:26.386Z',
+  service: 'worker',
+  request_id: '99f42d98-c488-466d-9341-09730bb4e002',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  outcome: 'completed',
+  duration_ms: 15,
+  chunkCount: 0,
+  batchCount: 0,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  status: 'READY',
+  startedAt: '2026-11-06T17:55:26.369Z',
+  finishedAt: '2026-11-06T17:55:26.384Z',
+  durationMs: 15,
+  attempt: undefined,
+  jobId: undefined,
+  details: { chunkCount: 0, batchCount: 0, status: 'READY' }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-06T17:55:26.397Z',
+  service: 'worker',
+  request_id: '488997d2-4322-47f6-9ce6-1189c54ef126',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'document_questions',
+  maxTokens: 4000,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 1597
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 13176,
+  responseChars: 10323,
+  promptTokens: 45740,
+  completionTokens: 3284,
+  totalTokens: 49024,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 0
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-06T17:55:39.881Z',
+  service: 'worker',
+  request_id: '488997d2-4322-47f6-9ce6-1189c54ef126',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW',
+  outcome: 'completed',
+  duration_ms: 13492,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW',
+  status: 'READY',
+  startedAt: '2026-11-06T17:55:26.387Z',
+  finishedAt: '2026-11-06T17:55:39.879Z',
+  durationMs: 13492,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Atualizando documento para PARTIAL_SUCCESS {
+  event: 'monitor.document_status_update_started',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  status: 'PARTIAL_SUCCESS',
+  errorMessage: 'Operacoes pendentes: ; Avisos: QUESTIONS_TEXT_COVERAGE_UNVERIFIED, QUESTIONS_PAGES_WITHOUT_TEXT, QUESTIONS_PAGE_TEXT_UNCLASSIFIED'
+}
+Documento atualizado para PARTIAL_SUCCESS {
+  event: 'monitor.document_status_update_completed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  status: 'PARTIAL_SUCCESS'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-06T17:55:39.897Z',
+  service: 'worker',
+  request_id: '23d2d3c0-d06c-4659-941f-0b677444c115',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'READY_FOR_REVIEW'
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-06T17:55:39.899Z',
+  service: 'worker',
+  request_id: '23d2d3c0-d06c-4659-941f-0b677444c115',
+  document_id: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  job_id: null,
+  job_attempt: null,
+  stage: 'READY_FOR_REVIEW',
+  outcome: 'completed',
+  duration_ms: 8,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  stage: 'READY_FOR_REVIEW',
+  status: 'READY',
+  startedAt: '2026-11-06T17:55:39.889Z',
+  finishedAt: '2026-11-06T17:55:39.897Z',
+  durationMs: 8,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Documento processado pelo worker {
+  event: 'monitor.document_worker_completed',
+  documentId: '406fa2b0-db4f-40dd-a1e7-6243c87b02d6',
+  mimeType: 'application/pdf',
+  expectedBytes: 599300,
+  downloadedBytes: 599300,
+  durationMs: 13880,
+  status: 'PARTIAL_SUCCESS'
+}
+{
+  "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+  "document": {
+    "originalName": "Quimica-3.pdf",
+    "tag": "QUESTIONS",
+    "status": "PARTIAL_SUCCESS",
+    "errorMessage": "Operacoes pendentes: ; Avisos: QUESTIONS_TEXT_COVERAGE_UNVERIFIED, QUESTIONS_PAGES_WITHOUT_TEXT, QUESTIONS_PAGE_TEXT_UNCLASSIFIED",
+    "teacherId": "c6abb96e-bb25-468c-9639-592623107012",
+    "monitorId": "13d89b29-ab6a-4c26-9620-92bdc44e3270",
+    "subjectId": "754c1cc1-3dad-4eef-9044-9d5799c41446",
+    "topicId": "32515c5b-c78f-4cef-a731-387acd2b160c",
+    "_count": {
+      "chunks": 13,
+      "blocks": 0,
+      "textExtractions": 0,
+      "visualAssets": 20
+    }
+  },
+  "visualAssets": 20,
+  "chunks": [
+    {
+      "chunkIndex": 0,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 1,
+      "tokenCount": 63,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "Este caderno, com dezesseis páginas numeradas sequencialmente, contém dez questões de Química. A Classificação Periódica dos Elementos encontra-se na página 15.\nNão abra o caderno antes de receber autorização."
+    },
+    {
+      "chunkIndex": 1,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 1,
+      "tokenCount": 66,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "1.  Verifique se você recebeu mais dois cadernos de prova.\n2.  Verifique se as seguintes informações estão corretas nas sobrecapas dos três cadernos: nome, número de inscrição, número do documento de identidade e número do CPF."
+    },
+    {
+      "chunkIndex": 2,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 1,
+      "tokenCount": 153,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "3.  Destaque, das sobrecapas, os comprovantes que têm seu nome e leve-os com você.\n4.  Ao receber autorização para abrir os cadernos, verifique se a impressão, a paginação e a numeração das questões estão corretas.\n5.  Todas as respostas e o desenvolvimento das soluções, quando necessário, deverão ser apresentados nos espaços apropriados e escritos com caneta de corpo transparente, azul ou preta.\n2. Não serão consideradas as questões respondidas fora desses espaços.\n6.  Ao terminar, entregue os três cadernos ao fiscal."
+    },
+    {
+      "chunkIndex": 3,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 4,
+      "tokenCount": 418,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "O tempo disponível para fazer as provas é de cinco horas. Nada mais poderá ser registrado após o término desse prazo.\nNas salas de prova, os candidatos não poderão usar qualquer tipo de relógio, óculos escuros e boné, nem portar arma de fogo, fumar e utilizar corretores ortográficos e borrachas.\nSerá atribuída nota zero ao candidato que utilizar quaisquer meios para identificar sua prova, como escrever suas iniciais,  seu  nome ou o de outros em qualquer lugar do caderno de provas, assim como fazer desenhos de qualquer espécie. Será atribuída nota zero, também, à questão respondida a lápis ou em local inadequado.\nSerá eliminado do Vestibular Estadual 2026 o candidato que, durante a prova, utilizar qualquer meio de obtenção de informações, eletrônico ou não.\nSerá também eliminado o candidato que se ausentar da sala levando consigo qualquer material de prova.\n01\nO bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e"
+    },
+    {
+      "chunkIndex": 4,
+      "status": "READY",
+      "pageStart": 4,
+      "pageEnd": 6,
+      "tokenCount": 467,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação  desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.\nDesenvolvimento e resposta:\n03\nA tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.\nDesenvolvimento e resposta:\n04\nEm um experimento, utilizou-se a concentração inicial de 0,2 mol/L de p"
+    },
+    {
+      "chunkIndex": 5,
+      "status": "READY",
+      "pageStart": 6,
+      "pageEnd": 7,
+      "tokenCount": 484,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10 7 s - 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s - 1 .\nDesenvolvimento e resposta:\n05\nOs  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule"
+    },
+    {
+      "chunkIndex": 6,
+      "status": "READY",
+      "pageStart": 8,
+      "pageEnd": 9,
+      "tokenCount": 359,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.\nQUESTÃO\n06\nDesenvolvimento e resposta:\n07\nEm um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.\nDesenvolvimento e resposta:"
+    },
+    {
+      "chunkIndex": 7,
+      "status": "READY",
+      "pageStart": 10,
+      "pageEnd": 11,
+      "tokenCount": 473,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.\nDesenvolvimento e resposta:\n09\nPara determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substânc"
+    },
+    {
+      "chunkIndex": 8,
+      "status": "READY",
+      "pageStart": 11,
+      "pageEnd": 12,
+      "tokenCount": 273,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "Determine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.\nDesenvolvimento e resposta:\n10\nO sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.\nDesenvolvimento e resposta:"
+    },
+    {
+      "chunkIndex": 9,
+      "status": "READY",
+      "pageStart": 15,
+      "pageEnd": 15,
+      "tokenCount": 28,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "(Adaptado da IUPAC - 2017)"
+    },
+    {
+      "chunkIndex": 10,
+      "status": "READY",
+      "pageStart": 15,
+      "pageEnd": 15,
+      "tokenCount": 499,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": ", La 139 1,1.90 1,1 = Ac. , 58 Ce 140 1,1 59.1,3 91 = Th. , Pr 141 1,1 60.1,5 92 = Pa. , Nd 144 1,1.1,7 = U. , 61 Pm (145) 1,1.93 = . , 62 Sm 150 1,2.1,3 94 = Np. , 63 152.1,3 = Pu. , Eu 1,2.95 1,3 = . , 64 Gd 157 1,2.96 = Am. , 65 Tb 159 1,2.97 1,3 = . , 66 Dy 162,5 1,2.1,3 = Cm. , 67 Ho 165 1,2.98 = Bk. , 68.1,3 99 = Cf. , Er 167 1,2 69.1,3 100 1,3 = Es. , Tm 169 1,2. = . , 70 Yb 173 1,2.1,3 = Fm. , 1,3.101 = Md. , 102 1,3 = No. , 71 Lu 175.103 1,3 = Lr. , La 139 1,1.90 1,1 = 227. , 58 Ce 140 1,1 59.1,3 91 = 232. , Pr 141 1,1 60.1,5 92 = 231. , Nd 144 1,1.1,7 = 238. , 61 Pm (145) 1,1.93 = . "
+    },
+    {
+      "chunkIndex": 11,
+      "status": "READY",
+      "pageStart": 15,
+      "pageEnd": 15,
+      "tokenCount": 22,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": ", 62 Sm 150"
+    },
+    {
+      "chunkIndex": 12,
+      "status": "READY",
+      "pageStart": 15,
+      "pageEnd": 15,
+      "tokenCount": 408,
+      "embeddedAt": "2026-11-06T17:54:36.530Z",
+      "content": "1,2.1,3 94 = 237. , 63 152.1,3 = (244). , Eu 1,2.95 1,3 = . , 64 Gd 157 1,2.96 = (243). , 65 Tb 159 1,2.97 1,3 = . , 66 Dy 162,5 1,2.1,3 = (247). , 67 Ho 165 1,2.98 = (247). , 68.1,3 99 = (251). , Er 167 1,2 69.1,3 100 1,3 = . , Tm 169 1,2. = (252). , 70 Yb 173 1,2.1,3 = (257). , 1,3.101 = (258). , 102 1,3 = (259). , 71 Lu 175.103 1,3 = (262)\nOrdem crescente de energia dos subníveis: 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s 5f 6d 7p\nConstante de Avogadro = 6,0 × 10 23 partículas × mol - 1\nConstante de Faraday = 96500 C × mol - 1"
+    }
+  ],
+  "blockTypes": [],
+  "questionSources": 24,
+  "pageThreeAssets": [
+    {
+      "id": "4bd15858-4c45-49df-966d-47d9b2ce2518",
+      "pageNumber": 3,
+      "assetType": "figure",
+      "storagePath": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6/19907d11-acfd-41d8-8cf5-ede28f36d289/assets/e08ba99b0d3910e01f6963a6fa57aed8-44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68.png",
+      "checksum": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68",
+      "descriptionStatus": "READY",
+      "description": "A figura é um logotipo ou cabeçalho que indica o número de uma questão. O texto \"QUESTÃO\" está em laranja, em letras maiúsculas e sem serifa, com um leve efeito de sombra. Abaixo, o número \"01\" está em preto, em uma fonte grande e negrito, também sem serifa, com um reflexo espelhado na parte inferior que sugere uma superfície brilhante."
+    }
+  ],
+  "pageThreeStorageChecks": [
+    {
+      "assetId": "4bd15858-4c45-49df-966d-47d9b2ce2518",
+      "storagePath": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6/19907d11-acfd-41d8-8cf5-ede28f36d289/assets/e08ba99b0d3910e01f6963a6fa57aed8-44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68.png",
+      "downloaded": true,
+      "byteLength": 2148,
+      "sha256": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68",
+      "expectedChecksum": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68",
+      "checksumMatches": true
+    }
+  ],
+  "elapsedMs": 13909
+}

@@ -25,7 +25,6 @@ export type SponsoredBatchRecord = {
 export interface SponsoredSeatBatchRepository {
   findTeacherMonitor(teacherUserId: string, monitorId: string): Promise<SponsoredTeacherMonitor | null>;
   findBatchByIdempotency(teacherId: string, idempotencyKey: string): Promise<{ fingerprint: string; batch: SponsoredBatchRecord } | null>;
-  findBlockingSeat(monitorId: string, normalizedEmail: string, excludeBatchId?: string): Promise<boolean>;
   createPendingBatch(input: {
     teacherId: string;
     monitor: SponsoredMonitor;
@@ -227,9 +226,6 @@ export class CreateSponsoredSeatBatchUseCase {
     if (!Number.isFinite(teacherPercentage) || teacherPercentage < 0 || teacherPercentage > 100) throw new SponsoredBatchValidationError('INVALID_TEACHER_PERCENTAGE');
     const platformAmountCents = Math.round(grossPriceCents * (100 - teacherPercentage) / 100);
     const totalAmountCents = platformAmountCents * emails.length;
-    for (const email of emails) {
-      if (input.interval === 'MONTHLY' && await this.repository.findBlockingSeat(monitor.id, email, excludeBatchId)) throw new SponsoredBatchValidationError('BENEFICIARY_ALREADY_HAS_ACCESS');
-    }
     return { teacherMonitor, monitor, serviceMonths, emails, grossPriceCents, teacherPercentage, platformAmountCents, totalAmountCents };
   }
 }

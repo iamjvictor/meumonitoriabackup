@@ -1,7 +1,20 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { evaluateQuestionCandidatePromotion } from '../question-extraction.service.js';
+import { buildQuestionSourceKey, evaluateQuestionCandidatePromotion, mergeExistingQuestionFields, resolveQuestionAlternativesOrigin } from '../question-extraction.service.js';
+
+test('preserva origem das alternativas do documento e marca alternativas novas como geradas pela IA', () => {
+  assert.equal(resolveQuestionAlternativesOrigin(5, false), 'SOURCE_DOCUMENT');
+  assert.equal(resolveQuestionAlternativesOrigin(5, true), 'AI_GENERATED');
+  assert.equal(resolveQuestionAlternativesOrigin(0, true), undefined);
+});
+
+test('a identidade da origem da questão não depende do ID transitório do bloco', () => {
+  assert.equal(
+    buildQuestionSourceKey({ documentId: 'doc-1', sourceBlockId: 'old-block-id', questionNumber: '01', statement: 'Enunciado normalizado' }),
+    buildQuestionSourceKey({ documentId: 'doc-1', sourceBlockId: 'new-block-id', questionNumber: '01', statement: 'Enunciado normalizado' }),
+  );
+});
 
 const baseChunk = {
   id: 'chunk-1',
@@ -33,6 +46,24 @@ const baseCandidate = {
   sourceBlockId: '11111111-1111-1111-1111-111111111111',
   questionNumber: '59',
 };
+
+test('retry de questão completa reutiliza texto e resposta persistidos em vez da nova saída da extração', () => {
+  const merged = mergeExistingQuestionFields({
+    ...baseCandidate,
+    text: 'texto oscilou na reextração',
+  }, {
+    text: 'texto original persistido',
+    completenessStatus: 'COMPLETE_WITH_AI',
+    alternatives: ['A', 'B', 'C', 'D', 'E'].map((label) => ({ label, text: `opção ${label}` })),
+    correctAnswer: 'B',
+    explanation: 'justificativa original',
+  });
+
+  assert.equal(merged.text, 'texto original persistido');
+  assert.equal(merged.alternatives[1]?.text, 'opção B');
+  assert.equal(merged.correctAnswer, 'B');
+  assert.equal(merged.explanation, 'justificativa original');
+});
 
 test('resolve fallback de topico quando a classificacao nao retorna principal', async () => {
   const { resolveQuestionTopic } = await import('../question-extraction.service.js');
@@ -96,8 +127,8 @@ test('aceita tabela de dados quando cabecalho e linhas foram extraidos no chunk 
   assert.equal(decision.completionBlocked, false);
 });
 
-test('mantem pendente a referencia a tabela sem os dados no chunk fonte', () => {
-  const text = 'Determine a entalpia de combustão usando os valores da tabela periódica.';
+test('mantem pendente a referencia a uma tabela de dados sem os valores no chunk fonte', () => {
+  const text = 'Determine a entalpia de combustão usando os valores apresentados na tabela a seguir.';
   const decision = evaluateQuestionCandidatePromotion({
     candidate: { ...baseCandidate, text, alternatives: [] },
     sourceChunks: [{ ...baseChunk, content: text }],

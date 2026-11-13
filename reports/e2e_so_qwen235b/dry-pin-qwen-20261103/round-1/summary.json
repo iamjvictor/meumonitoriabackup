@@ -1,0 +1,71 @@
+{
+  "runId": "dry-pin-qwen-20261103",
+  "test": "e2e_so_qwen235b",
+  "round": 1,
+  "executionMode": "dry-run",
+  "paidCallsMade": 0,
+  "pipelineExecuted": false,
+  "database": {
+    "name": "mc_so_qwen235b_r1_d68544f390ab473c",
+    "host": "127.0.0.1",
+    "port": 56322,
+    "existsBeforeRun": false,
+    "schemaStatus": "NOT_PROVISIONED_DRY_RUN"
+  },
+  "provider": {
+    "status": "VALIDATED",
+    "models": [
+      "qwen/qwen3-embedding-8b",
+      "qwen/qwen3-vl-235b-a22b-instruct",
+      "qwen/qwen3-vl-30b-a3b-instruct"
+    ],
+    "providers": {
+      "qwen/qwen3-embedding-8b": "DeepInfra",
+      "qwen/qwen3-vl-235b-a22b-instruct": "Parasail",
+      "qwen/qwen3-vl-30b-a3b-instruct": "SiliconFlow"
+    },
+    "retention": "NAO_VERIFICADO"
+  },
+  "baseline": {
+    "status": "NOT_IMPORTED_DRY_RUN",
+    "source": "local dbtemp baseline (read-only export)",
+    "reuseEvidence": "NAO_VERIFICADO",
+    "chunkerVersion": "NAO_VERIFICADO"
+  },
+  "visual": {
+    "assetsExpected": 31,
+    "visualDescriptionCallsExpected": 31,
+    "visualEmbeddingCallsExpected": 31,
+    "status": "NOT_RUN"
+  },
+  "questionExtraction": {
+    "explicitBlocksExpected": 10,
+    "sourceExtraction": "DETERMINISTIC_SOURCE_EXTRACTION",
+    "llmCallsAttributedToStatementExtraction": 0,
+    "status": "NOT_RUN"
+  },
+  "questionEmbeddings": {
+    "countExpected": 10,
+    "status": "NAO_VERIFICADO",
+    "reason": "Embeddings de perguntas são chamadas adicionais do serviço de extração e serão contadas pelo interceptor."
+  },
+  "imageChatQ03": {
+    "status": "NOT_RUN",
+    "inputPromptSource": "baseline visual-chat.json prompt field",
+    "response": null
+  },
+  "cost": {
+    "reportedUsd": "NAO_VERIFICADO",
+    "estimatedUsd": "NAO_VERIFICADO",
+    "status": "NAO_VERIFICADO",
+    "reason": "Preço de endpoint disponível não define um teto máximo para tokens de visão, embeddings e respostas; relatório de custo real ficará por chamada."
+  },
+  "limitations": [
+    "Retenção do provedor permanece NAO_VERIFICADO.",
+    "chunker_version está ausente em parte das linhas do baseline; igualdade de versão não será afirmada."
+  ],
+  "assertions": {
+    "status": "NOT_RUN",
+    "reason": "Dry-run valida preflight e destino, sem importar baseline ou chamar inferência."
+  }
+}

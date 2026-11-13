@@ -1,0 +1,756 @@
+{
+  "document": "Quimica-3",
+  "inputPdf": "tests/document-parser/teacher-materials/Quimica-3.pdf",
+  "database": "dbtemp local only",
+  "persisted": false,
+  "model": "deepseek/deepseek-v4.1-flash",
+  "contextMode": "local-db-chunks-and-figures",
+  "sourceQuestionCount": 10,
+  "llmCalls": 20,
+  "graphStage": "ready",
+  "graphRoute": "complete",
+  "outputQuestionCount": 10,
+  "llmUsage": [
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 8665,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1118,
+      "completionTokens": 594,
+      "totalTokens": 1712,
+      "reasoningTokens": 408,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 17183,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 898,
+      "completionTokens": 3688,
+      "totalTokens": 4586,
+      "reasoningTokens": 3329,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 18510,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 850,
+      "completionTokens": 5522,
+      "totalTokens": 6372,
+      "reasoningTokens": 4544,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 19434,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1645,
+      "completionTokens": 3159,
+      "totalTokens": 4804,
+      "reasoningTokens": 2758,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 22607,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 986,
+      "completionTokens": 3040,
+      "totalTokens": 4026,
+      "reasoningTokens": 2754,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 25271,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 737,
+      "completionTokens": 3063,
+      "totalTokens": 3800,
+      "reasoningTokens": 2587,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 36953,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1044,
+      "completionTokens": 8655,
+      "totalTokens": 9699,
+      "reasoningTokens": 8372,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 15923,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1212,
+      "completionTokens": 2263,
+      "totalTokens": 3475,
+      "reasoningTokens": 1950,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 4330,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1274,
+      "completionTokens": 1514,
+      "totalTokens": 2788,
+      "reasoningTokens": 1036,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 6841,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 998,
+      "completionTokens": 1493,
+      "totalTokens": 2491,
+      "reasoningTokens": 1139,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 2011,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1134,
+      "completionTokens": 248,
+      "totalTokens": 1382,
+      "reasoningTokens": 149,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 4800,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1372,
+      "completionTokens": 535,
+      "totalTokens": 1907,
+      "reasoningTokens": 407,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 22625,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1113,
+      "completionTokens": 2570,
+      "totalTokens": 3683,
+      "reasoningTokens": 2501,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 1718,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1714,
+      "completionTokens": 540,
+      "totalTokens": 2254,
+      "reasoningTokens": 389,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 1931,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1136,
+      "completionTokens": 659,
+      "totalTokens": 1795,
+      "reasoningTokens": 588,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 10570,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1217,
+      "completionTokens": 2553,
+      "totalTokens": 3770,
+      "reasoningTokens": 2402,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 7701,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 943,
+      "completionTokens": 1608,
+      "totalTokens": 2551,
+      "reasoningTokens": 1533,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 6261,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1389,
+      "completionTokens": 733,
+      "totalTokens": 2122,
+      "reasoningTokens": 573,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 4394,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1348,
+      "completionTokens": 559,
+      "totalTokens": 1907,
+      "reasoningTokens": 515,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 3368,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 1015,
+      "completionTokens": 284,
+      "totalTokens": 1299,
+      "reasoningTokens": 229,
+      "finishReason": "stop"
+    }
+  ],
+  "totalDurationMs": 241096,
+  "usageTotals": {
+    "promptTokens": 23143,
+    "completionTokens": 43280,
+    "reasoningTokens": 38163,
+    "totalTokens": 66423
+  },
+  "generatedAlternativesQuestions": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10"
+  ],
+  "generatedAnswerQuestions": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10"
+  ],
+  "questionsWithPendingIssues": [
+    {
+      "questionNumber": "06",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "09",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "10",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    }
+  ],
+  "backendOutput": [
+    {
+      "questionNumber": "01",
+      "statement": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "Grupo 17, período 4; ligação covalente apolar; fórmula molecular do agente oxidante: Cl2."
+        },
+        {
+          "label": "B",
+          "text": "Grupo 16, período 4; ligação iônica; fórmula molecular do agente oxidante: Br2."
+        },
+        {
+          "label": "C",
+          "text": "Grupo 17, período 3; ligação covalente polar; fórmula molecular do agente oxidante: Cl2."
+        },
+        {
+          "label": "D",
+          "text": "Grupo 7, período 4; ligação metálica; fórmula molecular do agente oxidante: Cl-."
+        },
+        {
+          "label": "E",
+          "text": "Grupo 17, período 5; ligação covalente apolar; fórmula molecular do agente oxidante: Br2."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "393cff58-3df0-4d3c-969c-99afd1eb4ff4"
+      ],
+      "visualEvidence": [
+        {
+          "assetId": "13538213-2ccd-4ca1-8ee9-ee2bea4a2a05",
+          "role": "STATEMENT",
+          "alternativeLabel": null,
+          "anchorText": "Indique o grupo e o período da tabela de classificação periódica em que o bromo está localizado."
+        }
+      ],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "02",
+      "statement": "Contaminação por tolueno suspendeu fornecimento de água em municípios do Rio de Janeiro\nElevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação  desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3; caráter apolar; 3,6 × 10^24 elétrons π em 1 mol."
+        },
+        {
+          "label": "B",
+          "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3; caráter polar; 6,0 × 10^23 elétrons π em 1 mol."
+        },
+        {
+          "label": "C",
+          "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3; caráter apolar; 6,0 × 10^23 elétrons π em 1 mol."
+        },
+        {
+          "label": "D",
+          "text": "Fórmula em linha de ligação: cadeia aberta com três ligações duplas conjugadas e um grupo metila; caráter apolar; 3,6 × 10^24 elétrons π em 1 mol."
+        },
+        {
+          "label": "E",
+          "text": "Fórmula em linha de ligação: anel benzênico monossubstituído por –CH3; caráter polar; 1,2 × 10^24 elétrons π em 1 mol."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "99e47ba5-5f3c-4e7e-bce4-2a558f23b342"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "03",
+      "statement": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar um éster com 22 átomos de carbono por molécula.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "A função oxigenada é ácido carboxílico; a isomeria espacial é geométrica (cis-trans); a tretinoína possui 4 átomos de carbono terciário; o composto que reage com a isotretinoína é o etanol."
+        },
+        {
+          "label": "B",
+          "text": "A função oxigenada é cetona; a isomeria espacial é óptica; a tretinoína possui 3 átomos de carbono terciário; o composto que reage com a isotretinoína é o metanol."
+        },
+        {
+          "label": "C",
+          "text": "A função oxigenada é álcool; a isomeria espacial é geométrica (cis-trans); a tretinoína possui 5 átomos de carbono terciário; o composto que reage com a isotretinoína é o propan-1-ol."
+        },
+        {
+          "label": "D",
+          "text": "A função oxigenada é ácido carboxílico; a isomeria espacial é óptica; a tretinoína possui 2 átomos de carbono terciário; o composto que reage com a isotretinoína é o butan-1-ol."
+        },
+        {
+          "label": "E",
+          "text": "A função oxigenada é éster; a isomeria espacial é conformacional; a tretinoína possui 6 átomos de carbono terciário; o composto que reage com a isotretinoína é o etanodiol."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "99e47ba5-5f3c-4e7e-bce4-2a558f23b342"
+      ],
+      "visualEvidence": [
+        {
+          "assetId": "4843279b-cf17-473b-9fce-19d08e765ceb",
+          "role": "STATEMENT",
+          "alternativeLabel": null,
+          "anchorText": "Observe a seguir as fórmulas estruturais espaciais desses isômeros:"
+        }
+      ],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "04",
+      "statement": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10 7 s - 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s - 1 .\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "MnO2 (dióxido de manganês); atua como catalisador, diminuindo a energia de ativação por meio de um caminho reacional alternativo, sem ser consumido. v = k[H2O2] = (4,0 × 10^7 s^-1)(0,2 mol/L) = 8,0 × 10^6 mol L^-1 s^-1."
+        },
+        {
+          "label": "B",
+          "text": "H2O2 (peróxido de hidrogênio); atua como catalisador, pois é consumido para reduzir a energia de ativação. v = k[H2O2] = (4,0 × 10^7)(0,2) = 8,0 × 10^6 mol L^-1 s^-1."
+        },
+        {
+          "label": "C",
+          "text": "MnO2 (dióxido de manganês); atua aumentando a energia de ativação para favorecer a formação de O2. v = k = 4,0 × 10^7 mol L^-1 s^-1."
+        },
+        {
+          "label": "D",
+          "text": "O2 (gás oxigênio); atua como catalisador, diminuindo a energia de ativação e deslocando o equilíbrio para a direita. v = k[H2O2]/2 = 4,0 × 10^6 mol L^-1 s^-1."
+        },
+        {
+          "label": "E",
+          "text": "MnO2 (dióxido de manganês); atua como catalisador heterogêneo, oferecendo superfície para adsorção e reduzindo a energia de ativação. v = 2k[H2O2] = 1,6 × 10^7 mol L^-1 s^-1."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "99e47ba5-5f3c-4e7e-bce4-2a558f23b342",
+        "87e74e16-bd86-4260-8d39-b9e1d7c331fc"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "05",
+      "statement": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "H—H; o hidrogênio é produzido no polo negativo (cátodo); razão ≈ 6,75 × 10² C/kJ."
+        },
+        {
+          "label": "B",
+          "text": "H—H; o hidrogênio é produzido no polo positivo (ânodo); razão ≈ 6,75 × 10² C/kJ."
+        },
+        {
+          "label": "C",
+          "text": "H—H; o hidrogênio é produzido no polo negativo (cátodo); razão ≈ 3,38 × 10² C/kJ."
+        },
+        {
+          "label": "D",
+          "text": "H=H; o hidrogênio é produzido no polo negativo (cátodo); razão ≈ 6,75 × 10² C/kJ."
+        },
+        {
+          "label": "E",
+          "text": "H—H; o hidrogênio é produzido no polo positivo (ânodo); razão ≈ 1,35 × 10³ C/kJ."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "87e74e16-bd86-4260-8d39-b9e1d7c331fc"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "06",
+      "statement": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "O Al3+ apresenta carga +3 e raio iônico menor que o Ag+, resultando em maior densidade de carga e maior poder polarizante; assim, aceita mais efetivamente o par de elétrons do que o Ag+, cuja carga +1 e maior raio diminuem essa capacidade. Equação: 2 Ag+(aq) + S2−(aq) → Ag2S(s)."
+        },
+        {
+          "label": "B",
+          "text": "O Al3+ tem configuração eletrônica [Ne], com orbitais vazios disponíveis para receber elétrons, enquanto o Ag+ tem configuração [Kr]4d10, com subnível d completo, o que reduz sua acidez de Lewis. Equação: 2 Ag+(aq) + S2−(aq) → Ag2S(s)."
+        },
+        {
+          "label": "C",
+          "text": "A maior acidez do Al3+ deve-se ao seu maior raio iônico, que facilita a aproximação do íon sulfeto, embora ambos tenham a mesma carga +3. Equação: Ag+(aq) + S2−(aq) → AgS(s)."
+        },
+        {
+          "label": "D",
+          "text": "O Al3+ é mais ácido porque possui menor carga nuclear efetiva e maior tendência a doar elétrons, enquanto o Ag+ aceita elétrons com mais facilidade. Equação: 2 Ag+(aq) + S2−(aq) → Ag2S(s)."
+        },
+        {
+          "label": "E",
+          "text": "O Al3+ e o Ag+ são ácidos de Lewis, mas o Al3+ é mais ácido por ter maior carga e menor raio, o que aumenta a atração pelo par eletrônico do íon sulfeto. Equação: Ag+(aq) + S2−(aq) → AgS(s)."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "a1b19afe-d29c-4a32-aee5-c78b13193d59"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "07",
+      "statement": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO 3 ,  apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "C é ácido. C6H5COO– + H2O ⇌ C6H5COOH + OH–. A': cloreto de fenilamônio."
+        },
+        {
+          "label": "B",
+          "text": "C é básico. C6H5COO– + H2O ⇌ C6H5COOH + OH–. A': cloreto de fenilamônio."
+        },
+        {
+          "label": "C",
+          "text": "C é ácido. C6H5COO– + H2O ⇌ C6H5COOH + H+. A': cloreto de anilínio."
+        },
+        {
+          "label": "D",
+          "text": "C é ácido. C6H5COO– + H2O ⇌ C6H5OH + OH–. A': fenilamina."
+        },
+        {
+          "label": "E",
+          "text": "C é básico. C6H5COO– + H2O ⇌ C6H5COOH + H+. A': cloreto de fenilamônio."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "a1b19afe-d29c-4a32-aee5-c78b13193d59"
+      ],
+      "visualEvidence": [
+        {
+          "assetId": "07e01eb5-c64e-4036-ad7a-2c9475e37a26",
+          "role": "STATEMENT",
+          "alternativeLabel": null,
+          "anchorText": "Observe suas fórmulas estruturais:"
+        },
+        {
+          "assetId": "ca0bb5dc-aba2-44ae-865c-20cfbd42b968",
+          "role": "STATEMENT",
+          "alternativeLabel": null,
+          "anchorText": "conforme representado nesta sequência reacional:"
+        }
+      ],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "08",
+      "statement": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H 3 PO 4 .\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro.\nExplique a razão para a remoção do CO 2 antes da titulação. Determine, ainda, a concentração, em g/L, de H 3 PO 4 no refrigerante.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "O CO2 deve ser removido porque, em meio aquoso, forma ácido carbônico, que também consome NaOH durante a titulação, podendo superestimar a quantidade de H3PO4. A concentração de H3PO4 é 0,49 g/L."
+        },
+        {
+          "label": "B",
+          "text": "O CO2 deve ser removido porque reage diretamente com o H3PO4, formando um sal insolúvel que impede a titulação. A concentração de H3PO4 é 1,47 g/L."
+        },
+        {
+          "label": "C",
+          "text": "O CO2 deve ser removido para evitar que o NaOH reaja com o gás, formando carbonato de sódio, que não interfere na neutralização do H3PO4. A concentração de H3PO4 é 0,147 g/L."
+        },
+        {
+          "label": "D",
+          "text": "O CO2 deve ser removido porque sua acidez aumenta o pH da solução, dificultando a viragem do indicador. A concentração de H3PO4 é 4,9 g/L."
+        },
+        {
+          "label": "E",
+          "text": "O CO2 deve ser removido porque, ao aquecer, ele arrasta parte do H3PO4, evitando erro por perda de fosfato. A concentração de H3PO4 é 0,049 g/L."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "c2b0e4fe-4517-41ab-ba5e-bd3c0c92e489"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "09",
+      "statement": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\nC 2 H 6 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 1420. H 2 O ( l ), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 280. CO 2 (g), ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol) = - 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição do GNV em porcentagem volumétrica.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "–200 kJ/mol; 80% de metano e 20% de etano."
+        },
+        {
+          "label": "B",
+          "text": "–200 kJ/mol; 20% de metano e 80% de etano."
+        },
+        {
+          "label": "C",
+          "text": "–1620 kJ/mol; 80% de metano e 20% de etano."
+        },
+        {
+          "label": "D",
+          "text": "–1420 kJ/mol; 70% de metano e 30% de etano."
+        },
+        {
+          "label": "E",
+          "text": "–280 kJ/mol; 60% de metano e 40% de etano."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "c2b0e4fe-4517-41ab-ba5e-bd3c0c92e489",
+        "a19ea6b8-0551-4389-93f2-93623c61447f"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "10",
+      "statement": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.\nDesenvolvimento e resposta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "Kps = [Ca2+][C2O4^2-]; solubilidade em água = 2,0 × 10^-5 mol/L; solubilidade em CaCl2 0,2 mol/L = 2,0 × 10^-9 mol/L."
+        },
+        {
+          "label": "B",
+          "text": "Kps = [Ca2+][C2O4^2-]; solubilidade em água = 2,0 × 10^-5 mol/L; solubilidade em CaCl2 0,2 mol/L = 1,0 × 10^-9 mol/L."
+        },
+        {
+          "label": "C",
+          "text": "Kps = [Ca2+][C2O4^2-]; solubilidade em água = 4,0 × 10^-10 mol/L; solubilidade em CaCl2 0,2 mol/L = 2,0 × 10^-9 mol/L."
+        },
+        {
+          "label": "D",
+          "text": "Kps = [Ca2+][C2O4^2-]; solubilidade em água = 2,0 × 10^-5 mol/L; solubilidade em CaCl2 0,2 mol/L = 4,0 × 10^-10 mol/L."
+        },
+        {
+          "label": "E",
+          "text": "Kps = [Ca2+][C2O4^2-]; solubilidade em água = 1,0 × 10^-5 mol/L; solubilidade em CaCl2 0,2 mol/L = 2,0 × 10^-9 mol/L."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": true,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "a19ea6b8-0551-4389-93f2-93623c61447f"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    }
+  ],
+  "graphErrors": [],
+  "attempts": {
+    "candidate:89b2e046d30ab97a950c:0:alternatives": 1,
+    "candidate:7340f3071650b1111dae:1:alternatives": 1,
+    "candidate:fcc36c32e74990f5e5e9:2:alternatives": 1,
+    "candidate:c6fa6745af21efc0d0f8:3:alternatives": 1,
+    "candidate:89a32791b7d3388defba:4:alternatives": 1,
+    "candidate:4728511432ffd8bccdb5:5:alternatives": 1,
+    "candidate:24d80a40820a13656f80:6:alternatives": 1,
+    "candidate:a84992ebac868faae707:7:alternatives": 1,
+    "candidate:e1ad0bc3c0af9e1e812b:8:alternatives": 1,
+    "candidate:658cf89fa2e084e7ed0a:9:alternatives": 1,
+    "candidate:89b2e046d30ab97a950c:0:answer": 1,
+    "candidate:7340f3071650b1111dae:1:answer": 1,
+    "candidate:fcc36c32e74990f5e5e9:2:answer": 1,
+    "candidate:c6fa6745af21efc0d0f8:3:answer": 1,
+    "candidate:89a32791b7d3388defba:4:answer": 1,
+    "candidate:4728511432ffd8bccdb5:5:answer": 1,
+    "candidate:24d80a40820a13656f80:6:answer": 1,
+    "candidate:a84992ebac868faae707:7:answer": 1,
+    "candidate:e1ad0bc3c0af9e1e812b:8:answer": 1,
+    "candidate:658cf89fa2e084e7ed0a:9:answer": 1
+  }
+}

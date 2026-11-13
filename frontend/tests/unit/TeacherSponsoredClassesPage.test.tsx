@@ -43,17 +43,20 @@ describe('TeacherSponsoredClassesPage', () => {
     fireEvent.click(screen.getByRole('button', { name: /forma de pagamento/i }));
     fireEvent.click(screen.getByRole('button', { name: new RegExp(method, 'i') }));
   };
+  const continueToStudents = () => fireEvent.click(screen.getByRole('button', { name: /continuar para alunos/i }));
+  const quoteButtonName = /calcular valores e revisar/i;
   it('normaliza os emails, consulta o total no servidor e mostra revisão antes de cobrar', async () => {
     render(<TeacherSponsoredClassesPage />);
     await screen.findByRole('option', { name: 'Matemática' });
     expect(screen.queryByLabelText(/adicione os alunos/i)).not.toBeInTheDocument();
     selectMonitor();
     choosePaymentMethod('Cartão de crédito');
+    continueToStudents();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'A@Test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'b@Test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     expect((await screen.findAllByText(/R\$ 140,00|R\$ 140,00/)).length).toBeGreaterThanOrEqual(2);
     expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({ monitorId: 'mon-1', interval: 'MONTHLY', beneficiaryEmails: ['a@test.com', 'b@test.com'] });
     expect(screen.getAllByText(/forma de pagamento: cartão de crédito/i).length).toBeGreaterThanOrEqual(1);
@@ -67,12 +70,13 @@ describe('TeacherSponsoredClassesPage', () => {
     await screen.findByRole('option', { name: 'Matemática' });
     selectMonitor();
     choosePaymentMethod('Cartão de crédito');
+    continueToStudents();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'ana@test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'ANA@test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
     expect(await screen.findByRole('alert')).toHaveTextContent(/já está na lista/i);
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledTimes(1);
     expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({ monitorId: 'mon-1', interval: 'MONTHLY', beneficiaryEmails: ['ana@test.com'] });
   });
@@ -84,11 +88,12 @@ describe('TeacherSponsoredClassesPage', () => {
     await screen.findByRole('option', { name: 'Matemática' });
     selectMonitor();
     choosePaymentMethod('Pix');
+    continueToStudents();
     for (const email of ['a@test.com', 'b@test.com']) {
       fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: email } });
       fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
     }
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     expect(await screen.findByText(/2 vagas · mensal, pagamento único para 1 mês/i)).toBeInTheDocument();
     expect(screen.getByText('Mensal · pagamento único para 1 mês')).toBeInTheDocument();
     expect(screen.getByText(/total: r\$\s*140,00 \(pagamento único para 1 mês\)/i)).toBeInTheDocument();
@@ -115,9 +120,10 @@ describe('TeacherSponsoredClassesPage', () => {
     expect(screen.getByText('Recomendado')).toBeInTheDocument();
     expect(screen.queryByText('10% OFF')).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /Pix/i }));
+    continueToStudents();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'aluno@test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     expect(await screen.findByText(/Total: R\$[\s ]576,00 \(pagamento único\)/i)).toBeInTheDocument();
     expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({ monitorId: 'mon-1', interval: 'ANNUAL', beneficiaryEmails: ['aluno@test.com'] });
     fireEvent.click(screen.getByRole('button', { name: /ir para pagamento/i }));
@@ -135,12 +141,13 @@ describe('TeacherSponsoredClassesPage', () => {
     await screen.findByRole('option', { name: 'Matemática' });
     selectMonitor();
     choosePaymentMethod('Cartão de crédito');
+    continueToStudents();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'aluno@test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     fireEvent.click(await screen.findByRole('button', { name: /ir para pagamento/i }));
 
-    const review = screen.getByLabelText('Revisão da compra');
+    const review = screen.getByLabelText(/etapa 3: revisão da compra/i);
     const paymentButton = within(review).getByRole('button', { name: /ir para pagamento/i });
     const alert = await within(review).findByRole('alert');
     expect(alert).toHaveTextContent('O serviço de turmas está instável. Tente novamente em instantes.');
@@ -167,9 +174,10 @@ describe('TeacherSponsoredClassesPage', () => {
     selectMonitor();
     fireEvent.click(screen.getByRole('button', { name: /anual · 12 meses/i }));
     choosePaymentMethod('Cartão de crédito');
+    continueToStudents();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'Aluno@Test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     await waitFor(() => expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({ monitorId: 'mon-1', interval: 'ANNUAL', beneficiaryEmails: ['aluno@test.com'] }));
     expect(await screen.findByText(/Total: R\$[\s ]576,00 \(à vista ou em até 12x no cartão\)/i)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /ir para pagamento/i }));
@@ -188,9 +196,10 @@ describe('TeacherSponsoredClassesPage', () => {
     selectMonitor();
     if (plan === 'ANNUAL') fireEvent.click(screen.getByRole('button', { name: /anual · 12 meses/i }));
     choosePaymentMethod(method);
+    continueToStudents();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'aluno@test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     expect(await screen.findByText(new RegExp(`Forma de pagamento: ${method}`, 'i'))).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /ir para pagamento/i }));
     await waitFor(() => expect(TeacherSponsoredSeatService.createSponsoredBatch).toHaveBeenCalledWith({
@@ -209,11 +218,12 @@ describe('TeacherSponsoredClassesPage', () => {
     await screen.findByRole('option', { name: 'Matemática' });
     selectMonitor();
     choosePaymentMethod('Pix');
+    continueToStudents();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'Particular@Example.test' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
-    expect((await screen.findAllByText('particular@example.test')).length).toBeGreaterThanOrEqual(2);
     expect(screen.getByText(/1 aluno na compra/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
+    expect((await screen.findAllByText('particular@example.test')).length).toBeGreaterThanOrEqual(2);
     expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({ monitorId: 'mon-1', interval: 'MONTHLY', beneficiaryEmails: ['particular@example.test'] });
   });
 
@@ -228,12 +238,13 @@ describe('TeacherSponsoredClassesPage', () => {
     await screen.findByRole('option', { name: 'Exatas ENEM' });
     selectMonitor();
     choosePaymentMethod('Cartão de crédito');
+    continueToStudents();
     for (const email of ['e1@test.com', 'e2@test.com', 'e3@test.com', 'e4@test.com', 'e5@test.com']) {
       fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: email } });
       fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
     }
     expect(screen.getByText(/5 alunos na compra/i)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     expect(await screen.findByText(/5 vagas · mensal, recorrente/i)).toBeInTheDocument();
     expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({
       monitorId: 'mon-1', interval: 'MONTHLY', beneficiaryEmails: ['e1@test.com', 'e2@test.com', 'e3@test.com', 'e4@test.com', 'e5@test.com'],
@@ -256,19 +267,68 @@ describe('TeacherSponsoredClassesPage', () => {
     expect(await screen.findByText('paid@test.com')).toBeInTheDocument();
     expect(screen.getByText('unclaimed@test.com')).toBeInTheDocument();
     expect(screen.getByText('pending@test.com')).toBeInTheDocument();
-    expect(screen.getByText(/aguardando o aluno/i)).toBeInTheDocument();
+    expect(screen.getByText(/aguardando vínculo/i)).toBeInTheDocument();
   });
 
-  it('identifica lote mensal pago por Pix como pagamento único sem ação de cancelar renovação', async () => {
+  it('mostra turma mensal paga por Pix sem oferecer ação de cancelamento recorrente', async () => {
     vi.mocked(TeacherSponsoredSeatService.listSponsoredBatches).mockResolvedValue([{
       id: 'monthly-pix', monitorId: 'mon-1', monitorName: 'Matemática', interval: 'MONTHLY', billingType: 'PIX', serviceMonths: 1,
       status: 'ACTIVE', seatCount: 1, grossPriceCents: 10000, platformAmountCents: 7000, totalAmountCents: 7000,
       currentPeriodStart: null, currentPeriodEnd: null, cancelAtPeriodEnd: false, checkoutUrl: null,
-      createdAt: '2026-10-27T00:00:00Z', seats: [],
+      createdAt: '2026-10-27T00:00:00Z', seats: [
+        { id: 'pix-student', email: 'pix-student@test.com', status: 'ACTIVE', startsAt: null, endsAt: '2026-11-27T00:00:00.000Z', studentName: 'Aluno Pix' },
+      ],
+    }] as any);
+    render(<TeacherSponsoredClassesPage />);
+    const summary = await screen.findByText('Matemática', { selector: 'summary' });
+    fireEvent.click(summary);
+    const expandedMonitor = summary.closest('details')!;
+    expect(await within(expandedMonitor).findByText('1 aluno')).toBeInTheDocument();
+    expect(within(expandedMonitor).getByText('pix-student@test.com')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /cancelar renovação/i })).not.toBeInTheDocument();
+  });
+
+  it('permite cancelar renovação mensal no cartão e informa que o acesso segue até o fim do período', async () => {
+    const activeBatch = {
+      id: 'monthly-card', monitorId: 'mon-1', monitorName: 'Matemática', interval: 'MONTHLY', billingType: 'CREDIT_CARD', serviceMonths: 1,
+      status: 'ACTIVE', seatCount: 1, grossPriceCents: 10000, platformAmountCents: 7000, totalAmountCents: 7000,
+      currentPeriodStart: '2026-10-27T00:00:00.000Z', currentPeriodEnd: '2026-11-27T00:00:00.000Z', cancelAtPeriodEnd: false, checkoutUrl: null,
+      createdAt: '2026-10-27T00:00:00Z', seats: [
+        { id: 'card-student', email: 'card-student@test.com', status: 'ACTIVE', startsAt: '2026-10-27T00:00:00.000Z', endsAt: '2026-11-27T00:00:00.000Z', studentName: 'Aluno Cartão' },
+      ],
+    };
+    const cancelPendingBatch = {
+      ...activeBatch,
+      status: 'CANCEL_PENDING', cancelAtPeriodEnd: true,
+      seats: [{ ...activeBatch.seats[0], status: 'CANCEL_PENDING' }],
+    };
+    vi.mocked(TeacherSponsoredSeatService.listSponsoredBatches)
+      .mockResolvedValueOnce([activeBatch] as any)
+      .mockResolvedValueOnce([cancelPendingBatch] as any);
+    render(<TeacherSponsoredClassesPage />);
+    const summary = await screen.findByText('Matemática', { selector: 'summary' });
+    fireEvent.click(summary);
+    fireEvent.click(await screen.findByRole('button', { name: /cancelar renovação/i }));
+
+    await waitFor(() => expect(TeacherSponsoredSeatService.cancelSponsoredBatch).toHaveBeenCalledWith('monthly-card'));
+    expect(await screen.findByRole('status')).toHaveTextContent(/os alunos mantêm acesso até o fim do período pago/i);
+    const studentRow = screen.getByText('card-student@test.com').closest('tr')!;
+    expect(within(studentRow).getByText(/acesso até o fim do período/i)).toBeInTheDocument();
+    expect(studentRow).toHaveTextContent(new Intl.DateTimeFormat('pt-BR', { dateStyle: 'medium' }).format(new Date('2026-11-27T00:00:00.000Z')));
+  });
+
+  it('não oferece cancelamento para plano anual no cartão', async () => {
+    vi.mocked(TeacherSponsoredSeatService.listSponsoredBatches).mockResolvedValue([{
+      id: 'annual-card', monitorId: 'mon-1', monitorName: 'Matemática', interval: 'ANNUAL', billingType: 'CREDIT_CARD', serviceMonths: 12,
+      status: 'ACTIVE', seatCount: 1, grossPriceCents: 96000, platformAmountCents: 67200, totalAmountCents: 67200,
+      currentPeriodStart: null, currentPeriodEnd: '2027-10-27T00:00:00.000Z', cancelAtPeriodEnd: false, checkoutUrl: null,
+      createdAt: '2026-10-27T00:00:00Z', seats: [
+        { id: 'annual-student', email: 'annual-student@test.com', status: 'ACTIVE', startsAt: null, endsAt: '2027-10-27T00:00:00.000Z', studentName: 'Aluno Anual' },
+      ],
     }] as any);
     render(<TeacherSponsoredClassesPage />);
     fireEvent.click(await screen.findByText('Matemática', { selector: 'summary' }));
-    expect(await screen.findByText(/1 vagas · total r\$\s*70,00 · pagamento único para 1 mês/i)).toBeInTheDocument();
+    expect(await screen.findByText('annual-student@test.com')).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /cancelar renovação/i })).not.toBeInTheDocument();
   });
 
@@ -279,12 +339,13 @@ describe('TeacherSponsoredClassesPage', () => {
     await screen.findByRole('option', { name: 'Matemática' });
     selectMonitor();
     choosePaymentMethod('Pix');
+    continueToStudents();
     expect(screen.getByText(/ainda pode iniciar uma nova compra/i)).toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent(/o serviço de turmas está instável/i);
     expect(screen.queryByText(/relation sponsored_seat_batches unavailable/i)).not.toBeInTheDocument();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'aluno@test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
     await waitFor(() => expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalled());
   });
 
@@ -309,7 +370,7 @@ describe('TeacherSponsoredClassesPage', () => {
     vi.mocked(TeacherMonitorService.listMine).mockResolvedValue([{ ...monitor, status: 'DRAFT' }] as any);
     render(<TeacherSponsoredClassesPage />);
     expect(await screen.findByText(/publique um monitor/i)).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /revisar valores/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: quoteButtonName })).not.toBeInTheDocument();
   });
 
   it('mostra erro de cotação sem perder os dados digitados', async () => {
@@ -318,10 +379,11 @@ describe('TeacherSponsoredClassesPage', () => {
     await screen.findByRole('option', { name: 'Matemática' });
     fireEvent.change(screen.getByLabelText(/1\. escolha o monitor/i), { target: { value: 'mon-1' } });
     choosePaymentMethod('Pix');
+    continueToStudents();
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'aluno@test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
-    const quoteButton = screen.getByRole('button', { name: /revisar valores/i });
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
+    const quoteButton = screen.getByRole('button', { name: quoteButtonName });
     const alert = await screen.findByRole('alert');
     expect(alert).toHaveTextContent('O serviço de turmas está instável. Tente novamente em instantes.');
     expect(quoteButton.compareDocumentPosition(alert) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
@@ -333,6 +395,7 @@ describe('TeacherSponsoredClassesPage', () => {
     await screen.findByRole('option', { name: 'Matemática' });
     fireEvent.change(screen.getByLabelText(/1\. escolha o monitor/i), { target: { value: 'mon-1' } });
     choosePaymentMethod('Pix');
+    continueToStudents();
     const input = screen.getByLabelText(/adicione os alunos um por vez/i);
     fireEvent.change(input, { target: { value: 'bad' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
@@ -356,7 +419,7 @@ describe('TeacherSponsoredClassesPage', () => {
     const details = await screen.findByText('Matemática', { selector: 'summary' });
     expect(details.closest('details')).not.toHaveAttribute('open');
     fireEvent.click(details);
-    expect(await screen.findByText(/ainda não há alunos nesta turma/i)).toBeInTheDocument();
+    expect(await screen.findByText(/ainda não há alunos neste plano/i)).toBeInTheDocument();
   });
 
   it('mostra monitor publicado sem lote em accordion expansível com estado vazio', async () => {
@@ -366,7 +429,7 @@ describe('TeacherSponsoredClassesPage', () => {
     const detail = summary.closest('details');
     expect(detail).not.toHaveAttribute('open');
     fireEvent.click(summary);
-    expect(await screen.findByText(/ainda não há alunos nesta turma/i)).toBeInTheDocument();
+    expect(await screen.findByText(/ainda não há alunos neste plano/i)).toBeInTheDocument();
     expect(detail).toHaveAttribute('open');
   });
 
@@ -382,8 +445,8 @@ describe('TeacherSponsoredClassesPage', () => {
     render(<TeacherSponsoredClassesPage />);
     fireEvent.click(await screen.findByText('Matemática', { selector: 'summary' }));
     fireEvent.click(await screen.findByRole('button', { name: /editar alunos/i }));
-    expect(screen.getAllByText(/forma de pagamento: pix/i).length).toBeGreaterThanOrEqual(1);
-    fireEvent.change(screen.getByLabelText(/editar e-mails/i), { target: { value: 'new@test.com' } });
+    expect(within(screen.getByRole('dialog')).getByText(/matemática · mensal · pix/i)).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText(/e-mails dos alunos/i), { target: { value: 'new@test.com' } });
     fireEvent.click(screen.getByRole('button', { name: /salvar e continuar pagamento/i }));
     await waitFor(() => expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({ monitorId: 'mon-1', interval: 'MONTHLY', beneficiaryEmails: ['new@test.com'] }));
     await waitFor(() => expect(TeacherSponsoredSeatService.updateSponsoredBatch).toHaveBeenCalledWith('pending', { beneficiaryEmails: ['new@test.com'], expectedTotalAmountCents: 14000 }));
@@ -394,17 +457,32 @@ describe('TeacherSponsoredClassesPage', () => {
     render(<TeacherSponsoredClassesPage />);
     await screen.findByRole('option', { name: 'Matemática' });
     selectMonitor();
-    fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'aluno@test.com' } });
-    fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
-    expect(screen.getByRole('button', { name: /revisar valores/i })).toBeDisabled();
+    const continueButton = screen.getByRole('button', { name: /continuar para alunos/i });
+    expect(continueButton).toBeDisabled();
     expect(TeacherSponsoredSeatService.quoteSponsoredBatch).not.toHaveBeenCalled();
 
     choosePaymentMethod('Pix');
-    expect(screen.getByRole('button', { name: /revisar valores/i })).toBeEnabled();
+    expect(continueButton).toBeEnabled();
+    fireEvent.click(continueButton);
+    fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'aluno@test.com' } });
+    fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
+    const quoteButton = screen.getByRole('button', { name: quoteButtonName });
+    expect(quoteButton).toBeEnabled();
+    expect(TeacherSponsoredSeatService.quoteSponsoredBatch).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole('button', { name: /voltar ao plano/i }));
     fireEvent.click(screen.getByRole('button', { name: /anual · 12 meses/i }));
     expect(screen.getByText(/selecione a forma de pagamento/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /revisar valores/i })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /continuar para alunos/i })).toBeDisabled();
     expect(screen.getByRole('button', { name: /forma de pagamento/i })).toHaveAttribute('aria-expanded', 'false');
+    choosePaymentMethod('Cartão de crédito');
+    fireEvent.click(screen.getByRole('button', { name: /continuar para alunos/i }));
+    expect(screen.getByLabelText(/adicione os alunos um por vez/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: quoteButtonName })).toBeEnabled();
+    fireEvent.click(screen.getByRole('button', { name: quoteButtonName }));
+    await waitFor(() => expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({
+      monitorId: 'mon-1', interval: 'ANNUAL', beneficiaryEmails: ['aluno@test.com'],
+    }));
   });
 
   it('expande os métodos disponíveis em ambos os períodos', async () => {

@@ -1,4 +1,6 @@
 import type { PrismaClient } from '@prisma/client';
+import { env } from '../../../config/env.js';
+import { legacyStudentEnrollmentEnvironmentFilter, legacyStudentSubscriptionEnvironmentFilter } from '../../access/infrastructure/legacy-access-environment.js';
 import type { ChatAccessInput, ChatAccessPort } from '../ports/chat-access.port.js';
 import type { ChatScope } from '../ports/chat-access.port.js';
 
@@ -39,12 +41,13 @@ export class PrismaChatAccessRepository implements ChatAccessPort {
     if (!student) return null;
 
     const now = new Date();
-    const [subscription, enrollment] = await Promise.all([
+    const [subscription, enrollment, sponsoredSeat] = await Promise.all([
       this.client.studentSubscription.findFirst({
         where: {
           studentId: student.id,
           monitorId: input.monitorId,
           status: 'active',
+          ...legacyStudentSubscriptionEnvironmentFilter(),
           startsAt: { lte: now },
           OR: [{ expiresAt: null }, { expiresAt: { gte: now } }],
         },
@@ -55,14 +58,26 @@ export class PrismaChatAccessRepository implements ChatAccessPort {
           studentId: student.id,
           monitorId: input.monitorId,
           status: 'ACTIVE',
+          ...legacyStudentEnrollmentEnvironmentFilter(),
           startsAt: { lte: now },
           OR: [{ endsAt: null }, { endsAt: { gte: now } }],
         },
         select: { id: true },
       }),
+      this.client.sponsoredSeat.findFirst({
+        where: {
+          studentId: student.id,
+          status: 'ACTIVE',
+          accessRevokedAt: null,
+          batch: { environment: env.ASAAS_ENV.toUpperCase(), monitorId: input.monitorId },
+          startsAt: { lte: now },
+          endsAt: { gt: now },
+        },
+        select: { id: true },
+      }),
     ]);
 
-    if (!subscription && !enrollment) return null;
+    if (!subscription && !enrollment && !sponsoredSeat) return null;
 
     return {
       studentId: student.id,

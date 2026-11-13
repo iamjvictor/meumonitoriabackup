@@ -1,0 +1,130 @@
+{
+  "runId": "e2e_so_qwen235b-2026-11-02T221536431Z-89fe053a-3578-4a05-8bee-2f27eeb72183",
+  "test": "e2e_so_qwen235b",
+  "executionMode": "dry-run",
+  "paidCallsMade": 0,
+  "pipelineExecuted": false,
+  "generatedAt": "2026-11-02T22:15:36.639Z",
+  "modelIds": [
+    "qwen/qwen3-vl-235b-a22b-instruct",
+    "qwen/qwen3-vl-30b-a3b-instruct"
+  ],
+  "catalog": {
+    "status": "VALIDATED",
+    "listedIds": [
+      "qwen/qwen3-vl-235b-a22b-instruct",
+      "qwen/qwen3-vl-30b-a3b-instruct"
+    ],
+    "missingIds": []
+  },
+  "stages": {
+    "extraction": {
+      "model": "qwen/qwen3-vl-30b-a3b-instruct",
+      "envVariables": [
+        "QUESTION_EXTRACTION_MODEL",
+        "QUESTION_SOURCE_RECONSTRUCTION_MODEL",
+        "QUESTION_CATEGORIZE_MODEL",
+        "TOPIC_PROFILE_MODEL",
+        "DOCUMENT_BLOCK_TOPIC_CLASSIFICATION_MODEL"
+      ],
+      "configured": [],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "alternatives": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "QUESTION_ALTERNATIVES_MODEL"
+      ],
+      "configured": [],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "answer": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "QUESTION_ANSWER_MODEL"
+      ],
+      "configured": [],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "explanation": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "QUESTION_EXPLANATION_MODEL"
+      ],
+      "configured": [],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "review": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "QUESTION_QUALITY_REVIEW_MODEL"
+      ],
+      "configured": [],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "normalize": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "QUESTION_COMPLETION_MODEL"
+      ],
+      "configured": [],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "chatImage": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "CHAT_IMAGE_MODEL"
+      ],
+      "configured": [],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    },
+    "visual": {
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "envVariables": [
+        "DOCUMENT_VISUAL_DESCRIPTION_MODEL"
+      ],
+      "configured": [],
+      "limitation": "produção compartilha variáveis de algumas etapas; interceptor em teste poderá rotear por schemaName quando executar"
+    }
+  },
+  "provider": {
+    "status": "UNRESOLVED",
+    "order": null,
+    "allow_fallbacks": false,
+    "reason": "Dry-run não seleciona provedor. Exige consulta de endpoints/preços e revisão de política de retenção antes de orçamento ou execução."
+  },
+  "cost": {
+    "currency": "USD",
+    "estimatedMaximum": null,
+    "status": "NAO_VERIFICADO",
+    "reason": "Sem provedor e preço de endpoint validados; nenhum valor foi inventado."
+  },
+  "repetitions": 2,
+  "parameters": {
+    "documentTextSource": "docling",
+    "documentParserEnableOcr": true,
+    "documentIngestionV3Enabled": true,
+    "embeddingModel": "qwen/qwen3-embedding-8b",
+    "reasoningEffort": "none",
+    "temperature": "baseline por etapa a confirmar na execução"
+  },
+  "isolation": {
+    "status": "BLOCKED",
+    "databaseSchema": "model_comparison_e2e_so_qwen235b",
+    "runIdPrefix": "e2e_so_qwen235b-2026-11-02T221536431Z-89fe053a-3578-4a05-8bee-2f27eeb72183",
+    "reason": "Arquivo env define schema isolado, mas o runner atual de ingestão grava no Postgres local compartilhado; isolamento real ainda não está implementado."
+  },
+  "baselineReuse": {
+    "status": "BLOCKED",
+    "reason": "Baseline chunks/embeddings estão vinculados a documentId e tenant do banco existente; não há import/export isolado verificado. O runner de ingestão atual regenera OCR/chunks/embeddings."
+  },
+  "assertions": {
+    "status": "NOT_RUN",
+    "reason": "Dry-run valida apenas configuração/catálogo; não simula resultado do pipeline."
+  },
+  "blockers": [
+    "Sem alterar produção, as variáveis atuais não separam todos os agentes; schemas como alternativas/resposta/explicação/revisão podem ser interceptados somente em processo instrumentado.",
+    "Provider order e preços precisam ser resolvidos por endpoint de cada modelo; retenção exige revisão da política do provedor escolhido.",
+    "Reuso fiel dos chunks/embeddings baseline e isolamento de banco não estão implementados pelo harness existente."
+  ]
+}

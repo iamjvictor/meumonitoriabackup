@@ -1,0 +1,6060 @@
+{
+  "schemaVersion": "docling-layout-v1",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "elements": [
+        {
+          "externalIndex": 0,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            55.842731152082386,
+            786.3217469512141,
+            356.17328836226034,
+            706.7196546403156
+          ]
+        },
+        {
+          "externalIndex": 1,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Provas de Processos Seletivos do IFF entre 2010 e 2023",
+          "bbox": [
+            73.6,
+            482.6090146484375,
+            521.6400000000001,
+            460.4690146484375
+          ]
+        },
+        {
+          "externalIndex": 2,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Projeto de Extensão IFF SJB de Portas Abertas",
+          "bbox": [
+            56.8,
+            156.12701464843758,
+            395.02,
+            136.20101464843754
+          ]
+        },
+        {
+          "externalIndex": 3,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Coordenadores: Gláucio José Pereira da Silva e Edson Ribeiro Ferreira",
+          "bbox": [
+            56.8,
+            94.15401464843751,
+            482.5449999999997,
+            77.54901464843749
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "elements": [
+        {
+          "externalIndex": 4,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.42675018310547,
+            804.6847610473633,
+            288.8578796386719,
+            715.2805786132812
+          ]
+        },
+        {
+          "externalIndex": 5,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "INSTRUÇÕES",
+          "bbox": [
+            261.59989536,
+            681.725847309552,
+            336.7871081001526,
+            669.05193237912
+          ]
+        },
+        {
+          "externalIndex": 6,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Caro Candidato,",
+          "bbox": [
+            85.07958831615107,
+            650.407299836976,
+            168.30681438873842,
+            637.634024946288
+          ]
+        },
+        {
+          "externalIndex": 7,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Ao receber do fiscal o cartão de respostas personalizado e um caderno de questões, observe o seguinte:",
+          "bbox": [
+            85.07958831615105,
+            634.687306124976,
+            513.3062549446005,
+            609.3140362742879
+          ]
+        },
+        {
+          "externalIndex": 8,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "1-  O caderno das questões deverá estar numerado seqüencialmente e trazer 40 questões  para  serem  respondidas.  Caso  haja  alguma  falha  nesse  caderno, comunique-se imediatamente com o fiscal que lhe dará outro.",
+          "bbox": [
+            103.07961065773921,
+            606.4873174049759,
+            513.3067740424264,
+            568.3940526422879
+          ]
+        },
+        {
+          "externalIndex": 9,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "2A distribuição das questões ocorre da seguinte maneira:",
+          "bbox": [
+            103.07961065773921,
+            565.4473338209758,
+            398.70685234317017,
+            552.6740589302879
+          ]
+        },
+        {
+          "externalIndex": 10,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "3-  A  forma  correta  de  marcar  as  respostas  no  cartão  é  cobrir,  completa  e fortemente,  com  caneta PRETA , o  espaço  referente  à  letra  a  ser  assinalada, conforme o exemplo abaixo:",
+          "bbox": [
+            103.07978886972793,
+            469.807372076976,
+            513.3075051758291,
+            431.7141073142879
+          ]
+        },
+        {
+          "externalIndex": 11,
+          "level": 1,
+          "type": "TABLE",
+          "text": null,
+          "bbox": [
+            119.94883728027344,
+            550.4858093261719,
+            527.2893676757812,
+            472.7594299316406
+          ]
+        },
+        {
+          "externalIndex": 12,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "FORMA CORRETA:",
+          "bbox": [
+            163.67993452800002,
+            400.99795960075204,
+            277.9940103629914,
+            392.828362868592
+          ]
+        },
+        {
+          "externalIndex": 13,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            431.87103271484375,
+            408.8434753417969,
+            456.0677795410156,
+            385.9126892089844
+          ]
+        },
+        {
+          "externalIndex": 14,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            303.05413818359375,
+            409.34820556640625,
+            326.7528991699219,
+            385.60296630859375
+          ]
+        },
+        {
+          "externalIndex": 15,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            366.1494140625,
+            408.4674377441406,
+            390.1071472167969,
+            384.88702392578125
+          ]
+        },
+        {
+          "externalIndex": 16,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            398.3309631347656,
+            409.0225524902344,
+            421.9988708496094,
+            385.5549621582031
+          ]
+        },
+        {
+          "externalIndex": 17,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            336.00457763671875,
+            409.1617126464844,
+            359.97119140625,
+            385.985107421875
+          ]
+        },
+        {
+          "externalIndex": 18,
+          "level": 1,
+          "type": "TEXT",
+          "text": "A leitora ótica não registrará respostas com marcação pouco nítida ou com mais de uma alternativa marcada. NÃO RASURE.",
+          "bbox": [
+            106.43977704973213,
+            366.24597350155176,
+            504.4262987714836,
+            340.8520636591198
+          ]
+        },
+        {
+          "externalIndex": 19,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "4-  O tempo disponível para esta prova, incluindo o preenchimento do cartão de respostas, é de 3 horas.",
+          "bbox": [
+            103.07978886972793,
+            322.3274310689758,
+            513.3070424209074,
+            296.83416126628777
+          ]
+        },
+        {
+          "externalIndex": 20,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "5Reserve os 20 minutos finais para preencher o cartão de respostas.",
+          "bbox": [
+            103.07978886972793,
+            294.00744239697565,
+            454.9869643610783,
+            281.2341675062877
+          ]
+        },
+        {
+          "externalIndex": 21,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "6-  Caso deseje levar sua prova, só poderá fazê-lo a partir do término das duas primeiras horas de prova.",
+          "bbox": [
+            103.07978886972793,
+            278.28744868497563,
+            513.3068738031487,
+            252.91417883428767
+          ]
+        },
+        {
+          "externalIndex": 22,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "7-  As  provas  estarão  à  disposição  dos  candidatos,  na  Portaria  Principal  do campus Campos-Centro, a partir das 15 horas do dia 21/12/2009.",
+          "bbox": [
+            103.07978886972793,
+            249.9674600129756,
+            513.3070475199341,
+            224.59419016228765
+          ]
+        },
+        {
+          "externalIndex": 23,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "8-  O  gabarito  será  afixado  na  Portaria  Principal  do campus Campos-Centro  e disponibilizado  no  site  http://www.iff.edu.br,  duas  horas  após  o  encerramento  da prova.",
+          "bbox": [
+            103.07928916892774,
+            221.76747129297564,
+            513.306777172047,
+            183.67420653028762
+          ]
+        },
+        {
+          "externalIndex": 24,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "9-  Divulgação do resultado: 14/01/2010. Na Portaria Principal  do campus Campos-Centro,  via  internet  pelo  endereço  http://www.iff.edu.br  e  pela  imprensa local.",
+          "bbox": [
+            103.07878946812765,
+            180.72748770897567,
+            513.3054719318103,
+            142.7542228982877
+          ]
+        },
+        {
+          "externalIndex": 25,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.6169738769531,
+            762.4678421020508,
+            519.2715454101562,
+            738.0266494750977
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "elements": [
+        {
+          "externalIndex": 26,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.38938903808594,
+            804.8341484069824,
+            288.9067077636719,
+            714.0689010620117
+          ]
+        },
+        {
+          "externalIndex": 27,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Jornada dupla",
+          "bbox": [
+            256.55916458629315,
+            667.1367331452001,
+            341.9731621997537,
+            653.3607386556001
+          ]
+        },
+        {
+          "externalIndex": 28,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.7233581542969,
+            762.3481216430664,
+            519.0860595703125,
+            738.0515823364258
+          ]
+        },
+        {
+          "externalIndex": 29,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Lauro Neto",
+          "bbox": [
+            470.639811744,
+            653.4702986117761,
+            512.4736136016822,
+            644.1680223326881
+          ]
+        },
+        {
+          "externalIndex": 30,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Ser  mãe  é  padecer  não  só  no  paraíso,  mas  também  na  escola.  A  pesquisa inédita  'O  aluno  do  ensino  médio  público  estadual  -  percepções,  hábitos  e expectativas', encomendada pelo governo do estado ao Instituto Mapear, mostra que 12% dos cerca de 1,5 milhão dos estudantes têm filho. Entre as meninas, a maioria menor de 20 anos, 15% já são mães, percentual maior do que os 11,2% das jovens fluminenses entre 15 e 19 anos que declararam ter filho na última Pesquisa Nacional por Amostra de Domicílios (Pnad 2008). Dados do Instituto Mapear revelam que, entre os alunos que têm filho, 76% já interromperam os estudos, contra apenas 12% dos que não são pais.",
+          "bbox": [
+            85.08014772592722,
+            630.3673078529761,
+            513.3075136521466,
+            516.4340734262878
+          ]
+        },
+        {
+          "externalIndex": 31,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Paloma Aguiar, que completará 18 anos na próxima terça-feira, está sentindo isso na pele. Há dois meses, a jovem deu à luz a Emanuel e, assim, não pôde voltar às  aulas  em  agosto,  no  Colégio  Estadual  Ignacio  Azevedo  do  Amaral,  no  Jardim Botânico, onde cursava o 3º. ano do ensino médio.",
+          "bbox": [
+            85.08034760624736,
+            428.04738878097555,
+            513.3073793923758,
+            377.3541290582875
+          ]
+        },
+        {
+          "externalIndex": 32,
+          "level": 1,
+          "type": "TEXT",
+          "text": "- Isso leva a crer que a gravidez é um dos principais fatores  de  abandono escolar.  É  provável  que  haja  essa  incidência  pela  necessidade  de  trabalhar  para conseguir recursos. Na pesquisa qualitativa, a gravidez aparece claramente como um dos motivos para interromper os estudos. Em todos os casos, havia a percepção de que  é  importante  voltar  à  escola.  Uma  das  meninas  entrevistadas  disse  que,  se pudesse  voltar  atrás,  não  teria  filho  e  levaria  o  estudo  mais  a  sério  -  conta  o antropólogo Cláudio Gama, diretor do Instituto Mapear.",
+          "bbox": [
+            85.0803476062473,
+            516.6073533569758,
+            513.3077820731872,
+            427.8741088502876
+          ]
+        },
+        {
+          "externalIndex": 33,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Quando  soube  que  a  Megazine  estava  fazendo  uma  reportagem  sobre gravidez na adolescência, Ingrid Amorim, de 18 anos, mandou o seguinte scrap para o Orkut da revista: 'acho muito legal focar o outro lado sobre gravidez na adolescência, porque  normalmente  só  mostram  o  lado  carente,  das  meninas  de  escola  pública'. Ingrid mora numa cobertura no Méier e estudou a vida inteira em colégio particular até dar à luz a Kauã, em fevereiro de 2008.",
+          "bbox": [
+            85.07954808496714,
+            364.8074140769755,
+            513.3073186269996,
+            288.79416448228733
+          ]
+        },
+        {
+          "externalIndex": 34,
+          "level": 1,
+          "type": "TEXT",
+          "text": "[...]",
+          "bbox": [
+            120.4803515686401,
+            377.4074090369755,
+            138.7876463827595,
+            364.63413414628747
+          ]
+        },
+        {
+          "externalIndex": 35,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Precisava amamentar e não tinha quem ficasse com ele. Esperei seis meses e comecei o supletivo. Estudo em casa com as apostilas e depois vou ao curso fazer as provas. Mas só consigo estudar quando o Kauã está dormindo, porque ele é muito levado - diz Ingrid.",
+          "bbox": [
+            85.07994784560725,
+            288.84744446097534,
+            513.3074284868202,
+            238.1541847382873
+          ]
+        },
+        {
+          "externalIndex": 36,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Revista Megazine in Jornal O Globo , 22 de setembro de 2009.",
+          "bbox": [
+            286.439885424,
+            225.67046973177594,
+            512.4734828505814,
+            216.36819345268805
+          ]
+        },
+        {
+          "externalIndex": 37,
+          "level": 1,
+          "type": "TEXT",
+          "text": "[...]",
+          "bbox": [
+            120.479951808,
+            238.32746466897527,
+            138.7872466221194,
+            225.5541897782873
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "elements": [
+        {
+          "externalIndex": 38,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.46537780761719,
+            804.4338035583496,
+            288.78387451171875,
+            725.9804000854492
+          ]
+        },
+        {
+          "externalIndex": 39,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 40,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 1",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            151.7467256604892,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 41,
+          "level": 1,
+          "type": "TEXT",
+          "text": "O texto 'Jornada dupla' aborda um tema presente na vida da mulher desde que ela foi inserida no mundo do trabalho, mas que nos dias atuais faz parte do universo feminino cada vez mais cedo.",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            513.3069000865489,
+            636.314025474288
+          ]
+        },
+        {
+          "externalIndex": 42,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Sobre a frase de abertura 'Ser mãe é padecer não só no paraíso, mas também na escola.', só NÃO é possível dizer que",
+          "bbox": [
+            85.0794659682,
+            611.0473155809758,
+            513.3066515835019,
+            585.7719656911198
+          ]
+        },
+        {
+          "externalIndex": 43,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Antes  a  mulher  precisava  administrar  o  trabalho  e  a  maternidade;  hoje,  são  jovens adolescentes que necessitam articular o estudo e o fato de serem mães tão cedo.",
+          "bbox": [
+            85.0794659682,
+            636.3673054529759,
+            513.3064060564333,
+            610.9940356022879
+          ]
+        },
+        {
+          "externalIndex": 44,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "parafraseia um ditado popular.",
+          "bbox": [
+            85.07946596820001,
+            573.1273307489757,
+            255.30661992176846,
+            560.3540558582878
+          ]
+        },
+        {
+          "externalIndex": 45,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "entre as orações há ideia de adição.",
+          "bbox": [
+            85.07946596820001,
+            547.8073408769758,
+            283.5066543412188,
+            535.0340659862877
+          ]
+        },
+        {
+          "externalIndex": 46,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "nela ocorre a elipse (omissão) de verbo.",
+          "bbox": [
+            85.07946596820001,
+            560.5273357889757,
+            302.4666367404276,
+            547.7540608982878
+          ]
+        },
+        {
+          "externalIndex": 47,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "a maternidade se traduz apenas por uma visão positiva de paraíso.",
+          "bbox": [
+            85.07946596820001,
+            535.2073459169757,
+            434.46686510090836,
+            522.4340710262877
+          ]
+        },
+        {
+          "externalIndex": 48,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "sugere ser a gravidez precoce um complicador na vida escolar dos jovens.",
+          "bbox": [
+            85.0794659682,
+            522.6073509569757,
+            470.7070282982296,
+            509.83407606628765
+          ]
+        },
+        {
+          "externalIndex": 49,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 2",
+          "bbox": [
+            85.0794659682,
+            471.9659312135516,
+            151.74671550976706,
+            459.29201628311955
+          ]
+        },
+        {
+          "externalIndex": 50,
+          "level": 1,
+          "type": "TEXT",
+          "text": "O texto da revista Megazine ,  publicada  toda  terça-feira  pelo  jornal O Globo ,  suscita ideias a respeito do tema nele abordado. Em qual dos itens se traduz INCONVENIENTEMENTE algumas dessas ideias?",
+          "bbox": [
+            85.0794659682,
+            459.3673762529756,
+            513.3065202132007,
+            421.3720314511195
+          ]
+        },
+        {
+          "externalIndex": 51,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " O título 'Jornada dupla' diz respeito ao desempenho das funções que as meninasmães assumem a partir da gravidez.",
+          "bbox": [
+            85.07976578868006,
+            408.7273965089755,
+            510.4340182267503,
+            383.3541266582875
+          ]
+        },
+        {
+          "externalIndex": 52,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O caso de Paloma Aguiar serve para exemplificar a pesquisa 'O aluno do ensino médio  público  estadual  -  percepções,  hábitos  e  expectativas'  realizada  pelo Instituto Mapear.",
+          "bbox": [
+            85.08016554932009,
+            358.08741676497544,
+            513.3079846515567,
+            319.99415200228736
+          ]
+        },
+        {
+          "externalIndex": 53,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Ingrid Amorim, jovem que sempre estudou em escolas particulares, não teve sua rotina alterada com o nascimento do filho.",
+          "bbox": [
+            85.07996566900009,
+            383.40740663697545,
+            513.3074933548446,
+            358.03413678628743
+          ]
+        },
+        {
+          "externalIndex": 54,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " De acordo com a pesquisa do Instituto Mapear, não é a gravidez a única causa que leva o jovem a abandonar a escola.",
+          "bbox": [
+            85.08036542964017,
+            320.16743193297543,
+            513.3071702972379,
+            294.79416208228736
+          ]
+        },
+        {
+          "externalIndex": 55,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " A gravidez na adolescência não é uma questão que envolve apenas estudantes das classes menos favorecidas e de escolas públicas.",
+          "bbox": [
+            85.07956590836002,
+            294.84744206097525,
+            513.3070420124494,
+            269.4741722102873
+          ]
+        },
+        {
+          "externalIndex": 56,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.7579650878906,
+            762.2891464233398,
+            519.2410888671875,
+            738.0719985961914
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "elements": [
+        {
+          "externalIndex": 57,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.33393096923828,
+            804.5317726135254,
+            288.6743469238281,
+            725.3700256347656
+          ]
+        },
+        {
+          "externalIndex": 58,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 59,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 3",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            151.74671550976706,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 60,
+          "level": 1,
+          "type": "TEXT",
+          "text": "O  sentido  de  um  texto  pode  ser  também  melhor  percebido  quando  se  faz  uso  da análise morfossintática, em que se estuda a classe gramatical da palavra e a função do termo na oração.",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            513.3067500568603,
+            636.314025474288
+          ]
+        },
+        {
+          "externalIndex": 61,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Sobre esse assunto, marque o comentário totalmente correto.",
+          "bbox": [
+            85.0794659682,
+            636.3673054529759,
+            390.1862165536161,
+            623.5940305622879
+          ]
+        },
+        {
+          "externalIndex": 62,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Em 'Dados do Instituto Mapear revelam que, entre os alunos que têm filho, 76% já interromperam os estudos, contra apenas 12% dos que não são pais.', todos os verbos se flexionaram no plural e são transitivos diretos.",
+          "bbox": [
+            85.0794659682,
+            611.0473155809758,
+            513.3069192614677,
+            573.0740507702878
+          ]
+        },
+        {
+          "externalIndex": 63,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Por possuir preposição, o termo destacado exerce função de objeto indireto em 'É provável que haja essa incidência pela necessidade de trabalhar para conseguir recursos.'",
+          "bbox": [
+            85.07946596819994,
+            547.8073408769758,
+            513.3061963152975,
+            509.834076066288
+          ]
+        },
+        {
+          "externalIndex": 64,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " O pronome demonstrativo do período '- Isso leva a crer que a gravidez é um dos principais fatores de abandono escolar.' é o sujeito da primeira oração.",
+          "bbox": [
+            85.0794659682,
+            573.1273307489757,
+            513.3064112390902,
+            547.7540608982878
+          ]
+        },
+        {
+          "externalIndex": 65,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " No trecho 'é importante voltar à escola.', a expressão sublinhada é composta de preposição, artigo e substantivo e funciona como adjunto adnominal.",
+          "bbox": [
+            85.07993642641182,
+            509.88735604497595,
+            513.3068125802864,
+            484.514086194288
+          ]
+        },
+        {
+          "externalIndex": 66,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Como  adjetivo,  'levado'  caracteriza  o  sujeito  em  'ele  é  muito  levado';  sendo, portanto, o objeto direto da oração.",
+          "bbox": [
+            85.0797365460918,
+            484.56736617297594,
+            513.3064593137277,
+            459.1940963222879
+          ]
+        },
+        {
+          "externalIndex": 67,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 4",
+          "bbox": [
+            85.07893702481157,
+            434.04594638155186,
+            151.74618656637864,
+            421.3720314511198
+          ]
+        },
+        {
+          "externalIndex": 68,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            163.54405212402344,
+            409.2981872558594,
+            384.99053955078125,
+            124.2322998046875
+          ]
+        },
+        {
+          "externalIndex": 69,
+          "level": 1,
+          "type": "TEXT",
+          "text": "http://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg. Acessado em 28/09/2009.",
+          "bbox": [
+            205.559917776,
+            99.43012022793596,
+            512.4735761605659,
+            90.12784394884807
+          ]
+        },
+        {
+          "externalIndex": 70,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.90411376953125,
+            762.251579284668,
+            519.1709594726562,
+            738.1148300170898
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "elements": [
+        {
+          "externalIndex": 71,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.15397644042969,
+            804.7926483154297,
+            143.1343994140625,
+            728.5097427368164
+          ]
+        },
+        {
+          "externalIndex": 72,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 73,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Instituiu-se o dia 26 de setembro como o Dia Mundial da Prevenção da Gravidez na Adolescência. O texto que você acabou de ler trata desse tema. Nos itens abaixo, há um que traz informações NÃO pertinentes a esse texto. Marqueo.",
+          "bbox": [
+            85.07846656659976,
+            699.607280156976,
+            513.30613613645,
+            648.914020434288
+          ]
+        },
+        {
+          "externalIndex": 74,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O  pronome  possessivo  que  aparece  repetido  no  lema  da  campanha  objetiva atribuir ao interlocutor a responsabilidade sobre os próprios erros e acertos.",
+          "bbox": [
+            85.07846656659976,
+            636.3673054529759,
+            513.3054124118659,
+            610.9940356022879
+          ]
+        },
+        {
+          "externalIndex": 75,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Haveria alteração de sentido se a primeira frase do texto fosse: Na vida, pode-se sempre escolher.",
+          "bbox": [
+            85.07966584852001,
+            585.8473256609758,
+            513.3068785231402,
+            560.3540558582878
+          ]
+        },
+        {
+          "externalIndex": 76,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " O uso de verbos no imperativo como 'escolha' e 'decida' busca uma aproximação maior com o leitor.",
+          "bbox": [
+            85.0794659682,
+            611.0473155809758,
+            513.3069482588251,
+            585.6740457302878
+          ]
+        },
+        {
+          "externalIndex": 77,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " A campanha de 2008 estimula a busca por informações para que se possa decidir com consciência.",
+          "bbox": [
+            85.07986572884006,
+            560.5273357889757,
+            513.3069314321002,
+            535.0340659862877
+          ]
+        },
+        {
+          "externalIndex": 78,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O locutor do texto fez uso de duas linguagens: a verbal e a não-verbal.",
+          "bbox": [
+            85.0800656091601,
+            535.2073459169757,
+            451.7471737413541,
+            522.4340710262877
+          ]
+        },
+        {
+          "externalIndex": 79,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 5",
+          "bbox": [
+            85.0794659682,
+            467.3368130652,
+            157.77347352923576,
+            453.56081857559997
+          ]
+        },
+        {
+          "externalIndex": 80,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Esta  semana  está  cheia  de  datas  alertas...  Hoje,  dia  26  de  setembro,  mais  de  70 países da Europa, América Latina e Ásia participam do dia Mundial da Prevenção da Gravidez na Adolescência. A data é promovida por organizações não governamentais e sociedades médicas internacionais com apoio de marcas farmacêuticas. Este ano o tema é \"Sua Vida, Sua Voz\". [...]",
+          "bbox": [
+            85.0794659682,
+            453.60737855697596,
+            592.6276339559677,
+            377.59412896228787
+          ]
+        },
+        {
+          "externalIndex": 81,
+          "level": 1,
+          "type": "TEXT",
+          "text": "(Isis Nóbile Diniz) http://scienceblogs.com.br/xisxis/2009/09/dica_para_prevencao_de_gravide.php.Acessado em 28/09/2009.",
+          "bbox": [
+            130.31992202201036,
+            365.110413955776,
+            512.4739840338826,
+            346.56814137268793
+          ]
+        },
+        {
+          "externalIndex": 82,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            83.7997817993164,
+            304.45751953125,
+            140.30393981933594,
+            205.0614013671875
+          ]
+        },
+        {
+          "externalIndex": 83,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.9926452636719,
+            762.1395874023438,
+            519.1322021484375,
+            738.043701171875
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "elements": [
+        {
+          "externalIndex": 84,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.45243835449219,
+            804.4230194091797,
+            288.6586608886719,
+            725.747917175293
+          ]
+        },
+        {
+          "externalIndex": 85,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 86,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Considerando  esse  material  retirado  da  internet,  que  item  melhor  reproduz  as informações nele contidas?",
+          "bbox": [
+            85.0794659682,
+            698.5272805889759,
+            513.3067002884196,
+            673.0340107862879
+          ]
+        },
+        {
+          "externalIndex": 87,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Apenas  na  semana  de  26  de  setembro  existem  datas  apropriadas  para  a realização de campanhas e alerta à população.",
+          "bbox": [
+            85.0794659682,
+            660.4872958049759,
+            513.3066068774699,
+            635.1140259542879
+          ]
+        },
+        {
+          "externalIndex": 88,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Em  todos  os anos, o lema da campanha  de  prevenção  da  gravidez na adolescência é 'Sua Vida, Sua Voz'.",
+          "bbox": [
+            85.07986572884009,
+            609.9673160129759,
+            513.307063028026,
+            584.4740462102878
+          ]
+        },
+        {
+          "externalIndex": 89,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "No  último  dia  26  de  setembro,  houve,  em  centenas  de  países,  manifestações sobre a gravidez na adolescência.",
+          "bbox": [
+            85.07966584852007,
+            635.2873058849758,
+            513.3066960946105,
+            609.7940360822878
+          ]
+        },
+        {
+          "externalIndex": 90,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A  imagem  da  campanha  de  prevenção  da  gravidez  na  adolescência  deste  ano sugere o relacionamento afetivo entre os adolescentes.",
+          "bbox": [
+            85.0800656091601,
+            584.6473261409758,
+            513.3068490646185,
+            559.2740562902877
+          ]
+        },
+        {
+          "externalIndex": 91,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Apenas a classe médica tem se preocupado com a gravidez na adolescência já que o assunto se relaciona diretamente com a saúde.",
+          "bbox": [
+            85.07906620755989,
+            559.3273362689757,
+            513.3062830256189,
+            533.9540664182877
+          ]
+        },
+        {
+          "externalIndex": 92,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 6",
+          "bbox": [
+            85.08006560916006,
+            508.80591647755153,
+            151.74731515072713,
+            496.13200154711956
+          ]
+        },
+        {
+          "externalIndex": 93,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Seguem algumas afirmativas que relacionam o fragmento escrito por Isis Nóbile Diniz ao texto da campanha de 2008. Indique a correta.",
+          "bbox": [
+            85.08006560916006,
+            496.0873615649756,
+            513.3074461308006,
+            470.7140917142876
+          ]
+        },
+        {
+          "externalIndex": 94,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " O tema da campanha de 2009 difere do de 2008 em apenas uma palavra, mas nos dois a mensagem é a mesma: você tem o poder sobre sua vida.",
+          "bbox": [
+            85.08006560916006,
+            458.1673767329755,
+            513.3070896783091,
+            432.7941068822875
+          ]
+        },
+        {
+          "externalIndex": 95,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Ao apresentar o dia 26 de setembro como uma data alerta, Isis Nóbile sugere que só  o  conhecimento  pode  evitar  uma  gravidez  indesejada  e  irresponsável  como também é dito na campanha de 2008.",
+          "bbox": [
+            85.08026548948013,
+            407.5273969889754,
+            513.3080079032344,
+            369.5541321782874
+          ]
+        },
+        {
+          "externalIndex": 96,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Nota-se,  nas  duas  campanhas,  a  participação  efetiva  de  todos  os  países  do mundo.",
+          "bbox": [
+            85.08006560916006,
+            432.84738686097546,
+            513.3074750274183,
+            407.47411701028744
+          ]
+        },
+        {
+          "externalIndex": 97,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Os dois textos empregam verbos no presente, no passado e no futuro para marcar que o problema da gravidez precoce faz parte da vida de toda a sociedade.",
+          "bbox": [
+            85.08046536980021,
+            369.60741215697533,
+            513.3078485306602,
+            344.2341423062873
+          ]
+        },
+        {
+          "externalIndex": 98,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Em  ambos  os  textos, prevalece a intenção de informar ao interlocutor a importância de assumir uma gravidez indesejada.",
+          "bbox": [
+            85.0814647714005,
+            344.2874222849753,
+            513.308409466955,
+            318.9141524342873
+          ]
+        },
+        {
+          "externalIndex": 99,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.83953857421875,
+            762.2145538330078,
+            519.1537475585938,
+            738.1390686035156
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 8,
+      "elements": [
+        {
+          "externalIndex": 100,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.41033935546875,
+            804.5739517211914,
+            288.6752014160156,
+            725.9521560668945
+          ]
+        },
+        {
+          "externalIndex": 101,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 102,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 7",
+          "bbox": [
+            85.0794659682,
+            699.605840157552,
+            151.74671550976706,
+            686.9319252271199
+          ]
+        },
+        {
+          "externalIndex": 103,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            138.1232452392578,
+            674.2475433349609,
+            455.9854431152344,
+            475.7778015136719
+          ]
+        },
+        {
+          "externalIndex": 104,
+          "level": 2,
+          "type": "CAPTION",
+          "text": "http://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg. Acessado em 28/09/2009.",
+          "bbox": [
+            205.559917776,
+            475.750369699776,
+            512.47338109033,
+            466.448093420688
+          ]
+        },
+        {
+          "externalIndex": 105,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Ler gráficos e tabelas é importante no mundo atual, no qual a associação do verbal com  o  não-verbal  é  cada  vez  mais  frequente.  Considerando  a  ilustração  acima, assinale a afirmativa INCORRETA .",
+          "bbox": [
+            85.0794659682,
+            419.4073922369759,
+            513.3070198944928,
+            381.41204743511986
+          ]
+        },
+        {
+          "externalIndex": 106,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " É possível perceber, no período apresentado no gráfico, que o número de partos de adolescentes tem diminuído em todo o país.",
+          "bbox": [
+            85.07956590836004,
+            368.7674124929759,
+            513.3070488749005,
+            343.3941426422879
+          ]
+        },
+        {
+          "externalIndex": 107,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A  região  mais  populosa  também  apresenta  um  percentual  elevado  de  partos  de mulheres ainda bem jovens.",
+          "bbox": [
+            85.07996566900012,
+            318.1274327489757,
+            513.3073214040415,
+            292.75416289828775
+          ]
+        },
+        {
+          "externalIndex": 108,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Na região mais pobre do país, a tabela mostra que o percentual de partos, ainda que em queda, é o maior do Brasil.",
+          "bbox": [
+            85.07976578868008,
+            343.44742262097583,
+            513.3071222955793,
+            318.0741527702878
+          ]
+        },
+        {
+          "externalIndex": 109,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Ao analisar os dados, nota-se que a menor redução ocorreu na região de maior extensão do país.",
+          "bbox": [
+            85.08016554932014,
+            292.80744287697576,
+            513.307744270047,
+            267.4341730262877
+          ]
+        },
+        {
+          "externalIndex": 110,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " A  redução  dos  números  em  2008  leva  à  conclusão  de  que  não  há  mais necessidade de campanhas como 'SUA VIDA SUA DECISÃO'.",
+          "bbox": [
+            85.08036542964022,
+            267.60745295697575,
+            513.3072425045631,
+            242.11418315428773
+          ]
+        },
+        {
+          "externalIndex": 111,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.64764404296875,
+            762.4968109130859,
+            519.4610595703125,
+            737.8919982910156
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 9,
+      "elements": [
+        {
+          "externalIndex": 112,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.37390899658203,
+            804.2924652099609,
+            288.5729064941406,
+            726.0436248779297
+          ]
+        },
+        {
+          "externalIndex": 113,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 114,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 8",
+          "bbox": [
+            85.0794659682,
+            698.4563206173601,
+            157.77347352923576,
+            684.6803261277602
+          ]
+        },
+        {
+          "externalIndex": 115,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "DESCUIDO",
+          "bbox": [
+            226.679909328,
+            670.9258516295521,
+            284.70385347351635,
+            658.25193669912
+          ]
+        },
+        {
+          "externalIndex": 116,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Sou fruto de um descuido Ato feito impensado Mas que a partir de agora Terá que ser Tratado com cuidado Gostaria de ter Sido planejado Mas por descuido Vim sem ser convidado Não sei se vou ter nome Ou se vou ser abortado Mas no fundo eu gostaria De ser tratado com carinho Amor e cuidado",
+          "bbox": [
+            193.0799275877981,
+            658.2072967169761,
+            325.8145018445962,
+            481.0340875862877
+          ]
+        },
+        {
+          "externalIndex": 117,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Bruna e Paloma T C24",
+          "bbox": [
+            297.479881008,
+            480.193247922624,
+            399.25426598941135,
+            468.669532532112
+          ]
+        },
+        {
+          "externalIndex": 118,
+          "level": 1,
+          "type": "TEXT",
+          "text": "http://websmed.portoalegre.rs.gov.br/escolas/montecristo/jv/jv6/poesia.html. Acessado em 28/09/2009.",
+          "bbox": [
+            173.87993044799998,
+            468.43325262662404,
+            515.7673829354487,
+            445.389541844112
+          ]
+        },
+        {
+          "externalIndex": 119,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Esse texto faz parte de um trabalho de produção textual desenvolvido pela professora Márcia Regina Ribeiro com seus alunos. Nele, os textos tinham como tema 'Gravidez na  adolescência',  porém  apresentavam  locutores  diferentes:  ora  era  o  bebê  que falava, ora era a adolescente grávida, ora um rapaz.",
+          "bbox": [
+            85.0794659682,
+            431.767387292976,
+            513.3068679912062,
+            380.95412761828794
+          ]
+        },
+        {
+          "externalIndex": 120,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Apenas uma das afirmações que seguem é INDEVIDA em relação ao texto. Assinalea.",
+          "bbox": [
+            85.0794659682,
+            381.2474075009759,
+            510.19334449384735,
+            355.7541376982879
+          ]
+        },
+        {
+          "externalIndex": 121,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Intitulado 'Descuido', é um poema estruturado em 14 versos e uma estrofe.",
+          "bbox": [
+            85.07976578868006,
+            343.2074227169758,
+            475.5074262113801,
+            330.4341478262878
+          ]
+        },
+        {
+          "externalIndex": 122,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O bebê revela ter consciência de sua condição de intruso na vida do casal.",
+          "bbox": [
+            85.07996566900012,
+            305.16743793297576,
+            471.9073248781812,
+            292.3941630422878
+          ]
+        },
+        {
+          "externalIndex": 123,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " O destino do pequeno locutor do texto está revelado, embora ele afirme que não saiba.",
+          "bbox": [
+            85.07976578868006,
+            330.4874278049758,
+            513.3069480360784,
+            305.11415795428775
+          ]
+        },
+        {
+          "externalIndex": 124,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " A fala do bebê evidencia o seu desconforto por ser a consequência, mesmo que involuntária, de um ato irrefletido.",
+          "bbox": [
+            85.07996566900013,
+            292.56744297297575,
+            513.3073732963306,
+            267.1941731222877
+          ]
+        },
+        {
+          "externalIndex": 125,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " O desejo do bebê é viver como qualquer criança que tenha sido desejada por seus pais.",
+          "bbox": [
+            85.08016554932023,
+            267.2474531009757,
+            513.3074360832164,
+            241.87418325028762
+          ]
+        },
+        {
+          "externalIndex": 126,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 9",
+          "bbox": [
+            85.08036542964022,
+            204.00603839755172,
+            151.7476149712073,
+            191.3321234671197
+          ]
+        },
+        {
+          "externalIndex": 127,
+          "level": 1,
+          "type": "TEXT",
+          "text": "'Na América Latina, 50% dos jovens com menos de 17 anos têm vida sexual ativa. Dados do Ministério da Saúde mostram que no Brasil pelo menos uma em cada cinco mulheres que dão à luz  tem menos de 19 anos.'",
+          "bbox": [
+            85.08036542964022,
+            191.40748343697567,
+            513.3074224277127,
+            153.31421867428776
+          ]
+        },
+        {
+          "externalIndex": 128,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Acessado em 28/09/2009.",
+          "bbox": [
+            417.240300512213,
+            144.310502275776,
+            512.474061819883,
+            135.008225996688
+          ]
+        },
+        {
+          "externalIndex": 129,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.5227966308594,
+            762.5327377319336,
+            519.4904174804688,
+            737.9020919799805
+          ]
+        },
+        {
+          "externalIndex": 130,
+          "level": 1,
+          "type": "TEXT",
+          "text": "http://www.agenciabrasil.gov.br/noticias/2009/09/24/materia.2009-09-24.5055875275/view.",
+          "bbox": [
+            188.279924688,
+            153.550498579776,
+            512.4742948688764,
+            144.24822230068798
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 10,
+      "elements": [
+        {
+          "externalIndex": 131,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.48311614990234,
+            804.3281021118164,
+            288.8175048828125,
+            724.8060455322266
+          ]
+        },
+        {
+          "externalIndex": 132,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 133,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            87.7625732421875,
+            663.9625854492188,
+            508.8523254394531,
+            550.0926818847656
+          ]
+        },
+        {
+          "externalIndex": 134,
+          "level": 2,
+          "type": "CAPTION",
+          "text": "http://www.cambito.com.br/tiras/default.asp?tirinha=20031019. Acessado em 28/09/2009.",
+          "bbox": [
+            288.479884608,
+            549.070340371776,
+            513.006974704808,
+            530.1095079561119
+          ]
+        },
+        {
+          "externalIndex": 135,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Como já deve ter dado para notar, as questões de Língua Portuguesa giram em torno de um mesmo tema. A respeito da tirinha do Cambito e sua turma e do fragmento da Agência Brasil, que também abordam esse tema, é possível afirmar que",
+          "bbox": [
+            85.0794659682,
+            503.04735878097597,
+            513.3066791142176,
+            464.95409401828795
+          ]
+        },
+        {
+          "externalIndex": 136,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "metade das mulheres brasileiras tem 19 anos e engravida.",
+          "bbox": [
+            85.0794659682,
+            452.4073790369759,
+            392.3470799157469,
+            439.6341041462879
+          ]
+        },
+        {
+          "externalIndex": 137,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "o  Ministério  da  Saúde,  por  meio  de  suas  pesquisas,  revela  que  um  quinto  das mulheres brasileiras e latino-americanas engravida devido à vida sexual ativa.",
+          "bbox": [
+            85.07966584852004,
+            414.48739420497577,
+            513.3065947519302,
+            388.99412440228775
+          ]
+        },
+        {
+          "externalIndex": 138,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "todos  os  jovens  latino-americanos  iniciam  sua  vida  sexual  antes  dos  dezessete anos.",
+          "bbox": [
+            85.0794659682,
+            439.80738407697584,
+            513.3067057323599,
+            414.3141142742878
+          ]
+        },
+        {
+          "externalIndex": 139,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " a  personagem, segundo a última fala da tirinha, espera que a amiga não esteja grávida.",
+          "bbox": [
+            85.07966584852002,
+            389.16740433297576,
+            513.3066342669903,
+            363.79413448228775
+          ]
+        },
+        {
+          "externalIndex": 140,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " houve, por parte de ambas as personagens da tirinha, preocupação com o uso de preservativo.",
+          "bbox": [
+            85.07986572884012,
+            363.8474144609757,
+            513.307319666042,
+            338.4741446102877
+          ]
+        },
+        {
+          "externalIndex": 141,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 10",
+          "bbox": [
+            85.0794659682,
+            286.7368853052001,
+            164.4934777365494,
+            272.9608908156
+          ]
+        },
+        {
+          "externalIndex": 142,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Ainda  com  referência  aos  textos  da  questão  anterior,  são  feitas  considerações gramaticais. Marque a INADEQUADA .",
+          "bbox": [
+            85.0794659682,
+            273.00745079697595,
+            513.3069106109672,
+            247.73210090712007
+          ]
+        },
+        {
+          "externalIndex": 143,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " As vírgulas foram empregadas pelo mesmo motivo em 'Ontem, peguei o mais gato do baile!' e 'Agora, tô com uma ressaca sinistra!'.",
+          "bbox": [
+            85.07986572884008,
+            235.087465964976,
+            513.3065902426303,
+            209.71419611428803
+          ]
+        },
+        {
+          "externalIndex": 144,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Completando a frase do segundo quadrinho da tirinha, poderia haver substituição das reticências por 'de usar a camisinha.'",
+          "bbox": [
+            85.08086513044027,
+            184.4474862209761,
+            513.3078122355921,
+            159.074216370288
+          ]
+        },
+        {
+          "externalIndex": 145,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Ao  comparar,  de  forma  implícita,  o  rapaz  com  quem  ficou  a  um  gato,  a personagem da turma do Cambito fez uso de metáfora.",
+          "bbox": [
+            85.07986572884005,
+            209.76747609297604,
+            513.3067970132246,
+            184.39420624228796
+          ]
+        },
+        {
+          "externalIndex": 146,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Os adjetivos 'doidona' e 'sinistra' encontram-se no singular, pois caracterizam o mesmo substantivo; concordando, desta forma, com ele.",
+          "bbox": [
+            85.08106501076026,
+            159.12749634897602,
+            516.427791971706,
+            133.75422649828806
+          ]
+        },
+        {
+          "externalIndex": 147,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " No fragmento da Agência Brasil, aparecem as formas verbais 'têm' e 'tem' que concordam com seus respectivos sujeitos no plural e no singular.",
+          "bbox": [
+            85.08006560915994,
+            133.92750642897602,
+            513.3070291574263,
+            108.43423662628811
+          ]
+        },
+        {
+          "externalIndex": 148,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.75958251953125,
+            762.3470077514648,
+            519.2883911132812,
+            738.0807952880859
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 11,
+      "elements": [
+        {
+          "externalIndex": 149,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.23263549804688,
+            804.630485534668,
+            288.1910095214844,
+            726.598762512207
+          ]
+        },
+        {
+          "externalIndex": 150,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 151,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 11",
+          "bbox": [
+            85.0794659682,
+            698.525840589552,
+            157.8667173157739,
+            685.85192565912
+          ]
+        },
+        {
+          "externalIndex": 152,
+          "level": 1,
+          "type": "FORMULA",
+          "text": "\\S S e n d { \\ P ( x , y ) } { \\ a s l u c { \\tilde { a } } { \\circ } } { \\S s i m e } \\ \\begin{cases} 4 x + 2 y = 2 \\\\ 2 x - y = 0 \\end{cases} \\ , \\, \\circ \\, \\text {val order} \\, \\tilde { x } + \\tilde { y } \\, \\tilde { e } \\colon",
+          "bbox": [
+            85.0794659682,
+            684.218293952573,
+            422.7071174292813,
+            656.631809787171
+          ]
+        },
+        {
+          "externalIndex": 153,
+          "level": 1,
+          "type": "TEXT",
+          "text": "a) 0",
+          "bbox": [
+            85.08049448378856,
+            648.487300604976,
+            107.10776869666931,
+            635.714025714288
+          ]
+        },
+        {
+          "externalIndex": 154,
+          "level": 1,
+          "type": "TEXT",
+          "text": "b) 4 1",
+          "bbox": [
+            85.08049448378856,
+            626.2057415176032,
+            106.66871566049667,
+            600.8729836507105
+          ]
+        },
+        {
+          "externalIndex": 155,
+          "level": 1,
+          "type": "TEXT",
+          "text": "c)",
+          "bbox": [
+            85.07992919821471,
+            583.4473266209759,
+            97.3872110685892,
+            570.6740517302879
+          ]
+        },
+        {
+          "externalIndex": 156,
+          "level": 1,
+          "type": "FORMULA",
+          "text": "c ) \\ \\frac { 1 } { 2 } & & s i s temas \\, \\text {lines}",
+          "bbox": [
+            99.9594600162,
+            588.8857564456032,
+            334.3333727259567,
+            563.5529985787103
+          ]
+        },
+        {
+          "externalIndex": 157,
+          "level": 1,
+          "type": "TEXT",
+          "text": "d) 4 3",
+          "bbox": [
+            85.07997015899832,
+            551.5657713736033,
+            106.66871566049667,
+            526.2330135067103
+          ]
+        },
+        {
+          "externalIndex": 158,
+          "level": 1,
+          "type": "TEXT",
+          "text": "e) 2 3",
+          "bbox": [
+            85.07992919821471,
+            514.2457863016032,
+            106.66871566049667,
+            488.9130284347104
+          ]
+        },
+        {
+          "externalIndex": 159,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 12",
+          "bbox": [
+            85.07992919821471,
+            461.285935485552,
+            157.86718054578864,
+            448.61202055511995
+          ]
+        },
+        {
+          "externalIndex": 160,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Cada mililitro de sangue humano contém, em média, 5.10 6 glóbulos vermelhos. Um ser humano adulto tem, em média, 5,5 litros de sangue. De acordo com esses dados, o número médio de glóbulos vermelhos de um adulto é:",
+          "bbox": [
+            85.07992919821471,
+            449.776260089424,
+            513.3072212783997,
+            410.59411576228797
+          ]
+        },
+        {
+          "externalIndex": 161,
+          "level": 1,
+          "type": "TEXT",
+          "text": "a) 2,75 x 10 6",
+          "bbox": [
+            85.08007230595753,
+            392.89628284142395,
+            149.05365831795285,
+            378.91412843428793
+          ]
+        },
+        {
+          "externalIndex": 162,
+          "level": 1,
+          "type": "TEXT",
+          "text": "b) 2,75 x 10 7",
+          "bbox": [
+            85.0794659682,
+            373.936290425424,
+            150.9736598859919,
+            359.95413601828795
+          ]
+        },
+        {
+          "externalIndex": 163,
+          "level": 1,
+          "type": "TEXT",
+          "text": "c) 27,5 x 10 7",
+          "bbox": [
+            85.07998576919209,
+            354.97629800942394,
+            146.5473679157494,
+            340.994143602288
+          ]
+        },
+        {
+          "externalIndex": 164,
+          "level": 1,
+          "type": "TEXT",
+          "text": "d) 27,5 x 10 8",
+          "bbox": [
+            85.07995727460349,
+            336.01630559342397,
+            147.1473676757494,
+            322.034151186288
+          ]
+        },
+        {
+          "externalIndex": 165,
+          "level": 1,
+          "type": "TEXT",
+          "text": "e) 2,75 x 10 10",
+          "bbox": [
+            85.07998807379116,
+            317.05631317742404,
+            150.98737081182756,
+            303.074158770288
+          ]
+        },
+        {
+          "externalIndex": 166,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 13",
+          "bbox": [
+            85.07998576919209,
+            246.24602150155192,
+            157.86723711676603,
+            233.57210657112
+          ]
+        },
+        {
+          "externalIndex": 167,
+          "level": 1,
+          "type": "TEXT",
+          "text": "O polígono ABCD é um quadrado de lado 8 cm. Sabendo-se que G é ponto médio de BC ,  Q 1 é  um quadrado de área 4 cm 2 e  R 1 é um retângulo de área 8 cm 2 ,  qual a razão entre  AB e  IJ ?",
+          "bbox": [
+            85.07998576919209,
+            233.64746654097598,
+            516.3070559461528,
+            192.43420302628806
+          ]
+        },
+        {
+          "externalIndex": 168,
+          "level": 1,
+          "type": "TEXT",
+          "text": "notação científica regra de 3",
+          "bbox": [
+            290.747,
+            387.5174757297444,
+            372.83609350939605,
+            366.08724305148183
+          ]
+        },
+        {
+          "externalIndex": 169,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.6338806152344,
+            762.4955368041992,
+            519.3833618164062,
+            737.8789215087891
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 12,
+      "elements": [
+        {
+          "externalIndex": 170,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.5113525390625,
+            804.3299522399902,
+            288.5967712402344,
+            724.9920501708984
+          ]
+        },
+        {
+          "externalIndex": 171,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 172,
+          "level": 2,
+          "type": "FORMULA",
+          "text": "a ) \\ \\frac { 4 \\sqrt { 2 } } { 5 }",
+          "bbox": [
+            92.2794630882,
+            664.6067581571904,
+            133.42939462297082,
+            639.2729472907189
+          ]
+        },
+        {
+          "externalIndex": 173,
+          "level": 2,
+          "type": "FORMULA",
+          "text": "b ) \\ \\frac { 5 \\sqrt { 2 } } { 4 }",
+          "bbox": [
+            92.2794630882,
+            630.6467717411904,
+            132.82939486297082,
+            605.3129608747188
+          ]
+        },
+        {
+          "externalIndex": 174,
+          "level": 2,
+          "type": "FORMULA",
+          "text": "c ) \\ \\frac { 4 \\sqrt { 5 } } { 5 }",
+          "bbox": [
+            92.2794630882,
+            596.5667853731904,
+            133.0693947669708,
+            571.2329745067188
+          ]
+        },
+        {
+          "externalIndex": 175,
+          "level": 3,
+          "type": "LIST_ITEM",
+          "text": "4 5 5",
+          "bbox": [
+            92.2794630882,
+            562.6067989571904,
+            132.46939500697079,
+            537.2729880907189
+          ]
+        },
+        {
+          "externalIndex": 176,
+          "level": 3,
+          "type": "LIST_ITEM",
+          "text": " 2 5",
+          "bbox": [
+            92.2794630882,
+            532.9887868044,
+            137.37397681038726,
+            519.104792358
+          ]
+        },
+        {
+          "externalIndex": 177,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 14",
+          "bbox": [
+            85.08038113723393,
+            459.2459363015519,
+            157.86763248480784,
+            446.5720213711199
+          ]
+        },
+        {
+          "externalIndex": 178,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Em ciências atuariais, uma tábua de vida é uma tabela, construída a partir de censos populacionais,  que  mostra  a  probabilidade  de  morte  de  um  indivíduo  em  uma  certa faixa etária. Tábuas de vida são usadas em planos de previdência e seguros de    vida. A tábua da vida abaixo indica, por exemplo, que um indivíduo entre um ano (inclusive) e 2 anos (exclusive) tem 0,05% de chance de morrer.",
+          "bbox": [
+            85.08038113723393,
+            446.5273813889759,
+            516.4272459777033,
+            383.23412670628784
+          ]
+        },
+        {
+          "externalIndex": 179,
+          "level": 1,
+          "type": "TABLE",
+          "text": null,
+          "bbox": [
+            93.41253662109375,
+            358.3127746582031,
+            501.3646545410156,
+            298.7252197265625
+          ]
+        },
+        {
+          "externalIndex": 180,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Fonte: National Vital  Statístics Reports, vol.54, nº 14, 2006.",
+          "bbox": [
+            171.71938961581668,
+            286.207445516976,
+            513.307098346494,
+            273.43417062628794
+          ]
+        },
+        {
+          "externalIndex": 181,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Supondo-se  que  existe  um  grupo  de  1.000.000  de  pessoas  que  acabaram  de completar 2 anos, segundo esta tabela, o número de pessoas deste grupo que farão aniversário de 4 anos é, aproximadamente, igual a:",
+          "bbox": [
+            85.07956894215882,
+            260.88745564497594,
+            513.3067255351579,
+            222.79419088228792
+          ]
+        },
+        {
+          "externalIndex": 182,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " 997.000",
+          "bbox": [
+            85.07956894215882,
+            210.24747590097604,
+            145.8668193597793,
+            197.47420101028797
+          ]
+        },
+        {
+          "externalIndex": 183,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "999.700",
+          "bbox": [
+            85.07956894215882,
+            184.92748602897598,
+            145.86682657561875,
+            172.15421113828802
+          ]
+        },
+        {
+          "externalIndex": 184,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " 999.500",
+          "bbox": [
+            85.07956894215882,
+            197.64748094097604,
+            145.8668193597793,
+            184.87420605028797
+          ]
+        },
+        {
+          "externalIndex": 185,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " 999.950",
+          "bbox": [
+            85.07956894215882,
+            172.32749106897597,
+            145.8668193597793,
+            159.55421617828802
+          ]
+        },
+        {
+          "externalIndex": 186,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " 999.970",
+          "bbox": [
+            85.07956894215882,
+            159.72749610897597,
+            145.8668193597793,
+            146.954221218288
+          ]
+        },
+        {
+          "externalIndex": 187,
+          "level": 1,
+          "type": "TEXT",
+          "text": "porcentagem probabilidade",
+          "bbox": [
+            323.011,
+            198.40550622936337,
+            386.0425,
+            176.97527355110083
+          ]
+        },
+        {
+          "externalIndex": 188,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "áreas de figuras",
+          "bbox": [
+            346.27,
+            711.7105569524864,
+            426.2175865201677,
+            701.9981378421268
+          ]
+        },
+        {
+          "externalIndex": 189,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            261.6647644042969,
+            675.8288726806641,
+            428.5696716308594,
+            510.82427978515625
+          ]
+        },
+        {
+          "externalIndex": 190,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.6564025878906,
+            762.5792846679688,
+            519.552490234375,
+            737.7539672851562
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 13,
+      "elements": [
+        {
+          "externalIndex": 191,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.21056365966797,
+            804.5436897277832,
+            288.87542724609375,
+            726.7709350585938
+          ]
+        },
+        {
+          "externalIndex": 192,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 193,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 15",
+          "bbox": [
+            85.0794659682,
+            699.605840157552,
+            157.86671290241642,
+            686.9319252271199
+          ]
+        },
+        {
+          "externalIndex": 194,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Considere os conjuntos ( ) { } 9 2 IR / x x A 2 = - ∈ = e { } 6 3 4 ≥ - - ∈ = x IN x B / * .",
+          "bbox": [
+            85.0794659682,
+            687.416805033168,
+            463.3870890012534,
+            670.4568998171328
+          ]
+        },
+        {
+          "externalIndex": 195,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Se n indica o número de elementos do conjunto B A ∪ , então o valor de n é:",
+          "bbox": [
+            85.07983188605363,
+            656.2872974849761,
+            460.6271169912565,
+            643.514022594288
+          ]
+        },
+        {
+          "externalIndex": 196,
+          "level": 1,
+          "type": "TEXT",
+          "text": "a) 3",
+          "bbox": [
+            85.0801529699252,
+            631.0873075649761,
+            112.26742190159153,
+            618.314032674288
+          ]
+        },
+        {
+          "externalIndex": 197,
+          "level": 1,
+          "type": "TEXT",
+          "text": "c) 5",
+          "bbox": [
+            85.0801529699252,
+            605.767317692976,
+            112.26742911743099,
+            592.994042802288
+          ]
+        },
+        {
+          "externalIndex": 198,
+          "level": 1,
+          "type": "TEXT",
+          "text": "b) 4",
+          "bbox": [
+            85.0801529699252,
+            618.367312652976,
+            112.26742190159153,
+            605.594037762288
+          ]
+        },
+        {
+          "externalIndex": 199,
+          "level": 1,
+          "type": "TEXT",
+          "text": "d) 6",
+          "bbox": [
+            85.0801529699252,
+            593.047322780976,
+            112.26742190159153,
+            580.274047890288
+          ]
+        },
+        {
+          "externalIndex": 200,
+          "level": 1,
+          "type": "TEXT",
+          "text": "e) ∞",
+          "bbox": [
+            85.0801529699252,
+            580.0873279649759,
+            111.88581990999526,
+            567.3140530742879
+          ]
+        },
+        {
+          "externalIndex": 201,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 16",
+          "bbox": [
+            85.07994229320947,
+            517.205913117552,
+            157.86718922742594,
+            504.5319981871199
+          ]
+        },
+        {
+          "externalIndex": 202,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Observe  o  demonstrativo  do  consumo  de  energia  elétrica  da  residência  do  Sr. Econômico.",
+          "bbox": [
+            85.07994229320946,
+            504.60735815697586,
+            513.3072215059092,
+            479.11408835428784
+          ]
+        },
+        {
+          "externalIndex": 203,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            104.27227783203125,
+            466.8470458984375,
+            487.2720947265625,
+            207.4993896484375
+          ]
+        },
+        {
+          "externalIndex": 204,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Considere  que  o  consumo  médio,  de  janeiro/2009  a  maio/2009,  foi  igual  ao  que ocorreu de junho/2009 a setembro/2009.",
+          "bbox": [
+            85.08051072578208,
+            182.88748684497602,
+            513.3074510412393,
+            157.394217042288
+          ]
+        },
+        {
+          "externalIndex": 205,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Sabendo  que  o  valor  cobrado  por  cada  Kwh,  já  incluídos  todos  os  impostos  e encargos, é de R$ 0,52, é correto afirmar que a conta de luz do mês de setembro/2009 que o Sr. Econômico pagou foi, em reais:",
+          "bbox": [
+            85.08051072578205,
+            157.56749697297596,
+            513.307447422926,
+            119.47423221028805
+          ]
+        },
+        {
+          "externalIndex": 206,
+          "level": 1,
+          "type": "TEXT",
+          "text": "teoria dos conjuntos",
+          "bbox": [
+            284.745,
+            631.4124958529953,
+            378.7095,
+            621.7000767426356
+          ]
+        },
+        {
+          "externalIndex": 207,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.47119140625,
+            762.6644439697266,
+            519.4772338867188,
+            737.8542785644531
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 14,
+      "elements": [
+        {
+          "externalIndex": 208,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            85.53108215332031,
+            805.4998893737793,
+            521.7454833984375,
+            712.3024749755859
+          ]
+        },
+        {
+          "externalIndex": 209,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "52,00",
+          "bbox": [
+            85.0794659682,
+            687.007285196976,
+            133.62671840083752,
+            674.234010306288
+          ]
+        },
+        {
+          "externalIndex": 210,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "62,40",
+          "bbox": [
+            85.0794659682,
+            661.6872953249759,
+            133.62672009998016,
+            648.914020434288
+          ]
+        },
+        {
+          "externalIndex": 211,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "57,20",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            133.62671122913164,
+            661.514015394288
+          ]
+        },
+        {
+          "externalIndex": 212,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "72,80",
+          "bbox": [
+            85.0794659682,
+            649.0873003649759,
+            133.62671840083752,
+            636.314025474288
+          ]
+        },
+        {
+          "externalIndex": 213,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " mais de 72,80",
+          "bbox": [
+            85.0794659682,
+            636.3673054529759,
+            175.26668795275506,
+            623.5940305622879
+          ]
+        },
+        {
+          "externalIndex": 214,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 17",
+          "bbox": [
+            85.0794659682,
+            573.1258907495518,
+            157.86671257141464,
+            560.4519758191198
+          ]
+        },
+        {
+          "externalIndex": 215,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Na figura, r//s.",
+          "bbox": [
+            85.0794659682,
+            560.5273357889757,
+            157.26672622287518,
+            547.7540608982878
+          ]
+        },
+        {
+          "externalIndex": 216,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            173.50808715820312,
+            537.5581970214844,
+            420.5744934082031,
+            388.2261657714844
+          ]
+        },
+        {
+          "externalIndex": 217,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Se â = 4x + 31 0 e  c ˆ = 3x + 59 0 30' , então a medida do ângulo b é:",
+          "bbox": [
+            85.08022420789668,
+            379.816288073424,
+            410.1072088559729,
+            365.834133666288
+          ]
+        },
+        {
+          "externalIndex": 218,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "35°",
+          "bbox": [
+            85.07956579216005,
+            352.807418876976,
+            122.8268368838461,
+            340.034143986288
+          ]
+        },
+        {
+          "externalIndex": 219,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "45°",
+          "bbox": [
+            85.07956579216005,
+            327.48742900497587,
+            122.82684409968556,
+            314.7141541142879
+          ]
+        },
+        {
+          "externalIndex": 220,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "40°",
+          "bbox": [
+            85.07956579216005,
+            340.0874239649759,
+            122.8268368838461,
+            327.3141490742879
+          ]
+        },
+        {
+          "externalIndex": 221,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "50°",
+          "bbox": [
+            85.07956579216005,
+            314.7674340929759,
+            122.8268368838461,
+            301.99415920228785
+          ]
+        },
+        {
+          "externalIndex": 222,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "55°",
+          "bbox": [
+            85.07956579216005,
+            302.1674391329759,
+            122.8268368838461,
+            289.39416424228784
+          ]
+        },
+        {
+          "externalIndex": 223,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "ângulos",
+          "bbox": [
+            294.499,
+            328.23255695248645,
+            330.68208460317203,
+            318.5201378421268
+          ]
+        },
+        {
+          "externalIndex": 224,
+          "level": 1,
+          "type": "TEXT",
+          "text": "INSTITUTO FEDERAL FLUMINENSE - EDITAL Nº 14 de 21 de setembro de 2009.",
+          "bbox": [
+            178.19992871999997,
+            63.314574674159985,
+            400.786901539277,
+            56.372577450959966
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 15,
+      "elements": [
+        {
+          "externalIndex": 225,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.54779815673828,
+            804.4747772216797,
+            288.6363830566406,
+            726.14794921875
+          ]
+        },
+        {
+          "externalIndex": 226,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 227,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 18",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            157.86671290241642,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 228,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Um terreno tem a forma de um trapézio retângulo conforme a figura abaixo.",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            456.78669975015043,
+            661.514015394288
+          ]
+        },
+        {
+          "externalIndex": 229,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            169.7536163330078,
+            650.1207733154297,
+            425.2435607910156,
+            506.5490417480469
+          ]
+        },
+        {
+          "externalIndex": 230,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Dado que sen 60°  = 2 3 ,  cos  60°   = 2 1 e  tg  60°   = 3 ,  calcule,  em  m 2 a  área  do terreno.",
+          "bbox": [
+            85.07962184413765,
+            489.4068282371904,
+            513.3070414694039,
+            448.874100450288
+          ]
+        },
+        {
+          "externalIndex": 231,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " 68 + 6 3",
+          "bbox": [
+            85.07962184413765,
+            433.56738657297603,
+            154.02722305532615,
+            420.79411168228796
+          ]
+        },
+        {
+          "externalIndex": 232,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " 126",
+          "bbox": [
+            85.07998576919209,
+            419.40739223697597,
+            124.5072511411663,
+            406.634117346288
+          ]
+        },
+        {
+          "externalIndex": 233,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "168",
+          "bbox": [
+            85.07998576919209,
+            406.80739727697596,
+            124.50725835700574,
+            394.03412238628795
+          ]
+        },
+        {
+          "externalIndex": 234,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " 168 3",
+          "bbox": [
+            85.07998576919209,
+            391.207403516976,
+            141.54722804732612,
+            378.43412862628793
+          ]
+        },
+        {
+          "externalIndex": 235,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " 336 3",
+          "bbox": [
+            85.08001824417909,
+            374.287410284976,
+            141.54722804732612,
+            361.51413539428796
+          ]
+        },
+        {
+          "externalIndex": 236,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 19",
+          "bbox": [
+            85.0794659682,
+            308.405996637552,
+            157.86671290241642,
+            295.73208170711996
+          ]
+        },
+        {
+          "externalIndex": 237,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Uma pequena esfera de isopor, aluminizada, suspensa por um fio \"nylon\", é atraída por um pente plástico negativamente carregado. Pode-se afirmar que a carga elétrica da esfera é:",
+          "bbox": [
+            85.0794659682,
+            295.687441724976,
+            513.3065101096506,
+            257.594176962288
+          ]
+        },
+        {
+          "externalIndex": 238,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "apenas negativa;",
+          "bbox": [
+            85.0794659682,
+            245.16746193297604,
+            184.74668482904053,
+            232.39418704228797
+          ]
+        },
+        {
+          "externalIndex": 239,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "apenas positiva;",
+          "bbox": [
+            85.0794659682,
+            219.84747206097597,
+            179.82669967715287,
+            207.07419717028802
+          ]
+        },
+        {
+          "externalIndex": 240,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "apenas nula;",
+          "bbox": [
+            85.0794659682,
+            232.44746702097598,
+            163.98670533003866,
+            219.67419213028802
+          ]
+        },
+        {
+          "externalIndex": 241,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "negativa, ou então nula;",
+          "bbox": [
+            85.0794659682,
+            207.12747714897603,
+            218.3466753623774,
+            194.35420225828796
+          ]
+        },
+        {
+          "externalIndex": 242,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "positiva, ou então nula.",
+          "bbox": [
+            85.0794659682,
+            194.52748218897602,
+            217.14666960925112,
+            181.75420729828795
+          ]
+        },
+        {
+          "externalIndex": 243,
+          "level": 1,
+          "type": "TEXT",
+          "text": "trigonometria",
+          "bbox": [
+            287.746,
+            425.7904757297444,
+            349.0134199453563,
+            416.07809706369954
+          ]
+        },
+        {
+          "externalIndex": 244,
+          "level": 1,
+          "type": "TEXT",
+          "text": "área de figuras",
+          "bbox": [
+            287.746,
+            414.07262171752666,
+            362.4429023978174,
+            404.36024305148186
+          ]
+        },
+        {
+          "externalIndex": 245,
+          "level": 1,
+          "type": "TEXT",
+          "text": "eletroestática",
+          "bbox": [
+            361.277,
+            215.66555695248644,
+            428.3825,
+            205.9531378421268
+          ]
+        },
+        {
+          "externalIndex": 246,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.6346740722656,
+            762.5378723144531,
+            519.576171875,
+            737.8514099121094
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 16,
+      "elements": [
+        {
+          "externalIndex": 247,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.46906280517578,
+            804.5458297729492,
+            288.6294860839844,
+            726.4449081420898
+          ]
+        },
+        {
+          "externalIndex": 248,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 249,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 20",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            157.86671290241642,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 250,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Considere as afirmações a seguir:",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            255.06661651150418,
+            661.514015394288
+          ]
+        },
+        {
+          "externalIndex": 251,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O som se propaga no ar com uma velocidade de aproximadamente 340m/s.",
+          "bbox": [
+            132.95939747341973,
+            649.0873003649759,
+            480.18683808877387,
+            623.5940305622879
+          ]
+        },
+        {
+          "externalIndex": 252,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "As velocidades de propagação do som no ar e no vácuo são aproximadamente iguais.",
+          "bbox": [
+            129.9592938096616,
+            611.0473155809758,
+            446.58690680380136,
+            585.6740457302878
+          ]
+        },
+        {
+          "externalIndex": 253,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O eco é devido à reflexão do som.",
+          "bbox": [
+            126.83946183419489,
+            573.1273307489757,
+            318.7866973494394,
+            560.3540558582878
+          ]
+        },
+        {
+          "externalIndex": 254,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Quais delas são corretas?",
+          "bbox": [
+            85.0794659682,
+            546.7273413089761,
+            215.94664935824557,
+            533.954066418288
+          ]
+        },
+        {
+          "externalIndex": 255,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Apenas I",
+          "bbox": [
+            85.0794659682,
+            521.407351436976,
+            149.58670560430213,
+            508.63407654628793
+          ]
+        },
+        {
+          "externalIndex": 256,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Apenas I e III",
+          "bbox": [
+            85.0794659682,
+            496.0873615649759,
+            170.94672037391092,
+            483.31408667428786
+          ]
+        },
+        {
+          "externalIndex": 257,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Apenas I e II",
+          "bbox": [
+            85.0794659682,
+            508.8073564769759,
+            167.94670991898332,
+            496.0340815862879
+          ]
+        },
+        {
+          "externalIndex": 258,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Apenas II e III",
+          "bbox": [
+            85.0794659682,
+            483.4873666049759,
+            174.0667159176798,
+            470.71409171428786
+          ]
+        },
+        {
+          "externalIndex": 259,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " I, II e III",
+          "bbox": [
+            85.0794659682,
+            470.70881171639996,
+            146.37397663985152,
+            456.82481727
+          ]
+        },
+        {
+          "externalIndex": 260,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 21",
+          "bbox": [
+            85.0794659682,
+            429.60594815755195,
+            157.86671290241642,
+            416.93203322712
+          ]
+        },
+        {
+          "externalIndex": 261,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Uma bola de borracha é rolada contra a parede de uma sala retangular, atingindo o ponto médio de cada lado, descrevendo a trajetória indicada pelas setas abaixo.",
+          "bbox": [
+            85.0794659682,
+            417.00739319697595,
+            513.3061049508029,
+            391.51412339428794
+          ]
+        },
+        {
+          "externalIndex": 262,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            244.18734741210938,
+            379.3667907714844,
+            352.0478210449219,
+            229.775634765625
+          ]
+        },
+        {
+          "externalIndex": 263,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Sabendo  que  a  bola  manteve  uma  velocidade  constante  e  que  demorou  10s  para voltar ao ponto de origem, determine a sua velocidade média.",
+          "bbox": [
+            85.0794659682,
+            202.567478972976,
+            513.3065839711852,
+            177.074209170288
+          ]
+        },
+        {
+          "externalIndex": 264,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "1,8km/h",
+          "bbox": [
+            85.07946596820003,
+            164.64749414097605,
+            140.10672980179865,
+            151.87421925028798
+          ]
+        },
+        {
+          "externalIndex": 265,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "5,4km/h",
+          "bbox": [
+            85.07946596820003,
+            139.32750426897599,
+            139.50673019112006,
+            126.55422937828803
+          ]
+        },
+        {
+          "externalIndex": 266,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "3,6km/h",
+          "bbox": [
+            85.07946596820003,
+            151.927499228976,
+            140.10672980179865,
+            139.15422433828803
+          ]
+        },
+        {
+          "externalIndex": 267,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "7,2km/h",
+          "bbox": [
+            85.07946596820003,
+            126.60750935697604,
+            140.10672980179865,
+            113.83423446628797
+          ]
+        },
+        {
+          "externalIndex": 268,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "9,0km/h",
+          "bbox": [
+            85.07946596820003,
+            114.00751439697603,
+            140.10672980179865,
+            101.23423950628796
+          ]
+        },
+        {
+          "externalIndex": 269,
+          "level": 1,
+          "type": "TEXT",
+          "text": "ondulatória",
+          "bbox": [
+            343.269,
+            543.6104958529953,
+            394.62485100111746,
+            533.8980767426356
+          ]
+        },
+        {
+          "externalIndex": 270,
+          "level": 1,
+          "type": "TEXT",
+          "text": "velocidade média",
+          "bbox": [
+            323.761,
+            149.62655695248645,
+            407.7925957221408,
+            139.9141378421267
+          ]
+        },
+        {
+          "externalIndex": 271,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.58673095703125,
+            762.5383377075195,
+            519.6034545898438,
+            737.8228073120117
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 17,
+      "elements": [
+        {
+          "externalIndex": 272,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.39787292480469,
+            804.6112747192383,
+            288.71197509765625,
+            726.1307373046875
+          ]
+        },
+        {
+          "externalIndex": 273,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 274,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 22",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            157.86671290241642,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 275,
+          "level": 1,
+          "type": "TEXT",
+          "text": "A Ferrari F430 Scuderia que chega agora ao Brasil, vem com 20 cavalos a mais de potência em relação ao modelo F430, graças a redução de sua massa para 1.250kg, cerca de 200kg a menos que o modelo antecessor. Com um motor v8 de 4,3 litros e potência de 510 cavalos, alcança uma velocidade final de 320km/h. É este propulsor que faz esta máquina arrancar de 0 a 100km/h em apenas 3,5s.",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            513.3068801146671,
+            610.9940356022879
+          ]
+        },
+        {
+          "externalIndex": 276,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Com base nos dados do texto anterior responda:",
+          "bbox": [
+            85.0794659682,
+            598.4473206209758,
+            326.5866367416805,
+            585.6740457302878
+          ]
+        },
+        {
+          "externalIndex": 277,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Qual  a  distância  percorrida  pelo  carro,  a  partir  do  repouso,  para  que  este  atinja  a velocidade de 100km/h? (Para efeito de cálculo admita que 100km/h = 28m/s).",
+          "bbox": [
+            85.0794659682,
+            572.0473311809761,
+            513.3068343463914,
+            546.5540613782881
+          ]
+        },
+        {
+          "externalIndex": 278,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "45m",
+          "bbox": [
+            85.0794659682,
+            534.007346396976,
+            122.34673743313013,
+            521.234071506288
+          ]
+        },
+        {
+          "externalIndex": 279,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "52m",
+          "bbox": [
+            85.0794659682,
+            508.8073564769759,
+            121.74673844032156,
+            496.0340815862879
+          ]
+        },
+        {
+          "externalIndex": 280,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "49m",
+          "bbox": [
+            85.0794659682,
+            521.407351436976,
+            122.34673743313013,
+            508.63407654628793
+          ]
+        },
+        {
+          "externalIndex": 281,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "56m",
+          "bbox": [
+            85.0794659682,
+            496.0873615649759,
+            122.34673743313013,
+            483.31408667428786
+          ]
+        },
+        {
+          "externalIndex": 282,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "62m",
+          "bbox": [
+            85.0794659682,
+            483.4873666049759,
+            122.34673743313013,
+            470.71409171428786
+          ]
+        },
+        {
+          "externalIndex": 283,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 23",
+          "bbox": [
+            85.0794659682,
+            429.36594825355195,
+            157.86671290241642,
+            416.69203332312
+          ]
+        },
+        {
+          "externalIndex": 284,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Na  filtração  das  águas  da  piscina  utilizam-se  filtros  que  contêm  areia  como  meio filtrante. A areia utilizada para esse fim deve ter granulometria apropriada, além de ser isenta  de  matéria  orgânica.  Para  se  chegar  a  esses  critérios  de  qualidade,  a  areia deve ser previamente peneirada e posteriormente queimada em fornos rotatórios. Os processos de obtenção dessa qualidade da areia são respectivamente:",
+          "bbox": [
+            85.0794659682,
+            416.76739329297595,
+            513.3070188202558,
+            353.35413865828787
+          ]
+        },
+        {
+          "externalIndex": 285,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "físico e químico.",
+          "bbox": [
+            85.0794659682,
+            340.9274236289758,
+            185.58668023694176,
+            328.15414873828786
+          ]
+        },
+        {
+          "externalIndex": 286,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "químico e químico.",
+          "bbox": [
+            85.0794659682,
+            315.60743375697575,
+            198.42668129708892,
+            302.8341588662877
+          ]
+        },
+        {
+          "externalIndex": 287,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "químico e físico.",
+          "bbox": [
+            85.0794659682,
+            328.20742871697576,
+            185.58669537475782,
+            315.4341538262878
+          ]
+        },
+        {
+          "externalIndex": 288,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "físico e físico.",
+          "bbox": [
+            85.0794659682,
+            302.8874388449758,
+            172.74670153045014,
+            290.11416395428773
+          ]
+        },
+        {
+          "externalIndex": 289,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "nuclear e físico.",
+          "bbox": [
+            85.0794659682,
+            290.2874438849757,
+            183.18670567049116,
+            277.51416899428773
+          ]
+        },
+        {
+          "externalIndex": 290,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 24",
+          "bbox": [
+            85.0794659682,
+            239.64602414155172,
+            157.86671290241642,
+            226.9721092111197
+          ]
+        },
+        {
+          "externalIndex": 291,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Qual  dos  seguintes  procedimentos  é  o  mais  indicado  quando  se  quer  distinguir  um copo  contendo  água  destilada  de  outro  que  contenha  uma  solução  de  água açucarada, sem experimentar o gosto?",
+          "bbox": [
+            85.0794659682,
+            227.04746918097567,
+            513.306567624493,
+            188.95420441828765
+          ]
+        },
+        {
+          "externalIndex": 292,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Filtrar os líquidos.",
+          "bbox": [
+            85.0794659682,
+            183.12748674897568,
+            192.90667120185086,
+            170.35421185828773
+          ]
+        },
+        {
+          "externalIndex": 293,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Determinar a densidade.",
+          "bbox": [
+            85.0794659682,
+            157.80749687697573,
+            226.62663824004875,
+            145.03422198628778
+          ]
+        },
+        {
+          "externalIndex": 294,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Medir o volume.",
+          "bbox": [
+            85.0794659682,
+            170.40749183697574,
+            184.38668913616223,
+            157.63421694628767
+          ]
+        },
+        {
+          "externalIndex": 295,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Usar um microscópio.",
+          "bbox": [
+            85.0794659682,
+            145.08750196497567,
+            212.46666260115626,
+            132.31422707428771
+          ]
+        },
+        {
+          "externalIndex": 296,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Decantar os líquidos.",
+          "bbox": [
+            85.0794659682,
+            132.48750700497567,
+            209.46666973345813,
+            119.71423211428771
+          ]
+        },
+        {
+          "externalIndex": 297,
+          "level": 1,
+          "type": "TEXT",
+          "text": "movimento retilíneo",
+          "bbox": [
+            299.751,
+            517.3444958529954,
+            393.69449999999995,
+            507.6320767426356
+          ]
+        },
+        {
+          "externalIndex": 298,
+          "level": 1,
+          "type": "TEXT",
+          "text": "transformações da matéria",
+          "bbox": [
+            305.753,
+            325.2305569524865,
+            430.04244656334487,
+            315.51813784212675
+          ]
+        },
+        {
+          "externalIndex": 299,
+          "level": 1,
+          "type": "TEXT",
+          "text": "substâncias",
+          "bbox": [
+            292.998,
+            157.13055695248647,
+            347.8500891526983,
+            147.41813784212673
+          ]
+        },
+        {
+          "externalIndex": 300,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.7731628417969,
+            762.343505859375,
+            519.189453125,
+            738.0375366210938
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 18,
+      "elements": [
+        {
+          "externalIndex": 301,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.49358367919922,
+            804.4775123596191,
+            288.7682800292969,
+            726.0542221069336
+          ]
+        },
+        {
+          "externalIndex": 302,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 303,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 25",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            157.86671179907705,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 304,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Gasolina, gelo e grafite são, respectivamente, exemplos de:",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            380.3468239995886,
+            661.514015394288
+          ]
+        },
+        {
+          "externalIndex": 305,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "mistura, substância simples e substância composta.",
+          "bbox": [
+            85.0794659682,
+            655.6872977249759,
+            359.9464728546918,
+            642.914022834288
+          ]
+        },
+        {
+          "externalIndex": 306,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "substância composta, mistura e substância simples.",
+          "bbox": [
+            85.0794659682,
+            630.367307852976,
+            359.8261866189647,
+            617.5940329622879
+          ]
+        },
+        {
+          "externalIndex": 307,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "mistura, substância composta e substância simples.",
+          "bbox": [
+            85.0794659682,
+            643.0873027649759,
+            359.8261866189647,
+            630.314027874288
+          ]
+        },
+        {
+          "externalIndex": 308,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "substância composta, substância simples e mistura.",
+          "bbox": [
+            85.0794659682,
+            617.7673128929758,
+            359.94647285469176,
+            604.9940380022879
+          ]
+        },
+        {
+          "externalIndex": 309,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " substância simples, mistura e substância composta .",
+          "bbox": [
+            85.0794659682,
+            605.2287579084,
+            359.63457746241164,
+            591.3447634620001
+          ]
+        },
+        {
+          "externalIndex": 310,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 26",
+          "bbox": [
+            85.0794659682,
+            551.645899341552,
+            157.86671290241642,
+            538.9719844111199
+          ]
+        },
+        {
+          "externalIndex": 311,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Um determinado elemento pertence ao primeiro grupo ou família da tabela periódica. A respeito das suas propriedades, é INCORRETO afirmar que:",
+          "bbox": [
+            85.0794659682,
+            539.0473443809759,
+            513.3062315949738,
+            513.6519945391199
+          ]
+        },
+        {
+          "externalIndex": 312,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "encontra-se no estado sólido à temperatura ambiente.",
+          "bbox": [
+            85.0798657288401,
+            507.7273569089759,
+            370.387148793448,
+            494.95408201828786
+          ]
+        },
+        {
+          "externalIndex": 313,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "forma cátion monovalente nos sais correspondentes.",
+          "bbox": [
+            85.0798657288401,
+            482.4073670369758,
+            364.2669569831277,
+            469.6340921462878
+          ]
+        },
+        {
+          "externalIndex": 314,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "trata-se de um metal alcalino.",
+          "bbox": [
+            85.0798657288401,
+            495.0073619969758,
+            250.38703812740724,
+            482.23408710628786
+          ]
+        },
+        {
+          "externalIndex": 315,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " é um elemento muito reativo em água.",
+          "bbox": [
+            85.0798657288401,
+            469.8073720769758,
+            293.82705940545003,
+            457.0340971862878
+          ]
+        },
+        {
+          "externalIndex": 316,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " forma compostos covalentes com não-metais.",
+          "bbox": [
+            85.0798657288401,
+            457.08737716497575,
+            330.5470285131966,
+            444.3141022742878
+          ]
+        },
+        {
+          "externalIndex": 317,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 27",
+          "bbox": [
+            85.0794659682,
+            405.36595785355195,
+            157.86671290241642,
+            392.69204292311997
+          ]
+        },
+        {
+          "externalIndex": 318,
+          "level": 1,
+          "type": "TEXT",
+          "text": "A filtração caseira da água é um procedimento eficiente para evitar a transmissão de várias  doenças.  Assinale  a  opção  que  contenha  somente  doenças  que  terão  sua incidência reduzida com a adoção dessa medida.",
+          "bbox": [
+            85.0794659682,
+            392.76740289297595,
+            513.3065500033639,
+            354.6741381302879
+          ]
+        },
+        {
+          "externalIndex": 319,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Dengue, hepatite A, giardíase, botulismo",
+          "bbox": [
+            85.0794659682,
+            342.1274231489758,
+            304.98661668613045,
+            329.35414825828786
+          ]
+        },
+        {
+          "externalIndex": 320,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Giardíase, cólera, ascaridíase, amebíase",
+          "bbox": [
+            85.0794659682,
+            316.80743327697587,
+            325.146603922694,
+            304.0341583862878
+          ]
+        },
+        {
+          "externalIndex": 321,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Malária, giardíase, cólera, disenteria bacilar",
+          "bbox": [
+            85.0794659682,
+            329.5274281889758,
+            318.90664842888424,
+            316.75415329828775
+          ]
+        },
+        {
+          "externalIndex": 322,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Dengue, giardíase, cólera, amebíase.",
+          "bbox": [
+            85.0794659682,
+            304.20743831697575,
+            289.62664893138617,
+            291.4341634262878
+          ]
+        },
+        {
+          "externalIndex": 323,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Cólera, amebíase, malária, filariose",
+          "bbox": [
+            85.0794659682,
+            291.4874434049757,
+            285.3066642066482,
+            278.71416851428773
+          ]
+        },
+        {
+          "externalIndex": 324,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 28",
+          "bbox": [
+            85.0794659682,
+            251.28601948555195,
+            157.86671290241642,
+            238.61210455512003
+          ]
+        },
+        {
+          "externalIndex": 325,
+          "level": 1,
+          "type": "TEXT",
+          "text": "'A  mata  atlântica  é  hoje  uma  das  florestas  tropicais  mais  devastadas  do  planeta, reduzida  a  algumas  poucas  áreas  remanescentes,  em  geral  descontínuas.  Esse processo de fragmentação pode ser a causa do aumento da densidade de formigas conhecidas como saúvas, o que ameaçaria ainda mais esse bioma já fragilizado. Com a fragmentação, há um predomínio de plantas de luz ou pioneiras, em detrimento das plantas de sombra, próprias de florestas maduras e conservadas. As plantas pioneiras não  possuem  compostos  de  defesa  contra  organismos  que  se  alimentam  de  suas folhas.  Com  mais  plantas  sem  defesas  nas  proximidades  dos  ninhos,  as  formigas gastam menos energia para buscar seus alimentos e mais energia para a produção de rainhas e consequentemente um maior número de colônias adultas.'",
+          "bbox": [
+            85.0794659682,
+            239.46890421240005,
+            513.3070808142052,
+            112.03423518628802
+          ]
+        },
+        {
+          "externalIndex": 326,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Adaptado de Ciência Hoje. Dezembro de 2008. p. 60.",
+          "bbox": [
+            271.439891424,
+            99.55012017993602,
+            514.6340738741767,
+            90.24784390084801
+          ]
+        },
+        {
+          "externalIndex": 327,
+          "level": 1,
+          "type": "TEXT",
+          "text": "tabela periódica",
+          "bbox": [
+            379.284,
+            497.0825569524864,
+            452.81577476872644,
+            487.3701378421267
+          ]
+        },
+        {
+          "externalIndex": 328,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.7044372558594,
+            762.359504699707,
+            519.397705078125,
+            737.9601364135742
+          ]
+        },
+        {
+          "externalIndex": 329,
+          "level": 1,
+          "type": "TEXT",
+          "text": "substâncias",
+          "bbox": [
+            409.297,
+            665.1825569524864,
+            464.1490891526983,
+            655.4701378421267
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 19,
+      "elements": [
+        {
+          "externalIndex": 330,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.4233169555664,
+            804.2461700439453,
+            288.6961364746094,
+            725.4062728881836
+          ]
+        },
+        {
+          "externalIndex": 331,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 332,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Baseado no texto e nos seus conhecimentos, analise as afirmativas a seguir e marque a alternativa correta.",
+          "bbox": [
+            85.0794659682,
+            687.007285196976,
+            513.3063103740437,
+            661.514015394288
+          ]
+        },
+        {
+          "externalIndex": 333,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Podemos  verificar,  de  acordo  com  o  texto  acima,  que  o  número  de saúvas reduziu devido a escassez de alimentos provocada pelo desmatamento da mata atlântica.",
+          "bbox": [
+            132.95939747341973,
+            649.0873003649759,
+            513.3067116496167,
+            610.9940356022879
+          ]
+        },
+        {
+          "externalIndex": 334,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A  mata  atlântica  é  um  bioma  brasileiro  que  se  caracteriza  por  sua vegetação densa, com chuvas abundantes, presença de palmeiras e ipês.",
+          "bbox": [
+            126.8395617743549,
+            560.5273357889757,
+            513.3068257699261,
+            535.0340659862877
+          ]
+        },
+        {
+          "externalIndex": 335,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "As  formigas  mantêm  relação  harmoniosa  denominada  sociedade.  A sociedade das formigas é estruturada em  castas (rainha, macho, operária,  soldado),  sendo  cada  uma  responsável  por  um  determinado trabalho ou função.",
+          "bbox": [
+            129.95939374982166,
+            611.0473155809758,
+            513.3068906246939,
+            560.3540558582878
+          ]
+        },
+        {
+          "externalIndex": 336,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Todas as afirmativas são corretas.",
+          "bbox": [
+            85.07956590835998,
+            522.6073509569757,
+            274.2667278475773,
+            509.83407606628765
+          ]
+        },
+        {
+          "externalIndex": 337,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Apenas as afirmativas I e III estão corretas.",
+          "bbox": [
+            85.07956590835998,
+            497.2873610849756,
+            317.70679478180307,
+            484.5140861942876
+          ]
+        },
+        {
+          "externalIndex": 338,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Apenas as afirmativas I e II estão corretas.",
+          "bbox": [
+            85.07956590835998,
+            509.8873560449756,
+            314.5867686314001,
+            497.1140811542876
+          ]
+        },
+        {
+          "externalIndex": 339,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Apenas as afirmativas II e III estão corretas.",
+          "bbox": [
+            85.07956590835998,
+            484.56736617297554,
+            360.54674997472983,
+            471.7940912822876
+          ]
+        },
+        {
+          "externalIndex": 340,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Todas as afirmativas são falsas.",
+          "bbox": [
+            85.07956590835998,
+            471.96737121297554,
+            263.22675298228216,
+            459.1940963222875
+          ]
+        },
+        {
+          "externalIndex": 341,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 29",
+          "bbox": [
+            85.0794659682,
+            419.04595238155196,
+            157.86671290241642,
+            406.37203745112
+          ]
+        },
+        {
+          "externalIndex": 342,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Sobre os tecidos animais é INCORRETO afirmar:",
+          "bbox": [
+            85.0794659682,
+            406.56739737297596,
+            329.586809800368,
+            393.7720424911199
+          ]
+        },
+        {
+          "externalIndex": 343,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O tecido  muscular  é  formado  por  fibras  musculares,  células  ricas  em  filamentos protéicos;",
+          "bbox": [
+            85.07996566900013,
+            381.12740754897595,
+            513.3069119936594,
+            355.75413769828793
+          ]
+        },
+        {
+          "externalIndex": 344,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Os tecidos conjuntivos, que apresentam pouca quantidade de material extracelular, podem  exercer  função  de  sustentação,  defesa,  nutrição  e  preenchimento  de espaços entre órgãos.",
+          "bbox": [
+            85.0803654296402,
+            330.4874278049759,
+            513.3078866296084,
+            292.3941630422878
+          ]
+        },
+        {
+          "externalIndex": 345,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Os tecidos  epiteliais  apresentam  células  justapostas  e  funções  de  revestimento, secreção e absorção.",
+          "bbox": [
+            85.08016554932014,
+            355.8074176769759,
+            513.3074030460376,
+            330.43414782628787
+          ]
+        },
+        {
+          "externalIndex": 346,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O tecido nervoso é especializado na recepção e transmissão de impulsos elétricos.",
+          "bbox": [
+            85.08056530996025,
+            292.56744297297587,
+            512.2277570909927,
+            279.7941680822878
+          ]
+        },
+        {
+          "externalIndex": 347,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O  sangue  é  um  tipo  de  tecido  conjuntivo  constituído  pelos  elementos  figurados (hemácias, leucócitos e plaquetas) e plasma (substância intercelular líquida).",
+          "bbox": [
+            85.08056530996026,
+            279.96744801297575,
+            513.3078511008013,
+            254.47417821028773
+          ]
+        },
+        {
+          "externalIndex": 348,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.72613525390625,
+            762.2865982055664,
+            519.0758056640625,
+            738.1058731079102
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 20,
+      "elements": [
+        {
+          "externalIndex": 349,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.33367919921875,
+            804.3874549865723,
+            288.6747131347656,
+            726.3365783691406
+          ]
+        },
+        {
+          "externalIndex": 350,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 351,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 30",
+          "bbox": [
+            85.0794659682,
+            698.525840589552,
+            157.86671290241642,
+            685.85192565912
+          ]
+        },
+        {
+          "externalIndex": 352,
+          "level": 1,
+          "type": "TEXT",
+          "text": "'Eu trago bananas prá vender Bananas de todas qualidades Quem vai querer Olha banana Nanica Olha banana Maçã Olha banana Ouro Olha banana Prata Olha a banana da Terra Figo São Tomé",
+          "bbox": [
+            155.87993764799998,
+            672.007291196976,
+            305.1071738334587,
+            558.0740567702878
+          ]
+        },
+        {
+          "externalIndex": 353,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Olha a banana d'Água.'",
+          "bbox": [
+            155.87993764799998,
+            558.2473367009758,
+            275.1071428989852,
+            545.4740618102878
+          ]
+        },
+        {
+          "externalIndex": 354,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.5093078613281,
+            762.539192199707,
+            519.5311279296875,
+            737.8509368896484
+          ]
+        },
+        {
+          "externalIndex": 355,
+          "level": 1,
+          "type": "TEXT",
+          "text": "(O Vendedor de Bananas -Jorge Ben)",
+          "bbox": [
+            339.35986425600004,
+            547.3768824491594,
+            512.4736660766857,
+            535.8732988505948
+          ]
+        },
+        {
+          "externalIndex": 356,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Nas feiras e supermercados geralmente encontramos bananas sem sementes. Uma das  espécies  de  bananeiras  que  não  produz  sementes  é  a Musa  sapientum (variedades  ouro,  prata,  maçã,  figo,  São  Tomé).  No  entanto,  existem  bananeiras silvestres  cujo  fruto  apresenta  sementes  duras,  que  ocupam  boa  parte  da  massa comestível da banana. É o caso da espécie Musa balbisiana .",
+          "bbox": [
+            85.0794659682,
+            496.08736156497594,
+            513.30702146923,
+            432.79410688228785
+          ]
+        },
+        {
+          "externalIndex": 357,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            100.87508392333984,
+            420.0394287109375,
+            206.86390686035156,
+            339.18377685546875
+          ]
+        },
+        {
+          "externalIndex": 358,
+          "level": 2,
+          "type": "CAPTION",
+          "text": "Banana sem semente",
+          "bbox": [
+            104.87995804799999,
+            330.2969692811595,
+            204.96250327605975,
+            318.7933856825947
+          ]
+        },
+        {
+          "externalIndex": 359,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            321.5137634277344,
+            416.26556396484375,
+            506.27545166015625,
+            339.1954040527344
+          ]
+        },
+        {
+          "externalIndex": 360,
+          "level": 2,
+          "type": "CAPTION",
+          "text": "Banana com semente",
+          "bbox": [
+            347.87986084799996,
+            328.9769698091595,
+            447.96233931877083,
+            317.47338621059475
+          ]
+        },
+        {
+          "externalIndex": 361,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Com referência aos processos reprodutivos das duas espécies citadas no enunciado pode-se afirmar corretamente que:",
+          "bbox": [
+            85.0794659682,
+            273.1274507489759,
+            513.3062208650781,
+            247.75418089828793
+          ]
+        },
+        {
+          "externalIndex": 362,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Somente a espécie Musa balbisiana se reproduz por processo sexuado;",
+          "bbox": [
+            85.0794659682,
+            235.20746591697593,
+            473.5867478240805,
+            222.43419102628798
+          ]
+        },
+        {
+          "externalIndex": 363,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "As duas espécies não se reproduzem por processo sexuado;",
+          "bbox": [
+            85.07996566900013,
+            209.88747604497598,
+            404.5875811213425,
+            197.1142011542879
+          ]
+        },
+        {
+          "externalIndex": 364,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " As duas espécies reproduzem-se por processo sexuado;",
+          "bbox": [
+            85.0799656690001,
+            222.60747095697593,
+            383.707159230673,
+            209.83419606628797
+          ]
+        },
+        {
+          "externalIndex": 365,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Na espécie Musa sapientum ocorre o desenvolvimento do embrião;",
+          "bbox": [
+            85.07996566900013,
+            197.28748108497598,
+            435.06720913799893,
+            184.51420619428802
+          ]
+        },
+        {
+          "externalIndex": 366,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " A espécie Musa balbisiana não forma zigoto;",
+          "bbox": [
+            85.07976578868006,
+            184.56748617297603,
+            325.14697739059727,
+            171.79421128228796
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 21,
+      "elements": [
+        {
+          "externalIndex": 367,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.57823944091797,
+            804.4762191772461,
+            288.64111328125,
+            726.0279998779297
+          ]
+        },
+        {
+          "externalIndex": 368,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 369,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 31",
+          "bbox": [
+            85.0794659682,
+            699.605840157552,
+            157.86671290241642,
+            686.9319252271199
+          ]
+        },
+        {
+          "externalIndex": 370,
+          "level": 1,
+          "type": "TEXT",
+          "text": "O  Brasil  encontra-se  dividido  em  cinco  grandes  regiões:  sul,  sudeste,  centro-oeste, norte  e  nordeste.  Essa  divisão  oficial  foi  realizada  pelo  IBGE  (Instituto  Brasileiro  de Geografia e Estatística) e é com base nessas regiões que boa parte das informações do país é organizada. Com base no mapa abaixo e em seus conhecimentos sobre as regiões brasileiras, assinale a alternativa correta :",
+          "bbox": [
+            85.07946596819997,
+            687.007285196976,
+            513.3064985023605,
+            622.9940308022879
+          ]
+        },
+        {
+          "externalIndex": 371,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            146.3310089111328,
+            596.3543395996094,
+            473.6398010253906,
+            286.09033203125
+          ]
+        },
+        {
+          "externalIndex": 372,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Fonte: IBGE",
+          "bbox": [
+            466.19981351999996,
+            286.630445347776,
+            512.4735952319766,
+            277.328169068688
+          ]
+        },
+        {
+          "externalIndex": 373,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A  grande  concentração  industrial  brasileira  está  na  região  nordeste  devido  ao maior número de estados que ela contém.",
+          "bbox": [
+            85.07996460660053,
+            252.00745919697601,
+            513.3075160521387,
+            226.63418934628805
+          ]
+        },
+        {
+          "externalIndex": 374,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A região sul caracteriza-se por sua ocupação  recente, o que explica os insatisfatórios índices de crescimento industrial.",
+          "bbox": [
+            85.08036436724062,
+            201.48747940497606,
+            513.3073298498689,
+            175.99420960228804
+          ]
+        },
+        {
+          "externalIndex": 375,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A região centro-oeste é composta por três estados e pelo Distrito Federal, onde se encontra a capital do Brasil.",
+          "bbox": [
+            85.08016448692057,
+            226.807469276976,
+            513.3075875998592,
+            201.314199474288
+          ]
+        },
+        {
+          "externalIndex": 376,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A  região  sudeste  apresenta  os  maiores  índices  de  mortalidade  infantil  e  de analfabetismo, sendo também considerada uma região fracamente desenvolvida.",
+          "bbox": [
+            85.08056424756064,
+            176.1674895329761,
+            513.3072431803231,
+            150.79421968228803
+          ]
+        },
+        {
+          "externalIndex": 377,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A  região  norte  apresenta  uma  grande  extensão  territorial  e  também  um  grande número populacional.",
+          "bbox": [
+            85.07956484596038,
+            150.84749966097604,
+            513.3064901304174,
+            125.47422981028808
+          ]
+        },
+        {
+          "externalIndex": 378,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.8850402832031,
+            762.2723388671875,
+            519.1812744140625,
+            738.0698547363281
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 22,
+      "elements": [
+        {
+          "externalIndex": 379,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.33551788330078,
+            804.3483467102051,
+            288.61370849609375,
+            726.3546295166016
+          ]
+        },
+        {
+          "externalIndex": 380,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 381,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 32",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            157.86671290241642,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 382,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Leia atentamente as manchetes abaixo:",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            283.26662085392337,
+            661.514015394288
+          ]
+        },
+        {
+          "externalIndex": 383,
+          "level": 1,
+          "type": "TEXT",
+          "text": "'Número  de  mortos  por  tsunami  causado  por  terremoto  passa  de  100  na Oceania Há mortos e feridos em Samoa Americana e em Samoa.'",
+          "bbox": [
+            85.0794659682,
+            649.085860365552,
+            513.3063239361632,
+            623.6919505231199
+          ]
+        },
+        {
+          "externalIndex": 384,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Disponível em: <http://g1.globo.com/Noticias/Mundo/0,,MUL1323397-5602,00.html>. Acessado em 30/09/2009.",
+          "bbox": [
+            114.959954016,
+            623.830310467776,
+            512.4736761681114,
+            614.528034188688
+          ]
+        },
+        {
+          "externalIndex": 385,
+          "level": 1,
+          "type": "FOOTNOTE",
+          "text": "'Terremoto na Indonésia deixa ao menos 75 mortos.'",
+          "bbox": [
+            85.0794659682,
+            601.9258792295519,
+            368.2266293092575,
+            589.2519642991199
+          ]
+        },
+        {
+          "externalIndex": 386,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Disponível em: <http://noticias.uol.com.br/ultnot/internacional/2009/09/30/ult1859u1560.jhtm>. Acessado em 30/09/2009.",
+          "bbox": [
+            126.359949456,
+            589.2703242917761,
+            512.4734569975329,
+            570.848051660688
+          ]
+        },
+        {
+          "externalIndex": 387,
+          "level": 1,
+          "type": "FOOTNOTE",
+          "text": "'Vulcão Asama entra em erupção e deixa Japão em alerta - 02/02/2009.'",
+          "bbox": [
+            85.0794659682,
+            558.245896701552,
+            463.5062508431908,
+            545.5719817711199
+          ]
+        },
+        {
+          "externalIndex": 388,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Disponível em: <http://video.aol.co.uk/video-detail/vulco-asama-entra-em-erupo-e-deixa-japo-emalerta/3349838831>. Acessado em 13/10/2009.",
+          "bbox": [
+            165.359933856,
+            545.5903417637761,
+            512.4739813303123,
+            527.1680691326881
+          ]
+        },
+        {
+          "externalIndex": 389,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Os fenômenos expostos acima estão relacionados ao(s):",
+          "bbox": [
+            85.07994784560725,
+            514.567354172976,
+            365.8269895882507,
+            501.794079282288
+          ]
+        },
+        {
+          "externalIndex": 390,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "processos externos devido aos inúmeros impactos provocados na crosta terrestre.",
+          "bbox": [
+            85.07994784560725,
+            489.24736430097596,
+            508.50671752718887,
+            476.47408941028795
+          ]
+        },
+        {
+          "externalIndex": 391,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "processos internos da Terra que provocam a movimentação das placas tectônicas.",
+          "bbox": [
+            85.07994784560725,
+            463.9273744289759,
+            510.9072410989981,
+            451.15409953828794
+          ]
+        },
+        {
+          "externalIndex": 392,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " elevação dos impactos ambientais provocados pelo aquecimento global.",
+          "bbox": [
+            85.07994784560725,
+            476.52736938897596,
+            462.66667415915055,
+            463.75409449828794
+          ]
+        },
+        {
+          "externalIndex": 393,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " desgaste das rochas, que por estarem expostas acabam se desgastando.",
+          "bbox": [
+            85.07994784560725,
+            451.2073795169759,
+            466.8671746884131,
+            438.4341046262879
+          ]
+        },
+        {
+          "externalIndex": 394,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "dinamismo existente  na  Terra,  o  que  certamente  tem  uma  relação  direta  com  a redução repentina do número de habitantes do Planeta.",
+          "bbox": [
+            85.07994784560725,
+            438.6073845569759,
+            513.3073835530845,
+            413.2341147062878
+          ]
+        },
+        {
+          "externalIndex": 395,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 33",
+          "bbox": [
+            85.0799478456072,
+            387.96596481355175,
+            157.86719477982365,
+            375.2920498831198
+          ]
+        },
+        {
+          "externalIndex": 396,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Indique  a  alternativa  que NÃO corresponde  à  realidade  das  grandes  metrópoles brasileiras:",
+          "bbox": [
+            85.07934820464705,
+            299.6474401409756,
+            513.3070166390175,
+            274.03417038628754
+          ]
+        },
+        {
+          "externalIndex": 397,
+          "level": 1,
+          "type": "TEXT",
+          "text": "A escolha da cidade do Rio de Janeiro como sede das olimpíadas de 2016 é vista por muitos  como  uma  oportunidade  de  crescimento  econômico,  principalmente  pelo turismo.  Por  outro  lado,  as  enormes  desigualdades  sociais  e  territoriais  existentes tanto  na  cidade  do  Rio  de  Janeiro  quanto  em  outras  metrópoles  brasileiras  geram críticas quanto ao grande investimento que será feito para sediar os jogos mundiais, em detrimento a outras necessidades do país.",
+          "bbox": [
+            85.0799478456072,
+            375.36740985297575,
+            513.3075369044642,
+            299.3541602582876
+          ]
+        },
+        {
+          "externalIndex": 398,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " São cidades que passaram por um rápido e desordenado crescimento, tornandose 'inchadas' de pessoas e de problemas.",
+          "bbox": [
+            85.0794659682,
+            260.40745583697594,
+            510.4330680571123,
+            234.91418603428792
+          ]
+        },
+        {
+          "externalIndex": 399,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Os  escassos  investimentos  governamentais  na  área  habitacional  levaram  à formação de precárias moradias.",
+          "bbox": [
+            85.07886632723985,
+            209.76747609297604,
+            513.3060038129598,
+            184.39420624228796
+          ]
+        },
+        {
+          "externalIndex": 400,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A  rápida  urbanização  faz  com  que  cidades  vizinhas  à  metrópole  aumentem  de tamanho e formem um só conjunto.",
+          "bbox": [
+            85.07866644691983,
+            235.087465964976,
+            513.3059208834145,
+            209.71419611428803
+          ]
+        },
+        {
+          "externalIndex": 401,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " Há um grande número de mendigos, desempregados e subempregados vivendo nestas cidades.",
+          "bbox": [
+            85.07906620755993,
+            184.44748622097597,
+            513.3061863263982,
+            159.074216370288
+          ]
+        },
+        {
+          "externalIndex": 402,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " A falta de infraestrutura adequada e de saneamento básico não são problemas tão preocupantes nas metrópoles devido à presença de mão de obra qualificada para resolvê-los.",
+          "bbox": [
+            85.07926608788007,
+            159.24749630097608,
+            513.3068959477471,
+            121.15423153828806
+          ]
+        },
+        {
+          "externalIndex": 403,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.6432800292969,
+            762.2510528564453,
+            519.2063598632812,
+            738.0997619628906
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 23,
+      "elements": [
+        {
+          "externalIndex": 404,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.48680877685547,
+            804.3602180480957,
+            288.7159729003906,
+            726.2449569702148
+          ]
+        },
+        {
+          "externalIndex": 405,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 406,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 34",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            157.86671290241642,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 407,
+          "level": 1,
+          "type": "TEXT",
+          "text": "'As  fontes  de  energia  são  extremamente importantes nas  atividades  humanas,  pois originam combustíveis e eletricidade que servem para iluminar, movimentar máquinas, caminhões entre outras aplicações.",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            513.30683633592,
+            636.314025474288
+          ]
+        },
+        {
+          "externalIndex": 408,
+          "level": 1,
+          "type": "TEXT",
+          "text": "As  energias  facilitam  o  trabalho  do  homem  que  em  outras  circunstâncias  teria  uma grande  dificuldade,  utiliza-se  a  energia  para  levantar  peso,  apertar  parafuso,  mover veículos, ferver água, etc.'",
+          "bbox": [
+            85.0794659682,
+            636.3673054529759,
+            513.3063651601202,
+            598.2740406902878
+          ]
+        },
+        {
+          "externalIndex": 409,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Disponível em: <http://www.mundoeducacao.com.br/geografia/fontes-energia-1.htm>. Acessado em 13/10/2009.",
+          "bbox": [
+            111.359955456,
+            585.9103256357761,
+            512.4731476623758,
+            576.6080493566881
+          ]
+        },
+        {
+          "externalIndex": 410,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Sobre as fontes energéticas são feitas as seguintes afirmações.",
+          "bbox": [
+            85.0794659682,
+            562.807334876976,
+            400.02687359532155,
+            550.0340599862881
+          ]
+        },
+        {
+          "externalIndex": 411,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "As termoelétricas que produzem energia a partir da queima em caldeira de  carvão,  óleo  combustível  ou  gás  natural,  elevam  a  concentração  de poluentes  na  atmosfera  e  por  consequência  acentuam  o  aquecimento global.",
+          "bbox": [
+            132.95939747341976,
+            537.4873450049761,
+            513.3066415063356,
+            486.7940852822879
+          ]
+        },
+        {
+          "externalIndex": 412,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A energia eólica, ou seja, aquela que é proveniente do vento, ocasiona alguns  impactos  ambientais,  tais  como:  aumento  da  poluição  sonora, visual  e  atmosférica,  sendo  diretamente  responsável  pelo  aquecimento global.",
+          "bbox": [
+            126.8385623727548,
+            423.60739055697576,
+            513.3051533161217,
+            372.9141308342877
+          ]
+        },
+        {
+          "externalIndex": 413,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "As hidrelétricas apesar de serem vistas por alguns como 'energia limpa', geram inúmeros impactos ambientais devido à construção das represas, que  provocam  inundações  em  imensas  áreas  de  matas,  destroem espécies  vegetais,  prejudicam  os  animais,  e  interferem  na  ocupação humana.",
+          "bbox": [
+            129.95939374982171,
+            486.9673652129759,
+            513.3061666437834,
+            423.55411057828775
+          ]
+        },
+        {
+          "externalIndex": 414,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A energia solar é considerada  uma  fonte  energética alternativa e renovável.",
+          "bbox": [
+            125.63788129022743,
+            373.08741076497563,
+            513.3050637182491,
+            347.5941409622876
+          ]
+        },
+        {
+          "externalIndex": 415,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Estão corretas as alternativas:",
+          "bbox": [
+            85.07846656659983,
+            335.16742593297556,
+            236.1056485576043,
+            322.3941510422876
+          ]
+        },
+        {
+          "externalIndex": 416,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "I, III e IV.",
+          "bbox": [
+            85.07846656659983,
+            309.8474360609755,
+            150.1857123010161,
+            297.07416117028754
+          ]
+        },
+        {
+          "externalIndex": 417,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "II, III e IV.",
+          "bbox": [
+            85.07846656659983,
+            284.52744618897555,
+            158.9457274347312,
+            271.7541712982875
+          ]
+        },
+        {
+          "externalIndex": 418,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "II e III.",
+          "bbox": [
+            85.07846656659983,
+            297.12744114897555,
+            136.7457269445407,
+            284.3541662582875
+          ]
+        },
+        {
+          "externalIndex": 419,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "I, II e IV.",
+          "bbox": [
+            85.07846656659983,
+            271.9274512289754,
+            147.06570876907023,
+            259.15417633828747
+          ]
+        },
+        {
+          "externalIndex": 420,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "I, II, III e IV .",
+          "bbox": [
+            85.07846656659983,
+            258.4874566049755,
+            162.23465642241163,
+            245.7141817142874
+          ]
+        },
+        {
+          "externalIndex": 421,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.76373291015625,
+            762.3059158325195,
+            519.1958618164062,
+            738.0567626953125
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 24,
+      "elements": [
+        {
+          "externalIndex": 422,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.38827514648438,
+            804.5371017456055,
+            288.7293395996094,
+            726.2269287109375
+          ]
+        },
+        {
+          "externalIndex": 423,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 424,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 35",
+          "bbox": [
+            85.0794659682,
+            698.525840589552,
+            157.86671290241642,
+            685.85192565912
+          ]
+        },
+        {
+          "externalIndex": 425,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Observe o mapa abaixo:",
+          "bbox": [
+            85.0794659682,
+            685.807285676976,
+            208.02666390215254,
+            673.0340107862879
+          ]
+        },
+        {
+          "externalIndex": 426,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            83.40206146240234,
+            664.8702850341797,
+            499.26068115234375,
+            344.72052001953125
+          ]
+        },
+        {
+          "externalIndex": 427,
+          "level": 2,
+          "type": "CAPTION",
+          "text": "Adaptado - Disponível em: <http://www.geografiaparatodos.com.br/index.php?pag=mapasm>. Acessado em 13/10/2009 .",
+          "bbox": [
+            124.31964802092087,
+            335.23042590777595,
+            512.4737756272427,
+            316.808153276688
+          ]
+        },
+        {
+          "externalIndex": 428,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Uma  das  tendências  do  mundo  atualmente  é  a  articulação  dos  países  em  blocos econômicos,  como  os  que  estão  expostos  no  mapa  acima.  Assinale  a  alternativa INCORRETA a respeito desse assunto.",
+          "bbox": [
+            85.0794659682,
+            289.0874443649759,
+            513.3064978964832,
+            251.09209956311997
+          ]
+        },
+        {
+          "externalIndex": 429,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " A Comunidade para o Desenvolvimento da África Austral (SADC), localiza-se no território africano.",
+          "bbox": [
+            85.07946596820001,
+            238.447464620976,
+            513.3065730759489,
+            213.07419477028793
+          ]
+        },
+        {
+          "externalIndex": 430,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "A  União  Européia  possui  uma  moeda  única,  o  euro,  e  tem  como  um  dos  seus membros a Alemanha.",
+          "bbox": [
+            85.07886632723991,
+            187.92748482897605,
+            513.3063866539704,
+            162.43421502628803
+          ]
+        },
+        {
+          "externalIndex": 431,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "O  Nafta  é  uma  zona  de  livre  comércio  formada  por  Canadá,  Estados  Unidos  e México.",
+          "bbox": [
+            85.07966584852007,
+            213.247474700976,
+            513.3063826832281,
+            187.75420489828798
+          ]
+        },
+        {
+          "externalIndex": 432,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " O Mercosul tem como membros permanentes apenas países da América do Sul.",
+          "bbox": [
+            85.07906620755993,
+            162.60749495697598,
+            500.46667006173595,
+            149.83422006628803
+          ]
+        },
+        {
+          "externalIndex": 433,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Todos os  blocos  econômicos  apresentam  o  mesmo  nível  de  integração  política, social, ambiental e econômica.",
+          "bbox": [
+            85.07906620755995,
+            150.00749999697598,
+            513.3058179525653,
+            124.51423019428807
+          ]
+        },
+        {
+          "externalIndex": 434,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.7184143066406,
+            762.3555374145508,
+            519.1952514648438,
+            738.0486755371094
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 25,
+      "elements": [
+        {
+          "externalIndex": 435,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.41283416748047,
+            804.4894180297852,
+            288.59478759765625,
+            726.0345764160156
+          ]
+        },
+        {
+          "externalIndex": 436,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 437,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 36",
+          "bbox": [
+            85.0794659682,
+            684.725846109552,
+            157.86671290241642,
+            672.05193117912
+          ]
+        },
+        {
+          "externalIndex": 438,
+          "level": 1,
+          "type": "TEXT",
+          "text": "'O Congresso de Viena foi realizado na capital austríaca, entre setembro de 1814 e junho  de  1815,  tendo  como  participantes  dezenas  de  príncipes,  reis,  imperadores, chefes militares, diplomatas, dirigentes da igreja, nobres, tomados de alegria porque Napoleão Bonaparte, que passara a simbolizar a Revolução Francesa, estava exilado na Ilha de Elba'.",
+          "bbox": [
+            85.0794659682,
+            672.007291196976,
+            513.3068554009848,
+            608.714036514288
+          ]
+        },
+        {
+          "externalIndex": 439,
+          "level": 1,
+          "type": "TEXT",
+          "text": "(AQUINO; RONALDO. Fazendo a História : A Europa e as Américas nos séculos XVIII e XIX. Rio de Janeiro: Ao Livro Técnico, 1986)",
+          "bbox": [
+            111.359955456,
+            608.830316467776,
+            512.4739058001792,
+            590.408043836688
+          ]
+        },
+        {
+          "externalIndex": 440,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Quatro  países  foram  os  grandes  beneficiários  dos  acordos  que  resultaram  do Congresso de Viena; são eles:",
+          "bbox": [
+            85.07993642641182,
+            577.807328876976,
+            513.3066325047478,
+            552.314059074288
+          ]
+        },
+        {
+          "externalIndex": 441,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Áustria, Alemanha, Rússia e Inglaterra.",
+          "bbox": [
+            85.07993642641182,
+            539.767344092976,
+            297.5471356950598,
+            526.994069202288
+          ]
+        },
+        {
+          "externalIndex": 442,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Inglaterra, França, Prússia e Rússia.",
+          "bbox": [
+            85.07993642641182,
+            514.5673541729759,
+            284.70714690404634,
+            501.7940792822879
+          ]
+        },
+        {
+          "externalIndex": 443,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "França, Espanha, Portugal e Prússia.",
+          "bbox": [
+            85.07993642641182,
+            527.167349132976,
+            288.90710028795667,
+            514.394074242288
+          ]
+        },
+        {
+          "externalIndex": 444,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Portugal, Inglaterra, França e Rússia.",
+          "bbox": [
+            85.07993642641182,
+            501.84735926097585,
+            288.9071285886114,
+            489.0740843702879
+          ]
+        },
+        {
+          "externalIndex": 445,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Prússia, Inglaterra, Áustria e Rússia.",
+          "bbox": [
+            85.07993642641182,
+            489.24736430097585,
+            284.7071480735861,
+            476.47408941028783
+          ]
+        },
+        {
+          "externalIndex": 446,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 37",
+          "bbox": [
+            85.0794659682,
+            448.925940429552,
+            157.86671775710963,
+            436.25202549911995
+          ]
+        },
+        {
+          "externalIndex": 447,
+          "level": 1,
+          "type": "TEXT",
+          "text": "Em meados do século XIX, os Estados Unidos vivenciaram sua maior guerra civil: a Guerra de Secessão; sobre ela é correto afirmar:",
+          "bbox": [
+            85.0794659682,
+            436.32738546897593,
+            513.3070959225705,
+            410.8341156662879
+          ]
+        },
+        {
+          "externalIndex": 448,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "os  estados  do  Norte,  predominantemente  industrializados,  eram  contra  uma política de livre comércio, enquanto os estados do Sul, agrícolas, eram contra uma política protecionista.",
+          "bbox": [
+            85.0794659682,
+            398.40740063697586,
+            513.3061586421745,
+            360.31413587428784
+          ]
+        },
+        {
+          "externalIndex": 449,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "os  estados  do  Norte  tiveram  apoio  da  Inglaterra,  já  que  a  guerra  era  contra  a França.",
+          "bbox": [
+            85.07906620755995,
+            335.16742593297573,
+            513.3066158992683,
+            309.67415613028766
+          ]
+        },
+        {
+          "externalIndex": 450,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "com  a  vitória  dos  estados  do  Norte  sobre  os  estados  do  Sul,  a  escravidão  foi abolida e foi adotada uma política protecionista.",
+          "bbox": [
+            85.07876638707985,
+            360.3674158529758,
+            513.3064123977565,
+            334.9941460022878
+          ]
+        },
+        {
+          "externalIndex": 451,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "os nortistas obtiveram alguns êxitos iniciais nessa  guerra,  mas,  graças à superioridade populacional, industrial e financeira dos sulistas, terminaram derrotados.",
+          "bbox": [
+            85.07936602803998,
+            309.8474360609757,
+            513.3061701698321,
+            271.7541712982877
+          ]
+        },
+        {
+          "externalIndex": 452,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Abraham  Lincoln,  eleito  presidente  pelos  sulistas,  tentou  evitar  a  guerra  com  o Norte, que era totalmente contrário à abolição da escravatura no país.",
+          "bbox": [
+            85.07866644691984,
+            271.92745122897554,
+            513.3058539733976,
+            246.43418142628764
+          ]
+        },
+        {
+          "externalIndex": 453,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.74346923828125,
+            762.2953720092773,
+            519.171875,
+            738.0664367675781
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 26,
+      "elements": [
+        {
+          "externalIndex": 454,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.32313537597656,
+            804.4756240844727,
+            288.4559020996094,
+            726.1719970703125
+          ]
+        },
+        {
+          "externalIndex": 455,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 456,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 38",
+          "bbox": [
+            85.0794659682,
+            685.8058456775519,
+            157.86671290241642,
+            673.1319307471199
+          ]
+        },
+        {
+          "externalIndex": 457,
+          "level": 1,
+          "type": "TEXT",
+          "text": "No que se refere ao uso da mão de obra no Brasil, pode-se afirmar que:",
+          "bbox": [
+            85.0794659682,
+            673.207290716976,
+            439.7463200822989,
+            660.4340158262879
+          ]
+        },
+        {
+          "externalIndex": 458,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "tanto na produção do café  como  do algodão, no século XX, utilizou-se, principalmente, mão de obra servil.",
+          "bbox": [
+            85.0794659682,
+            647.8873008449759,
+            513.3066439507921,
+            622.5140309942879
+          ]
+        },
+        {
+          "externalIndex": 459,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "tanto  na  produção  da  cana  de  açúcar,  no  Nordeste,  como  do  café,  no  Vale  do Paraíba,  entre  os  séculos  XVI  e  XIX,  utilizou-se,  principalmente,  mão  de  obra escrava.",
+          "bbox": [
+            85.08006560916017,
+            597.2473211009758,
+            513.3073284070484,
+            559.2740562902877
+          ]
+        },
+        {
+          "externalIndex": 460,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "tanto  na  produção  do  café  do  Oeste  Paulista  como  da  pecuária,  no  século  XIX, utilizou-se, principalmente, mão de obra indígena.",
+          "bbox": [
+            85.07976578868012,
+            622.5673109729759,
+            513.3069343460356,
+            597.1940411222878
+          ]
+        },
+        {
+          "externalIndex": 461,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "tanto na produção da cana de açúcar, como na do algodão, no século XIX, utilizouse, principalmente, mão de obra indígena sob a forma de trabalho servil.",
+          "bbox": [
+            85.0803654296403,
+            559.3273362689757,
+            510.19409690381605,
+            533.9540664182877
+          ]
+        },
+        {
+          "externalIndex": 462,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": " desde a exploração do pau brasil, como na mineração e na produção industrial, utilizou-se, principalmente, mão de obra escrava.",
+          "bbox": [
+            85.0803654296403,
+            534.0073463969757,
+            513.307426496157,
+            508.6340765462876
+          ]
+        },
+        {
+          "externalIndex": 463,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 39",
+          "bbox": [
+            85.0794659682,
+            463.68593452555194,
+            157.86671290241642,
+            451.01201959511997
+          ]
+        },
+        {
+          "externalIndex": 464,
+          "level": 1,
+          "type": "TEXT",
+          "text": "No final  do  século  XIX  e  início  do  século  XX,  a  expansão  do  capitalismo  provocou importantes  transformações em  todo  o mundo.  No  Brasil, esse  fenômeno  foi responsável pela abolição da escravatura e pela proclamação da República, acompanhadas por um processo de crescente modernização da economia. Por toda parte ocorreram reajustes sociais que forçaram a adaptação, transformando as antigas formas  de  convívio  social.  Foi  nesse  contexto  que  o  regime  republicano  teve  que enfrentar  revoltas  das  populações  marginalizadas.  Afinal  de  contas,  como  seria possível se submeter aos poderes e obrigações de um Estado pouco interessado em atender às demandas daqueles que devia representar? O banditismo social representou um dos movimentos de manifestação contrários ao governo republicano, que destacou uma figura conhecida da História e do imaginário brasileiros, a saber:",
+          "bbox": [
+            85.07946596819997,
+            450.967379612976,
+            513.3069881678894,
+            311.7141553142877
+          ]
+        },
+        {
+          "externalIndex": 465,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Antônio Conselheiro;",
+          "bbox": [
+            85.07976578868006,
+            299.16744033297573,
+            208.26694782445793,
+            286.39416544228766
+          ]
+        },
+        {
+          "externalIndex": 466,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Lampião;",
+          "bbox": [
+            85.07976578868006,
+            273.9674504129757,
+            151.38701052378568,
+            261.19417552228765
+          ]
+        },
+        {
+          "externalIndex": 467,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Padre Antônio Maria;",
+          "bbox": [
+            85.07976578868006,
+            286.5674453729757,
+            209.46697646084272,
+            273.79417048228765
+          ]
+        },
+        {
+          "externalIndex": 468,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Padre Cícero;",
+          "bbox": [
+            85.07976578868006,
+            261.24745550097566,
+            174.0669955470495,
+            248.4741806102877
+          ]
+        },
+        {
+          "externalIndex": 469,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "Luís Carlos Prestes",
+          "bbox": [
+            85.07976578868006,
+            248.64746054097566,
+            202.14698165631265,
+            235.8741856502877
+          ]
+        },
+        {
+          "externalIndex": 470,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.79229736328125,
+            762.2973556518555,
+            519.1656494140625,
+            738.0905685424805
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 27,
+      "elements": [
+        {
+          "externalIndex": 471,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            86.40777587890625,
+            804.5269317626953,
+            288.75555419921875,
+            726.1298294067383
+          ]
+        },
+        {
+          "externalIndex": 472,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "Pro-Reitoria de Ensino",
+          "bbox": [
+            85.0794659682,
+            723.28231068696,
+            190.34077151406765,
+            714.4392742241761
+          ]
+        },
+        {
+          "externalIndex": 473,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "QUESTÃO 40",
+          "bbox": [
+            85.0794659682,
+            687.005845197552,
+            157.86671290241642,
+            674.3319302671199
+          ]
+        },
+        {
+          "externalIndex": 474,
+          "level": 1,
+          "type": "TEXT",
+          "text": "\"Industrializar aceleradamente o país; transferir do exterior para o nosso território as bases  do  desenvolvimento  autônomo;  fazer  da  indústria  manufatureira  o  centro dinâmico das atividades econômicas nacionais - isto resume o meu propósito, a minha opção\".",
+          "bbox": [
+            85.0794659682,
+            674.2872902849759,
+            513.3067895508128,
+            623.5940305622879
+          ]
+        },
+        {
+          "externalIndex": 475,
+          "level": 1,
+          "type": "TEXT",
+          "text": "(OLIVEIRA, Juscelino Kubitschek de. Por que construí Brasília . Rio de Janeiro: Bloch: 1975, p. 57).",
+          "bbox": [
+            158.39993664,
+            623.830310467776,
+            512.4733469019268,
+            614.528034188688
+          ]
+        },
+        {
+          "externalIndex": 476,
+          "level": 1,
+          "type": "TEXT",
+          "text": "O trecho acima pode ser considerado o resumo do programa de governo de Juscelino Kubitschek, caracterizado por:",
+          "bbox": [
+            85.0794659682,
+            601.927319228976,
+            513.307052524875,
+            576.434049426288
+          ]
+        },
+        {
+          "externalIndex": 477,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "ter  como  base  de  seu  programa  administrativo,  o  trinômio:  saúde,  estabilidade monetária e habitação.",
+          "bbox": [
+            85.0794659682,
+            564.0073343969759,
+            513.3069716865579,
+            538.5140645942879
+          ]
+        },
+        {
+          "externalIndex": 478,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "reduzir  aceleradamente  a  produção  de  bens  de  consumo  duráveis,  voltando-se totalmente para a indústria de base.",
+          "bbox": [
+            85.07906620755989,
+            513.3673546529758,
+            513.3060354050838,
+            487.9940848022877
+          ]
+        },
+        {
+          "externalIndex": 479,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "reprimir  as  oposições,  anulando  os  direitos  democráticos  e  a  liberdade  de imprensa.",
+          "bbox": [
+            85.07976578868006,
+            538.6873445249759,
+            513.3065964667436,
+            513.1940747222878
+          ]
+        },
+        {
+          "externalIndex": 480,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "acelerar o desenvolvimento industrial, internacionalizar nossa economia, gerando, contudo, endividamento e inflação.",
+          "bbox": [
+            85.07936602803996,
+            488.04736478097567,
+            513.3062218910238,
+            462.67409493028765
+          ]
+        },
+        {
+          "externalIndex": 481,
+          "level": 2,
+          "type": "LIST_ITEM",
+          "text": "acentuar o nacionalismo econômico brasileiro.",
+          "bbox": [
+            85.07866644691981,
+            462.72737490897566,
+            332.345813344765,
+            449.95410001828765
+          ]
+        },
+        {
+          "externalIndex": 482,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            456.78668212890625,
+            762.2906494140625,
+            519.1085815429688,
+            738.0991058349609
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 28,
+      "elements": [
+        {
+          "externalIndex": 483,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            83.61982727050781,
+            770.6666870117188,
+            522.1690673828125,
+            677.4370269775391
+          ]
+        },
+        {
+          "externalIndex": 484,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "PROCESSO SELETIVO 2010 ENSINO MÉDIO/TÉCNICO CONCOMITANTE/INTEGRADO PROEJA",
+          "bbox": [
+            68.51945976260512,
+            663.279454688112,
+            503.11637784480115,
+            629.4818906071431
+          ]
+        },
+        {
+          "externalIndex": 485,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "GABARITO",
+          "bbox": [
+            251.15989953599998,
+            614.0794743681121,
+            349.3875667732347,
+            596.734681306032
+          ]
+        },
+        {
+          "externalIndex": 486,
+          "level": 1,
+          "type": "TABLE",
+          "text": null,
+          "bbox": [
+            108.87532043457031,
+            593.9427337646484,
+            486.5054931640625,
+            134.66900634765625
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 29,
+      "elements": [
+        {
+          "externalIndex": 487,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            83.88404083251953,
+            770.2807998657227,
+            522.3575439453125,
+            676.7006072998047
+          ]
+        },
+        {
+          "externalIndex": 488,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "PROCESSO SELETIVO 2010 TÉCNICO SUBSEQUENTE",
+          "bbox": [
+            180.47992780799999,
+            663.279454688112,
+            419.94746512701596,
+            627.681891327143
+          ]
+        },
+        {
+          "externalIndex": 489,
+          "level": 1,
+          "type": "SECTION_HEADER",
+          "text": "GABARITO",
+          "bbox": [
+            251.15989953599998,
+            611.799475280112,
+            349.3875667732347,
+            594.4546822180318
+          ]
+        },
+        {
+          "externalIndex": 490,
+          "level": 1,
+          "type": "TABLE",
+          "text": null,
+          "bbox": [
+            108.57062530517578,
+            592.3331756591797,
+            486.6361999511719,
+            132.72784423828125
+          ]
+        }
+      ]
+    },
+    {
+      "pageNumber": 30,
+      "elements": [
+        {
+          "externalIndex": 491,
+          "level": 1,
+          "type": "PICTURE",
+          "text": null,
+          "bbox": [
+            83.2989273071289,
+            702.4263916015625,
+            522.8436889648438,
+            607.9154205322266
+          ]
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}

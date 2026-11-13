@@ -1,0 +1,21 @@
+{
+  "status": "EVIDENCIA_LOCAL_PARCIAL",
+  "source": "dbtemp/artifacts/2d7bc13c-7573-435d-b43a-37e68702ee37/visual-chat.json",
+  "questions": [
+    {
+      "number": "03",
+      "page": 5,
+      "asset": {
+        "selectedItemRef": "#/pictures/7",
+        "dimensions": [379, 77],
+        "sha256": "45789fbdbc0ca341cf4577b42806e3bad633cca1a7e2bfd1f665da03bde668b5",
+        "checksumConfirmed": true
+      },
+      "expectedElements": ["duas estruturas químicas", "tretinoína", "isotretinoína", "grupo carboxila (-COOH)"],
+      "expectedVisibleDifference": "A estrutura identificada como tretinoína aparece mais estendida; a estrutura identificada como isotretinoína apresenta uma dobra próxima ao grupo carboxila.",
+      "evidence": "A resposta do chat multimodal salvo no artefato local identifica as estruturas pelos rótulos e descreve a geometria visível como cadeia esquerda mais linear e direita dobrada perto do -COOH.",
+      "status": "EVIDENCIA_LOCAL_PARCIAL",
+      "limitations": "A descrição deriva da resposta do modelo, não de um veredito independente do professor. A interpretação cis/trans mencionada na resposta não é adotada como verdade de referência; a correção química permanece pendente de verificação docente."
+    }
+  ]
+}

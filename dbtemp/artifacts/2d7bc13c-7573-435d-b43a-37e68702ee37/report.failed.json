@@ -1,0 +1,1322 @@
+{
+  "runId": "2d7bc13c-7573-435d-b43a-37e68702ee37",
+  "startedAt": "2026-11-02T20:10:40.033Z",
+  "db": "127.0.0.1:56322",
+  "docs": [
+    {
+      "id": "09ab5f76-af91-4246-bf72-50a1509fdfb4",
+      "name": "Quimica-3.pdf",
+      "tag": "QUESTIONS",
+      "sourceSha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d",
+      "workerExitCode": 0,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/2d7bc13c-7573-435d-b43a-37e68702ee37/Quimica-3-pdf.worker.log",
+      "status": "READY",
+      "errorMessage": null,
+      "blockTypes": [
+        {
+          "type": "SECTION",
+          "count": 8
+        },
+        {
+          "type": "THEORY",
+          "count": 4
+        },
+        {
+          "type": "QUESTION",
+          "count": 10
+        }
+      ],
+      "chunks": 16,
+      "embeddedChunks": 16,
+      "chunksByStatus": [
+        {
+          "state": "READY",
+          "count": 16
+        }
+      ],
+      "visualAssets": [
+        {
+          "id": "5beeb253-a9d2-444a-a4d6-a0cb96dbdbcc",
+          "pageNumber": 1,
+          "checksum": "fc4c2eea889f961072f9fa6f8e17d75a5955774101064bcf3e35f2161d20afc8",
+          "bbox": [
+            33.978886944590464,
+            748.6448605588153,
+            101.85218097977884,
+            673.8012738285861
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "634d19f9-4ca5-4f1b-bd37-fe3f4ce38d4f",
+          "pageNumber": 1,
+          "checksum": "26cc72eb2e7479eed69ca095c9c49342282abec5079e18dfc6822c8e069c1118",
+          "bbox": [
+            277.2997067249003,
+            746.0169293823022,
+            345.65591174915187,
+            675.0165566817427
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "421f74fb-0f11-4a1c-83e9-6f2943a12be1",
+          "pageNumber": 1,
+          "checksum": "2b13eed1cbc0fbcad241fabfc527caa83fbb3f70ac80ac43c05cbc54ef98e949",
+          "bbox": [
+            127.87012174116805,
+            735.6918973635599,
+            235.0920882555712,
+            688.725190648261
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "bb35bd8b-3052-4d33-8ed1-872188bdee4d",
+          "pageNumber": 1,
+          "checksum": "2ca1c2802898b5b03fdc9276c9f81e367c8cffcfd7835f366b3684d96369581e",
+          "bbox": [
+            377.9478952629257,
+            749.9106556594808,
+            532.0123192852623,
+            675.0672538301161
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "0add1011-749e-4d5e-a8f5-b81852243f04",
+          "pageNumber": 3,
+          "checksum": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68",
+          "bbox": [
+            33.37452519623316,
+            719.1404450106745,
+            71.02799963698162,
+            680.6584272292305
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "2f8be092-d15b-4441-8256-6fe9832e1e0d",
+          "pageNumber": 4,
+          "checksum": "3216a2a63930a32f1c3c183aae67d79aa3af1b31c592205841565de458dc77ba",
+          "bbox": [
+            32.8237731682466,
+            719.3214191145461,
+            71.78385434363665,
+            680.5692859505972
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "7faf5405-7eec-4ab6-97e0-b0427bf6740f",
+          "pageNumber": 5,
+          "checksum": "f72b4bc0d3fa7487f4f6c9ecda43d3867432d68ec48ec0b53462c84d48376ae7",
+          "bbox": [
+            33.295707346726424,
+            719.1253479503979,
+            71.41397741447697,
+            680.4449486970967
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "a7f43fcd-2627-40b8-bc6e-517ec551cd6f",
+          "pageNumber": 5,
+          "checksum": "45789fbdbc0ca341cf4577b42806e3bad633cca1a7e2bfd1f665da03bde668b5",
+          "bbox": [
+            126.76981571040287,
+            671.224129391587,
+            506.48901032006586,
+            594.0442211162991
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "8b21b47d-a892-49e6-bbc0-b9a1e72ae26f",
+          "pageNumber": 6,
+          "checksum": "7b01a396c904bdf80397d0e70664955df5eb53cafa32f6e0add5f1b0c223eb37",
+          "bbox": [
+            32.49375537713499,
+            719.0110449046368,
+            73.42288255053948,
+            680.5065111540025
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "fbba8c0a-a73d-479d-a5fe-40361d203060",
+          "pageNumber": 7,
+          "checksum": "04a2fcde03f1408c01bc1c720187e8cbc373d0e91d570e303b37d92aa9f55e45",
+          "bbox": [
+            32.579181442119776,
+            719.1529839579598,
+            71.68373148533693,
+            680.3043706666319
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "5786118a-e737-4d26-930e-4a45471a48e5",
+          "pageNumber": 8,
+          "checksum": "8afd1ac3519e6717a9f048a91210ea7324a5a516bc86ffdd3eff59f75f5faf29",
+          "bbox": [
+            32.50211103065516,
+            719.144741573031,
+            71.78295391704727,
+            680.3460019540614
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "1fed114e-ef0f-4342-a9fd-bf01f3c7c237",
+          "pageNumber": 9,
+          "checksum": "8d67a43b2bad7b00933db80510cfa240760be6cca666d54b1008c62684ddf8cd",
+          "bbox": [
+            33.40290007989961,
+            719.1625797409689,
+            71.86679278939991,
+            680.588439392726
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "76f3551b-0321-4f30-9b0b-ad999a90fa73",
+          "pageNumber": 9,
+          "checksum": "103936d77cc0c7d3615218987714bda5fff05ee01f0e61fc9e2983d66dab50d2",
+          "bbox": [
+            163.62576400716875,
+            688.2696559163587,
+            469.6330543925661,
+            623.5697096444094
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "b0055a10-fde6-4efd-84f4-b1a1b25b4b4f",
+          "pageNumber": 9,
+          "checksum": "54f3d76a191783bf652869436ae2815bd1a85d0a046b73f102fe340b8ecffd4c",
+          "bbox": [
+            178.41624747180313,
+            574.8728150107969,
+            459.65724347019807,
+            513.1076915079561
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "ac42c6e9-d3be-4621-b2cc-1a9b2f6c1886",
+          "pageNumber": 11,
+          "checksum": "974869257bc8aed9da5928af032b9d2ff9e2543dc645e4bdcfbd435e5a21d0fd",
+          "bbox": [
+            32.53959701048882,
+            719.3592418254058,
+            72.05246380442534,
+            679.8265792079885
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "78128368-7bd6-4d7b-bab8-b4c73e0bbdb8",
+          "pageNumber": 12,
+          "checksum": "e49b06ee7af9369f0c1a9e5963412500565bc35f9a83997fb7da1e75c74078ac",
+          "bbox": [
+            33.39704349170168,
+            719.1435749820096,
+            70.63677954535991,
+            680.4448800740954
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "9baf6a02-622a-44f3-a007-3794e7817f0a",
+          "pageNumber": 15,
+          "checksum": "0f1d8b99662c94c3ef4d98e766efe27d272223f7467c9369e2db26173fa51a78",
+          "bbox": [
+            32.65725529508019,
+            631.6829460848469,
+            546.9943189070192,
+            307.0059185155285
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "44957bcc-8edf-46c7-84be-1028c20547c6",
+          "pageNumber": 16,
+          "checksum": "4a4e39352ec067fe648cae7f855f983946330994842f54d657e8c24e85ce613c",
+          "bbox": [
+            173.73947755092186,
+            503.02386171385547,
+            252.1718681700569,
+            416.87225850195597
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "cf65952f-3eab-49a9-9c87-26efff7d1291",
+          "pageNumber": 16,
+          "checksum": "731978899815fc8352cb93eec1558c2b392d09ee91fcaa8f779e2d981e7f539e",
+          "bbox": [
+            282.79020283763936,
+            487.8238059371208,
+            408.299749444452,
+            433.29755509180757
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "91d3f290-3080-43da-9c58-b8ccfbc3b872",
+          "pageNumber": 16,
+          "checksum": "6393b270541caf0d199db5b9ea9dee953eea37ad06f6d7a831011c4dd161ade5",
+          "bbox": [
+            248.7362981489787,
+            311.87659615010784,
+            332.34727100570154,
+            223.21171364104612
+          ],
+          "mimeType": "image/png"
+        }
+      ],
+      "spans": [
+        {
+          "id": "80aed9a6-5dd3-46c6-91e9-c88ac16fbcc8",
+          "questionNumber": "01",
+          "pageStart": 3,
+          "pageEnd": 3,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "c660e782-d49c-42dc-ae55-1e4d12aae5f7",
+          "questionNumber": "02",
+          "pageStart": 4,
+          "pageEnd": 4,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "ac80045b-fb52-4b2a-9ed5-310376e209bc",
+          "questionNumber": "03",
+          "pageStart": 5,
+          "pageEnd": 5,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "4ffd9bf7-6b02-40da-9df2-dc0c06da1d05",
+          "questionNumber": "04",
+          "pageStart": 6,
+          "pageEnd": 6,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "f323c9b7-0d7d-4b28-959a-ebfc7ec9af81",
+          "questionNumber": "05",
+          "pageStart": 7,
+          "pageEnd": 7,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "b7812359-6fce-4920-889e-17c40faf29c7",
+          "questionNumber": "06",
+          "pageStart": 8,
+          "pageEnd": 8,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "b3e31078-4a36-456f-92cb-3e968cc954f8",
+          "questionNumber": "07",
+          "pageStart": 9,
+          "pageEnd": 9,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "0d35c4a9-e55a-4f61-992e-e89acab9b44a",
+          "questionNumber": "08",
+          "pageStart": 10,
+          "pageEnd": 10,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "1f3dd555-8475-4701-b159-bc7f1af4e9cc",
+          "questionNumber": "09",
+          "pageStart": 11,
+          "pageEnd": 11,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        },
+        {
+          "id": "f1a91a22-70cd-40e6-a96b-7cafe7cc90e6",
+          "questionNumber": "10",
+          "pageStart": 12,
+          "pageEnd": 12,
+          "status": "READY_FOR_COMPLETION",
+          "visualStatus": "NOT_REQUIRED"
+        }
+      ],
+      "questions": [
+        {
+          "id": "dd9d06f0-f85e-4471-8755-d98cb48d686b",
+          "sourceKey": "c8d26f158e3fcbbbf5d57d5645070cf5572548ee5bf6f2bca9c7eea8f38716c0",
+          "textHash": "952fb7e4fdd17042791b2b63449421415185f2ffd8441d3562dd052f1e6cf9df",
+          "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br⁻, em água do mar, e o bromo molecular Br₂, obtido a partir da reação representada pela equação a seguir.2 Br⁻(aq) + Cl₂(g) → Br₂(l) + 2 Cl⁻(aq)Indique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br₂ e apresente a fórmula molecular do agente oxidante da reação.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "Grupo 17 e Período 4; ligação iônica; Cl2.",
+              "label": "A"
+            },
+            {
+              "text": "Grupo 17 e Período 4; ligação covalente; Cl2.",
+              "label": "B"
+            },
+            {
+              "text": "Grupo 16 e Período 3; ligação covalente; Br2.",
+              "label": "C"
+            },
+            {
+              "text": "Grupo 17 e Período 3; ligação metálica; Br2.",
+              "label": "D"
+            },
+            {
+              "text": "Grupo 18 e Período 4; ligação covalente; Cl-.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "B",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 3,
+              "pageEnd": 3,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "6dc3fc08-2de9-4d97-a384-35f0d8838fce",
+          "sourceKey": "ccaca7c21332e35b1186b2f0554d3b8224b7f8646e44e1d830adfb803783ee0c",
+          "textHash": "1d7c8bfae853b573696e223a45d090a6f678093a12fca564bc5f9087fce56d16",
+          "text": "Contaminação por tolueno suspendeu fornecimento de água em municípios do Rio de Janeiro. Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a contaminação pela substância levou a CEDAE a suspender o fornecimento de água. Adaptado de oglobo.globo.com, 05/04/2024. Apresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "A fórmula estrutural do tolueno é um anel benzênico com um grupo metil. É uma substância apolar. Em 1 mol de tolueno, há 3,612 x 10^24 elétrons pi.",
+              "label": "A"
+            },
+            {
+              "text": "A fórmula estrutural do tolueno é um anel benzênico com um grupo metil. É uma substância polar. Em 1 mol de tolueno, há 1,806 x 10^24 elétrons pi.",
+              "label": "B"
+            },
+            {
+              "text": "A fórmula estrutural do tolueno é um anel benzênico com um grupo metil. É uma substância apolar. Em 1 mol de tolueno, há 1,806 x 10^24 elétrons pi.",
+              "label": "C"
+            },
+            {
+              "text": "A fórmula estrutural do tolueno é um anel benzênico com um grupo etil. É uma substância apolar. Em 1 mol de tolueno, há 3,612 x 10^24 elétrons pi.",
+              "label": "D"
+            },
+            {
+              "text": "A fórmula estrutural do tolueno é um anel benzênico com um grupo metil. É uma substância apolar. Em 1 mol de tolueno, há 6,02 x 10^23 elétrons pi.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 4,
+              "pageEnd": 4,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "1dceb28e-8484-4d29-825b-fe579e3f0598",
+          "sourceKey": "51b3183a2a57be6f5cdfa9a3faba74f95bd27949d5bce437e074cf35e03c674b",
+          "textHash": "8af258aa694a465fca885ffa8be141ec09465fb5ea9af5850ff4792acb41cf4a",
+          "text": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos,\nincluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais\nespaciais desses isômeros:\nO\nOH\nO OH\ntretinoína isotretinoína\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente\nentre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula\nda tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar\num éster com 22 átomos de carbono por molécula.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "Ácido carboxílico; isomeria geométrica; 3 carbonos terciários; ácido etanoico.",
+              "label": "A"
+            },
+            {
+              "text": "Álcool; isomeria óptica; 2 carbonos terciários; ácido butanoico.",
+              "label": "B"
+            },
+            {
+              "text": "Ácido carboxílico; isomeria geométrica; 2 carbonos terciários; ácido butanoico.",
+              "label": "C"
+            },
+            {
+              "text": "Éster; isomeria de posição; 3 carbonos terciários; ácido propanoico.",
+              "label": "D"
+            },
+            {
+              "text": "Ácido carboxílico; isomeria de cadeia; 2 carbonos terciários; ácido etanoico.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 5,
+              "pageEnd": 5,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "2ee58610-ead6-46bd-ba74-c77e2f015148",
+          "sourceKey": "f1e7b9ae0d5ddb4ee29418c8d7111e026c0443df1e96f35623503efc6fb29586",
+          "textHash": "98272f9f6ac8846a01cc3fbea74c16999b85b3887883736a5cefdbf9f3dac0e1",
+          "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H₂O₂, em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO₂: 2 H₂O₂(aq) → 2 H₂O(l) + O₂(g). Sabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10⁻⁷ s⁻¹. Considerando as informações apresentadas, qual alternativa nomeia corretamente o catalisador da reação, explica sua função em relação à energia de ativação e determina a velocidade dessa reação, em mol ∙ L⁻¹ ∙ s⁻¹?",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "O catalisador é o MnO₂(s), que diminui a energia de ativação da reação. A velocidade da reação é de 8,0 x 10⁻⁸ mol ∙ L⁻¹ ∙ s⁻¹.",
+              "label": "A"
+            },
+            {
+              "text": "O catalisador é o H₂O₂(aq), que aumenta a energia de ativação da reação. A velocidade da reação é de 8,0 x 10⁻⁸ mol ∙ L⁻¹ ∙ s⁻¹.",
+              "label": "B"
+            },
+            {
+              "text": "O catalisador é o MnO₂(s), que aumenta a energia de ativação da reação. A velocidade da reação é de 2,0 x 10⁻⁶ mol ∙ L⁻¹ ∙ s⁻¹.",
+              "label": "C"
+            },
+            {
+              "text": "O catalisador é o H₂O(l), que diminui a energia de ativação da reação. A velocidade da reação é de 4,0 x 10⁻⁷ mol ∙ L⁻¹ ∙ s⁻¹.",
+              "label": "D"
+            },
+            {
+              "text": "O catalisador é o O₂(g), que não altera a energia de ativação da reação. A velocidade da reação é de 8,0 x 10⁻⁸ mol ∙ L⁻¹ ∙ s⁻¹.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 6,
+              "pageEnd": 6,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "56138123-8c96-4bd2-a93f-7fe8f16b8645",
+          "sourceKey": "e0d4b123f069431bc9b02b3b456a6d24c6cdd05cf79f4d432202c40bc7b41d52",
+          "textHash": "9879f20cfa4a68828fc56e637c0781f0d826ea3addab255a338a244fc201d913",
+          "text": "Os combustíveis produzidos a partir de fontes renováveis são considerados uma alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde ao hidrogênio molecular produzido a partir da reação de eletrólise da água, representada pela seguinte equação: H₂O(l) → H₂(g) + 1/2 O₂(g) ∆H⁰ = 286 kJ/mol. Apresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H₂, a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "H—H; cátodo; 33,6 C/kJ",
+              "label": "A"
+            },
+            {
+              "text": "H—H; ânodo; 33,6 C/kJ",
+              "label": "B"
+            },
+            {
+              "text": "H=H; cátodo; 67,2 C/kJ",
+              "label": "C"
+            },
+            {
+              "text": "H—H; ânodo; 67,2 C/kJ",
+              "label": "D"
+            },
+            {
+              "text": "H=H; ânodo; 33,6 C/kJ",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 7,
+              "pageEnd": 7,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "39c4d11a-db40-41ee-a68f-26495eeac304",
+          "sourceKey": "e3917b633924b1a528b9f0bef7d93172f4626ef3b8233741fbbcd258cd656e94",
+          "textHash": "34fe6fd687b2a5a7754a5d959937360f72def96991e022528cea792ff95a7d46",
+          "text": "Em reações ácido-base de Lewis, os íons Ag + e A l 3+ comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+ é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente,\nainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon\nsulfeto.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "A maior acidez do Al³⁺ é justificada por sua maior carga e menor raio iônico em comparação com o Ag⁺, resultando em uma maior densidade de carga e, consequentemente, maior capacidade de atrair pares de elétrons. A equação balanceada para a reação entre Ag⁺ e S²⁻ é 2Ag⁺(aq) + S²⁻(aq) → Ag₂S(s).",
+              "label": "A"
+            },
+            {
+              "text": "A maior acidez do Al³⁺ é devido à sua configuração eletrônica de gás nobre, que o torna mais estável e reativo. A equação balanceada para a reação entre Ag⁺ e S²⁻ é Ag⁺(aq) + S²⁻(aq) → AgS(s).",
+              "label": "B"
+            },
+            {
+              "text": "O Al³⁺ é mais ácido porque possui orbitais d vazios que podem aceitar pares de elétrons mais facilmente do que o Ag⁺. A equação balanceada para a reação entre Ag⁺ e S²⁻ é Ag⁺(aq) + 2S²⁻(aq) → AgS₂(s).",
+              "label": "C"
+            },
+            {
+              "text": "A maior acidez do Al³⁺ decorre de sua menor eletronegatividade, que facilita a doação de elétrons. A equação balanceada para a reação entre Ag⁺ e S²⁻ é 2Ag⁺(aq) + S²⁻(aq) → Ag₂S(aq).",
+              "label": "D"
+            },
+            {
+              "text": "O Al³⁺ é mais ácido por ser um elemento do grupo principal, enquanto o Ag⁺ é um metal de transição. A equação balanceada para a reação entre Ag⁺ e S²⁻ é Ag⁺(aq) + S²⁻(aq) → Ag₂S(s).",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 8,
+              "pageEnd": 8,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "5fd71dc2-d4b4-401e-98db-a85f53166387",
+          "sourceKey": "c9475cc05407b8c2f0df1f8629dc2a4e5db02c2ad9677698ac7102ed5d659871",
+          "textHash": "aa6916a12d4bcc0415825ffe434583371c41227cf26890a9096dfaf460b1d602",
+          "text": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C, cujas fórmulas estruturais são:\n\nComposto A: Fenol (C₆H₅OH)\nComposto B: Ácido benzoico (C₆H₅COOH)\nComposto C: Anilina (C₆H₅NH₂)\n\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO₃, HCl e NaOH, conforme representado nesta sequência reacional:\n\nMistura (A, B, C) + NaHCO₃ → B' + (A, C)\n(A, C) + NaOH → A' + C\nB' + HCl → B\nA' + HCl → A\n\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO₃, apresente a equação química que representa a hidrólise do ânion do composto B'. Escreva, ainda, a nomenclatura do composto A'.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "O composto C é básico. A equação de hidrólise do ânion de B' é C₆H₅COO⁻ + H₂O ⇌ C₆H₅COOH + OH⁻. O composto A' é o fenolato de sódio.",
+              "label": "A"
+            },
+            {
+              "text": "O composto C é ácido. A equação de hidrólise do ânion de B' é C₆H₅COO⁻ + H₂O ⇌ C₆H₅COOH + OH⁻. O composto A' é o benzeno.",
+              "label": "B"
+            },
+            {
+              "text": "O composto C é básico. A equação de hidrólise do ânion de B' é C₆H₅COO⁻ + H₂O ⇌ C₆H₅COOH + OH⁻. O composto A' é o fenol.",
+              "label": "C"
+            },
+            {
+              "text": "O composto C é ácido. A equação de hidrólise do ânion de B' é C₆H₅COO⁻ + H₂O ⇌ C₆H₅COOH + H₃O⁺. O composto A' é o fenolato de sódio.",
+              "label": "D"
+            },
+            {
+              "text": "O composto C é básico. A equação de hidrólise do ânion de B' é C₆H₅COO⁻ + H₂O ⇌ C₆H₅COOH + H₃O⁺. O composto A' é o fenol.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 9,
+              "pageEnd": 9,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "d9fae22d-f1e0-4eff-ae19-b1f47b4d3118",
+          "sourceKey": "a985773fbc40911736fc75b521860afe93d1a1b639ee88211a2f1b8ed5b195c2",
+          "textHash": "6c628ca0bd4e9506ee9e599b7c3d74a4bf8d4133ee5481ba2b3d1b746e7ba25b",
+          "text": "O CO₂ e o H₃PO₄ são substâncias presentes na composição de bebidas refrigerantes por suas funções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a concentração de H₃PO₄ em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos: 1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO₂; 2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a neutralização total do H₃PO₄. Sabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a formação de um sal neutro. Explique a razão para a remoção do CO₂ antes da titulação. Determine, ainda, a concentração, em g/L, de H₃PO₄ no refrigerante.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "A remoção do CO2 é necessária para evitar que ele reaja com o titulante, NaOH, interferindo na determinação da concentração de H3PO4. A concentração de H3PO4 no refrigerante é de 0,49 g/L.",
+              "label": "A"
+            },
+            {
+              "text": "A remoção do CO2 é necessária para evitar que ele reaja com o titulante, NaOH, interferindo na determinação da concentração de H3PO4. A concentração de H3PO4 no refrigerante é de 0,735 g/L.",
+              "label": "B"
+            },
+            {
+              "text": "A remoção do CO2 é necessária para evitar a formação de bolhas que dificultariam a visualização do ponto de viragem. A concentração de H3PO4 no refrigerante é de 0,49 g/L.",
+              "label": "C"
+            },
+            {
+              "text": "A remoção do CO2 é necessária para evitar que ele reaja com o titulante, NaOH, interferindo na determinação da concentração de H3PO4. A concentração de H3PO4 no refrigerante é de 0,245 g/L.",
+              "label": "D"
+            },
+            {
+              "text": "A remoção do CO2 é necessária para evitar a formação de bolhas que dificultariam a visualização do ponto de viragem. A concentração de H3PO4 no refrigerante é de 0,735 g/L.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 10,
+              "pageEnd": 10,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "431de22f-9e53-4dbe-8d9b-246f55fb9cbb",
+          "sourceKey": "06dba9fe2c37332c45b9ce1668d0976e831b2117e59466a62a7c188f82b9b786",
+          "textHash": "93c5dfcee544f3e0693080007c8c48ea1e2be0c614a0000d6e45ac804e85051e",
+          "text": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi\nrealizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio.\nConsidere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de\ntemperatura e pressão.\nObserve, na tabela, os valores de entalpia-padrão de formação das substâncias envolvidas na\ncombustão total do etano:\nSUBSTÂNCIA ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol)\nC 2 H 6 (g) − 1420\nH 2 O ( l ) − 280\nCO 2 (g) − 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição\ndo GNV em porcentagem volumétrica.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "Entalpia de combustão do etano: -1560 kJ/mol; Composição do GNV: 70% metano e 30% etano.",
+              "label": "A"
+            },
+            {
+              "text": "Entalpia de combustão do etano: -1420 kJ/mol; Composição do GNV: 60% metano e 40% etano.",
+              "label": "B"
+            },
+            {
+              "text": "Entalpia de combustão do etano: -1560 kJ/mol; Composição do GNV: 60% metano e 40% etano.",
+              "label": "C"
+            },
+            {
+              "text": "Entalpia de combustão do etano: -1420 kJ/mol; Composição do GNV: 70% metano e 30% etano.",
+              "label": "D"
+            },
+            {
+              "text": "Entalpia de combustão do etano: -1680 kJ/mol; Composição do GNV: 50% metano e 50% etano.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "C",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 11,
+              "pageEnd": 11,
+              "role": "STATEMENT"
+            }
+          ]
+        },
+        {
+          "id": "42f89720-08f7-407c-abb4-9543f5abc366",
+          "sourceKey": "4f91b4ad8420644d6048c311d949566927afe24331ea4ec420a59b15a41c6796",
+          "textHash": "bc699e1061e1809b88aa7002afac83b1a4e666e8dcda6f45eb742a1e496513d7",
+          "text": "O sal oxalato de cálcio, CaC2O4, quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.Considere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10^-10 mol^2/L^2.Determine a solubilidade, em mol/L, do oxalato de cálcio na água. Em seguida, determine a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio, totalmente dissociado, na concentração de 0,2 mol/L.",
+          "alternativeCount": 5,
+          "alternatives": [
+            {
+              "text": "A solubilidade do oxalato de cálcio na água é de 2,0 x 10^-5 mol/L, e na presença de 0,2 mol/L de cloreto de cálcio é de 2,0 x 10^-9 mol/L.",
+              "label": "A"
+            },
+            {
+              "text": "A solubilidade do oxalato de cálcio na água é de 4,0 x 10^-5 mol/L, e na presença de 0,2 mol/L de cloreto de cálcio é de 4,0 x 10^-9 mol/L.",
+              "label": "B"
+            },
+            {
+              "text": "A solubilidade do oxalato de cálcio na água é de 2,0 x 10^-5 mol/L, e na presença de 0,2 mol/L de cloreto de cálcio é de 4,0 x 10^-9 mol/L.",
+              "label": "C"
+            },
+            {
+              "text": "A solubilidade do oxalato de cálcio na água é de 4,0 x 10^-5 mol/L, e na presença de 0,2 mol/L de cloreto de cálcio é de 2,0 x 10^-9 mol/L.",
+              "label": "D"
+            },
+            {
+              "text": "A solubilidade do oxalato de cálcio na água é de 2,0 x 10^-10 mol/L, e na presença de 0,2 mol/L de cloreto de cálcio é de 4,0 x 10^-10 mol/L.",
+              "label": "E"
+            }
+          ],
+          "correctAnswer": "A",
+          "status": "PENDING_REVIEW",
+          "completenessStatus": "COMPLETE_WITH_AI",
+          "needsReview": true,
+          "alternativesOrigin": "AI_GENERATED",
+          "sources": [
+            {
+              "pageStart": 12,
+              "pageEnd": 12,
+              "role": "STATEMENT"
+            }
+          ]
+        }
+      ],
+      "elapsedMs": 404707
+    },
+    {
+      "id": "0727ae85-9fe0-43fd-a043-161d97d637ef",
+      "name": "Estequiometria.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sourceSha256": "63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd",
+      "workerExitCode": 0,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/2d7bc13c-7573-435d-b43a-37e68702ee37/Estequiometria-pdf.worker.log",
+      "status": "READY",
+      "errorMessage": null,
+      "blockTypes": [],
+      "chunks": 3,
+      "embeddedChunks": 3,
+      "chunksByStatus": [
+        {
+          "state": "READY",
+          "count": 3
+        }
+      ],
+      "visualAssets": [
+        {
+          "id": "3eb45a1b-5ff2-40a4-8541-968e9cf5e299",
+          "pageNumber": 1,
+          "checksum": "7b54c5748b6e26e5b6832af9242559cc0b271511a15957ca6c3116727d7b9b4e",
+          "bbox": [
+            82.56565017940696,
+            550.3022769710531,
+            151.76311224868851,
+            464.5064119230956
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "ca34780f-997b-479c-89ec-6ca1ed5a88f1",
+          "pageNumber": 1,
+          "checksum": "196849fc448645c3bb4e06b1bc928b649523c3124b05e78d50825d63a29afb39",
+          "bbox": [
+            86.36222280816669,
+            314.3231031658247,
+            508.80011643425513,
+            255.1355401542295
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "9e47e0a8-1733-4266-9566-7d40819899bb",
+          "pageNumber": 1,
+          "checksum": "32a4518f44bd29d75887876bb3671fa1c605a027d957571e63a6a6832539a67d",
+          "bbox": [
+            86.58057798171308,
+            224.76366228320046,
+            576.2579807639122,
+            141.1836631155071
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "5428f5b3-792c-4d1b-a040-2d1c2bcb3c2a",
+          "pageNumber": 1,
+          "checksum": "923d2017409ae9ee4e1fb42d12d54cbaf6547a689005fb69ab10e2d2ac31de59",
+          "bbox": [
+            89.55285544140156,
+            109.78396571638189,
+            544.3318851478398,
+            50.20826992965931
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "c1b43900-9696-46f7-92e7-5cb4ab6cc09c",
+          "pageNumber": 1,
+          "checksum": "57e50ef3db9e0fb7e0362f7ee004ec938008d562f0cee9de4e2af35701c46296",
+          "bbox": [
+            468.32422541870795,
+            23.18318286377962,
+            591.6233703033889,
+            1.2954846777358853
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "cd52225d-aea1-4ca9-b00b-62e3e9a70ed4",
+          "pageNumber": 2,
+          "checksum": "37abac32b0b8027f2a505c0e5a3bfa62dbc892aabd0d2905e449d22ac86f9ba8",
+          "bbox": null,
+          "mimeType": "image/png"
+        },
+        {
+          "id": "0639c880-80a1-4e8c-beb7-b633f2e550f6",
+          "pageNumber": 3,
+          "checksum": "f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5",
+          "bbox": [
+            0.49198216827790026,
+            774.1726083430106,
+            594.447431565646,
+            65.61073324978884
+          ],
+          "mimeType": "image/png"
+        },
+        {
+          "id": "81a93818-e84c-4569-9070-ec49d4def903",
+          "pageNumber": 3,
+          "checksum": "c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7",
+          "bbox": [
+            468.59229385283066,
+            25.104379073493305,
+            594.1415648716776,
+            2.5689995757475117
+          ],
+          "mimeType": "image/png"
+        }
+      ],
+      "spans": [],
+      "questions": [],
+      "elapsedMs": 76560
+    },
+    {
+      "id": "ef6270b1-946c-449b-a22c-55694d14717a",
+      "name": "pH e pOH.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sourceSha256": "5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc",
+      "workerExitCode": 0,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/2d7bc13c-7573-435d-b43a-37e68702ee37/pH-e-pOH-pdf.worker.log",
+      "status": "READY",
+      "errorMessage": null,
+      "blockTypes": [],
+      "chunks": 3,
+      "embeddedChunks": 3,
+      "chunksByStatus": [
+        {
+          "state": "READY",
+          "count": 3
+        }
+      ],
+      "visualAssets": [
+        {
+          "id": "4ba8f5eb-0726-4600-9c67-edb0c7cdcfac",
+          "pageNumber": 1,
+          "checksum": "4d3b84d97e3fef9cc6acc200d5741f16a6abc866eb7b46c72a5479352d4c1197",
+          "bbox": null,
+          "mimeType": "image/png"
+        },
+        {
+          "id": "b9c5b113-ea53-46c4-bdd4-1f235a71c825",
+          "pageNumber": 3,
+          "checksum": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f",
+          "bbox": null,
+          "mimeType": "image/png"
+        },
+        {
+          "id": "233abc6c-2ad2-43d8-b9c7-7c11d25c8efe",
+          "pageNumber": 4,
+          "checksum": "34903b3c739f901bee54bfd56cedef467cffdb4a98cd23c4bdbddbab8bd884e1",
+          "bbox": null,
+          "mimeType": "image/png"
+        }
+      ],
+      "spans": [],
+      "questions": [],
+      "elapsedMs": 72062
+    }
+  ],
+  "chat": {
+    "attempted": false
+  },
+  "cleanup": {
+    "complete": true,
+    "runPrefix": "question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37",
+    "isolatedTeacherDeleted": true,
+    "isolatedStudentDeleted": true
+  },
+  "config": {
+    "chatImageModelConfigured": false,
+    "questionModelConfigured": true,
+    "embeddingModelConfigured": true
+  },
+  "fixture": {
+    "prefix": "question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37",
+    "teacherId": "08181813-5162-4f81-981e-12084ef320d7",
+    "studentId": "e407ef46-aae6-437a-a124-8eefb6b424f0",
+    "monitorId": "031e12c0-b296-4569-8011-80ad2d49b422",
+    "subjectId": "5c8cf6b5-9208-4b17-ae8e-8d1b29712446",
+    "topicId": "bec7838f-d153-409e-ad04-5bc3c2b4c70c",
+    "documentIds": [
+      {
+        "id": "09ab5f76-af91-4246-bf72-50a1509fdfb4",
+        "name": "Quimica-3.pdf",
+        "tag": "QUESTIONS"
+      },
+      {
+        "id": "0727ae85-9fe0-43fd-a043-161d97d637ef",
+        "name": "Estequiometria.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      },
+      {
+        "id": "ef6270b1-946c-449b-a22c-55694d14717a",
+        "name": "pH e pOH.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      }
+    ]
+  },
+  "reprocess": {
+    "workerExitCode": 0,
+    "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/2d7bc13c-7573-435d-b43a-37e68702ee37/Quimica-3-repeat.worker.log",
+    "beforeCount": 10,
+    "afterCount": 10,
+    "before": [
+      {
+        "id": "431de22f-9e53-4dbe-8d9b-246f55fb9cbb",
+        "sourceKey": "06dba9fe2c37332c45b9ce1668d0976e831b2117e59466a62a7c188f82b9b786",
+        "textHash": "93c5dfcee544f3e0693080007c8c48ea1e2be0c614a0000d6e45ac804e85051e",
+        "sources": [
+          {
+            "chunkId": "19eee488-24a5-40d5-94a4-94710390a65b",
+            "documentBlockId": "d99b1ae5-1036-4080-9dcd-07cb1bdf8662",
+            "pageStart": 11
+          }
+        ]
+      },
+      {
+        "id": "42f89720-08f7-407c-abb4-9543f5abc366",
+        "sourceKey": "4f91b4ad8420644d6048c311d949566927afe24331ea4ec420a59b15a41c6796",
+        "textHash": "bc699e1061e1809b88aa7002afac83b1a4e666e8dcda6f45eb742a1e496513d7",
+        "sources": [
+          {
+            "chunkId": "9e3c76eb-63e5-4333-b925-65f0fae2fde3",
+            "documentBlockId": "f8221bec-ec9f-4fac-b298-90c2d6bfeb31",
+            "pageStart": 12
+          }
+        ]
+      },
+      {
+        "id": "1dceb28e-8484-4d29-825b-fe579e3f0598",
+        "sourceKey": "51b3183a2a57be6f5cdfa9a3faba74f95bd27949d5bce437e074cf35e03c674b",
+        "textHash": "8af258aa694a465fca885ffa8be141ec09465fb5ea9af5850ff4792acb41cf4a",
+        "sources": [
+          {
+            "chunkId": "9a7a7d10-ca9f-4f3a-bc69-c07f18939232",
+            "documentBlockId": "60336fd1-031b-4c25-90fe-f022a49a74ac",
+            "pageStart": 5
+          }
+        ]
+      },
+      {
+        "id": "d9fae22d-f1e0-4eff-ae19-b1f47b4d3118",
+        "sourceKey": "a985773fbc40911736fc75b521860afe93d1a1b639ee88211a2f1b8ed5b195c2",
+        "textHash": "6c628ca0bd4e9506ee9e599b7c3d74a4bf8d4133ee5481ba2b3d1b746e7ba25b",
+        "sources": [
+          {
+            "chunkId": "d4da32e2-b56e-4cd6-9bb7-948c45afa94f",
+            "documentBlockId": "57e28a6f-1aa4-4507-b6f7-84dac78ea300",
+            "pageStart": 10
+          }
+        ]
+      },
+      {
+        "id": "dd9d06f0-f85e-4471-8755-d98cb48d686b",
+        "sourceKey": "c8d26f158e3fcbbbf5d57d5645070cf5572548ee5bf6f2bca9c7eea8f38716c0",
+        "textHash": "952fb7e4fdd17042791b2b63449421415185f2ffd8441d3562dd052f1e6cf9df",
+        "sources": [
+          {
+            "chunkId": "65003159-3c8f-4727-905b-adda34135448",
+            "documentBlockId": "4cf5713d-e482-4a44-9f17-688f6af90085",
+            "pageStart": 3
+          }
+        ]
+      },
+      {
+        "id": "5fd71dc2-d4b4-401e-98db-a85f53166387",
+        "sourceKey": "c9475cc05407b8c2f0df1f8629dc2a4e5db02c2ad9677698ac7102ed5d659871",
+        "textHash": "aa6916a12d4bcc0415825ffe434583371c41227cf26890a9096dfaf460b1d602",
+        "sources": [
+          {
+            "chunkId": "f688f441-dc16-4de6-8bf8-bc1fd2733d11",
+            "documentBlockId": "00787955-3743-4016-af84-e72d19aa89f8",
+            "pageStart": 9
+          }
+        ]
+      },
+      {
+        "id": "6dc3fc08-2de9-4d97-a384-35f0d8838fce",
+        "sourceKey": "ccaca7c21332e35b1186b2f0554d3b8224b7f8646e44e1d830adfb803783ee0c",
+        "textHash": "1d7c8bfae853b573696e223a45d090a6f678093a12fca564bc5f9087fce56d16",
+        "sources": [
+          {
+            "chunkId": "71dc4597-e361-47a7-ab03-07e52437a624",
+            "documentBlockId": "b0d5df4b-0bcf-47f4-a674-05814b9dfd88",
+            "pageStart": 4
+          }
+        ]
+      },
+      {
+        "id": "56138123-8c96-4bd2-a93f-7fe8f16b8645",
+        "sourceKey": "e0d4b123f069431bc9b02b3b456a6d24c6cdd05cf79f4d432202c40bc7b41d52",
+        "textHash": "9879f20cfa4a68828fc56e637c0781f0d826ea3addab255a338a244fc201d913",
+        "sources": [
+          {
+            "chunkId": "c1bf281f-1120-4ba0-bca8-df61e72d5599",
+            "documentBlockId": "44da6a79-0759-433f-b225-ee74c86162c2",
+            "pageStart": 7
+          }
+        ]
+      },
+      {
+        "id": "39c4d11a-db40-41ee-a68f-26495eeac304",
+        "sourceKey": "e3917b633924b1a528b9f0bef7d93172f4626ef3b8233741fbbcd258cd656e94",
+        "textHash": "34fe6fd687b2a5a7754a5d959937360f72def96991e022528cea792ff95a7d46",
+        "sources": [
+          {
+            "chunkId": "4fbd736d-3662-43b6-99eb-621b262a439a",
+            "documentBlockId": "cfac4ca4-92ee-435c-b667-c8fdb6442a02",
+            "pageStart": 8
+          }
+        ]
+      },
+      {
+        "id": "2ee58610-ead6-46bd-ba74-c77e2f015148",
+        "sourceKey": "f1e7b9ae0d5ddb4ee29418c8d7111e026c0443df1e96f35623503efc6fb29586",
+        "textHash": "98272f9f6ac8846a01cc3fbea74c16999b85b3887883736a5cefdbf9f3dac0e1",
+        "sources": [
+          {
+            "chunkId": "12ef08da-9fd8-4fa8-96db-83e75425355f",
+            "documentBlockId": "de5f41d7-e300-41c0-a9c4-915be1fae90c",
+            "pageStart": 6
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "id": "431de22f-9e53-4dbe-8d9b-246f55fb9cbb",
+        "sourceKey": "06dba9fe2c37332c45b9ce1668d0976e831b2117e59466a62a7c188f82b9b786",
+        "textHash": "93c5dfcee544f3e0693080007c8c48ea1e2be0c614a0000d6e45ac804e85051e",
+        "sources": [
+          {
+            "chunkId": "19eee488-24a5-40d5-94a4-94710390a65b",
+            "documentBlockId": "d99b1ae5-1036-4080-9dcd-07cb1bdf8662",
+            "pageStart": 11
+          },
+          {
+            "chunkId": "19eee488-24a5-40d5-94a4-94710390a65b",
+            "documentBlockId": "d99b1ae5-1036-4080-9dcd-07cb1bdf8662",
+            "pageStart": 11
+          },
+          {
+            "chunkId": "19eee488-24a5-40d5-94a4-94710390a65b",
+            "documentBlockId": "d99b1ae5-1036-4080-9dcd-07cb1bdf8662",
+            "pageStart": 11
+          }
+        ]
+      },
+      {
+        "id": "42f89720-08f7-407c-abb4-9543f5abc366",
+        "sourceKey": "4f91b4ad8420644d6048c311d949566927afe24331ea4ec420a59b15a41c6796",
+        "textHash": "719a5b64cf35273bc7041d5ad6ee14a81c4c7c7caaf299bac66f39e83663fa2f",
+        "sources": [
+          {
+            "chunkId": "9e3c76eb-63e5-4333-b925-65f0fae2fde3",
+            "documentBlockId": "f8221bec-ec9f-4fac-b298-90c2d6bfeb31",
+            "pageStart": 12
+          },
+          {
+            "chunkId": "9e3c76eb-63e5-4333-b925-65f0fae2fde3",
+            "documentBlockId": "f8221bec-ec9f-4fac-b298-90c2d6bfeb31",
+            "pageStart": 12
+          },
+          {
+            "chunkId": "9e3c76eb-63e5-4333-b925-65f0fae2fde3",
+            "documentBlockId": "f8221bec-ec9f-4fac-b298-90c2d6bfeb31",
+            "pageStart": 12
+          }
+        ]
+      },
+      {
+        "id": "1dceb28e-8484-4d29-825b-fe579e3f0598",
+        "sourceKey": "51b3183a2a57be6f5cdfa9a3faba74f95bd27949d5bce437e074cf35e03c674b",
+        "textHash": "8af258aa694a465fca885ffa8be141ec09465fb5ea9af5850ff4792acb41cf4a",
+        "sources": [
+          {
+            "chunkId": "9a7a7d10-ca9f-4f3a-bc69-c07f18939232",
+            "documentBlockId": "60336fd1-031b-4c25-90fe-f022a49a74ac",
+            "pageStart": 5
+          }
+        ]
+      },
+      {
+        "id": "d9fae22d-f1e0-4eff-ae19-b1f47b4d3118",
+        "sourceKey": "a985773fbc40911736fc75b521860afe93d1a1b639ee88211a2f1b8ed5b195c2",
+        "textHash": "6c628ca0bd4e9506ee9e599b7c3d74a4bf8d4133ee5481ba2b3d1b746e7ba25b",
+        "sources": [
+          {
+            "chunkId": "d4da32e2-b56e-4cd6-9bb7-948c45afa94f",
+            "documentBlockId": "57e28a6f-1aa4-4507-b6f7-84dac78ea300",
+            "pageStart": 10
+          },
+          {
+            "chunkId": "d4da32e2-b56e-4cd6-9bb7-948c45afa94f",
+            "documentBlockId": "57e28a6f-1aa4-4507-b6f7-84dac78ea300",
+            "pageStart": 10
+          },
+          {
+            "chunkId": "d4da32e2-b56e-4cd6-9bb7-948c45afa94f",
+            "documentBlockId": "57e28a6f-1aa4-4507-b6f7-84dac78ea300",
+            "pageStart": 10
+          }
+        ]
+      },
+      {
+        "id": "dd9d06f0-f85e-4471-8755-d98cb48d686b",
+        "sourceKey": "c8d26f158e3fcbbbf5d57d5645070cf5572548ee5bf6f2bca9c7eea8f38716c0",
+        "textHash": "952fb7e4fdd17042791b2b63449421415185f2ffd8441d3562dd052f1e6cf9df",
+        "sources": [
+          {
+            "chunkId": "65003159-3c8f-4727-905b-adda34135448",
+            "documentBlockId": "4cf5713d-e482-4a44-9f17-688f6af90085",
+            "pageStart": 3
+          },
+          {
+            "chunkId": "65003159-3c8f-4727-905b-adda34135448",
+            "documentBlockId": "4cf5713d-e482-4a44-9f17-688f6af90085",
+            "pageStart": 3
+          },
+          {
+            "chunkId": "65003159-3c8f-4727-905b-adda34135448",
+            "documentBlockId": "4cf5713d-e482-4a44-9f17-688f6af90085",
+            "pageStart": 3
+          }
+        ]
+      },
+      {
+        "id": "5fd71dc2-d4b4-401e-98db-a85f53166387",
+        "sourceKey": "c9475cc05407b8c2f0df1f8629dc2a4e5db02c2ad9677698ac7102ed5d659871",
+        "textHash": "bed1200f7852a73c83691aa8b6af05025dc1e7453420f1ccb1517914691f8ad4",
+        "sources": [
+          {
+            "chunkId": "f688f441-dc16-4de6-8bf8-bc1fd2733d11",
+            "documentBlockId": "00787955-3743-4016-af84-e72d19aa89f8",
+            "pageStart": 9
+          },
+          {
+            "chunkId": "f688f441-dc16-4de6-8bf8-bc1fd2733d11",
+            "documentBlockId": "00787955-3743-4016-af84-e72d19aa89f8",
+            "pageStart": 9
+          },
+          {
+            "chunkId": "f688f441-dc16-4de6-8bf8-bc1fd2733d11",
+            "documentBlockId": "00787955-3743-4016-af84-e72d19aa89f8",
+            "pageStart": 9
+          }
+        ]
+      },
+      {
+        "id": "6dc3fc08-2de9-4d97-a384-35f0d8838fce",
+        "sourceKey": "ccaca7c21332e35b1186b2f0554d3b8224b7f8646e44e1d830adfb803783ee0c",
+        "textHash": "1d7c8bfae853b573696e223a45d090a6f678093a12fca564bc5f9087fce56d16",
+        "sources": [
+          {
+            "chunkId": "71dc4597-e361-47a7-ab03-07e52437a624",
+            "documentBlockId": "b0d5df4b-0bcf-47f4-a674-05814b9dfd88",
+            "pageStart": 4
+          }
+        ]
+      },
+      {
+        "id": "56138123-8c96-4bd2-a93f-7fe8f16b8645",
+        "sourceKey": "e0d4b123f069431bc9b02b3b456a6d24c6cdd05cf79f4d432202c40bc7b41d52",
+        "textHash": "b18638857d5378397bc85c7dc04408a71f822045bcf14a2006e399de8c4343fe",
+        "sources": [
+          {
+            "chunkId": "c1bf281f-1120-4ba0-bca8-df61e72d5599",
+            "documentBlockId": "44da6a79-0759-433f-b225-ee74c86162c2",
+            "pageStart": 7
+          },
+          {
+            "chunkId": "c1bf281f-1120-4ba0-bca8-df61e72d5599",
+            "documentBlockId": "44da6a79-0759-433f-b225-ee74c86162c2",
+            "pageStart": 7
+          },
+          {
+            "chunkId": "c1bf281f-1120-4ba0-bca8-df61e72d5599",
+            "documentBlockId": "44da6a79-0759-433f-b225-ee74c86162c2",
+            "pageStart": 7
+          }
+        ]
+      },
+      {
+        "id": "39c4d11a-db40-41ee-a68f-26495eeac304",
+        "sourceKey": "e3917b633924b1a528b9f0bef7d93172f4626ef3b8233741fbbcd258cd656e94",
+        "textHash": "684a4d471d056911026407f83bf3e7211a02375ca3d13316209d6d3dd9bbff98",
+        "sources": [
+          {
+            "chunkId": "4fbd736d-3662-43b6-99eb-621b262a439a",
+            "documentBlockId": "cfac4ca4-92ee-435c-b667-c8fdb6442a02",
+            "pageStart": 8
+          },
+          {
+            "chunkId": "4fbd736d-3662-43b6-99eb-621b262a439a",
+            "documentBlockId": "cfac4ca4-92ee-435c-b667-c8fdb6442a02",
+            "pageStart": 8
+          },
+          {
+            "chunkId": "4fbd736d-3662-43b6-99eb-621b262a439a",
+            "documentBlockId": "cfac4ca4-92ee-435c-b667-c8fdb6442a02",
+            "pageStart": 8
+          }
+        ]
+      },
+      {
+        "id": "2ee58610-ead6-46bd-ba74-c77e2f015148",
+        "sourceKey": "f1e7b9ae0d5ddb4ee29418c8d7111e026c0443df1e96f35623503efc6fb29586",
+        "textHash": "502a6c52dc9835ab97e0b5f729aef90ce16442bdaecd022bfd54bc6b0880cf2d",
+        "sources": [
+          {
+            "chunkId": "12ef08da-9fd8-4fa8-96db-83e75425355f",
+            "documentBlockId": "de5f41d7-e300-41c0-a9c4-915be1fae90c",
+            "pageStart": 6
+          },
+          {
+            "chunkId": "12ef08da-9fd8-4fa8-96db-83e75425355f",
+            "documentBlockId": "de5f41d7-e300-41c0-a9c4-915be1fae90c",
+            "pageStart": 6
+          },
+          {
+            "chunkId": "12ef08da-9fd8-4fa8-96db-83e75425355f",
+            "documentBlockId": "de5f41d7-e300-41c0-a9c4-915be1fae90c",
+            "pageStart": 6
+          }
+        ]
+      }
+    ],
+    "stable": false
+  },
+  "ragAudits": [
+    {
+      "documentId": "0727ae85-9fe0-43fd-a043-161d97d637ef",
+      "exitCode": 0,
+      "logPath": "0727ae85-9fe0-43fd-a043-161d97d637ef.worker-audit.json"
+    },
+    {
+      "documentId": "ef6270b1-946c-449b-a22c-55694d14717a",
+      "exitCode": 0,
+      "logPath": "ef6270b1-946c-449b-a22c-55694d14717a.worker-audit.json"
+    }
+  ],
+  "finishedAt": "2026-11-02T20:24:24.456Z",
+  "failure": {
+    "message": "Confirmação visual da Q03 falhou (404): {\"message\":\"Route POST:/api/v1/documents/09ab5f76-af91-4246-bf72-50a1509fdfb4/questions/1dceb28e-8484-4d29-825b-fe579e3f0598/visual-assets/7faf5405-7eec-4ab6-97e0-b0427bf6740f/review not found\",\"error\":\"Not Found\",\"statusCode\":404}"
+  }
+}

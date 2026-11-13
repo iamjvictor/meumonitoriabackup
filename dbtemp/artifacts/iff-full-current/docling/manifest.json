@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "spike-manifest-v1",
+  "status": "COMPLETED",
+  "startedAt": "2026-11-06T23:29:29.007406+00:00",
+  "input": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/iff-provas-workspace/Arquivo Provas Antigas - primeiras 30 páginas.pdf",
+  "inputSha256": "1824c111741c4cac5443ad3ecd48c1411722b3d527929becf56dd7f8d550550d",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "pythonExecutable": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/services/document-parser/.venv/bin/python",
+  "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+  "parserName": "DOCLING",
+  "parserVersion": "2.122.0",
+  "configuration": {
+    "pipeline": "docling-default-cpu",
+    "backendCompatibility": "pipeline",
+    "timeoutSeconds": 3600,
+    "skipParse": false,
+    "extraOcrOrVlm": "not-configured"
+  },
+  "hardware": {
+    "architecture": "x86_64",
+    "processor": "x86_64",
+    "cpuCount": 12,
+    "accelerator": "not-detected"
+  },
+  "executionMode": "fresh",
+  "reusedExistingOutput": false,
+  "exitCode": 0,
+  "warnings": [
+    "timeout_is_audit_only_for_in_process_docling_conversion",
+    "backend_pipeline_accepted_for_command_compatibility_and_ignored"
+  ],
+  "command": [
+    "DocumentConverter",
+    "convert",
+    "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/iff-provas-workspace/Arquivo Provas Antigas - primeiras 30 páginas.pdf"
+  ],
+  "commandSource": "docling-v2-library-api",
+  "finishedAt": "2026-11-06T23:38:58.540952+00:00",
+  "durationMs": 569534,
+  "files": [
+    "document.json",
+    "document.md",
+    "layout.json",
+    "manifest.json",
+    "source.pdf"
+  ]
+}

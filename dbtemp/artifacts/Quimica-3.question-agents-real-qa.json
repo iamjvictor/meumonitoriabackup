@@ -1,0 +1,66 @@
+{
+  "database": "dbtemp-local-only",
+  "persisted": false,
+  "model": "deepseek/deepseek-v4.1-flash",
+  "question": "04",
+  "initialKind": "OPEN_ENDED",
+  "finalKind": "OPEN_ENDED",
+  "stage": "ready",
+  "route": "complete",
+  "alternatives": [
+    {
+      "label": "A",
+      "text": "O catalisador é o dióxido de manganês, MnO2(s). Ele diminui a energia de ativação por fornecer um caminho reacional alternativo, e a velocidade inicial é 8,0 × 10^6 mol·L^-1·s^-1."
+    },
+    {
+      "label": "B",
+      "text": "O catalisador é o peróxido de hidrogênio, H2O2(aq). Ele aumenta a energia de ativação, e a velocidade inicial é 8,0 × 10^6 mol·L^-1·s^-1."
+    },
+    {
+      "label": "C",
+      "text": "O catalisador é o dióxido de manganês, MnO2(s). Ele aumenta a energia de ativação, e a velocidade inicial é 4,0 × 10^7 mol·L^-1·s^-1."
+    },
+    {
+      "label": "D",
+      "text": "O catalisador é o gás oxigênio, O2(g). Ele diminui a energia de ativação, e a velocidade inicial é 2,0 × 10^-1 mol·L^-1·s^-1."
+    },
+    {
+      "label": "E",
+      "text": "O catalisador é o dióxido de manganês, MnO2(s). Ele não altera a energia de ativação, e a velocidade inicial é 8,0 × 10^6 mol·L^-1·s^-1."
+    }
+  ],
+  "correctAnswer": "A",
+  "agentResults": {
+    "alternatives": [
+      {
+        "label": "A",
+        "text": "O catalisador é o dióxido de manganês, MnO2(s). Ele diminui a energia de ativação por fornecer um caminho reacional alternativo, e a velocidade inicial é 8,0 × 10^6 mol·L^-1·s^-1."
+      },
+      {
+        "label": "B",
+        "text": "O catalisador é o peróxido de hidrogênio, H2O2(aq). Ele aumenta a energia de ativação, e a velocidade inicial é 8,0 × 10^6 mol·L^-1·s^-1."
+      },
+      {
+        "label": "C",
+        "text": "O catalisador é o dióxido de manganês, MnO2(s). Ele aumenta a energia de ativação, e a velocidade inicial é 4,0 × 10^7 mol·L^-1·s^-1."
+      },
+      {
+        "label": "D",
+        "text": "O catalisador é o gás oxigênio, O2(g). Ele diminui a energia de ativação, e a velocidade inicial é 2,0 × 10^-1 mol·L^-1·s^-1."
+      },
+      {
+        "label": "E",
+        "text": "O catalisador é o dióxido de manganês, MnO2(s). Ele não altera a energia de ativação, e a velocidade inicial é 8,0 × 10^6 mol·L^-1·s^-1."
+      }
+    ],
+    "alternativesOrigin": "AI_GENERATED",
+    "pendingIssues": [],
+    "correctAnswer": "A",
+    "correctAnswerOrigin": "AI_GENERATED"
+  },
+  "pending": [],
+  "attempts": {
+    "db678350-44e1-4b02-a56e-ce2a091a74c9:alternatives": 2,
+    "db678350-44e1-4b02-a56e-ce2a091a74c9:answer": 1
+  }
+}

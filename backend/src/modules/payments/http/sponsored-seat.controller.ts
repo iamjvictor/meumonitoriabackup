@@ -122,7 +122,7 @@ export class SponsoredSeatController {
 function headerValue(value: string | string[] | undefined) { return Array.isArray(value) ? value[0] : value; }
 function mapValidationError(code: string) {
   const statusCode = code === 'MONITOR_NOT_AVAILABLE' ? 404
-    : ['IDEMPOTENCY_KEY_REUSED', 'CHECKOUT_PENDING', 'CHECKOUT_CREATION_FAILED', 'BENEFICIARY_ALREADY_HAS_ACCESS', 'PLAN_NOT_AVAILABLE', 'PRICE_CHANGED', 'BATCH_NOT_EDITABLE', 'CHECKOUT_CANNOT_BE_CANCELLED'].includes(code) ? 409
+    : ['IDEMPOTENCY_KEY_REUSED', 'CHECKOUT_PENDING', 'CHECKOUT_CREATION_FAILED', 'PLAN_NOT_AVAILABLE', 'PRICE_CHANGED', 'BATCH_NOT_EDITABLE', 'CHECKOUT_CANNOT_BE_CANCELLED'].includes(code) ? 409
     : 422;
   const messages: Record<string, string> = {
     IDEMPOTENCY_KEY_REQUIRED: 'A chave de idempotência é obrigatória.',
@@ -132,7 +132,6 @@ function mapValidationError(code: string) {
     MONITOR_NOT_AVAILABLE: 'Monitor não encontrado ou não publicado por você.',
     PLAN_NOT_AVAILABLE: 'Este plano ainda não está disponível para compra.',
     PRICE_CHANGED: 'O preço mudou desde a cotação. Atualize a revisão antes de continuar.',
-    BENEFICIARY_ALREADY_HAS_ACCESS: 'Um ou mais alunos já têm acesso vigente a este monitor.',
     BATCH_NOT_EDITABLE: 'Este lote já foi pago ou não pode mais ser editado.',
     CHECKOUT_CANNOT_BE_CANCELLED: 'Não foi possível cancelar o checkout anterior. Atualize a lista e tente novamente.',
     INVALID_BENEFICIARY_EMAIL: 'Um ou mais e-mails são inválidos.',

@@ -1,0 +1,403 @@
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'document_questions',
+  maxTokens: 4000,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 1597
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 11000,
+  responseChars: 10341,
+  promptTokens: 45983,
+  completionTokens: 3260,
+  totalTokens: 49243,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 0
+}
+{
+  "event": "qa_local_structured_run_complete",
+  "run": 1,
+  "llmCalls": 1,
+  "persistedByService": 10,
+  "totalPersisted": 10,
+  "questions": [
+    {
+      "id": "f114367e-667e-43dd-8594-cc49dd400543",
+      "number": "08",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulad"
+    },
+    {
+      "id": "bd286342-0b7f-4434-a0c7-f60ffcadcbe8",
+      "number": "04",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta con"
+    },
+    {
+      "id": "9ad9de07-cf2d-41b9-9d64-4bfa14082228",
+      "number": "06",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.\nQUESTÃO\n06\nDesenvolvimento e resposta:"
+    },
+    {
+      "id": "bc513fa1-57d5-4770-8e9e-a9f4d3f17eba",
+      "number": "05",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ "
+    },
+    {
+      "id": "27920004-7980-4ce4-aba7-1b69173ee578",
+      "number": "01",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [
+        {
+          "id": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+          "pageNumber": 15,
+          "sourceItemRef": "#/pictures/16",
+          "readingOrder": 93
+        }
+      ],
+      "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligaçã"
+    },
+    {
+      "id": "7bdb2c55-7929-4eaf-85f4-4ae97b3ff166",
+      "number": "10",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a $4,0 \\times 10^{-10} \\, mol^{2}/L^{2}$.\nApresente a expressão d"
+    },
+    {
+      "id": "649c2ef1-0e8a-49ac-b3ba-787426f5de89",
+      "number": "03",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [
+        {
+          "id": "da7ef2e0-84d1-4705-a635-cf38987838dd",
+          "pageNumber": 5,
+          "sourceItemRef": "#/pictures/7",
+          "readingOrder": 41
+        }
+      ],
+      "text": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ain"
+    },
+    {
+      "id": "386d9219-ad52-4859-af8c-f321125a64aa",
+      "number": "07",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [
+        {
+          "id": "55752fa8-00f2-4283-bdbb-f82fe4321205",
+          "pageNumber": 9,
+          "sourceItemRef": "#/pictures/12",
+          "readingOrder": 66
+        },
+        {
+          "id": "eac043ce-7c78-4590-aa93-6d10a6306d22",
+          "pageNumber": 9,
+          "sourceItemRef": "#/pictures/13",
+          "readingOrder": 68
+        }
+      ],
+      "text": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B r"
+    },
+    {
+      "id": "ab15268e-60ce-4c7b-bc5e-f0d285d95452",
+      "number": "02",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação  desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substânci"
+    },
+    {
+      "id": "9b9a42a3-bd0f-4af3-9a2c-f8cddcc7c477",
+      "number": "09",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\n"
+    }
+  ]
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'document_questions',
+  maxTokens: 4000,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 1597
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 10319,
+  responseChars: 9108,
+  promptTokens: 46362,
+  completionTokens: 2979,
+  totalTokens: 49341,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 0
+}
+{
+  "event": "qa_local_structured_run_complete",
+  "run": 2,
+  "llmCalls": 1,
+  "persistedByService": 10,
+  "totalPersisted": 12,
+  "questions": [
+    {
+      "id": "9b9a42a3-bd0f-4af3-9a2c-f8cddcc7c477",
+      "number": "09",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi realizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio. Considere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de temperatura e pressão.\nObserve,  na  tabela,  os  valores  de  entalpia-padrão  de  formação  das  substâncias  envolvidas  na combustão total do etano:\n"
+    },
+    {
+      "id": "f114367e-667e-43dd-8594-cc49dd400543",
+      "number": "08",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "O CO 2 e  o  H 3 PO 4 são substâncias presentes na composição de bebidas refrigerantes por suas funções,  respectivamente,  efervescente  e  acidulante.  Em  uma  análise,  para  determinar  a concentração de H 3 PO 4 em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total do CO 2 ;\n2) o refrigerante foi titulad"
+    },
+    {
+      "id": "bd286342-0b7f-4434-a0c7-f60ffcadcbe8",
+      "number": "04",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta con"
+    },
+    {
+      "id": "9ad9de07-cf2d-41b9-9d64-4bfa14082228",
+      "number": "06",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Em reações ácido-base de Lewis, os íons Ag +  e A l 3+   comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+  é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.\nQUESTÃO\n06\nDesenvolvimento e resposta:"
+    },
+    {
+      "id": "bc513fa1-57d5-4770-8e9e-a9f4d3f17eba",
+      "number": "05",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ "
+    },
+    {
+      "id": "5a1910ce-da3c-43c4-b7f9-37d6edf164dd",
+      "number": "10",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a 4,0 x 10 - 10 mol 2 /L 2 .\nApresente a expressão do Kps e deter"
+    },
+    {
+      "id": "27920004-7980-4ce4-aba7-1b69173ee578",
+      "number": "01",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [
+        {
+          "id": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+          "pageNumber": 15,
+          "sourceItemRef": "#/pictures/16",
+          "readingOrder": 93
+        }
+      ],
+      "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligaçã"
+    },
+    {
+      "id": "7bdb2c55-7929-4eaf-85f4-4ae97b3ff166",
+      "number": "10",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "O sal oxalato de cálcio, CaC 2 O4 , quando presente na urina em níveis elevados, pode provocar a formação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada na presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade, Kps, é igual a $4,0 \\times 10^{-10} \\, mol^{2}/L^{2}$.\nApresente a expressão d"
+    },
+    {
+      "id": "649c2ef1-0e8a-49ac-b3ba-787426f5de89",
+      "number": "03",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [
+        {
+          "id": "da7ef2e0-84d1-4705-a635-cf38987838dd",
+          "pageNumber": 5,
+          "sourceItemRef": "#/pictures/7",
+          "readingOrder": 41
+        }
+      ],
+      "text": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos, incluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais espaciais desses isômeros:\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente entre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula da tretinoína. Nomeie, ain"
+    },
+    {
+      "id": "ac958d9c-1d29-4727-acc7-78e6b8957c6d",
+      "number": "04",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta con"
+    },
+    {
+      "id": "386d9219-ad52-4859-af8c-f321125a64aa",
+      "number": "07",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [
+        {
+          "id": "55752fa8-00f2-4283-bdbb-f82fe4321205",
+          "pageNumber": 9,
+          "sourceItemRef": "#/pictures/12",
+          "readingOrder": 66
+        },
+        {
+          "id": "eac043ce-7c78-4590-aa93-6d10a6306d22",
+          "pageNumber": 9,
+          "sourceItemRef": "#/pictures/13",
+          "readingOrder": 68
+        }
+      ],
+      "text": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais:\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO 3 ,  HC l e  NaOH, conforme representado nesta sequência reacional:\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B r"
+    },
+    {
+      "id": "ab15268e-60ce-4c7b-bc5e-f0d285d95452",
+      "number": "02",
+      "ordinal": null,
+      "status": "PENDING_REVIEW",
+      "visuals": [],
+      "text": "Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na  cidade  de  Guapimirim,  perto  de  uma  tubulação  desativada.  Altamente  danosa  à  saúde,  a contaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente  a  fórmula  estrutural  em  linha  de  ligação  do  tolueno  e  escreva  se  o  caráter  dessa substânci"
+    }
+  ]
+}
+{
+  "event": "qa_local_final_assertions",
+  "database": "127.0.0.1:56322",
+  "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+  "run1Count": 10,
+  "run2Count": 12,
+  "sameQuestionIds": false,
+  "duplicateNumbers": [
+    {
+      "number": "10",
+      "count": 2
+    },
+    {
+      "number": "04",
+      "count": 2
+    }
+  ],
+  "q01": [
+    {
+      "id": "27920004-7980-4ce4-aba7-1b69173ee578",
+      "visuals": [
+        {
+          "id": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+          "pageNumber": 15,
+          "bbox": [
+            32.65725529508019,
+            631.6829460848469,
+            546.9943189070192,
+            307.0059185155285
+          ],
+          "metadata": {
+            "caption": null,
+            "docHash": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d",
+            "assetKind": "FIGURE",
+            "coordOrigin": "BOTTOMLEFT",
+            "readingOrder": 93,
+            "sourceItemRef": "#/pictures/16"
+          }
+        }
+      ]
+    }
+  ],
+  "q04": [
+    {
+      "id": "bd286342-0b7f-4434-a0c7-f60ffcadcbe8",
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a $4,0 \\times 10^{7} \\, s^{-1}$.\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em $mol \\cdot L^{-1} \\cdot s^{-1}$.\nDesenvolvimento e resposta:"
+    },
+    {
+      "id": "ac958d9c-1d29-4727-acc7-78e6b8957c6d",
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10 7 s - 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s - 1 .\nDesenvolvimento e resposta:"
+    }
+  ],
+  "q05": [
+    {
+      "id": "bc513fa1-57d5-4770-8e9e-a9f4d3f17eba",
+      "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ { 2 } \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nDesenvolvimento e resposta:"
+    }
+  ],
+  "storageCheck": {
+    "assetId": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+    "path": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6/19907d11-acfd-41d8-8cf5-ede28f36d289/assets/b493e0a5266dfb1c82c99624cafef42d-0f1d8b99662c94c3ef4d98e766efe27d272223f7467c9369e2db26173fa51a78.png",
+    "exists": true,
+    "downloadBytes": 121299,
+    "signedUrlCreated": true,
+    "signedUrlError": null,
+    "downloadError": null
+  },
+  "contentReview": [
+    {
+      "id": "ac958d9c-1d29-4727-acc7-78e6b8957c6d",
+      "number": "04",
+      "visualAssets": [],
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta con"
+    },
+    {
+      "id": "bc513fa1-57d5-4770-8e9e-a9f4d3f17eba",
+      "number": "05",
+      "visualAssets": [],
+      "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\lceil _ { 2 } O _ "
+    },
+    {
+      "id": "bd286342-0b7f-4434-a0c7-f60ffcadcbe8",
+      "number": "04",
+      "visualAssets": [],
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta con"
+    },
+    {
+      "id": "27920004-7980-4ce4-aba7-1b69173ee578",
+      "number": "01",
+      "visualAssets": [
+        {
+          "assetId": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+          "pageNumber": 15,
+          "bbox": [
+            32.65725529508019,
+            631.6829460848469,
+            546.9943189070192,
+            307.0059185155285
+          ],
+          "anchorText": "Indique o grupo e o período da tabela de classificação periódica em que o bromo está localizado.",
+          "readingOrder": 93,
+          "sourceItemRef": "#/pictures/16",
+          "imageUrlPresent": true
+        }
+      ],
+      "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligaçã"
+    }
+  ]
+}

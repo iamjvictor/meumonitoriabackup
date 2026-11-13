@@ -18,5 +18,13 @@ export const flashcardReviewSchema = z.object({
   back: z.string().trim().min(1).max(10000).optional(),
 });
 
+export const manualFlashcardSchema = z.object({
+  topicId: z.string().uuid(),
+  front: z.string().trim().min(1).max(2000),
+  back: z.string().trim().min(1).max(10000),
+  difficulty: z.enum(['EASY', 'MEDIUM', 'HARD']).default('MEDIUM'),
+}).strict();
+
 export type QuestionReviewInput = z.infer<typeof questionReviewSchema>;
 export type FlashcardReviewInput = z.infer<typeof flashcardReviewSchema>;
+export type ManualFlashcardInput = z.infer<typeof manualFlashcardSchema>;

@@ -1,0 +1,184 @@
+{
+  "runId": "dry-kimi-20261102",
+  "test": "e2e_qualidade_kimi_gera_qwen_revisa",
+  "executionMode": "dry-run",
+  "modelMatrix": {
+    "embedding": "qwen/qwen3-embedding-8b",
+    "completionFull": "moonshotai/kimi-k2.6",
+    "visual": "qwen/qwen3-vl-235b-a22b-instruct",
+    "chatImage": "moonshotai/kimi-k2.6",
+    "extraction": "qwen/qwen3-vl-30b-a3b-instruct",
+    "alternatives": "moonshotai/kimi-k2.5",
+    "answer": "moonshotai/kimi-k2.6",
+    "explanation": "moonshotai/kimi-k2.5",
+    "review": "qwen/qwen3-vl-235b-a22b-instruct",
+    "normalize": "qwen/qwen3-vl-235b-a22b-instruct"
+  },
+  "completionModelAssignment": {
+    "schemaName": "question_completion_full",
+    "model": "moonshotai/kimi-k2.6",
+    "outputFields": [
+      "alternatives",
+      "correctAnswer",
+      "explanation"
+    ],
+    "reason": "Produção combina os três campos em uma chamada; o executor não decompõe nem repete chamadas.",
+    "matrixDeviation": "Kimi K2.6 atende à conclusão combinada; alternativas/explicação com Kimi K2.5 não são isoladas pelo pipeline atual."
+  },
+  "paidCallsMade": false,
+  "pipelineAttempted": false,
+  "pipelineExecuted": false,
+  "pipelineComplete": false,
+  "generatedAt": "2026-11-03T01:18:05.030Z",
+  "rounds": [
+    {
+      "round": 1,
+      "status": "DRY_RUN_NOT_EXECUTED",
+      "questions": [],
+      "qualityChecks": {
+        "status": "NAO_VERIFICADO",
+        "passed": 0,
+        "failed": 0,
+        "notVerified": 0,
+        "total": 0,
+        "byQuestion": []
+      },
+      "knowledgeBase": {
+        "status": "NOT_RUN",
+        "assetCount": 31,
+        "indexedCount": 0,
+        "descriptions": []
+      },
+      "extraction": {
+        "explicitBlocksExpected": 10,
+        "sourceExtraction": "DETERMINISTIC_SOURCE_EXTRACTION",
+        "llmCallsAttributedToStatementExtraction": 0,
+        "status": "NOT_RUN"
+      },
+      "chat": {
+        "status": "NOT_RUN",
+        "questionNumber": "03",
+        "imageContextPassed": false,
+        "visibleDifferenceRecognized": null
+      },
+      "totalPipelineMs": "NAO_VERIFICADO",
+      "database": {
+        "name": "mc_qualidade_kimi_ger_r1_9c917f1d19287926",
+        "host": "127.0.0.1",
+        "port": 56322,
+        "existsBeforeRun": false,
+        "schemaStatus": "NOT_PROVISIONED_DRY_RUN"
+      },
+      "baseline": {
+        "status": "NOT_IMPORTED_DRY_RUN",
+        "source": "local dbtemp baseline (read-only export)",
+        "reuseEvidence": "NAO_VERIFICADO",
+        "chunkerVersion": "NAO_VERIFICADO"
+      },
+      "calls": [],
+      "metrics": {
+        "status": "PENDING_TELEMETRY_AGGREGATION",
+        "totalDurationMs": "NAO_VERIFICADO"
+      }
+    },
+    {
+      "round": 2,
+      "status": "DRY_RUN_NOT_EXECUTED",
+      "questions": [],
+      "qualityChecks": {
+        "status": "NAO_VERIFICADO",
+        "passed": 0,
+        "failed": 0,
+        "notVerified": 0,
+        "total": 0,
+        "byQuestion": []
+      },
+      "knowledgeBase": {
+        "status": "NOT_RUN",
+        "assetCount": 31,
+        "indexedCount": 0,
+        "descriptions": []
+      },
+      "extraction": {
+        "explicitBlocksExpected": 10,
+        "sourceExtraction": "DETERMINISTIC_SOURCE_EXTRACTION",
+        "llmCallsAttributedToStatementExtraction": 0,
+        "status": "NOT_RUN"
+      },
+      "chat": {
+        "status": "NOT_RUN",
+        "questionNumber": "03",
+        "imageContextPassed": false,
+        "visibleDifferenceRecognized": null
+      },
+      "totalPipelineMs": "NAO_VERIFICADO",
+      "database": {
+        "name": "mc_qualidade_kimi_ger_r2_cb1939c683cae242",
+        "host": "127.0.0.1",
+        "port": 56322,
+        "existsBeforeRun": false,
+        "schemaStatus": "NOT_PROVISIONED_DRY_RUN"
+      },
+      "baseline": {
+        "status": "NOT_IMPORTED_DRY_RUN",
+        "source": "local dbtemp baseline (read-only export)",
+        "reuseEvidence": "NAO_VERIFICADO",
+        "chunkerVersion": "NAO_VERIFICADO"
+      },
+      "calls": [],
+      "metrics": {
+        "status": "PENDING_TELEMETRY_AGGREGATION",
+        "totalDurationMs": "NAO_VERIFICADO"
+      }
+    }
+  ],
+  "baseline": {
+    "path": "dbtemp/artifacts/9df3b11e-d426-4542-aa57-1d1982f17f01/e2e-results-summary.json",
+    "status": "FOUND",
+    "questionCount": 10,
+    "structuredCalls": 90,
+    "inputTokens": 141107,
+    "outputTokens": 57889,
+    "costUsd": "NAO_VERIFICADO"
+  },
+  "comparison": {
+    "humanAnswerKey": "SEM_VERDADE_DE_REFERENCIA",
+    "chunkerVersion": "NAO_VERIFICADO",
+    "retention": "NAO_VERIFICADO"
+  },
+  "calls": [],
+  "callTelemetry": {
+    "rounds": [],
+    "calls": 0,
+    "apiCallsSent": 0,
+    "status": "NAO_VERIFICADO",
+    "reason": "Nenhuma chamada foi observada; preflight/dry-run não executou o pipeline."
+  },
+  "qualityChecks": {
+    "status": "PARTIAL_UNVERIFIED",
+    "passed": 0,
+    "failed": 0,
+    "notVerified": 0,
+    "total": 0,
+    "byRound": [
+      {
+        "round": 1,
+        "status": "NAO_VERIFICADO",
+        "passed": 0,
+        "failed": 0,
+        "notVerified": 0,
+        "total": 0,
+        "byQuestion": []
+      },
+      {
+        "round": 2,
+        "status": "NAO_VERIFICADO",
+        "passed": 0,
+        "failed": 0,
+        "notVerified": 0,
+        "total": 0,
+        "byQuestion": []
+      }
+    ]
+  }
+}

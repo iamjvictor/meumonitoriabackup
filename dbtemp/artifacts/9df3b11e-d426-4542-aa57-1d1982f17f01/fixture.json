@@ -1,0 +1,25 @@
+{
+  "prefix": "question-chat-e2e/9df3b11e-d426-4542-aa57-1d1982f17f01",
+  "teacherId": "5e9e9a55-cbe4-4f65-864c-e28631f3f2af",
+  "studentId": "2f347568-9bbf-4826-86eb-594f35552b58",
+  "monitorId": "4a48274d-a788-4dc0-ba63-63f8f8b17526",
+  "subjectId": "16a05fe3-5936-4e0d-bfb8-d3c01dab3f2b",
+  "topicId": "2d17bd2a-bf62-48c7-8488-1fa44c532632",
+  "documentIds": [
+    {
+      "id": "9ff3a570-9c14-42a6-8a89-ed9a53fa58bc",
+      "name": "Quimica-3.pdf",
+      "tag": "QUESTIONS"
+    },
+    {
+      "id": "5796b615-8eea-498a-ad44-8690d3af0ee9",
+      "name": "Estequiometria.pdf",
+      "tag": "KNOWLEDGE_BASE"
+    },
+    {
+      "id": "06fdb700-1039-4214-b856-170e75c17338",
+      "name": "pH e pOH.pdf",
+      "tag": "KNOWLEDGE_BASE"
+    }
+  ]
+}

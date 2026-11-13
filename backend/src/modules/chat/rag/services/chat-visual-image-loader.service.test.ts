@@ -53,3 +53,25 @@ test('carrega figura do documento somente no monitor e matéria autorizados', as
   assert.equal(where.document.monitorId, 'monitor-1');
   assert.equal(where.document.subjectId, 'subject-1');
 });
+
+test('rejeita bytes de uma geração antiga quando o asset veio do contexto KNOWLEDGE', async () => {
+  const database = {
+    chatImageAttachment: { async findFirst() { return null; } },
+    documentVisualAsset: {
+      async findFirst() {
+        return {
+          storagePath: 'doc/old-generation.png', mimeType: 'image/png', checksum: 'old-checksum', generationId: 'generation-old',
+          document: { activeGenerationId: 'generation-current' },
+        };
+      },
+    },
+  };
+  const loader = new ChatVisualImageLoader(database as unknown as ConstructorParameters<typeof ChatVisualImageLoader>[0], { async download() { throw new Error('student storage must not be used'); } }, {
+    async download() { throw new Error('inactive generation bytes must not be downloaded'); },
+  });
+  const result = await loader.load([{ assetId: 'old-figure', page: 3, checksum: 'old-checksum', description: null, source: 'KNOWLEDGE' }], {
+    studentId: 'student-1', teacherId: 'teacher-1', monitorId: 'monitor-1', subjectId: 'subject-1',
+  });
+  assert.deepEqual(result.images, []);
+  assert.equal(result.omittedCount, 1);
+});

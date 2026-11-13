@@ -229,7 +229,7 @@ class DoclingHttpServiceTests(unittest.TestCase):
         self.assertEqual(dict(headers).get("X-Request-Id"), request_id)
         self.assertEqual(self.parser.calls, [])
 
-    def test_post_chunk_enforces_configured_conversion_timeout(self) -> None:
+    def test_post_chunk_waits_for_conversion_even_with_legacy_timeout_setting(self) -> None:
         import os
         from unittest.mock import patch
         content = b"%PDF-1.4\\nfixture\\n"
@@ -243,8 +243,8 @@ class DoclingHttpServiceTests(unittest.TestCase):
                          "X-Document-Id": "document-1", "X-Request-Id": request_id,
                          "X-Expected-SHA256": sha256(content).hexdigest()},
             )
-        self.assertEqual(status, 504)
-        self.assertEqual(json.loads(payload)["error"]["code"], "DOC_CHUNKER_TIMEOUT")
+        self.assertEqual(status, 200)
+        self.assertEqual(json.loads(payload), {})
 
     def test_chunk_v2_returns_visual_package_without_changing_v1_json_contract(self) -> None:
         import io

@@ -91,13 +91,14 @@ export class TeacherService {
     }
 
     const databaseReadStartedAt = Date.now();
+    const cacheGeneration = this.publicProfileCache?.generation(pageSlug);
     const teacher = attachAnnualPrices(await this.repository.findPublicBySlug(pageSlug));
     const databaseReadMs = Date.now() - databaseReadStartedAt;
 
     if (teacher && this.publicProfileCache) {
       const cacheWriteStartedAt = Date.now();
       try {
-        await this.publicProfileCache.set(pageSlug, teacher);
+        await this.publicProfileCache.set(pageSlug, teacher, cacheGeneration);
         console.log('Perfil público salvo no cache Redis', {
           event: 'teacher.public_profile_cache_written',
           pageSlug,

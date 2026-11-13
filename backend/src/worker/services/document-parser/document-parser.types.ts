@@ -133,6 +133,7 @@ export type ParseRunRecord = ParseSubmission & {
   updatedAt: string;
   errorCode?: string;
   errorMessage?: string;
+  metrics?: Record<string, unknown>;
 };
 
 export type ParseRunStore = {

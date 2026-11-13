@@ -15,7 +15,7 @@ from typing import Any
 PARSER_VERSION = "2.122.0"
 TOKENIZER_REVISION = "c90816d848505624c2434128dfc61132162a0ee9"
 TOKENIZER_ID = f"Qwen/Qwen3-Embedding-8B@{TOKENIZER_REVISION}"
-CHUNKER_VERSION = "hybrid-v1"
+CHUNKER_VERSION = "hybrid-v2-formula-evidence-geometry-v2"
 MAX_TOKENS = 500
 _PDF_ACCENTS = {
     "˜a": "ã", "˜A": "Ã", "˜o": "õ", "˜O": "Õ",
@@ -123,6 +123,8 @@ class DocChunkerService:
                 raise DocChunkerError("DOCLING_CONVERSION_FAILED", "Docling falhou ao converter o documento.", 503, "convert") from exc
             _emit("doc_chunker.conversion.completed", request_id=request_id, outcome="completed", duration_ms=round((time.monotonic() - conversion_started) * 1000), page_count=len(getattr(document, "pages", {}) or {}))
             reading_order_by_ref = _document_reading_order(document)
+            document_items_by_ref = _document_items_by_ref(document)
+            inline_formula_evidence_by_page = _extract_inline_formula_evidence(pdf_path)
             chunking_started = time.monotonic()
             _emit("doc_chunker.chunking.started", request_id=request_id, outcome="started", tokenizer_id=TOKENIZER_ID, max_tokens=self.max_tokens)
             doc_chunks = list(self.chunker.chunk(document))
@@ -144,26 +146,47 @@ class DocChunkerService:
                 pages: set[int] = set()
                 headings = list(getattr(getattr(chunk, "meta", None), "headings", []) or [])
                 provenance: list[dict[str, object]] = []
+                formula_evidence: list[dict[str, object]] = []
                 labels: set[str] = set()
                 for item in getattr(getattr(chunk, "meta", None), "doc_items", []) or []:
                     label = str(getattr(getattr(item, "label", None), "value", getattr(item, "label", "text"))).lower()
                     labels.add("table" if "table" in label else "formula" if "formula" in label else "text")
-                    for prov in getattr(item, "prov", []) or []:
+                    item_ref = _item_reference(item)
+                    canonical_item = document_items_by_ref.get(item_ref, item)
+                    for prov in (getattr(item, "prov", None) or getattr(canonical_item, "prov", None) or []):
                         page = getattr(prov, "page_no", None)
                         if isinstance(page, int) and page > 0:
                             pages.add(page)
                             bbox = getattr(prov, "bbox", None)
                             coords = _bbox(bbox)
                             if coords:
-                                item_ref = str(getattr(item, "self_ref", ""))
                                 provenance.append({"page": page, "item_ref": item_ref, "reading_order": reading_order_by_ref.get(item_ref), "bbox": coords, "coord_origin": str(getattr(getattr(bbox, "coord_origin", None), "value", "")) or None})
+                            if "formula" in label:
+                                enriched_text = _item_string_field(item, "text") or _item_string_field(canonical_item, "text")
+                                original_text = _item_string_field(item, "orig") or _item_string_field(canonical_item, "orig")
+                                formula_evidence.append({
+                                    "pageNumber": page,
+                                    "itemRef": item_ref,
+                                    "bbox": coords,
+                                    "originalText": original_text if isinstance(original_text, str) else None,
+                                    "enrichedText": enriched_text if isinstance(enriched_text, str) else "",
+                                })
                 chunk_type = next(iter(labels)) if len(labels) == 1 else "mixed"
                 for part_text, part_raw, token_count in text_parts:
-                    normalized_chunks.append({
+                    normalized_chunk = {
                         "index": len(normalized_chunks), "text": part_text, "raw_text": part_raw,
                         "headings": [normalize_pdf_text(str(value)) for value in headings], "pages": sorted(pages),
                         "type": chunk_type, "tokens": token_count, "provenance": provenance,
-                    })
+                    }
+                    if formula_evidence:
+                        normalized_chunk["formulaEvidence"] = formula_evidence
+                    inline_formula_evidence = [
+                        evidence for page in sorted(pages)
+                        for evidence in inline_formula_evidence_by_page.get(page, [])
+                    ]
+                    if inline_formula_evidence:
+                        normalized_chunk["inlineFormulaEvidence"] = inline_formula_evidence
+                    normalized_chunks.append(normalized_chunk)
             if not normalized_chunks:
                 code = "OCR_REQUIRED" if classification == "SCANNED" else "NO_EXTRACTABLE_TEXT"
                 raise DocChunkerError(code, "O PDF não produziu texto que possa ser indexado.", stage="chunking")
@@ -253,6 +276,240 @@ def _document_reading_order(document: Any) -> dict[str, int]:
         item_ref = getattr(item, "self_ref", None)
         if isinstance(item_ref, str) and item_ref:
             result[item_ref] = order
+    return result
+
+
+def _document_items_by_ref(document: Any) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    iterator = getattr(document, "iterate_items", None)
+    if callable(iterator):
+        try:
+            for entry in iterator():
+                item = entry[0] if isinstance(entry, tuple) else entry
+                item_ref = _item_reference(item)
+                if item_ref:
+                    result[item_ref] = item
+        except Exception:
+            # Export dictionaries below are a compatibility fallback for wrappers.
+            pass
+    if result:
+        return result
+
+    export = getattr(document, "export_to_dict", None)
+    try:
+        payload = export() if callable(export) else None
+    except Exception:
+        payload = None
+    if isinstance(payload, dict):
+        _collect_exported_items(payload, result)
+    return result
+
+
+def _collect_exported_items(value: Any, result: dict[str, Any]) -> None:
+    if isinstance(value, dict):
+        item_ref = value.get("self_ref")
+        if isinstance(item_ref, str) and item_ref:
+            result[item_ref] = value
+        for child in value.values():
+            _collect_exported_items(child, result)
+    elif isinstance(value, list):
+        for child in value:
+            _collect_exported_items(child, result)
+
+
+def _item_reference(item: Any) -> str:
+    for key in ("self_ref", "cref", "ref"):
+        value = item.get(key) if isinstance(item, dict) else getattr(item, key, None)
+        if isinstance(value, str) and value:
+            return value
+        nested = getattr(value, "cref", None)
+        if isinstance(nested, str) and nested:
+            return nested
+        nested = getattr(value, "self_ref", None)
+        if isinstance(nested, str) and nested:
+            return nested
+    return ""
+
+
+def _item_string_field(item: Any, field: str) -> str | None:
+    value = item.get(field) if isinstance(item, dict) else getattr(item, field, None)
+    if isinstance(value, str) and value.strip():
+        return value
+    for method_name in ("model_dump", "to_dict"):
+        method = getattr(item, method_name, None)
+        try:
+            serialized = method() if callable(method) else None
+        except Exception:
+            serialized = None
+        if isinstance(serialized, dict):
+            candidate = serialized.get(field)
+            if isinstance(candidate, str) and candidate.strip():
+                return candidate
+    return None
+
+
+def _extract_inline_formula_evidence(pdf_path: str | Path) -> dict[int, list[dict[str, object]]]:
+    """Use PDF character geometry to identify raised, smaller exponent glyphs."""
+    try:
+        import pypdfium2 as pdfium
+    except ImportError:
+        return {}
+
+    evidence_by_page: dict[int, list[dict[str, object]]] = {}
+    document = None
+    try:
+        document = pdfium.PdfDocument(str(pdf_path))
+        for page_index in range(len(document)):
+            page = document[page_index]
+            text_page = page.get_textpage()
+            try:
+                text = text_page.get_text_range()
+                characters: list[dict[str, object] | None] = []
+                for index, character in enumerate(text):
+                    try:
+                        box = text_page.get_charbox(index)
+                        coords = [float(box[0]), float(box[1]), float(box[2]), float(box[3])]
+                        left, bottom, right, top = coords
+                        if right <= left or top <= bottom:
+                            characters.append(None)
+                            continue
+                        characters.append({"char": character, "box": coords, "height": top - bottom,
+                                           "center_y": (bottom + top) / 2, "index": index})
+                    except Exception:
+                        characters.append(None)
+                page_evidence = _find_geometric_superscripts(text, characters, page_index + 1)
+                if page_evidence:
+                    evidence_by_page[page_index + 1] = page_evidence
+            finally:
+                close_text = getattr(text_page, "close", None)
+                if callable(close_text):
+                    close_text()
+                close_page = getattr(page, "close", None)
+                if callable(close_page):
+                    close_page()
+    except Exception:
+        # Geometry is supporting evidence; failure must not block text extraction.
+        return {}
+    finally:
+        close_document = getattr(document, "close", None)
+        if callable(close_document):
+            close_document()
+    return evidence_by_page
+
+
+def _find_geometric_superscripts(
+    text: str, characters: list[dict[str, object] | None], page_number: int,
+) -> list[dict[str, object]]:
+    raised_roots: dict[int, int] = {}
+    for index, info in enumerate(characters):
+        if not info or not (str(info["char"]).isdigit() or info["char"] in {"−", "-", "+"}):
+            continue
+        current_box = info["box"]
+        assert isinstance(current_box, list)
+        current_left = float(current_box[0])
+        previous_index = index - 1
+        while previous_index >= 0 and (characters[previous_index] is None
+              or str(characters[previous_index]["char"]).isspace()):
+            previous_index -= 1
+        if previous_index < 0:
+            continue
+        previous = characters[previous_index]
+        if not previous:
+            continue
+        previous_box = previous["box"]
+        assert isinstance(previous_box, list)
+        previous_height = float(previous["height"])
+        gap = current_left - float(previous_box[2])
+        root_index = raised_roots.get(previous_index, previous_index)
+        root = characters[root_index]
+        if not root:
+            continue
+        root_box = root["box"]
+        assert isinstance(root_box, list)
+        baseline_height = float(root["height"])
+        if baseline_height <= 0 or gap < -baseline_height * 0.25 or gap > max(previous_height, baseline_height) * 1.5:
+            continue
+        height_ratio = float(info["height"]) / baseline_height
+        raise_ratio = (float(info["center_y"]) - float(root["center_y"])) / baseline_height
+        is_raised_negative_liter_unit = (
+            str(root["char"]) == "L"
+            and str(info["char"]) in {"−", "-"}
+            and raise_ratio >= 0.15
+        )
+        if height_ratio <= 0.92 and (raise_ratio >= 0.20 or is_raised_negative_liter_unit):
+            raised_roots[index] = root_index
+
+    groups: list[list[int]] = []
+    for index in sorted(raised_roots):
+        root = raised_roots[index]
+        if groups and raised_roots[groups[-1][-1]] == root:
+            previous_index = groups[-1][-1]
+            previous_info = characters[previous_index]
+            current_info = characters[index]
+            assert previous_info is not None and current_info is not None
+            previous_box, current_box = previous_info["box"], current_info["box"]
+            assert isinstance(previous_box, list) and isinstance(current_box, list)
+            baseline_height = float(characters[root]["height"])  # type: ignore[index]
+            if float(current_box[0]) - float(previous_box[2]) <= baseline_height * 1.5:
+                groups[-1].append(index)
+                continue
+        groups.append([index])
+
+    result: list[dict[str, object]] = []
+    for group in groups:
+        first_info = characters[group[0]]
+        last_info = characters[group[-1]]
+        assert first_info is not None and last_info is not None
+        root_index = raised_roots[group[0]]
+        root_info = characters[root_index]
+        assert root_info is not None
+        if str(first_info["char"]).isdigit():
+            base_indices = [root_index]
+            cursor = root_index - 1
+            while cursor >= 0:
+                info = characters[cursor]
+                if not info or not str(info["char"]).isdigit():
+                    break
+                right_box, left_box = characters[base_indices[0]]["box"], info["box"]  # type: ignore[index]
+                assert isinstance(right_box, list) and isinstance(left_box, list)
+                if float(right_box[0]) - float(left_box[2]) > float(root_info["height"]) * 1.2:
+                    break
+                base_indices.insert(0, cursor)
+                cursor -= 1
+        else:
+            base_indices = [root_index]
+        base_text = "".join(str(characters[index]["char"]) for index in base_indices)  # type: ignore[index]
+        raised_text = "".join(str(characters[index]["char"]) for index in group)  # type: ignore[index]
+        if not any(character.isdigit() for character in raised_text):
+            continue
+        normalized_exponent = raised_text.replace("−", "-")
+        normalized_text = f"{base_text}^{{{normalized_exponent}}}"
+        selected = [characters[index] for index in [*base_indices, *group]]
+        boxes = [info["box"] for info in selected if info]
+        flattened = [box for box in boxes if isinstance(box, list)]
+        bbox = [min(box[0] for box in flattened), min(box[1] for box in flattened),
+                max(box[2] for box in flattened), max(box[3] for box in flattened)]
+        ratios = [
+            (float(characters[index]["height"]) / float(characters[raised_roots[index]]["height"]))
+            for index in group  # type: ignore[index]
+        ]
+        raised = [
+            (float(characters[index]["center_y"]) - float(characters[raised_roots[index]]["center_y"]))
+            / float(characters[raised_roots[index]]["height"])
+            for index in group  # type: ignore[index]
+        ]
+        result.append({
+            "pageNumber": page_number,
+            "itemRef": f"pypdfium2:page-{page_number}:chars-{base_indices[0]}-{group[-1]}",
+            "bbox": bbox,
+            "baseText": base_text,
+            "raisedText": raised_text,
+            "normalizedText": normalized_text,
+            "sourceText": text[base_indices[0]:group[-1] + 1],
+            "evidenceSource": "PDF_CHARACTER_GEOMETRY",
+            "heightRatio": round(max(ratios), 3),
+            "raiseRatio": round(min(raised), 3),
+        })
     return result
 
 

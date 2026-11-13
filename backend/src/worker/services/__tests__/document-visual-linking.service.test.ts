@@ -71,6 +71,18 @@ test('uses a distinctive caption as a secondary association signal', async () =>
   assert.equal(result.linked[0]?.method, 'CAPTION');
 });
 
+test('persists page-only asset matches as review candidates on PDF.js chunks, not confirmed visual links', async () => {
+  const state = fixture();
+  const result = await state.service.linkVisualAssetsToChunks('parse-1', [
+    { id: 'page-chunk', text: 'Questão sobre um gráfico', pages: [1], provenance: [{ page: 1 }] },
+  ]);
+  assert.equal(result.linked.length, 0);
+  assert.equal(result.ambiguous.length, 1);
+  assert.equal(state.chunkLinks.length, 2);
+  assert.ok(state.chunkLinks.every((link) => (link as { method: string; role: string }).method === 'PAGE_CANDIDATE'
+    && (link as { role: string }).role === 'REVIEW_CANDIDATE'));
+});
+
 test('cross-page question links only referenced figures in its page interval', async () => {
   const linkedAssets = assets.map((asset) => asset.id === 'asset-c' ? { ...asset, contentAvailable: true } : asset);
   const state = fixtureWithAssets(linkedAssets);

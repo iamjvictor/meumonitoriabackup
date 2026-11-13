@@ -1,0 +1,159 @@
+{
+  "runId": "2d7bc13c-7573-435d-b43a-37e68702ee37",
+  "artifactStatus": "preserved",
+  "fixtureCleanup": {
+    "complete": true,
+    "runPrefix": "question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37",
+    "isolatedTeacherDeleted": true,
+    "isolatedStudentDeleted": true
+  },
+  "inputs": [
+    {
+      "id": "09ab5f76-af91-4246-bf72-50a1509fdfb4",
+      "name": "Quimica-3.pdf",
+      "tag": "QUESTIONS",
+      "sourceSha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d",
+      "status": "READY",
+      "workerExitCode": 0,
+      "elapsedMs": 404707,
+      "chunks": 16,
+      "embeddedChunks": 16,
+      "visualAssets": 20,
+      "spanCount": 10,
+      "questionCount": 10
+    },
+    {
+      "id": "0727ae85-9fe0-43fd-a043-161d97d637ef",
+      "name": "Estequiometria.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sourceSha256": "63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd",
+      "status": "READY",
+      "workerExitCode": 0,
+      "elapsedMs": 76560,
+      "chunks": 3,
+      "embeddedChunks": 3,
+      "visualAssets": 8,
+      "spanCount": 0,
+      "questionCount": 0
+    },
+    {
+      "id": "ef6270b1-946c-449b-a22c-55694d14717a",
+      "name": "pH e pOH.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sourceSha256": "5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc",
+      "status": "READY",
+      "workerExitCode": 0,
+      "elapsedMs": 72062,
+      "chunks": 3,
+      "embeddedChunks": 3,
+      "visualAssets": 3,
+      "spanCount": 0,
+      "questionCount": 0
+    }
+  ],
+  "questionExtraction": {
+    "spans": 10,
+    "distinctPersistedQuestionIds": 10,
+    "sourceLinks": 10,
+    "alternativesOriginCounts": {
+      "AI_GENERATED": 10
+    },
+    "questionsNeedingReview": 10
+  },
+  "repeat": {
+    "workerExitCode": 0,
+    "elapsedMs": 228711,
+    "initialDistinctQuestionCount": 10,
+    "finalDistinctQuestionCount": 10,
+    "sameQuestionIdAndSourceKeySet": true,
+    "sourceLinksBefore": 10,
+    "sourceLinksAfter": 26,
+    "changedTextHashCount": 5,
+    "questionSavedEvents": 10,
+    "completionAgentFailedEvents": 12,
+    "invalidSchemaEvents": 10,
+    "rawStable": false,
+    "changedTextHashes": [
+      {
+        "id": "42f89720-08f7-407c-abb4-9543f5abc366",
+        "sourceKey": "4f91b4ad8420644d6048c311d949566927afe24331ea4ec420a59b15a41c6796",
+        "beforeTextHash": "bc699e1061e1809b88aa7002afac83b1a4e666e8dcda6f45eb742a1e496513d7",
+        "afterTextHash": "719a5b64cf35273bc7041d5ad6ee14a81c4c7c7caaf299bac66f39e83663fa2f"
+      },
+      {
+        "id": "5fd71dc2-d4b4-401e-98db-a85f53166387",
+        "sourceKey": "c9475cc05407b8c2f0df1f8629dc2a4e5db02c2ad9677698ac7102ed5d659871",
+        "beforeTextHash": "aa6916a12d4bcc0415825ffe434583371c41227cf26890a9096dfaf460b1d602",
+        "afterTextHash": "bed1200f7852a73c83691aa8b6af05025dc1e7453420f1ccb1517914691f8ad4"
+      },
+      {
+        "id": "56138123-8c96-4bd2-a93f-7fe8f16b8645",
+        "sourceKey": "e0d4b123f069431bc9b02b3b456a6d24c6cdd05cf79f4d432202c40bc7b41d52",
+        "beforeTextHash": "9879f20cfa4a68828fc56e637c0781f0d826ea3addab255a338a244fc201d913",
+        "afterTextHash": "b18638857d5378397bc85c7dc04408a71f822045bcf14a2006e399de8c4343fe"
+      },
+      {
+        "id": "39c4d11a-db40-41ee-a68f-26495eeac304",
+        "sourceKey": "e3917b633924b1a528b9f0bef7d93172f4626ef3b8233741fbbcd258cd656e94",
+        "beforeTextHash": "34fe6fd687b2a5a7754a5d959937360f72def96991e022528cea792ff95a7d46",
+        "afterTextHash": "684a4d471d056911026407f83bf3e7211a02375ca3d13316209d6d3dd9bbff98"
+      },
+      {
+        "id": "2ee58610-ead6-46bd-ba74-c77e2f015148",
+        "sourceKey": "f1e7b9ae0d5ddb4ee29418c8d7111e026c0443df1e96f35623503efc6fb29586",
+        "beforeTextHash": "98272f9f6ac8846a01cc3fbea74c16999b85b3887883736a5cefdbf9f3dac0e1",
+        "afterTextHash": "502a6c52dc9835ab97e0b5f729aef90ce16442bdaecd022bfd54bc6b0880cf2d"
+      }
+    ],
+    "sameChunkBlockPageTupleCountAfter": 10,
+    "sourceRolesOffsetsExcerptsCaptured": false,
+    "logicalDuplicateCount": null,
+    "interpretation": "Source relations rose from 10 to 26, but the original snapshot omitted role, offsets, excerpt and relation IDs. Same chunk/block/page tuples can represent legitimate distinct roles, so duplicate count cannot be established from this run."
+  },
+  "knowledgeRagAudits": [
+    {
+      "documentId": "0727ae85-9fe0-43fd-a043-161d97d637ef",
+      "exitCode": 0,
+      "evidence": "audit-only command completed; successful stdout was not persisted by the original runner"
+    },
+    {
+      "documentId": "ef6270b1-946c-449b-a22c-55694d14717a",
+      "exitCode": 0,
+      "evidence": "audit-only command completed; successful stdout was not persisted by the original runner"
+    }
+  ],
+  "visualChat": {
+    "result": "REAL_CHAT_RESPONSE_REVIEW_REQUIRED",
+    "questionNumber": "03",
+    "spanId": "ac80045b-fb52-4b2a-9ed5-310376e209bc",
+    "assetId": "a7f43fcd-2627-40b8-bc6e-517ec551cd6f",
+    "assetPage": 5,
+    "dimensions": [
+      379,
+      77
+    ],
+    "itemRef": "#/pictures/7",
+    "sha256ExpectedDownloadedPayload": "45789fbdbc0ca341cf4577b42806e3bad633cca1a7e2bfd1f665da03bde668b5",
+    "checksumMatches": true,
+    "reviewHttpStatus": 200,
+    "chatHttpStatus": 200,
+    "questionApproved": true,
+    "removedIncorrectLinks": [
+      {
+        "visualAssetId": "7faf5405-7eec-4ab6-97e0-b0427bf6740f",
+        "associationMethod": "REVIEW",
+        "role": "STATEMENT"
+      }
+    ],
+    "response": "Ótimo! Agora que temos a imagem da questão, podemos analisar as estruturas da tretinoína e da isotretinoína com mais clareza para identificar a diferença na geometria da cadeia.\n\nVamos focar na cadeia de ligações duplas (C=C) que se estende a partir do anel, até o grupo carboxila (-COOH):\n\n1.  **Na tretinoína (estrutura da esquerda):**\n    *   Observe a cadeia de carbonos com as ligações duplas. Ela se apresenta de forma bastante \"esticada\" ou linear.\n    *   Se você olhar a última ligação dupla, aquela mais próxima do grupo -COOH, verá que o grupo metila (CH₃) que está ligado a um dos carbonos dessa dupla e o restante da cadeia (que leva ao grupo -COOH) estão em **lados opostos** da ligação dupla. Essa é a característica da configuração *trans*.\n\n2.  **Na isotretinoína (estrutura da direita):**\n    *   Agora, compare a cadeia da isotretinoína com a da tretinoína.\n    *   A diferença mais evidente está na última ligação dupla, também a mais próxima do grupo -COOH.\n    *   Nessa ligação dupla, o grupo metila (CH₃) e o restante da cadeia (que leva ao grupo -COOH) estão no **mesmo lado** da ligação dupla. Isso faz com que a cadeia faça uma \"curva\" ou \"dobra\" acentuada nesse ponto. Essa é a característica da configuração *cis*.\n\nPortanto, a diferença de geometria da cadeia que aparece entre a tretinoína e a isotretinoína, com base no desenho, é a **orientação dos grupos em torno da última ligação dupla** da cadeia polienica (a mais próxima do grupo carboxila). Na tretinoína, essa ligação dupla tem uma configuração *trans*, resultando em uma cadeia mais linear. Na isotretinoína, essa mesma ligação dupla tem uma configuração *cis*, o que causa uma \"dobra\" na cadeia. Essa diferença é um exemplo de isomeria geométrica (ou cis-trans)."
+  },
+  "knownFailure": {
+    "message": "Confirmação visual da Q03 falhou (404): {\"message\":\"Route POST:/api/v1/documents/09ab5f76-af91-4246-bf72-50a1509fdfb4/questions/1dceb28e-8484-4d29-825b-fe579e3f0598/visual-assets/7faf5405-7eec-4ab6-97e0-b0427bf6740f/review not found\",\"error\":\"Not Found\",\"statusCode\":404}"
+  },
+  "notes": [
+    "The runner cleaned its isolated fixture before the cleanup guard was updated; a direct post-run DB query confirmed the three run documents and their assets were absent. Existing older fixtures remained (monitor_documents count was 3).",
+    "RAG audit-only workers exited 0, but original runner discarded successful stdout; this report does not claim specific retrieved passages.",
+    "The corrected real chat appears in visual-chat.json and visual-chat-server.log. The stale runner later attempted the badge at an incorrect route and its report.failed records that stale attempt; it is superseded by the corrected standalone evidence.",
+    "The original pre/post reprocess snapshot omitted QuestionSource role, offsets and excerpt. Its +16 source relation count cannot be called duplicates: same chunk/block/page tuples may have distinct legitimate roles. The runner is updated to capture role, source relation ID, char/page offsets, excerpt and SHA-256, plus question text/hash/status and spans/candidates before and after."
+  ]
+}

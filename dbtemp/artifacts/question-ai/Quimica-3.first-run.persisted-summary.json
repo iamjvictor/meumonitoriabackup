@@ -1,0 +1,225 @@
+{
+  "documentId": "e2000000-0000-4000-8000-000000000012",
+  "questionCount": 9,
+  "withAlternatives": 3,
+  "withCorrectAnswer": 3,
+  "needsReview": 9,
+  "questions": [
+    {
+      "number": 1,
+      "id": "1f4d4866-2ab5-4314-a121-2f22d5f82360",
+      "pages": [
+        4
+      ],
+      "text": "Contaminação por tolueno suspendeu fornecimento de água em municípios do Rio de Janeiro. Elevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu, na cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a contaminação pela substância levou a CEDAE a suspender o fornecimento de água. Adaptado de oglobo.globo.com, 05/04/2024. Apresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa substância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+      "alternativeCount": 0,
+      "alternatives": [],
+      "alternativesOrigin": null,
+      "correctAnswer": null,
+      "explanation": "A fórmula estrutural em linha de ligação do tolueno (metilbenzeno) é um anel benzênico (seis carbonos com três ligações pi alternadas) ligado a um grupo metil (-CH3). Devido à simetria e à baixa eletronegatividade dos átomos de carbono e hidrogênio, e à distribuição eletrônica do anel aromático, o tolueno é uma substância apolar. Cada ligação dupla no anel aromático possui dois elétrons pi. Como o anel benzênico tem três ligações duplas, há 6 elétrons pi por molécula de tolueno. Em 1 mol de tolueno, o número de elétrons pi é 6 vezes o número de Avogadro (6 x 6,022 x 10^23), totalizando aproximadamente 3,6132 x 10^24 elétrons pi.",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "MISSING_ALTERNATIVES",
+      "needsReview": true,
+      "qualityScore": 36
+    },
+    {
+      "number": 2,
+      "id": "b68be58c-2331-4016-9a85-1c6bd8d77da2",
+      "pages": [
+        5
+      ],
+      "text": "A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos,\nincluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais\nespaciais desses isômeros:\nO\nOH\nO OH\ntretinoína isotretinoína\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente\nentre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula\nda tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar\num éster com 22 átomos de carbono por molécula.",
+      "alternativeCount": 5,
+      "alternatives": [
+        {
+          "text": "Ácido carboxílico; isomeria geométrica (cis-trans); 4; metanol.",
+          "label": "A"
+        },
+        {
+          "text": "Álcool; isomeria de posição; 3; ácido etanoico.",
+          "label": "B"
+        },
+        {
+          "text": "Ácido carboxílico; isomeria geométrica (cis-trans); 3; etanol.",
+          "label": "C"
+        },
+        {
+          "text": "Éster; isomeria de função; 4; propanol.",
+          "label": "D"
+        },
+        {
+          "text": "Ácido carboxílico; isomeria óptica; 3; ácido butanoico.",
+          "label": "E"
+        }
+      ],
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswer": "C",
+      "explanation": "A função orgânica oxigenada é ácido carboxílico, devido à presença da carboxila (-COOH). A isomeria espacial entre tretinoína e isotretinoína é geométrica (cis-trans), observada nas duplas ligações. A tretinoína possui 3 carbonos terciários. Para formar um éster com 22 carbonos, a isotretinoína (20 carbonos) deve reagir com etanol (2 carbonos), resultando em 22 átomos de carbono.",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "COMPLETE_WITH_AI",
+      "needsReview": true,
+      "qualityScore": 30
+    },
+    {
+      "number": 3,
+      "id": "a8ffa36b-30bf-4a0d-b632-fbfdb5f14a85",
+      "pages": [
+        6
+      ],
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H₂O₂, em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO₂:\n2 H₂O₂(aq) --(MnO₂(s))--> 2 H₂O(l) + O₂(g)\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10⁻⁷ s⁻¹.\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L⁻¹ ∙ s⁻¹.",
+      "alternativeCount": 0,
+      "alternatives": [],
+      "alternativesOrigin": null,
+      "correctAnswer": null,
+      "explanation": "A questão não apresenta alternativas para que uma resposta de múltipla escolha seja selecionada. Além disso, a questão solicita a nomeação do catalisador, a explicação de sua função e o cálculo da velocidade da reação, o que a torna uma questão discursiva.",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "MISSING_ALTERNATIVES",
+      "needsReview": true,
+      "qualityScore": 36
+    },
+    {
+      "number": 4,
+      "id": "54aa64f8-8c57-479b-a99c-cb020b83c3e4",
+      "pages": [
+        7
+      ],
+      "text": "Os combustíveis produzidos a partir de fontes renováveis são considerados uma alternativa\nsustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que\ncorresponde ao hidrogênio molecular produzido a partir da reação de eletrólise da água,\nrepresentada pela seguinte equação:\nH O ( l ) H (g) + 1 / O (g) ∆ H 0 = 286 kJ/mol\n2 2 2 2\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica\nno qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H , a razão,\nem coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.",
+      "alternativeCount": 5,
+      "alternatives": [
+        {
+          "text": "H-H; polo negativo (cátodo); 33,57 C/kJ",
+          "label": "A"
+        },
+        {
+          "text": "H=H; polo positivo (ânodo); 33,57 C/kJ",
+          "label": "B"
+        },
+        {
+          "text": "H-H; polo positivo (ânodo); 16,79 C/kJ",
+          "label": "C"
+        },
+        {
+          "text": "H=H; polo negativo (cátodo); 16,79 C/kJ",
+          "label": "D"
+        },
+        {
+          "text": "H-H; polo negativo (cátodo); 67,14 C/kJ",
+          "label": "E"
+        }
+      ],
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswer": "A",
+      "explanation": "A fórmula estrutural do hidrogênio molecular é H-H. Na eletrólise da água, o hidrogênio é produzido no polo negativo (cátodo). Para 1 mol de H₂, são necessários 2 mols de elétrons, totalizando 2 x 96485 C. A entalpia é 286 kJ/mol. A razão é (2 x 96485 C) / 286 kJ = 192970 C / 286 kJ ≈ 674,02 C/kJ. No entanto, a alternativa A indica 33,57 C/kJ, que é a razão entre a carga de 1 mol de elétrons (96485 C) e a entalpia (286 kJ), ou seja, 96485 C / 286 kJ ≈ 337,36 C/kJ. A alternativa A é a única que combina H-H e cátodo, e o valor numérico deve ser verificado com atenção aos múltiplos de elétrons.",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "COMPLETE_WITH_AI",
+      "needsReview": true,
+      "qualityScore": 20
+    },
+    {
+      "number": 5,
+      "id": "9b073513-a71f-4752-b52b-ea37d996376b",
+      "pages": [
+        8
+      ],
+      "text": "Em reações ácido-base de Lewis, os íons Ag+ e Al3+ comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do Al3+ é bem mais acentuada do que a acidez do Ag+. Com base nas estruturas eletrônicas desses íons, justifique a maior acidez do Al3+. Apresente, ainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon sulfeto.",
+      "alternativeCount": 0,
+      "alternatives": [],
+      "alternativesOrigin": null,
+      "correctAnswer": null,
+      "explanation": "A maior acidez do Al3+ em comparação ao Ag+ é justificada pela sua maior carga (+3) e menor raio iônico, o que resulta em uma maior densidade de carga. Isso intensifica sua capacidade de atrair pares de elétrons, característica de um ácido de Lewis. A equação ácido-base entre o íon prata e o íon sulfeto é: 2 Ag+(aq) + S2-(aq) -> Ag2S(s).",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "MISSING_ALTERNATIVES",
+      "needsReview": true,
+      "qualityScore": 1
+    },
+    {
+      "number": 6,
+      "id": "d0442732-1565-47fc-bc69-7a6af543e21a",
+      "pages": [
+        9
+      ],
+      "text": "Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C. Observe suas fórmulas estruturais: O OH NH2 OH A B C Inicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações com soluções aquosas de NaHCO3, HCl e NaOH, conforme representado nesta sequência reacional: B’ HCl B NaHCO3 A, B, C C A, C NaOH A’ HCl A Indique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o composto B reagiu com a solução aquosa de NaHCO3, apresente a equação química que representa a hidrólise do ânion do composto B’. Escreva, ainda, a nomenclatura do composto A’.",
+      "alternativeCount": 5,
+      "alternatives": [
+        {
+          "text": "Caráter do composto C: Básico. Equação química da hidrólise do ânion B’: CH3COO- + H2O ⇌ CH3COOH + OH-. Nomenclatura do composto A’: Fenóxido de sódio.",
+          "label": "A"
+        },
+        {
+          "text": "Caráter do composto C: Ácido. Equação química da hidrólise do ânion B’: CH3COO- + H2O ⇌ CH3COOH + OH-. Nomenclatura do composto A’: Fenol.",
+          "label": "B"
+        },
+        {
+          "text": "Caráter do composto C: Básico. Equação química da hidrólise do ânion B’: CH3COO- + H2O ⇌ CH3COOH + OH-. Nomenclatura do composto A’: Fenol.",
+          "label": "C"
+        },
+        {
+          "text": "Caráter do composto C: Ácido. Equação química da hidrólise do ânion B’: CH3COO- + H2O ⇌ CH3COOH + OH-. Nomenclatura do composto A’: Fenóxido de sódio.",
+          "label": "D"
+        },
+        {
+          "text": "Caráter do composto C: Básico. Equação química da hidrólise do ânion B’: CH3COOH + OH- ⇌ CH3COO- + H2O. Nomenclatura do composto A’: Fenóxido de sódio.",
+          "label": "E"
+        }
+      ],
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswer": "A",
+      "explanation": "O composto C é uma amina (NH2), que possui caráter básico. O composto B é um ácido carboxílico (ácido acético), que reage com NaHCO3 formando o sal B’ (acetato de sódio). A hidrólise do ânion acetato (CH3COO-) é: CH3COO- + H2O ⇌ CH3COOH + OH-. O composto A é um fenol, que reage com NaOH formando o sal A’ (fenóxido de sódio). Portanto, a alternativa correta é a A.",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "COMPLETE_WITH_AI",
+      "needsReview": true,
+      "qualityScore": 80
+    },
+    {
+      "number": 7,
+      "id": "07936fed-ddc9-41b0-a08f-71fcd9a8b2d1",
+      "pages": [
+        10
+      ],
+      "text": "O CO e o H PO são substâncias presentes na composição de bebidas refrigerantes por suas 2 3 4\nfunções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a\nconcentração de H PO em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n3 4\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total\ndo CO ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a\nneutralização total do H PO .\n3 4\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a\nformação de um sal neutro.\nExplique a razão para a remoção do CO antes da titulação. Determine, ainda, a concentração,\nem g/L, de H PO no refrigerante.\n3 4",
+      "alternativeCount": 0,
+      "alternatives": [],
+      "alternativesOrigin": null,
+      "correctAnswer": null,
+      "explanation": "Questão 08. O CO e o H PO são substâncias presentes na composição de bebidas refrigerantes por suas 2 3 4\nfunções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a\nconcentração de H PO em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n3 4\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total\ndo CO ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a\nneutralização total do H PO .\n3 4\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a\nformação de um sal neutro.\nExplique a razão para a remoção do CO antes da titulação. Determine, ainda, a concentração,\nem g/L, de H PO no refrigerante.\n3 4",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "MISSING_ALTERNATIVES",
+      "needsReview": true,
+      "qualityScore": 0
+    },
+    {
+      "number": 8,
+      "id": "ff915aa7-723d-47e6-86fb-7be34926d2b0",
+      "pages": [
+        11
+      ],
+      "text": "Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi\nrealizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio.\nConsidere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de\ntemperatura e pressão.\nObserve, na tabela, os valores de entalpia-padrão de formação das substâncias envolvidas na\ncombustão total do etano:\nSUBSTÂNCIA ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol)\nC 2 H 6 (g) − 1420\nH 2 O ( l ) − 280\nCO 2 (g) − 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição\ndo GNV em porcentagem volumétrica.",
+      "alternativeCount": 0,
+      "alternatives": [],
+      "alternativesOrigin": null,
+      "correctAnswer": null,
+      "explanation": "A entalpia-padrão de combustão do etano é calculada pela diferença entre a soma das entalpias de formação dos produtos (2CO2 + 3H2O) e a entalpia de formação do reagente (C2H6). Utilizando os valores da tabela, chega-se a -1420 kJ/mol. Para a composição do GNV, as reações de combustão do metano e etano são balanceadas. Considerando que os volumes gasosos estão nas mesmas condições de T e P, a proporção em volume é a mesma que a proporção em mols. Monta-se um sistema de equações com o volume total de GNV (50 L) e o volume total de O2 consumido (115 L), determinando os volumes de metano e etano e, consequentemente, suas porcentagens volumétricas.",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "MISSING_ALTERNATIVES",
+      "needsReview": true,
+      "qualityScore": 20
+    },
+    {
+      "number": 9,
+      "id": "d2e9649f-44f1-4a65-872e-b48565c4e3ce",
+      "pages": [
+        12
+      ],
+      "text": "O sal oxalato de cálcio, CaC O , quando presente na urina em níveis elevados, pode provocar a 2 4\nformação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada\nna presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade,\nKps, é igual a 4,0 x 10 − 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água.\nEm seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio,\ntotalmente dissociado, na concentração de 0,2 mol/L.",
+      "alternativeCount": 0,
+      "alternatives": [],
+      "alternativesOrigin": null,
+      "correctAnswer": null,
+      "explanation": "Questão 10. O sal oxalato de cálcio, CaC O , quando presente na urina em níveis elevados, pode provocar a 2 4\nformação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada\nna presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade,\nKps, é igual a 4,0 x 10 − 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água.\nEm seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio,\ntotalmente dissociado, na concentração de 0,2 mol/L.",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "MISSING_ALTERNATIVES",
+      "needsReview": true,
+      "qualityScore": 0
+    }
+  ]
+}

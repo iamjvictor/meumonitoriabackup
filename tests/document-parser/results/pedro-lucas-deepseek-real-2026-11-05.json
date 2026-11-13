@@ -1,0 +1,160 @@
+{
+  "run": {
+    "kind": "real OpenRouter request through StructuredQuestionExtractionService",
+    "configSource": "backend/.env explicitly parsed in memory",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "credentialPrinted": false,
+    "databaseWrites": false,
+    "sourcePdf": "tests/document-parser/documentos-professor/Simulado Pedro Lucas.pdf",
+    "parser": "local PDF.js extraction",
+    "pageCount": 5,
+    "chunkCount": 8,
+    "coveredNormalizedCharsByPage": { "1": 444, "2": 1859, "3": 2205, "4": 1887, "5": 1435 },
+    "uncoveredPages": [],
+    "openRouterCalls": 11,
+    "schemaFailures": 0,
+    "truncationEvents": 5,
+    "finalCandidateCount": 14,
+    "note": "Sanitized local QA capture. Candidate text below is copied from the real model response; memory-only repository replaced persistence. The PDF contains one page-1 answer-card image and no question/alternative figures, so visualEvidence is empty."
+  },
+  "candidates": [
+    {
+      "index": 1,
+      "number": "01",
+      "sourceChunkIds": ["chunk-1"],
+      "statement": "Questão 01 - O fósforo branco, de fórmula P 4 , é uma substância bastante tóxica. É utilizado para fi ns bélicos como arma química de guerra em granadas fumígenas. Pode ser obtido a partir do aquecimento do fosfato de cálcio, areia e coque em um forno especial, conforme mostrado na equação balanceada da reação: 2 Ca 3 (PO 4 ) 2 (s) + 6 SiO 2 (s) + 10 C (s) → 6 CaSiO 3 (s) + 1 P 4 (s) + 10 CO (g) A respeito da reação de obtenção do fósforo branco, seus participantes e suas características são feitas as seguintes a fi rmativas. I - O fósforo branco é classi fi cado como uma substância iônica polar. II - O fósforo branco (P 4 ) é classi fi cado como uma substância simples. III - A geometria da molécula do gás monóxido de carbono é angular. IV - A massa de fósforo branco obtida quando se aquece 1860 g de fosfato de cálcio com rendimento de 80% é de 297,6 g. V - A distribuição eletrônica do átomo de cálcio no estado fundamental é: 1s 2 2s 2 2p 6 3s 2 3p 5 . Das a fi rmativas feitas estão corretas apenas.",
+      "alternatives": [
+        {"label":"A","text":"I, II, III e V"}, {"label":"B","text":"II e IV"}, {"label":"C","text":"II, IV e V"}, {"label":"D","text":"III e V"}, {"label":"E","text":"I, III e IV"}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 complete"}
+    },
+    {
+      "index": 2,
+      "number": "02",
+      "sourceChunkIds": ["chunk-1"],
+      "statement": "Questão 02 - Assinale a alternativa que apresenta apenas compostos iônicos:",
+      "alternatives": [
+        {"label":"A","text":"HF, NaCO 3 e CaCl 2 ."}, {"label":"B","text":"H2O, NaCl e NaBr."}, {"label":"C","text":"Ba(OH) 2 , NH 4 Cl e CH 4 ."}, {"label":"D","text":"CaO, NaCl e KBr."}, {"label":"E","text":"C 2 H 6 , C 6 H 6 e BH"}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 labels; E truncated (source ends BH 3)"}
+    },
+    {
+      "index": 3,
+      "number": "Questão 01",
+      "sourceChunkIds": ["chunk-1"],
+      "statement": "O fósforo branco, de fórmula P 4 , é uma substância bastante tóxica. É utilizado para fi ns bélicos como arma química de guerra em granadas fumígenas. Pode ser obtido a partir do aquecimento do fosfato de cálcio, areia e coque em um forno especial, conforme mostrado na equação balanceada da reação: 2 Ca 3 (PO 4 ) 2 (s) + 6 SiO 2 (s) + 10 C (s) → 6 CaSiO 3 (s) + 1 P 4 (s) + 10 CO (g) A respeito da reação de obtenção do fósforo branco, seus participantes e suas características e suas características são feitas as seguintes a fi rmativas. Das a fi rmativas feitas estão corretas apenas.",
+      "alternatives": [
+        {"label":"A","text":"I, II, III e V"}, {"label":"B","text":"II e IV"}, {"label":"C","text":"II, IV e V"}, {"label":"D","text":"III e V"}, {"label":"E","text":"I, III e IV"}
+      ],
+      "qa": {"statement":"incomplete; omits assertions I–V and repeats wording","alternatives":"5 complete; duplicate candidate for 01"}
+    },
+    {
+      "index": 4,
+      "number": "Questão 02",
+      "sourceChunkIds": ["chunk-1"],
+      "statement": "Assinale a alternativa que apresenta apenas compostos iônicos:",
+      "alternatives": [
+        {"label":"A","text":"HF, NaCO 3 e CaCl 2 ."}, {"label":"B","text":"H2O, NaCl e NaBr."}, {"label":"C","text":"Ba(OH) 2 , NH 4 Cl e CH 4 ."}, {"label":"D","text":"CaO, NaCl e KBr."}, {"label":"E","text":"C 2 H 6 , C 6 H 6 e BH"}
+      ],
+      "qa": {"statement":"prompt only; duplicate candidate for 02","alternatives":"5 labels; E truncated (source ends BH 3)"}
+    },
+    {
+      "index": 5,
+      "number": "Questão 03",
+      "sourceChunkIds": ["chunk-2"],
+      "statement": "Assinale a alternativa correta:",
+      "alternatives": [
+        {"label":"A","text":"A condutividade elétrica dos metais é explicada admitindo-se a existência de nêutrons livres."}, {"label":"B","text":"O nitrato de sódio é um composto iônico, mas que apresenta ligações covalentes entre o átomo de nitrogênio e os átomos de oxigênio."}, {"label":"C","text":"Uma molécula com ligações polares pode somente ser classi fi cada, quanto à sua polaridade, como uma molécula polar."}, {"label":"D","text":"Não existe força de atração entre moléculas apolares."}, {"label":"E","text":"As forças de atração entre as moléculas do ácido bromídrico são denominadas ligações de hidrogênio."}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 complete"}
+    },
+    {
+      "index": 6,
+      "number": "03",
+      "sourceChunkIds": ["chunk-2"],
+      "statement": "Questão 03 - Assinale a alternativa correta:",
+      "alternatives": [
+        {"label":"A","text":"A condutividade elétrica dos metais é explicada admitindo-se a existência de nêutrons livres."}, {"label":"B","text":"O nitrato de sódio é um composto iônico, mas que apresenta ligações covalentes entre o átomo de nitrogênio e os átomos de oxigênio."}, {"label":"C","text":"Uma molécula com ligações polares pode somente ser classi fi cada, quanto à sua polaridade, como uma molécula polar."}, {"label":"D","text":"Não existe força de atração entre moléculas apolares."}, {"label":"E","text":"As forças de atração entre as moléculas do ácido bromídrico são denominadas ligações de hidrogênio."}
+      ],
+      "qa": {"statement":"complete prompt; duplicate candidate for 03","alternatives":"5 complete"}
+    },
+    {
+      "index": 7,
+      "number": "04",
+      "sourceChunkIds": ["chunk-3"],
+      "statement": "Questão 04 - Compostos iônicos são aqueles que apresentam ligação iônica. A ligação iônica é a ligação entre íons positivos e negativos, unidos por forças de atração eletrostática. (Texto adaptado de: Usberco, João e Salvador, Edgard, Química: química geral, vol 1, pág 225, Saraiva, 2009). Sobre as propriedades e características de compostos iônicos são feitas as seguintes a fi rmativas: I - apresentam brilho metálico. II - apresentam elevadas temperaturas de fusão e ebulição. III - apresentam boa condutibilidade elétrica quando em solução aquosa. IV - São sólidos nas condições ambiente (25 °C e 1atm). V - são pouco solúveis em solventes polares como a água. Das a fi rmativas apresentadas estão corretas apenas.",
+      "alternatives": [
+        {"label":"A","text":"II, IV e V."}, {"label":"B","text":"II, III e IV."}, {"label":"C","text":"I, III e V."}, {"label":"D","text":"I, IV e V."}, {"label":"E","text":"I, II e III."}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 complete"}
+    },
+    {
+      "index": 8,
+      "number": "05",
+      "sourceChunkIds": ["chunk-3","chunk-4"],
+      "statement": "Questão 05 - Sabemos que os metais são materiais brilhantes, em sua maioria, sólidos muito resistentes, maleáveis, dúcteis e sécteis. Essas peculiaridades dessas substâncias são dadas devido, principalmente, à natureza de suas ligações, sendo formados por ligações metálicas. Assinale a alternativa que apresenta corretamente uma boa de fi nição para a ligação metálica:",
+      "alternatives": [
+        {"label":"A","text":"A ligação metálica é a interação entre cátion e ânion, que se unem por forças eletrostáticas."}, {"label":"B","text":"A ligação metálica é o compartilhamento de elétrons entre átomos de eletronegatividade semelhante."}, {"label":"C","text":"A ligação metálica ocorre devido à interação entre cátions fi xos e elétrons que se deslocam pela estrutura do metal no chamado “ modelo mar de elétrons”."}, {"label":"D","text":"A ligação metálica ocorre quando um átomo de metal interage com outro átomo de metal através de interações do tipo dipolo induzido."}, {"label":"E","text":"A ligação metálica ocorre quando o hidrogênio doa elétrons para um metal, e"}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 labels; E truncated (source continues 'o metal utiliza esses elétrons para interagir com outro metal')"}
+    },
+    {
+      "index": 9,
+      "number": "06",
+      "sourceChunkIds": ["chunk-4"],
+      "statement": "Questão 06 - Os tipos de ligações químicas existentes nas substâncias cloreto de sódio (NaCl), gás cloro (Cl 2 ) e água (H 2 O) são, respectivamente:",
+      "alternatives": [
+        {"label":"A","text":"iônica, covalente apolar e covalente polar."}, {"label":"B","text":"iônica, covalente polar e covalente apolar"}, {"label":"C","text":"iônica, covalente apolar e covalente apolar."}, {"label":"D","text":"covalente apolar, iônica e covalente polar."}, {"label":"E","text":"covalente polar, iônica e covalente apolar."}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 complete"}
+    },
+    {
+      "index": 10,
+      "number": "07",
+      "sourceChunkIds": ["chunk-5"],
+      "statement": "Questão 07 - Sistema CFQ/CRQs esclarece dúvidas sobre contaminação alimentar por arsênio. Publicado em 30 de dezembro de 2024. O Sistema Conselho Federal de Química/Conselhos Regionais de Química (CFQ/CRQs) informa sobre as características, riscos e prevenção relacionados ao arsênio, substância encontrada em um recente caso de contaminação alimentar que levou a óbito três pessoas, em Torres, no Rio Grande do Sul. [...] De acordo com a literatura, o arsênio é um elemento químico não essencial ao organismo humano e altamente tóxico em sua forma inorgânica. [...] Sua toxicidade está associada à inativação de enzimas essenciais, interferindo na produção de energia celular e na reparação do DNA. [...] Para alimentos à base de cereais infantis, a Agência Nacional de Vigilância Sanitária (Anvisa) estabelece um limite máximo tolerado de 0,15 miligramas (de Arsênio) por kg. [...] Adaptado de: https://cfq.org.br/noticia/sistema-cfq-crqs-esclarece-duvidas-sobre-contaminacao-alimentar-porarsenio/. Acessado em 21/03/2025. Com base nas informações do texto, a quantidade máxima de átomos de arsênio que pode ser encontrada em 250 g de um alimento à base de cereais infantis, de acordo com o limite de tolerância estabelecido pela Anvisa, é de aproximadamente: Dado: Constante de Avogadro = 6,0 × 10 23 entidades mol -1 . Dados: Massa Molar do Arsênio: 75 g/mol",
+      "alternatives": [
+        {"label":"A","text":"3 × 10"}, {"label":"B","text":"4 × 10 20"}, {"label":"C","text":"6 × 10 22"}, {"label":"D","text":"7 × 10 23"}, {"label":"E","text":"9 × 10 30"}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 labels; A incomplete (the detached source exponent 17 was not attached)"}
+    },
+    {
+      "index": 11,
+      "number": "08",
+      "sourceChunkIds": ["chunk-5"],
+      "statement": "Questão 08 - O 2,2,4 - trimetil pentano é o principal isômero da gasolina, sendo um hidrocarboneto de fórmula molecular",
+      "alternatives": [],
+      "qa": {"statement":"incomplete fragment","alternatives":"0; duplicate fragment for 08"}
+    },
+    {
+      "index": 12,
+      "number": "08",
+      "sourceChunkIds": ["chunk-5","chunk-6"],
+      "statement": "Questão 08 - O 2,2,4 - trimetil pentano é o principal isômero da gasolina, sendo um hidrocarboneto de fórmula molecular C 8 H 14 . Considere uma reação de combustão desse composto, descrita na equação (não balanceada) abaixo e calcule a o volume de CO 2 gerado pela combustão de 33g do hidrocarboneto. (Considere 1 mol de gás = 22,4 L). C 8 H 14 (l) + O 2 (g) ----------> CO 2 (g) + H 2 O (g)",
+      "alternatives": [
+        {"label":"A","text":"1792 L"}, {"label":"B","text":"4480 L"}, {"label":"C","text":"5376 L"}, {"label":"D","text":"1388 L"}, {"label":"E","text":"2688 L"}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 complete; overlaps candidate 11 but reconciliation did not collapse fragment"}
+    },
+    {
+      "index": 13,
+      "number": "09",
+      "sourceChunkIds": ["chunk-7"],
+      "statement": "Questão 09 - Considere as seguintes a fi rmações, referentes à evolução dos modelos atômicos: I - No modelo de Dalton, o átomo é dividido em prótons e elétrons. II - No modelo de Rutherford, os átomos são constituídos por um núcleo muito pequeno e denso e carregado positivamente. Ao redor do núcleo estão distribuídos os elétrons, como planetas em torno do Sol. III - O físico inglês Thomson a fi rma, em seu modelo atômico, que um elétron, ao passar de uma órbita para outra, absorve ou emite um quantum (fóton) de energia. Das a fi rmações feitas, está(ão) correta(s)",
+      "alternatives": [
+        {"label":"A","text":"Apenas III."}, {"label":"B","text":"Apenas I e II."}, {"label":"C","text":"apenas II e III"}, {"label":"D","text":"apenas II."}, {"label":"E","text":"todas."}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 complete"}
+    },
+    {
+      "index": 14,
+      "number": "10",
+      "sourceChunkIds": ["chunk-7"],
+      "statement": "Questão 10 - Sobre os modelos atômicos é correto a fi rmar que:",
+      "alternatives": [
+        {"label":"A","text":"O modelo atômico de J.J. Thompson foi o primeiro, nele o átomo é maciço, indivisível e neutro. Apelidamos esse modelo de “bola de bilhar”"}, {"label":"B","text":"No modelo de Ernest Rutherford, o átomo possui elétrons encrustrados em sua superfície como um “pudim de passas”."}, {"label":"C","text":"A ideia de eletrosfera foi introduzida por John Dalton após um experimento bombardeando uma folha de ouro com partículas alfa."}, {"label":"D","text":"O modelo atômico de Erwin Schrödinger foi o primeiro a apresentar a ideia de elétrons. Essa partícula foi descoberta após um experimento com um tubo de raios catódicos."}, {"label":"E","text":"Niels Bohr foi quem propôs o modelo atômico que apresenta uma eletrosfera com diferentes níveis de energia, dividindo-a em camadas eletrônicas."}
+      ],
+      "qa": {"statement":"complete","alternatives":"5 complete"}
+    }
+  ]
+}

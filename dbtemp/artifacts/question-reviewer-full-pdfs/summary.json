@@ -1,0 +1,71 @@
+{
+  "database": "dbtemp local only",
+  "persisted": false,
+  "runs": [
+    {
+      "outputPath": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/question-reviewer-full-pdfs/iff-full-current.backend-output.json",
+      "document": "IFF Seleção 2010 (40 questões)",
+      "sourceQuestionCount": 41,
+      "outputQuestionCount": 41,
+      "llmCalls": 42,
+      "totalDurationMs": 273455,
+      "usageTotals": {
+        "promptTokens": 540723,
+        "completionTokens": 50372,
+        "reasoningTokens": 43213,
+        "totalTokens": 591095
+      },
+      "graphStage": "ready",
+      "graphRoute": "complete",
+      "generatedAlternativesQuestions": [
+        "4"
+      ],
+      "generatedAnswerQuestions": [],
+      "questionsWithPendingIssues": [
+        {
+          "questionNumber": "1",
+          "pendingIssues": [
+            "ANSWER_CONTEXT_INSUFFICIENT"
+          ]
+        },
+        {
+          "questionNumber": "2",
+          "pendingIssues": [
+            "ANSWER_CONTEXT_INSUFFICIENT"
+          ]
+        },
+        {
+          "questionNumber": "28",
+          "pendingIssues": [
+            "ANSWER_CONTEXT_INSUFFICIENT"
+          ]
+        },
+        {
+          "questionNumber": "31",
+          "pendingIssues": [
+            "ANSWER_CONTEXT_INSUFFICIENT"
+          ]
+        },
+        {
+          "questionNumber": "32",
+          "pendingIssues": [
+            "ANSWER_CONTEXT_INSUFFICIENT"
+          ]
+        },
+        {
+          "questionNumber": "37",
+          "pendingIssues": [
+            "ANSWER_CONTEXT_INSUFFICIENT"
+          ]
+        },
+        {
+          "questionNumber": "38",
+          "pendingIssues": [
+            "ANSWER_CONTEXT_INSUFFICIENT"
+          ]
+        }
+      ],
+      "graphErrors": []
+    }
+  ]
+}

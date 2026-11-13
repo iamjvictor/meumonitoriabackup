@@ -24,6 +24,24 @@ test('descreve conteúdo visual sem inferir informação ausente e indexa texto 
   assert.equal((saved as { model: string }).model, 'vision-test');
 });
 
+test('indexa descrições visuais acima de 2000 caracteres quando cabem no limite de embedding', async () => {
+  const description = `Anotação legível. ${'Detalhe manuscrito preservado. '.repeat(70)}`;
+  let savedDescription = '';
+  const service = new DocumentVisualIndexingService({
+    assets: {
+      async findForIndexing() { return { id: 'asset-long', documentId: 'doc-1', pageNumber: 1, mimeType: 'image/png', bytes: Buffer.from('png') }; },
+      async saveIndex(_id, input) { savedDescription = input.description ?? ''; },
+    },
+    vision: { async describe() { return { description, model: 'vision-test', version: 'visual-v1' }; } },
+    embeddings: { async createEmbeddings(input) { assert.ok(input[0]!.length <= 4_000); return [[0.5, 0.6]]; } },
+  });
+
+  const result = await service.describeAndIndexAsset('asset-long');
+
+  assert.equal(result.descriptionStatus, 'READY');
+  assert.equal(savedDescription, description.trim());
+});
+
 test('preserva incerteza, marca falha retryable e completa o reindexamento na repetição', async () => {
   const saved: Array<{ status: string; description?: string }> = [];
   let attempts = 0;

@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation';
 import {
   Users,
   Bot,
+  House,
+  BrainCircuit,
   FileText,
   DollarSign,
   ArrowRight,
@@ -43,6 +45,7 @@ import { TeacherPaymentAccountPanel } from './TeacherPaymentAccountPanel';
 import type { PaymentAccount } from '../services/TeacherPaymentAccountService';
 import { TeacherStudentService, type TeacherStudentSubscription } from '../services/TeacherStudentService';
 import { calculateTeacherDashboardMetrics } from '../utils/dashboard-metrics';
+import { TeacherIntelligencePanel } from './intelligence/TeacherIntelligencePanel';
 
 const TeacherMonitorCreationModal = dynamic(
   () => import('./TeacherMonitorCreationModal').then((module) => module.TeacherMonitorCreationModal),
@@ -63,7 +66,7 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
   onReportedQuestionsChange,
 }) => {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'overview' | 'agents' | 'materials' | 'students' | 'ranking' | 'page'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'students' | 'intelligence' | 'ranking' | 'page'>('overview');
   const [isMonitorCreationOpen, setIsMonitorCreationOpen] = useState(false);
   const [monitors, setMonitors] = useState<TeacherMonitor[]>([]);
   const [loadingMonitors, setLoadingMonitors] = useState<boolean>(true);
@@ -508,27 +511,8 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
               : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
+          <House className="mr-1.5 inline-block h-3.5 w-3.5" />
           Visão Geral
-        </button>
-        <button
-          onClick={() => setActiveTab('agents')}
-          className={`min-h-11 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-            activeTab === 'agents'
-              ? 'bg-[#132E20] text-white shadow-md'
-              : 'text-slate-600 hover:bg-slate-100'
-          }`}
-        >
-          Agentes & IA
-        </button>
-        <button
-          onClick={() => setActiveTab('materials')}
-          className={`min-h-11 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-            activeTab === 'materials'
-              ? 'bg-[#132E20] text-white shadow-md'
-              : 'text-slate-600 hover:bg-slate-100'
-          }`}
-        >
-          Materiais & Questões
         </button>
         <button
           onClick={() => setActiveTab('students')}
@@ -538,7 +522,15 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
               : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
+          <Users className="mr-1.5 inline-block h-3.5 w-3.5" />
           Alunos & Assinaturas
+        </button>
+        <button
+          onClick={() => setActiveTab('intelligence')}
+          className={`inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-xl px-4 py-2.5 text-xs font-bold transition-all ${activeTab === 'intelligence' ? 'bg-[#132E20] text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}
+        >
+          <BrainCircuit className="h-3.5 w-3.5" aria-hidden="true" />
+          Painel de Inteligência
         </button>
         <Link href="/professor/turmas" className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-xs font-bold text-slate-600 transition-all hover:bg-slate-100">
           <Users className="h-3.5 w-3.5" />
@@ -557,7 +549,9 @@ export const TeacherDashboardOverview: React.FC<TeacherDashboardOverviewProps> =
         </button>
       </div>
 
-      {activeTab === 'students' ? (
+      {activeTab === 'intelligence' ? (
+        <TeacherIntelligencePanel />
+      ) : activeTab === 'students' ? (
         <section className="space-y-6">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
             <div>

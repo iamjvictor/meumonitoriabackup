@@ -1,0 +1,1078 @@
+Syntax Error: Can't get Fields array<0a>
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 221
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 14176,
+  responseChars: 1805,
+  promptTokens: 12906,
+  completionTokens: 4718,
+  totalTokens: 17624,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 4176
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 11556,
+  responseChars: 695,
+  promptTokens: 12794,
+  completionTokens: 2809,
+  totalTokens: 15603,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 2580
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5419,
+  responseChars: 928,
+  promptTokens: 12835,
+  completionTokens: 1191,
+  totalTokens: 14026,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 840
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4529,
+  responseChars: 233,
+  promptTokens: 12891,
+  completionTokens: 1184,
+  totalTokens: 14075,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 890
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3744,
+  responseChars: 333,
+  promptTokens: 12786,
+  completionTokens: 903,
+  totalTokens: 13689,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 796
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5216,
+  responseChars: 199,
+  promptTokens: 12814,
+  completionTokens: 906,
+  totalTokens: 13720,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 829
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4703,
+  responseChars: 120,
+  promptTokens: 13109,
+  completionTokens: 883,
+  totalTokens: 13992,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 840
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5932,
+  responseChars: 208,
+  promptTokens: 12839,
+  completionTokens: 1760,
+  totalTokens: 14599,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1453
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2960,
+  responseChars: 226,
+  promptTokens: 12842,
+  completionTokens: 233,
+  totalTokens: 13075,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 141
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5933,
+  responseChars: 239,
+  promptTokens: 13155,
+  completionTokens: 512,
+  totalTokens: 13667,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 429
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2449,
+  responseChars: 213,
+  promptTokens: 12941,
+  completionTokens: 828,
+  totalTokens: 13769,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 747
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5434,
+  responseChars: 249,
+  promptTokens: 12841,
+  completionTokens: 1227,
+  totalTokens: 14068,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 990
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2948,
+  responseChars: 329,
+  promptTokens: 12935,
+  completionTokens: 398,
+  totalTokens: 13333,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 253
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4096,
+  responseChars: 192,
+  promptTokens: 12909,
+  completionTokens: 607,
+  totalTokens: 13516,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 532
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 8284,
+  responseChars: 281,
+  promptTokens: 12764,
+  completionTokens: 1064,
+  totalTokens: 13828,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 961
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 9109,
+  responseChars: 202,
+  promptTokens: 12834,
+  completionTokens: 2349,
+  totalTokens: 15183,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1726
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5425,
+  responseChars: 331,
+  promptTokens: 12869,
+  completionTokens: 1006,
+  totalTokens: 13875,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 877
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2703,
+  responseChars: 188,
+  promptTokens: 12922,
+  completionTokens: 356,
+  totalTokens: 13278,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 285
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 16632,
+  responseChars: 254,
+  promptTokens: 12677,
+  completionTokens: 1818,
+  totalTokens: 14495,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1716
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2651,
+  responseChars: 239,
+  promptTokens: 12704,
+  completionTokens: 306,
+  totalTokens: 13010,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 209
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6649,
+  responseChars: 304,
+  promptTokens: 12697,
+  completionTokens: 1126,
+  totalTokens: 13823,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 934
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2758,
+  responseChars: 473,
+  promptTokens: 12858,
+  completionTokens: 486,
+  totalTokens: 13344,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 334
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2759,
+  responseChars: 191,
+  promptTokens: 12731,
+  completionTokens: 534,
+  totalTokens: 13265,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 327
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 14740,
+  responseChars: 324,
+  promptTokens: 12824,
+  completionTokens: 1781,
+  totalTokens: 14605,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1374
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 11461,
+  responseChars: 233,
+  promptTokens: 12922,
+  completionTokens: 1036,
+  totalTokens: 13958,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 940
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4600,
+  responseChars: 284,
+  promptTokens: 12697,
+  completionTokens: 928,
+  totalTokens: 13625,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 843
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1939,
+  responseChars: 274,
+  promptTokens: 12696,
+  completionTokens: 312,
+  totalTokens: 13008,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 183
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5934,
+  responseChars: 334,
+  promptTokens: 12702,
+  completionTokens: 1520,
+  totalTokens: 14222,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1383
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3778,
+  responseChars: 351,
+  promptTokens: 12925,
+  completionTokens: 754,
+  totalTokens: 13679,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 646
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 12610,
+  responseChars: 476,
+  promptTokens: 13260,
+  completionTokens: 2549,
+  totalTokens: 15809,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 2412
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3862,
+  responseChars: 469,
+  promptTokens: 12791,
+  completionTokens: 452,
+  totalTokens: 13243,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 328
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5421,
+  responseChars: 226,
+  promptTokens: 13049,
+  completionTokens: 738,
+  totalTokens: 13787,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 667
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 11563,
+  responseChars: 559,
+  promptTokens: 12839,
+  completionTokens: 1782,
+  totalTokens: 14621,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1559
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 8596,
+  responseChars: 620,
+  promptTokens: 12976,
+  completionTokens: 3095,
+  totalTokens: 16071,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 2914
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7927,
+  responseChars: 387,
+  promptTokens: 12846,
+  completionTokens: 1999,
+  totalTokens: 14845,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1902
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3322,
+  responseChars: 389,
+  promptTokens: 13177,
+  completionTokens: 810,
+  totalTokens: 13987,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 682
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 10076,
+  responseChars: 270,
+  promptTokens: 12992,
+  completionTokens: 853,
+  totalTokens: 13845,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 747
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2458,
+  responseChars: 314,
+  promptTokens: 12859,
+  completionTokens: 307,
+  totalTokens: 13166,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 182
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 11715,
+  responseChars: 530,
+  promptTokens: 12823,
+  completionTokens: 1760,
+  totalTokens: 14583,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1621
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6912,
+  responseChars: 647,
+  promptTokens: 12820,
+  completionTokens: 1755,
+  totalTokens: 14575,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1451
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6387,
+  responseChars: 357,
+  promptTokens: 13018,
+  completionTokens: 435,
+  totalTokens: 13453,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 355
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 1
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4089,
+  responseChars: 449,
+  promptTokens: 12854,
+  completionTokens: 302,
+  totalTokens: 13156,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 159
+}
+{
+  "outputPath": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/question-reviewer-full-pdfs/iff-full-current.backend-output.json",
+  "document": "IFF Seleção 2010 (40 questões)",
+  "sourceQuestionCount": 41,
+  "outputQuestionCount": 41,
+  "llmCalls": 42,
+  "totalDurationMs": 273455,
+  "usageTotals": {
+    "promptTokens": 540723,
+    "completionTokens": 50372,
+    "reasoningTokens": 43213,
+    "totalTokens": 591095
+  },
+  "graphStage": "ready",
+  "graphRoute": "complete",
+  "generatedAlternativesQuestions": [
+    "4"
+  ],
+  "generatedAnswerQuestions": [],
+  "questionsWithPendingIssues": [
+    {
+      "questionNumber": "1",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "2",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "28",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "31",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "32",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "37",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "38",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    }
+  ],
+  "graphErrors": []
+}
+{
+  "summaryPath": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/question-reviewer-full-pdfs/summary.json",
+  "runs": 1
+}

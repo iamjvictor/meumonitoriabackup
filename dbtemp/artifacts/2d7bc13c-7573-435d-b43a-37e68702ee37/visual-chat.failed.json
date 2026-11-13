@@ -1,0 +1,6 @@
+{
+  "runId": "2d7bc13c-7573-435d-b43a-37e68702ee37",
+  "result": "FAILED",
+  "error": "Rota de confirmação visual retornou 404: {\"message\":\"Route POST:/api/v1/documents/09ab5f76-af91-4246-bf72-50a1509fdfb4/questions/1dceb28e-8484-4d29-825b-fe579e3f0598/visual-assets/7faf5405-7eec-4ab6-97e0-b0427bf6740f/review not found\",\"error\":\"Not Found\",\"statusCode\":404}",
+  "serverLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/2d7bc13c-7573-435d-b43a-37e68702ee37/visual-chat-server.log"
+}

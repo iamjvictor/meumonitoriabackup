@@ -20,7 +20,7 @@ test('retrieves Docling chunks with a null block id, page citations and tenant s
     assert.equal(results[0]?.engine, 'docling');
     assert.match(sql, /LEFT JOIN document_blocks/);
     assert.match(sql, /dc\.pages/);
-    assert.match(sql, /COALESCE\(db\.type, dc\.chunk_type/);
+    assert.match(sql, /COALESCE\(db\.type::text, dc\.chunk_type/);
     assert.match(sql, /dc\.teacher_id/);
     assert.match(sql, /dc\.monitor_id/);
     assert.match(sql, /dc\.subject_id/);
@@ -65,13 +65,14 @@ test('busca descrições de figuras apenas no escopo do tenant e sem consultar b
     (prisma as any).$queryRaw = async (query: { sql: string }) => { sql = query.sql; return []; };
     await repository.searchReadyVisualAssetIndexes({
       teacherId: 'teacher-1', monitorId: 'monitor-1', subjectId: 'subject-1',
-      queryEmbedding: [0.1], queryText: 'gráfico da temperatura',
+      documentId: 'doc-1', queryEmbedding: [0.1], queryText: 'gráfico da temperatura',
     });
     assert.match(sql, /document_visual_asset_indexes/);
     assert.match(sql, /d\.teacher_id/);
     assert.match(sql, /d\.monitor_id/);
     assert.match(sql, /d\.subject_id/);
     assert.match(sql, /dvi\.embedding/);
+    assert.match(sql, /AND d\.id = .*::uuid/);
     assert.doesNotMatch(sql, /storage_path|base64/i);
   } finally {
     (prisma as any).$queryRaw = originalQueryRaw;

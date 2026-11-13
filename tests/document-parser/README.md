@@ -1,5 +1,17 @@
 # PDFs de regressão do parser
 
+## Fluxos de conhecimento e questões
+
+Execute os dois testes do backend a partir de `backend`:
+
+```bash
+node --experimental-test-module-mocks --import tsx --test ../tests/document-parser/knowledge-flow.test.ts ../tests/document-parser/questions-flow.test.ts
+```
+
+Para incluir as chamadas HTTP reais ao Docling local, inicie o parser com OCR habilitado e adicione `DOC_CHUNKER_URL=http://127.0.0.1:8083` antes do comando. Os testes usam os PDFs locais em `documentos-professor/` quando disponíveis; eles são ignorados pelo Git. Sem esses PDFs ou sem as dependências locais do parser, os casos correspondentes indicam skip.
+
+Os cenários do worker simulam armazenamento, persistência e os serviços externos. O teste de embeddings usa o serviço real com cliente e repositório simulados; não chama OpenRouter nem grava no banco. As verificações HTTP enviam PDFs ao parser real e não exercitam persistência ou embeddings. A auditoria real do Simulado exige as dez questões e pode falhar enquanto o extrator não as recuperar; contagem de candidatas não comprova questões persistidas.
+
 ## Fixtures
 
 | Arquivo | Uso | SHA-256 |

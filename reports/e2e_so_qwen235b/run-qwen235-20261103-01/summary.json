@@ -1,0 +1,243 @@
+{
+  "runId": "run-qwen235-20261103-01",
+  "test": "e2e_so_qwen235b",
+  "executionMode": "execute",
+  "modelMatrix": {
+    "embedding": "qwen/qwen3-embedding-8b",
+    "completionFull": "qwen/qwen3-vl-235b-a22b-instruct",
+    "visual": "qwen/qwen3-vl-235b-a22b-instruct",
+    "chatImage": "qwen/qwen3-vl-235b-a22b-instruct",
+    "extraction": "qwen/qwen3-vl-30b-a3b-instruct",
+    "alternatives": "qwen/qwen3-vl-235b-a22b-instruct",
+    "answer": "qwen/qwen3-vl-235b-a22b-instruct",
+    "explanation": "qwen/qwen3-vl-235b-a22b-instruct",
+    "review": "qwen/qwen3-vl-235b-a22b-instruct",
+    "normalize": "qwen/qwen3-vl-235b-a22b-instruct"
+  },
+  "completionModelAssignment": {
+    "schemaName": "question_completion_full",
+    "model": "qwen/qwen3-vl-235b-a22b-instruct",
+    "outputFields": [
+      "alternatives",
+      "correctAnswer",
+      "explanation"
+    ],
+    "reason": "Produção combina os três campos em uma chamada; o executor não decompõe nem repete chamadas.",
+    "matrixDeviation": null
+  },
+  "paidCallsMade": true,
+  "pipelineAttempted": true,
+  "pipelineExecuted": true,
+  "pipelineComplete": false,
+  "generatedAt": "2026-11-03T01:41:06.172Z",
+  "rounds": [
+    {
+      "round": 1,
+      "status": "FAILED",
+      "pipelineAttempted": true,
+      "qualityChecks": {
+        "status": "NOT_RUN",
+        "passed": 0,
+        "failed": 0,
+        "notVerified": 0,
+        "total": 0,
+        "byQuestion": []
+      },
+      "questions": [],
+      "calls": [
+        {
+          "operationId": "a623edb0c00575715bd4-1",
+          "agent": "visual",
+          "stage": "visual",
+          "model": "qwen/qwen3-vl-235b-a22b-instruct",
+          "attempt": 1,
+          "attemptEvidence": "NEW_OPERATION",
+          "schemaValidFirstAttempt": "NAO_VERIFICADO",
+          "inputTokens": "NAO_VERIFICADO",
+          "outputTokens": "NAO_VERIFICADO",
+          "reasoningTokens": "NAO_VERIFICADO",
+          "latencyMs": 998,
+          "costUsd": "NAO_VERIFICADO",
+          "costSource": "NAO_VERIFICADO",
+          "responseJsonValid": "NAO_VERIFICADO",
+          "provider": "NAO_VERIFICADO",
+          "requestedProvider": "DeepInfra",
+          "embeddingPurpose": "NAO_VERIFICADO",
+          "inputCount": "NAO_VERIFICADO",
+          "embeddingCount": "NAO_VERIFICADO",
+          "error": "NON_JSON_SUCCESS_STATUS_200",
+          "schemaError": "NAO_VERIFICADO",
+          "jsonSchemaFailureObserved": false,
+          "outcome": "NON_JSON_SUCCESS"
+        }
+      ],
+      "errorType": "Error",
+      "callMetrics": {
+        "attempts": 1,
+        "retries": 0,
+        "retriesWithSchemaFeedback": 0,
+        "retriesInferredAfterFailure": 0,
+        "jsonSchemaFailuresObserved": 0,
+        "invalidJsonResponses": 0,
+        "jsonValidFirstAttemptRate": "NAO_VERIFICADO",
+        "jsonSchemaValidFirstAttemptRate": "NAO_VERIFICADO",
+        "httpErrors": 0,
+        "unexpectedProviders": 0,
+        "blockedEvents": 0,
+        "apiCallsSent": 1,
+        "inputTokens": "NAO_VERIFICADO",
+        "outputTokens": "NAO_VERIFICADO",
+        "reasoningTokens": "NAO_VERIFICADO",
+        "costUsd": "NAO_VERIFICADO",
+        "latencyP50Ms": 998,
+        "latencyP95Ms": 998
+      },
+      "metricsByAgent": {
+        "visual": {
+          "attempts": 1,
+          "retries": 0,
+          "retriesWithSchemaFeedback": 0,
+          "retriesInferredAfterFailure": 0,
+          "jsonSchemaFailuresObserved": 0,
+          "jsonValidFirstAttemptRate": "NAO_VERIFICADO",
+          "jsonSchemaValidFirstAttemptRate": "NAO_VERIFICADO",
+          "inputTokens": "NAO_VERIFICADO",
+          "outputTokens": "NAO_VERIFICADO",
+          "reasoningTokens": "NAO_VERIFICADO",
+          "costUsd": "NAO_VERIFICADO",
+          "provider": "NAO_VERIFICADO",
+          "latencyP50Ms": 998,
+          "latencyP95Ms": 998
+        }
+      },
+      "telemetryStatus": "CALLS_RECORDED"
+    }
+  ],
+  "baseline": {
+    "path": "dbtemp/artifacts/9df3b11e-d426-4542-aa57-1d1982f17f01/e2e-results-summary.json",
+    "status": "FOUND",
+    "questionCount": 10,
+    "structuredCalls": 90,
+    "inputTokens": 141107,
+    "outputTokens": 57889,
+    "costUsd": "NAO_VERIFICADO"
+  },
+  "comparison": {
+    "humanAnswerKey": "SEM_VERDADE_DE_REFERENCIA",
+    "chunkerVersion": "NAO_VERIFICADO",
+    "retention": "NAO_VERIFICADO"
+  },
+  "executionError": "Execução da rodada falhou; detalhes brutos foram omitidos do resumo.",
+  "calls": [
+    {
+      "operationId": "a623edb0c00575715bd4-1",
+      "agent": "visual",
+      "stage": "visual",
+      "model": "qwen/qwen3-vl-235b-a22b-instruct",
+      "attempt": 1,
+      "attemptEvidence": "NEW_OPERATION",
+      "schemaValidFirstAttempt": "NAO_VERIFICADO",
+      "inputTokens": "NAO_VERIFICADO",
+      "outputTokens": "NAO_VERIFICADO",
+      "reasoningTokens": "NAO_VERIFICADO",
+      "latencyMs": 998,
+      "costUsd": "NAO_VERIFICADO",
+      "costSource": "NAO_VERIFICADO",
+      "responseJsonValid": "NAO_VERIFICADO",
+      "provider": "NAO_VERIFICADO",
+      "requestedProvider": "DeepInfra",
+      "embeddingPurpose": "NAO_VERIFICADO",
+      "inputCount": "NAO_VERIFICADO",
+      "embeddingCount": "NAO_VERIFICADO",
+      "error": "NON_JSON_SUCCESS_STATUS_200",
+      "schemaError": "NAO_VERIFICADO",
+      "jsonSchemaFailureObserved": false,
+      "outcome": "NON_JSON_SUCCESS"
+    }
+  ],
+  "callTelemetry": {
+    "rounds": [
+      {
+        "round": "1",
+        "status": "CALLS_RECORDED",
+        "calls": [
+          {
+            "operationId": "a623edb0c00575715bd4-1",
+            "agent": "visual",
+            "stage": "visual",
+            "model": "qwen/qwen3-vl-235b-a22b-instruct",
+            "attempt": 1,
+            "attemptEvidence": "NEW_OPERATION",
+            "schemaValidFirstAttempt": "NAO_VERIFICADO",
+            "inputTokens": "NAO_VERIFICADO",
+            "outputTokens": "NAO_VERIFICADO",
+            "reasoningTokens": "NAO_VERIFICADO",
+            "latencyMs": 998,
+            "costUsd": "NAO_VERIFICADO",
+            "costSource": "NAO_VERIFICADO",
+            "responseJsonValid": "NAO_VERIFICADO",
+            "provider": "NAO_VERIFICADO",
+            "requestedProvider": "DeepInfra",
+            "embeddingPurpose": "NAO_VERIFICADO",
+            "inputCount": "NAO_VERIFICADO",
+            "embeddingCount": "NAO_VERIFICADO",
+            "error": "NON_JSON_SUCCESS_STATUS_200",
+            "schemaError": "NAO_VERIFICADO",
+            "jsonSchemaFailureObserved": false,
+            "outcome": "NON_JSON_SUCCESS"
+          }
+        ],
+        "metricsByAgent": {
+          "visual": {
+            "attempts": 1,
+            "retries": 0,
+            "retriesWithSchemaFeedback": 0,
+            "retriesInferredAfterFailure": 0,
+            "jsonSchemaFailuresObserved": 0,
+            "jsonValidFirstAttemptRate": "NAO_VERIFICADO",
+            "jsonSchemaValidFirstAttemptRate": "NAO_VERIFICADO",
+            "inputTokens": "NAO_VERIFICADO",
+            "outputTokens": "NAO_VERIFICADO",
+            "reasoningTokens": "NAO_VERIFICADO",
+            "costUsd": "NAO_VERIFICADO",
+            "provider": "NAO_VERIFICADO",
+            "latencyP50Ms": 998,
+            "latencyP95Ms": 998
+          }
+        },
+        "metrics": {
+          "attempts": 1,
+          "retries": 0,
+          "retriesWithSchemaFeedback": 0,
+          "retriesInferredAfterFailure": 0,
+          "jsonSchemaFailuresObserved": 0,
+          "invalidJsonResponses": 0,
+          "jsonValidFirstAttemptRate": "NAO_VERIFICADO",
+          "jsonSchemaValidFirstAttemptRate": "NAO_VERIFICADO",
+          "httpErrors": 0,
+          "unexpectedProviders": 0,
+          "blockedEvents": 0,
+          "apiCallsSent": 1,
+          "inputTokens": "NAO_VERIFICADO",
+          "outputTokens": "NAO_VERIFICADO",
+          "reasoningTokens": "NAO_VERIFICADO",
+          "costUsd": "NAO_VERIFICADO",
+          "latencyP50Ms": 998,
+          "latencyP95Ms": 998
+        }
+      }
+    ],
+    "calls": 1,
+    "apiCallsSent": 1,
+    "status": "TELEMETRY_SUMMARIZED",
+    "reason": "NAO_VERIFICADO"
+  },
+  "qualityChecks": {
+    "status": "NOT_RUN",
+    "passed": 0,
+    "failed": 0,
+    "notVerified": 0,
+    "total": 0,
+    "byRound": []
+  }
+}

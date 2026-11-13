@@ -20,6 +20,7 @@ MIN_NATIVE_TEXT_CHARS_PER_PAGE = 80
 @dataclass(frozen=True)
 class VisualAssetArtifact:
     asset_key: str
+    asset_kind: str
     source_item_ref: str
     reading_order: int
     page_number: int
@@ -100,7 +101,7 @@ def export_visual_assets(document: Any, pdf_hash: str) -> tuple[list[VisualAsset
             except Exception:
                 caption = ""
             artifacts.append(VisualAssetArtifact(
-                asset_key=asset_key, source_item_ref=item_ref, reading_order=reading_order, page_number=page,
+                asset_key=asset_key, asset_kind="FIGURE", source_item_ref=item_ref, reading_order=reading_order, page_number=page,
                 bbox=bbox, coord_origin=str(coord_origin) if coord_origin else None,
                 caption=caption or None, mime_type="image/png", width=image.width,
                 height=image.height, sha256=hashlib.sha256(content).hexdigest(), content=content,
@@ -113,6 +114,8 @@ def export_scanned_page_assets(
     pdf_hash: str,
     *,
     existing_page_numbers: set[int],
+    page_start: int = 1,
+    page_end: int | None = None,
     pdf_document_factory: Any | None = None,
 ) -> tuple[list[VisualAssetArtifact], list[dict[str, str]]]:
     """Render only pages without a usable native text layer or a figure crop.
@@ -128,6 +131,8 @@ def export_scanned_page_assets(
     try:
         for page_index in range(len(pdf_document)):
             page_number = page_index + 1
+            if page_number < page_start or (page_end is not None and page_number > page_end):
+                continue
             if page_number in existing_page_numbers:
                 continue
             if len(artifacts) >= MAX_VISUAL_ASSETS:
@@ -164,7 +169,7 @@ def export_scanned_page_assets(
                     continue
                 key = hashlib.sha256(f"{pdf_hash}:scanned-page:{page_number}".encode("utf-8")).hexdigest()[:32]
                 artifacts.append(VisualAssetArtifact(
-                    asset_key=key, source_item_ref=f"#/pages/{page_number}", reading_order=0,
+                    asset_key=key, asset_kind="PAGE", source_item_ref=f"#/pages/{page_number}", reading_order=0,
                     page_number=page_number, bbox=None, coord_origin=None, caption=None,
                     mime_type="image/png", width=image.width, height=image.height,
                     sha256=hashlib.sha256(content).hexdigest(), content=content,
@@ -186,7 +191,7 @@ def build_visual_package(
     chunks: list[dict[str, Any]],
     parser_version: str = "2.122.0",
     tokenizer_id: str = "Qwen/Qwen3-Embedding-8B@c90816d848505624c2434128dfc61132162a0ee9",
-    chunker_version: str = "hybrid-v1",
+    chunker_version: str = "hybrid-v2-formula-evidence-geometry-v2",
     fallback_assets: list[VisualAssetArtifact] | None = None,
     fallback_warnings: list[dict[str, str]] | None = None,
     scanned_pdf_path: Path | None = None,

@@ -2,12 +2,60 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 import { uploadDocumentSchema } from '../models/document.model.js';
 import { DocumentRepositoryError } from '../repositories/document.repository.js';
 import { DocumentQueueError, DocumentService } from '../services/document.service.js';
+import { prisma } from '../lib/prisma.js';
 
 type DocumentParams = { monitorId: string };
 type ProcessingParams = { monitorId: string; documentId: string };
 
+type KnowledgeProgressScope = { userId: string; monitorId: string; documentId: string };
+type KnowledgeProgressReader = (scope: KnowledgeProgressScope) => Promise<Record<string, unknown> | null>;
+
+async function queryKnowledgeProgress(scope: KnowledgeProgressScope) {
+  const run = await prisma.knowledgeProcessingRun.findFirst({
+    where: {
+      documentId: scope.documentId,
+      monitorId: scope.monitorId,
+      document: { monitor: { teacher: { userId: scope.userId } } },
+    },
+    orderBy: { createdAt: 'desc' },
+    select: {
+      id: true, status: true, pageCount: true, consumedSeconds: true, pageBudgetSeconds: true,
+      heartbeatAt: true, createdAt: true, updatedAt: true,
+      batches: { orderBy: { pageStart: 'asc' }, select: { pageStart: true, pageEnd: true, status: true, attempts: true, startedAt: true, completedAt: true } },
+    },
+  });
+  if (!run) return null;
+  const completedBatches = run.batches.filter((batch) => batch.status === 'COMPLETED');
+  const completedPages = completedBatches.reduce((sum, batch) => sum + batch.pageEnd - batch.pageStart + 1, 0);
+  const failedPages = run.batches.filter((batch) => batch.status === 'FAILED').reduce((sum, batch) => sum + batch.pageEnd - batch.pageStart + 1, 0);
+  const activeBatch = run.batches.find((batch) => batch.status === 'RUNNING');
+  return {
+    runId: run.id,
+    status: run.status,
+    pageCount: run.pageCount,
+    completedPages,
+    failedPages,
+    progressPercent: run.pageCount ? Math.round((completedPages / run.pageCount) * 100) : 0,
+    consumedSeconds: run.consumedSeconds,
+    pageBudgetSeconds: run.pageBudgetSeconds,
+    heartbeatAt: run.heartbeatAt,
+    updatedAt: run.updatedAt,
+    activeBatch: activeBatch ? { pageStart: activeBatch.pageStart, pageEnd: activeBatch.pageEnd, attempts: activeBatch.attempts, startedAt: activeBatch.startedAt } : null,
+    batches: run.batches.map((batch) => ({
+      pageStart: batch.pageStart, pageEnd: batch.pageEnd, status: batch.status,
+      attempts: batch.attempts, startedAt: batch.startedAt, completedAt: batch.completedAt,
+    })),
+    lastCompletedPage: completedBatches.at(-1)?.pageEnd ?? 0,
+    totalBatches: run.batches.length,
+    completedBatches: completedBatches.length,
+  };
+}
+
 export class DocumentController {
-  constructor(private readonly service: DocumentService) {}
+  constructor(
+    private readonly service: DocumentService,
+    private readonly readKnowledgeProgress: KnowledgeProgressReader = queryKnowledgeProgress,
+  ) {}
 
   async upload(request: FastifyRequest<{ Params: DocumentParams }>, reply: FastifyReply) {
     const startedAt = Date.now();
@@ -148,7 +196,14 @@ export class DocumentController {
       return reply.code(404).send({ error: 'DOCUMENT_NOT_FOUND', message: 'Documento nao encontrado.' });
     }
 
-    return reply.send({ data: document });
+    const knowledgeProcessing = document.tag === 'KNOWLEDGE_BASE'
+      ? await this.readKnowledgeProgress({
+        userId: request.user.id,
+        monitorId: request.params.monitorId,
+        documentId: request.params.documentId,
+      })
+      : null;
+    return reply.send({ data: { ...document, ...(knowledgeProcessing ? { knowledgeProcessing } : {}) } });
   }
 
   async reprocess(

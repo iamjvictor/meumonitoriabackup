@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { Prisma } from '@prisma/client';
+import { prisma } from '../../lib/prisma.js';
 import { env } from '../../config/env.js';
 import { aiModels } from '../../config/ai-models.config.js';
 import { supabaseAdmin } from '../../lib/supabase.js';
@@ -17,7 +18,7 @@ import { ChunkService } from './chunk.service.js';
 import { DocumentBlockDetectionService } from './document-block-detection.service.js';
 import { DOCUMENT_PROCESSING_VERSION } from '../../repositories/document-processing-job.repository.js';
 import { DocumentTextExtractionService } from './document-text-extraction.service.js';
-import { EmbeddingService } from './embedding.service.js';
+import { EmbeddingService, logDocumentChunkContent } from './embedding.service.js';
 import { FlashcardGenerationService } from './flashcard/flashcard-generation.service.js';
 import { QuestionExtractionService } from './question-extraction.service.js';
 import { TopicProfileGenerationService } from './topic-profile-generation.service.js';
@@ -38,6 +39,13 @@ import { PrismaDocumentParseRunStore } from '../../repositories/document-parser.
 import { PrismaDocumentVisualLinkStore } from '../../repositories/document-visual-link.repository.js';
 import { DocumentVisualLinkingService } from './document-visual-linking.service.js';
 import { DocumentVisualIndexingService } from './document-visual-indexing.service.js';
+import { buildFullDocumentTextChunks } from './full-document-text-chunker.js';
+import { TextNormalizationService } from './text-normalization.service.js';
+import {
+  createKnowledgeBatchProcessingService,
+  type KnowledgeBatchProcessingResult,
+} from './knowledge-batch-processing.service.js';
+import { KnowledgeGenerationMaterializerService } from './knowledge-generation-materializer.service.js';
 import {
   completeDocumentProcessingJob,
   ensureDocumentProcessingJobs,
@@ -49,6 +57,68 @@ import {
 } from '../../repositories/document-processing-job.repository.js';
 
 const BUCKET = 'monitor-documents';
+export const DOC_CHUNKER_V2_FORMULA_EVIDENCE_VERSION = 'hybrid-v2-formula-evidence-geometry-v2';
+export const KNOWLEDGE_PARSER_VERSION = '2.122.0';
+
+export function shouldUseKnowledgeBatchProcessing(tag: 'KNOWLEDGE_BASE' | 'QUESTIONS' | 'FLASHCARDS', enabled: boolean) {
+  return tag === 'KNOWLEDGE_BASE' && enabled;
+}
+
+export function buildKnowledgeProfile(batchPages = env.KNOWLEDGE_BATCH_SIZE) {
+  const batchTimeoutSeconds = env.KNOWLEDGE_BATCH_TIMEOUT_MS / 1000;
+  if (env.KNOWLEDGE_DOC_TIMEOUT_SECONDS >= batchTimeoutSeconds) {
+    throw new Error('KNOWLEDGE_DOC_TIMEOUT_SECONDS deve ser menor que KNOWLEDGE_BATCH_TIMEOUT_MS.');
+  }
+  return {
+    version: 'knowledge-v1',
+    do_ocr: env.KNOWLEDGE_DO_OCR,
+    do_formula_enrichment: env.KNOWLEDGE_FORMULA_ENRICHMENT,
+    do_table_structure: env.KNOWLEDGE_TABLE_STRUCTURE,
+    ocr_scale: env.KNOWLEDGE_OCR_SCALE,
+    images_scale: env.KNOWLEDGE_IMAGES_SCALE,
+    num_threads: env.KNOWLEDGE_NUM_THREADS,
+    batch_pages: batchPages,
+    document_timeout_seconds: env.KNOWLEDGE_DOC_TIMEOUT_SECONDS,
+    batch_timeout_seconds: batchTimeoutSeconds,
+  };
+}
+
+/** Matches KnowledgeProfile.digest() from the parser (sorted keys, compact JSON, operational batch timeout excluded). */
+export function hashKnowledgeProfile(profile: ReturnType<typeof buildKnowledgeProfile>) {
+  const effective = Object.fromEntries(Object.entries(profile)
+    .filter(([key]) => key !== 'batch_timeout_seconds')
+    .sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0));
+  return createHash('sha256').update(canonicalProfileJson(effective)).digest('hex');
+}
+
+function canonicalProfileJson(value: unknown, key?: string): string {
+  if (value === null || typeof value !== 'object') {
+    if (typeof value === 'number' && Number.isInteger(value) && (key?.endsWith('_scale') || key?.endsWith('_seconds'))) return `${value}.0`;
+    return JSON.stringify(value) ?? 'null';
+  }
+  if (Array.isArray(value)) return `[${value.map((entry) => canonicalProfileJson(entry)).join(',')}]`;
+  return `{${Object.entries(value as Record<string, unknown>).sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0)
+    .map(([entryKey, entryValue]) => `${JSON.stringify(entryKey)}:${canonicalProfileJson(entryValue, entryKey)}`).join(',')}}`;
+}
+
+export function buildDoclingCacheIdentity(documentId: string, contentHash: string) {
+  return {
+    chunkerVersion: DOC_CHUNKER_V2_FORMULA_EVIDENCE_VERSION,
+    idempotencyKey: createHash('sha256').update([
+      documentId, contentHash, 'doc-chunker-v2', DOC_CHUNKER_V2_FORMULA_EVIDENCE_VERSION,
+    ].join(':')).digest('hex'),
+  };
+}
+
+export async function getPdfPageCount(pdfBytes: Uint8Array): Promise<number> {
+  // @ts-ignore -- runtime package is provided transitively by pdf-parse in this worker.
+  const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs') as {
+    getDocument(input: Record<string, unknown>): { promise: Promise<{ numPages: number; destroy(): Promise<void> }> };
+  };
+  const pdf = await pdfjs.getDocument({ data: pdfBytes, disableWorker: true, useSystemFonts: true }).promise;
+  try { return pdf.numPages; }
+  finally { await pdf.destroy().catch(() => undefined); }
+}
 
 function sanitizeCountMap(value: unknown): Record<string, number> | undefined {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
@@ -74,6 +144,9 @@ export function sanitizeFlashcardOutputSummary(result: unknown): Record<string, 
     'incompleteCount', 'sourceBlockCount', 'candidateCount',
     'generated', 'accepted', 'persisted', 'rejected', 'duplicates', 'failedChunks',
     'attemptedChunks', 'successfulChunks',
+    'runId', 'generationId', 'pageCount', 'completedPages', 'totalPages',
+    'completedBatches', 'totalBatches', 'assetCount', 'verifiedBlankPages',
+    'coveredPages', 'retryable', 'progressStatus',
   ] as const;
   for (const key of summaryKeys) {
     const value = source[key];
@@ -124,8 +197,9 @@ export function shouldGenerateTopicProfile(
 
 export function resolveDocumentStatus(
   failures: Array<{ operation: DocumentProcessingOperation; error: unknown }>,
+  warnings: string[] = [],
 ) {
-  return failures.length > 0
+  return failures.length > 0 || warnings.length > 0
     ? 'PARTIAL_SUCCESS' as const
     : 'READY' as const;
 }
@@ -143,6 +217,14 @@ export type DocumentWorkerContext = {
   attempt?: number;
 };
 
+type KnowledgeWorkerOutcome = Omit<KnowledgeBatchProcessingResult, 'status'> & {
+  status: 'READY' | 'PARTIAL_SUCCESS' | 'FAILED';
+  progressStatus?: string;
+  generationId?: string;
+  chunkCount?: number;
+  assetCount?: number;
+};
+
 export type DocumentWorkerServiceDependencies = {
   documentIngestionV3Service?: DocumentIngestionV3Service | null;
   flashcardGenerationService?: Pick<FlashcardGenerationService, 'processDocument'>;
@@ -153,6 +235,10 @@ export type DocumentWorkerServiceDependencies = {
   documentVisualLinkingService?: Pick<DocumentVisualLinkingService, 'linkVisualAssetsToChunks'>;
   documentVisualIndexingService?: Pick<DocumentVisualIndexingService, 'describeAndIndexAsset'>;
   saveDoclingChunks?: typeof saveDoclingChunks;
+  knowledgeBatchProcessingService?: Pick<ReturnType<typeof createKnowledgeBatchProcessingService>, 'process'>;
+  knowledgeGenerationMaterializer?: Pick<KnowledgeGenerationMaterializerService, 'materializeAndPublish'>;
+  countPdfPages?: (pdfBytes: Uint8Array) => Promise<number>;
+  knowledgeBatchProcessingEnabled?: boolean;
 };
 
 export class DocumentWorkerService {
@@ -165,6 +251,10 @@ export class DocumentWorkerService {
   private readonly documentVisualLinkingService: Pick<DocumentVisualLinkingService, 'linkVisualAssetsToChunks'> | null;
   private readonly documentVisualIndexingService: Pick<DocumentVisualIndexingService, 'describeAndIndexAsset'> | null;
   private readonly saveDoclingChunks: typeof saveDoclingChunks;
+  private readonly knowledgeBatchProcessingService?: Pick<ReturnType<typeof createKnowledgeBatchProcessingService>, 'process'>;
+  private readonly knowledgeGenerationMaterializer?: Pick<KnowledgeGenerationMaterializerService, 'materializeAndPublish'>;
+  private readonly countPdfPages: (pdfBytes: Uint8Array) => Promise<number>;
+  private readonly knowledgeBatchProcessingEnabled: boolean;
 
   constructor(
     private readonly chunkService = new ChunkService(),
@@ -195,27 +285,30 @@ export class DocumentWorkerService {
           logger: (event, payload) => console.log(event, payload),
         }) : null);
     this.docChunkerV2Client = dependencies.docChunkerV2Client
-      ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED && (env.DOCUMENT_CHUNKER_BASE_URL ?? env.DOCUMENT_PARSER_BASE_URL)
+      ?? ((env.DOCUMENT_CHUNKER_BASE_URL ?? env.DOCUMENT_PARSER_BASE_URL)
         ? new DocChunkerV2Client({
           baseUrl: env.DOCUMENT_CHUNKER_BASE_URL ?? env.DOCUMENT_PARSER_BASE_URL!,
-          requestTimeoutMs: env.DOCUMENT_CHUNKER_REQUEST_TIMEOUT_MS,
+          requestTimeoutMs: null,
           maxResponseBytes: env.DOCUMENT_CHUNKER_MAX_RESPONSE_BYTES,
           logger: (event, payload) => console.log(event, payload),
         }) : null);
     this.documentVisualAssetRepository = dependencies.documentVisualAssetRepository
-      ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED ? new DocumentVisualAssetRepository() : null);
+      ?? new DocumentVisualAssetRepository();
     this.documentVisualLinkingService = dependencies.documentVisualLinkingService
-      ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED
-        ? new DocumentVisualLinkingService(new PrismaDocumentVisualLinkStore(), (event, fields) => console.log(event, fields))
-        : null);
+      ?? new DocumentVisualLinkingService(new PrismaDocumentVisualLinkStore(), (event, fields) => console.log(event, fields));
     this.documentVisualIndexingService = dependencies.documentVisualIndexingService
       ?? (env.DOCUMENT_VISUAL_ASSETS_ENABLED ? new DocumentVisualIndexingService() : null);
     this.saveDoclingChunks = dependencies.saveDoclingChunks ?? saveDoclingChunks;
+    this.knowledgeBatchProcessingService = dependencies.knowledgeBatchProcessingService;
+    this.knowledgeGenerationMaterializer = dependencies.knowledgeGenerationMaterializer;
+    this.countPdfPages = dependencies.countPdfPages ?? getPdfPageCount;
+    this.knowledgeBatchProcessingEnabled = dependencies.knowledgeBatchProcessingEnabled ?? env.KNOWLEDGE_BATCH_PROCESSING_ENABLED;
   }
 
   async process(documentId: string, context: DocumentWorkerContext = {}) {
     const startedAt = Date.now();
     const nonBlockingFailures: Array<{ operation: DocumentProcessingOperation; error: unknown }> = [];
+    const processingWarnings: string[] = [];
 
     console.log('Worker iniciou o processamento do documento', {
       event: 'monitor.document_processing_started',
@@ -276,39 +369,156 @@ export class DocumentWorkerService {
       const pdfBytes = new Uint8Array(await data.arrayBuffer());
       const contentHash = createHash('sha256').update(pdfBytes).digest('hex');
 
-      if (shouldParseVisualAssets(document.tag, env.DOCUMENT_VISUAL_ASSETS_ENABLED) && document.tag === 'QUESTIONS') {
-        try {
-          const visual = await this.processVisualAssetsOnly(document, pdfBytes, contentHash);
-          console.log('Extração visual das questões concluída; extração textual permanece no fluxo atual', {
-            event: 'document_visual_assets.question_document_completed', documentId: document.id,
-            parseRunId: visual.parseRunId, assetCount: visual.assetCount,
-            warningCount: visual.warningCount, reused: visual.reused,
+      if (shouldUseKnowledgeBatchProcessing(document.tag, this.knowledgeBatchProcessingEnabled)) {
+        const pageCount = await this.measureStage(
+          document.id,
+          'COUNT_PDF_PAGES',
+          () => this.countPdfPages(pdfBytes),
+          context,
+          { contentHash },
+        );
+        if (!Number.isInteger(pageCount) || pageCount < 1) throw new Error('O PDF não possui páginas válidas para processamento em lotes.');
+        const tenant = await prisma.monitorDocument.findFirst({
+          where: { id: document.id, monitorId: document.monitorId },
+          select: { teacherId: true },
+        });
+        if (!tenant) throw new Error('Documento não pertence ao monitor esperado para o processamento da base.');
+        const profile = buildKnowledgeProfile(env.KNOWLEDGE_BATCH_SIZE);
+        const configurationHash = hashKnowledgeProfile(profile);
+        const batchProcessor = this.knowledgeBatchProcessingService ?? createKnowledgeBatchProcessingService();
+        const materializer = this.knowledgeGenerationMaterializer ?? new KnowledgeGenerationMaterializerService();
+
+        const outcome = await track('CREATE_RETRIEVAL_CHUNKS', async (): Promise<KnowledgeWorkerOutcome> => {
+          const processing = await batchProcessor.process({
+            documentId: document.id,
+            teacherId: tenant.teacherId,
+            monitorId: document.monitorId,
+            contentHash,
+            configurationHash,
+            parserVersion: KNOWLEDGE_PARSER_VERSION,
+            profile,
+            pageCount,
+            fileName: document.originalName,
+            mimeType: document.mimeType,
+            fileBytes: pdfBytes,
+            owner: `${context.jobId ?? document.id}:${context.attempt ?? 1}:${randomUUID()}`,
+            ...(context.jobId?.startsWith(`reprocess-${document.id}-`)
+              ? { explicitRestartKey: context.jobId }
+              : {}),
           });
-        } catch (error) {
-          console.warn('Extração visual indisponível; fluxo textual de questões continuará', {
-            event: 'document_visual_assets.question_document_failed_non_blocking', documentId: document.id,
-            errorCode: error instanceof Error ? error.name : 'VISUAL_PARSE_FAILED',
+
+          if (processing.status === 'COMPLETED') {
+            const activeGeneration = await prisma.knowledgeDocumentGeneration.findUnique({
+              where: { runId: processing.runId },
+              select: { id: true, status: true },
+            });
+            if (activeGeneration?.status !== 'ACTIVE') throw new Error('Execução marcada como concluída sem geração ativa confirmada.');
+            const [chunkCount, assetCount] = await Promise.all([
+              prisma.documentChunk.count({ where: { generationId: activeGeneration.id } }),
+              prisma.documentVisualAsset.count({ where: { generationId: activeGeneration.id } }),
+            ]);
+            return { ...processing, status: 'READY', generationId: activeGeneration.id, chunkCount, assetCount };
+          }
+          if (processing.status !== 'READY_TO_PUBLISH') {
+            return {
+              ...processing,
+              progressStatus: processing.status,
+              status: processing.status === 'FAILED' ? 'FAILED' as const : 'PARTIAL_SUCCESS' as const,
+            };
+          }
+
+          const published = await materializer.materializeAndPublish({
+            documentId: document.id,
+            teacherId: tenant.teacherId,
+            monitorId: document.monitorId,
+            runId: processing.runId,
           });
+          if (published.status !== 'COMPLETED') throw new Error('Materializador não confirmou a publicação da geração completa.');
+          return { ...processing, ...published, status: 'READY', runId: processing.runId };
+        }, {
+          contentHash,
+          configurationHash,
+          parserVersion: KNOWLEDGE_PARSER_VERSION,
+          pageCount,
+          profile,
+        });
+
+        if (outcome.status !== 'READY') {
+          throw new Error(`KNOWLEDGE_BATCH_PROCESSING_${outcome.status}: run=${outcome.runId}, páginas=${outcome.completedPages}/${outcome.totalPages}, lotes=${outcome.completedBatches}/${outcome.totalBatches}.`);
         }
+
+        await this.skipOperations(document.id, ['EXTRACT_TEXT', 'NORMALIZE_TEXT', 'DETECT_BLOCKS'], 'knowledge_generation_published');
+        await completeDocumentProcessingJob(document.id, 'GENERATE_CHUNK_EMBEDDINGS', {
+          status: 'READY', source: 'knowledge_generation', runId: outcome.runId,
+          generationId: outcome.generationId ?? null,
+          completedPages: outcome.completedPages, totalPages: outcome.totalPages,
+          chunkCount: outcome.chunkCount ?? null,
+          assetCount: outcome.assetCount ?? null,
+        });
+        await this.skipOperations(document.id, [
+          'EXTRACT_QUESTIONS_TO_PENDING_REVIEW', 'MATCH_ANSWER_KEYS', 'GENERATE_FLASHCARD_CANDIDATES',
+        ], 'document_tag_knowledge_base');
+        if (shouldGenerateTopicProfile(document.tag, document.topicId)) {
+          try {
+            await this.measureStage(document.id, 'GENERATE_TOPIC_PROFILE',
+              () => this.topicProfileGenerationService.processTopic(document.topicId!), context, { profileScope: 'TOPIC' });
+          } catch (error) {
+            console.warn('Perfil do tópico não foi gerado; processamento continuará', {
+              event: 'monitor.topic_profile_generation_failed_non_blocking', documentId: document.id, error,
+            });
+          }
+        }
+        await markDocumentReady(document.id);
+        await track('READY_FOR_REVIEW', async () => undefined, {
+          documentStatus: 'READY', knowledgeRunId: outcome.runId,
+          generationId: outcome.generationId ?? null,
+        });
+        console.log('Base de conhecimento processada e geração publicada', {
+          event: 'monitor.knowledge_generation_published', documentId: document.id,
+          runId: outcome.runId, generationId: outcome.generationId ?? null,
+          pageCount, chunkCount: outcome.chunkCount ?? null,
+          assetCount: outcome.assetCount ?? null,
+          durationMs: Date.now() - startedAt,
+        });
+        return;
       }
+
+      let visualParseRunId: string | null = null;
+      const visualAssetsRequired = (document.tag === 'QUESTIONS' && Boolean(this.docChunkerV2Client && this.documentVisualAssetRepository))
+        || (document.tag === 'KNOWLEDGE_BASE' && env.DOCUMENT_VISUAL_ASSETS_ENABLED);
 
       let doclingChunksPersisted = false;
       let doclingFallbackOccurred = false;
-      let visualParseRunId: string | null = null;
-      if (shouldUseDocChunker(document.tag, env.DOCUMENT_TEXT_SOURCE)
+      if ((shouldUseDocChunker(document.tag, env.DOCUMENT_TEXT_SOURCE) && Boolean(this.docChunkerClient || this.docChunkerV2Client))
           || (shouldParseVisualAssets(document.tag, env.DOCUMENT_VISUAL_ASSETS_ENABLED) && document.tag === 'KNOWLEDGE_BASE')) {
         if (!this.docChunkerClient && !this.docChunkerV2Client) throw new Error('DOCUMENT_CHUNKER_BASE_URL não configurada.');
         try {
           const result = await track('CREATE_RETRIEVAL_CHUNKS', async () => {
-            const reusable = await findReusableDoclingChunks(document.id, contentHash, 'hybrid-v1');
-            const parseRunStore = env.DOCUMENT_VISUAL_ASSETS_ENABLED ? new PrismaDocumentParseRunStore() : null;
-            const visualRunKey = env.DOCUMENT_VISUAL_ASSETS_ENABLED
-              ? createHash('sha256').update([document.id, contentHash, 'doc-chunker-v2', 'hybrid-v1'].join(':')).digest('hex')
+            const cacheIdentity = buildDoclingCacheIdentity(document.id, contentHash);
+            const reusable = await findReusableDoclingChunks(document.id, contentHash, cacheIdentity.chunkerVersion);
+            const parseRunStore = visualAssetsRequired ? new PrismaDocumentParseRunStore() : null;
+            const visualRunKey = visualAssetsRequired
+              ? cacheIdentity.idempotencyKey
               : null;
             const visualRun = visualRunKey ? await parseRunStore!.findByIdempotencyKey(visualRunKey) : null;
-            if (reusable.reusable && (!env.DOCUMENT_VISUAL_ASSETS_ENABLED
+            if (reusable.reusable && (!visualAssetsRequired
                 || visualRun?.status === 'COMPLETED' || visualRun?.status === 'COMPLETED_WITH_WARNINGS')) {
-              if (env.DOCUMENT_VISUAL_ASSETS_ENABLED && visualRun) {
+              if (document.tag === 'QUESTIONS') {
+                const coverageResult = resolveReusableQuestionCoverage(visualRun?.metrics, reusable.chunks.map((chunk) => ({
+                  pages: Array.isArray(chunk.pages) ? chunk.pages.filter((page): page is number => typeof page === 'number') : [], text: chunk.content,
+                })));
+                processingWarnings.push(...coverageResult.warnings);
+                console.warn('Reuso Docling QUESTIONS: páginas representadas, cobertura integral de caracteres não verificável sem fonte independente.', {
+                  event: 'monitor.questions_text_coverage_unverified', documentId: document.id,
+                  coverageMode: coverageResult.coverage ? 'PAGE_PRESENCE_ONLY' : 'REFERENCE_UNAVAILABLE',
+                  coveredPages: coverageResult.coverage?.coveredPages ?? null,
+                  pageCount: coverageResult.coverage?.pageCount ?? null,
+                  pagesWithoutText: coverageResult.coverage?.pagesWithoutText ?? null,
+                  pagesWithoutTextWithVisualAssets: coverageResult.coverage?.pagesWithoutTextWithVisualAssets ?? null,
+                  pagesWithoutTextUnclassified: coverageResult.coverage?.pagesWithoutTextUnclassified ?? null,
+                });
+              }
+              if (visualAssetsRequired && visualRun) {
                 visualParseRunId = visualRun.parseRunId;
                 await this.documentVisualLinkingService?.linkVisualAssetsToChunks(
                   visualRun.parseRunId, reusable.chunks.map((chunk) => ({
@@ -332,13 +542,97 @@ export class DocumentWorkerService {
               page_count: number; chunks: Array<{
                 index: number; text: string; raw_text: string; headings: string[]; pages: number[];
                 type: 'text' | 'table' | 'formula' | 'mixed'; tokens: number; provenance: Array<Record<string, unknown>>;
+                formulaEvidence?: Array<{ pageNumber: number; itemRef: string; bbox: number[] | null; originalText: string | null; enrichedText: string }>;
+                inlineFormulaEvidence?: Array<{ pageNumber: number; itemRef: string; bbox: number[] | null; baseText: string; raisedText: string; normalizedText: string; sourceText: string; evidenceSource: 'PDF_CHARACTER_GEOMETRY'; heightRatio: number; raiseRatio: number }>;
               }>;
             };
-            if (env.DOCUMENT_VISUAL_ASSETS_ENABLED) {
+            let parserWarningCount = 0;
+            let parserVisualAssetPages: number[] = [];
+            let visualResult: Awaited<ReturnType<DocChunkerV2Client['chunkWithAssets']>> | null = null;
+            if (visualAssetsRequired) {
               if (!this.docChunkerV2Client || !this.documentVisualAssetRepository) {
                 throw new Error('A extração visual foi ativada sem cliente v2 ou persistência de assets configurados.');
               }
-              const visualResult = await this.docChunkerV2Client.chunkWithAssets(input);
+              visualResult = await this.docChunkerV2Client.chunkWithAssets(input);
+              parserWarningCount = visualResult.warnings.length;
+              parserVisualAssetPages = visualResult.assets.map((asset) => asset.pageNumber);
+              parsed = {
+                doc_hash: visualResult.docHash, engine: visualResult.engine,
+                tokenizer_id: visualResult.tokenizerId, chunker_version: visualResult.chunkerVersion,
+                page_count: visualResult.pageCount, chunks: visualResult.chunks,
+              };
+            } else {
+              if (!this.docChunkerClient) throw new Error('DOCUMENT_CHUNKER_BASE_URL não configurada.');
+              const legacyResult = await this.docChunkerClient.chunk(input);
+              parsed = {
+                doc_hash: legacyResult.doc_hash, engine: legacyResult.engine,
+                tokenizer_id: legacyResult.tokenizer_id, chunker_version: legacyResult.chunker_version,
+                page_count: legacyResult.page_count, chunks: legacyResult.chunks,
+              };
+            }
+            if (document.tag === 'QUESTIONS') {
+              const coverage = assertQuestionParserPageCoverage(parsed.page_count, parsed.chunks, { visualAssetPages: parserVisualAssetPages });
+              processingWarnings.push('QUESTIONS_TEXT_COVERAGE_UNVERIFIED');
+              if (coverage.pagesWithoutText.length) processingWarnings.push('QUESTIONS_PAGES_WITHOUT_TEXT');
+              if (coverage.pagesWithoutTextUnclassified.length) processingWarnings.push('QUESTIONS_PAGE_TEXT_UNCLASSIFIED');
+              const emptyTextChunkCount = parsed.chunks.filter((chunk) => !(chunk.raw_text ?? chunk.text).trim()).length;
+              if (emptyTextChunkCount) {
+                processingWarnings.push('QUESTIONS_EMPTY_TEXT_CHUNKS_OMITTED');
+                parsed.chunks = parsed.chunks.filter((chunk) => (chunk.raw_text ?? chunk.text).trim().length > 0);
+              }
+              if (parserWarningCount > 0) {
+                processingWarnings.push('QUESTIONS_PARSER_WARNINGS');
+              }
+              console.warn('Docling QUESTIONS: páginas representadas, cobertura integral de caracteres não verificável sem fonte independente.', {
+                event: 'monitor.questions_text_coverage_unverified', documentId: document.id,
+                coverageMode: 'PAGE_PRESENCE_ONLY', coveredPages: coverage.coveredPages, pageCount: coverage.pageCount,
+                pagesWithoutText: coverage.pagesWithoutText,
+                pagesWithoutTextWithVisualAssets: coverage.pagesWithoutTextWithVisualAssets,
+                pagesWithoutTextUnclassified: coverage.pagesWithoutTextUnclassified,
+                emptyTextChunkCount,
+              });
+            }
+            logDocumentChunkContent({
+              enabled: env.DOCUMENT_EXTRACTION_CONTENT_LOG_ENABLED,
+              maxChars: env.DOCUMENT_EXTRACTION_CONTENT_LOG_MAX_CHARS,
+              stage: 'docling_chunk_received',
+              chunks: parsed.chunks.map((chunk) => ({
+                documentId: document.id,
+                chunkIndex: chunk.index,
+                pages: chunk.pages,
+                text: chunk.raw_text,
+                embeddingText: chunk.text,
+              })),
+            });
+            await updateDocumentProcessingStage(document.id, 'CREATE_RETRIEVAL_CHUNKS', 'PERSIST_DOC_CHUNKS', requestId, 30_000);
+            const saved = await this.saveDoclingChunks(document.id, {
+              expectedHash: parsed.doc_hash, engine: parsed.engine, tokenizerId: parsed.tokenizer_id,
+              chunkerVersion: parsed.chunker_version, pageCount: parsed.page_count,
+              chunks: parsed.chunks.map((chunk) => ({
+                index: chunk.index, text: chunk.text, rawText: chunk.raw_text,
+                headings: chunk.headings, pages: chunk.pages, type: chunk.type,
+                tokens: chunk.tokens, provenance: chunk.provenance, formulaEvidence: chunk.formulaEvidence,
+                inlineFormulaEvidence: chunk.inlineFormulaEvidence,
+              })),
+            });
+            if (document.tag === 'QUESTIONS'
+              && (saved.savedCount !== parsed.chunks.length || saved.chunkIds.length !== parsed.chunks.length || saved.chunkIds.some((id) => !id))) {
+              throw new Error(`QUESTIONS_DOC_CHUNKER_PERSISTENCE_INCOMPLETE: esperava persistir ${parsed.chunks.length} chunks e recebeu ${saved.savedCount} IDs=${saved.chunkIds.length}.`);
+            }
+            logDocumentChunkContent({
+              enabled: env.DOCUMENT_EXTRACTION_CONTENT_LOG_ENABLED,
+              maxChars: env.DOCUMENT_EXTRACTION_CONTENT_LOG_MAX_CHARS,
+              stage: 'docling_chunk_persisted',
+              chunks: parsed.chunks.map((chunk, index) => ({
+                documentId: document.id,
+                chunkId: saved.chunkIds[index] ?? null,
+                chunkIndex: chunk.index,
+                pages: chunk.pages,
+                text: chunk.raw_text,
+                embeddingText: chunk.text,
+              })),
+            });
+            if (visualResult) {
               const activeParseRunStore = parseRunStore ?? new PrismaDocumentParseRunStore();
               const idempotencyKey = visualRunKey!;
               const now = new Date().toISOString();
@@ -348,12 +642,13 @@ export class DocumentWorkerService {
                 modelVersion: visualResult.tokenizerId, layoutSchemaVersion: 'doc-chunker/v2',
                 configurationHash: visualResult.chunkerVersion, idempotencyKey,
                 status: 'PROCESSING', createdAt: now, updatedAt: now,
+                metrics: { pageCount: visualResult.pageCount, visualAssetPages: visualResult.assets.map((asset) => asset.pageNumber) },
               });
               const parseRun = await activeParseRunStore.findByIdempotencyKey(idempotencyKey);
               if (!parseRun) throw new Error('Não foi possível recuperar o parse run Docling após a criação.');
               visualParseRunId = parseRun.parseRunId;
               try {
-                const persistedVisualAssets = await this.documentVisualAssetRepository.persistVisualParseRun({
+                const persistedVisualAssets = await this.documentVisualAssetRepository!.persistVisualParseRun({
                   documentId: document.id, parseRunId: parseRun.parseRunId,
                   docHash: visualResult.docHash, assets: visualResult.assets,
                 });
@@ -375,35 +670,12 @@ export class DocumentWorkerService {
                 }).catch(() => undefined);
                 throw error;
               }
-              parsed = {
-                doc_hash: visualResult.docHash, engine: visualResult.engine,
-                tokenizer_id: visualResult.tokenizerId, chunker_version: visualResult.chunkerVersion,
-                page_count: visualResult.pageCount, chunks: visualResult.chunks,
-              };
               console.log('Assets visuais privados persistidos', {
                 event: 'document_visual_assets.persist_completed', documentId: document.id,
                 parseRunId: parseRun.parseRunId, assetCount: visualResult.assets.length,
                 warningCount: visualResult.warnings.length,
               });
-            } else {
-              if (!this.docChunkerClient) throw new Error('DOCUMENT_CHUNKER_BASE_URL não configurada.');
-              const legacyResult = await this.docChunkerClient.chunk(input);
-              parsed = {
-                doc_hash: legacyResult.doc_hash, engine: legacyResult.engine,
-                tokenizer_id: legacyResult.tokenizer_id, chunker_version: legacyResult.chunker_version,
-                page_count: legacyResult.page_count, chunks: legacyResult.chunks,
-              };
             }
-            await updateDocumentProcessingStage(document.id, 'CREATE_RETRIEVAL_CHUNKS', 'PERSIST_DOC_CHUNKS', requestId, 30_000);
-            const saved = await this.saveDoclingChunks(document.id, {
-              expectedHash: parsed.doc_hash, engine: parsed.engine, tokenizerId: parsed.tokenizer_id,
-              chunkerVersion: parsed.chunker_version, pageCount: parsed.page_count,
-              chunks: parsed.chunks.map((chunk) => ({
-                index: chunk.index, text: chunk.text, rawText: chunk.raw_text,
-                headings: chunk.headings, pages: chunk.pages, type: chunk.type,
-                tokens: chunk.tokens, provenance: chunk.provenance,
-              })),
-            });
             if (visualParseRunId && this.documentVisualLinkingService) {
               const linked = await this.documentVisualLinkingService.linkVisualAssetsToChunks(
                 visualParseRunId,
@@ -459,9 +731,25 @@ export class DocumentWorkerService {
             });
           }
         }
-        await this.skipOperations(document.id, [
-          'EXTRACT_QUESTIONS_TO_PENDING_REVIEW', 'MATCH_ANSWER_KEYS', 'GENERATE_FLASHCARD_CANDIDATES',
-        ], 'document_tag_knowledge_base');
+        if (document.tag === 'QUESTIONS') {
+          try {
+            await track(
+              'EXTRACT_QUESTIONS_TO_PENDING_REVIEW',
+              () => this.questionExtractionService.processDocument(document.id),
+              { documentTag: document.tag, source: 'docling_chunks_with_embeddings' },
+            );
+          } catch (error) {
+            nonBlockingFailures.push({ operation: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW', error });
+            console.warn('Extração estruturada de QUESTIONS pendente para revisão/retry', {
+              event: 'monitor.question_extraction_failed_non_blocking', documentId: document.id, error,
+            });
+          }
+          await this.skipOperations(document.id, ['MATCH_ANSWER_KEYS', 'GENERATE_FLASHCARD_CANDIDATES'], 'question_extraction_integrated');
+        } else {
+          await this.skipOperations(document.id, [
+            'EXTRACT_QUESTIONS_TO_PENDING_REVIEW', 'MATCH_ANSWER_KEYS', 'GENERATE_FLASHCARD_CANDIDATES',
+          ], 'document_tag_knowledge_base');
+        }
       }
 
       if (this.documentIngestionV3Service && env.DOCUMENT_TEXT_SOURCE === 'pdfjs' && shouldProcessDocumentContent(document.tag)) {
@@ -540,6 +828,45 @@ export class DocumentWorkerService {
           { mimeType: document.mimeType, sizeBytes: document.sizeBytes },
         );
 
+        // Docling is the source of truth when it has persisted text. Build
+        // pages from every textual layout element so OCR and native parser
+        // content both reach downstream normalization and question extraction.
+        const latestDoclingRun = await prisma.documentParseRun.findFirst({
+          where: { documentId: document.id, parserName: 'DOCLING', status: { in: ['COMPLETED', 'COMPLETED_WITH_WARNINGS'] } },
+          orderBy: { createdAt: 'desc' },
+          select: { id: true },
+        });
+        if (latestDoclingRun) {
+          const elements = await prisma.documentLayoutElement.findMany({
+            where: { documentId: document.id, parseRunId: latestDoclingRun.id },
+            orderBy: [{ pageNumber: 'asc' }, { readingOrder: 'asc' }],
+            select: { pageNumber: true, category: true, rawText: true, normalizedText: true, latex: true, html: true },
+          });
+          const pageMap = new Map<number, string[]>();
+          for (const element of elements) {
+            const content = (element.normalizedText || element.rawText || element.latex || element.html || '').trim();
+            if (!content) continue;
+            const page = pageMap.get(element.pageNumber) ?? [];
+            page.push(content);
+            pageMap.set(element.pageNumber, page);
+          }
+          const doclingPages = [...pageMap.entries()].map(([num, parts]) => ({
+            num, text: parts.join('\n'), hasImages: false, imageCount: 0,
+          }));
+          const doclingText = doclingPages.map((page) => page.text).join('\n\n');
+          if (doclingText.trim().length > 0) {
+            console.log('Usando texto integral do OCR Docling na extração documental', {
+              event: 'monitor.document_ocr_text_selected', documentId: document.id,
+              parseRunId: latestDoclingRun.id, pageCount: doclingPages.length,
+              textChars: doclingText.length, pdfjsTextChars: parsedPdf.text.length,
+              elementCount: elements.length,
+            });
+            parsedPdf.text = doclingText;
+            parsedPdf.pages = doclingPages;
+            parsedPdf.total = Math.max(parsedPdf.total, doclingPages.length);
+          }
+        }
+
         console.log('Texto extraido do documento', {
           event: 'monitor.document_text_extraction_completed',
           documentId: document.id,
@@ -597,8 +924,44 @@ export class DocumentWorkerService {
 
         const legacyChunkResult = await track(
           'CREATE_RETRIEVAL_CHUNKS',
-          () => this.chunkService.processDocument(document.id, textExtraction.documentTextId),
-          { documentTextId: textExtraction.documentTextId },
+          async () => {
+            if (document.tag !== 'QUESTIONS') return this.chunkService.processDocument(document.id, textExtraction.documentTextId);
+            const normalizer = new TextNormalizationService();
+            const normalizedPages = parsedPdf.pages.map((page) => ({ num: page.num, text: normalizer.normalize(page.text).normalizedContent }));
+            const result = buildFullDocumentTextChunks(normalizedPages);
+            if (!result.chunks.length) throw new Error('Documento QUESTIONS não gerou chunks de texto.');
+            if (result.uncoveredPages.length) {
+              throw new Error(`Cobertura de texto incompleta: páginas sem texto reconhecido: ${result.uncoveredPages.join(', ')}.`);
+            }
+            const saved = await this.saveDoclingChunks(document.id, {
+              expectedHash: contentHash, engine: 'pdfjs-full-text', tokenizerId: 'gpt-tokenizer-cl100k',
+              chunkerVersion: 'questions-full-page-text-v1', pageCount: parsedPdf.total, chunks: result.chunks,
+            });
+            if (visualParseRunId && this.documentVisualLinkingService) {
+              const linked = await this.documentVisualLinkingService.linkVisualAssetsToChunks(visualParseRunId, result.chunks.flatMap((chunk, index) => {
+                const id = saved.chunkIds[index];
+                return id ? [{ id, text: chunk.text, pages: chunk.pages, provenance: chunk.provenance.map((entry) => ({
+                  ...(typeof entry.page === 'number' ? { page: entry.page } : {}),
+                  ...(typeof entry.item_ref === 'string' ? { item_ref: entry.item_ref } : {}),
+                  ...(typeof entry.reading_order === 'number' ? { reading_order: entry.reading_order } : {}),
+                  ...(Array.isArray(entry.bbox) && entry.bbox.every((value) => typeof value === 'number') ? { bbox: entry.bbox as number[] } : {}),
+                })) }] : [];
+              }));
+              console.log('Imagens por página vinculadas aos chunks de texto integral de QUESTIONS', {
+                event: 'document_visual_assets.question_full_text_chunk_links_completed', documentId: document.id,
+                parseRunId: visualParseRunId, linkedCount: linked.linked.length,
+                reviewCandidateCount: linked.ambiguous.reduce((sum, item) => sum + item.candidateAssetIds.length, 0),
+              });
+            }
+            console.log('Chunks QUESTIONS cobrem o texto normalizado de todas as páginas', {
+              event: 'monitor.questions_full_text_chunks_persisted', documentId: document.id,
+              chunksCount: saved.savedCount, pages: Object.keys(result.coveredCharsByPage).length,
+              coveredChars: Object.values(result.coveredCharsByPage).reduce((sum, value) => sum + value, 0),
+              reused: saved.reused,
+            });
+            return { chunkCount: saved.savedCount, reused: saved.reused };
+          },
+          { documentTextId: textExtraction.documentTextId, chunkingMode: document.tag === 'QUESTIONS' ? 'FULL_PAGE_TEXT' : 'SEMANTIC_BLOCKS' },
         );
         if (doclingFallbackOccurred) {
           console.log('Fallback PDF.js concluído', {
@@ -630,6 +993,9 @@ export class DocumentWorkerService {
             documentId: document.id,
             error,
           });
+          if (document.tag === 'QUESTIONS') {
+            throw new Error('A extração de QUESTIONS foi interrompida porque os embeddings não foram persistidos.', { cause: error });
+          }
         }
 
         if (shouldGenerateTopicProfile(document.tag, document.topicId)) {
@@ -725,12 +1091,12 @@ export class DocumentWorkerService {
         ], `document_tag_${document.tag.toLowerCase()}_not_supported_yet`);
       }
 
-      const documentStatus = resolveDocumentStatus(nonBlockingFailures);
+      const documentStatus = resolveDocumentStatus(nonBlockingFailures, processingWarnings);
       if (documentStatus === 'PARTIAL_SUCCESS') {
         const failedOperations = nonBlockingFailures.map(({ operation }) => operation);
         await markDocumentPartialSuccess(
           document.id,
-          `Operacoes pendentes: ${failedOperations.join(', ')}`,
+          [`Operacoes pendentes: ${failedOperations.join(', ')}`, `Avisos: ${processingWarnings.join(', ')}`].filter(Boolean).join('; '),
         );
       } else {
         await markDocumentReady(document.id);
@@ -791,8 +1157,7 @@ export class DocumentWorkerService {
     if (!this.docChunkerV2Client || !this.documentVisualAssetRepository) {
       throw new Error('Cliente v2 ou persistência de assets visuais não configurados.');
     }
-    const idempotencyKey = createHash('sha256')
-      .update([document.id, contentHash, 'doc-chunker-v2', 'hybrid-v1'].join(':')).digest('hex');
+    const idempotencyKey = buildDoclingCacheIdentity(document.id, contentHash).idempotencyKey;
     const store = new PrismaDocumentParseRunStore();
     const existing = await store.findByIdempotencyKey(idempotencyKey);
     if (existing?.status === 'COMPLETED' || existing?.status === 'COMPLETED_WITH_WARNINGS') {
@@ -1024,11 +1389,60 @@ export function isEligibleDocChunkerFallback(error: unknown): boolean {
 }
 
 export function shouldUseDocChunker(tag: 'KNOWLEDGE_BASE' | 'QUESTIONS' | 'FLASHCARDS', source: 'pdfjs' | 'docling' | 'auto') {
-  return tag === 'KNOWLEDGE_BASE' && source !== 'pdfjs';
+  return tag === 'QUESTIONS' || (tag === 'KNOWLEDGE_BASE' && source !== 'pdfjs');
+}
+
+export function assertQuestionParserPageCoverage(
+  pageCount: number,
+  chunks: Array<{ pages: number[]; text?: string; raw_text?: string }>,
+  options: { visualAssetPages?: number[] } = {},
+) {
+  if (!Number.isInteger(pageCount) || pageCount < 1) throw new Error('QUESTIONS_DOC_CHUNKER_COVERAGE_INCOMPLETE: parser não informou uma contagem válida de páginas.');
+  const represented = new Set<number>();
+  for (const chunk of chunks) {
+    for (const page of chunk.pages) {
+      if (!Number.isInteger(page) || page < 1 || page > pageCount) throw new Error(`QUESTIONS_DOC_CHUNKER_COVERAGE_INVALID_PAGE: parser retornou página ${page}.`);
+    }
+    if (!(chunk.raw_text ?? chunk.text ?? '').trim()) continue;
+    if (!chunk.pages.length) throw new Error('QUESTIONS_DOC_CHUNKER_COVERAGE_INVALID: chunk com texto sem página de origem.');
+    for (const page of chunk.pages) represented.add(page);
+  }
+  const pagesWithoutText = Array.from({ length: pageCount }, (_, index) => index + 1).filter((page) => !represented.has(page));
+  const visualAssetPages = new Set((options.visualAssetPages ?? []).filter((page) => Number.isInteger(page) && page >= 1 && page <= pageCount));
+  const pagesWithoutTextWithVisualAssets = pagesWithoutText.filter((page) => visualAssetPages.has(page));
+  const pagesWithoutTextUnclassified = pagesWithoutText.filter((page) => !visualAssetPages.has(page));
+  return {
+    coveredPages: represented.size, pageCount, textCoverage: 'UNVERIFIED' as const,
+    pagesWithoutText, pagesWithoutTextWithVisualAssets, pagesWithoutTextUnclassified,
+  };
+}
+
+export function resolveReusableQuestionCoverage(
+  parseRunMetrics: unknown,
+  chunks: Array<{ pages: number[]; text?: string; raw_text?: string }>,
+) {
+  const metrics = parseRunMetrics && typeof parseRunMetrics === 'object' && !Array.isArray(parseRunMetrics)
+    ? parseRunMetrics as Record<string, unknown> : {};
+  const pageCount = metrics.pageCount;
+  const visualAssetPages = metrics.visualAssetPages;
+  if (!Number.isInteger(pageCount) || (pageCount as number) < 1 || !Array.isArray(visualAssetPages)
+    || visualAssetPages.some((page) => !Number.isInteger(page))) {
+    return {
+      coverage: null,
+      warnings: ['QUESTIONS_TEXT_COVERAGE_UNVERIFIED', 'QUESTIONS_COVERAGE_REFERENCE_MISSING'],
+    } as const;
+  }
+  const coverage = assertQuestionParserPageCoverage(pageCount as number, chunks, {
+    visualAssetPages: visualAssetPages as number[],
+  });
+  const warnings: string[] = ['QUESTIONS_TEXT_COVERAGE_UNVERIFIED'];
+  if (coverage.pagesWithoutText.length) warnings.push('QUESTIONS_PAGES_WITHOUT_TEXT');
+  if (coverage.pagesWithoutTextUnclassified.length) warnings.push('QUESTIONS_PAGE_TEXT_UNCLASSIFIED');
+  return { coverage, warnings } as const;
 }
 
 export function shouldParseVisualAssets(tag: 'KNOWLEDGE_BASE' | 'QUESTIONS' | 'FLASHCARDS', enabled: boolean) {
-  return enabled && (tag === 'KNOWLEDGE_BASE' || tag === 'QUESTIONS');
+  return tag === 'QUESTIONS' || (enabled && tag === 'KNOWLEDGE_BASE');
 }
 
 function normalizeVisualProvenance(value: unknown) {

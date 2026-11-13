@@ -8,7 +8,14 @@ const DOCUMENT_BUCKET = 'document-parser-artifacts';
 const MAX_TOTAL_BYTES = 8 * 1024 * 1024;
 
 type Scope = { studentId?: string; teacherId?: string; monitorId: string; subjectId: string };
-type Metadata = { storagePath: string; mimeType: string; checksum: string; sizeBytes?: number };
+type Metadata = {
+  storagePath: string;
+  mimeType: string;
+  checksum: string;
+  sizeBytes?: number;
+  generationId?: string | null;
+  document?: { activeGenerationId: string | null };
+};
 type Database = {
   chatImageAttachment: { findFirst(args: unknown): Promise<Metadata | null> };
   documentVisualAsset: { findFirst(args: unknown): Promise<Metadata | null> };
@@ -37,9 +44,16 @@ export class ChatVisualImageLoader {
           })
           : await this.database.documentVisualAsset.findFirst({
             where: { id: image.assetId, document: { teacherId: scope.teacherId, monitorId: scope.monitorId, subjectId: scope.subjectId } },
-            select: { storagePath: true, mimeType: true, checksum: true },
+            select: {
+              storagePath: true, mimeType: true, checksum: true, generationId: true,
+              document: { select: { activeGenerationId: true } },
+            },
           });
         if (!row || !row.checksum || !isAllowedImageMime(row.mimeType)) throw new Error('CHAT_IMAGE_NOT_AUTHORIZED');
+        if (image.source === 'KNOWLEDGE' && (
+          !row.document
+          || (row.document.activeGenerationId === null ? row.generationId !== null : row.generationId !== row.document.activeGenerationId)
+        )) throw new Error('CHAT_IMAGE_GENERATION_NOT_ACTIVE');
         if (row.sizeBytes && (row.sizeBytes > MAX_TOTAL_BYTES || totalBytes + row.sizeBytes > MAX_TOTAL_BYTES)) throw new Error('CHAT_IMAGE_PAYLOAD_LIMIT');
         const storage = studentUpload ? this.studentStorage : this.documentStorage;
         const downloaded = await storage.download(row.storagePath);

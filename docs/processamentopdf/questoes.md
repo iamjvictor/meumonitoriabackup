@@ -2,6 +2,8 @@
 
 **Estado descrito em 27/10/2026.** Esta página é o ponto de entrada para entender o fluxo que o código executa hoje. As specs e os planos ligados no fim registram propostas, testes e decisões de outras datas; consulte o estado indicado em cada um antes de tratar um item como implementado.
 
+**Proposta de 05/11/2026 — ainda não implementada:** [desenho de extração estruturada](./specs/2026-11-05-pedro-lucas-question-extraction-design.md) e [plano de alteração](./planos/2026-11-05-extracao-questions-llm-estruturada.md). O fluxo proposto usa todo o texto dos chunks para extrair questões com LLM, mantendo embeddings para busca e as questões para revisão.
+
 ## Visão do fluxo atual
 
 ```mermaid

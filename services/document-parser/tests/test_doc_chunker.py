@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import importlib.util
+import importlib.util as import_util
 import io
 import json
 import sys
@@ -67,6 +68,104 @@ class DocChunkerTests(unittest.TestCase):
         self.assertEqual(result["chunks"][0]["tokens"], 4)
         self.assertEqual(result["chunks"][1]["pages"], [1, 2])
         self.assertEqual(result["chunks"][1]["type"], "table")
+
+    def test_preserves_original_and_enriched_formula_evidence_separately(self):
+        formula = SimpleNamespace(
+            label=SimpleNamespace(value="formula"), self_ref="#/texts/62",
+            text=r"2 H_{2}O_{2} \xrightarrow{} O_{2}",
+            orig="2 H2O2 (aq) 2 H2O (l) + O2 (g)",
+            prov=[SimpleNamespace(page_no=6, bbox=SimpleNamespace(l=10, t=70, r=60, b=60, coord_origin=SimpleNamespace(value="BOTTOMLEFT")))],
+        )
+        chunk = SimpleNamespace(
+            text="$" + formula.text + "$",
+            meta=SimpleNamespace(headings=[], doc_items=[formula]),
+        )
+        service = module.DocChunkerService(
+            converter=SimpleNamespace(convert=lambda _path: SimpleNamespace(document=SimpleNamespace(pages={page: object() for page in range(1, 7)}))),
+            tokenizer=FakeTokenizer(), chunker=FakeChunker([chunk]),
+            text_analyzer=lambda _path: SimpleNamespace(classification="TEXT"),
+        )
+        payload = b"%PDF formula evidence"
+
+        result = service.chunk("a.pdf", payload, "request-formula", sha256(payload).hexdigest())
+
+        self.assertEqual(result["chunks"][0]["formulaEvidence"], [{
+            "pageNumber": 6, "itemRef": "#/texts/62", "bbox": [10, 70, 60, 60],
+            "originalText": "2 H2O2 (aq) 2 H2O (l) + O2 (g)",
+            "enrichedText": r"2 H_{2}O_{2} \xrightarrow{} O_{2}",
+        }])
+
+    def test_resolves_formula_doc_item_wrapper_to_canonical_document_item(self):
+        formula_ref = "#/texts/62"
+        canonical_formula = SimpleNamespace(
+            label=SimpleNamespace(value="formula"), self_ref=formula_ref,
+            text=r"2 H_{2}O_{2} \\xrightarrow{MnO_2} 2 H_2O + O_2",
+            orig="2 H2O2 (aq) 2 H2O (l) + O2 (g) MnO2 (s)",
+            prov=[SimpleNamespace(page_no=6, bbox=SimpleNamespace(l=10, t=70, r=60, b=60))],
+        )
+        doc_item_ref = SimpleNamespace(
+            label=SimpleNamespace(value="formula"), self_ref=formula_ref,
+            prov=canonical_formula.prov,
+        )
+        chunk = SimpleNamespace(
+            text="Reação química",
+            meta=SimpleNamespace(headings=[], doc_items=[doc_item_ref]),
+        )
+        document = SimpleNamespace(
+            pages={page: object() for page in range(1, 7)},
+            iterate_items=lambda: [(canonical_formula, 0)],
+        )
+        service = module.DocChunkerService(
+            converter=SimpleNamespace(convert=lambda _path: SimpleNamespace(document=document)),
+            tokenizer=FakeTokenizer(), chunker=FakeChunker([chunk]),
+            text_analyzer=lambda _path: SimpleNamespace(classification="TEXT"),
+        )
+        payload = b"%PDF canonical formula ref"
+
+        result = service.chunk("a.pdf", payload, "request-formula-ref", sha256(payload).hexdigest())
+
+        evidence = result["chunks"][0]["formulaEvidence"][0]
+        self.assertEqual(evidence["originalText"], canonical_formula.orig)
+        self.assertEqual(evidence["enrichedText"], canonical_formula.text)
+        self.assertTrue(evidence["enrichedText"])
+
+    @unittest.skipUnless(import_util.find_spec("pypdfium2"), "pypdfium2 is required for geometry evidence")
+    def test_extracts_q04_inline_exponents_from_pdf_character_geometry(self):
+        pdf_path = Path(__file__).resolve().parents[3] / "tests" / "document-parser" / "teacher-materials" / "Quimica-3.pdf"
+        evidence_by_page = module._extract_inline_formula_evidence(pdf_path)
+        evidence = [item for page_evidence in evidence_by_page.values() for item in page_evidence]
+
+        exponent_10 = next(item for item in evidence if item["baseText"] == "10" and item["raisedText"] == "7")
+        exponent_unit = next(item for item in evidence if item["baseText"] == "s" and item["raisedText"] == "−1")
+        exponent_liter_unit = next(item for item in evidence if item["baseText"] == "L" and item["raisedText"] == "−1")
+        self.assertEqual(exponent_10["normalizedText"], r"10^{7}")
+        self.assertEqual(exponent_unit["normalizedText"], r"s^{-1}")
+        self.assertEqual(exponent_liter_unit["normalizedText"], r"L^{-1}")
+        self.assertEqual(exponent_10["pageNumber"], 6)
+        self.assertEqual(exponent_liter_unit["pageNumber"], 6)
+        self.assertTrue(exponent_10["bbox"])
+        self.assertTrue(exponent_unit["bbox"])
+        self.assertTrue(exponent_liter_unit["bbox"])
+
+        text_item = SimpleNamespace(label="text", self_ref="#/texts/inline", prov=[
+            SimpleNamespace(page_no=6, bbox=SimpleNamespace(l=90, t=640, r=150, b=610)),
+        ])
+        chunk = SimpleNamespace(text="4,0 x 10 7 s -1", meta=SimpleNamespace(headings=[], doc_items=[text_item]))
+        service = module.DocChunkerService(
+            converter=SimpleNamespace(convert=lambda _path: SimpleNamespace(document=SimpleNamespace(
+                pages={page: object() for page in range(1, 17)}, iterate_items=lambda: [],
+            ))),
+            tokenizer=FakeTokenizer(), chunker=FakeChunker([chunk]),
+            text_analyzer=lambda _path: SimpleNamespace(classification="TEXT"),
+        )
+        pdf_bytes = pdf_path.read_bytes()
+        result = service.chunk("Quimica-3.pdf", pdf_bytes, "request-inline-chunk", sha256(pdf_bytes).hexdigest())
+        chunk_evidence = result["chunks"][0]["inlineFormulaEvidence"]
+        normalized = {item["normalizedText"] for item in chunk_evidence}
+        self.assertIn(r"10^{7}", normalized)
+        self.assertIn(r"s^{-1}", normalized)
+        self.assertIn(r"L^{-1}", normalized)
+        self.assertEqual(result["chunker_version"], "hybrid-v2-formula-evidence-geometry-v2")
 
     def test_splits_a_chunk_over_the_token_limit_without_losing_text(self):
         self.assertIsNotNone(module, "doc_chunker module is not implemented")

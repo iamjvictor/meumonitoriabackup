@@ -1,0 +1,22 @@
+(node:2711224) [FSTWRN004] FastifyWarning: It seems that you are overriding an errorHandler in the same scope, which can lead to subtle bugs. To disable this behavior, set 'allowErrorHandlerOverride' to false. For more information, visit: https://fastify.dev/docs/latest/Reference/Server/#allowerrorhandleroverride
+(Use `node --trace-warnings ...` to show where the warning was created)
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-1',
+  method: 'GET',
+  url: '/health',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-2',
+  method: 'POST',
+  url: '/api/v1/documents/09ab5f76-af91-4246-bf72-50a1509fdfb4/questions/1dceb28e-8484-4d29-825b-fe579e3f0598/visual-assets/7faf5405-7eec-4ab6-97e0-b0427bf6740f/review',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: true,
+  hasCookies: false
+}

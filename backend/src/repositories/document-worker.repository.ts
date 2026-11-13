@@ -3,7 +3,6 @@ import { Prisma } from '@prisma/client';
 import { acquireDocumentAdvisoryLocks } from './document-advisory-lock.js';
 import { prisma } from '../lib/prisma.js';
 
-const DOCUMENT_PAGE_INSERT_BATCH_SIZE = 25;
 const DOCUMENT_TEXT_TRANSACTION_TIMEOUT_MS = 15_000;
 
 export type DoclingChunkInput = {
@@ -15,6 +14,8 @@ export type DoclingChunkInput = {
   type: 'text' | 'table' | 'formula' | 'mixed';
   tokens: number;
   provenance: Array<Record<string, unknown>>;
+  formulaEvidence?: Array<{ pageNumber: number; itemRef: string; bbox: number[] | null; originalText: string | null; enrichedText: string }>;
+  inlineFormulaEvidence?: Array<{ pageNumber: number; itemRef: string; bbox: number[] | null; baseText: string; raisedText: string; normalizedText: string; sourceText: string; evidenceSource: 'PDF_CHARACTER_GEOMETRY'; heightRatio: number; raiseRatio: number }>;
 };
 
 export type SaveDoclingChunksInput = {
@@ -40,6 +41,26 @@ export function validateDoclingChunkBatch(input: SaveDoclingChunksInput) {
     }
     if (!['text', 'table', 'formula', 'mixed'].includes(chunk.type)) throw new Error('Tipo de chunk inválido.');
   });
+}
+
+export function mergeFormulaEvidenceIntoProvenance(
+  provenance: Array<Record<string, unknown>>,
+  formulaEvidence: DoclingChunkInput['formulaEvidence'],
+  inlineFormulaEvidence: DoclingChunkInput['inlineFormulaEvidence'] = undefined,
+) {
+  const merged = provenance.map((entry) => ({ ...entry }));
+  for (const evidence of formulaEvidence ?? []) {
+    const matching = merged.find((entry) => entry.page === evidence.pageNumber && entry.item_ref === evidence.itemRef);
+    const value = { originalText: evidence.originalText, enrichedText: evidence.enrichedText };
+    if (matching) matching.formulaEvidence = value;
+    else merged.push({ page: evidence.pageNumber, item_ref: evidence.itemRef, bbox: evidence.bbox, formulaEvidence: value });
+  }
+  for (const evidence of inlineFormulaEvidence ?? []) {
+    const matching = merged.find((entry) => entry.page === evidence.pageNumber && entry.item_ref === evidence.itemRef);
+    if (matching) matching.inlineFormulaEvidence = { ...evidence };
+    else merged.push({ page: evidence.pageNumber, item_ref: evidence.itemRef, bbox: evidence.bbox, inlineFormulaEvidence: { ...evidence } });
+  }
+  return merged;
 }
 
 export async function findReusableDoclingChunks(documentId: string, expectedHash: string, chunkerVersion: string) {
@@ -72,7 +93,8 @@ export async function saveDoclingChunks(documentId: string, input: SaveDoclingCh
       pageEnd: chunk.pages.length ? Math.max(...chunk.pages) : null,
       pages: chunk.pages as Prisma.InputJsonValue, headings: chunk.headings as Prisma.InputJsonValue,
       chunkType: chunk.type, engine: input.engine, tokenizerId: input.tokenizerId,
-      chunkerVersion: input.chunkerVersion, provenance: chunk.provenance as Prisma.InputJsonValue,
+      chunkerVersion: input.chunkerVersion,
+      provenance: mergeFormulaEvidenceIntoProvenance(chunk.provenance, chunk.formulaEvidence, chunk.inlineFormulaEvidence) as Prisma.InputJsonValue,
       docHash: input.expectedHash, sourceKey, status: 'EMBEDDING_PENDING' as const,
     };
   });
@@ -82,19 +104,32 @@ export async function saveDoclingChunks(documentId: string, input: SaveDoclingCh
     const existing = await transaction.documentChunk.findMany({
       where: { documentId },
       select: {
-        id: true, sourceKey: true, chunkIndex: true,
+        id: true, sourceKey: true, chunkIndex: true, contentHash: true, content: true,
+        embeddingContent: true, pageStart: true, pageEnd: true, chunkType: true, provenance: true,
         flashcardSources: { select: { flashcardId: true }, take: 1 },
         questionSources: { select: { questionId: true }, take: 1 },
         questionSpanLinks: { select: { questionSpanId: true }, take: 1 },
+        visualAssets: { select: { visualAssetId: true }, take: 1 },
       },
     });
     const inputKeys = rows.map((row) => row.sourceKey).sort();
     const existingKeys = existing.map((row) => row.sourceKey).filter((key): key is string => Boolean(key)).sort();
-    if (existing.length === rows.length && inputKeys.every((key, index) => key === existingKeys[index])) {
+    const existingBySourceKey = new Map(existing.map((row) => [row.sourceKey, row]));
+    const sameChunkContent = rows.every((row) => {
+      const current = existingBySourceKey.get(row.sourceKey);
+      return current
+        && current.contentHash === row.contentHash
+        && current.content === row.content
+        && current.embeddingContent === row.embeddingContent
+        && JSON.stringify(current.provenance) === JSON.stringify(row.provenance)
+        && current.pageStart === row.pageStart
+        && current.pageEnd === row.pageEnd;
+    });
+    if (existing.length === rows.length && sameChunkContent && inputKeys.every((key, index) => key === existingKeys[index])) {
       return { savedCount: existing.length, reused: true, chunkIds: existing.sort((a, b) => a.chunkIndex - b.chunkIndex).map((row) => row.id) };
     }
-    if (existing.some((row) => row.flashcardSources.length || row.questionSources.length || row.questionSpanLinks.length)) {
-      throw new Error('Substituicao de chunks abortada: ha fontes de flashcards ou questoes vinculadas; chunks foram preservados.');
+    if (existing.some((row) => row.flashcardSources.length || row.questionSources.length || row.questionSpanLinks.length || row.visualAssets.length)) {
+      throw new Error('Substituicao de chunks abortada: ha fontes de flashcards, questoes, spans ou assets visuais vinculados; chunks foram preservados.');
     }
     await transaction.documentChunk.deleteMany({ where: { documentId } });
     if (rows.length) {
@@ -107,9 +142,14 @@ export async function saveDoclingChunks(documentId: string, input: SaveDoclingCh
   }, { maxWait: 10_000, timeout: DOCUMENT_TEXT_TRANSACTION_TIMEOUT_MS });
 }
 
-export function assertChunkReplacementSafe(hasExistingFlashcardSource: boolean) {
-  if (hasExistingFlashcardSource) {
-    throw new Error('Substituicao de chunks abortada: o documento possui FlashcardSource vinculada; chunks, sources e cards foram preservados.');
+export function assertChunkReplacementSafe(
+  hasExistingFlashcardSource: boolean,
+  hasExistingQuestionSource = false,
+  hasExistingQuestionSpan = false,
+  hasExistingVisualAsset = false,
+) {
+  if (hasExistingFlashcardSource || hasExistingQuestionSource || hasExistingQuestionSpan || hasExistingVisualAsset) {
+    throw new Error('Substituicao de chunks abortada: ha FlashcardSource, QuestionSource de questoes, spans ou assets visuais vinculados; chunks e evidencias foram preservados.');
   }
 }
 
@@ -173,73 +213,51 @@ export async function saveDocumentTextExtraction(input: {
   });
 
   const extraction = await prisma.$transaction(async (transaction) => {
-    await transaction.documentText.deleteMany({
-      where: {
-        documentId: input.documentId,
-        extractionVersion: input.extractionVersion,
-      },
+    const existing = await transaction.documentText.findUnique({
+      where: { documentId_extractionVersion: { documentId: input.documentId, extractionVersion: input.extractionVersion } },
+      select: { id: true, documentId: true, extractionVersion: true, pageCount: true, quality: true, rawContent: true },
     });
+    if (existing && existing.rawContent !== input.rawContent) {
+      const [questionSource, questionSpan, flashcardSource] = await Promise.all([
+        transaction.questionSource.findFirst({ where: { documentId: input.documentId }, select: { id: true } }),
+        transaction.questionSpan.findFirst({ where: { documentId: input.documentId }, select: { id: true } }),
+        transaction.flashcardSource.findFirst({ where: { chunk: { documentId: input.documentId } }, select: { chunkId: true } }),
+      ]);
+      if (questionSource || questionSpan || flashcardSource) {
+        throw new Error('Reextracao abortada: o texto do documento mudou e ha questoes ou flashcards vinculados; a versao anterior foi preservada.');
+      }
+    }
 
-    return transaction.documentText.create({
-      data: {
+    const extractionData = {
+      rawContent: input.rawContent,
+      normalizedContent: input.normalizedContent ?? null,
+      pageCount: input.pageCount ?? null,
+      quality: input.quality,
+      qualityDetails: input.qualityDetails,
+    };
+    const extraction = existing
+      ? await transaction.documentText.update({ where: { id: existing.id }, data: extractionData, select: {
+        id: true, documentId: true, extractionVersion: true, pageCount: true, quality: true,
+      } })
+      : await transaction.documentText.create({ data: {
         documentId: input.documentId,
         extractionVersion: input.extractionVersion,
-        rawContent: input.rawContent,
-        normalizedContent: input.normalizedContent ?? null,
-        pageCount: input.pageCount ?? null,
-        quality: input.quality,
-        qualityDetails: input.qualityDetails,
-      },
-      select: {
-        id: true,
-        documentId: true,
-        extractionVersion: true,
-        pageCount: true,
-        quality: true,
-      },
-    });
+        ...extractionData,
+      }, select: {
+        id: true, documentId: true, extractionVersion: true, pageCount: true, quality: true,
+      } });
+
+    await transaction.documentPage.deleteMany({ where: { documentTextId: extraction.id } });
+    if (input.pages.length) {
+      await transaction.documentPage.createMany({
+        data: input.pages.map((page) => ({ ...page, documentTextId: extraction.id })),
+      });
+    }
+    return extraction;
   }, {
     maxWait: 10_000,
     timeout: DOCUMENT_TEXT_TRANSACTION_TIMEOUT_MS,
   });
-
-  try {
-    for (let offset = 0; offset < input.pages.length; offset += DOCUMENT_PAGE_INSERT_BATCH_SIZE) {
-      const pageBatch = input.pages.slice(offset, offset + DOCUMENT_PAGE_INSERT_BATCH_SIZE);
-      const batchNumber = Math.floor(offset / DOCUMENT_PAGE_INSERT_BATCH_SIZE) + 1;
-      const batchCount = Math.ceil(input.pages.length / DOCUMENT_PAGE_INSERT_BATCH_SIZE);
-
-      console.log('Salvando lote de paginas da extracao', {
-        event: 'monitor.document_text_pages_batch_started',
-        documentId: input.documentId,
-        documentTextId: extraction.id,
-        batchNumber,
-        batchCount,
-        pageStart: pageBatch[0]?.pageNumber ?? null,
-        pageEnd: pageBatch.at(-1)?.pageNumber ?? null,
-        pageCount: pageBatch.length,
-      });
-
-      await prisma.$transaction((transaction) => transaction.documentPage.createMany({
-        data: pageBatch.map((page) => ({
-          ...page,
-          documentTextId: extraction.id,
-        })),
-      }), { maxWait: 10_000, timeout: 15_000 });
-
-      console.log('Lote de paginas da extracao salvo', {
-        event: 'monitor.document_text_pages_batch_completed',
-        documentId: input.documentId,
-        documentTextId: extraction.id,
-        batchNumber,
-        batchCount,
-        pageCount: pageBatch.length,
-      });
-    }
-  } catch (error) {
-    await prisma.documentText.delete({ where: { id: extraction.id } }).catch(() => undefined);
-    throw error;
-  }
 
   console.log('Versao da extracao de texto salva', {
     event: 'monitor.document_text_persistence_completed',
@@ -428,7 +446,48 @@ export async function saveExtractedChunks(documentId: string, chunks: DocumentCh
       where: { chunk: { documentId } },
       select: { chunkId: true },
     });
-    assertChunkReplacementSafe(Boolean(existingSource));
+    const existingQuestionSource = await transaction.questionSource.findFirst({
+      where: { chunk: { documentId } },
+      select: { id: true },
+    });
+    const existingQuestionSpan = await transaction.questionSpanChunk.findFirst({
+      where: { chunk: { documentId } },
+      select: { questionSpanId: true },
+    });
+    const existingVisualAsset = await transaction.documentChunkVisualAsset.findFirst({
+      where: { chunk: { documentId } },
+      select: { visualAssetId: true },
+    });
+    const existingChunks = await transaction.documentChunk.findMany({
+      where: { documentId },
+      orderBy: { chunkIndex: 'asc' },
+      select: {
+        id: true, blockId: true, chunkIndex: true, chunkIndexInBlock: true, content: true,
+        embeddingContent: true, contentHash: true, charStart: true, charEnd: true,
+        pageStart: true, pageEnd: true,
+      },
+    });
+    const unchanged = existingChunks.length === chunkRows.length && chunkRows.every((row, index) => {
+      const current = existingChunks[index];
+      return current
+        && current.blockId === row.blockId
+        && current.chunkIndex === row.chunkIndex
+        && current.chunkIndexInBlock === row.chunkIndexInBlock
+        && current.content === row.content
+        && current.embeddingContent === row.embeddingContent
+        && current.contentHash === row.contentHash
+        && current.charStart === row.charStart
+        && current.charEnd === row.charEnd
+        && current.pageStart === row.pageStart
+        && current.pageEnd === row.pageEnd;
+    });
+    if (unchanged) return;
+    assertChunkReplacementSafe(
+      Boolean(existingSource),
+      Boolean(existingQuestionSource),
+      Boolean(existingQuestionSpan),
+      Boolean(existingVisualAsset),
+    );
     await transaction.documentChunk.deleteMany({ where: { documentId } });
 
     if (chunkRows.length > 0) {

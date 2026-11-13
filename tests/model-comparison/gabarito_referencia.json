@@ -1,0 +1,18 @@
+{
+  "status": "SEM_VERDADE_DE_REFERENCIA",
+  "description": "Esqueleto para gabarito humano revisado pelo professor. Nenhuma resposta foi inferida do baseline gerado por IA.",
+  "source": null,
+  "verifiedBy": null,
+  "questions": [
+    { "number": "01", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "02", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "03", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "04", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "05", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "06", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "07", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "08", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "09", "correctAnswer": null, "status": "NAO_VERIFICADO" },
+    { "number": "10", "correctAnswer": null, "status": "NAO_VERIFICADO" }
+  ]
+}

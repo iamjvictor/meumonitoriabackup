@@ -4,8 +4,9 @@ import type { PaymentsController } from './payments.controller.js';
 import type { PaymentSubscriptionController } from './payment-subscription.controller.js';
 import type { TeacherPayoutController } from './teacher-payout.controller.js';
 import type { SponsoredSeatController } from './sponsored-seat.controller.js';
+import type { SponsoredSeatInvitationController } from './sponsored-seat-invitation.controller.js';
 
-export async function paymentsRoutes(app: FastifyInstance, controller: PaymentsController, subscriptionController?: PaymentSubscriptionController, teacherPayoutController?: TeacherPayoutController, sponsoredSeatController?: SponsoredSeatController) {
+export async function paymentsRoutes(app: FastifyInstance, controller: PaymentsController, subscriptionController?: PaymentSubscriptionController, teacherPayoutController?: TeacherPayoutController, sponsoredSeatController?: SponsoredSeatController, sponsoredSeatInvitationController?: SponsoredSeatInvitationController) {
   app.post('/payments/checkout', { onRequest: authMiddleware }, controller.create.bind(controller));
   if (sponsoredSeatController) {
     app.post('/payments/teacher-sponsored-batches/quote', { onRequest: authMiddleware }, sponsoredSeatController.quote.bind(sponsoredSeatController));
@@ -14,6 +15,12 @@ export async function paymentsRoutes(app: FastifyInstance, controller: PaymentsC
     app.put('/teachers/me/sponsored-batches/:batchId', { onRequest: authMiddleware }, sponsoredSeatController.update.bind(sponsoredSeatController));
     app.post('/teachers/me/sponsored-batches/:batchId/cancel', { onRequest: authMiddleware }, sponsoredSeatController.cancel.bind(sponsoredSeatController));
     app.post('/student/sponsored-seats/claim', { onRequest: authMiddleware }, sponsoredSeatController.claim.bind(sponsoredSeatController));
+  }
+  if (sponsoredSeatInvitationController) {
+    app.post('/teachers/me/sponsored-batches/:batchId/seats/:seatId/invitation', { onRequest: authMiddleware, config: { rateLimit: { max: 5, timeWindow: '15 minutes' } } }, sponsoredSeatInvitationController.issue.bind(sponsoredSeatInvitationController));
+    app.get('/student/sponsored-seat-invitations/resolve', { config: { rateLimit: { max: 30, timeWindow: '15 minutes' } } }, sponsoredSeatInvitationController.resolve.bind(sponsoredSeatInvitationController));
+    app.post('/student/sponsored-seat-invitations/activate', { config: { rateLimit: { max: 5, timeWindow: '15 minutes' } } }, sponsoredSeatInvitationController.activate.bind(sponsoredSeatInvitationController));
+    app.post('/student/sponsored-seat-invitations/redeem', { onRequest: authMiddleware, config: { rateLimit: { max: 5, timeWindow: '15 minutes' } } }, sponsoredSeatInvitationController.redeemExisting.bind(sponsoredSeatInvitationController));
   }
   if (subscriptionController) {
     app.get('/student/subscriptions', { onRequest: authMiddleware }, subscriptionController.list.bind(subscriptionController));

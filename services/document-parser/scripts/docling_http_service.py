@@ -4,11 +4,15 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
+import os
 import sys
 import tempfile
 import threading
 import traceback
+import time
+import zipfile
 from concurrent.futures import Future, ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from dataclasses import dataclass, replace
 from hashlib import sha256
@@ -19,14 +23,17 @@ from email.policy import default
 from pathlib import Path
 from typing import Any, Callable, Iterable, Literal
 from uuid import UUID
-import os
-import time
+import hmac
+import select
+import socket
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from run_mineru import get_document_converter, normalize_content_list
+from knowledge_batch_manifest import package_checksum
+from knowledge_batch_runner import run_batch
 
 
 JsonValue = dict[str, Any]
@@ -226,20 +233,22 @@ class RealDoclingParser:
 
 
 class CachedParseService:
-    """Coalesce conversions that are currently running, keyed by file bytes."""
+    """Coalesce conversions by content and the filename suffix Docling reads."""
 
     def __init__(self, parser: Any | None = None) -> None:
         self._parser = parser or RealDoclingParser()
-        self._in_flight: dict[str, Future[JsonValue]] = {}
+        self._in_flight: dict[tuple[str, str], Future[JsonValue]] = {}
         self._lock = threading.Lock()
 
     def parse(self, filename: str, payload: bytes) -> JsonValue:
         input_sha256 = sha256(payload).hexdigest()
+        parser_suffix = Path(filename).suffix or ".pdf"
+        cache_key = (input_sha256, parser_suffix)
         with self._lock:
-            pending = self._in_flight.get(input_sha256)
+            pending = self._in_flight.get(cache_key)
             if pending is None:
                 pending = Future()
-                self._in_flight[input_sha256] = pending
+                self._in_flight[cache_key] = pending
                 owns_conversion = True
             else:
                 owns_conversion = False
@@ -255,14 +264,238 @@ class CachedParseService:
                 "result": result,
             }
             with self._lock:
-                self._in_flight.pop(input_sha256, None)
+                self._in_flight.pop(cache_key, None)
             pending.set_result(response)
             return response
         except BaseException as exc:
             with self._lock:
-                self._in_flight.pop(input_sha256, None)
+                self._in_flight.pop(cache_key, None)
             pending.set_exception(exc)
             raise
+
+
+class ParserJobQueue:
+    """FIFO executor queue that coalesces identical work while it is active.
+
+    ThreadPoolExecutor owns the concurrency limit and keeps submitted work queued
+    until a worker is available. HTTP handlers wait for the actual future instead
+    of timing out while a conversion keeps running in the background.
+    """
+
+    def __init__(
+        self,
+        executor: ThreadPoolExecutor,
+        boundary_logger: BoundaryLogger | None = None,
+    ) -> None:
+        self._executor = executor
+        self._boundary_logger = boundary_logger or _default_boundary_logger
+        self._active: dict[tuple[str, ...], _ParserJob] = {}
+        self._lock = threading.RLock()
+
+    def submit(
+        self,
+        key: tuple[str, ...],
+        operation: Callable[[], Any],
+        *,
+        request_id: str = "",
+        document_id: str = "",
+    ) -> tuple[Future[Any], bool]:
+        submitted_at = time.monotonic()
+        with self._lock:
+            pending = self._active.get(key)
+            if pending is not None and not pending.future.done() and not pending.cancel_event.is_set():
+                self._boundary_logger("doc_parser.job_coalesced", {
+                    "request_id": request_id,
+                    "document_id": document_id,
+                    "job_kind": key[0],
+                    "queue_waiting": not pending.future.running(),
+                })
+                return pending.future, False
+
+            cancel_event = threading.Event()
+
+            def run() -> Any:
+                self._boundary_logger("doc_parser.job_started", {
+                    "request_id": request_id,
+                    "document_id": document_id,
+                    "job_kind": key[0],
+                    "queue_wait_ms": round((time.monotonic() - submitted_at) * 1000),
+                })
+                return operation()
+
+            future = self._executor.submit(run)
+            pending = _ParserJob(key=key, future=future, cancel_event=cancel_event, cancellable=False, deadline=None)
+            self._active[key] = pending
+
+            def cleanup(_future: Future[Any]) -> None:
+                with self._lock:
+                    if self._active.get(key) is pending:
+                        self._active.pop(key, None)
+
+            future.add_done_callback(cleanup)
+            return future, True
+
+    def subscribe_cancellable(
+        self,
+        key: tuple[str, ...],
+        operation: Callable[[threading.Event, float], Any],
+        *,
+        deadline: float,
+        request_id: str = "",
+        document_id: str = "",
+    ) -> "ParserJobSubscription":
+        """Subscribe one HTTP waiter; cancel shared work only after the last waiter leaves."""
+        with self._lock:
+            job = self._active.get(key)
+            if job is not None and (job.future.done() or job.cancel_event.is_set()):
+                if self._active.get(key) is job:
+                    self._active.pop(key, None)
+                job = None
+            if job is not None:
+                if not job.cancellable:
+                    raise RuntimeError("Non-cancellable job key collision")
+                job.subscribers += 1
+                self._boundary_logger("doc_parser.job_coalesced", {
+                    "request_id": request_id, "document_id": document_id,
+                    "job_kind": key[0], "queue_waiting": not job.future.running(),
+                })
+            else:
+                cancel_event = threading.Event()
+                submitted_at = time.monotonic()
+
+                def run() -> Any:
+                    if cancel_event.is_set():
+                        raise ParserJobCancelled("Nenhum cliente aguarda mais este lote.")
+                    if time.monotonic() >= deadline:
+                        raise TimeoutError("O prazo absoluto expirou antes do início da conversão.")
+                    self._boundary_logger("doc_parser.job_started", {
+                        "request_id": request_id, "document_id": document_id,
+                        "job_kind": key[0], "queue_wait_ms": round((time.monotonic() - submitted_at) * 1000),
+                    })
+                    return operation(cancel_event, deadline)
+
+                future = self._executor.submit(run)
+                job = _ParserJob(key=key, future=future, cancel_event=cancel_event, cancellable=True, deadline=deadline, subscribers=1)
+                self._active[key] = job
+
+                def cleanup(_future: Future[Any]) -> None:
+                    with self._lock:
+                        if self._active.get(key) is job:
+                            self._active.pop(key, None)
+
+                future.add_done_callback(cleanup)
+                self._boundary_logger("doc_parser.job_queued", {
+                    "request_id": request_id, "document_id": document_id,
+                    "job_kind": key[0], "queue_deadline_ms": max(0, round((deadline - time.monotonic()) * 1000)),
+                })
+            return ParserJobSubscription(self, job, request_id, document_id)
+
+    def release_subscription(self, job: "_ParserJob", request_id: str, document_id: str, *, disconnected: bool) -> None:
+        with self._lock:
+            if job.subscribers <= 0:
+                return
+            job.subscribers -= 1
+            if disconnected:
+                self._boundary_logger("doc_parser.job_client_disconnected", {
+                    "request_id": request_id, "document_id": document_id,
+                    "job_kind": job.key[0], "remaining_subscribers": job.subscribers,
+                })
+            if job.subscribers == 0 and job.cancellable and not job.future.done():
+                job.cancel_event.set()
+                cancelled_before_start = job.future.cancel()
+                self._boundary_logger("doc_parser.job_cancelled_unobserved", {
+                    "request_id": request_id, "document_id": document_id,
+                    "job_kind": job.key[0], "cancelled_before_start": cancelled_before_start,
+                })
+
+
+class ParserJobCancelled(RuntimeError):
+    pass
+
+
+class ParserClientDisconnected(RuntimeError):
+    pass
+
+
+@dataclass(slots=True)
+class _ParserJob:
+    key: tuple[str, ...]
+    future: Future[Any]
+    cancel_event: threading.Event
+    cancellable: bool
+    deadline: float | None
+    subscribers: int = 0
+
+
+class ParserJobSubscription:
+    def __init__(self, queue: ParserJobQueue, job: _ParserJob, request_id: str, document_id: str) -> None:
+        self.queue, self.job = queue, job
+        self.request_id, self.document_id = request_id, document_id
+        self._released = False
+
+    def wait_for(self, connection: socket.socket) -> Any:
+        while True:
+            if self.job.future.done():
+                return self.job.future.result()
+            deadline = self.job.deadline
+            remaining = max(0.0, deadline - time.monotonic()) if deadline is not None else 0.1
+            if remaining <= 0:
+                raise TimeoutError("Prazo absoluto da fila e conversão expirou.")
+            if not _client_connection_open(connection):
+                raise ParserClientDisconnected("Cliente encerrou a conexão durante a fila/conversão.")
+            try:
+                return self.job.future.result(timeout=min(0.1, remaining))
+            except FutureTimeoutError:
+                continue
+
+    def close(self, *, disconnected: bool = False) -> None:
+        if self._released:
+            return
+        self._released = True
+        self.queue.release_subscription(self.job, self.request_id, self.document_id, disconnected=disconnected)
+
+
+def _client_connection_open(connection: socket.socket) -> bool:
+    try:
+        readable, _, _ = select.select([connection], [], [], 0)
+        if not readable:
+            return True
+        try:
+            return connection.recv(1, socket.MSG_PEEK | socket.MSG_DONTWAIT) != b""
+        except (BlockingIOError, InterruptedError):
+            return True
+        except OSError:
+            return False
+    except (OSError, ValueError):
+        return False
+
+
+def _for_request_id(response: Any, request_id: str) -> Any:
+    """Return a coalesced result with the waiting request's correlation ID."""
+    if isinstance(response, dict):
+        result = dict(response)
+        result["request_id"] = request_id
+        return result
+    if not isinstance(response, bytes):
+        return response
+
+    # /chunk/v2 embeds request_id in manifest.json. Rebuild the archive so each
+    # HTTP response remains correlated to the request that received it.
+    source = io.BytesIO(response)
+    output = io.BytesIO()
+    with zipfile.ZipFile(source, "r") as source_zip, zipfile.ZipFile(
+        output, "w", compression=zipfile.ZIP_DEFLATED
+    ) as output_zip:
+        for item in source_zip.infolist():
+            contents = source_zip.read(item.filename)
+            if item.filename == "manifest.json":
+                manifest = json.loads(contents.decode("utf-8"))
+                manifest["request_id"] = request_id
+                contents = json.dumps(
+                    manifest, ensure_ascii=False, separators=(",", ":")
+                ).encode("utf-8")
+            output_zip.writestr(item.filename, contents)
+    return output.getvalue()
 
 
 def _json_response(handler: BaseHTTPRequestHandler, status: int, payload: JsonValue, headers: dict[str, str] | None = None) -> bool:
@@ -378,6 +611,33 @@ def _extract_file_upload(handler: BaseHTTPRequestHandler) -> tuple[str, bytes]:
     return filename, payload
 
 
+def _extract_knowledge_upload(handler: BaseHTTPRequestHandler) -> tuple[dict[str, Any], str, bytes]:
+    content_type = handler.headers.get("Content-Type", "")
+    if "multipart/form-data" not in content_type:
+        raise ParseError("INVALID_INPUT", "O endpoint de lote exige multipart/form-data.")
+    body = _read_request_body(handler)
+    message = BytesParser(policy=default).parsebytes(
+        f"Content-Type: {content_type}\r\nMIME-Version: 1.0\r\n\r\n".encode("utf-8") + body
+    )
+    if not message.is_multipart():
+        raise ParseError("INVALID_INPUT", "Multipart inválido.")
+    request_value = None
+    filename, payload = "", b""
+    for part in message.iter_parts():
+        name = part.get_param("name", header="content-disposition")
+        if name == "request":
+            try:
+                request_value = json.loads((part.get_payload(decode=True) or b"").decode("utf-8"))
+            except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise ParseError("INVALID_INPUT", "Campo request precisa conter JSON válido.") from exc
+        elif name == "file":
+            filename = part.get_filename() or ""
+            payload = part.get_payload(decode=True) or b""
+    if not isinstance(request_value, dict) or not filename or not payload:
+        raise ParseError("INVALID_INPUT", "Campos request e file são obrigatórios.")
+    return request_value, filename, payload
+
+
 class DoclingRequestHandler(BaseHTTPRequestHandler):
     server_version = "DoclingHTTP/1.0"
 
@@ -409,6 +669,9 @@ class DoclingRequestHandler(BaseHTTPRequestHandler):
         _json_response(self, HTTPStatus.OK, {"status": "ok"})
 
     def do_POST(self) -> None:  # noqa: N802
+        if self.path == "/knowledge/batch/v1":
+            self._handle_knowledge_batch()
+            return
         if self.path in {"/chunk", "/chunk/v2"}:
             self._handle_chunk(visual_package=self.path == "/chunk/v2")
             return
@@ -425,10 +688,13 @@ class DoclingRequestHandler(BaseHTTPRequestHandler):
         _emit_request_started(self)
         try:
             filename, payload = _extract_file_upload(self)
-            with self.server.parser_semaphore:
-                response = self.server.parser_executor.submit(
-                    self.parser_service.parse, filename, payload
-                ).result()
+            digest = sha256(payload).hexdigest()
+            parser_suffix = Path(filename).suffix or ".pdf"
+            future, _owner = self.server.parser_jobs.submit(
+                ("parse", digest, parser_suffix),
+                lambda: self.parser_service.parse(filename, payload),
+            )
+            response = future.result()
         except ParseError as exc:
             _emit_request_failed(self, {
                 "method": self.command,
@@ -471,6 +737,109 @@ class DoclingRequestHandler(BaseHTTPRequestHandler):
         })
         _json_response(self, HTTPStatus.OK, response)
 
+    def _handle_knowledge_batch(self) -> None:
+        request_id = self.headers.get("X-Request-Id", "")
+        try:
+            request_id = str(UUID(request_id))
+        except (ValueError, AttributeError):
+            _json_response(self, HTTPStatus.BAD_REQUEST, {"error": "X-Request-Id precisa ser um UUID."})
+            return
+        token = os.getenv("KNOWLEDGE_BATCH_SERVICE_TOKEN", "")
+        authorization = self.headers.get("Authorization", "")
+        if not token or not hmac.compare_digest(authorization, f"Bearer {token}"):
+            _json_response(self, HTTPStatus.UNAUTHORIZED, {"error": "Autenticação de serviço inválida."}, {"X-Request-Id": request_id})
+            return
+        try:
+            max_bytes = int(os.getenv("KNOWLEDGE_BATCH_MAX_UPLOAD_BYTES", str(50 * 1024 * 1024)))
+            max_response = int(os.getenv("KNOWLEDGE_BATCH_MAX_RESPONSE_BYTES", str(64 * 1024 * 1024)))
+            content_length = int(self.headers.get("Content-Length", "-1"))
+            if content_length < 0 or content_length > max_bytes + 1024 * 1024:
+                raise ParseError("UPLOAD_TOO_LARGE", "Tamanho do lote inválido ou acima do limite.", HTTPStatus.REQUEST_ENTITY_TOO_LARGE)
+            request, filename, payload = _extract_knowledge_upload(self)
+            if len(payload) > max_bytes:
+                raise ParseError("UPLOAD_TOO_LARGE", "O PDF excede o limite permitido.", HTTPStatus.REQUEST_ENTITY_TOO_LARGE)
+            if Path(filename).suffix.lower() != ".pdf":
+                raise ParseError("INVALID_INPUT", "O lote aceita somente arquivos PDF.")
+            expected_hash = request.get("contentHash")
+            if not isinstance(expected_hash, str) or sha256(payload).hexdigest() != expected_hash.lower():
+                raise ParseError("CONTENT_HASH_MISMATCH", "O hash do PDF não corresponde à solicitação.")
+            if not isinstance(request.get("profile"), dict):
+                raise ParseError("INVALID_INPUT", "profile é obrigatório.")
+            from knowledge_batch_runner import _profile
+            profile = _profile(request["profile"])
+            for key in ("documentId", "runId"):
+                try:
+                    UUID(request.get(key, ""))
+                except (ValueError, TypeError, AttributeError) as exc:
+                    raise ParseError("INVALID_INPUT", f"{key} precisa ser UUID.") from exc
+            page_start, page_end = request.get("pageStart"), request.get("pageEnd")
+            if any(not isinstance(value, int) or isinstance(value, bool) for value in (page_start, page_end)) or page_start < 1 or page_end < page_start or page_end - page_start + 1 > profile.batch_pages:
+                raise ParseError("INVALID_PAGE_RANGE", "O intervalo inclusivo excede os limites do perfil.")
+            for hash_field in ("contentHash", "configurationHash"):
+                value = request.get(hash_field)
+                if not isinstance(value, str) or len(value) != 64 or any(char not in "0123456789abcdefABCDEF" for char in value):
+                    raise ParseError("INVALID_INPUT", f"{hash_field} precisa ser SHA-256 hexadecimal.")
+            if request["configurationHash"].lower() != profile.digest():
+                raise ParseError("INVALID_INPUT", "configurationHash não corresponde ao perfil efetivo.")
+            if not payload.startswith(b"%PDF-"):
+                raise ParseError("INVALID_INPUT", "O arquivo enviado não possui assinatura PDF.")
+            document_id = str(request["documentId"])
+            absolute_deadline = time.monotonic() + profile.batch_timeout_seconds
+
+            def convert_batch(cancel_event: threading.Event, job_deadline: float) -> dict[str, Any]:
+                if cancel_event.is_set():
+                    raise ParserJobCancelled("O lote foi cancelado antes de iniciar.")
+                remaining = job_deadline - time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError("Prazo absoluto expirou enquanto o lote aguardava na fila.")
+                # The worker, rather than the HTTP handler that first submitted
+                # the job, owns these paths. A disconnected coalesced waiter can
+                # therefore leave while another client still consumes the job.
+                with tempfile.TemporaryDirectory(prefix="knowledge-batch-http-") as temp_dir:
+                    root = Path(temp_dir)
+                    input_path = root / "source.pdf"
+                    input_path.write_bytes(payload)
+                    batch_dir = root / "result"
+                    return run_batch(
+                        request, input_path, batch_dir,
+                        timeout_seconds=min(profile.batch_timeout_seconds, remaining),
+                        max_response_bytes=max_response,
+                        cancel_event=cancel_event,
+                        absolute_deadline=job_deadline,
+                    )
+
+            subscription = self.server.parser_jobs.subscribe_cancellable(
+                ("knowledge-batch", document_id, str(request["runId"]), str(request["contentHash"]), str(request["configurationHash"]), str(page_start), str(page_end), json.dumps(request["profile"], sort_keys=True, separators=(",", ":"))),
+                convert_batch,
+                deadline=absolute_deadline,
+                request_id=request_id,
+                document_id=document_id,
+            )
+            try:
+                result = subscription.wait_for(self.connection)
+            except ParserClientDisconnected:
+                subscription.close(disconnected=True)
+                return
+            finally:
+                subscription.close()
+            # A coalesced result may share the same identity; package checksum is
+            # verified by the backend from the exact canonical JSON artifact list.
+            files = result["files"]
+            response = {"manifest": result["manifest"], "artifactChecksum": package_checksum(files), "durationMs": result["durationMs"]}
+            encoded = json.dumps(response, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+            if time.monotonic() >= absolute_deadline:
+                raise TimeoutError("Prazo absoluto expirou antes de entregar a resposta.")
+            if len(encoded) > max_response:
+                raise ParseError("RESPONSE_TOO_LARGE", "Artefatos do lote excedem o limite permitido.", HTTPStatus.REQUEST_ENTITY_TOO_LARGE)
+            _binary_response(self, HTTPStatus.OK, encoded, "application/vnd.knowledge-batch.v1+json", {"X-Request-Id": request_id})
+        except ParseError as exc:
+            _json_response(self, exc.status_code, exc.to_payload(), {"X-Request-Id": request_id})
+        except TimeoutError as exc:
+            _json_response(self, HTTPStatus.GATEWAY_TIMEOUT, {"error": {"code": "BATCH_TIMEOUT", "message": str(exc)}}, {"X-Request-Id": request_id})
+        except Exception as exc:
+            traceback.print_exception(exc, file=sys.stderr)
+            _json_response(self, HTTPStatus.INTERNAL_SERVER_ERROR, {"error": {"code": "BATCH_FAILED", "message": "Falha na conversão do lote."}}, {"X-Request-Id": request_id})
+
     def _handle_chunk(self, *, visual_package: bool = False) -> None:
         request_started = time.monotonic()
         request_id = self.headers.get("X-Request-Id", "")
@@ -508,26 +877,34 @@ class DoclingRequestHandler(BaseHTTPRequestHandler):
             if chunker_service is None:
                 chunker_service = DocChunkerService()
                 setattr(self.server, "chunker_service", chunker_service)
-            self.server.parser_semaphore.acquire()
-            try:
+            # Chunker validates the extension before parsing; keep invalid and
+            # valid filenames from sharing a successful job for equal bytes.
+            file_suffix = Path(filename).suffix
+            queue_key = (
+                "chunk-v2" if visual_package else "chunk-v1",
+                actual_hash,
+                file_suffix,
+            )
+
+            def chunk_document() -> dict[str, object] | bytes:
                 if visual_package:
-                    future = self.server.parser_executor.submit(
-                        chunker_service.chunk, filename, payload, request_id, expected_hash,
+                    return chunker_service.chunk(
+                        filename, payload, request_id, expected_hash,
                         visual_package=True,
                     )
-                else:
-                    future = self.server.parser_executor.submit(
-                        chunker_service.chunk, filename, payload, request_id, expected_hash,
-                    )
-                future.add_done_callback(lambda _future: self.server.parser_semaphore.release())
-            except Exception:
-                self.server.parser_semaphore.release()
-                raise
-            try:
-                response = future.result(timeout=max(1, int(os.getenv("DOC_CHUNKER_TIMEOUT_MS", "600000"))) / 1000)
-            except FutureTimeoutError as exc:
-                from doc_chunker import DocChunkerError
-                raise DocChunkerError("DOC_CHUNKER_TIMEOUT", "O tempo limite de conversão foi excedido.", HTTPStatus.GATEWAY_TIMEOUT, "convert") from exc
+                return chunker_service.chunk(
+                    filename, payload, request_id, expected_hash,
+                )
+
+            future, owns_job = self.server.parser_jobs.submit(
+                queue_key,
+                chunk_document,
+                request_id=request_id,
+                document_id=document_id,
+            )
+            response = future.result()
+            if not owns_job:
+                response = _for_request_id(response, request_id)
             is_binary = isinstance(response, bytes)
             response_bytes = response if is_binary else json.dumps(response, ensure_ascii=False).encode("utf-8")
             max_response_bytes = int(os.getenv("DOC_CHUNKER_MAX_RESPONSE_BYTES", str(20 * 1024 * 1024)))
@@ -602,8 +979,10 @@ class DoclingHTTPServer(ThreadingHTTPServer):
         super().__init__(server_address, DoclingRequestHandler)
         self.parser_service = parser_service or CachedParseService()
         self.boundary_logger = boundary_logger or _default_boundary_logger
-        self.parser_semaphore = threading.BoundedSemaphore(max(1, max_concurrency))
         self.parser_executor = ThreadPoolExecutor(max_workers=max(1, max_concurrency))
+        self.parser_jobs = ParserJobQueue(
+            self.parser_executor, boundary_logger=self.boundary_logger,
+        )
         self.stream_after_seconds = max(0.0, stream_after_seconds)
 
     def server_close(self) -> None:

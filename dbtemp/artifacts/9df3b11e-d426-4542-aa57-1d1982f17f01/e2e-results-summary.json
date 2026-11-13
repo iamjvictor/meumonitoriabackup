@@ -1,0 +1,293 @@
+{
+  "runId": "9df3b11e-d426-4542-aa57-1d1982f17f01",
+  "finishedAt": "2026-11-02T20:44:22.837Z",
+  "database": "dbtemp 127.0.0.1:56322",
+  "chat": "Skipped in this run to avoid duplicating the prior real multimodal call. Previous authenticated Q03 REVIEW/chat evidence remains at dbtemp/artifacts/2d7bc13c-7573-435d-b43a-37e68702ee37/visual-chat.json and visual-chat-server.log.",
+  "fixture": {
+    "prefix": "question-chat-e2e/9df3b11e-d426-4542-aa57-1d1982f17f01",
+    "teacherId": "5e9e9a55-cbe4-4f65-864c-e28631f3f2af",
+    "studentId": "2f347568-9bbf-4826-86eb-594f35552b58",
+    "monitorId": "4a48274d-a788-4dc0-ba63-63f8f8b17526",
+    "subjectId": "16a05fe3-5936-4e0d-bfb8-d3c01dab3f2b",
+    "topicId": "2d17bd2a-bf62-48c7-8488-1fa44c532632",
+    "documentIds": [
+      {
+        "id": "9ff3a570-9c14-42a6-8a89-ed9a53fa58bc",
+        "name": "Quimica-3.pdf",
+        "tag": "QUESTIONS"
+      },
+      {
+        "id": "5796b615-8eea-498a-ad44-8690d3af0ee9",
+        "name": "Estequiometria.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      },
+      {
+        "id": "06fdb700-1039-4214-b856-170e75c17338",
+        "name": "pH e pOH.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      }
+    ],
+    "preservedByDefault": true,
+    "cleanup": {
+      "complete": false,
+      "preservedForReview": true,
+      "runPrefix": "question-chat-e2e/9df3b11e-d426-4542-aa57-1d1982f17f01"
+    },
+    "verification": {
+      "documents": 3,
+      "teachers": 1,
+      "students": 1,
+      "activeEnrollments": 1,
+      "monitorDocumentStorageObjects": 3,
+      "documentParserArtifacts": 31,
+      "checkedAt": "2026-11-02T17:46:31.543810-03:00"
+    }
+  },
+  "documents": [
+    {
+      "id": "9ff3a570-9c14-42a6-8a89-ed9a53fa58bc",
+      "name": "Quimica-3.pdf",
+      "tag": "QUESTIONS",
+      "sha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d",
+      "workerExitCode": 0,
+      "status": "READY",
+      "elapsedMs": 302892,
+      "blocks": [
+        {
+          "type": "THEORY",
+          "count": 4
+        },
+        {
+          "type": "QUESTION",
+          "count": 10
+        },
+        {
+          "type": "SECTION",
+          "count": 8
+        }
+      ],
+      "chunks": 16,
+      "embeddedChunks": 16,
+      "visualAssetCount": 20,
+      "pageThreeAssets": [
+        {
+          "id": "fbe4cb03-a508-46e1-a6f2-db3e4ed199e9",
+          "sha256": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68"
+        }
+      ],
+      "spanCount": 10,
+      "questionCount": 10
+    },
+    {
+      "id": "5796b615-8eea-498a-ad44-8690d3af0ee9",
+      "name": "Estequiometria.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sha256": "63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd",
+      "workerExitCode": 0,
+      "status": "READY",
+      "elapsedMs": 62116,
+      "blocks": [],
+      "chunks": 3,
+      "embeddedChunks": 3,
+      "visualAssetCount": 8,
+      "pageThreeAssets": [
+        {
+          "id": "176bf3bb-336c-4ebb-a6c6-23417a106427",
+          "sha256": "f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5"
+        },
+        {
+          "id": "fcc882d6-9df8-422b-b12f-26d4a85f42b1",
+          "sha256": "c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7"
+        }
+      ],
+      "spanCount": 0,
+      "questionCount": 0
+    },
+    {
+      "id": "06fdb700-1039-4214-b856-170e75c17338",
+      "name": "pH e pOH.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sha256": "5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc",
+      "workerExitCode": 0,
+      "status": "READY",
+      "elapsedMs": 62133,
+      "blocks": [],
+      "chunks": 3,
+      "embeddedChunks": 3,
+      "visualAssetCount": 3,
+      "pageThreeAssets": [
+        {
+          "id": "19af016f-a33c-4cc5-8812-b28189a23c54",
+          "sha256": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f"
+        }
+      ],
+      "spanCount": 0,
+      "questionCount": 0
+    }
+  ],
+  "questionSnapshot": {
+    "path": "dbtemp/artifacts/9df3b11e-d426-4542-aa57-1d1982f17f01/question-origin-snapshot.json",
+    "questionCount": 10,
+    "origins": {
+      "statementOrigin": {
+        "SOURCE_DOCUMENT": 10
+      },
+      "alternativesOrigin": {
+        "AI_GENERATED": 10
+      },
+      "correctAnswerOrigin": {
+        "AI_GENERATED": 10
+      },
+      "explanationOrigin": {
+        "AI_GENERATED": 8,
+        "SOURCE_DOCUMENT": 2
+      }
+    },
+    "statuses": {
+      "PENDING_REVIEW": 10
+    },
+    "completeness": {
+      "COMPLETE_WITH_AI": 10
+    },
+    "sourceRoleCounts": {
+      "STATEMENT": 10,
+      "ALTERNATIVE": 10,
+      "ANSWER_KEY": 10,
+      "EXPLANATION": 3
+    },
+    "textHashesAndFullTextRecorded": true
+  },
+  "repeat": {
+    "workerExitCode": 0,
+    "elapsedMs": 162458,
+    "beforeCount": 10,
+    "afterCount": 10,
+    "sameQuestionIdsAndSourceKeys": true,
+    "sameTextHashes": true,
+    "changedTextHashes": [],
+    "beforeSourceRelations": 12,
+    "afterSourceRelations": 33,
+    "roleCounts": {
+      "before": {
+        "STATEMENT": 10,
+        "EXPLANATION": 2
+      },
+      "after": {
+        "STATEMENT": 10,
+        "ALTERNATIVE": 10,
+        "ANSWER_KEY": 10,
+        "EXPLANATION": 3
+      }
+    },
+    "duplicateLogicalSourceRelationsBefore": [],
+    "duplicateLogicalSourceRelationsAfter": [],
+    "exactSourceMultisetStable": false,
+    "spans": {
+      "beforeCount": 10,
+      "afterCount": 10,
+      "beforeStatuses": {
+        "READY_FOR_COMPLETION": 10
+      },
+      "afterStatuses": {
+        "READY_FOR_COMPLETION": 10
+      },
+      "beforeVisualStatuses": {
+        "NOT_REQUIRED": 10
+      },
+      "afterVisualStatuses": {
+        "NOT_REQUIRED": 10
+      }
+    },
+    "interpretation": "10 question IDs/sourceKeys and text hashes are stable. Source relations increase through distinct roles. No duplicate logical relations were identified when matching full identity including role, offsets and excerpt hash. Exact source set changed and is recorded for QA."
+  },
+  "ragAudits": [
+    {
+      "documentId": "5796b615-8eea-498a-ad44-8690d3af0ee9",
+      "documentName": "Estequiometria.pdf",
+      "exitCode": 0,
+      "auditLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/9df3b11e-d426-4542-aa57-1d1982f17f01/5796b615-8eea-498a-ad44-8690d3af0ee9.worker-audit.log",
+      "queryText": "anotação do professor e figura na página 3 sobre estequiometria",
+      "candidateCount": 8,
+      "citationCount": 8,
+      "contextBlockCount": 0,
+      "allCandidatesHaveBlockId": false,
+      "pageThreeFigures": [
+        {
+          "chunkId": "176bf3bb-336c-4ebb-a6c6-23417a106427",
+          "assetIds": [
+            "176bf3bb-336c-4ebb-a6c6-23417a106427"
+          ],
+          "similarity": 0.624633341809415,
+          "contentExcerpt": "A figura é uma imagem de uma folha de caderno pautada, com anotações manuscritas em caneta preta e vermelha, e texto impresso em preto.\n\nNo topo, há uma frase impressa: \"A equação química a seguir representa a obtenção de ferro metálico a partir de seu minério.\" Abaixo, uma equação química impressa está sublinhada em vermelho: \"2 Fe₂O₃ (s) + 3 C (s) → 4 Fe (s) + 3 CO₂ (g)\".\n\nAbaixo da equação, há "
+        },
+        {
+          "chunkId": "fcc882d6-9df8-422b-b12f-26d4a85f42b1",
+          "assetIds": [
+            "fcc882d6-9df8-422b-b12f-26d4a85f42b1"
+          ],
+          "similarity": 0.552918293494955,
+          "contentExcerpt": "A figura é uma imagem de texto. O texto visível é \"@ quimica.bizurada\". Não há título, rótulos, unidades, valores legíveis, relações visuais ou incertezas adicionais."
+        }
+      ],
+      "contextEmptyReason": "All citation blockId values are null and these KB docs have 0 DocumentBlock rows; HybridRetrievalService calls loadKnowledgeContext, which returns [] when there are no block IDs. The result field name is contextBlocks and citations are present; this is not a response-field mismatch."
+    },
+    {
+      "documentId": "06fdb700-1039-4214-b856-170e75c17338",
+      "documentName": "pH e pOH.pdf",
+      "exitCode": 0,
+      "auditLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/9df3b11e-d426-4542-aa57-1d1982f17f01/06fdb700-1039-4214-b856-170e75c17338.worker-audit.log",
+      "queryText": "resolução e anotação de pH e pOH",
+      "candidateCount": 6,
+      "citationCount": 6,
+      "contextBlockCount": 0,
+      "allCandidatesHaveBlockId": false,
+      "pageThreeFigures": [
+        {
+          "chunkId": "19af016f-a33c-4cc5-8812-b28189a23c54",
+          "assetIds": [
+            "19af016f-a33c-4cc5-8812-b28189a23c54"
+          ],
+          "similarity": 0.683553846068977,
+          "contentExcerpt": "A figura é uma página de caderno pautado com anotações manuscritas e um texto impresso.\n\nAs anotações manuscritas, em tinta preta, azul e verde, mostram cálculos e equações químicas:\n- \"NaOH\" com \"0,01\" abaixo, seguido por uma seta para a direita.\n- \"Na⁺\" com \"0,01\" abaixo, seguido por \"+ OH⁻\" com \"0,01\" abaixo.\n- \"0,01 mol/L\" em azul, com \"da base\" abaixo em preto.\n- \"[OH⁻] = 0,01\".\n- \"pOH = - lo"
+        }
+      ],
+      "contextEmptyReason": "All citation blockId values are null and these KB docs have 0 DocumentBlock rows; HybridRetrievalService calls loadKnowledgeContext, which returns [] when there are no block IDs. The result field name is contextBlocks and citations are present; this is not a response-field mismatch."
+    }
+  ],
+  "tokenUsageAndRetries": {
+    "models": [
+      "google/gemini-2.5-flash",
+      "qwen/qwen3-embedding-8b"
+    ],
+    "questionRepeatQuestionSavedEvents": 10,
+    "chatModelRequestRepeated": false,
+    "preciseCost": "Not available from worker output.",
+    "initial": {
+      "questionSavedEvents": 10,
+      "completionAgentFailedEvents": 10,
+      "invalidSchemaEvents": 4,
+      "fatalProcessingFailures": 0
+    },
+    "repeat": {
+      "questionSavedEvents": 10,
+      "completionAgentFailedEvents": 8,
+      "invalidSchemaEvents": 2,
+      "fatalProcessingFailures": 0
+    },
+    "usageFromProviderLogs": {
+      "structuredCalls": 90,
+      "embeddingResponses": 48,
+      "structuredPromptTokens": 141107,
+      "structuredCompletionTokens": 57889,
+      "structuredTotalTokens": 198996,
+      "embeddingPromptTokens": 20110,
+      "embeddingTotalTokens": 20110,
+      "combinedReportedTokens": 219106,
+      "cost": "Not reported by workers."
+    }
+  },
+  "limitations": [
+    "The retrieval API field is confirmed as `contextBlocks`; citations are present and all carry blockId=null. Each KB document has zero DocumentBlock rows, and the repository loader explicitly returns [] without block IDs. This is a real limitation in assembled context blocks, not a field-name mismatch; citation contents (including visual descriptions) were retrieved.",
+    "Chat was not repeated in this run; the prior successful real chat used the verified 379×77 Q03 figure with matching SHA and authenticated REVIEW/chat routes."
+  ]
+}

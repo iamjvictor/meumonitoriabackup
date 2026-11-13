@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { AlertTriangle, BookOpen, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, FolderTree, Plus, Trash2, X } from 'lucide-react';
+import Link from 'next/link';
+import { AlertTriangle, ArrowLeft, BookOpen, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, FolderTree, Plus, Trash2, X } from 'lucide-react';
 import type { TeacherMonitor } from '@/modules/teacher/services/TeacherMonitorService';
 import { isTeacherDocumentProcessing, isTeacherDocumentValid, type TeacherDocumentStatus } from '@/modules/teacher/models/document-status';
 
 type SidebarItem = { subjectId?: string; subjectName?: string; topicId?: string; topicName?: string; status: TeacherDocumentStatus | string };
 type PublishValidation = { canPublish: boolean; reason: string; completedTopics: number; totalTopics: number };
-
 export interface MonitorStructureSidebarProps {
   monitor: TeacherMonitor;
   selectedSubject: TeacherMonitor['subjects'][number] | null;
@@ -13,7 +13,7 @@ export interface MonitorStructureSidebarProps {
   selectedTopic: string | null;
   selectedTopicId?: string;
   sidebarView: 'structure' | 'settings';
-  publishValidation: PublishValidation;
+  publishValidation?: PublishValidation;
   documents: SidebarItem[];
   questions: SidebarItem[];
   flashcards: SidebarItem[];
@@ -33,7 +33,7 @@ export interface MonitorStructureSidebarProps {
 }
 
 export function MonitorStructureSidebar({
-  monitor, selectedSubject, selectedSubjectId, selectedTopic, selectedTopicId, sidebarView, publishValidation,
+  monitor, selectedSubject, selectedSubjectId, selectedTopic, selectedTopicId, sidebarView,
   documents, questions, flashcards, activeTopicInputSubjectId, newTopicName, newTopicDefinition,
   openAddSubjectModal, selectSubject, setActiveTopicInputSubjectId, setNewTopicName, setNewTopicDefinition,
   handleDeleteSubject, handleAddTopic, setSelectedSubjectId, setSelectedTopic, handleDeleteTopic,
@@ -68,7 +68,10 @@ export function MonitorStructureSidebar({
     return (
       <aside className={`w-full shrink-0 bg-white border-b border-slate-200 flex flex-col overflow-hidden shadow-2xs z-10 lg:h-full lg:w-16 lg:border-b-0 lg:border-r transition-all duration-300 ${sidebarView === 'settings' ? 'hidden' : ''}`}>
         {/* Header Recolhido (Botão para Expandir) */}
-        <div className="p-3 border-b border-slate-100 flex items-center justify-center bg-slate-50/80 shrink-0">
+        <div className="p-3 border-b border-slate-100 flex items-center justify-between bg-slate-50/80 shrink-0">
+          <Link href="/professor" aria-label="Voltar ao painel do professor" title="Voltar ao painel do professor" className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 hover:text-emerald-800">
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          </Link>
           <button
             type="button"
             onClick={() => setIsCollapsed(false)}
@@ -162,22 +165,15 @@ export function MonitorStructureSidebar({
   return (
     <aside className={`h-[40vh] w-full shrink-0 bg-white border-b border-slate-200 flex flex-col overflow-hidden shadow-2xs z-10 lg:h-full lg:w-80 lg:border-b-0 lg:border-r transition-all duration-300 ${sidebarView === 'settings' ? 'hidden' : ''}`}>
       <div className="px-4 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/70 shrink-0">
-        <div className="flex items-center gap-2 min-w-0">
-          <FolderTree className="h-4 w-4 text-emerald-700 shrink-0" aria-hidden="true" />
+        <div className="flex min-w-0 items-center gap-2">
+          <Link href="/professor" aria-label="Voltar ao painel do professor" title="Voltar ao painel do professor" className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition-colors hover:bg-slate-50 hover:text-emerald-800">
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          </Link>
+          <FolderTree className="h-4 w-4 shrink-0 text-emerald-700" aria-hidden="true" />
           <h2 className="text-xs font-bold uppercase tracking-wider text-slate-700 truncate">Estrutura do Monitor</h2>
         </div>
         
         <div className="flex items-center gap-2 shrink-0">
-          {publishValidation.canPublish ? (
-            <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold text-emerald-800 border border-emerald-200 flex items-center gap-1" title="Todos os tópicos contêm Base de Conhecimento e Questões">
-              <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Pronto
-            </span>
-          ) : (
-            <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-800 border border-amber-200 flex items-center gap-1" title={publishValidation.reason}>
-              <AlertTriangle className="w-3 h-3 text-amber-600" /> {publishValidation.completedTopics}/{publishValidation.totalTopics}
-            </span>
-          )}
-
           {/* Botão de Recolher Sidebar */}
           <button
             type="button"

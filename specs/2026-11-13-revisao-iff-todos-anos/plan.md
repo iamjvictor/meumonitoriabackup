@@ -1,0 +1,1 @@
+Ampliar rota de leitura e edição para os registros IFF, identificados pelo UUID. Atualizar a página para filtros e estado associados a identificadores estáveis. Validar com banco de leitura e amostra simulada de múltiplos anos sem gravar dados reais.

@@ -35,7 +35,7 @@ export type DocumentVisualIndexingDependencies = {
   embeddings: { createEmbeddings(input: string[]): Promise<number[][]> };
 };
 
-const MAX_DESCRIPTION_CHARS = 2_000;
+const MAX_DESCRIPTION_CHARS = 3_800;
 const MAX_EMBEDDING_INPUT_CHARS = 4_000;
 
 export class DocumentVisualIndexingService {

@@ -1,0 +1,610 @@
+Worker iniciou o processamento do documento {
+  event: 'monitor.document_processing_started',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  jobId: undefined,
+  attempt: undefined
+}
+Buscando documento no banco para o worker {
+  event: 'monitor.document_repository_lookup_started',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a'
+}
+Busca do documento concluida {
+  event: 'monitor.document_repository_lookup_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  found: true,
+  topicLinkCount: 1
+}
+Atualizando documento para PROCESSING {
+  event: 'monitor.document_status_update_started',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  status: 'PROCESSING'
+}
+Documento atualizado para PROCESSING {
+  event: 'monitor.document_status_update_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  status: 'PROCESSING'
+}
+Etapa auxiliar iniciada {
+  event: 'document_stage.started',
+  timestamp: '2026-11-02T20:18:44.583Z',
+  service: 'worker',
+  request_id: '78dbd490-cda2-4c8b-8ee5-f47adc430659',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT'
+}
+Etapa auxiliar concluída {
+  event: 'document_stage.completed',
+  timestamp: '2026-11-02T20:18:44.621Z',
+  service: 'worker',
+  request_id: '78dbd490-cda2-4c8b-8ee5-f47adc430659',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT',
+  outcome: 'completed',
+  duration_ms: 38
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  stage: 'DOWNLOAD_DOCUMENT',
+  status: 'READY',
+  startedAt: '2026-11-02T20:18:44.583Z',
+  finishedAt: '2026-11-02T20:18:44.621Z',
+  durationMs: 38,
+  attempt: undefined,
+  jobId: undefined,
+  details: {
+    storagePath: 'question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37/pH e pOH.pdf'
+  }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:18:44.649Z',
+  service: 'worker',
+  request_id: '295b457c-6e91-4542-b924-ce45052f62b5',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS'
+}
+doc_chunker_v2.request_started {
+  timestamp: '2026-11-02T20:18:44.673Z',
+  service: 'worker',
+  request_id: 'c7b4d075-dcfc-452c-af82-9395d961b106',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  doc_hash: '5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc',
+  request_bytes: 640413
+}
+doc_chunker_v2.request_completed {
+  timestamp: '2026-11-02T20:19:17.391Z',
+  service: 'worker',
+  request_id: 'c7b4d075-dcfc-452c-af82-9395d961b106',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  doc_hash: '5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc',
+  chunk_count: 3,
+  asset_count: 3,
+  warning_count: 0,
+  response_bytes: 226376,
+  duration_ms: 32718
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 3803,
+  descriptionChars: 1664
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1732
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 3857,
+  descriptionChars: 1427
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1495
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 4488,
+  descriptionChars: 2069
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 2137
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 853
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 553,
+  totalTokens: 553
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 925
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 581,
+  totalTokens: 581
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1679
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 829,
+  totalTokens: 829
+}
+Indexação das imagens do documento concluída {
+  event: 'document_visual_assets.indexing_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  parseRunId: '5b1240eb-431c-4083-ac18-1616b084585b',
+  assetCount: 3,
+  failureCount: 0
+}
+Assets visuais privados persistidos {
+  event: 'document_visual_assets.persist_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  parseRunId: '5b1240eb-431c-4083-ac18-1616b084585b',
+  assetCount: 3,
+  warningCount: 0
+}
+(node:2693599) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+document_visual_assets.chunk_linking_completed {
+  owner_id: '5b1240eb-431c-4083-ac18-1616b084585b',
+  detected_count: 3,
+  linked_count: 0,
+  ambiguous_count: 3,
+  missing_count: 0,
+  detected_by_page: { '1': 1, '3': 1, '4': 1 },
+  linked_by_page: {},
+  ambiguous_by_page: { '1': 2, '2': 2, '3': 3, '4': 1 },
+  missing_by_page: {}
+}
+Vínculos de imagens aos chunks calculados {
+  event: 'document_visual_assets.chunk_links_summary',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  parseRunId: '5b1240eb-431c-4083-ac18-1616b084585b',
+  linkedCount: 0,
+  ambiguousCount: 3,
+  missingCount: 0
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:19:23.733Z',
+  service: 'worker',
+  request_id: '295b457c-6e91-4542-b924-ce45052f62b5',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  outcome: 'completed',
+  duration_ms: 39103,
+  chunkCount: 3,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  status: 'READY',
+  startedAt: '2026-11-02T20:18:44.626Z',
+  finishedAt: '2026-11-02T20:19:23.730Z',
+  durationMs: 39103,
+  attempt: undefined,
+  jobId: undefined,
+  details: { chunkCount: 3, status: 'READY' }
+}
+Chunks Docling persistidos {
+  event: 'document_chunks.persist_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  chunkCount: 3,
+  reused: false,
+  engine: 'docling',
+  sourceMode: 'docling'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:19:23.753Z',
+  service: 'worker',
+  request_id: '6c989e16-8e0b-49a7-920c-97ca2273f101',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS'
+}
+Buscando chunks pendentes de embedding {
+  event: 'monitor.embedding_chunks_lookup_started',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  status: 'EMBEDDING_PENDING'
+}
+Chunks pendentes encontrados {
+  event: 'monitor.embedding_chunks_lookup_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  chunkCount: 3,
+  chunkIndexes: [ 0, 1, 2 ]
+}
+Processamento de embeddings iniciado {
+  event: 'monitor.document_embeddings_started',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  chunkCount: 3,
+  batchSize: 64
+}
+Atualizando chunks para EMBEDDING_PROCESSING { event: 'monitor.embedding_chunks_status_started', chunkCount: 3 }
+Chunks atualizados para EMBEDDING_PROCESSING {
+  event: 'monitor.embedding_chunks_status_completed',
+  chunkCount: 3,
+  status: 'EMBEDDING_PROCESSING'
+}
+Chunks reservados para processamento de embeddings {
+  event: 'monitor.document_embeddings_chunks_reserved',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  chunkCount: 3
+}
+Enviando lote de chunks para embeddings {
+  event: 'monitor.document_embeddings_batch_started',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  batchNumber: 1,
+  batchCount: 3,
+  firstChunkIndex: 0,
+  blockIds: []
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 3,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 3,
+  inputChars: 2410
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1495
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 3,
+  dimensions: 2048,
+  promptTokens: 1009,
+  totalTokens: 1009
+}
+Embeddings do lote recebidos, iniciando persistencia {
+  event: 'monitor.document_embeddings_batch_response_ready',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  batchNumber: 1,
+  embeddingCount: 3,
+  dimensions: 2048
+}
+Persistindo vetores dos chunks {
+  event: 'monitor.embedding_vectors_persist_started',
+  chunkCount: 3,
+  dimensions: 2048,
+  transactionTimeoutMs: 60000
+}
+Vetores dos chunks persistidos {
+  event: 'monitor.embedding_vectors_persist_completed',
+  chunkCount: 3,
+  status: 'READY'
+}
+Lote de embeddings persistido {
+  event: 'monitor.document_embeddings_batch_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  batchNumber: 1,
+  processedCount: 3,
+  totalChunks: 3
+}
+Processamento de embeddings concluido {
+  event: 'monitor.document_embeddings_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  chunkCount: 3,
+  batchCount: 1,
+  durationMs: 1534
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:19:25.290Z',
+  service: 'worker',
+  request_id: '6c989e16-8e0b-49a7-920c-97ca2273f101',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  outcome: 'completed',
+  duration_ms: 1545,
+  chunkCount: 3,
+  batchCount: 1,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  status: 'READY',
+  startedAt: '2026-11-02T20:19:23.742Z',
+  finishedAt: '2026-11-02T20:19:25.288Z',
+  durationMs: 1545,
+  attempt: undefined,
+  jobId: undefined,
+  details: { chunkCount: 3, batchCount: 1, status: 'READY' }
+}
+Etapa auxiliar iniciada {
+  event: 'document_stage.started',
+  timestamp: '2026-11-02T20:19:25.290Z',
+  service: 'worker',
+  request_id: '2f96693c-a65d-4dd2-846a-eb0b9ef468ce',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_TOPIC_PROFILE'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 78
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 15702
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 26,
+  totalTokens: 26
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'topic_profile',
+  maxTokens: 1200,
+  temperature: 0.2,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5034
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3308,
+  responseChars: 661,
+  promptTokens: 2062,
+  completionTokens: 390,
+  totalTokens: 2452,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Perfil de topico gerado a partir da base de conhecimento {
+  event: 'monitor.topic_profile_generated',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  topicName: 'Química orgânica e soluções',
+  sourceCount: 6,
+  model: 'google/gemini-2.5-flash'
+}
+Etapa auxiliar concluída {
+  event: 'document_stage.completed',
+  timestamp: '2026-11-02T20:19:44.356Z',
+  service: 'worker',
+  request_id: '2f96693c-a65d-4dd2-846a-eb0b9ef468ce',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_TOPIC_PROFILE',
+  outcome: 'completed',
+  duration_ms: 19066
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  stage: 'GENERATE_TOPIC_PROFILE',
+  status: 'READY',
+  startedAt: '2026-11-02T20:19:25.290Z',
+  finishedAt: '2026-11-02T20:19:44.356Z',
+  durationMs: 19066,
+  attempt: undefined,
+  jobId: undefined,
+  details: { profileScope: 'TOPIC' }
+}
+Atualizando documento para READY {
+  event: 'monitor.document_status_update_started',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  status: 'READY'
+}
+Documento atualizado para READY {
+  event: 'monitor.document_status_update_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  status: 'READY'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:19:44.380Z',
+  service: 'worker',
+  request_id: 'fcab5d56-4b35-422a-8beb-450cfe0fb186',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'READY_FOR_REVIEW'
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:19:44.383Z',
+  service: 'worker',
+  request_id: 'fcab5d56-4b35-422a-8beb-450cfe0fb186',
+  document_id: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  job_id: null,
+  job_attempt: null,
+  stage: 'READY_FOR_REVIEW',
+  outcome: 'completed',
+  duration_ms: 7,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  stage: 'READY_FOR_REVIEW',
+  status: 'READY',
+  startedAt: '2026-11-02T20:19:44.373Z',
+  finishedAt: '2026-11-02T20:19:44.381Z',
+  durationMs: 7,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Documento processado pelo worker {
+  event: 'monitor.document_worker_completed',
+  documentId: 'ef6270b1-946c-449b-a22c-55694d14717a',
+  mimeType: 'application/pdf',
+  expectedBytes: 640413,
+  downloadedBytes: 640413,
+  durationMs: 60026,
+  status: 'READY'
+}
+{
+  "documentId": "ef6270b1-946c-449b-a22c-55694d14717a",
+  "document": {
+    "originalName": "pH e pOH.pdf",
+    "tag": "KNOWLEDGE_BASE",
+    "status": "READY",
+    "errorMessage": null,
+    "teacherId": "08181813-5162-4f81-981e-12084ef320d7",
+    "monitorId": "031e12c0-b296-4569-8011-80ad2d49b422",
+    "subjectId": "5c8cf6b5-9208-4b17-ae8e-8d1b29712446",
+    "topicId": "bec7838f-d153-409e-ad04-5bc3c2b4c70c",
+    "_count": {
+      "chunks": 3,
+      "blocks": 0,
+      "textExtractions": 0,
+      "visualAssets": 3
+    }
+  },
+  "visualAssets": 3,
+  "chunks": [
+    {
+      "chunkIndex": 0,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 3,
+      "tokenCount": 489,
+      "embeddedAt": "2026-11-02T20:19:25.283Z",
+      "content": "Ahrrenius\nHCI\nM2O\nNaOH\nH2O\nBronsted - Lowry\nHCl +\nH₂O\nAcido asea\nNH3+ H2O\nBase ACido\nH\nN\nLewis\nHCl H2O\n:Cl-H\n:Cl:\n+\nHCl\nH\n>\n十\n1\nH\n0\nH⁺\nNa⁺\n+ Cl⁻\n+\n(Acido)\nOH\n>\n>\n(Base)\nH_3O⁺\n+ Cl⁻\nNH_{4\nH2 +\n>\n→Cl⁻ + H₃O⁺\nH\nH\n+\n(Acido)\nOH\n(Base)\nCl⁻\nLewis\nLOWE.1\nH\nH\nBransted-\nAhrtenius\nH-\nH\nH\nu\nH-N-BH\nB\nÁcido libera H+ em água, e base libera OH- em água\nÁcido doa H+ e base recebe H+\nÁcido recebe um par de elétrons enquanto a base doa par de elétrons\nEquilíbrio químico\nHCL H⁺ + Cl⁻ 100%\nHAcO H⁺ + AcO - Ka = 1,8 · 105\n[ ] = Concentragão\n[H+]\n0,01\n0,01\n[HCi] = [H+]\n[H+]·[Aco-] Ka H [HAcO]\nKa = [H+] [HAcO]\n[H+7² Ka·[HAcO]\n[H+]=√ Ka· [MAcO]\n[+H] b01- = Hd pH<7\np=-10g(op1\npH=20\n0,01 mol/L\ndo A'cida\n0 meio\nacido\nNaOH\nNa⁺\n>\n+\nOH\n001\n9,01\n0,01\n0,01 mol/L base\n[OH-] = 0,01\npOH = - log [OH-]\npOH = 2\npH + pOH 14\nL < Hd\nO meio\nbasico e\npH 十 2 =14\np\npH = 12"
+    },
+    {
+      "chunkIndex": 1,
+      "status": "READY",
+      "pageStart": 3,
+      "pageEnd": 3,
+      "tokenCount": 167,
+      "embeddedAt": "2026-11-02T20:19:25.283Z",
+      "content": "Corpo de bombeiro militar do Ceará\nDurante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\nCom base nessa informação, é correto afirmar:\n- A) A substância é neutra, com concentração igual de H⁺ e OH⁻.\n- B) Trata-se de um ácido forte, com alto poder de corrosão.\n- C) A substância possui caráter levemente ácido.\n- A substância é uma base forte, com alta concentração de íons OH⁻.\n- E) O valor de pH indica que a solução não apresenta riscos químicos."
+    },
+    {
+      "chunkIndex": 2,
+      "status": "READY",
+      "pageStart": 4,
+      "pageEnd": 4,
+      "tokenCount": 350,
+      "embeddedAt": "2026-11-02T20:19:25.283Z",
+      "content": "Química e Engenharia Química - Ácidos e Bases\n563) O suco de uva pode ser usado como um indicador natural do pH de uma solução. Isso se dá por conta de uma substância natural chamada antocianina, presente nas uvas, que ao reagir com o meio forma produtos de cores distintas, seguindo um mesmo padrão de cores. Dessa forma, em meio ácido o suco de uva, ficará vermelho- rosa, enquanto em meio básico ficará verde-escuro.\nSe fizermos um teste com suco de uva, será observada uma coloração verde-escuro\n- no limpa-forno.\n- b) no suco de limão.\n- c) na água destilada.\n- d) no vinagre de maçã.\n- e) na solução de bateria automotiva.\nFGV - Tec Ge (CPRM)/CPRM/Hidrologia/2025\nuis  noa ns os   ood  sa - Lud   oso\n472) O parâmetro físico-químico que mede a concentração de íons livres na água, indicando a capacidade de conduzir corrente elétrica, é\n- a) a alcalinidade.\n- b) o pH.\n- a condutividade elétrica.\n- d) o oxigênio dissolvido.\n- e) a turbidez."
+    }
+  ],
+  "blockTypes": [],
+  "questionSources": 0,
+  "pageThreeAssets": [
+    {
+      "id": "b9c5b113-ea53-46c4-bdd4-1f235a71c825",
+      "pageNumber": 3,
+      "assetType": "figure",
+      "storagePath": "ef6270b1-946c-449b-a22c-55694d14717a/5b1240eb-431c-4083-ac18-1616b084585b/assets/23f164a184a21019e2eadd4e117d0541-bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f.png",
+      "checksum": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f",
+      "descriptionStatus": "READY",
+      "description": "A figura é uma página de caderno pautado com anotações manuscritas e um texto impresso.\n\nAs anotações manuscritas, em tinta preta, azul e verde, mostram cálculos e equações químicas:\n- \"NaOH\" com \"0,01\" abaixo, seguido por uma seta para a direita.\n- \"Na⁺\" com \"0,01\" abaixo, seguido por \"+ OH⁻\" com \"0,01\" abaixo.\n- \"0,01 mol/L\" em azul, com \"da base\" abaixo em preto.\n- \"[OH⁻] = 0,01\".\n- \"pOH = - log [OH⁻]\".\n- \"pOH = 2\" em verde, com uma seta curva verde apontando para baixo.\n- \"pH + pOH = 14\" em verde.\n- \"pH > 7\" em azul, seguido por \"O meio\" e \"é básico\" em azul.\n- \"pH + 2 = 14\" em verde.\n- \"pH = 14 - 2\" em verde.\n- \"pH = 12\" em verde.\n\nAbaixo das anotações, há um texto impresso em preto:\n- \"Corpo de bombeiro militar do Ceará\"\n- Um parágrafo que começa com \"Durante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\"\n- \"Com base nessa informação, é correto afirmar:\"\n- Uma lista de opções de A a E:\n    - \"A) A substância é neutra, com concentração igual de H⁺ e OH⁻.\"\n    - \"B) Trata-se de um ácido forte, com alto poder de corrosão.\"\n    - \"C) A substância possui caráter levemente ácido.\"\n    - \"D) A substância é uma base forte, com alta concentração de íons OH⁻.\" (Esta opção tem um círculo verde preenchido à esquerda).\n    - \"E) O valor de pH indica que a solução não apresenta riscos químicos.\""
+    }
+  ],
+  "pageThreeStorageChecks": [
+    {
+      "assetId": "b9c5b113-ea53-46c4-bdd4-1f235a71c825",
+      "storagePath": "ef6270b1-946c-449b-a22c-55694d14717a/5b1240eb-431c-4083-ac18-1616b084585b/assets/23f164a184a21019e2eadd4e117d0541-bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f.png",
+      "downloaded": true,
+      "byteLength": 94446,
+      "sha256": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f",
+      "expectedChecksum": "bea029a1cbd0a1e2ca6c36e67d974cd8feca1d13d0859c0608582d73312e0f8f",
+      "checksumMatches": true
+    }
+  ],
+  "elapsedMs": 60063
+}

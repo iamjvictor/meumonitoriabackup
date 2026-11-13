@@ -29496,3 +29496,3398 @@ Unique constraint failed on the fields: (`topic_id`, `text_hash`)
 - Tempo total: 185141 ms (185.14 s)
 - Falhas nao bloqueantes: 0
 
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `e2000000-0000-4000-8000-000000000010`
+- Status: READY
+- Iniciado em: 2026-11-02T18:23:42.894Z
+- Finalizado em: 2026-11-02T18:23:42.973Z
+- Duracao: 79 ms (0.08 s)
+- Detalhes: {"storagePath":"Estequiometria.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `e2000000-0000-4000-8000-000000000010`
+- Status: READY
+- Iniciado em: 2026-11-02T18:23:42.985Z
+- Finalizado em: 2026-11-02T18:24:33.572Z
+- Duracao: 50587 ms (50.59 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `e2000000-0000-4000-8000-000000000010`
+- Status: READY
+- Iniciado em: 2026-11-02T18:24:33.586Z
+- Finalizado em: 2026-11-02T18:24:35.973Z
+- Duracao: 2387 ms (2.39 s)
+- Detalhes: {"chunkCount":3,"batchCount":1,"status":"READY"}
+
+### Etapa: GENERATE_TOPIC_PROFILE
+- Documento ID: `e2000000-0000-4000-8000-000000000010`
+- Status: FAILED
+- Iniciado em: 2026-11-02T18:24:35.976Z
+- Finalizado em: 2026-11-02T18:24:36.604Z
+- Duracao: 628 ms (0.63 s)
+- Detalhes: {"profileScope":"TOPIC"}
+- Erro: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42804`. Message: `COALESCE types "DocumentBlockType" and text cannot be matched`
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000010`
+- Status: READY
+- Iniciado em: 2026-11-02T18:24:36.624Z
+- Finalizado em: 2026-11-02T18:24:36.646Z
+- Duracao: 22 ms (0.02 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Estequiometria.pdf
+- Documento ID: `e2000000-0000-4000-8000-000000000010`
+- Status: READY
+- Iniciado em: 2026-11-02T18:23:42.607Z
+- Finalizado em: 2026-11-02T18:24:36.649Z
+- Tempo total: 54042 ms (54.04 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: READY
+- Iniciado em: 2026-11-02T18:32:05.485Z
+- Finalizado em: 2026-11-02T18:32:05.562Z
+- Duracao: 77 ms (0.08 s)
+- Detalhes: {"storagePath":"pH e pOH.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: READY
+- Iniciado em: 2026-11-02T18:32:05.568Z
+- Finalizado em: 2026-11-02T18:32:41.527Z
+- Duracao: 35959 ms (35.96 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: FAILED
+- Iniciado em: 2026-11-02T18:32:41.539Z
+- Finalizado em: 2026-11-02T18:32:42.576Z
+- Duracao: 1037 ms (1.04 s)
+- Erro: fetch failed
+
+## Documento: pH e pOH.pdf
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: FAILED
+- Iniciado em: 2026-11-02T18:32:05.275Z
+- Finalizado em: 2026-11-02T18:32:42.582Z
+- Tempo total: 37307 ms (37.31 s)
+- Erro: fetch failed
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: READY
+- Iniciado em: 2026-11-02T18:34:07.422Z
+- Finalizado em: 2026-11-02T18:34:07.478Z
+- Duracao: 56 ms (0.06 s)
+- Detalhes: {"storagePath":"pH e pOH.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: READY
+- Iniciado em: 2026-11-02T18:34:07.484Z
+- Finalizado em: 2026-11-02T18:34:07.527Z
+- Duracao: 43 ms (0.04 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: READY
+- Iniciado em: 2026-11-02T18:34:07.543Z
+- Finalizado em: 2026-11-02T18:34:22.969Z
+- Duracao: 15426 ms (15.43 s)
+- Detalhes: {"chunkCount":3,"batchCount":1,"status":"READY"}
+
+### Etapa: GENERATE_TOPIC_PROFILE
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: FAILED
+- Iniciado em: 2026-11-02T18:34:22.974Z
+- Finalizado em: 2026-11-02T18:34:27.041Z
+- Duracao: 4067 ms (4.07 s)
+- Detalhes: {"profileScope":"TOPIC"}
+- Erro: OpenRouter chat falhou (404): google/gemini-3.7-flash:batch cannot be used with the chat/completions endpoint (adapter VertexGeminiBatchAdapter).
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: READY
+- Iniciado em: 2026-11-02T18:34:27.093Z
+- Finalizado em: 2026-11-02T18:34:27.103Z
+- Duracao: 10 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: pH e pOH.pdf
+- Documento ID: `e2000000-0000-4000-8000-000000000011`
+- Status: READY
+- Iniciado em: 2026-11-02T18:34:07.185Z
+- Finalizado em: 2026-11-02T18:34:27.107Z
+- Tempo total: 19922 ms (19.92 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:45:25.886Z
+- Finalizado em: 2026-11-02T18:45:25.925Z
+- Duracao: 39 ms (0.04 s)
+- Detalhes: {"storagePath":"Quimica-3.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:46:10.500Z
+- Finalizado em: 2026-11-02T18:46:14.087Z
+- Duracao: 3587 ms (3.59 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:46:14.097Z
+- Finalizado em: 2026-11-02T18:46:14.169Z
+- Duracao: 72 ms (0.07 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:46:14.175Z
+- Finalizado em: 2026-11-02T18:46:14.252Z
+- Duracao: 77 ms (0.08 s)
+- Detalhes: {"blockCount":22,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:46:14.256Z
+- Finalizado em: 2026-11-02T18:46:14.414Z
+- Duracao: 158 ms (0.16 s)
+- Detalhes: {"chunkCount":16,"blockCount":22,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:46:14.418Z
+- Finalizado em: 2026-11-02T18:46:20.074Z
+- Duracao: 5656 ms (5.66 s)
+- Detalhes: {"chunkCount":16,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:46:20.091Z
+- Finalizado em: 2026-11-02T18:46:20.162Z
+- Duracao: 71 ms (0.07 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: MATCH_ANSWER_KEYS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:46:20.169Z
+- Finalizado em: 2026-11-02T18:46:20.181Z
+- Duracao: 12 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:46:20.207Z
+- Finalizado em: 2026-11-02T18:46:20.221Z
+- Duracao: 14 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:45:25.665Z
+- Finalizado em: 2026-11-02T18:46:20.227Z
+- Tempo total: 54562 ms (54.56 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:58:08.494Z
+- Finalizado em: 2026-11-02T18:58:08.590Z
+- Duracao: 96 ms (0.10 s)
+- Detalhes: {"storagePath":"Quimica-3.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:58:08.606Z
+- Finalizado em: 2026-11-02T18:58:12.158Z
+- Duracao: 3552 ms (3.55 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:58:12.169Z
+- Finalizado em: 2026-11-02T18:58:12.234Z
+- Duracao: 65 ms (0.07 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:58:12.240Z
+- Finalizado em: 2026-11-02T18:58:12.330Z
+- Duracao: 90 ms (0.09 s)
+- Detalhes: {"blockCount":22,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:58:12.334Z
+- Finalizado em: 2026-11-02T18:58:12.488Z
+- Duracao: 155 ms (0.15 s)
+- Detalhes: {"chunkCount":16,"blockCount":22,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:58:12.492Z
+- Finalizado em: 2026-11-02T18:58:14.172Z
+- Duracao: 1680 ms (1.68 s)
+- Detalhes: {"chunkCount":16,"batchCount":1,"status":"READY"}
+
+### Questao 01
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `a452fba9-3f0c-472d-bdf3-7757c96b421f`
+- Chunks: 3
+- Resultado: CANDIDATA RETIDA: MISSING_VISUAL_EVIDENCE, NON_QUESTION_BLOCK, MISSING_ALTERNATIVES, VISUAL_EVIDENCE_PENDING
+- Medicao iniciada: inicio da persistencia deterministica
+- Tempo da candidata: 47 ms (0.05 s)
+- Registrado em: 2026-11-02T18:58:14.270Z
+
+### Questao 02
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `586bb318-f7b3-4fcc-8f21-d336739fdf7e`
+- Chunks: 4
+- Resultado: SALVA: pendente de revisao
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `1f4d4866-2ab5-4314-a121-2f22d5f82360`
+- Tempo da candidata: 22036 ms (22.04 s)
+- Registrado em: 2026-11-02T18:58:36.306Z
+
+### Questao 03
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `699309fb-7a34-4784-adba-6c71b4f8ae8e`
+- Chunks: 5
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `b68be58c-2331-4016-9a85-1c6bd8d77da2`
+- Tempo da candidata: 36399 ms (36.40 s)
+- Registrado em: 2026-11-02T18:59:12.706Z
+
+### Questao 04
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `d4b366af-783a-4f05-8903-4bf2f6581376`
+- Chunks: 6
+- Resultado: SALVA: pendente de revisao
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `a8ffa36b-30bf-4a0d-b632-fbfdb5f14a85`
+- Tempo da candidata: 21786 ms (21.79 s)
+- Registrado em: 2026-11-02T18:59:34.493Z
+
+### Questao 05
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `8e80b821-81aa-4fd7-b437-76c5b1f53e6c`
+- Chunks: 7
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `54aa64f8-8c57-479b-a99c-cb020b83c3e4`
+- Tempo da candidata: 30131 ms (30.13 s)
+- Registrado em: 2026-11-02T19:00:04.625Z
+
+### Questao 06
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `7a03010a-2784-4b42-9a43-6cd93d138d67`
+- Chunks: 8
+- Resultado: SALVA: pendente de revisao
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `9b073513-a71f-4752-b52b-ea37d996376b`
+- Tempo da candidata: 16176 ms (16.18 s)
+- Registrado em: 2026-11-02T19:00:20.802Z
+
+### Questao 07
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `63d5e3ba-026b-4f4e-90a9-233c878eeb59`
+- Chunks: 9
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `d0442732-1565-47fc-bc69-7a6af543e21a`
+- Tempo da candidata: 33280 ms (33.28 s)
+- Registrado em: 2026-11-02T19:00:54.082Z
+
+### Questao 08
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `00e380e3-957f-48d3-a1dd-801240f337e7`
+- Chunks: 10
+- Resultado: SALVA: pendente de revisao
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `07936fed-ddc9-41b0-a08f-71fcd9a8b2d1`
+- Tempo da candidata: 19157 ms (19.16 s)
+- Registrado em: 2026-11-02T19:01:13.240Z
+
+### Questao 09
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `8d018e7f-e79d-478e-8679-41155a454d27`
+- Chunks: 11
+- Resultado: SALVA: pendente de revisao
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `ff915aa7-723d-47e6-86fb-7be34926d2b0`
+- Tempo da candidata: 23341 ms (23.34 s)
+- Registrado em: 2026-11-02T19:01:36.581Z
+
+### Questao 10
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `39d58a1d-7258-4a47-af04-e41fcab32876`
+- Chunks: 12
+- Resultado: SALVA: pendente de revisao
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `d2e9649f-44f1-4a65-872e-b48565c4e3ce`
+- Tempo da candidata: 17286 ms (17.29 s)
+- Registrado em: 2026-11-02T19:01:53.867Z
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:58:14.176Z
+- Finalizado em: 2026-11-02T19:01:57.329Z
+- Duracao: 223153 ms (223.15 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: MATCH_ANSWER_KEYS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:01:57.336Z
+- Finalizado em: 2026-11-02T19:01:57.345Z
+- Duracao: 9 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:01:57.354Z
+- Finalizado em: 2026-11-02T19:01:57.360Z
+- Duracao: 6 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T18:58:08.261Z
+- Finalizado em: 2026-11-02T19:01:57.364Z
+- Tempo total: 229103 ms (229.10 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:07:05.153Z
+- Finalizado em: 2026-11-02T19:07:05.207Z
+- Duracao: 54 ms (0.05 s)
+- Detalhes: {"storagePath":"Quimica-3.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:07:05.218Z
+- Finalizado em: 2026-11-02T19:07:07.114Z
+- Duracao: 1896 ms (1.90 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:07:07.129Z
+- Finalizado em: 2026-11-02T19:07:07.199Z
+- Duracao: 71 ms (0.07 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:07:07.205Z
+- Finalizado em: 2026-11-02T19:07:07.293Z
+- Duracao: 88 ms (0.09 s)
+- Detalhes: {"blockCount":22,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:07:07.296Z
+- Finalizado em: 2026-11-02T19:07:07.469Z
+- Duracao: 172 ms (0.17 s)
+- Detalhes: {"chunkCount":16,"blockCount":22,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:07:07.472Z
+- Finalizado em: 2026-11-02T19:07:09.159Z
+- Duracao: 1687 ms (1.69 s)
+- Detalhes: {"chunkCount":16,"batchCount":1,"status":"READY"}
+
+### Questao 01
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `53c99101-a688-4770-9140-0936434479ce`
+- Chunks: 3
+- Resultado: CANDIDATA RETIDA: MISSING_VISUAL_EVIDENCE, NON_QUESTION_BLOCK, MISSING_ALTERNATIVES, VISUAL_EVIDENCE_PENDING
+- Medicao iniciada: inicio da persistencia deterministica
+- Tempo da candidata: 48 ms (0.05 s)
+- Registrado em: 2026-11-02T19:07:09.253Z
+
+### Questao 02
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Source block: `91e6595a-20b4-4ca0-aaed-185e3f287671`
+- Chunks: 4
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `f54061c4-72df-4451-aafa-f7fc5b9c9dd2`
+- Tempo da candidata: 18727 ms (18.73 s)
+- Registrado em: 2026-11-02T19:07:27.981Z
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: FAILED
+- Iniciado em: 2026-11-02T19:07:09.162Z
+- Finalizado em: 2026-11-02T19:08:13.790Z
+- Duracao: 64628 ms (64.63 s)
+- Erro: 
+Invalid `transaction.question.upsert()` invocation in
+/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/repositories/question.repository.ts:322:49
+
+  319     metadata: input.metadata as Prisma.InputJsonValue | undefined,
+  320     status: 'PENDING_REVIEW',
+  321 } as const;
+→ 322 const question = await transaction.question.upsert(
+Unique constraint failed on the fields: (`topic_id`, `text_hash`)
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-02T19:08:13.802Z
+- Finalizado em: 2026-11-02T19:08:13.810Z
+- Duracao: 8 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-02T19:07:04.922Z
+- Finalizado em: 2026-11-02T19:08:13.813Z
+- Tempo total: 68891 ms (68.89 s)
+- Falhas nao bloqueantes: 1
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:10:43.195Z
+- Finalizado em: 2026-11-02T20:10:43.231Z
+- Duracao: 36 ms (0.04 s)
+- Detalhes: {"storagePath":"question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37/Quimica-3.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:11:24.541Z
+- Finalizado em: 2026-11-02T20:11:26.419Z
+- Duracao: 1879 ms (1.88 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:11:26.428Z
+- Finalizado em: 2026-11-02T20:11:26.477Z
+- Duracao: 49 ms (0.05 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:11:26.494Z
+- Finalizado em: 2026-11-02T20:11:26.589Z
+- Duracao: 94 ms (0.09 s)
+- Detalhes: {"blockCount":22,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:11:26.592Z
+- Finalizado em: 2026-11-02T20:11:26.761Z
+- Duracao: 169 ms (0.17 s)
+- Detalhes: {"chunkCount":16,"blockCount":22,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:11:26.764Z
+- Finalizado em: 2026-11-02T20:11:36.748Z
+- Duracao: 9984 ms (9.98 s)
+- Detalhes: {"chunkCount":16,"batchCount":1,"status":"READY"}
+
+### Questao 01
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `4cf5713d-e482-4a44-9f17-688f6af90085`
+- Chunks: 3
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `dd9d06f0-f85e-4471-8755-d98cb48d686b`
+- Tempo da candidata: 20004 ms (20.00 s)
+- Registrado em: 2026-11-02T20:11:56.809Z
+
+### Questao 02
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `b0d5df4b-0bcf-47f4-a674-05814b9dfd88`
+- Chunks: 4
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `6dc3fc08-2de9-4d97-a384-35f0d8838fce`
+- Tempo da candidata: 20279 ms (20.28 s)
+- Registrado em: 2026-11-02T20:12:17.088Z
+
+### Questao 03
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `60336fd1-031b-4c25-90fe-f022a49a74ac`
+- Chunks: 5
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `1dceb28e-8484-4d29-825b-fe579e3f0598`
+- Tempo da candidata: 23869 ms (23.87 s)
+- Registrado em: 2026-11-02T20:12:40.957Z
+
+### Questao 04
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `de5f41d7-e300-41c0-a9c4-915be1fae90c`
+- Chunks: 6
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `2ee58610-ead6-46bd-ba74-c77e2f015148`
+- Tempo da candidata: 25181 ms (25.18 s)
+- Registrado em: 2026-11-02T20:13:06.138Z
+
+### Questao 05
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `44da6a79-0759-433f-b225-ee74c86162c2`
+- Chunks: 7
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `56138123-8c96-4bd2-a93f-7fe8f16b8645`
+- Tempo da candidata: 48227 ms (48.23 s)
+- Registrado em: 2026-11-02T20:13:54.366Z
+
+### Questao 06
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `cfac4ca4-92ee-435c-b667-c8fdb6442a02`
+- Chunks: 8
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `39c4d11a-db40-41ee-a68f-26495eeac304`
+- Tempo da candidata: 19267 ms (19.27 s)
+- Registrado em: 2026-11-02T20:14:13.634Z
+
+### Questao 07
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `00787955-3743-4016-af84-e72d19aa89f8`
+- Chunks: 9
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `5fd71dc2-d4b4-401e-98db-a85f53166387`
+- Tempo da candidata: 41363 ms (41.36 s)
+- Registrado em: 2026-11-02T20:14:54.998Z
+
+### Questao 08
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `57e28a6f-1aa4-4507-b6f7-84dac78ea300`
+- Chunks: 10
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `d9fae22d-f1e0-4eff-ae19-b1f47b4d3118`
+- Tempo da candidata: 42813 ms (42.81 s)
+- Registrado em: 2026-11-02T20:15:37.811Z
+
+### Questao 09
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `d99b1ae5-1036-4080-9dcd-07cb1bdf8662`
+- Chunks: 11
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `431de22f-9e53-4dbe-8d9b-246f55fb9cbb`
+- Tempo da candidata: 38907 ms (38.91 s)
+- Registrado em: 2026-11-02T20:16:16.719Z
+
+### Questao 10
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `f8221bec-ec9f-4fac-b298-90c2d6bfeb31`
+- Chunks: 12
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `42f89720-08f7-407c-abb4-9543f5abc366`
+- Tempo da candidata: 55412 ms (55.41 s)
+- Registrado em: 2026-11-02T20:17:12.131Z
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:11:36.753Z
+- Finalizado em: 2026-11-02T20:17:15.624Z
+- Duracao: 338871 ms (338.87 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: MATCH_ANSWER_KEYS
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:17:15.631Z
+- Finalizado em: 2026-11-02T20:17:15.639Z
+- Duracao: 8 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:17:15.650Z
+- Finalizado em: 2026-11-02T20:17:15.658Z
+- Duracao: 8 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:10:42.960Z
+- Finalizado em: 2026-11-02T20:17:15.661Z
+- Tempo total: 392701 ms (392.70 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `0727ae85-9fe0-43fd-a043-161d97d637ef`
+- Status: READY
+- Iniciado em: 2026-11-02T20:17:27.939Z
+- Finalizado em: 2026-11-02T20:17:27.994Z
+- Duracao: 55 ms (0.06 s)
+- Detalhes: {"storagePath":"question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37/Estequiometria.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `0727ae85-9fe0-43fd-a043-161d97d637ef`
+- Status: READY
+- Iniciado em: 2026-11-02T20:17:28.007Z
+- Finalizado em: 2026-11-02T20:18:27.338Z
+- Duracao: 59332 ms (59.33 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `0727ae85-9fe0-43fd-a043-161d97d637ef`
+- Status: READY
+- Iniciado em: 2026-11-02T20:18:27.352Z
+- Finalizado em: 2026-11-02T20:18:28.581Z
+- Duracao: 1229 ms (1.23 s)
+- Detalhes: {"chunkCount":3,"batchCount":1,"status":"READY"}
+
+### Etapa: GENERATE_TOPIC_PROFILE
+- Documento ID: `0727ae85-9fe0-43fd-a043-161d97d637ef`
+- Status: READY
+- Iniciado em: 2026-11-02T20:18:28.584Z
+- Finalizado em: 2026-11-02T20:18:32.296Z
+- Duracao: 3712 ms (3.71 s)
+- Detalhes: {"profileScope":"TOPIC"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `0727ae85-9fe0-43fd-a043-161d97d637ef`
+- Status: READY
+- Iniciado em: 2026-11-02T20:18:32.309Z
+- Finalizado em: 2026-11-02T20:18:32.320Z
+- Duracao: 11 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Estequiometria.pdf
+- Documento ID: `0727ae85-9fe0-43fd-a043-161d97d637ef`
+- Status: READY
+- Iniciado em: 2026-11-02T20:17:27.718Z
+- Finalizado em: 2026-11-02T20:18:32.324Z
+- Tempo total: 64606 ms (64.61 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `ef6270b1-946c-449b-a22c-55694d14717a`
+- Status: READY
+- Iniciado em: 2026-11-02T20:18:44.583Z
+- Finalizado em: 2026-11-02T20:18:44.621Z
+- Duracao: 38 ms (0.04 s)
+- Detalhes: {"storagePath":"question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37/pH e pOH.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `ef6270b1-946c-449b-a22c-55694d14717a`
+- Status: READY
+- Iniciado em: 2026-11-02T20:18:44.626Z
+- Finalizado em: 2026-11-02T20:19:23.730Z
+- Duracao: 39103 ms (39.10 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `ef6270b1-946c-449b-a22c-55694d14717a`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:23.742Z
+- Finalizado em: 2026-11-02T20:19:25.288Z
+- Duracao: 1545 ms (1.54 s)
+- Detalhes: {"chunkCount":3,"batchCount":1,"status":"READY"}
+
+### Etapa: GENERATE_TOPIC_PROFILE
+- Documento ID: `ef6270b1-946c-449b-a22c-55694d14717a`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:25.290Z
+- Finalizado em: 2026-11-02T20:19:44.356Z
+- Duracao: 19066 ms (19.07 s)
+- Detalhes: {"profileScope":"TOPIC"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `ef6270b1-946c-449b-a22c-55694d14717a`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:44.373Z
+- Finalizado em: 2026-11-02T20:19:44.381Z
+- Duracao: 7 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: pH e pOH.pdf
+- Documento ID: `ef6270b1-946c-449b-a22c-55694d14717a`
+- Status: READY
+- Iniciado em: 2026-11-02T20:18:44.358Z
+- Finalizado em: 2026-11-02T20:19:44.384Z
+- Tempo total: 60026 ms (60.03 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:56.452Z
+- Finalizado em: 2026-11-02T20:19:56.497Z
+- Duracao: 45 ms (0.04 s)
+- Detalhes: {"storagePath":"question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37/Quimica-3.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:56.507Z
+- Finalizado em: 2026-11-02T20:19:58.380Z
+- Duracao: 1874 ms (1.87 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:58.396Z
+- Finalizado em: 2026-11-02T20:19:58.461Z
+- Duracao: 66 ms (0.07 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:58.467Z
+- Finalizado em: 2026-11-02T20:19:58.563Z
+- Duracao: 96 ms (0.10 s)
+- Detalhes: {"blockCount":22,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:58.566Z
+- Finalizado em: 2026-11-02T20:19:58.713Z
+- Duracao: 147 ms (0.15 s)
+- Detalhes: {"chunkCount":16,"blockCount":22,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:58.716Z
+- Finalizado em: 2026-11-02T20:19:58.728Z
+- Duracao: 12 ms (0.01 s)
+- Detalhes: {"chunkCount":0,"batchCount":0,"status":"READY"}
+
+### Questao 01
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `4cf5713d-e482-4a44-9f17-688f6af90085`
+- Chunks: 3
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `dd9d06f0-f85e-4471-8755-d98cb48d686b`
+- Tempo da candidata: 12810 ms (12.81 s)
+- Registrado em: 2026-11-02T20:20:11.583Z
+
+### Questao 02
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `b0d5df4b-0bcf-47f4-a674-05814b9dfd88`
+- Chunks: 4
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `6dc3fc08-2de9-4d97-a384-35f0d8838fce`
+- Tempo da candidata: 21235 ms (21.23 s)
+- Registrado em: 2026-11-02T20:20:32.818Z
+
+### Questao 03
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `60336fd1-031b-4c25-90fe-f022a49a74ac`
+- Chunks: 5
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `1dceb28e-8484-4d29-825b-fe579e3f0598`
+- Tempo da candidata: 59056 ms (59.06 s)
+- Registrado em: 2026-11-02T20:21:31.875Z
+
+### Questao 04
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `de5f41d7-e300-41c0-a9c4-915be1fae90c`
+- Chunks: 6
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `2ee58610-ead6-46bd-ba74-c77e2f015148`
+- Tempo da candidata: 8300 ms (8.30 s)
+- Registrado em: 2026-11-02T20:21:40.176Z
+
+### Questao 05
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `44da6a79-0759-433f-b225-ee74c86162c2`
+- Chunks: 7
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `56138123-8c96-4bd2-a93f-7fe8f16b8645`
+- Tempo da candidata: 31100 ms (31.10 s)
+- Registrado em: 2026-11-02T20:22:11.277Z
+
+### Questao 06
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `cfac4ca4-92ee-435c-b667-c8fdb6442a02`
+- Chunks: 8
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `39c4d11a-db40-41ee-a68f-26495eeac304`
+- Tempo da candidata: 15638 ms (15.64 s)
+- Registrado em: 2026-11-02T20:22:26.916Z
+
+### Questao 07
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `00787955-3743-4016-af84-e72d19aa89f8`
+- Chunks: 9
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `5fd71dc2-d4b4-401e-98db-a85f53166387`
+- Tempo da candidata: 25627 ms (25.63 s)
+- Registrado em: 2026-11-02T20:22:52.543Z
+
+### Questao 08
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `57e28a6f-1aa4-4507-b6f7-84dac78ea300`
+- Chunks: 10
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `d9fae22d-f1e0-4eff-ae19-b1f47b4d3118`
+- Tempo da candidata: 15096 ms (15.10 s)
+- Registrado em: 2026-11-02T20:23:07.640Z
+
+### Questao 09
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `d99b1ae5-1036-4080-9dcd-07cb1bdf8662`
+- Chunks: 11
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `431de22f-9e53-4dbe-8d9b-246f55fb9cbb`
+- Tempo da candidata: 24672 ms (24.67 s)
+- Registrado em: 2026-11-02T20:23:32.312Z
+
+### Questao 10
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Source block: `f8221bec-ec9f-4fac-b298-90c2d6bfeb31`
+- Chunks: 12
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `42f89720-08f7-407c-abb4-9543f5abc366`
+- Tempo da candidata: 9371 ms (9.37 s)
+- Registrado em: 2026-11-02T20:23:41.684Z
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:58.731Z
+- Finalizado em: 2026-11-02T20:23:44.866Z
+- Duracao: 226135 ms (226.13 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: MATCH_ANSWER_KEYS
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:23:44.869Z
+- Finalizado em: 2026-11-02T20:23:44.876Z
+- Duracao: 7 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:23:44.885Z
+- Finalizado em: 2026-11-02T20:23:44.893Z
+- Duracao: 7 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `09ab5f76-af91-4246-bf72-50a1509fdfb4`
+- Status: READY
+- Iniciado em: 2026-11-02T20:19:56.230Z
+- Finalizado em: 2026-11-02T20:23:44.896Z
+- Tempo total: 228666 ms (228.67 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:33:55.239Z
+- Finalizado em: 2026-11-02T20:33:55.284Z
+- Duracao: 45 ms (0.04 s)
+- Detalhes: {"storagePath":"question-chat-e2e/9df3b11e-d426-4542-aa57-1d1982f17f01/Quimica-3.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:34:44.921Z
+- Finalizado em: 2026-11-02T20:34:48.252Z
+- Duracao: 3330 ms (3.33 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:34:48.262Z
+- Finalizado em: 2026-11-02T20:34:48.324Z
+- Duracao: 62 ms (0.06 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:34:48.355Z
+- Finalizado em: 2026-11-02T20:34:48.518Z
+- Duracao: 163 ms (0.16 s)
+- Detalhes: {"blockCount":22,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:34:48.522Z
+- Finalizado em: 2026-11-02T20:34:48.709Z
+- Duracao: 187 ms (0.19 s)
+- Detalhes: {"chunkCount":16,"blockCount":22,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:34:48.713Z
+- Finalizado em: 2026-11-02T20:34:50.841Z
+- Duracao: 2127 ms (2.13 s)
+- Detalhes: {"chunkCount":16,"batchCount":1,"status":"READY"}
+
+### Questao 01
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `4457f283-d342-4130-91f3-9ce105a14835`
+- Chunks: 3
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `7f8cbbf0-56fd-4e59-b144-6957db7335ee`
+- Tempo da candidata: 17622 ms (17.62 s)
+- Registrado em: 2026-11-02T20:35:08.521Z
+
+### Questao 02
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `501b8699-3a29-46bd-8461-a5ec0510e4d0`
+- Chunks: 4
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `43ba37f7-28af-4ffd-964c-74dea99e9fd1`
+- Tempo da candidata: 19864 ms (19.86 s)
+- Registrado em: 2026-11-02T20:35:28.385Z
+
+### Questao 03
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `4268712b-b49a-4477-8265-6c02802c3ae2`
+- Chunks: 5
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `18908fd8-be60-41da-92ef-a6841e7ca163`
+- Tempo da candidata: 14319 ms (14.32 s)
+- Registrado em: 2026-11-02T20:35:42.705Z
+
+### Questao 04
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `9f0aac59-4d8a-43b9-a37b-d556cdee1527`
+- Chunks: 6
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `c4d36802-ad58-4166-b6b6-93210e0be418`
+- Tempo da candidata: 22340 ms (22.34 s)
+- Registrado em: 2026-11-02T20:36:05.045Z
+
+### Questao 05
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `037afd9d-8da9-4326-800a-a1a24c4eff3a`
+- Chunks: 7
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `484a4785-1290-48e1-9fe7-61b64f8abc90`
+- Tempo da candidata: 24294 ms (24.29 s)
+- Registrado em: 2026-11-02T20:36:29.340Z
+
+### Questao 06
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `26b5c952-8b40-4fba-a5c9-32f32efa401f`
+- Chunks: 8
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `1277ac7a-ba99-4d73-ba6e-209d89b2607d`
+- Tempo da candidata: 19235 ms (19.23 s)
+- Registrado em: 2026-11-02T20:36:48.576Z
+
+### Questao 07
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `f2e7a4a4-2df4-47a1-8c2d-877aeb346955`
+- Chunks: 9
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `45d40e40-5937-450b-92b1-c4bcef417db4`
+- Tempo da candidata: 24148 ms (24.15 s)
+- Registrado em: 2026-11-02T20:37:12.724Z
+
+### Questao 08
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `b2fe72ed-96b6-4fbf-b45a-9c785aca3b21`
+- Chunks: 10
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `76073ecf-21c5-440d-9552-ccafc6ca46a9`
+- Tempo da candidata: 26741 ms (26.74 s)
+- Registrado em: 2026-11-02T20:37:39.466Z
+
+### Questao 09
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `d28e2155-930c-487b-b033-7b6e75e2a97f`
+- Chunks: 11
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `574d9de4-a90a-4f24-b4a1-5f0115228713`
+- Tempo da candidata: 33067 ms (33.07 s)
+- Registrado em: 2026-11-02T20:38:12.534Z
+
+### Questao 10
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `4fd0e96c-012b-4819-b1f0-4150c079ee8d`
+- Chunks: 12
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `73101f89-4574-4f57-a32c-df6f9b683a4e`
+- Tempo da candidata: 29604 ms (29.60 s)
+- Registrado em: 2026-11-02T20:38:42.138Z
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:34:50.847Z
+- Finalizado em: 2026-11-02T20:38:45.622Z
+- Duracao: 234775 ms (234.78 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: MATCH_ANSWER_KEYS
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:38:45.629Z
+- Finalizado em: 2026-11-02T20:38:45.637Z
+- Duracao: 8 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:38:45.649Z
+- Finalizado em: 2026-11-02T20:38:45.655Z
+- Duracao: 7 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:33:54.996Z
+- Finalizado em: 2026-11-02T20:38:45.658Z
+- Tempo total: 290662 ms (290.66 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `5796b615-8eea-498a-ad44-8690d3af0ee9`
+- Status: READY
+- Iniciado em: 2026-11-02T20:38:57.994Z
+- Finalizado em: 2026-11-02T20:38:58.041Z
+- Duracao: 47 ms (0.05 s)
+- Detalhes: {"storagePath":"question-chat-e2e/9df3b11e-d426-4542-aa57-1d1982f17f01/Estequiometria.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `5796b615-8eea-498a-ad44-8690d3af0ee9`
+- Status: READY
+- Iniciado em: 2026-11-02T20:38:58.054Z
+- Finalizado em: 2026-11-02T20:39:39.382Z
+- Duracao: 41329 ms (41.33 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `5796b615-8eea-498a-ad44-8690d3af0ee9`
+- Status: READY
+- Iniciado em: 2026-11-02T20:39:39.395Z
+- Finalizado em: 2026-11-02T20:39:40.244Z
+- Duracao: 849 ms (0.85 s)
+- Detalhes: {"chunkCount":3,"batchCount":1,"status":"READY"}
+
+### Etapa: GENERATE_TOPIC_PROFILE
+- Documento ID: `5796b615-8eea-498a-ad44-8690d3af0ee9`
+- Status: READY
+- Iniciado em: 2026-11-02T20:39:40.248Z
+- Finalizado em: 2026-11-02T20:39:47.769Z
+- Duracao: 7521 ms (7.52 s)
+- Detalhes: {"profileScope":"TOPIC"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `5796b615-8eea-498a-ad44-8690d3af0ee9`
+- Status: READY
+- Iniciado em: 2026-11-02T20:39:47.784Z
+- Finalizado em: 2026-11-02T20:39:47.874Z
+- Duracao: 90 ms (0.09 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Estequiometria.pdf
+- Documento ID: `5796b615-8eea-498a-ad44-8690d3af0ee9`
+- Status: READY
+- Iniciado em: 2026-11-02T20:38:57.788Z
+- Finalizado em: 2026-11-02T20:39:47.878Z
+- Tempo total: 50090 ms (50.09 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `06fdb700-1039-4214-b856-170e75c17338`
+- Status: READY
+- Iniciado em: 2026-11-02T20:40:00.225Z
+- Finalizado em: 2026-11-02T20:40:00.263Z
+- Duracao: 38 ms (0.04 s)
+- Detalhes: {"storagePath":"question-chat-e2e/9df3b11e-d426-4542-aa57-1d1982f17f01/pH e pOH.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `06fdb700-1039-4214-b856-170e75c17338`
+- Status: READY
+- Iniciado em: 2026-11-02T20:40:00.268Z
+- Finalizado em: 2026-11-02T20:40:42.079Z
+- Duracao: 41810 ms (41.81 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `06fdb700-1039-4214-b856-170e75c17338`
+- Status: READY
+- Iniciado em: 2026-11-02T20:40:42.090Z
+- Finalizado em: 2026-11-02T20:40:43.248Z
+- Duracao: 1158 ms (1.16 s)
+- Detalhes: {"chunkCount":3,"batchCount":1,"status":"READY"}
+
+### Etapa: GENERATE_TOPIC_PROFILE
+- Documento ID: `06fdb700-1039-4214-b856-170e75c17338`
+- Status: READY
+- Iniciado em: 2026-11-02T20:40:43.253Z
+- Finalizado em: 2026-11-02T20:40:49.999Z
+- Duracao: 6746 ms (6.75 s)
+- Detalhes: {"profileScope":"TOPIC"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `06fdb700-1039-4214-b856-170e75c17338`
+- Status: READY
+- Iniciado em: 2026-11-02T20:40:50.013Z
+- Finalizado em: 2026-11-02T20:40:50.021Z
+- Duracao: 8 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: pH e pOH.pdf
+- Documento ID: `06fdb700-1039-4214-b856-170e75c17338`
+- Status: READY
+- Iniciado em: 2026-11-02T20:40:00.009Z
+- Finalizado em: 2026-11-02T20:40:50.024Z
+- Tempo total: 50015 ms (50.02 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:41:02.092Z
+- Finalizado em: 2026-11-02T20:41:02.123Z
+- Duracao: 31 ms (0.03 s)
+- Detalhes: {"storagePath":"question-chat-e2e/9df3b11e-d426-4542-aa57-1d1982f17f01/Quimica-3.pdf"}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:41:02.131Z
+- Finalizado em: 2026-11-02T20:41:04.230Z
+- Duracao: 2099 ms (2.10 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:41:04.241Z
+- Finalizado em: 2026-11-02T20:41:04.303Z
+- Duracao: 62 ms (0.06 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:41:04.310Z
+- Finalizado em: 2026-11-02T20:41:04.405Z
+- Duracao: 95 ms (0.10 s)
+- Detalhes: {"blockCount":22,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:41:04.408Z
+- Finalizado em: 2026-11-02T20:41:04.563Z
+- Duracao: 155 ms (0.15 s)
+- Detalhes: {"chunkCount":16,"blockCount":22,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:41:04.567Z
+- Finalizado em: 2026-11-02T20:41:04.579Z
+- Duracao: 12 ms (0.01 s)
+- Detalhes: {"chunkCount":0,"batchCount":0,"status":"READY"}
+
+### Questao 01
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `4457f283-d342-4130-91f3-9ce105a14835`
+- Chunks: 3
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `7f8cbbf0-56fd-4e59-b144-6957db7335ee`
+- Tempo da candidata: 7642 ms (7.64 s)
+- Registrado em: 2026-11-02T20:41:12.266Z
+
+### Questao 02
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `501b8699-3a29-46bd-8461-a5ec0510e4d0`
+- Chunks: 4
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `43ba37f7-28af-4ffd-964c-74dea99e9fd1`
+- Tempo da candidata: 14120 ms (14.12 s)
+- Registrado em: 2026-11-02T20:41:26.386Z
+
+### Questao 03
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `4268712b-b49a-4477-8265-6c02802c3ae2`
+- Chunks: 5
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `18908fd8-be60-41da-92ef-a6841e7ca163`
+- Tempo da candidata: 14699 ms (14.70 s)
+- Registrado em: 2026-11-02T20:41:41.086Z
+
+### Questao 04
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `9f0aac59-4d8a-43b9-a37b-d556cdee1527`
+- Chunks: 6
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `c4d36802-ad58-4166-b6b6-93210e0be418`
+- Tempo da candidata: 8420 ms (8.42 s)
+- Registrado em: 2026-11-02T20:41:49.506Z
+
+### Questao 05
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `037afd9d-8da9-4326-800a-a1a24c4eff3a`
+- Chunks: 7
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `484a4785-1290-48e1-9fe7-61b64f8abc90`
+- Tempo da candidata: 11897 ms (11.90 s)
+- Registrado em: 2026-11-02T20:42:01.403Z
+
+### Questao 06
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `26b5c952-8b40-4fba-a5c9-32f32efa401f`
+- Chunks: 8
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `1277ac7a-ba99-4d73-ba6e-209d89b2607d`
+- Tempo da candidata: 7766 ms (7.77 s)
+- Registrado em: 2026-11-02T20:42:09.170Z
+
+### Questao 07
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `f2e7a4a4-2df4-47a1-8c2d-877aeb346955`
+- Chunks: 9
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `45d40e40-5937-450b-92b1-c4bcef417db4`
+- Tempo da candidata: 16504 ms (16.50 s)
+- Registrado em: 2026-11-02T20:42:25.675Z
+
+### Questao 08
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `b2fe72ed-96b6-4fbf-b45a-9c785aca3b21`
+- Chunks: 10
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `76073ecf-21c5-440d-9552-ccafc6ca46a9`
+- Tempo da candidata: 19453 ms (19.45 s)
+- Registrado em: 2026-11-02T20:42:45.128Z
+
+### Questao 09
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `d28e2155-930c-487b-b033-7b6e75e2a97f`
+- Chunks: 11
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `574d9de4-a90a-4f24-b4a1-5f0115228713`
+- Tempo da candidata: 32332 ms (32.33 s)
+- Registrado em: 2026-11-02T20:43:17.462Z
+
+### Questao 10
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Source block: `4fd0e96c-012b-4819-b1f0-4150c079ee8d`
+- Chunks: 12
+- Resultado: SALVA: completa
+- Medicao iniciada: inicio da persistencia deterministica
+- Question ID: `73101f89-4574-4f57-a32c-df6f9b683a4e`
+- Tempo da candidata: 23268 ms (23.27 s)
+- Registrado em: 2026-11-02T20:43:40.730Z
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:41:04.583Z
+- Finalizado em: 2026-11-02T20:43:44.270Z
+- Duracao: 159687 ms (159.69 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: MATCH_ANSWER_KEYS
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:43:44.276Z
+- Finalizado em: 2026-11-02T20:43:44.284Z
+- Duracao: 7 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:43:44.293Z
+- Finalizado em: 2026-11-02T20:43:44.300Z
+- Duracao: 7 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `9ff3a570-9c14-42a6-8a89-ed9a53fa58bc`
+- Status: READY
+- Iniciado em: 2026-11-02T20:41:01.882Z
+- Finalizado em: 2026-11-02T20:43:44.302Z
+- Tempo total: 162420 ms (162.42 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:27:58.166Z
+- Finalizado em: 2026-11-05T18:28:01.009Z
+- Duracao: 2843 ms (2.84 s)
+- Job ID: `manual-local-reprocess`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/09b3435f-61da-4917-ac77-49792892eb09-pH_e_pOH.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:28:01.012Z
+- Finalizado em: 2026-11-05T18:28:01.655Z
+- Duracao: 643 ms (0.64 s)
+- Job ID: `manual-local-reprocess`
+- Detalhes: {"parser":"DOCLING","sizeBytes":640413}
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+## Documento: pH e pOH.pdf
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:27:55.377Z
+- Finalizado em: 2026-11-05T18:28:01.951Z
+- Tempo total: 6574 ms (6.57 s)
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:32:34.937Z
+- Finalizado em: 2026-11-05T18:32:36.440Z
+- Duracao: 1503 ms (1.50 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903553943`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:32:36.416Z
+- Finalizado em: 2026-11-05T18:32:37.988Z
+- Duracao: 1572 ms (1.57 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903554791`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/09b3435f-61da-4917-ac77-49792892eb09-pH_e_pOH.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:32:36.443Z
+- Finalizado em: 2026-11-05T18:32:48.711Z
+- Duracao: 12268 ms (12.27 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903553943`
+- Detalhes: {"parser":"DOCLING","sizeBytes":203229}
+- Erro: 
+Invalid `prisma.documentParseRun.upsert()` invocation:
+
+
+Unique constraint failed on the fields: (`id`)
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:32:33.951Z
+- Finalizado em: 2026-11-05T18:32:49.972Z
+- Tempo total: 16021 ms (16.02 s)
+- Erro: 
+Invalid `prisma.documentParseRun.upsert()` invocation:
+
+
+Unique constraint failed on the fields: (`id`)
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:32:50.959Z
+- Finalizado em: 2026-11-05T18:32:55.363Z
+- Duracao: 4404 ms (4.40 s)
+- Tentativa: 1
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903555658`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/bb712cf9-df8d-427b-93ff-0d233aaed56d-Atkins.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:32:37.990Z
+- Finalizado em: 2026-11-05T18:33:22.922Z
+- Duracao: 44932 ms (44.93 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903554791`
+- Detalhes: {"parser":"DOCLING","sizeBytes":640413}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:33:22.923Z
+- Finalizado em: 2026-11-05T18:33:28.325Z
+- Duracao: 5402 ms (5.40 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903554791`
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:33:28.478Z
+- Finalizado em: 2026-11-05T18:33:30.024Z
+- Duracao: 1546 ms (1.55 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903554791`
+- Detalhes: {"status":"READY"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:33:32.503Z
+- Finalizado em: 2026-11-05T18:33:32.719Z
+- Duracao: 216 ms (0.22 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903553943`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:33:32.732Z
+- Finalizado em: 2026-11-05T18:33:34.590Z
+- Duracao: 1858 ms (1.86 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903553943`
+- Detalhes: {"parser":"DOCLING","sizeBytes":203229}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:33:34.591Z
+- Finalizado em: 2026-11-05T18:33:35.290Z
+- Duracao: 698 ms (0.70 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903553943`
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:33:35.474Z
+- Finalizado em: 2026-11-05T18:33:38.153Z
+- Duracao: 2679 ms (2.68 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903553943`
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:33:38.460Z
+- Finalizado em: 2026-11-05T18:33:40.631Z
+- Duracao: 2171 ms (2.17 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903553943`
+- Erro: Substituicao abortada: bloco referenciado 78ec5bad-a460-479c-9b5f-16c7cf61ccc7 nao pode ser remapeado com seguranca.
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:33:31.477Z
+- Finalizado em: 2026-11-05T18:33:40.791Z
+- Tempo total: 9314 ms (9.31 s)
+- Erro: Substituicao abortada: bloco referenciado 78ec5bad-a460-479c-9b5f-16c7cf61ccc7 nao pode ser remapeado com seguranca.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:34:00.025Z
+- Finalizado em: 2026-11-05T18:34:00.213Z
+- Duracao: 188 ms (0.19 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903638439`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:38:21.815Z
+- Finalizado em: 2026-11-05T18:38:22.415Z
+- Duracao: 600 ms (0.60 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903900847`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/09b3435f-61da-4917-ac77-49792892eb09-pH_e_pOH.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:38:23.178Z
+- Finalizado em: 2026-11-05T18:38:23.458Z
+- Duracao: 280 ms (0.28 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903901674`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:38:22.418Z
+- Finalizado em: 2026-11-05T18:38:53.889Z
+- Duracao: 31471 ms (31.47 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903900847`
+- Detalhes: {"parser":"DOCLING","sizeBytes":640413}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:38:53.890Z
+- Finalizado em: 2026-11-05T18:38:57.878Z
+- Duracao: 3988 ms (3.99 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903900847`
+- Detalhes: {"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:38:58.719Z
+- Finalizado em: 2026-11-05T18:39:00.774Z
+- Duracao: 2055 ms (2.06 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903900847`
+- Detalhes: {"status":"READY"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:38:23.460Z
+- Finalizado em: 2026-11-05T18:39:02.817Z
+- Duracao: 39357 ms (39.36 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903901674`
+- Detalhes: {"parser":"DOCLING","sizeBytes":203229}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:02.819Z
+- Finalizado em: 2026-11-05T18:39:03.387Z
+- Duracao: 568 ms (0.57 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903901674`
+- Detalhes: {"status":"READY"}
+
+### Etapa: DETECT_BLOCKS
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:01.053Z
+- Finalizado em: 2026-11-05T18:39:03.394Z
+- Duracao: 2341 ms (2.34 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903900847`
+- Detalhes: {"blockCount":1,"status":"READY"}
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:39:03.957Z
+- Finalizado em: 2026-11-05T18:39:05.364Z
+- Duracao: 1407 ms (1.41 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903901674`
+- Erro: Reextracao abortada: o texto do documento mudou e ha questoes ou flashcards vinculados; a versao anterior foi preservada.
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:38:21.677Z
+- Finalizado em: 2026-11-05T18:39:05.523Z
+- Tempo total: 43846 ms (43.85 s)
+- Erro: Reextracao abortada: o texto do documento mudou e ha questoes ou flashcards vinculados; a versao anterior foi preservada.
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:03.536Z
+- Finalizado em: 2026-11-05T18:39:06.783Z
+- Duracao: 3246 ms (3.25 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903900847`
+- Detalhes: {"chunkCount":1,"blockCount":1,"status":"READY"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:07.556Z
+- Finalizado em: 2026-11-05T18:39:07.710Z
+- Duracao: 154 ms (0.15 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903901674`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:39:06.921Z
+- Finalizado em: 2026-11-05T18:39:08.659Z
+- Duracao: 1738 ms (1.74 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903900847`
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:07.712Z
+- Finalizado em: 2026-11-05T18:39:09.206Z
+- Duracao: 1494 ms (1.49 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903901674`
+- Detalhes: {"parser":"DOCLING","sizeBytes":203229}
+
+### Etapa: EXTRACT_TEXT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:09.207Z
+- Finalizado em: 2026-11-05T18:39:09.721Z
+- Duracao: 514 ms (0.51 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903901674`
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:09.216Z
+- Finalizado em: 2026-11-05T18:39:09.722Z
+- Duracao: 506 ms (0.51 s)
+- Tentativa: 1
+- Job ID: `reprocess-09b3435f-61da-4917-ac77-49792892eb09-1793903900847`
+- Detalhes: {"status":"READY"}
+
+## Documento: pH e pOH.pdf
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-05T18:38:20.855Z
+- Finalizado em: 2026-11-05T18:39:09.862Z
+- Tempo total: 49007 ms (49.01 s)
+- Falhas nao bloqueantes: 1
+
+### Etapa: NORMALIZE_TEXT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:39:10.397Z
+- Finalizado em: 2026-11-05T18:39:11.758Z
+- Duracao: 1361 ms (1.36 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903901674`
+- Erro: Reextracao abortada: o texto do documento mudou e ha questoes ou flashcards vinculados; a versao anterior foi preservada.
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:39:06.606Z
+- Finalizado em: 2026-11-05T18:39:11.897Z
+- Tempo total: 5291 ms (5.29 s)
+- Erro: Reextracao abortada: o texto do documento mudou e ha questoes ou flashcards vinculados; a versao anterior foi preservada.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:44.533Z
+- Finalizado em: 2026-11-05T18:39:45.996Z
+- Duracao: 1463 ms (1.46 s)
+- Tentativa: 1
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903983554`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/bb712cf9-df8d-427b-93ff-0d233aaed56d-Atkins.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:44:38.308Z
+- Finalizado em: 2026-11-05T18:44:38.895Z
+- Duracao: 587 ms (0.59 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903638439`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:44:38.898Z
+- Finalizado em: 2026-11-05T18:44:39.625Z
+- Duracao: 727 ms (0.73 s)
+- Tentativa: 1
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903638439`
+- Detalhes: {"parser":"DOCLING","sizeBytes":203229}
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:44:36.317Z
+- Finalizado em: 2026-11-05T18:44:39.940Z
+- Tempo total: 3623 ms (3.62 s)
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:44:40.911Z
+- Finalizado em: 2026-11-05T18:44:42.258Z
+- Duracao: 1347 ms (1.35 s)
+- Tentativa: 1
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903555658`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/bb712cf9-df8d-427b-93ff-0d233aaed56d-Atkins.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:39:46.043Z
+- Finalizado em: 2026-11-05T18:44:47.799Z
+- Duracao: 301756 ms (301.76 s)
+- Tentativa: 1
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903983554`
+- Detalhes: {"parser":"DOCLING","sizeBytes":26577361}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:44:42.425Z
+- Finalizado em: 2026-11-05T18:44:47.802Z
+- Duracao: 5377 ms (5.38 s)
+- Tentativa: 1
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903555658`
+- Detalhes: {"parser":"DOCLING","sizeBytes":26577361}
+
+## Documento: Atkins.pdf
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:39:43.562Z
+- Finalizado em: 2026-11-05T18:44:48.084Z
+- Tempo total: 304522 ms (304.52 s)
+- Erro: parser_fallback_required
+
+## Documento: Atkins.pdf
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:44:39.948Z
+- Finalizado em: 2026-11-05T18:44:48.097Z
+- Tempo total: 8149 ms (8.15 s)
+- Erro: parser_fallback_required
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-05T18:44:49.045Z
+- Finalizado em: 2026-11-05T18:44:49.180Z
+- Duracao: 135 ms (0.14 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903638439`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:44:49.187Z
+- Finalizado em: 2026-11-05T18:44:49.660Z
+- Duracao: 473 ms (0.47 s)
+- Tentativa: 2
+- Job ID: `reprocess-1b4b6678-38d3-44ee-b111-0d0b14d58f69-1793903638439`
+- Detalhes: {"parser":"DOCLING","sizeBytes":203229}
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:44:48.090Z
+- Finalizado em: 2026-11-05T18:44:49.937Z
+- Tempo total: 1847 ms (1.85 s)
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:44:50.120Z
+- Finalizado em: 2026-11-05T18:44:51.393Z
+- Duracao: 1273 ms (1.27 s)
+- Tentativa: 2
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903983554`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/bb712cf9-df8d-427b-93ff-0d233aaed56d-Atkins.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:44:51.688Z
+- Finalizado em: 2026-11-05T18:44:52.860Z
+- Duracao: 1172 ms (1.17 s)
+- Tentativa: 2
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903555658`
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/bb712cf9-df8d-427b-93ff-0d233aaed56d-Atkins.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:44:51.542Z
+- Finalizado em: 2026-11-05T18:49:53.014Z
+- Duracao: 301472 ms (301.47 s)
+- Tentativa: 2
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903983554`
+- Detalhes: {"parser":"DOCLING","sizeBytes":26577361}
+
+## Documento: Atkins.pdf
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:44:49.178Z
+- Finalizado em: 2026-11-05T18:49:53.314Z
+- Tempo total: 304136 ms (304.14 s)
+- Erro: parser_fallback_required
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-05T18:44:52.928Z
+- Finalizado em: 2026-11-05T18:49:53.571Z
+- Duracao: 300643 ms (300.64 s)
+- Tentativa: 2
+- Job ID: `reprocess-bb712cf9-df8d-427b-93ff-0d233aaed56d-1793903555658`
+- Detalhes: {"parser":"DOCLING","sizeBytes":26577361}
+
+## Documento: Atkins.pdf
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: FAILED
+- Iniciado em: 2026-11-05T18:44:49.943Z
+- Finalizado em: 2026-11-05T18:49:53.861Z
+- Tempo total: 303918 ms (303.92 s)
+- Erro: parser_fallback_required
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:50:39.250Z
+- Finalizado em: 2026-11-06T17:50:39.299Z
+- Duracao: 49 ms (0.05 s)
+- Detalhes: {"storagePath":"question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7/Quimica-3.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:50:39.304Z
+- Finalizado em: 2026-11-06T17:54:33.631Z
+- Duracao: 234327 ms (234.33 s)
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:54:33.644Z
+- Finalizado em: 2026-11-06T17:54:36.548Z
+- Duracao: 2904 ms (2.90 s)
+- Detalhes: {"chunkCount":13,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:54:36.552Z
+- Finalizado em: 2026-11-06T17:54:48.122Z
+- Duracao: 11571 ms (11.57 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:54:48.134Z
+- Finalizado em: 2026-11-06T17:54:48.143Z
+- Duracao: 8 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-06T17:50:38.978Z
+- Finalizado em: 2026-11-06T17:54:48.146Z
+- Tempo total: 249168 ms (249.17 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `f0a899ad-4923-4f03-a066-bf673ed0dfd3`
+- Status: READY
+- Iniciado em: 2026-11-06T17:55:00.636Z
+- Finalizado em: 2026-11-06T17:55:00.728Z
+- Duracao: 92 ms (0.09 s)
+- Detalhes: {"storagePath":"question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7/Estequiometria.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `f0a899ad-4923-4f03-a066-bf673ed0dfd3`
+- Status: FAILED
+- Iniciado em: 2026-11-06T17:55:00.743Z
+- Finalizado em: 2026-11-06T17:55:01.373Z
+- Duracao: 630 ms (0.63 s)
+- Erro: O Doc-chunker recusou a solicitação.
+
+## Documento: Estequiometria.pdf
+- Documento ID: `f0a899ad-4923-4f03-a066-bf673ed0dfd3`
+- Status: FAILED
+- Iniciado em: 2026-11-06T17:55:00.342Z
+- Finalizado em: 2026-11-06T17:55:01.386Z
+- Tempo total: 1044 ms (1.04 s)
+- Erro: O Doc-chunker recusou a solicitação.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `8a0c08d3-f624-45ff-b790-ba888c412fd8`
+- Status: READY
+- Iniciado em: 2026-11-06T17:55:13.805Z
+- Finalizado em: 2026-11-06T17:55:13.847Z
+- Duracao: 42 ms (0.04 s)
+- Detalhes: {"storagePath":"question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7/pH e pOH.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `8a0c08d3-f624-45ff-b790-ba888c412fd8`
+- Status: FAILED
+- Iniciado em: 2026-11-06T17:55:13.851Z
+- Finalizado em: 2026-11-06T17:55:13.991Z
+- Duracao: 140 ms (0.14 s)
+- Erro: O Doc-chunker recusou a solicitação.
+
+## Documento: pH e pOH.pdf
+- Documento ID: `8a0c08d3-f624-45ff-b790-ba888c412fd8`
+- Status: FAILED
+- Iniciado em: 2026-11-06T17:55:13.573Z
+- Finalizado em: 2026-11-06T17:55:14.007Z
+- Tempo total: 434 ms (0.43 s)
+- Erro: O Doc-chunker recusou a solicitação.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:55:26.246Z
+- Finalizado em: 2026-11-06T17:55:26.287Z
+- Duracao: 41 ms (0.04 s)
+- Detalhes: {"storagePath":"question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7/Quimica-3.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:55:26.291Z
+- Finalizado em: 2026-11-06T17:55:26.350Z
+- Duracao: 59 ms (0.06 s)
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:55:26.369Z
+- Finalizado em: 2026-11-06T17:55:26.384Z
+- Duracao: 15 ms (0.01 s)
+- Detalhes: {"chunkCount":0,"batchCount":0,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:55:26.387Z
+- Finalizado em: 2026-11-06T17:55:39.879Z
+- Duracao: 13492 ms (13.49 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T17:55:39.889Z
+- Finalizado em: 2026-11-06T17:55:39.897Z
+- Duracao: 8 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-06T17:55:26.020Z
+- Finalizado em: 2026-11-06T17:55:39.900Z
+- Tempo total: 13880 ms (13.88 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: READY
+- Iniciado em: 2026-11-06T18:40:53.580Z
+- Finalizado em: 2026-11-06T18:40:53.640Z
+- Duracao: 60 ms (0.06 s)
+- Detalhes: {"storagePath":"question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7/Quimica-3.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: FAILED
+- Iniciado em: 2026-11-06T18:40:53.644Z
+- Finalizado em: 2026-11-06T18:44:10.579Z
+- Duracao: 196935 ms (196.94 s)
+- Erro: Substituicao de chunks abortada: ha fontes de flashcards, questoes, spans ou assets visuais vinculados; chunks foram preservados.
+
+## Documento: Quimica-3.pdf
+- Documento ID: `406fa2b0-db4f-40dd-a1e7-6243c87b02d6`
+- Status: FAILED
+- Iniciado em: 2026-11-06T18:40:53.349Z
+- Finalizado em: 2026-11-06T18:44:10.614Z
+- Tempo total: 197265 ms (197.26 s)
+- Erro: Substituicao de chunks abortada: ha fontes de flashcards, questoes, spans ou assets visuais vinculados; chunks foram preservados.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `6bc0b047-4dcc-4d5c-97f2-39a15fff8dda`
+- Status: READY
+- Iniciado em: 2026-11-06T18:54:49.706Z
+- Finalizado em: 2026-11-06T18:54:49.766Z
+- Duracao: 60 ms (0.06 s)
+- Detalhes: {"storagePath":"question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7/Quimica-3.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `6bc0b047-4dcc-4d5c-97f2-39a15fff8dda`
+- Status: READY
+- Iniciado em: 2026-11-06T18:54:49.771Z
+- Finalizado em: 2026-11-06T18:58:36.884Z
+- Duracao: 227113 ms (227.11 s)
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `6bc0b047-4dcc-4d5c-97f2-39a15fff8dda`
+- Status: READY
+- Iniciado em: 2026-11-06T18:58:36.909Z
+- Finalizado em: 2026-11-06T18:58:38.781Z
+- Duracao: 1873 ms (1.87 s)
+- Detalhes: {"chunkCount":13,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `6bc0b047-4dcc-4d5c-97f2-39a15fff8dda`
+- Status: READY
+- Iniciado em: 2026-11-06T18:58:38.788Z
+- Finalizado em: 2026-11-06T18:58:47.360Z
+- Duracao: 8572 ms (8.57 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `6bc0b047-4dcc-4d5c-97f2-39a15fff8dda`
+- Status: READY
+- Iniciado em: 2026-11-06T18:58:47.374Z
+- Finalizado em: 2026-11-06T18:58:47.383Z
+- Duracao: 9 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3-QA-2026-11-06.pdf
+- Documento ID: `6bc0b047-4dcc-4d5c-97f2-39a15fff8dda`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-06T18:54:49.458Z
+- Finalizado em: 2026-11-06T18:58:47.386Z
+- Tempo total: 237928 ms (237.93 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-06T19:35:28.473Z
+- Finalizado em: 2026-11-06T19:35:28.548Z
+- Duracao: 75 ms (0.07 s)
+- Detalhes: {"storagePath":"Quimica-3.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-06T19:35:28.630Z
+- Finalizado em: 2026-11-06T19:38:53.119Z
+- Duracao: 204488 ms (204.49 s)
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-06T19:38:53.131Z
+- Finalizado em: 2026-11-06T19:38:54.332Z
+- Duracao: 1201 ms (1.20 s)
+- Detalhes: {"chunkCount":13,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-06T19:38:54.335Z
+- Finalizado em: 2026-11-06T19:39:05.889Z
+- Duracao: 11554 ms (11.55 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: READY
+- Iniciado em: 2026-11-06T19:39:05.900Z
+- Finalizado em: 2026-11-06T19:39:05.908Z
+- Duracao: 8 ms (0.01 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `e2000000-0000-4000-8000-000000000012`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-06T19:35:28.214Z
+- Finalizado em: 2026-11-06T19:39:05.911Z
+- Tempo total: 217697 ms (217.70 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Status: READY
+- Iniciado em: 2026-11-07T13:48:33.347Z
+- Finalizado em: 2026-11-07T13:48:33.381Z
+- Duracao: 34 ms (0.03 s)
+- Tentativa: 1
+- Job ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Detalhes: {"storagePath":"fbbd6b6e-601f-4b79-9ff5-aeef57c13eb1/c341df97-c4ae-4e80-ac07-e0b602fa4096/ffbb133f-f9a4-42a9-9ce2-a22a5d620ad0/6c122cb8-5d63-4994-9e32-a8620f219a90/e7799997-bf3c-406b-9671-5b92346a3cd5-Quimica-3.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Status: READY
+- Iniciado em: 2026-11-07T13:48:33.385Z
+- Finalizado em: 2026-11-07T13:51:34.435Z
+- Duracao: 181050 ms (181.05 s)
+- Tentativa: 1
+- Job ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Status: READY
+- Iniciado em: 2026-11-07T13:51:34.447Z
+- Finalizado em: 2026-11-07T13:51:37.791Z
+- Duracao: 3345 ms (3.35 s)
+- Tentativa: 1
+- Job ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Detalhes: {"chunkCount":13,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Status: READY
+- Iniciado em: 2026-11-07T13:51:37.795Z
+- Finalizado em: 2026-11-07T13:54:01.698Z
+- Duracao: 143903 ms (143.90 s)
+- Tentativa: 1
+- Job ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Status: READY
+- Iniciado em: 2026-11-07T13:54:01.711Z
+- Finalizado em: 2026-11-07T13:54:01.718Z
+- Duracao: 8 ms (0.01 s)
+- Tentativa: 1
+- Job ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `e7799997-bf3c-406b-9671-5b92346a3cd5`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-07T13:48:33.304Z
+- Finalizado em: 2026-11-07T13:54:01.722Z
+- Tempo total: 328418 ms (328.42 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Status: READY
+- Iniciado em: 2026-11-07T14:12:53.346Z
+- Finalizado em: 2026-11-07T14:12:53.373Z
+- Duracao: 27 ms (0.03 s)
+- Tentativa: 1
+- Job ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Detalhes: {"storagePath":"ce0ff270-377d-4439-a5a9-78a2aee86c9e/2e96883f-5c20-4b61-b296-e916db81cebd/61c2aa13-e304-4808-bc55-5f6445229b2e/963760d7-d3cb-427d-8980-8be0bb263245/1eb0267e-67cb-4af2-b89e-ad81b498fa2d-Quimica-3.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Status: READY
+- Iniciado em: 2026-11-07T14:12:53.376Z
+- Finalizado em: 2026-11-07T14:16:09.230Z
+- Duracao: 195853 ms (195.85 s)
+- Tentativa: 1
+- Job ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Status: READY
+- Iniciado em: 2026-11-07T14:16:09.243Z
+- Finalizado em: 2026-11-07T14:16:13.253Z
+- Duracao: 4010 ms (4.01 s)
+- Tentativa: 1
+- Job ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Detalhes: {"chunkCount":13,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Status: READY
+- Iniciado em: 2026-11-07T14:16:13.256Z
+- Finalizado em: 2026-11-07T14:49:12.237Z
+- Duracao: 1978981 ms (1978.98 s)
+- Tentativa: 1
+- Job ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Status: READY
+- Iniciado em: 2026-11-07T14:49:12.250Z
+- Finalizado em: 2026-11-07T14:49:12.258Z
+- Duracao: 8 ms (0.01 s)
+- Tentativa: 1
+- Job ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `1eb0267e-67cb-4af2-b89e-ad81b498fa2d`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-07T14:12:53.309Z
+- Finalizado em: 2026-11-07T14:49:12.261Z
+- Tempo total: 2178952 ms (2178.95 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T20:55:28.486Z
+- Finalizado em: 2026-11-07T20:55:30.778Z
+- Duracao: 2292 ms (2.29 s)
+- Tentativa: 1
+- Job ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/30ed90f4-4101-4ad5-9dfd-36dcdd893465/3d98228f-dc31-47fc-9f83-7c3d6203efd2/05c93c66-a887-4eb8-92e9-0764a0aeb1e9-questionsQuimica.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T20:55:30.783Z
+- Finalizado em: 2026-11-07T20:59:06.382Z
+- Duracao: 215599 ms (215.60 s)
+- Tentativa: 1
+- Job ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T20:59:07.072Z
+- Finalizado em: 2026-11-07T20:59:26.994Z
+- Duracao: 19922 ms (19.92 s)
+- Tentativa: 1
+- Job ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Detalhes: {"chunkCount":13,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: FAILED
+- Iniciado em: 2026-11-07T20:59:27.166Z
+- Finalizado em: 2026-11-07T21:01:01.435Z
+- Duracao: 94269 ms (94.27 s)
+- Tentativa: 1
+- Job ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Erro: terminated
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T21:01:01.809Z
+- Finalizado em: 2026-11-07T21:04:08.125Z
+- Duracao: 186316 ms (186.32 s)
+- Tentativa: 1
+- Job ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Detalhes: {"parser":"DOCLING","sizeBytes":599300}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T21:04:08.281Z
+- Finalizado em: 2026-11-07T21:04:08.702Z
+- Duracao: 421 ms (0.42 s)
+- Tentativa: 1
+- Job ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Detalhes: {"status":"READY"}
+
+## Documento: questionsQuimica.pdf
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-07T20:55:25.957Z
+- Finalizado em: 2026-11-07T21:04:08.841Z
+- Tempo total: 522884 ms (522.88 s)
+- Falhas nao bloqueantes: 1
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T21:11:53.435Z
+- Finalizado em: 2026-11-07T21:11:54.569Z
+- Duracao: 1134 ms (1.13 s)
+- Tentativa: 1
+- Job ID: `reprocess-05c93c66-a887-4eb8-92e9-0764a0aeb1e9-1794085911352`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/30ed90f4-4101-4ad5-9dfd-36dcdd893465/3d98228f-dc31-47fc-9f83-7c3d6203efd2/05c93c66-a887-4eb8-92e9-0764a0aeb1e9-questionsQuimica.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T21:11:54.571Z
+- Finalizado em: 2026-11-07T21:11:56.292Z
+- Duracao: 1721 ms (1.72 s)
+- Tentativa: 1
+- Job ID: `reprocess-05c93c66-a887-4eb8-92e9-0764a0aeb1e9-1794085911352`
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T21:11:56.845Z
+- Finalizado em: 2026-11-07T21:11:57.402Z
+- Duracao: 557 ms (0.56 s)
+- Tentativa: 1
+- Job ID: `reprocess-05c93c66-a887-4eb8-92e9-0764a0aeb1e9-1794085911352`
+- Detalhes: {"chunkCount":0,"batchCount":0,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T21:11:57.542Z
+- Finalizado em: 2026-11-07T21:20:36.539Z
+- Duracao: 518996 ms (519.00 s)
+- Tentativa: 1
+- Job ID: `reprocess-05c93c66-a887-4eb8-92e9-0764a0aeb1e9-1794085911352`
+- Detalhes: {"status":"READY"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T21:20:37.097Z
+- Finalizado em: 2026-11-07T21:20:39.342Z
+- Duracao: 2245 ms (2.25 s)
+- Tentativa: 1
+- Job ID: `reprocess-05c93c66-a887-4eb8-92e9-0764a0aeb1e9-1794085911352`
+- Detalhes: {"parser":"DOCLING","sizeBytes":599300}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: READY
+- Iniciado em: 2026-11-07T21:20:39.532Z
+- Finalizado em: 2026-11-07T21:20:40.051Z
+- Duracao: 519 ms (0.52 s)
+- Tentativa: 1
+- Job ID: `reprocess-05c93c66-a887-4eb8-92e9-0764a0aeb1e9-1794085911352`
+- Detalhes: {"status":"READY"}
+
+## Documento: questionsQuimica.pdf
+- Documento ID: `05c93c66-a887-4eb8-92e9-0764a0aeb1e9`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-07T21:11:51.358Z
+- Finalizado em: 2026-11-07T21:20:40.225Z
+- Tempo total: 528867 ms (528.87 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Status: READY
+- Iniciado em: 2026-11-07T21:33:10.383Z
+- Finalizado em: 2026-11-07T21:33:12.462Z
+- Duracao: 2079 ms (2.08 s)
+- Tentativa: 1
+- Job ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/d52e7912-2ab5-4153-8d0c-fa6f6cb9b714/094e0502-7fec-42c5-ac51-43f5cf4294e6-Quimica-3.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Status: READY
+- Iniciado em: 2026-11-07T21:33:29.131Z
+- Finalizado em: 2026-11-07T21:33:30.359Z
+- Duracao: 1228 ms (1.23 s)
+- Tentativa: 1
+- Job ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/6da2be2c-12b6-42fa-ae21-ac750fae8aed/b7992578-6530-4203-a505-e8c7815a652d-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Status: READY
+- Iniciado em: 2026-11-07T21:33:12.464Z
+- Finalizado em: 2026-11-07T21:36:35.104Z
+- Duracao: 202640 ms (202.64 s)
+- Tentativa: 1
+- Job ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Detalhes: {"chunkCount":13,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Status: READY
+- Iniciado em: 2026-11-07T21:36:35.661Z
+- Finalizado em: 2026-11-07T21:36:45.029Z
+- Duracao: 9368 ms (9.37 s)
+- Tentativa: 1
+- Job ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Detalhes: {"chunkCount":13,"batchCount":1,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Status: READY
+- Iniciado em: 2026-11-07T21:33:30.362Z
+- Finalizado em: 2026-11-07T21:38:11.308Z
+- Duracao: 280946 ms (280.95 s)
+- Tentativa: 1
+- Job ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Detalhes: {"chunkCount":8,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Status: READY
+- Iniciado em: 2026-11-07T21:38:11.854Z
+- Finalizado em: 2026-11-07T21:38:18.429Z
+- Duracao: 6575 ms (6.58 s)
+- Tentativa: 1
+- Job ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Detalhes: {"chunkCount":8,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Status: READY
+- Iniciado em: 2026-11-07T21:38:18.567Z
+- Finalizado em: 2026-11-07T21:44:48.356Z
+- Duracao: 389789 ms (389.79 s)
+- Tentativa: 1
+- Job ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Detalhes: {"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Status: READY
+- Iniciado em: 2026-11-07T21:36:45.172Z
+- Finalizado em: 2026-11-07T21:45:10.892Z
+- Duracao: 505720 ms (505.72 s)
+- Tentativa: 1
+- Job ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Detalhes: {"status":"READY"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Status: READY
+- Iniciado em: 2026-11-07T21:44:48.791Z
+- Finalizado em: 2026-11-07T21:46:44.349Z
+- Duracao: 115558 ms (115.56 s)
+- Tentativa: 1
+- Job ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Detalhes: {"parser":"DOCLING","sizeBytes":203229}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Status: READY
+- Iniciado em: 2026-11-07T21:46:44.504Z
+- Finalizado em: 2026-11-07T21:46:44.921Z
+- Duracao: 417 ms (0.42 s)
+- Tentativa: 1
+- Job ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Detalhes: {"status":"READY"}
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `b7992578-6530-4203-a505-e8c7815a652d`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-07T21:33:27.284Z
+- Finalizado em: 2026-11-07T21:46:45.066Z
+- Tempo total: 797782 ms (797.78 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T21:46:46.045Z
+- Finalizado em: 2026-11-07T21:46:48.030Z
+- Duracao: 1985 ms (1.99 s)
+- Tentativa: 1
+- Job ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Status: READY
+- Iniciado em: 2026-11-07T21:45:11.317Z
+- Finalizado em: 2026-11-07T21:49:54.778Z
+- Duracao: 283461 ms (283.46 s)
+- Tentativa: 1
+- Job ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Detalhes: {"parser":"DOCLING","sizeBytes":599300}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Status: READY
+- Iniciado em: 2026-11-07T21:49:54.982Z
+- Finalizado em: 2026-11-07T21:49:55.598Z
+- Duracao: 616 ms (0.62 s)
+- Tentativa: 1
+- Job ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Detalhes: {"status":"READY"}
+
+## Documento: Quimica-3.pdf
+- Documento ID: `094e0502-7fec-42c5-ac51-43f5cf4294e6`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-07T21:33:08.405Z
+- Finalizado em: 2026-11-07T21:49:55.737Z
+- Tempo total: 1007332 ms (1007.33 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T21:46:48.046Z
+- Finalizado em: 2026-11-07T21:51:50.491Z
+- Duracao: 302445 ms (302.44 s)
+- Tentativa: 1
+- Job ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Erro: Não foi possível validar o pacote visual do Doc-chunker.
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T21:46:45.072Z
+- Finalizado em: 2026-11-07T21:51:50.695Z
+- Tempo total: 305623 ms (305.62 s)
+- Erro: Não foi possível validar o pacote visual do Doc-chunker.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T21:51:57.352Z
+- Finalizado em: 2026-11-07T21:51:59.126Z
+- Duracao: 1774 ms (1.77 s)
+- Tentativa: 2
+- Job ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T21:51:59.143Z
+- Finalizado em: 2026-11-07T21:57:01.997Z
+- Duracao: 302854 ms (302.85 s)
+- Tentativa: 2
+- Job ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Erro: Não foi possível validar o pacote visual do Doc-chunker.
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T21:51:55.739Z
+- Finalizado em: 2026-11-07T21:57:02.248Z
+- Tempo total: 306509 ms (306.51 s)
+- Erro: Não foi possível validar o pacote visual do Doc-chunker.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T21:57:14.199Z
+- Finalizado em: 2026-11-07T21:57:15.287Z
+- Duracao: 1088 ms (1.09 s)
+- Tentativa: 3
+- Job ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T21:57:15.307Z
+- Finalizado em: 2026-11-07T22:02:18.409Z
+- Duracao: 303102 ms (303.10 s)
+- Tentativa: 3
+- Job ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Erro: Não foi possível validar o pacote visual do Doc-chunker.
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T21:57:12.310Z
+- Finalizado em: 2026-11-07T22:02:18.617Z
+- Tempo total: 306307 ms (306.31 s)
+- Erro: Não foi possível validar o pacote visual do Doc-chunker.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T22:27:58.213Z
+- Finalizado em: 2026-11-07T22:27:59.314Z
+- Duracao: 1101 ms (1.10 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794090476459`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T22:27:59.330Z
+- Finalizado em: 2026-11-07T22:38:21.635Z
+- Duracao: 622305 ms (622.30 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794090476459`
+- Erro: 
+Invalid `prisma.documentVisualAsset.findUnique()` invocation:
+
+
+Transaction API error: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5498 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T22:27:56.467Z
+- Finalizado em: 2026-11-07T22:38:21.839Z
+- Tempo total: 625372 ms (625.37 s)
+- Erro: 
+Invalid `prisma.documentVisualAsset.findUnique()` invocation:
+
+
+Transaction API error: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5498 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T22:38:24.296Z
+- Finalizado em: 2026-11-07T22:38:27.170Z
+- Duracao: 2874 ms (2.87 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794090476459`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T22:38:27.180Z
+- Finalizado em: 2026-11-07T22:49:04.319Z
+- Duracao: 637139 ms (637.14 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794090476459`
+- Erro: 
+Invalid `prisma.documentVisualAsset.findUnique()` invocation:
+
+
+Transaction API error: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5338 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T22:38:22.846Z
+- Finalizado em: 2026-11-07T22:49:04.464Z
+- Tempo total: 641618 ms (641.62 s)
+- Erro: 
+Invalid `prisma.documentVisualAsset.findUnique()` invocation:
+
+
+Transaction API error: A query cannot be executed on an expired transaction. The timeout for this transaction was 5000 ms, however 5338 ms passed since the start of the transaction. Consider increasing the interactive transaction timeout or doing less work in the transaction.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T22:56:20.067Z
+- Finalizado em: 2026-11-07T22:56:22.100Z
+- Duracao: 2033 ms (2.03 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T22:56:22.112Z
+- Finalizado em: 2026-11-07T23:07:02.034Z
+- Duracao: 639922 ms (639.92 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"chunkCount":58,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:07:02.614Z
+- Finalizado em: 2026-11-07T23:07:19.370Z
+- Duracao: 16756 ms (16.76 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"chunkCount":58,"batchCount":1,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T23:07:19.515Z
+- Finalizado em: 2026-11-07T23:10:26.457Z
+- Duracao: 186942 ms (186.94 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Erro: anchorText da figura não corresponde exatamente ao texto da questão.
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:10:26.877Z
+- Finalizado em: 2026-11-07T23:15:29.463Z
+- Duracao: 302586 ms (302.59 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"parser":"DOCLING","sizeBytes":4287492}
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T22:56:17.551Z
+- Finalizado em: 2026-11-07T23:15:29.869Z
+- Tempo total: 1152318 ms (1152.32 s)
+- Erro: parser_fallback_required
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:15:32.228Z
+- Finalizado em: 2026-11-07T23:15:33.915Z
+- Duracao: 1687 ms (1.69 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:15:33.928Z
+- Finalizado em: 2026-11-07T23:15:35.959Z
+- Duracao: 2031 ms (2.03 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"chunkCount":58,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:15:36.517Z
+- Finalizado em: 2026-11-07T23:15:37.085Z
+- Duracao: 567 ms (0.57 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"chunkCount":0,"batchCount":0,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T23:15:37.226Z
+- Finalizado em: 2026-11-07T23:16:34.703Z
+- Duracao: 57477 ms (57.48 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Erro: anchorText da figura não corresponde exatamente ao texto da questão.
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:16:35.085Z
+- Finalizado em: 2026-11-07T23:19:02.776Z
+- Duracao: 147691 ms (147.69 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"parser":"DOCLING","sizeBytes":4287492}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:19:02.926Z
+- Finalizado em: 2026-11-07T23:19:03.334Z
+- Duracao: 408 ms (0.41 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794092177543`
+- Detalhes: {"status":"READY"}
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-07T23:15:30.917Z
+- Finalizado em: 2026-11-07T23:19:03.472Z
+- Tempo total: 212555 ms (212.56 s)
+- Falhas nao bloqueantes: 1
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:27:15.194Z
+- Finalizado em: 2026-11-07T23:27:16.625Z
+- Duracao: 1431 ms (1.43 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:27:16.640Z
+- Finalizado em: 2026-11-07T23:27:18.934Z
+- Duracao: 2294 ms (2.29 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"chunkCount":58,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:27:19.575Z
+- Finalizado em: 2026-11-07T23:27:20.260Z
+- Duracao: 685 ms (0.69 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"chunkCount":0,"batchCount":0,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-07T23:27:20.434Z
+- Finalizado em: 2026-11-08T12:31:54.073Z
+- Duracao: 6295639 ms (6295.64 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"status":"READY"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-08T12:31:54.687Z
+- Finalizado em: 2026-11-08T12:31:56.039Z
+- Duracao: 1352 ms (1.35 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"parser":"DOCLING","sizeBytes":4287492}
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-07T23:27:13.032Z
+- Finalizado em: 2026-11-08T12:31:56.370Z
+- Tempo total: 47083338 ms (47083.34 s)
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-08T12:36:43.731Z
+- Finalizado em: 2026-11-08T12:36:44.933Z
+- Duracao: 1202 ms (1.20 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-08T12:36:44.940Z
+- Finalizado em: 2026-11-08T12:36:46.793Z
+- Duracao: 1853 ms (1.85 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"chunkCount":58,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-08T12:36:47.345Z
+- Finalizado em: 2026-11-08T12:36:47.907Z
+- Duracao: 562 ms (0.56 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"chunkCount":0,"batchCount":0,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-08T12:36:48.045Z
+- Finalizado em: 2026-11-08T12:39:21.969Z
+- Duracao: 153925 ms (153.93 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"status":"READY"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-08T12:39:22.589Z
+- Finalizado em: 2026-11-08T12:39:24.024Z
+- Duracao: 1435 ms (1.44 s)
+- Tentativa: 1
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"parser":"DOCLING","sizeBytes":4287492}
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-08T12:36:41.818Z
+- Finalizado em: 2026-11-08T12:39:24.428Z
+- Tempo total: 162610 ms (162.61 s)
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-08T12:39:26.782Z
+- Finalizado em: 2026-11-08T12:39:29.279Z
+- Duracao: 2497 ms (2.50 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"storagePath":"97dd759a-1cca-4dc8-aedd-76ae8e420f22/a7dd3bc4-5f21-448d-95d1-3ba174e0d141/9331f7d3-e9fa-4117-9d7c-42626d1b12ab/00c69f46-1089-474e-ac39-54c365a0bde8/afa89696-4eb0-472f-8290-198ef02fc4f4-Arquivo_Provas_Antigas_-_primeiras_30_pa_ginas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-08T12:39:29.285Z
+- Finalizado em: 2026-11-08T12:39:32.567Z
+- Duracao: 3282 ms (3.28 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"chunkCount":58,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-08T12:39:33.211Z
+- Finalizado em: 2026-11-08T12:39:33.768Z
+- Duracao: 556 ms (0.56 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"chunkCount":0,"batchCount":0,"status":"READY"}
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: READY
+- Iniciado em: 2026-11-08T12:39:33.910Z
+- Finalizado em: 2026-11-08T12:41:54.954Z
+- Duracao: 141045 ms (141.04 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"status":"READY"}
+
+### Etapa: PARSE_DOCLING
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-08T12:41:55.569Z
+- Finalizado em: 2026-11-08T12:41:56.679Z
+- Duracao: 1110 ms (1.11 s)
+- Tentativa: 2
+- Job ID: `reprocess-afa89696-4eb0-472f-8290-198ef02fc4f4-1794094033025`
+- Detalhes: {"parser":"DOCLING","sizeBytes":4287492}
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+## Documento: Arquivo Provas Antigas - primeiras 30 páginas.pdf
+- Documento ID: `afa89696-4eb0-472f-8290-198ef02fc4f4`
+- Status: FAILED
+- Iniciado em: 2026-11-08T12:39:25.516Z
+- Finalizado em: 2026-11-08T12:41:57.105Z
+- Tempo total: 151589 ms (151.59 s)
+- Erro: Parser respondeu HTTP 404. upstreamCode=NOT_FOUND upstreamMessage=Endpoint inexistente.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: READY
+- Iniciado em: 2026-11-09T19:09:32.057Z
+- Finalizado em: 2026-11-09T19:09:32.643Z
+- Duracao: 586 ms (0.59 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/fde21b66-f097-42e6-83cc-80fc7267c71b-Tabela_Perio_dica.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: READY
+- Iniciado em: 2026-11-09T19:09:32.649Z
+- Finalizado em: 2026-11-09T19:09:52.359Z
+- Duracao: 19710 ms (19.71 s)
+- Detalhes: {"chunkCount":1,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:09:52.948Z
+- Finalizado em: 2026-11-09T19:09:55.187Z
+- Duracao: 2239 ms (2.24 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+## Documento: Tabela Periódica.pdf
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:09:30.243Z
+- Finalizado em: 2026-11-09T19:09:55.327Z
+- Tempo total: 25084 ms (25.08 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-09T19:10:21.518Z
+- Finalizado em: 2026-11-09T19:10:22.147Z
+- Duracao: 629 ms (0.63 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: READY
+- Iniciado em: 2026-11-09T19:11:40.476Z
+- Finalizado em: 2026-11-09T19:11:41.205Z
+- Duracao: 729 ms (0.73 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/fde21b66-f097-42e6-83cc-80fc7267c71b-Tabela_Perio_dica.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: READY
+- Iniciado em: 2026-11-09T19:11:41.227Z
+- Finalizado em: 2026-11-09T19:11:42.389Z
+- Duracao: 1162 ms (1.16 s)
+- Detalhes: {"chunkCount":1,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: READY
+- Iniciado em: 2026-11-09T19:11:43.000Z
+- Finalizado em: 2026-11-09T19:11:45.897Z
+- Duracao: 2898 ms (2.90 s)
+- Detalhes: {"chunkCount":1,"batchCount":1,"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: READY
+- Iniciado em: 2026-11-09T19:11:46.611Z
+- Finalizado em: 2026-11-09T19:11:47.027Z
+- Duracao: 416 ms (0.42 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Tabela Periódica.pdf
+- Documento ID: `fde21b66-f097-42e6-83cc-80fc7267c71b`
+- Status: READY
+- Iniciado em: 2026-11-09T19:11:36.269Z
+- Finalizado em: 2026-11-09T19:11:47.168Z
+- Tempo total: 10899 ms (10.90 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-09T19:10:22.153Z
+- Finalizado em: 2026-11-09T19:12:35.388Z
+- Duracao: 133235 ms (133.24 s)
+- Detalhes: {"chunkCount":8,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:12:35.941Z
+- Finalizado em: 2026-11-09T19:12:37.641Z
+- Duracao: 1700 ms (1.70 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:10:19.612Z
+- Finalizado em: 2026-11-09T19:12:37.781Z
+- Tempo total: 138169 ms (138.17 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-09T19:12:38.760Z
+- Finalizado em: 2026-11-09T19:12:39.191Z
+- Duracao: 431 ms (0.43 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/09b3435f-61da-4917-ac77-49792892eb09-pH_e_pOH.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-09T19:12:58.435Z
+- Finalizado em: 2026-11-09T19:12:58.866Z
+- Duracao: 431 ms (0.43 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/777b6fbb-7c08-4abb-8e9f-025f52a1b275/1b4b6678-38d3-44ee-b111-0d0b14d58f69-Simulado_Pedro_Lucas.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-09T19:12:58.892Z
+- Finalizado em: 2026-11-09T19:13:00.346Z
+- Duracao: 1454 ms (1.45 s)
+- Detalhes: {"chunkCount":8,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:00.903Z
+- Finalizado em: 2026-11-09T19:13:05.196Z
+- Duracao: 4294 ms (4.29 s)
+- Detalhes: {"chunkCount":8,"batchCount":1,"status":"READY"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-09T19:12:39.193Z
+- Finalizado em: 2026-11-09T19:13:24.198Z
+- Duracao: 45006 ms (45.01 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:13:24.749Z
+- Finalizado em: 2026-11-09T19:13:26.287Z
+- Duracao: 1538 ms (1.54 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+## Documento: pH e pOH.pdf
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:12:37.782Z
+- Finalizado em: 2026-11-09T19:13:26.426Z
+- Tempo total: 48644 ms (48.64 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:27.380Z
+- Finalizado em: 2026-11-09T19:13:27.788Z
+- Duracao: 408 ms (0.41 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/b6645c4e-625c-4bfb-afa8-b0e5751278ab-Fundamentos_de_Qui_mica_Orga_nica.pdf"}
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:40.129Z
+- Finalizado em: 2026-11-09T19:13:40.637Z
+- Duracao: 508 ms (0.51 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/09b3435f-61da-4917-ac77-49792892eb09-pH_e_pOH.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:40.648Z
+- Finalizado em: 2026-11-09T19:13:42.096Z
+- Duracao: 1448 ms (1.45 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:42.673Z
+- Finalizado em: 2026-11-09T19:13:46.516Z
+- Duracao: 3843 ms (3.84 s)
+- Detalhes: {"chunkCount":3,"batchCount":1,"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:47.218Z
+- Finalizado em: 2026-11-09T19:13:47.681Z
+- Duracao: 463 ms (0.46 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: pH e pOH.pdf
+- Documento ID: `09b3435f-61da-4917-ac77-49792892eb09`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:37.978Z
+- Finalizado em: 2026-11-09T19:13:47.825Z
+- Tempo total: 9847 ms (9.85 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:57.800Z
+- Finalizado em: 2026-11-09T19:13:59.232Z
+- Duracao: 1432 ms (1.43 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/bb712cf9-df8d-427b-93ff-0d233aaed56d-Atkins.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:27.789Z
+- Finalizado em: 2026-11-09T19:14:26.039Z
+- Duracao: 58250 ms (58.25 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:14:26.603Z
+- Finalizado em: 2026-11-09T19:14:28.174Z
+- Duracao: 1571 ms (1.57 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+## Documento: Fundamentos de Química Orgânica.pdf
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:13:26.426Z
+- Finalizado em: 2026-11-09T19:14:28.365Z
+- Tempo total: 61939 ms (61.94 s)
+- Erro: OpenRouter embeddings falhou (401): User not found.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: READY
+- Iniciado em: 2026-11-09T19:14:45.699Z
+- Finalizado em: 2026-11-09T19:14:46.223Z
+- Duracao: 524 ms (0.52 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/b6645c4e-625c-4bfb-afa8-b0e5751278ab-Fundamentos_de_Qui_mica_Orga_nica.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: READY
+- Iniciado em: 2026-11-09T19:14:46.238Z
+- Finalizado em: 2026-11-09T19:14:47.704Z
+- Duracao: 1466 ms (1.47 s)
+- Detalhes: {"chunkCount":3,"status":"READY"}
+
+### Etapa: GENERATE_CHUNK_EMBEDDINGS
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: READY
+- Iniciado em: 2026-11-09T19:14:48.317Z
+- Finalizado em: 2026-11-09T19:14:55.864Z
+- Duracao: 7547 ms (7.55 s)
+- Detalhes: {"chunkCount":3,"batchCount":1,"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: READY
+- Iniciado em: 2026-11-09T19:14:56.579Z
+- Finalizado em: 2026-11-09T19:14:57.006Z
+- Duracao: 427 ms (0.43 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Fundamentos de Química Orgânica.pdf
+- Documento ID: `b6645c4e-625c-4bfb-afa8-b0e5751278ab`
+- Status: READY
+- Iniciado em: 2026-11-09T19:14:43.592Z
+- Finalizado em: 2026-11-09T19:14:57.149Z
+- Tempo total: 13557 ms (13.56 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: EXTRACT_QUESTIONS_TO_PENDING_REVIEW
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-09T19:13:05.342Z
+- Finalizado em: 2026-11-09T19:16:51.551Z
+- Duracao: 226209 ms (226.21 s)
+- Detalhes: {"status":"READY"}
+
+### Etapa: READY_FOR_REVIEW
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: READY
+- Iniciado em: 2026-11-09T19:16:52.112Z
+- Finalizado em: 2026-11-09T19:16:52.533Z
+- Duracao: 421 ms (0.42 s)
+- Detalhes: {"status":"READY"}
+
+## Documento: Simulado Pedro Lucas.pdf
+- Documento ID: `1b4b6678-38d3-44ee-b111-0d0b14d58f69`
+- Status: PARTIAL_SUCCESS
+- Iniciado em: 2026-11-09T19:12:56.616Z
+- Finalizado em: 2026-11-09T19:16:52.683Z
+- Tempo total: 236067 ms (236.07 s)
+- Falhas nao bloqueantes: 0
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:13:59.331Z
+- Finalizado em: 2026-11-09T19:19:02.359Z
+- Duracao: 303028 ms (303.03 s)
+- Erro: Não foi possível conectar ao Doc-chunker.
+
+## Documento: Atkins.pdf
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:13:55.621Z
+- Finalizado em: 2026-11-09T19:19:02.564Z
+- Tempo total: 306943 ms (306.94 s)
+- Erro: Não foi possível conectar ao Doc-chunker.
+
+### Etapa: DOWNLOAD_DOCUMENT
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: READY
+- Iniciado em: 2026-11-09T19:20:53.289Z
+- Finalizado em: 2026-11-09T19:20:55.955Z
+- Duracao: 2666 ms (2.67 s)
+- Detalhes: {"storagePath":"b798621c-ea25-43a4-9cc7-7ce0f0450bed/8cfcf6be-4746-4ce0-82a4-b1443439161f/b40a138b-64cd-483c-a3cb-51eaead07543/whole-subject/bb712cf9-df8d-427b-93ff-0d233aaed56d-Atkins.pdf"}
+
+### Etapa: CREATE_RETRIEVAL_CHUNKS
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:20:56.029Z
+- Finalizado em: 2026-11-09T21:48:20.397Z
+- Duracao: 8844368 ms (8844.37 s)
+- Erro: Não foi possível conectar ao Doc-chunker.
+
+## Documento: Atkins.pdf
+- Documento ID: `bb712cf9-df8d-427b-93ff-0d233aaed56d`
+- Status: FAILED
+- Iniciado em: 2026-11-09T19:20:50.779Z
+- Finalizado em: 2026-11-09T21:48:20.602Z
+- Tempo total: 8849823 ms (8849.82 s)
+- Erro: Não foi possível conectar ao Doc-chunker.
+

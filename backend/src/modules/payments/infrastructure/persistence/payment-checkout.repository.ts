@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 import { prisma } from '../../../../lib/prisma.js';
+import { legacyStudentSubscriptionEnvironmentFilter } from '../../../access/infrastructure/legacy-access-environment.js';
 import type { HostedCheckoutResult } from '../../domain/ports/payment-provider.port.js';
 import { calculateAnnualPriceCents } from '../../domain/annual-plan-price.js';
 
@@ -73,7 +74,7 @@ export class PaymentCheckoutRepository implements CreateCheckoutRepository {
   async hasActiveSubscription(studentId: string, monitorId: string) {
     const [payment, legacy, billing] = await Promise.all([
       prisma.paymentSubscriptionItem.findFirst({ where: { studentId, monitorId, status: 'ACTIVE', subscription: { status: { in: ['ACTIVE', 'TRIALING'] } } }, select: { id: true } }),
-      prisma.studentSubscription.findFirst({ where: { studentId, monitorId, status: 'active' }, select: { id: true } }),
+      prisma.studentSubscription.findFirst({ where: { studentId, monitorId, status: 'active', ...legacyStudentSubscriptionEnvironmentFilter() }, select: { id: true } }),
       prisma.billingSubscriptionItem.findFirst({ where: { monitorId, status: 'ACTIVE', subscription: { studentId, status: { in: ['ACTIVE', 'TRIALING'] } } }, select: { id: true } }),
     ]);
     return Boolean(payment || legacy || billing);

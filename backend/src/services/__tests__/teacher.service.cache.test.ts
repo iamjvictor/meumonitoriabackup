@@ -1,18 +1,17 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { TeacherService } from '../teacher.service.js';
+import { PublicTeacherProfileCache } from '../../cache/public-teacher-profile.cache.js';
 
 const profile = { pageSlug: 'joao-professor', fullName: 'João Professor', monitors: [] };
 
 test('retorna o perfil público do cache sem consultar o repositório', async () => {
   let repositoryCalls = 0;
+  const cache = new PublicTeacherProfileCache();
+  await cache.set(profile.pageSlug, profile);
   const service = new TeacherService({
     async findPublicBySlug() { repositoryCalls += 1; return profile; },
-  } as any, {
-    async get<T>() { return profile as T; },
-    async set() {},
-    async invalidate() {},
-  } as any);
+  } as any, cache);
 
   const result = await service.findPublicProfile(profile.pageSlug);
 
@@ -22,20 +21,16 @@ test('retorna o perfil público do cache sem consultar o repositório', async ()
 
 test('consulta o repositório e preenche o cache quando há miss', async () => {
   let repositoryCalls = 0;
-  let cachedProfile: unknown = null;
+  const cache = new PublicTeacherProfileCache();
   const service = new TeacherService({
     async findPublicBySlug() { repositoryCalls += 1; return profile; },
-  } as any, {
-    async get<T>() { return null as T | null; },
-    async set(_slug: string, value: unknown) { cachedProfile = value; },
-    async invalidate() {},
-  } as any);
+  } as any, cache);
 
   const result = await service.findPublicProfile(profile.pageSlug);
 
   assert.deepEqual(result, profile);
   assert.equal(repositoryCalls, 1);
-  assert.deepEqual(cachedProfile, profile);
+  assert.deepEqual(await cache.get(profile.pageSlug), profile);
 });
 
 test('fornece no perfil público o preço anual calculado com 20% de desconto', async () => {

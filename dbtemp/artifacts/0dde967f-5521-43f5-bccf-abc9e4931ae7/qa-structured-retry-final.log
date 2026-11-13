@@ -1,0 +1,462 @@
+{"event":"qa_final_cleanup","database":"127.0.0.1:56322","removed":12,"readyChunks":13}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'document_questions',
+  maxTokens: 4000,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 1597
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 12243,
+  responseChars: 10463,
+  promptTokens: 45983,
+  completionTokens: 3330,
+  totalTokens: 49313,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 0
+}
+{
+  "event": "qa_final_extraction_run",
+  "run": 1,
+  "llmCalls": 1,
+  "persistedByService": 10,
+  "count": 10,
+  "questions": [
+    {
+      "id": "46b4fecd-c66e-4cfb-823e-3b02a11895ba",
+      "number": "01",
+      "ordinal": 0,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": [
+        {
+          "id": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+          "page": 15,
+          "itemRef": "#/pictures/16",
+          "readingOrder": 93
+        }
+      ]
+    },
+    {
+      "id": "ec2f6f37-42e3-48e8-a29f-191811b01910",
+      "number": "02",
+      "ordinal": 1,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    },
+    {
+      "id": "b70f7684-c08e-4953-a7f8-bc6ece19ea45",
+      "number": "03",
+      "ordinal": 2,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": [
+        {
+          "id": "da7ef2e0-84d1-4705-a635-cf38987838dd",
+          "page": 5,
+          "itemRef": "#/pictures/7",
+          "readingOrder": 41
+        }
+      ]
+    },
+    {
+      "id": "d2c5c1aa-1035-4511-96c4-b544d25b99ee",
+      "number": "04",
+      "ordinal": 3,
+      "status": "PENDING_REVIEW",
+      "corrections": [
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "10^{7}",
+          "field": "statement",
+          "before": "10 7",
+          "itemRef": "pypdfium2:page-6:chars-397-399",
+          "pageNumber": 6
+        },
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "s^{-1}",
+          "field": "statement",
+          "before": "s - 1",
+          "itemRef": "pypdfium2:page-6:chars-403-405",
+          "pageNumber": 6
+        },
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "s^{-1}",
+          "field": "statement",
+          "before": "s - 1",
+          "itemRef": "pypdfium2:page-6:chars-403-405",
+          "pageNumber": 6
+        }
+      ],
+      "visuals": [],
+      "formula": "4,0 x 10^{7} s^{-1}"
+    },
+    {
+      "id": "0e2a07de-7513-42c6-8b27-abd5cd7df7ac",
+      "number": "05",
+      "ordinal": 4,
+      "status": "PENDING_REVIEW",
+      "corrections": [
+        {
+          "code": "FORMULA_FRACTION_RESTORED_FROM_ORIGINAL_TEXT",
+          "after": "\\frac{1}{2} O_2",
+          "field": "statement",
+          "before": "\\lceil _ { 2 } O _ { 2 }",
+          "itemRef": "#/texts/73",
+          "pageNumber": 7
+        }
+      ],
+      "visuals": [],
+      "formula": "\\frac{1}{2} O_2 \\left ( g \\right ) \\quad "
+    },
+    {
+      "id": "b413bbd5-ef50-4f29-a80a-c4a64cc7d12c",
+      "number": "06",
+      "ordinal": 5,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    },
+    {
+      "id": "784888cb-2dbd-4a48-b648-150d95e8b281",
+      "number": "07",
+      "ordinal": 6,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": [
+        {
+          "id": "55752fa8-00f2-4283-bdbb-f82fe4321205",
+          "page": 9,
+          "itemRef": "#/pictures/12",
+          "readingOrder": 66
+        },
+        {
+          "id": "eac043ce-7c78-4590-aa93-6d10a6306d22",
+          "page": 9,
+          "itemRef": "#/pictures/13",
+          "readingOrder": 68
+        }
+      ]
+    },
+    {
+      "id": "bc1c3561-4a28-44df-82bf-a9a11c89994c",
+      "number": "08",
+      "ordinal": 7,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    },
+    {
+      "id": "b085c120-ec37-40ea-8cac-774f162378e4",
+      "number": "09",
+      "ordinal": 8,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    },
+    {
+      "id": "19e576b0-27cf-4c8c-8ecc-d0d85124a4fc",
+      "number": "10",
+      "ordinal": 9,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    }
+  ]
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'document_questions',
+  maxTokens: 4000,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 1597
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 12299,
+  responseChars: 9128,
+  promptTokens: 46362,
+  completionTokens: 2989,
+  totalTokens: 49351,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 0
+}
+{
+  "event": "qa_final_extraction_run",
+  "run": 2,
+  "llmCalls": 1,
+  "persistedByService": 10,
+  "count": 10,
+  "questions": [
+    {
+      "id": "46b4fecd-c66e-4cfb-823e-3b02a11895ba",
+      "number": "01",
+      "ordinal": 0,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": [
+        {
+          "id": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+          "page": 15,
+          "itemRef": "#/pictures/16",
+          "readingOrder": 93
+        }
+      ]
+    },
+    {
+      "id": "ec2f6f37-42e3-48e8-a29f-191811b01910",
+      "number": "02",
+      "ordinal": 1,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    },
+    {
+      "id": "b70f7684-c08e-4953-a7f8-bc6ece19ea45",
+      "number": "03",
+      "ordinal": 2,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": [
+        {
+          "id": "da7ef2e0-84d1-4705-a635-cf38987838dd",
+          "page": 5,
+          "itemRef": "#/pictures/7",
+          "readingOrder": 41
+        }
+      ]
+    },
+    {
+      "id": "d2c5c1aa-1035-4511-96c4-b544d25b99ee",
+      "number": "04",
+      "ordinal": 3,
+      "status": "PENDING_REVIEW",
+      "corrections": [
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "10^{7}",
+          "field": "statement",
+          "before": "10 7",
+          "itemRef": "pypdfium2:page-6:chars-397-399",
+          "pageNumber": 6
+        },
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "s^{-1}",
+          "field": "statement",
+          "before": "s - 1",
+          "itemRef": "pypdfium2:page-6:chars-403-405",
+          "pageNumber": 6
+        },
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "s^{-1}",
+          "field": "statement",
+          "before": "s - 1",
+          "itemRef": "pypdfium2:page-6:chars-403-405",
+          "pageNumber": 6
+        }
+      ],
+      "visuals": [],
+      "formula": "4,0 x 10^{7} s^{-1}"
+    },
+    {
+      "id": "0e2a07de-7513-42c6-8b27-abd5cd7df7ac",
+      "number": "05",
+      "ordinal": 4,
+      "status": "PENDING_REVIEW",
+      "corrections": [
+        {
+          "code": "FORMULA_FRACTION_RESTORED_FROM_ORIGINAL_TEXT",
+          "after": "\\frac{1}{2} O_2",
+          "field": "statement",
+          "before": "\\lceil _ { 2 } O _ { 2 }",
+          "itemRef": "#/texts/73",
+          "pageNumber": 7
+        }
+      ],
+      "visuals": [],
+      "formula": "\\frac{1}{2} O_2 \\left ( g \\right ) \\quad "
+    },
+    {
+      "id": "b413bbd5-ef50-4f29-a80a-c4a64cc7d12c",
+      "number": "06",
+      "ordinal": 5,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    },
+    {
+      "id": "784888cb-2dbd-4a48-b648-150d95e8b281",
+      "number": "07",
+      "ordinal": 6,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": [
+        {
+          "id": "55752fa8-00f2-4283-bdbb-f82fe4321205",
+          "page": 9,
+          "itemRef": "#/pictures/12",
+          "readingOrder": 66
+        },
+        {
+          "id": "eac043ce-7c78-4590-aa93-6d10a6306d22",
+          "page": 9,
+          "itemRef": "#/pictures/13",
+          "readingOrder": 68
+        }
+      ]
+    },
+    {
+      "id": "bc1c3561-4a28-44df-82bf-a9a11c89994c",
+      "number": "08",
+      "ordinal": 7,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    },
+    {
+      "id": "b085c120-ec37-40ea-8cac-774f162378e4",
+      "number": "09",
+      "ordinal": 8,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    },
+    {
+      "id": "19e576b0-27cf-4c8c-8ecc-d0d85124a4fc",
+      "number": "10",
+      "ordinal": 9,
+      "status": "PENDING_REVIEW",
+      "corrections": [],
+      "visuals": []
+    }
+  ]
+}
+{
+  "event": "qa_final_assertions",
+  "database": "127.0.0.1:56322",
+  "documentId": "406fa2b0-db4f-40dd-a1e7-6243c87b02d6",
+  "run1Count": 10,
+  "run2Count": 10,
+  "sameQuestionIds": true,
+  "duplicateNumbers": [],
+  "allOrdinalsPresent": true,
+  "ordinals": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "q04": [
+    {
+      "id": "d2c5c1aa-1035-4511-96c4-b544d25b99ee",
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\n\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .\nDesenvolvimento e resposta:",
+      "corrections": [
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "10^{7}",
+          "field": "statement",
+          "before": "10 7",
+          "itemRef": "pypdfium2:page-6:chars-397-399",
+          "pageNumber": 6
+        },
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "s^{-1}",
+          "field": "statement",
+          "before": "s - 1",
+          "itemRef": "pypdfium2:page-6:chars-403-405",
+          "pageNumber": 6
+        },
+        {
+          "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+          "after": "s^{-1}",
+          "field": "statement",
+          "before": "s - 1",
+          "itemRef": "pypdfium2:page-6:chars-403-405",
+          "pageNumber": 6
+        }
+      ]
+    }
+  ],
+  "q05": [
+    {
+      "id": "0e2a07de-7513-42c6-8b27-abd5cd7df7ac",
+      "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\frac{1}{2} O_2 \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\n\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nDesenvolvimento e resposta:",
+      "corrections": [
+        {
+          "code": "FORMULA_FRACTION_RESTORED_FROM_ORIGINAL_TEXT",
+          "after": "\\frac{1}{2} O_2",
+          "field": "statement",
+          "before": "\\lceil _ { 2 } O _ { 2 }",
+          "itemRef": "#/texts/73",
+          "pageNumber": 7
+        }
+      ]
+    }
+  ],
+  "contentReview": [
+    {
+      "id": "0e2a07de-7513-42c6-8b27-abd5cd7df7ac",
+      "number": "05",
+      "visualAssets": [],
+      "statement": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\frac{1}{2} O_2 \\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\n\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nDesenvolvimento e resposta:"
+    },
+    {
+      "id": "d2c5c1aa-1035-4511-96c4-b544d25b99ee",
+      "number": "04",
+      "visualAssets": [],
+      "statement": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\n\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x 10^{7} s^{-1} .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ L - 1 ∙ s^{-1} .\nDesenvolvimento e resposta:"
+    },
+    {
+      "id": "46b4fecd-c66e-4cfb-823e-3b02a11895ba",
+      "number": "01",
+      "visualAssets": [
+        {
+          "assetId": "ab66d525-d766-46e7-8cf3-5afe520591d6",
+          "pageNumber": 15,
+          "bbox": [
+            32.65725529508019,
+            631.6829460848469,
+            546.9943189070192,
+            307.0059185155285
+          ],
+          "anchorText": "Indique o grupo e o período da tabela de classificação periódica em que o bromo está localizado.",
+          "readingOrder": 93,
+          "sourceItemRef": "#/pictures/16",
+          "imageUrlPresent": true
+        }
+      ],
+      "statement": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\n\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.\nDesenvolvimento e resposta:"
+    }
+  ],
+  "storage": {
+    "exists": true,
+    "bytes": 121299,
+    "signedUrl": true,
+    "error": null
+  }
+}

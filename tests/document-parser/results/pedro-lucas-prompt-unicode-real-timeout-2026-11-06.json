@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "date": "2026-11-06",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "keySource": "dotenv.parse(backend/.env); secret not recorded",
+    "requestCount": 1,
+    "pageCount": 5,
+    "sourceChars": 8399,
+    "image": {
+      "page": 4,
+      "kind": "synthetic full-page raster rendered locally from original PDF; not Docling crop",
+      "width": 1241,
+      "height": 1754
+    },
+    "maxTokens": 16000,
+    "reasoningEffort": "none",
+    "timeoutMs": 180000
+  },
+  "result": {
+    "status": "TIMEOUT",
+    "errorType": "StructuredCompletionError",
+    "code": "TIMEOUT",
+    "responseCaptured": false,
+    "rawStructuredOutput": null,
+    "reconciledCandidates": null,
+    "usage": null,
+    "cost": null,
+    "databaseWrites": 0
+  }
+}

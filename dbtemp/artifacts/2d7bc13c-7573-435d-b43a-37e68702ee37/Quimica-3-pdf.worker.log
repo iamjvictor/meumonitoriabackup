@@ -1,0 +1,3614 @@
+Worker iniciou o processamento do documento {
+  event: 'monitor.document_processing_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  jobId: undefined,
+  attempt: undefined
+}
+Buscando documento no banco para o worker {
+  event: 'monitor.document_repository_lookup_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4'
+}
+Busca do documento concluida {
+  event: 'monitor.document_repository_lookup_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  found: true,
+  topicLinkCount: 1
+}
+Atualizando documento para PROCESSING {
+  event: 'monitor.document_status_update_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  status: 'PROCESSING'
+}
+Documento atualizado para PROCESSING {
+  event: 'monitor.document_status_update_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  status: 'PROCESSING'
+}
+Etapa auxiliar iniciada {
+  event: 'document_stage.started',
+  timestamp: '2026-11-02T20:10:43.195Z',
+  service: 'worker',
+  request_id: '2b9eefa9-1db7-4793-976d-e83fbe5bee07',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT'
+}
+Etapa auxiliar concluída {
+  event: 'document_stage.completed',
+  timestamp: '2026-11-02T20:10:43.231Z',
+  service: 'worker',
+  request_id: '2b9eefa9-1db7-4793-976d-e83fbe5bee07',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT',
+  outcome: 'completed',
+  duration_ms: 36
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'DOWNLOAD_DOCUMENT',
+  status: 'READY',
+  startedAt: '2026-11-02T20:10:43.195Z',
+  finishedAt: '2026-11-02T20:10:43.231Z',
+  durationMs: 36,
+  attempt: undefined,
+  jobId: undefined,
+  details: {
+    storagePath: 'question-chat-e2e/2d7bc13c-7573-435d-b43a-37e68702ee37/Quimica-3.pdf'
+  }
+}
+doc_chunker_v2.request_started {
+  timestamp: '2026-11-02T20:10:43.243Z',
+  service: 'worker',
+  request_id: '2363f59a-23eb-4bca-9a41-731d5262719e',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  doc_hash: 'dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d',
+  request_bytes: 599300
+}
+doc_chunker_v2.request_completed {
+  timestamp: '2026-11-02T20:11:24.163Z',
+  service: 'worker',
+  request_id: '2363f59a-23eb-4bca-9a41-731d5262719e',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  doc_hash: 'dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d',
+  chunk_count: 13,
+  asset_count: 20,
+  warning_count: 0,
+  response_bytes: 228413,
+  duration_ms: 40920
+}
+Extração visual das questões concluída; extração textual permanece no fluxo atual {
+  event: 'document_visual_assets.question_document_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  parseRunId: 'b93b9489-ddaa-4592-a9cc-8035aac3beb9',
+  assetCount: 20,
+  warningCount: 0,
+  reused: false
+}
+Iniciando extracao de texto da base de conhecimento {
+  event: 'monitor.document_text_extraction_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:11:24.550Z',
+  service: 'worker',
+  request_id: '08c30bf1-2935-4384-a5b5-90a9896955b9',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'EXTRACT_TEXT'
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:11:26.427Z',
+  service: 'worker',
+  request_id: '08c30bf1-2935-4384-a5b5-90a9896955b9',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'EXTRACT_TEXT',
+  outcome: 'completed',
+  duration_ms: 1879,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'EXTRACT_TEXT',
+  status: 'READY',
+  startedAt: '2026-11-02T20:11:24.541Z',
+  finishedAt: '2026-11-02T20:11:26.419Z',
+  durationMs: 1879,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Texto extraido do documento {
+  event: 'monitor.document_text_extraction_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  textChars: 11101,
+  pageCount: 16,
+  parsedPageCount: 16
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:11:26.438Z',
+  service: 'worker',
+  request_id: 'dbb9c738-c3ff-4fd6-9bba-35a4ddb5ea20',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'NORMALIZE_TEXT'
+}
+Avaliando qualidade da extracao de texto {
+  event: 'monitor.document_text_quality_assessment_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  textChars: 11101,
+  pageCount: 16,
+  quality: 'PARTIAL'
+}
+Salvando versao da extracao de texto {
+  event: 'monitor.document_text_persistence_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  extractionVersion: 'pdf-layout-v2-column-aware',
+  pageCount: 16,
+  quality: 'PARTIAL',
+  textChars: 11101,
+  transactionTimeoutMs: 15000
+}
+Versao da extracao de texto salva {
+  event: 'monitor.document_text_persistence_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  extractionVersion: 'pdf-layout-v2-column-aware',
+  pageCount: 16,
+  quality: 'PARTIAL'
+}
+Extracao de texto persistida {
+  event: 'monitor.document_text_extraction_persisted',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  extractionVersion: 'pdf-layout-v2-column-aware',
+  quality: 'PARTIAL',
+  pageCount: 16,
+  durationMs: 38
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:11:26.491Z',
+  service: 'worker',
+  request_id: 'dbb9c738-c3ff-4fd6-9bba-35a4ddb5ea20',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'NORMALIZE_TEXT',
+  outcome: 'completed',
+  duration_ms: 49,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'NORMALIZE_TEXT',
+  status: 'READY',
+  startedAt: '2026-11-02T20:11:26.428Z',
+  finishedAt: '2026-11-02T20:11:26.477Z',
+  durationMs: 49,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:11:26.502Z',
+  service: 'worker',
+  request_id: '968b00bc-7019-4b46-9af6-39bc4a3335fd',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DETECT_BLOCKS'
+}
+Deteccao estrutural iniciada {
+  event: 'monitor.document_blocks_detection_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477'
+}
+Persistindo blocos estruturais do documento {
+  event: 'monitor.document_blocks_persistence_started',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  blockCount: 22,
+  transactionTimeoutMs: 60000
+}
+Blocos estruturais persistidos {
+  event: 'monitor.document_blocks_persistence_completed',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  blockCount: 22,
+  reusedCount: 0
+}
+Deteccao estrutural concluida {
+  event: 'monitor.document_blocks_detection_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  blockCount: 22,
+  typeCounts: { THEORY: 4, SECTION: 8, QUESTION: 10 },
+  reviewCount: 0,
+  durationMs: 86
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:11:26.591Z',
+  service: 'worker',
+  request_id: '968b00bc-7019-4b46-9af6-39bc4a3335fd',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DETECT_BLOCKS',
+  outcome: 'completed',
+  duration_ms: 94,
+  blockCount: 22,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'DETECT_BLOCKS',
+  status: 'READY',
+  startedAt: '2026-11-02T20:11:26.494Z',
+  finishedAt: '2026-11-02T20:11:26.589Z',
+  durationMs: 94,
+  attempt: undefined,
+  jobId: undefined,
+  details: { blockCount: 22, status: 'READY' }
+}
+Blocos estruturais prontos antes do chunking {
+  event: 'monitor.document_blocks_ready_for_chunking',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  blockCount: 22,
+  typeCounts: { THEORY: 4, SECTION: 8, QUESTION: 10 }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:11:26.599Z',
+  service: 'worker',
+  request_id: '6cac6014-b835-4bdc-a47a-fe64372f9ccb',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS'
+}
+Iniciando chunking semantico por blocos {
+  event: 'monitor.document_chunks_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  tokenLimit: 1200,
+  parentTargetTokens: 900,
+  parentMaxTokens: 1200,
+  childTargetTokens: 350,
+  childMaxTokens: 500,
+  overlapTokens: 50,
+  tokenizerVersion: 'gpt-tokenizer-cl100k',
+  embeddingVersion: 'hierarchical-block-tokenized-v3'
+}
+Buscando blocos estruturais para chunking {
+  event: 'monitor.document_blocks_for_chunking_lookup_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477'
+}
+Blocos estruturais carregados para chunking {
+  event: 'monitor.document_blocks_for_chunking_lookup_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  blockCount: 22,
+  blockTypes: { THEORY: 4, SECTION: 8, QUESTION: 10 }
+}
+Blocos divididos em chunks semanticos {
+  event: 'monitor.document_chunks_split_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  blockCount: 22,
+  chunkCount: 16,
+  maxTokenCount: 504,
+  answerKeyChunks: 0,
+  incompleteQuestionBlocksIncluded: 0,
+  skippedBlockCount: 8,
+  skippedBlocksByReason: { UNSUPPORTED_BLOCK_TYPE: 8 },
+  skippedChunkCount: 0,
+  skippedChunksByReason: {},
+  tokenizerVersion: 'gpt-tokenizer-cl100k'
+}
+Preparando chunks para persistencia {
+  event: 'monitor.document_chunks_prepare_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunkCount: 16
+}
+Iniciando transacao dos chunks {
+  event: 'monitor.document_chunks_transaction_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  replacingExistingChunks: true,
+  chunkCount: 16,
+  blockCount: 14
+}
+Transacao dos chunks concluida {
+  event: 'monitor.document_chunks_transaction_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunkCount: 16,
+  blockCount: 14,
+  topicLinkCount: 16,
+  status: 'EMBEDDING_PENDING'
+}
+Chunks semanticos salvos {
+  event: 'monitor.document_chunks_created',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  documentTextId: '95562179-4d9a-43e5-bbe5-9155af731477',
+  blockCount: 22,
+  chunkCount: 16,
+  topicCount: 1,
+  embeddingStatus: 'EMBEDDING_PENDING',
+  durationMs: 162
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:11:26.763Z',
+  service: 'worker',
+  request_id: '6cac6014-b835-4bdc-a47a-fe64372f9ccb',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  outcome: 'completed',
+  duration_ms: 169,
+  chunkCount: 16,
+  blockCount: 22,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  status: 'READY',
+  startedAt: '2026-11-02T20:11:26.592Z',
+  finishedAt: '2026-11-02T20:11:26.761Z',
+  durationMs: 169,
+  attempt: undefined,
+  jobId: undefined,
+  details: { chunkCount: 16, blockCount: 22, status: 'READY' }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:11:26.770Z',
+  service: 'worker',
+  request_id: 'd9e4db95-b57f-4e3d-8bc2-d237a66c4b42',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS'
+}
+Buscando chunks pendentes de embedding {
+  event: 'monitor.embedding_chunks_lookup_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  status: 'EMBEDDING_PENDING'
+}
+Chunks pendentes encontrados {
+  event: 'monitor.embedding_chunks_lookup_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunkCount: 16,
+  chunkIndexes: [
+     0,  1,  2,  3,  4,  5,
+     6,  7,  8,  9, 10, 11,
+    12, 13, 14, 15
+  ]
+}
+Processamento de embeddings iniciado {
+  event: 'monitor.document_embeddings_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunkCount: 16,
+  batchSize: 64
+}
+Atualizando chunks para EMBEDDING_PROCESSING { event: 'monitor.embedding_chunks_status_started', chunkCount: 16 }
+Chunks atualizados para EMBEDDING_PROCESSING {
+  event: 'monitor.embedding_chunks_status_completed',
+  chunkCount: 16,
+  status: 'EMBEDDING_PROCESSING'
+}
+Chunks reservados para processamento de embeddings {
+  event: 'monitor.document_embeddings_chunks_reserved',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunkCount: 16
+}
+Enviando lote de chunks para embeddings {
+  event: 'monitor.document_embeddings_batch_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  batchNumber: 1,
+  batchCount: 16,
+  firstChunkIndex: 0,
+  blockIds: [
+    '2863fd4e-dccf-478b-97a1-28c7538cafd0',
+    '38e7c481-859b-458c-befa-a4a91c4e2202',
+    '9e0ebe48-fcc7-456d-9f3d-d9646bba2fcb',
+    '4cf5713d-e482-4a44-9f17-688f6af90085',
+    'b0d5df4b-0bcf-47f4-a674-05814b9dfd88',
+    '60336fd1-031b-4c25-90fe-f022a49a74ac',
+    'de5f41d7-e300-41c0-a9c4-915be1fae90c',
+    '44da6a79-0759-433f-b225-ee74c86162c2',
+    'cfac4ca4-92ee-435c-b667-c8fdb6442a02',
+    '00787955-3743-4016-af84-e72d19aa89f8',
+    '57e28a6f-1aa4-4507-b6f7-84dac78ea300',
+    'd99b1ae5-1036-4080-9dcd-07cb1bdf8662',
+    'f8221bec-ec9f-4fac-b298-90c2d6bfeb31',
+    '67be2a83-48d7-4bdf-b053-e44004fd4b4a'
+  ]
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 16,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 16,
+  inputChars: 12045
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 9814
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 16,
+  dimensions: 2048,
+  promptTokens: 5063,
+  totalTokens: 5063
+}
+Embeddings do lote recebidos, iniciando persistencia {
+  event: 'monitor.document_embeddings_batch_response_ready',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  batchNumber: 1,
+  embeddingCount: 16,
+  dimensions: 2048
+}
+Persistindo vetores dos chunks {
+  event: 'monitor.embedding_vectors_persist_started',
+  chunkCount: 16,
+  dimensions: 2048,
+  transactionTimeoutMs: 60000
+}
+Vetores dos chunks persistidos {
+  event: 'monitor.embedding_vectors_persist_completed',
+  chunkCount: 16,
+  status: 'READY'
+}
+Lote de embeddings persistido {
+  event: 'monitor.document_embeddings_batch_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  batchNumber: 1,
+  processedCount: 16,
+  totalChunks: 16
+}
+Processamento de embeddings concluido {
+  event: 'monitor.document_embeddings_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunkCount: 16,
+  batchCount: 1,
+  durationMs: 9977
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:11:36.752Z',
+  service: 'worker',
+  request_id: 'd9e4db95-b57f-4e3d-8bc2-d237a66c4b42',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  outcome: 'completed',
+  duration_ms: 9984,
+  chunkCount: 16,
+  batchCount: 1,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  status: 'READY',
+  startedAt: '2026-11-02T20:11:26.764Z',
+  finishedAt: '2026-11-02T20:11:36.748Z',
+  durationMs: 9984,
+  attempt: undefined,
+  jobId: undefined,
+  details: { chunkCount: 16, batchCount: 1, status: 'READY' }
+}
+Chunks da base de conhecimento vetorizados {
+  event: 'monitor.document_embeddings_saved',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunkCount: 16,
+  batchCount: 1,
+  embeddingStatus: 'READY'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:11:36.762Z',
+  service: 'worker',
+  request_id: '21edd69d-cd49-4b2e-bda6-1ef25168f8a4',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW'
+}
+Agente de questoes acionado pelo processamento do documento {
+  event: 'monitor.question_extraction_document_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4'
+}
+Dados carregados para analise de questoes {
+  event: 'monitor.question_extraction_data_loaded',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  readyChunkCount: 16,
+  topicCount: 1,
+  topicIds: [ 'bec7838f-d153-409e-ad04-5bc3c2b4c70c' ]
+}
+Preparando analise com os topicos como categorias {
+  event: 'monitor.question_extraction_topics_as_categories',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  topicCount: 1,
+  topics: [
+    {
+      id: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+      name: 'Química orgânica e soluções',
+      definition: null,
+      classificationGuidance: null,
+      aiDefinition: null,
+      aiClassificationGuidance: null,
+      index: 0
+    }
+  ]
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: '4cf5713d-e482-4a44-9f17-688f6af90085',
+  blockIndex: 5
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: '4cf5713d-e482-4a44-9f17-688f6af90085',
+  questionNumber: '01',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: false,
+  pageStart: 3,
+  pageEnd: 3
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: 'b0d5df4b-0bcf-47f4-a674-05814b9dfd88',
+  blockIndex: 6
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: 'b0d5df4b-0bcf-47f4-a674-05814b9dfd88',
+  questionNumber: '02',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: false,
+  pageStart: 4,
+  pageEnd: 4
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: '60336fd1-031b-4c25-90fe-f022a49a74ac',
+  blockIndex: 8
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: '60336fd1-031b-4c25-90fe-f022a49a74ac',
+  questionNumber: '03',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: false,
+  pageStart: 5,
+  pageEnd: 5
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: 'de5f41d7-e300-41c0-a9c4-915be1fae90c',
+  blockIndex: 9
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: 'de5f41d7-e300-41c0-a9c4-915be1fae90c',
+  questionNumber: '04',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: true,
+  pageStart: 6,
+  pageEnd: 6
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: '44da6a79-0759-433f-b225-ee74c86162c2',
+  blockIndex: 11
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: '44da6a79-0759-433f-b225-ee74c86162c2',
+  questionNumber: '05',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: false,
+  pageStart: 7,
+  pageEnd: 7
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: 'cfac4ca4-92ee-435c-b667-c8fdb6442a02',
+  blockIndex: 12
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: 'cfac4ca4-92ee-435c-b667-c8fdb6442a02',
+  questionNumber: '06',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: false,
+  pageStart: 8,
+  pageEnd: 8
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: '00787955-3743-4016-af84-e72d19aa89f8',
+  blockIndex: 14
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: '00787955-3743-4016-af84-e72d19aa89f8',
+  questionNumber: '07',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: true,
+  pageStart: 9,
+  pageEnd: 9
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: '57e28a6f-1aa4-4507-b6f7-84dac78ea300',
+  blockIndex: 15
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: '57e28a6f-1aa4-4507-b6f7-84dac78ea300',
+  questionNumber: '08',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: true,
+  pageStart: 10,
+  pageEnd: 10
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: 'd99b1ae5-1036-4080-9dcd-07cb1bdf8662',
+  blockIndex: 17
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: 'd99b1ae5-1036-4080-9dcd-07cb1bdf8662',
+  questionNumber: '09',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: false,
+  pageStart: 11,
+  pageEnd: 11
+}
+Bloco QUESTION sem topico principal seguira para revisao {
+  event: 'monitor.question_deterministic_topic_pending_review',
+  blockId: 'f8221bec-ec9f-4fac-b298-90c2d6bfeb31',
+  blockIndex: 18
+}
+Questao estruturada sem LLM {
+  event: 'monitor.question_deterministic_question_extracted',
+  blockId: 'f8221bec-ec9f-4fac-b298-90c2d6bfeb31',
+  questionNumber: '10',
+  kind: 'MULTIPLE_CHOICE',
+  alternativeCount: 0,
+  hasCorrectAnswer: false,
+  hasExplanation: true,
+  pageStart: 12,
+  pageEnd: 12
+}
+Questoes explicitas extraidas por parser deterministico {
+  event: 'monitor.question_deterministic_extraction_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  blockCount: 10,
+  candidateCount: 10
+}
+Persistindo candidatas com concorrencia controlada {
+  event: 'monitor.question_candidates_persistence_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  candidateCount: 10,
+  llmConcurrency: 1,
+  persistenceConcurrency: 1
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 454
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 483
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 140,
+  totalTokens: 140
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2101
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2789,
+  responseChars: 497,
+  promptTokens: 642,
+  completionTokens: 402,
+  totalTokens: 1044,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 695
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4868
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 248,
+  totalTokens: 248
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 6733
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1804,
+  responseChars: 26,
+  promptTokens: 3111,
+  completionTokens: 42,
+  totalTokens: 3153,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_explanation',
+  maxTokens: 900,
+  temperature: 0.2,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 1718
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2610,
+  responseChars: 374,
+  promptTokens: 586,
+  completionTokens: 301,
+  totalTokens: 887,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 3714
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3062,
+  responseChars: 477,
+  promptTokens: 1045,
+  completionTokens: 386,
+  totalTokens: 1431,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5366
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4247,
+  responseChars: 2063,
+  promptTokens: 1424,
+  completionTokens: 785,
+  totalTokens: 2209,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Evidencia da normalizacao limitada ao schema {
+  event: 'monitor.question_normalization_evidence_trimmed',
+  issues: '[{"path":"evidence.0","actualLength":462,"limit":300}]'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: 'dd9d06f0-f85e-4471-8755-d98cb48d686b',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 577
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2408
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 185,
+  totalTokens: 185
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2347
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3331,
+  responseChars: 1008,
+  promptTokens: 720,
+  completionTokens: 601,
+  totalTokens: 1321,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1329
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2306
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 493,
+  totalTokens: 493
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 7838
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1593,
+  responseChars: 22,
+  promptTokens: 3206,
+  completionTokens: 38,
+  totalTokens: 3244,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_explanation',
+  maxTokens: 900,
+  temperature: 0.2,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2475
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2823,
+  responseChars: 466,
+  promptTokens: 843,
+  completionTokens: 331,
+  totalTokens: 1174,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4157
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2962,
+  responseChars: 614,
+  promptTokens: 1249,
+  completionTokens: 411,
+  totalTokens: 1660,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5809
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4764,
+  responseChars: 2711,
+  promptTokens: 1628,
+  completionTokens: 1022,
+  totalTokens: 2650,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: '6dc3fc08-2de9-4d97-a384-35f0d8838fce',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 583
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 678
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 198,
+  totalTokens: 198
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2359
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3408,
+  responseChars: 524,
+  promptTokens: 687,
+  completionTokens: 364,
+  totalTokens: 1051,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 969
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 858
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 341,
+  totalTokens: 341
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 6849
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1731,
+  responseChars: 22,
+  promptTokens: 2444,
+  completionTokens: 40,
+  totalTokens: 2484,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_explanation',
+  maxTokens: 900,
+  temperature: 0.2,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2121
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2736,
+  responseChars: 461,
+  promptTokens: 650,
+  completionTokens: 294,
+  totalTokens: 944,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 3859
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3364,
+  responseChars: 1030,
+  promptTokens: 1092,
+  completionTokens: 520,
+  totalTokens: 1612,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4797
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3313,
+  responseChars: 1229,
+  promptTokens: 1332,
+  completionTokens: 590,
+  totalTokens: 1922,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 3812
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3423,
+  responseChars: 1121,
+  promptTokens: 1079,
+  completionTokens: 601,
+  totalTokens: 1680,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5464
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4281,
+  responseChars: 1961,
+  promptTokens: 1458,
+  completionTokens: 732,
+  totalTokens: 2190,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Evidencia da normalizacao limitada ao schema {
+  event: 'monitor.question_normalization_evidence_trimmed',
+  issues: '[{"path":"evidence.0","actualLength":583,"limit":300}]'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: '1dceb28e-8484-4d29-825b-fe579e3f0598',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 515
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1180
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 187,
+  totalTokens: 187
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2223
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3315,
+  responseChars: 912,
+  promptTokens: 728,
+  completionTokens: 585,
+  totalTokens: 1313,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1171
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2494
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 474,
+  totalTokens: 474
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 8380
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1726,
+  responseChars: 22,
+  promptTokens: 3775,
+  completionTokens: 47,
+  totalTokens: 3822,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4241
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3137,
+  responseChars: 999,
+  promptTokens: 1333,
+  completionTokens: 486,
+  totalTokens: 1819,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5150
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5284,
+  responseChars: 2776,
+  promptTokens: 1535,
+  completionTokens: 1093,
+  totalTokens: 2628,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4147
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2855,
+  responseChars: 639,
+  promptTokens: 1272,
+  completionTokens: 421,
+  totalTokens: 1693,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5799
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5102,
+  responseChars: 2665,
+  promptTokens: 1651,
+  completionTokens: 1043,
+  totalTokens: 2694,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: '2ee58610-ead6-46bd-ba74-c77e2f015148',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 657
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3512
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 217,
+  totalTokens: 217
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2507
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2866,
+  responseChars: 383,
+  promptTokens: 750,
+  completionTokens: 382,
+  totalTokens: 1132,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 784
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 921
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 311,
+  totalTokens: 311
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 7163
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1695,
+  responseChars: 22,
+  promptTokens: 2492,
+  completionTokens: 36,
+  totalTokens: 2528,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_explanation',
+  maxTokens: 900,
+  temperature: 0.2,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2010
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2876,
+  responseChars: 538,
+  promptTokens: 683,
+  completionTokens: 351,
+  totalTokens: 1034,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 3625
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7199,
+  responseChars: 1967,
+  promptTokens: 1122,
+  completionTokens: 1584,
+  totalTokens: 2706,
+  finishReason: 'length',
+  nativeFinishReason: 'MAX_TOKENS'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_review',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: false,
+  code: 'MODEL_OUTPUT_TRUNCATED',
+  statusCode: undefined,
+  validationIssues: 'null'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 3625
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4198,
+  responseChars: 1396,
+  promptTokens: 1122,
+  completionTokens: 667,
+  totalTokens: 1789,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4883
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2828,
+  responseChars: 613,
+  promptTokens: 1482,
+  completionTokens: 373,
+  totalTokens: 1855,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 3625
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7206,
+  responseChars: 1967,
+  promptTokens: 1122,
+  completionTokens: 1584,
+  totalTokens: 2706,
+  finishReason: 'length',
+  nativeFinishReason: 'MAX_TOKENS'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_review',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: false,
+  code: 'MODEL_OUTPUT_TRUNCATED',
+  statusCode: undefined,
+  validationIssues: 'null'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 3625
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4300,
+  responseChars: 1396,
+  promptTokens: 1122,
+  completionTokens: 667,
+  totalTokens: 1789,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5277
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5101,
+  responseChars: 2783,
+  promptTokens: 1501,
+  completionTokens: 1037,
+  totalTokens: 2538,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Evidencia da normalizacao limitada ao schema {
+  event: 'monitor.question_normalization_evidence_trimmed',
+  issues: '[{"path":"evidence.0","actualLength":366,"limit":300}]'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_quality_normalization',
+  issues: '[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":805,"limit":700}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_normalization',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":700,"inclusive":true,"path":["changes","explanation"],"message":"Too big: expected string to have <=700 characters"}],"issueDetails":[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":805,"limit":700}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 5772
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4943,
+  responseChars: 2575,
+  promptTokens: 1627,
+  completionTokens: 1004,
+  totalTokens: 2631,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: '56138123-8c96-4bd2-a93f-7fe8f16b8645',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 385
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2321
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 133,
+  totalTokens: 133
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 1963
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3967,
+  responseChars: 1325,
+  promptTokens: 622,
+  completionTokens: 665,
+  totalTokens: 1287,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1454
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 912
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 515,
+  totalTokens: 515
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 7570
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1736,
+  responseChars: 26,
+  promptTokens: 3109,
+  completionTokens: 50,
+  totalTokens: 3159,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_explanation',
+  maxTokens: 900,
+  temperature: 0.2,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2408
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2765,
+  responseChars: 288,
+  promptTokens: 818,
+  completionTokens: 266,
+  totalTokens: 1084,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4188
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2764,
+  responseChars: 567,
+  promptTokens: 1252,
+  completionTokens: 372,
+  totalTokens: 1624,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5840
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4727,
+  responseChars: 2534,
+  promptTokens: 1631,
+  completionTokens: 969,
+  totalTokens: 2600,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: '39c4d11a-db40-41ee-a68f-26495eeac304',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 658
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 529
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 223,
+  totalTokens: 223
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2509
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3379,
+  responseChars: 912,
+  promptTokens: 757,
+  completionTokens: 569,
+  totalTokens: 1326,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1314
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 818
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 521,
+  totalTokens: 521
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 8282
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1839,
+  responseChars: 26,
+  promptTokens: 2533,
+  completionTokens: 50,
+  totalTokens: 2583,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4597
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3669,
+  responseChars: 1158,
+  promptTokens: 1395,
+  completionTokens: 568,
+  totalTokens: 1963,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_quality_review',
+  issues: '[{"path":"reasons.2","code":"too_big","message":"Too big: expected string to have <=300 characters","actualLength":479,"limit":300}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_review',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":300,"inclusive":true,"path":["reasons",2],"message":"Too big: expected string to have <=300 characters"}],"issueDetails":[{"path":"reasons.2","code":"too_big","message":"Too big: expected string to have <=300 characters","actualLength":479,"limit":300}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 5070
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4383,
+  responseChars: 1283,
+  promptTokens: 1523,
+  completionTokens: 579,
+  totalTokens: 2102,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5745
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3023,
+  responseChars: 693,
+  promptTokens: 1680,
+  completionTokens: 412,
+  totalTokens: 2092,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4597
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4053,
+  responseChars: 1616,
+  promptTokens: 1395,
+  completionTokens: 671,
+  totalTokens: 2066,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_quality_review',
+  issues: '[{"path":"reasons.3","code":"too_big","message":"Too big: expected string to have <=300 characters","actualLength":315,"limit":300}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_review',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":300,"inclusive":true,"path":["reasons",3],"message":"Too big: expected string to have <=300 characters"}],"issueDetails":[{"path":"reasons.3","code":"too_big","message":"Too big: expected string to have <=300 characters","actualLength":315,"limit":300}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 5070
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4142,
+  responseChars: 1367,
+  promptTokens: 1523,
+  completionTokens: 613,
+  totalTokens: 2136,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 6235
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6963,
+  responseChars: 3864,
+  promptTokens: 1773,
+  completionTokens: 1427,
+  totalTokens: 3200,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_quality_normalization',
+  issues: '[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":1023,"limit":700}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_normalization',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":700,"inclusive":true,"path":["changes","explanation"],"message":"Too big: expected string to have <=700 characters"}],"issueDetails":[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":1023,"limit":700}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 6731
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6986,
+  responseChars: 3577,
+  promptTokens: 1900,
+  completionTokens: 1466,
+  totalTokens: 3366,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: '5fd71dc2-d4b4-401e-98db-a85f53166387',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 768
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2821
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 231,
+  totalTokens: 231
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2729
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3349,
+  responseChars: 1185,
+  promptTokens: 826,
+  completionTokens: 574,
+  totalTokens: 1400,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1697
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1519
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 539,
+  totalTokens: 539
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 9439
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2053,
+  responseChars: 26,
+  promptTokens: 2839,
+  completionTokens: 45,
+  totalTokens: 2884,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5356
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3681,
+  responseChars: 1061,
+  promptTokens: 1574,
+  completionTokens: 490,
+  totalTokens: 2064,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 6327
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7065,
+  responseChars: 3865,
+  promptTokens: 1802,
+  completionTokens: 1486,
+  totalTokens: 3288,
+  finishReason: 'length',
+  nativeFinishReason: 'MAX_TOKENS'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_correction',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: false,
+  code: 'MODEL_OUTPUT_TRUNCATED',
+  statusCode: undefined,
+  validationIssues: 'null'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 6327
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7783,
+  responseChars: 3865,
+  promptTokens: 1802,
+  completionTokens: 1486,
+  totalTokens: 3288,
+  finishReason: 'length',
+  nativeFinishReason: 'MAX_TOKENS'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_correction',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: false,
+  code: 'MODEL_OUTPUT_TRUNCATED',
+  statusCode: undefined,
+  validationIssues: 'null'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 6994
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7053,
+  responseChars: 4247,
+  promptTokens: 1952,
+  completionTokens: 1536,
+  totalTokens: 3488,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Evidencia da normalizacao limitada ao schema {
+  event: 'monitor.question_normalization_evidence_trimmed',
+  issues: '[{"path":"evidence.1","actualLength":368,"limit":300}]'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_quality_normalization',
+  issues: '[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":1234,"limit":700}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_normalization',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":700,"inclusive":true,"path":["changes","explanation"],"message":"Too big: expected string to have <=700 characters"}],"issueDetails":[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":1234,"limit":700}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 7490
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6909,
+  responseChars: 3795,
+  promptTokens: 2079,
+  completionTokens: 1375,
+  totalTokens: 3454,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Evidencia da normalizacao limitada ao schema {
+  event: 'monitor.question_normalization_evidence_trimmed',
+  issues: '[{"path":"evidence.1","actualLength":359,"limit":300}]'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: 'd9fae22d-f1e0-4eff-ae19-b1f47b4d3118',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 646
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3697
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 231,
+  totalTokens: 231
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2485
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2764,
+  responseChars: 578,
+  promptTokens: 814,
+  completionTokens: 433,
+  totalTokens: 1247,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1106
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1339
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 441,
+  totalTokens: 441
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 7810
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1854,
+  responseChars: 22,
+  promptTokens: 3580,
+  completionTokens: 49,
+  totalTokens: 3629,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_explanation',
+  maxTokens: 900,
+  temperature: 0.2,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2321
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2455,
+  responseChars: 395,
+  promptTokens: 864,
+  completionTokens: 296,
+  totalTokens: 1160,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4314
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3251,
+  responseChars: 716,
+  promptTokens: 1377,
+  completionTokens: 418,
+  totalTokens: 1795,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5966
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7911,
+  responseChars: 3538,
+  promptTokens: 1756,
+  completionTokens: 1584,
+  totalTokens: 3340,
+  finishReason: 'length',
+  nativeFinishReason: 'MAX_TOKENS'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_normalization',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: false,
+  code: 'MODEL_OUTPUT_TRUNCATED',
+  statusCode: undefined,
+  validationIssues: 'null'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5966
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7551,
+  responseChars: 3798,
+  promptTokens: 1756,
+  completionTokens: 1547,
+  totalTokens: 3303,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_quality_normalization',
+  issues: '[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":1367,"limit":700}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_normalization',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":700,"inclusive":true,"path":["changes","explanation"],"message":"Too big: expected string to have <=700 characters"}],"issueDetails":[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":1367,"limit":700}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 6462
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 7507,
+  responseChars: 3457,
+  promptTokens: 1883,
+  completionTokens: 1490,
+  totalTokens: 3373,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_quality_normalization',
+  issues: '[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":2279,"limit":700}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_normalization',
+  model: 'google/gemini-2.5-flash',
+  attempt: 2,
+  willRetry: false,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":700,"inclusive":true,"path":["changes","explanation"],"message":"Too big: expected string to have <=700 characters"}],"issueDetails":[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":2279,"limit":700}]}'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: '431de22f-9e53-4dbe-8d9b-246f55fb9cbb',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Gerando embeddings das questoes extraidas { event: 'monitor.question_embeddings_started', questionCount: 1 }
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 637
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1636
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 214,
+  totalTokens: 214
+}
+Embeddings das questoes gerados { event: 'monitor.question_embeddings_completed', questionCount: 1 }
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_alternatives',
+  maxTokens: 1200,
+  temperature: 0.35,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2467
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3596,
+  responseChars: 973,
+  promptTokens: 765,
+  completionTokens: 624,
+  totalTokens: 1389,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1354
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 9482
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 541,
+  totalTokens: 541
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_answer',
+  maxTokens: 300,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 8475
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1560,
+  responseChars: 26,
+  promptTokens: 3144,
+  completionTokens: 55,
+  totalTokens: 3199,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4795
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3958,
+  responseChars: 998,
+  promptTokens: 1917,
+  completionTokens: 586,
+  totalTokens: 2503,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_quality_review',
+  issues: '[{"path":"reasons.2","code":"too_big","message":"Too big: expected string to have <=300 characters","actualLength":390,"limit":300}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_quality_review',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":300,"inclusive":true,"path":["reasons",2],"message":"Too big: expected string to have <=300 characters"}],"issueDetails":[{"path":"reasons.2","code":"too_big","message":"Too big: expected string to have <=300 characters","actualLength":390,"limit":300}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 5268
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3238,
+  responseChars: 783,
+  promptTokens: 2045,
+  completionTokens: 472,
+  totalTokens: 2517,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5449
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5203,
+  responseChars: 2131,
+  promptTokens: 2071,
+  completionTokens: 1013,
+  totalTokens: 3084,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_correction',
+  issues: '[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":761,"limit":700}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_correction',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":700,"inclusive":true,"path":["changes","explanation"],"message":"Too big: expected string to have <=700 characters"}],"issueDetails":[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":761,"limit":700}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 5944
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5233,
+  responseChars: 2088,
+  promptTokens: 2197,
+  completionTokens: 1038,
+  totalTokens: 3235,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_correction',
+  issues: '[{"path":"evidence.0","code":"too_big","message":"Too big: expected string to have <=300 characters","actualLength":645,"limit":300}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_correction',
+  model: 'google/gemini-2.5-flash',
+  attempt: 2,
+  willRetry: false,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":300,"inclusive":true,"path":["evidence",0],"message":"Too big: expected string to have <=300 characters"}],"issueDetails":[{"path":"evidence.0","code":"too_big","message":"Too big: expected string to have <=300 characters","actualLength":645,"limit":300}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5449
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4999,
+  responseChars: 2131,
+  promptTokens: 2071,
+  completionTokens: 1013,
+  totalTokens: 3084,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Resposta estruturada nao atende ao schema local {
+  event: 'monitor.llm_structured_schema_validation_failed',
+  schemaName: 'question_correction',
+  issues: '[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":761,"limit":700}]'
+}
+Agente especializado de conclusao falhou {
+  event: 'monitor.question_completion_agent_failed',
+  task: 'question_correction',
+  model: 'google/gemini-2.5-flash',
+  attempt: 1,
+  willRetry: true,
+  code: 'INVALID_SCHEMA',
+  statusCode: undefined,
+  validationIssues: '{"message":"Resposta estruturada nao atende ao schema local.","issues":[{"origin":"string","code":"too_big","maximum":700,"inclusive":true,"path":["changes","explanation"],"message":"Too big: expected string to have <=700 characters"}],"issueDetails":[{"path":"changes.explanation","code":"too_big","message":"Too big: expected string to have <=700 characters","actualLength":761,"limit":700}]}'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_correction',
+  maxTokens: 1500,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 5944
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4865,
+  responseChars: 2016,
+  promptTokens: 2197,
+  completionTokens: 975,
+  totalTokens: 3172,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_review',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 4660
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3423,
+  responseChars: 589,
+  promptTokens: 2024,
+  completionTokens: 373,
+  totalTokens: 2397,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_quality_normalization',
+  maxTokens: 1600,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 6312
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6620,
+  responseChars: 3050,
+  promptTokens: 2403,
+  completionTokens: 1417,
+  totalTokens: 3820,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Questao salva para revisao {
+  event: 'monitor.question_saved',
+  questionId: '42f89720-08f7-407c-abb4-9543f5abc366',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  kind: 'MULTIPLE_CHOICE',
+  hasCorrectAnswer: true,
+  hasExplanation: true,
+  missingFields: [],
+  usedAiCompletion: true
+}
+Extracao de questoes iniciada {
+  event: 'monitor.question_extraction_started',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  knowledgeBaseId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunksProcessed: 1,
+  groupCount: 1,
+  topicsCount: 1,
+  concurrency: 3
+}
+Chamando LLM para extrair grupo de chunks {
+  event: 'monitor.question_llm_group_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  groupNumber: 1,
+  attempt: 1,
+  chunkIndexes: [ 2 ],
+  inputChars: 893
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'question_extraction',
+  maxTokens: 4000,
+  temperature: 0.1,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 1504
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3483,
+  responseChars: 21,
+  promptTokens: 345,
+  completionTokens: 383,
+  totalTokens: 728,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Grupo de chunks validado pelo Zod {
+  event: 'monitor.question_llm_group_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  groupNumber: 1,
+  attempt: 1,
+  questionCount: 0
+}
+Candidatas recebidas do LLM {
+  event: 'monitor.question_extraction_candidates_received',
+  candidateCount: 0
+}
+Persistindo candidatas com concorrencia controlada {
+  event: 'monitor.question_candidates_persistence_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  candidateCount: 0,
+  llmConcurrency: 1,
+  persistenceConcurrency: 1
+}
+Extracao de questoes concluida {
+  event: 'monitor.question_extraction_completed',
+  topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+  knowledgeBaseId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  chunksProcessed: 1,
+  groupsProcessed: 1,
+  groupsFailed: 0,
+  questionsExtracted: 0,
+  questionsSaved: 0,
+  duplicatesSkipped: 0,
+  invalidTopicsSkipped: 0,
+  candidatesPromoted: 0,
+  candidatesRetained: 0,
+  questionsWithMissingFields: 0,
+  topicFallbacks: 0,
+  durationMs: 3491
+}
+Agente de questoes finalizou o documento {
+  event: 'monitor.question_extraction_document_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  extractionMethod: 'DETERMINISTIC',
+  chunksProcessed: 16,
+  groupsProcessed: 1,
+  groupsFailed: 0,
+  questionsExtracted: 10,
+  questionsSaved: 10,
+  duplicatesSkipped: 0,
+  invalidTopicsSkipped: 0,
+  candidatesPromoted: 10,
+  candidatesRetained: 0,
+  questionsWithMissingFields: 0,
+  topicFallbacks: 0,
+  durationMs: 338862
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:17:15.630Z',
+  service: 'worker',
+  request_id: '21edd69d-cd49-4b2e-bda6-1ef25168f8a4',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW',
+  outcome: 'completed',
+  duration_ms: 338871,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW',
+  status: 'READY',
+  startedAt: '2026-11-02T20:11:36.753Z',
+  finishedAt: '2026-11-02T20:17:15.624Z',
+  durationMs: 338871,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:17:15.639Z',
+  service: 'worker',
+  request_id: 'b5b3e288-99ed-418f-817d-2e492adcb5f4',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'MATCH_ANSWER_KEYS'
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:17:15.641Z',
+  service: 'worker',
+  request_id: 'b5b3e288-99ed-418f-817d-2e492adcb5f4',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'MATCH_ANSWER_KEYS',
+  outcome: 'completed',
+  duration_ms: 8,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'MATCH_ANSWER_KEYS',
+  status: 'READY',
+  startedAt: '2026-11-02T20:17:15.631Z',
+  finishedAt: '2026-11-02T20:17:15.639Z',
+  durationMs: 8,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Atualizando documento para READY {
+  event: 'monitor.document_status_update_started',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  status: 'READY'
+}
+Documento atualizado para READY {
+  event: 'monitor.document_status_update_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  status: 'READY'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:17:15.658Z',
+  service: 'worker',
+  request_id: '7167b007-ea17-45b6-9805-de4aa040cd5c',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'READY_FOR_REVIEW'
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:17:15.660Z',
+  service: 'worker',
+  request_id: '7167b007-ea17-45b6-9805-de4aa040cd5c',
+  document_id: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  job_id: null,
+  job_attempt: null,
+  stage: 'READY_FOR_REVIEW',
+  outcome: 'completed',
+  duration_ms: 8,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  stage: 'READY_FOR_REVIEW',
+  status: 'READY',
+  startedAt: '2026-11-02T20:17:15.650Z',
+  finishedAt: '2026-11-02T20:17:15.658Z',
+  durationMs: 8,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Documento processado pelo worker {
+  event: 'monitor.document_worker_completed',
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  mimeType: 'application/pdf',
+  expectedBytes: 599300,
+  downloadedBytes: 599300,
+  durationMs: 392701,
+  status: 'READY'
+}
+{
+  "documentId": "09ab5f76-af91-4246-bf72-50a1509fdfb4",
+  "document": {
+    "originalName": "Quimica-3.pdf",
+    "tag": "QUESTIONS",
+    "status": "READY",
+    "errorMessage": null,
+    "teacherId": "08181813-5162-4f81-981e-12084ef320d7",
+    "monitorId": "031e12c0-b296-4569-8011-80ad2d49b422",
+    "subjectId": "5c8cf6b5-9208-4b17-ae8e-8d1b29712446",
+    "topicId": "bec7838f-d153-409e-ad04-5bc3c2b4c70c",
+    "_count": {
+      "chunks": 16,
+      "blocks": 22,
+      "textExtractions": 1,
+      "visualAssets": 20
+    }
+  },
+  "visualAssets": 20,
+  "chunks": [
+    {
+      "chunkIndex": 0,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 1,
+      "tokenCount": 68,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "30/11/2025\nQUÍMICA\nCADERNO DE PROVA\nEste caderno, com dezesseis páginas numeradas sequencialmente, contém dez questões de Química. A\nClassificação Periódica dos Elementos encontra-se na página 15.\nNão abra o caderno antes de receber autorização."
+    },
+    {
+      "chunkIndex": 1,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 1,
+      "tokenCount": 192,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "1. Verifique se você recebeu mais dois cadernos de prova.\n2. Verifique se as seguintes informações estão corretas nas sobrecapas dos três cadernos: nome, número de\ninscrição, número do documento de identidade e número do CPF.\nSe houver algum erro, notifique o fiscal.\n3. Destaque, das sobrecapas, os comprovantes que têm seu nome e leve-os com você.\n4. Ao receber autorização para abrir os cadernos, verifique se a impressão, a paginação e a numeração das\nquestões estão corretas.\nSe houver algum erro, notifique o fiscal.\n5. Todas as respostas e o desenvolvimento das soluções, quando necessário, deverão ser apresentados nos\nespaços apropriados e escritos com caneta de corpo transparente, azul ou preta.\nNão serão consideradas as questões respondidas fora desses espaços.\n6. Ao terminar, entregue os três cadernos ao fiscal."
+    },
+    {
+      "chunkIndex": 2,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 1,
+      "tokenCount": 191,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "O tempo disponível para fazer as provas é de cinco horas. Nada mais poderá ser registrado após o término\ndesse prazo.\nNas salas de prova, os candidatos não poderão usar qualquer tipo de relógio, óculos escuros e boné, nem\nportar arma de fogo, fumar e utilizar corretores ortográficos e borrachas.\nSerá atribuída nota zero ao candidato que utilizar quaisquer meios para identificar sua prova, como escrever suas\niniciais, seu nome ou o de outros em qualquer lugar do caderno de provas, assim como fazer desenhos de\nqualquer espécie. Será atribuída nota zero, também, à questão respondida a lápis ou em local inadequado.\nSerá eliminado do Vestibular Estadual 2026 o candidato que, durante a prova, utilizar qualquer meio de\nobtenção de informações, eletrônico ou não.\nSerá também eliminado o candidato que se ausentar da sala levando consigo qualquer material de prova.\nBoa prova!"
+    },
+    {
+      "chunkIndex": 3,
+      "status": "READY",
+      "pageStart": 3,
+      "pageEnd": 3,
+      "tokenCount": 132,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 01. O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br − ,\nem água do mar, e o bromo molecular Br , obtido a partir da reação representada pela equação\na seguir.\n2 Br - (aq) + C l (g) Br ( l ) + 2 C l - (aq)\n2 2\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado.\nNomeie, ainda, a ligação interatômica presente no Br e apresente a fórmula molecular do agente\noxidante da reação."
+    },
+    {
+      "chunkIndex": 4,
+      "status": "READY",
+      "pageStart": 4,
+      "pageEnd": 4,
+      "tokenCount": 163,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 02. Contaminação por tolueno suspendeu fornecimento\nde água em municípios do Rio de Janeiro\nElevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu,\nna cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a\ncontaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa\nsubstância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno."
+    },
+    {
+      "chunkIndex": 5,
+      "status": "READY",
+      "pageStart": 5,
+      "pageEnd": 5,
+      "tokenCount": 158,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 03. A tretinoína e a isotretinoína são compostos químicos presentes em medicamentos dermatológicos,\nincluindo alguns empregados no tratamento de câncer. Observe a seguir as fórmulas estruturais\nespaciais desses isômeros:\nO\nOH\nO OH\ntretinoína isotretinoína\nNomeie a função orgânica oxigenada desses compostos e, também, a isomeria espacial existente\nentre eles. Em seguida, indique o número de átomos de carbono terciário presentes na molécula\nda tretinoína. Nomeie, ainda, o composto orgânico que, ao reagir com a isotretinoína, irá formar\num éster com 22 átomos de carbono por molécula."
+    },
+    {
+      "chunkIndex": 6,
+      "status": "READY",
+      "pageStart": 6,
+      "pageEnd": 6,
+      "tokenCount": 171,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 04. Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio,\nH O , em solução. Observe a reação química de decomposição dessa substância, catalisada\n2 2\npor MnO :\nMnO (s)\n2 H O (aq) 2 H O ( l ) + O (g)\n2 2 2 2\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual\na 4,0 x 10 7 s − 1 .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine,\nainda, a velocidade dessa reação, em mol ∙ L − 1 ∙ s − 1 ."
+    },
+    {
+      "chunkIndex": 7,
+      "status": "READY",
+      "pageStart": 7,
+      "pageEnd": 7,
+      "tokenCount": 187,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 05. Os combustíveis produzidos a partir de fontes renováveis são considerados uma alternativa\nsustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que\ncorresponde ao hidrogênio molecular produzido a partir da reação de eletrólise da água,\nrepresentada pela seguinte equação:\nH O ( l ) H (g) + 1 / O (g) ∆ H 0 = 286 kJ/mol\n2 2 2 2\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica\nno qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H , a razão,\nem coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão."
+    },
+    {
+      "chunkIndex": 8,
+      "status": "READY",
+      "pageStart": 8,
+      "pageEnd": 8,
+      "tokenCount": 117,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 06. Em reações ácido-base de Lewis, os íons Ag + e A l 3+ comportam-se nitidamente como ácidos. Entretanto, observa-se que a acidez do A l 3+ é bem mais acentuada do que a acidez do Ag + .\nCom base nas estruturas eletrônicas desses íons, justifique a maior acidez do A l 3+ . Apresente,\nainda, a equação química completa e balanceada da reação ácido-base entre o íon prata e o íon\nsulfeto."
+    },
+    {
+      "chunkIndex": 9,
+      "status": "READY",
+      "pageStart": 9,
+      "pageEnd": 9,
+      "tokenCount": 201,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 07. Em um laboratório, realizou-se um experimento para separar uma mistura dos compostos A, B e C.\nObserve suas fórmulas estruturais:\nO\nOH NH 2\nOH\nA B C\nInicialmente, a mistura foi solubilizada em clorofórmio e, em seguida, separada por meio de reações\ncom soluções aquosas de NaHCO , HC l e NaOH, conforme representado nesta sequência reacional:\nB’ HC l B\nNaHCO\nA , B , C C\nA , C NaOH\nA’ HC l A\nIndique se o caráter do composto C é ácido ou básico. Em seguida, admitindo que somente o\ncomposto B reagiu com a solução aquosa de NaHCO , apresente a equação química que representa\na hidrólise do ânion do composto B’. Escreva, ainda, a nomenclatura do composto A’."
+    },
+    {
+      "chunkIndex": 10,
+      "status": "READY",
+      "pageStart": 10,
+      "pageEnd": 10,
+      "tokenCount": 218,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 08. O CO e o H PO são substâncias presentes na composição de bebidas refrigerantes por suas 2 3 4\nfunções, respectivamente, efervescente e acidulante. Em uma análise, para determinar a\nconcentração de H PO em 40,0 mL de um refrigerante, realizaram-se os seguintes procedimentos:\n3 4\n1) o recipiente contendo o refrigerante foi aberto e aquecido para que ocorresse a eliminação total\ndo CO ;\n2) o refrigerante foi titulado com solução aquosa de NaOH na concentração de 0,1 mol/L até a\nneutralização total do H PO .\n3 4\nSabe-se que, ao final da titulação, 6,0 mL dessa solução básica foram consumidos, verificando-se a\nformação de um sal neutro.\nExplique a razão para a remoção do CO antes da titulação. Determine, ainda, a concentração,\nem g/L, de H PO no refrigerante.\n3 4"
+    },
+    {
+      "chunkIndex": 11,
+      "status": "READY",
+      "pageStart": 11,
+      "pageEnd": 11,
+      "tokenCount": 202,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 09. Para determinar a composição do GNV (Gás Natural Veicular), formado por metano e etano, foi\nrealizada a combustão completa de 50 L desse combustível, com consumo de 115 L de gás oxigênio.\nConsidere que, nessa combustão, os volumes gasosos foram medidos nas mesmas condições de\ntemperatura e pressão.\nObserve, na tabela, os valores de entalpia-padrão de formação das substâncias envolvidas na\ncombustão total do etano:\nSUBSTÂNCIA ENTALPIA-PADRÃO DE FORMAÇÃO (kJ/mol)\nC 2 H 6 (g) − 1420\nH 2 O ( l ) − 280\nCO 2 (g) − 390\nDetermine, em quilojoule/mol, a entalpia-padrão de combustão do etano e, também, a composição\ndo GNV em porcentagem volumétrica."
+    },
+    {
+      "chunkIndex": 12,
+      "status": "READY",
+      "pageStart": 12,
+      "pageEnd": 12,
+      "tokenCount": 190,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "Questão 10. O sal oxalato de cálcio, CaC O , quando presente na urina em níveis elevados, pode provocar a 2 4\nformação de cálculos renais. Isso ocorre devido à sua baixa solubilidade, que pode ser intensificada\nna presença de outros sais que contenham um íon em comum.\nConsidere uma solução saturada de oxalato de cálcio, cuja constante do produto de solubilidade,\nKps, é igual a 4,0 x 10 − 10 mol 2 /L 2 .\nApresente a expressão do Kps e determine a solubilidade, em mol/L, do oxalato de cálcio na água.\nEm seguida, determine, a solubilidade desse sal, em mol/L, na presença de cloreto de cálcio,\ntotalmente dissociado, na concentração de 0,2 mol/L."
+    },
+    {
+      "chunkIndex": 13,
+      "status": "READY",
+      "pageStart": 15,
+      "pageEnd": 15,
+      "tokenCount": 499,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "CLASSIFICAÇÃO PERIÓDICA DOS ELEMENTOS\n(Adaptado da IUPAC - 2017)\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18\nI A VIII A\n1 2,1 2\nH II A III A IV A V A VI A VII A He\n1 4\n3 1,0 4 1,5 5 2,0 6 2,5 7 3,0 8 3,5 9 4,0 10\nLi Be B C N O F Ne\n7 9 11 12 14 16 19 20\n11 0,9 12 1,2 13 1,5 14 1,8 15 2,1 16 2,5 17 3,0 18\nNa Mg III B IV B V B VI B VII B VIII B I B II B AI Si P S CI Ar\n23 24 27 28 31 32 35,5 40\n19 0,8 20 1,0 21 1,3 22 1,4 23 1,6 24 1,6 25 1,5 26 1,8 27 1,8 28 1,8 29 1,9 30 1,6 31 1,6 32 1,8 33 2,0 34 2,4 35 2,8 36\nK Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr\n39 40 45 48 51 52 55 56 59 58,5 63,5 65,5 70 72,5 75 79 80 84\n37 0,8 38 1,0 39 1,2 40 1,4 41 1,6 42 1,6 43 1,9 44 2,2 45 2,2 46 2,2 47 1,9 48 1,7 49 1,7 50 1,8"
+    },
+    {
+      "chunkIndex": 14,
+      "status": "READY",
+      "pageStart": 15,
+      "pageEnd": 15,
+      "tokenCount": 504,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "1,8 1,8 51 1,9 52 2,1 53 2,5 54\nRb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe\n85,5 87,5 89 91 93 96 (98) 101 103 106,5 108 112,5 115 119 122 127,5 127 131\n55 0,7 56 0,9 57-71 72 1,3 73 1,5 74 1,7 75 1,9 76 2,2 77 2,2 78 2,2 79 2,4 80 1,9 81 1,8 82 1,8 83 1,9 84 2,0 85 2,2 86\nCs Ba lantanídeos Hf Ta W Re Os Ir Pt Au Hg TI Pb Bi Po At Rn\n133 137 178,5 181 184 186 190 192 195 197 200,5 204 207 209 (\n209) (\n210) (222)\n87 0,7 88 0,9 89-103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118\nFr Ra actinídeos Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og\n(\n223) (\n226) (\n267) (\n268) (\n269) (\n270) (\n269) (\n278) (\n281) (\n281) (\n285) (\n286) (\n289) (\n288) (\n293) (\n294) (294)\nNÚMERO ELETRONE- 57 1,1 58 1,1 59 1,1 60 1,1 61 1,1 62 1,2 63 1,2 64 1,2 65 1,2 66 1,2 67 1,2 68 1,2 69 1,2 70 1,2 71 1,3\nATÔMICO GATIVIDADE\nLa Ce Pr Nd Pm Sm Eu Gd Tb"
+    },
+    {
+      "chunkIndex": 15,
+      "status": "READY",
+      "pageStart": 15,
+      "pageEnd": 15,
+      "tokenCount": 376,
+      "embeddedAt": "2026-11-02T20:11:36.724Z",
+      "content": "67 1,2 68 1,2 69 1,2 70 1,2 71 1,3\nATÔMICO GATIVIDADE\nLa Ce Pr Nd Pm Sm Eu Gd Tb Tb Dy Ho Er Tm Yb Lu\nlantanídeos 139 140 141 144 (145) 150 152 157 159 162,5 165 167 169 173 175\nSÍMBOLO 89 1,1 90 1,3 91 1,5 92 1,7 93 1,3 94 1,3 95 1,3 96 1,3 97 1,3 98 1,3 99 1,3 100 1,3 101 1,3 102 1,3 103 1,3\nMASSA ATÔMICA Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr\nAPROXIMADA actinídeos 227 232 231 238 237 (\n244) (\n243) (\n247) (\n247) (\n251) (\n252) (\n257) (\n258) (\n259) (262)\nOrdem crescente de energia dos subníveis: 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s 5f 6d 7p\nConstante de Avogadro = 6,0 × 10 23 partículas × mol − 1\nConstante de Faraday = 96500 C × mol − 1"
+    }
+  ],
+  "blockTypes": [
+    {
+      "type": "SECTION",
+      "count": 8
+    },
+    {
+      "type": "THEORY",
+      "count": 4
+    },
+    {
+      "type": "QUESTION",
+      "count": 10
+    }
+  ],
+  "questionSources": 10,
+  "pageThreeAssets": [
+    {
+      "id": "0add1011-749e-4d5e-a8f5-b81852243f04",
+      "pageNumber": 3,
+      "assetType": "figure",
+      "storagePath": "09ab5f76-af91-4246-bf72-50a1509fdfb4/b93b9489-ddaa-4592-a9cc-8035aac3beb9/assets/e08ba99b0d3910e01f6963a6fa57aed8-44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68.png",
+      "checksum": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68",
+      "descriptionStatus": null,
+      "description": null
+    }
+  ],
+  "pageThreeStorageChecks": [
+    {
+      "assetId": "0add1011-749e-4d5e-a8f5-b81852243f04",
+      "storagePath": "09ab5f76-af91-4246-bf72-50a1509fdfb4/b93b9489-ddaa-4592-a9cc-8035aac3beb9/assets/e08ba99b0d3910e01f6963a6fa57aed8-44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68.png",
+      "downloaded": true,
+      "byteLength": 2148,
+      "sha256": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68",
+      "expectedChecksum": "44bfe0665eea3b41786788374b6efed70f81b99fcd54874507dc2ccb73538e68",
+      "checksumMatches": true
+    }
+  ],
+  "elapsedMs": 392750
+}

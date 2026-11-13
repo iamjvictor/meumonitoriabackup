@@ -60,7 +60,11 @@ async function withPersistenceMocks({
     callback({
       $executeRaw: async () => undefined,
       flashcardSource: { findFirst: async () => null },
+      questionSource: { findFirst: async () => null },
+      questionSpanChunk: { findFirst: async () => null },
+      documentChunkVisualAsset: { findFirst: async () => null },
       documentChunk: {
+        findMany: async () => [],
         deleteMany: async () => undefined,
         createMany: async () => undefined,
       },

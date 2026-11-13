@@ -1,0 +1,1242 @@
+{
+  "input": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/teacher-materials/Estequiometria.pdf",
+  "text_classification": "SCANNED",
+  "native_text_pages": 1,
+  "ocr_configured": true,
+  "ocr_required_by_text_layer": true,
+  "doc_hash": "63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd",
+  "page_count": 4,
+  "covered_pages": [
+    1,
+    2,
+    4
+  ],
+  "chunk_count": 3,
+  "tokenizer_id": "Qwen/Qwen3-Embedding-8B@c90816d848505624c2434128dfc61132162a0ee9",
+  "max_tokens": 500,
+  "chunks": [
+    {
+      "index": 0,
+      "text": "Esteguiometria\n- ●○ que e'mol?\n- Relacionando grandezas\n- Balanceamento de uma reagão\n- Interpretando problemas",
+      "raw_text": "- ●○ que e'mol?\n- Relacionando grandezas\n- Balanceamento de uma reagão\n- Interpretando problemas",
+      "headings": [
+        "Esteguiometria"
+      ],
+      "pages": [
+        1
+      ],
+      "type": "text",
+      "tokens": 35,
+      "provenance": [
+        {
+          "page": 1,
+          "item_ref": "#/texts/1",
+          "reading_order": 1,
+          "bbox": [
+            70.3125,
+            743.1060028076172,
+            252.39583333333334,
+            708.8746541341145
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/2",
+          "reading_order": 2,
+          "bbox": [
+            70.70833333333333,
+            693.1685078938801,
+            295.14583333333337,
+            659.7425944010416
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/3",
+          "reading_order": 3,
+          "bbox": [
+            72.6875,
+            712.4991455078125,
+            324.0416666666667,
+            685.1140645345051
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/4",
+          "reading_order": 4,
+          "bbox": [
+            73.47916666666667,
+            662.5616455078125,
+            301.47916666666663,
+            636.7874552408854
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "text": "→ Conceito de mol\nNº de Avogadro: 6,02·10 23 MMH=1g/mol MMN=14g/mgl Tantos mols de algo\"\n<!-- formula-not-decoded -->\n> Estequiomettia na pratica Balanceamento\n\"Lei de Lavoisier\"\n2HCl + Mg(OH)₂\nH2\n1-2\nO2\nCH_{4}+2O_₂}\n14g\nX + 2Y → X Y2\nGg sus Gg\n4g·2=8g\n4.2=8g\nMqCl₂+2H₂O\n→\n→\nH2O\nMACHO\nCO₂+2H₂O√\nC3H8 + 5O₂\n3CO₂+ 4H₂O√\n2Al(OH)₃+3H₂SO₄\nFeO+\nCO—\n3I- + 2H₂O\n→\nAl₂(SO4)₃+6H_₂}O√\n→\nCO2 + Fe\n→2OH−+ I₃ + H₂\nH₂O₂ + MnOi + 3H⁺—\nGr ande Zas\nm = massa\nV= Volume\nMM= massa molar\nn = n² de mds\nd = dens,dade\nm= C.v\n→2O₂+ Mn2+ +5H₂O\n2\nImpartante: Nas CNTP, 1 mol\nde ga's ideal oculpa 22,4 L\nMM=\nm\nn\nm = MM·n d =\nm = d.v\n@quimica. bizurada\nQ\nO percarbonato de sódio, que corresponde a uma mistura de 2 mols de Na ₂ CO ₃ e 3 mols de H ₂ O ₂ , é empregado em lavagem de roupas como agente oxidante na remoção de manchas. Esse processo de oxidação ocorre em função do oxigênio formado na reação de decomposição do peróxido de hidrogênio presente na mistura",
+      "raw_text": "Nº de Avogadro: 6,02·10 23 MMH=1g/mol MMN=14g/mgl Tantos mols de algo\"\n<!-- formula-not-decoded -->\n> Estequiomettia na pratica Balanceamento\n\"Lei de Lavoisier\"\n2HCl + Mg(OH)₂\nH2\n1-2\nO2\nCH_{4}+2O_₂}\n14g\nX + 2Y → X Y2\nGg sus Gg\n4g·2=8g\n4.2=8g\nMqCl₂+2H₂O\n→\n→\nH2O\nMACHO\nCO₂+2H₂O√\nC3H8 + 5O₂\n3CO₂+ 4H₂O√\n2Al(OH)₃+3H₂SO₄\nFeO+\nCO—\n3I- + 2H₂O\n→\nAl₂(SO4)₃+6H_₂}O√\n→\nCO2 + Fe\n→2OH−+ I₃ + H₂\nH₂O₂ + MnOi + 3H⁺—\nGr ande Zas\nm = massa\nV= Volume\nMM= massa molar\nn = n² de mds\nd = dens,dade\nm= C.v\n→2O₂+ Mn2+ +5H₂O\n2\nImpartante: Nas CNTP, 1 mol\nde ga's ideal oculpa 22,4 L\nMM=\nm\nn\nm = MM·n d =\nm = d.v\n@quimica. bizurada\nQ\nO percarbonato de sódio, que corresponde a uma mistura de 2 mols de Na ₂ CO ₃ e 3 mols de H ₂ O ₂ , é empregado em lavagem de roupas como agente oxidante na remoção de manchas. Esse processo de oxidação ocorre em função do oxigênio formado na reação de decomposição do peróxido de hidrogênio presente na mistura",
+      "headings": [
+        "→ Conceito de mol"
+      ],
+      "pages": [
+        1,
+        2,
+        4
+      ],
+      "type": "mixed",
+      "tokens": 487,
+      "provenance": [
+        {
+          "page": 1,
+          "item_ref": "#/texts/6",
+          "reading_order": 7,
+          "bbox": [
+            149.875,
+            548.5913899739584,
+            554.0208333333333,
+            463.21437581380206
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/7",
+          "reading_order": 8,
+          "bbox": [
+            79.41666666666667,
+            456.7708333333333,
+            512.4583333333333,
+            372.1992594401042
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 1,
+          "item_ref": "#/texts/8",
+          "reading_order": 9,
+          "bbox": [
+            73.47916666666667,
+            360.5203450520833,
+            348.5833333333333,
+            319.44270833333326
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/8",
+          "reading_order": 9,
+          "bbox": [
+            86.484375,
+            796.9573109944662,
+            273.375,
+            755.4159749348959
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/10",
+          "reading_order": 14,
+          "bbox": [
+            74.671875,
+            737.1886596679688,
+            236.671875,
+            710.0596211751302
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/11",
+          "reading_order": 15,
+          "bbox": [
+            78.046875,
+            693.1039733886719,
+            263.671875,
+            660.8882446289062
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/12",
+          "reading_order": 16,
+          "bbox": [
+            101.671875,
+            639.2697957356771,
+            136.6875,
+            612.1407674153646
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/13",
+          "reading_order": 17,
+          "bbox": [
+            160.734375,
+            646.8998413085938,
+            178.03125,
+            604.5107218424479
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/14",
+          "reading_order": 18,
+          "bbox": [
+            178.03125,
+            643.0848185221354,
+            216.0,
+            610.4452107747396
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/15",
+          "reading_order": 19,
+          "bbox": [
+            105.046875,
+            594.76123046875,
+            216.0,
+            563.393290201823
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/16",
+          "reading_order": 20,
+          "bbox": [
+            428.203125,
+            779.1538798014323,
+            462.375,
+            741.8514607747396
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/17",
+          "reading_order": 21,
+          "bbox": [
+            283.921875,
+            741.0036824544271,
+            452.25,
+            709.2118428548177
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/18",
+          "reading_order": 22,
+          "bbox": [
+            287.71875,
+            716.8418782552084,
+            309.65625,
+            693.9517618815104
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/18",
+          "reading_order": 22,
+          "bbox": [
+            335.390625,
+            761.3504536946615,
+            356.0625,
+            739.7320048014323
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/18",
+          "reading_order": 22,
+          "bbox": [
+            399.9375,
+            716.4179890950521,
+            426.515625,
+            692.2561950683594
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/19",
+          "reading_order": 23,
+          "bbox": [
+            348.46875,
+            714.722422281901,
+            404.578125,
+            690.5606282552084
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/20",
+          "reading_order": 24,
+          "bbox": [
+            449.71875,
+            716.4179890950521,
+            501.1875,
+            694.7995402018229
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/21",
+          "reading_order": 25,
+          "bbox": [
+            345.09375,
+            690.5606282552084,
+            488.109375,
+            660.8882446289062
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/22",
+          "reading_order": 26,
+          "bbox": [
+            271.6875,
+            636.7264607747396,
+            293.625,
+            616.3796793619791
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/23",
+          "reading_order": 27,
+          "bbox": [
+            260.296875,
+            588.4028727213541,
+            283.078125,
+            568.9038696289062
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/24",
+          "reading_order": 28,
+          "bbox": [
+            308.8125,
+            640.5414835611979,
+            365.765625,
+            612.9885457356771
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/25",
+          "reading_order": 29,
+          "bbox": [
+            428.625,
+            640.1175944010416,
+            502.03125,
+            615.1080118815104
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/26",
+          "reading_order": 30,
+          "bbox": [
+            303.75,
+            593.4895629882812,
+            452.671875,
+            566.3605346679688
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/27",
+          "reading_order": 31,
+          "bbox": [
+            94.5,
+            543.894287109375,
+            243.0,
+            515.4935913085938
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/28",
+          "reading_order": 32,
+          "bbox": [
+            314.71875,
+            548.1331990559895,
+            504.140625,
+            517.613037109375
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/29",
+          "reading_order": 33,
+          "bbox": [
+            81.0,
+            499.8096110026042,
+            306.28125,
+            470.5611165364583
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/30",
+          "reading_order": 34,
+          "bbox": [
+            116.859375,
+            451.0621337890625,
+            219.375,
+            423.5091959635417
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/31",
+          "reading_order": 35,
+          "bbox": [
+            221.90625,
+            450.21435546875,
+            308.390625,
+            422.6614176432292
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/32",
+          "reading_order": 36,
+          "bbox": [
+            87.75,
+            404.4341227213542,
+            245.53125,
+            373.4900716145833
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/33",
+          "reading_order": 37,
+          "bbox": [
+            348.46875,
+            495.5707194010417,
+            378.84375,
+            471.8328043619792
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/34",
+          "reading_order": 38,
+          "bbox": [
+            397.828125,
+            499.3857421875,
+            591.890625,
+            469.7133382161458
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/35",
+          "reading_order": 39,
+          "bbox": [
+            322.3125,
+            446.8232014973958,
+            349.3125,
+            426.0525716145833
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/36",
+          "reading_order": 40,
+          "bbox": [
+            369.140625,
+            452.7576904296875,
+            506.671875,
+            420.9658610026042
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/37",
+          "reading_order": 41,
+          "bbox": [
+            302.0625,
+            412.9119466145833,
+            538.734375,
+            363.316650390625
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/38",
+          "reading_order": 42,
+          "bbox": [
+            92.390625,
+            355.6866048177083,
+            294.46875,
+            324.7425537109375
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/39",
+          "reading_order": 43,
+          "bbox": [
+            72.140625,
+            312.02583821614587,
+            178.03125,
+            276.41898600260413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/40",
+          "reading_order": 44,
+          "bbox": [
+            82.265625,
+            252.68107096354163,
+            184.359375,
+            231.48653157552087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/41",
+          "reading_order": 45,
+          "bbox": [
+            89.015625,
+            231.48653157552087,
+            180.5625,
+            206.90083821614587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/42",
+          "reading_order": 46,
+          "bbox": [
+            73.40625,
+            211.98750813802087,
+            233.296875,
+            182.31514485677087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/43",
+          "reading_order": 47,
+          "bbox": [
+            86.0625,
+            181.46736653645837,
+            233.71875,
+            159.0010986328125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/44",
+          "reading_order": 48,
+          "bbox": [
+            81.84375,
+            159.0010986328125,
+            189.84375,
+            135.6871337890625
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/45",
+          "reading_order": 49,
+          "bbox": [
+            94.078125,
+            48.36551920572913,
+            194.0625,
+            19.1170654296875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/46",
+          "reading_order": 50,
+          "bbox": [
+            307.125,
+            361.1972249348958,
+            542.953125,
+            317.9603271484375
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/47",
+          "reading_order": 51,
+          "bbox": [
+            484.3125,
+            331.1009521484375,
+            496.96875,
+            316.68863932291663
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/48",
+          "reading_order": 52,
+          "bbox": [
+            307.96875,
+            259.88720703125,
+            580.5,
+            227.24759928385413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/49",
+          "reading_order": 53,
+          "bbox": [
+            310.5,
+            234.02986653645837,
+            577.546875,
+            201.3902587890625
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/50",
+          "reading_order": 54,
+          "bbox": [
+            304.59375,
+            186.97794596354163,
+            361.96875,
+            159.42500813802087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/51",
+          "reading_order": 55,
+          "bbox": [
+            362.390625,
+            186.13016764322913,
+            380.953125,
+            170.44620768229163
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/52",
+          "reading_order": 56,
+          "bbox": [
+            365.765625,
+            172.56563313802087,
+            381.796875,
+            160.69669596354163
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/53",
+          "reading_order": 57,
+          "bbox": [
+            313.03125,
+            137.3826904296875,
+            404.15625,
+            112.7969970703125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/53",
+          "reading_order": 57,
+          "bbox": [
+            472.921875,
+            186.13016764322913,
+            515.109375,
+            160.27278645833337
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/54",
+          "reading_order": 58,
+          "bbox": [
+            467.4375,
+            135.6871337890625,
+            554.765625,
+            112.37308756510413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/55",
+          "reading_order": 59,
+          "bbox": [
+            469.546875,
+            26.32320149739587,
+            593.578125,
+            1.3135986328125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 2,
+          "item_ref": "#/texts/56",
+          "reading_order": 60,
+          "bbox": [
+            291.9375,
+            243.77937825520837,
+            301.640625,
+            233.60595703125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/87",
+          "reading_order": 63,
+          "bbox": [
+            42.79181,
+            783.2199845078125,
+            561.3402163159999,
+            719.2719965078126
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "→ Conceito de mol\nConsiderando 1 kg de percarbonato de sódio, o volume máximo, em litros, de gás oxigênio formado, sob condições normais de temperatura e pressão, é aproximadamente de\nA) 328\nB) 321\nC) 214\nD) 107\nQual é o volume produzido de gás carbônico quando 80 g de propano reagem com 40 g  do gás oxigênio?\n1 mol de ga's 22,4L\n3H2O{\n3H2O+\n→\n$$MM2Na₂CO₃ MMNa=23 3H₂O₂ 314 g/mol 十 二 MMC=p2 92 2496 6 Q6 MMo=16 =HWW 1000 VO₂=3nu202 1 3.185 mols 22,4 314 2 (mols totais em Jkg) VO2=4,777 .22.4 =107L$$\nC3H8+ 5O₂\n3CO2⁺\nOHh\n>\n12g\n449\n160\n132g\n409\n÷4\n80g\nMM\n二\nn.22,4\n11g\n40g\n339\n33\n44\n1=0.75.223\nn\n33g\nde\nCo\n2\nn= 0,75 mols\nV= 16,8L\n@quimica.bizurada",
+      "raw_text": "Considerando 1 kg de percarbonato de sódio, o volume máximo, em litros, de gás oxigênio formado, sob condições normais de temperatura e pressão, é aproximadamente de\nA) 328\nB) 321\nC) 214\nD) 107\nQual é o volume produzido de gás carbônico quando 80 g de propano reagem com 40 g  do gás oxigênio?\n1 mol de ga's 22,4L\n3H2O{\n3H2O+\n→\n$$MM2Na₂CO₃ MMNa=23 3H₂O₂ 314 g/mol 十 二 MMC=p2 92 2496 6 Q6 MMo=16 =HWW 1000 VO₂=3nu202 1 3.185 mols 22,4 314 2 (mols totais em Jkg) VO2=4,777 .22.4 =107L$$\nC3H8+ 5O₂\n3CO2⁺\nOHh\n>\n12g\n449\n160\n132g\n409\n÷4\n80g\nMM\n二\nn.22,4\n11g\n40g\n339\n33\n44\n1=0.75.223\nn\n33g\nde\nCo\n2\nn= 0,75 mols\nV= 16,8L\n@quimica.bizurada",
+      "headings": [
+        "→ Conceito de mol"
+      ],
+      "pages": [
+        4
+      ],
+      "type": "mixed",
+      "tokens": 383,
+      "provenance": [
+        {
+          "page": 4,
+          "item_ref": "#/texts/88",
+          "reading_order": 64,
+          "bbox": [
+            42.5099996,
+            667.3077845078126,
+            558.9747184279998,
+            635.3597885078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/89",
+          "reading_order": 65,
+          "bbox": [
+            79.460025,
+            587.4061582138125,
+            131.40426868624633,
+            564.9468370078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/90",
+          "reading_order": 66,
+          "bbox": [
+            79.460025,
+            564.4061571562966,
+            130.35630697401365,
+            541.9468359502965
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/91",
+          "reading_order": 67,
+          "bbox": [
+            79.460025,
+            541.4061560987805,
+            130.06749864196166,
+            518.9468348927805
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/92",
+          "reading_order": 68,
+          "bbox": [
+            79.460025,
+            518.4061550412646,
+            131.98188538414917,
+            495.94683383526456
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/93",
+          "reading_order": 69,
+          "bbox": [
+            69.18608,
+            199.06597142681244,
+            487.14212563560005,
+            165.17442828163848
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/94",
+          "reading_order": 70,
+          "bbox": [
+            385.0731608072917,
+            622.4467264811198,
+            577.8071695963541,
+            589.7541910807291
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/95",
+          "reading_order": 71,
+          "bbox": [
+            159.55851236979166,
+            580.1856486002604,
+            259.4800618489583,
+            531.9442138671875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/96",
+          "reading_order": 72,
+          "bbox": [
+            342.02392578125,
+            576.5974324544271,
+            477.4906819661458,
+            540.3166910807291
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/97",
+          "reading_order": 73,
+          "bbox": [
+            312.79787190755206,
+            565.8328247070312,
+            330.96543375651044,
+            547.4931030273438
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/98",
+          "reading_order": 74,
+          "bbox": [
+            14.218084971110025,
+            483.30409749348956,
+            558.4547932942709,
+            323.03092447916674
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/99",
+          "reading_order": 75,
+          "bbox": [
+            73.46010843912761,
+            281.96590169270826,
+            214.45611572265625,
+            255.25370279947913
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/100",
+          "reading_order": 76,
+          "bbox": [
+            298.9747314453125,
+            283.56062825520826,
+            390.2074381510417,
+            254.456298828125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/101",
+          "reading_order": 77,
+          "bbox": [
+            398.1064046223958,
+            284.3580322265625,
+            461.6928304036458,
+            254.456298828125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/102",
+          "reading_order": 78,
+          "bbox": [
+            261.05983479817706,
+            277.97900390625,
+            276.8577067057292,
+            261.63273111979163
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/103",
+          "reading_order": 79,
+          "bbox": [
+            417.4587809244792,
+            257.64583333333337,
+            451.0292561848958,
+            217.378173828125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/104",
+          "reading_order": 80,
+          "bbox": [
+            88.4680887858073,
+            251.26680501302087,
+            118.87898763020833,
+            224.95328776041663
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/105",
+          "reading_order": 81,
+          "bbox": [
+            171.8018595377604,
+            251.66548665364587,
+            202.60770670572916,
+            226.14937337239587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/106",
+          "reading_order": 82,
+          "bbox": [
+            322.27659098307294,
+            250.86812337239587,
+            354.6622314453125,
+            223.3585205078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/107",
+          "reading_order": 83,
+          "bbox": [
+            177.33111572265625,
+            232.92708333333337,
+            202.60770670572916,
+            205.41752115885413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/108",
+          "reading_order": 84,
+          "bbox": [
+            227.09442138671875,
+            234.12312825520837,
+            246.44681803385416,
+            220.16902669270837
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/109",
+          "reading_order": 85,
+          "bbox": [
+            89.25797526041667,
+            228.142822265625,
+            113.3497314453125,
+            203.02534993489587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/110",
+          "reading_order": 86,
+          "bbox": [
+            306.87367757161456,
+            158.37215169270837,
+            336.0997314453125,
+            136.4442138671875
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/111",
+          "reading_order": 87,
+          "bbox": [
+            463.2726236979167,
+            153.18916829427087,
+            480.2553304036458,
+            140.03243001302087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/112",
+          "reading_order": 88,
+          "bbox": [
+            480.2553304036458,
+            157.57474772135413,
+            544.6316731770834,
+            136.0455322265625
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/113",
+          "reading_order": 89,
+          "bbox": [
+            99.52660115559895,
+            144.01932779947913,
+            130.33244832356772,
+            107.33988444010413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/114",
+          "reading_order": 90,
+          "bbox": [
+            143.36569213867188,
+            136.8428955078125,
+            171.40692138671875,
+            114.11759440104163
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/115",
+          "reading_order": 91,
+          "bbox": [
+            227.4893595377604,
+            136.0455322265625,
+            255.925537109375,
+            112.92154947916663
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/116",
+          "reading_order": 92,
+          "bbox": [
+            343.2087809244792,
+            126.07828776041663,
+            362.1662190755208,
+            109.73201497395837
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/117",
+          "reading_order": 93,
+          "bbox": [
+            312.40293375651044,
+            121.29402669270837,
+            331.36037190755206,
+            102.55562337239587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/118",
+          "reading_order": 94,
+          "bbox": [
+            456.9534505208333,
+            120.09794108072913,
+            563.1941731770834,
+            98.1700439453125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/119",
+          "reading_order": 95,
+          "bbox": [
+            346.3683675130208,
+            110.9281005859375,
+            360.1914876302083,
+            99.7647705078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/120",
+          "reading_order": 96,
+          "bbox": [
+            100.31648763020833,
+            100.1634521484375,
+            129.54255167643228,
+            77.03951009114587
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/121",
+          "reading_order": 97,
+          "bbox": [
+            137.44148763020834,
+            100.1634521484375,
+            153.63430786132812,
+            82.62113444010413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/122",
+          "reading_order": 98,
+          "bbox": [
+            160.74335734049478,
+            97.7713623046875,
+            185.23006184895834,
+            82.62113444010413
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/123",
+          "reading_order": 99,
+          "bbox": [
+            180.4907023111979,
+            89.39888509114587,
+            193.12898763020834,
+            81.42508951822913
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/124",
+          "reading_order": 100,
+          "bbox": [
+            312.40293375651044,
+            85.4119873046875,
+            393.761962890625,
+            64.28145345052087
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/125",
+          "reading_order": 101,
+          "bbox": [
+            445.1050618489583,
+            87.4053955078125,
+            531.9933675130209,
+            62.6866455078125
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        },
+        {
+          "page": 4,
+          "item_ref": "#/texts/126",
+          "reading_order": 102,
+          "bbox": [
+            464.4574381510417,
+            26.0072021484375,
+            591.6303304036459,
+            1.2884521484375
+          ],
+          "coord_origin": "BOTTOMLEFT"
+        }
+      ]
+    }
+  ]
+}

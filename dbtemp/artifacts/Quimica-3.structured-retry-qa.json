@@ -1,0 +1,252 @@
+{
+  "documentId": "6bc0b047-4dcc-4d5c-97f2-39a15fff8dda",
+  "database": "dbtemp-local-only",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "beforeCount": 10,
+  "sameIds": true,
+  "uniqueOrdinals": false,
+  "allPendingReview": true,
+  "q01": {
+    "id": "911107dd-baa1-4383-a17b-76753ee83701",
+    "visualAssets": [
+      {
+        "visualAssetId": "be329c55-f81c-45db-8ec6-b8c09e98b380",
+        "role": "STATEMENT"
+      }
+    ]
+  },
+  "q04": {
+    "id": "28eb8803-b86a-462a-ab29-f3be50ac6858",
+    "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x $10^{7}$ $s^{-1}$ .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ $L^{-1}$ ∙ $s^{-1}$ .\nDesenvolvimento e resposta:",
+    "corrections": [
+      {
+        "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+        "after": "$10^{7}$",
+        "field": "statement",
+        "before": "10 7",
+        "itemRef": "pypdfium2:page-6:chars-397-399",
+        "pageNumber": 6
+      },
+      {
+        "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+        "after": "$s^{-1}$",
+        "field": "statement",
+        "before": "s - 1",
+        "itemRef": "pypdfium2:page-6:chars-403-405",
+        "pageNumber": 6
+      },
+      {
+        "code": "INLINE_EXPONENT_RESTORED_FROM_PDF_GEOMETRY",
+        "after": "$L^{-1}$",
+        "field": "statement",
+        "before": "L - 1",
+        "itemRef": "pypdfium2:page-6:chars-554-556",
+        "pageNumber": 6
+      }
+    ]
+  },
+  "q05": {
+    "id": "a831d446-ad07-4540-9dd2-1f974d01cbec",
+    "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\frac{1}{2}O_2\\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nDesenvolvimento e resposta:",
+    "corrections": [
+      {
+        "code": "FORMULA_FRACTION_RESTORED_FROM_ORIGINAL_TEXT",
+        "after": "\\frac{1}{2}O_2",
+        "field": "statement",
+        "before": "\\lceil _ { 2 } O _ { 2 }",
+        "itemRef": "#/texts/73",
+        "pageNumber": 7
+      },
+      {
+        "code": "FORMULA_FRACTION_RESTORED_FROM_ORIGINAL_TEXT",
+        "after": "\\frac{1}{2}O_2",
+        "field": "statement",
+        "before": "\\frac{1}{2}O_2 ",
+        "itemRef": "#/texts/73",
+        "pageNumber": 7
+      }
+    ]
+  },
+  "runs": [
+    {
+      "run": 1,
+      "result": {
+        "questions": [
+          {
+            "id": "911107dd-baa1-4383-a17b-76753ee83701",
+            "sourceChunkIds": [
+              "0209f11d-3675-41c4-b398-5c02c7e78edd"
+            ],
+            "visualAssetIds": [
+              "be329c55-f81c-45db-8ec6-b8c09e98b380"
+            ]
+          },
+          {
+            "id": "bc88d2f9-455c-4e83-ade2-7552592d7d16",
+            "sourceChunkIds": [
+              "9c3e5f1e-09a0-48ad-b4d5-a61994534e34"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "b521a502-1fe2-41e6-96ca-4986d3b43637",
+            "sourceChunkIds": [
+              "9c3e5f1e-09a0-48ad-b4d5-a61994534e34"
+            ],
+            "visualAssetIds": [
+              "8748cef6-d9b5-48a4-b046-d6aab5513c0b"
+            ]
+          },
+          {
+            "id": "28eb8803-b86a-462a-ab29-f3be50ac6858",
+            "sourceChunkIds": [
+              "9c3e5f1e-09a0-48ad-b4d5-a61994534e34",
+              "6c332be0-bc09-4f07-8de6-c1c5a7d88a34"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "a831d446-ad07-4540-9dd2-1f974d01cbec",
+            "sourceChunkIds": [
+              "6c332be0-bc09-4f07-8de6-c1c5a7d88a34"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "23ca2033-3cd8-4a2e-9593-fe48e0dd157c",
+            "sourceChunkIds": [
+              "33702ec2-7d97-42c0-bfa7-699117a236b1"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "dd6e8643-04b3-4664-8332-2becfb0d74c6",
+            "sourceChunkIds": [
+              "33702ec2-7d97-42c0-bfa7-699117a236b1"
+            ],
+            "visualAssetIds": [
+              "77cef2c1-cd92-4f15-851d-17383d2fa042",
+              "e0ab5f71-46fb-4b1a-8874-547df16c5e48"
+            ]
+          },
+          {
+            "id": "f1494a46-5da6-4d07-8914-f1684983c961",
+            "sourceChunkIds": [
+              "9d50ca53-91ab-4ed0-b615-369090941410"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "5e82f89f-b214-417a-a645-554fcc860375",
+            "sourceChunkIds": [
+              "9d50ca53-91ab-4ed0-b615-369090941410",
+              "65c4d602-824c-4fa0-b2da-1e1e39487374"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "47fe1a41-d5c0-4b0a-a1a4-36fa02864cbb",
+            "sourceChunkIds": [
+              "65c4d602-824c-4fa0-b2da-1e1e39487374"
+            ],
+            "visualAssetIds": []
+          }
+        ],
+        "chunksProcessed": 13,
+        "windowsProcessed": 1,
+        "llmCalls": 1
+      },
+      "count": 11
+    },
+    {
+      "run": 2,
+      "result": {
+        "questions": [
+          {
+            "id": "911107dd-baa1-4383-a17b-76753ee83701",
+            "sourceChunkIds": [
+              "0209f11d-3675-41c4-b398-5c02c7e78edd"
+            ],
+            "visualAssetIds": [
+              "be329c55-f81c-45db-8ec6-b8c09e98b380"
+            ]
+          },
+          {
+            "id": "bc88d2f9-455c-4e83-ade2-7552592d7d16",
+            "sourceChunkIds": [
+              "9c3e5f1e-09a0-48ad-b4d5-a61994534e34"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "b521a502-1fe2-41e6-96ca-4986d3b43637",
+            "sourceChunkIds": [
+              "9c3e5f1e-09a0-48ad-b4d5-a61994534e34"
+            ],
+            "visualAssetIds": [
+              "8748cef6-d9b5-48a4-b046-d6aab5513c0b"
+            ]
+          },
+          {
+            "id": "28eb8803-b86a-462a-ab29-f3be50ac6858",
+            "sourceChunkIds": [
+              "9c3e5f1e-09a0-48ad-b4d5-a61994534e34",
+              "6c332be0-bc09-4f07-8de6-c1c5a7d88a34"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "a831d446-ad07-4540-9dd2-1f974d01cbec",
+            "sourceChunkIds": [
+              "6c332be0-bc09-4f07-8de6-c1c5a7d88a34"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "aa4df7ee-fab8-41f3-a7a7-e9c2be082eff",
+            "sourceChunkIds": [
+              "33702ec2-7d97-42c0-bfa7-699117a236b1"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "dd6e8643-04b3-4664-8332-2becfb0d74c6",
+            "sourceChunkIds": [
+              "33702ec2-7d97-42c0-bfa7-699117a236b1"
+            ],
+            "visualAssetIds": [
+              "77cef2c1-cd92-4f15-851d-17383d2fa042",
+              "e0ab5f71-46fb-4b1a-8874-547df16c5e48"
+            ]
+          },
+          {
+            "id": "f1494a46-5da6-4d07-8914-f1684983c961",
+            "sourceChunkIds": [
+              "9d50ca53-91ab-4ed0-b615-369090941410"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "5e82f89f-b214-417a-a645-554fcc860375",
+            "sourceChunkIds": [
+              "9d50ca53-91ab-4ed0-b615-369090941410",
+              "65c4d602-824c-4fa0-b2da-1e1e39487374"
+            ],
+            "visualAssetIds": []
+          },
+          {
+            "id": "47fe1a41-d5c0-4b0a-a1a4-36fa02864cbb",
+            "sourceChunkIds": [
+              "65c4d602-824c-4fa0-b2da-1e1e39487374"
+            ],
+            "visualAssetIds": []
+          }
+        ],
+        "chunksProcessed": 13,
+        "windowsProcessed": 1,
+        "llmCalls": 1
+      },
+      "count": 11
+    }
+  ]
+}

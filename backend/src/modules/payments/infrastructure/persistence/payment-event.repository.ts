@@ -1,4 +1,6 @@
 import { prisma } from '../../../../lib/prisma.js';
+import type { SponsoredSeatEmailIntents } from './sponsored-seat-email-intents.js';
+import type { SponsoredTeacherNoticeKind } from '../../../email/templates/sponsored-seat-emails.js';
 
 export function getStudentEnrollmentStatusForSubscriptionEvent(eventType: string): 'ACTIVE' | 'REMOVED' {
   return eventType === 'PAYMENT_REFUNDED' || eventType === 'PAYMENT_CHARGEBACK_REQUESTED' ? 'REMOVED' : 'ACTIVE';
@@ -15,15 +17,16 @@ export type PaymentEventRepositoryResult = {
   state?: string;
 };
 
-type SubscriptionEventResult = { updatedRows: number };
+type SubscriptionEventResult = { updatedRows: number; studentId?: string };
 
-type CheckoutEventResult = { updatedRows: number };
+type CheckoutEventResult = { updatedRows: number; studentId?: string };
 type SplitEventResult = { updatedRows: number };
-type PaymentLifecycleResult = { updatedRows: number; state: string; accessGranted: false };
+type PaymentLifecycleResult = { updatedRows: number; studentId?: string; state: string; accessGranted: false };
 
-export function getSponsoredPaymentEventStatus(eventType: string): 'PENDING' | 'OVERDUE' | null {
+export function getSponsoredPaymentEventStatus(eventType: string): 'PENDING' | 'OVERDUE' | 'DECLINED' | null {
   if (eventType === 'PAYMENT_CREATED') return 'PENDING';
   if (eventType === 'PAYMENT_OVERDUE') return 'OVERDUE';
+  if (eventType === 'PAYMENT_CREDIT_CARD_CAPTURE_REFUSED') return 'DECLINED';
   return null;
 }
 
@@ -31,7 +34,14 @@ export function isSponsoredAnnualPeriodAlreadyGranted(billingInterval: string, p
   return billingInterval === 'ANNUAL' && paidAt !== null;
 }
 
+export function isSponsoredBatchTerminalForPayment(status: string, billingInterval: string, billingType: string): boolean {
+  if (status === 'CANCELLED' || status === 'REFUNDED' || status === 'REVOKED') return true;
+  return status === 'EXPIRED' && !(billingInterval === 'MONTHLY' && billingType === 'PIX');
+}
+
 export class PaymentEventRepository {
+  constructor(private readonly sponsoredEmails?: SponsoredSeatEmailIntents) {}
+
   async applyCheckoutEvent(input: { environment: string; eventId: string; eventType: string; payload: unknown; occurredAt: Date }): Promise<CheckoutEventResult> {
     const payload = asRecord(input.payload);
     const checkoutPayload = asRecord(payload.checkout);
@@ -59,13 +69,14 @@ export class PaymentEventRepository {
       data: { status: nextStatus },
     });
     if (input.eventType === 'CHECKOUT_PAID' && checkout.order.billingInterval === 'ANNUAL') {
-      await this.grantDirectAnnualCheckout(checkout.order.id, input.eventId, input.occurredAt);
+      const grant = await this.grantDirectAnnualCheckout(checkout.order.id, input.eventId, input.occurredAt);
+      return { updatedRows: updated.count || grant.updatedRows, studentId: grant.studentId };
     }
     return { updatedRows: updated.count };
   }
 
   private async applySponsoredCheckoutEvent(input: { environment: string; eventId: string; eventType: string; occurredAt: Date }, providerCheckoutId: string, nextStatus: string): Promise<CheckoutEventResult> {
-    const batch = await prisma.sponsoredSeatBatch.findFirst({ where: { environment: input.environment, providerCheckoutId }, select: { id: true, status: true, billingInterval: true, serviceMonths: true, monitorId: true, paidAt: true, seats: { select: { id: true, emailNormalized: true } } } });
+    const batch = await prisma.sponsoredSeatBatch.findFirst({ where: { environment: input.environment, providerCheckoutId }, select: { id: true, status: true, billingInterval: true, billingType: true, serviceMonths: true, monitorId: true, paidAt: true, seats: { select: { id: true, emailNormalized: true } } } });
     if (!batch) return { updatedRows: 0 };
     if (['ACTIVE', 'CANCELLED', 'EXPIRED'].includes(batch.status) && nextStatus === 'ACTIVE') return { updatedRows: 1 };
     if (batch.status === 'ACTIVE' && nextStatus !== 'PAID') return { updatedRows: 1 };
@@ -93,24 +104,41 @@ export class PaymentEventRepository {
         const startsAt = seatPeriods.map((period) => period.startsAt).sort((a, b) => a.getTime() - b.getTime())[0] ?? input.occurredAt;
         const endsAt = seatPeriods.map((period) => period.endsAt).sort((a, b) => b.getTime() - a.getTime())[0] ?? calculateServicePeriod(input.occurredAt, null, batch.serviceMonths).endsAt;
         await transaction.sponsoredSeatBatch.update({ where: { id: batch.id }, data: { status: 'ACTIVE', paidAt: input.occurredAt, currentPeriodStart: startsAt, currentPeriodEnd: endsAt } });
+        await this.sponsoredEmails?.enqueuePaidSeatInvitations(transaction, { batchId: batch.id, periodStart: startsAt, periodEnd: endsAt, occurredAt: input.occurredAt });
       });
       return { updatedRows: 1 };
     }
     const terminalStatus = input.eventType === 'CHECKOUT_CANCELED' ? 'CANCELLED' : input.eventType === 'CHECKOUT_EXPIRED' ? 'EXPIRED' : nextStatus;
-    const updated = await prisma.sponsoredSeatBatch.updateMany({ where: { id: batch.id, status: { notIn: ['ACTIVE', 'CANCELLED', 'EXPIRED'] } }, data: { status: terminalStatus } });
-    return { updatedRows: updated.count };
+    const updatedRows = await prisma.$transaction(async (transaction) => {
+      const updated = await transaction.sponsoredSeatBatch.updateMany({ where: { id: batch.id, status: { notIn: ['ACTIVE', 'CANCELLED', 'EXPIRED'] } }, data: { status: terminalStatus } });
+      const expiryCanStillBePaid = input.eventType === 'CHECKOUT_EXPIRED' && batch.billingInterval === 'MONTHLY' && batch.billingType === 'PIX';
+      if (updated.count && this.sponsoredEmails && !expiryCanStillBePaid && (input.eventType === 'CHECKOUT_CANCELED' || input.eventType === 'CHECKOUT_EXPIRED')) {
+        await this.sponsoredEmails.enqueueTeacherNotice(transaction, { batchId: batch.id, kind: input.eventType === 'CHECKOUT_CANCELED' ? 'CHECKOUT_CANCELED' : 'CHECKOUT_EXPIRED', eventKey: `${input.eventType}:${providerCheckoutId}`, occurredAt: input.occurredAt });
+      }
+      return updated.count;
+    });
+    return { updatedRows };
   }
 
   private async grantDirectAnnualCheckout(orderId: string, eventId: string, occurredAt: Date) {
-    await prisma.$transaction(async (transaction) => {
+    return prisma.$transaction(async (transaction) => {
+      await transaction.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${`payment-order:${orderId}`}, 0)) IS NULL`;
       const order = await transaction.paymentOrder.findUnique({ where: { id: orderId }, select: {
         id: true, studentId: true, status: true, grossCents: true, serviceMonths: true,
         items: { take: 1, select: { monitorId: true } },
-        subscription: { select: { id: true, currentPeriodStart: true, currentPeriodEnd: true, items: { take: 1, select: { id: true } } } },
+        subscription: { select: { id: true, status: true, accessRevocationReason: true, currentPeriodStart: true, currentPeriodEnd: true, items: { take: 1, select: { id: true } } } },
       } });
-      if (!order?.subscription || !order.items[0] || !order.subscription.items[0]) return;
+      if (!order?.subscription || !order.items[0] || !order.subscription.items[0]) return { updatedRows: 0 };
+      if (order.subscription.accessRevocationReason === 'REFUND' || order.subscription.accessRevocationReason === 'CHARGEBACK') {
+        return { updatedRows: 0, studentId: order.studentId };
+      }
       const claimed = await transaction.paymentOrder.updateMany({ where: { id: order.id, status: { not: 'PAYMENT_CONFIRMED' } }, data: { status: 'PAYMENT_CONFIRMED' } });
-      if (claimed.count === 0) return;
+      if (claimed.count === 0) {
+        const periodAlreadyGranted = order.status === 'PAYMENT_CONFIRMED'
+          && order.subscription.currentPeriodStart !== null
+          && order.subscription.currentPeriodEnd !== null;
+        return { updatedRows: 0, ...(periodAlreadyGranted ? { studentId: order.studentId } : {}) };
+      }
       const { studentId } = order;
       const monitorId = order.items[0].monitorId;
       const priorAccess = await transaction.studentSubscription.findUnique({ where: { studentId_monitorId: { studentId, monitorId } }, select: { expiresAt: true, startsAt: true } });
@@ -121,13 +149,14 @@ export class PaymentEventRepository {
       await transaction.studentSubscription.upsert({
         where: { studentId_monitorId: { studentId, monitorId } },
         create: { studentId, monitorId, status: 'active', amountPaid: order.grossCents / 100, startsAt: period.startsAt, expiresAt: period.endsAt, currentPeriodStart: period.startsAt, currentPeriodEnd: period.endsAt, paymentSubscriptionItemId: itemId },
-        update: { status: 'active', amountPaid: { increment: order.grossCents / 100 }, expiresAt: period.endsAt, currentPeriodStart: period.startsAt, currentPeriodEnd: period.endsAt, paymentSubscriptionItemId: itemId, cancelledAt: null, cancelAtPeriodEnd: false },
+        update: { status: 'active', amountPaid: { increment: order.grossCents / 100 }, startsAt: period.startsAt, expiresAt: period.endsAt, currentPeriodStart: period.startsAt, currentPeriodEnd: period.endsAt, paymentSubscriptionItemId: itemId, cancelledAt: null, cancelAtPeriodEnd: false },
       });
       await transaction.studentEnrollment.upsert({
         where: { studentId_monitorId: { studentId, monitorId } },
         create: { studentId, monitorId, status: 'ACTIVE', startsAt: period.startsAt, endsAt: period.endsAt, paymentSubscriptionItemId: itemId },
         update: { status: 'ACTIVE', startsAt: period.startsAt, endsAt: period.endsAt, paymentSubscriptionItemId: itemId },
       });
+      return { updatedRows: 1, studentId };
     });
   }
 
@@ -176,6 +205,12 @@ export class PaymentEventRepository {
     if (getSponsoredPaymentEventStatus(input.eventType)) {
       const sponsored = await this.applySponsoredPaymentEvent({ ...input, providerPaymentId, externalReference, providerCheckoutId, payment });
       if (sponsored) return { updatedRows: sponsored.updatedRows, state: sponsored.state ?? 'PAYMENT_STATE_APPLIED', accessGranted: false };
+    }
+    if (input.eventType === 'PAYMENT_CHARGEBACK_REQUESTED'
+      || input.eventType === 'PAYMENT_CHARGEBACK_DISPUTE'
+      || input.eventType === 'PAYMENT_AWAITING_CHARGEBACK_REVERSAL') {
+      const applied = await this.applySubscriptionEvent(input);
+      return { updatedRows: applied.updatedRows, studentId: applied.studentId, state: 'PAYMENT_STATE_APPLIED', accessGranted: false };
     }
     const order = await prisma.paymentOrder.findFirst({
       where: { environment: input.environment, OR: [
@@ -235,11 +270,6 @@ export class PaymentEventRepository {
       select: { id: true },
     });
 
-    if (input.eventType === 'PAYMENT_CHARGEBACK_REQUESTED' || input.eventType === 'PAYMENT_CHARGEBACK_DISPUTE') {
-      await this.applySubscriptionEvent(input);
-    } else if (input.eventType === 'PAYMENT_AWAITING_CHARGEBACK_REVERSAL') {
-      await this.applySubscriptionEvent(input);
-    }
     return { updatedRows: 1, state: 'PAYMENT_STATE_APPLIED', accessGranted: false };
   }
 
@@ -274,23 +304,37 @@ export class PaymentEventRepository {
       const isAccessRevoked = input.eventType === 'PAYMENT_REFUNDED' || input.eventType === 'PAYMENT_CHARGEBACK_REQUESTED' || input.eventType === 'PAYMENT_CHARGEBACK_DISPUTE' || input.eventType === 'PAYMENT_AWAITING_CHARGEBACK_REVERSAL';
       const isCancelled = input.eventType === 'SUBSCRIPTION_DELETED' || input.eventType === 'SUBSCRIPTION_INACTIVATED';
       const isOverdue = input.eventType === 'PAYMENT_OVERDUE';
-      if (!isAccessRevoked && !isCancelled && !isOverdue) return { updatedRows: 0 };
+      const isPartialRefund = input.eventType === 'PAYMENT_PARTIALLY_REFUNDED';
+      if (!isAccessRevoked && !isCancelled && !isOverdue && !isPartialRefund) return { updatedRows: 0 };
+      const providerPaymentId = readString(paymentPayload.id);
       await prisma.$transaction(async (transaction) => {
-        const nextStatus = isAccessRevoked ? 'REVOKED' : isCancelled ? 'CANCEL_PENDING' : 'PAST_DUE';
-        await transaction.sponsoredSeatBatch.update({ where: { id: sponsoredBatch.id }, data: {
+        const currentBatch = await transaction.sponsoredSeatBatch.findUniqueOrThrow({ where: { id: sponsoredBatch.id }, select: { status: true } });
+        const alreadyRevoked = currentBatch.status === 'REVOKED';
+        const terminal = ['REVOKED', 'REFUNDED', 'CANCELLED', 'EXPIRED'].includes(currentBatch.status);
+        if (terminal && !isAccessRevoked) return;
+        const nextStatus = isAccessRevoked ? 'REVOKED' : isCancelled ? 'CANCEL_PENDING' : isOverdue ? 'PAST_DUE' : currentBatch.status;
+        const alreadyNotifiedState = currentBatch.status === nextStatus;
+        if (!alreadyNotifiedState) await transaction.sponsoredSeatBatch.update({ where: { id: sponsoredBatch.id }, data: {
           status: nextStatus,
           ...(providerSubscriptionId ? { providerSubscriptionId } : {}),
           ...(isCancelled ? { cancelAtPeriodEnd: true } : {}),
           ...(isAccessRevoked ? { cancelledAt: input.occurredAt } : {}),
         } });
-        if (isAccessRevoked) {
+        if (isAccessRevoked && !alreadyRevoked) {
           await transaction.sponsoredSeat.updateMany({ where: { batchId: sponsoredBatch.id, status: { in: ['ACTIVE', 'PAID_UNCLAIMED'] } }, data: { status: 'REVOKED', accessRevokedAt: input.occurredAt, endsAt: input.occurredAt } });
-          const providerPaymentId = readString(paymentPayload.id);
           if (providerPaymentId) await transaction.sponsoredSeatPayment.updateMany({ where: { batchId: sponsoredBatch.id, providerPaymentId }, data: { status: input.eventType === 'PAYMENT_REFUNDED' ? 'REFUNDED' : 'CHARGEBACK', lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId } });
         }
         if (isOverdue) {
           await transaction.sponsoredSeatPayment.updateMany({ where: { batchId: sponsoredBatch.id, status: { in: ['CONFIRMED', 'RECEIVED'] } }, data: { status: 'OVERDUE', lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId } });
         }
+        if (isPartialRefund && providerPaymentId) await transaction.sponsoredSeatPayment.updateMany({ where: { batchId: sponsoredBatch.id, providerPaymentId }, data: { status: 'PARTIALLY_REFUNDED', lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId } });
+
+        let notice: { kind: SponsoredTeacherNoticeKind; eventKey: string } | null = null;
+        if (isAccessRevoked && !alreadyRevoked) notice = { kind: input.eventType === 'PAYMENT_REFUNDED' ? 'REFUNDED' : 'CHARGEBACK', eventKey: `${input.eventType === 'PAYMENT_REFUNDED' ? 'refunded' : 'chargeback'}:${providerPaymentId ?? input.eventId}` };
+        else if (isPartialRefund) notice = { kind: 'PARTIALLY_REFUNDED', eventKey: `partial-refund:${providerPaymentId ?? input.eventId}` };
+        else if (isCancelled && !alreadyNotifiedState) notice = { kind: 'CANCELED', eventKey: `subscription-canceled:${providerSubscriptionId ?? sponsoredBatch.id}` };
+        else if (isOverdue && !alreadyNotifiedState) notice = { kind: 'OVERDUE', eventKey: `overdue:${providerPaymentId ?? input.eventId}` };
+        if (notice) await this.sponsoredEmails?.enqueueTeacherNotice(transaction, { batchId: sponsoredBatch.id, ...notice, occurredAt: input.occurredAt });
       });
       return { updatedRows: 1 };
     }
@@ -328,14 +372,12 @@ export class PaymentEventRepository {
     }
     if (subscription.lastProviderEventAt && subscription.lastProviderEventAt > input.occurredAt) return { updatedRows: 1 };
 
-    const end = providerPeriodEnd ?? subscription.currentPeriodEnd ?? input.occurredAt;
     const isAccessRevoked = input.eventType === 'PAYMENT_REFUNDED'
       || input.eventType === 'PAYMENT_CHARGEBACK_REQUESTED'
       || input.eventType === 'PAYMENT_CHARGEBACK_DISPUTE'
       || input.eventType === 'PAYMENT_AWAITING_CHARGEBACK_REVERSAL';
     const isTerminal = input.eventType === 'SUBSCRIPTION_DELETED' || isAccessRevoked;
     const isInactivated = input.eventType === 'SUBSCRIPTION_INACTIVATED';
-    const nextStatus = isTerminal ? 'CANCELLED' : isInactivated ? 'CANCEL_PENDING' : input.eventType === 'PAYMENT_OVERDUE' ? 'PAST_DUE' : subscription.status;
     const nextDueDate = readDate(subscriptionPayload.nextDueDate);
     const providerChargeStatus = input.eventType === 'PAYMENT_REFUNDED' ? 'REFUNDED'
       : input.eventType === 'PAYMENT_PARTIALLY_REFUNDED' ? 'PARTIALLY_REFUNDED'
@@ -343,27 +385,53 @@ export class PaymentEventRepository {
           : input.eventType === 'PAYMENT_AWAITING_CHARGEBACK_REVERSAL' ? 'CHARGEBACK_REVERSAL_PENDING'
           : input.eventType === 'PAYMENT_OVERDUE' ? 'OVERDUE'
             : input.eventType === 'PAYMENT_DELETED' ? 'DELETED' : null;
-    await prisma.$transaction(async (transaction) => {
-      await transaction.paymentSubscription.update({ where: { id: subscription.id }, data: {
+    const applied = await prisma.$transaction(async (transaction) => {
+      const orderLockKey = `payment-order:${subscription.orderId}`;
+      await transaction.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${orderLockKey}, 0)) IS NULL`;
+      if (paymentId) {
+        const chargeLockKey = `${input.environment}:${paymentId}`;
+        await transaction.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${chargeLockKey}, 0)) IS NULL`;
+      }
+      const currentSubscription = await transaction.paymentSubscription.findUnique({ where: { id: subscription.id }, include: { items: true } });
+      if (!currentSubscription) return false;
+      if (currentSubscription.lastProviderEventAt && currentSubscription.lastProviderEventAt > input.occurredAt) return false;
+      const currentCharge = paymentId ? await transaction.paymentCharge.findUnique({
+        where: { environment_providerPaymentId: { environment: input.environment, providerPaymentId: paymentId } },
+        select: { id: true, status: true, lastProviderEventAt: true },
+      }) : null;
+      if (currentCharge?.lastProviderEventAt && currentCharge.lastProviderEventAt > input.occurredAt) return false;
+      const end = providerPeriodEnd ?? currentSubscription.currentPeriodEnd ?? input.occurredAt;
+      const nextStatus = isTerminal ? 'CANCELLED' : isInactivated ? 'CANCEL_PENDING' : input.eventType === 'PAYMENT_OVERDUE' ? 'PAST_DUE' : currentSubscription.status;
+      await transaction.paymentSubscription.update({ where: { id: currentSubscription.id }, data: {
         ...(providerSubscriptionId ? { providerSubscriptionId } : {}),
         status: nextStatus,
         accessRevocationReason: isAccessRevoked ? (input.eventType === 'PAYMENT_REFUNDED' ? 'REFUND' : 'CHARGEBACK') : undefined,
         lastProviderEventAt: input.occurredAt,
         lastProviderEventId: input.eventId,
-        cancelAtPeriodEnd: isTerminal || isInactivated || input.eventType === 'PAYMENT_DELETED' || subscription.cancelAtPeriodEnd,
+        cancelAtPeriodEnd: isTerminal || isInactivated || input.eventType === 'PAYMENT_DELETED' || currentSubscription.cancelAtPeriodEnd,
         cancelledAt: isTerminal ? input.occurredAt : undefined,
         currentPeriodEnd: providerPeriodEnd ?? undefined,
         nextDueDate: providerPeriodEnd ?? nextDueDate ?? undefined,
       } });
-      if (providerChargeStatus && readString(paymentPayload.id)) {
-        await transaction.paymentCharge.updateMany({
-          where: { environment: input.environment, providerPaymentId: readString(paymentPayload.id)! },
-          data: { status: providerChargeStatus, lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId },
-        });
+      if (providerChargeStatus && paymentId) {
+        if (currentCharge) {
+          await transaction.paymentCharge.update({ where: { id: currentCharge.id }, data: { status: providerChargeStatus, lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId } });
+        } else {
+          const orderItem = currentSubscription.items[0];
+          if (orderItem) await transaction.paymentCharge.create({ data: {
+            subscriptionId: currentSubscription.id, environment: input.environment, providerPaymentId: paymentId,
+            providerCheckoutId: readString(paymentPayload.checkoutSession) ?? readString(paymentPayload.checkoutId),
+            dueDate: readDate(paymentPayload.dueDate), servicePeriodStart: currentSubscription.currentPeriodStart,
+            servicePeriodEnd: currentSubscription.currentPeriodEnd, status: providerChargeStatus,
+            grossCents: readMoneyInCents(paymentPayload.value) ?? orderItem.priceCentsSnapshot,
+            netCents: readMoneyInCents(paymentPayload.netValue),
+            lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId,
+          } });
+        }
       }
       if (isTerminal) {
-        await transaction.paymentSubscriptionItem.updateMany({ where: { subscriptionId: subscription.id, status: { in: ['ACTIVE', 'CANCEL_PENDING'] } }, data: { status: 'CANCELLED' } });
-        for (const item of subscription.items) {
+        await transaction.paymentSubscriptionItem.updateMany({ where: { subscriptionId: currentSubscription.id, status: { in: ['ACTIVE', 'CANCEL_PENDING'] } }, data: { status: 'CANCELLED' } });
+        for (const item of currentSubscription.items) {
           await transaction.studentSubscription.updateMany({ where: { paymentSubscriptionItemId: item.id }, data: {
             status: isAccessRevoked ? 'cancelled' : 'active',
             cancelAtPeriodEnd: true,
@@ -376,12 +444,13 @@ export class PaymentEventRepository {
           } });
         }
       } else if (input.eventType === 'PAYMENT_DELETED') {
-        await transaction.studentSubscription.updateMany({ where: { paymentSubscriptionItemId: { in: subscription.items.map((item) => item.id) } }, data: { status: 'active', cancelAtPeriodEnd: true, expiresAt: end ?? undefined } });
-        await transaction.studentEnrollment.updateMany({ where: { paymentSubscriptionItemId: { in: subscription.items.map((item) => item.id) } }, data: { status: 'ACTIVE', endsAt: end ?? undefined } });
+        await transaction.studentSubscription.updateMany({ where: { paymentSubscriptionItemId: { in: currentSubscription.items.map((item) => item.id) } }, data: { status: 'active', cancelAtPeriodEnd: true, expiresAt: end ?? undefined } });
+        await transaction.studentEnrollment.updateMany({ where: { paymentSubscriptionItemId: { in: currentSubscription.items.map((item) => item.id) } }, data: { status: 'ACTIVE', endsAt: end ?? undefined } });
       }
-      await transaction.paymentAuditEntry.create({ data: { origin: 'ASAAS_WEBHOOK', reason: input.eventType, studentId: subscription.studentId, after: { providerSubscriptionId: providerSubscriptionId ?? subscription.providerSubscriptionId, status: nextStatus, eventId: input.eventId } } });
+      await transaction.paymentAuditEntry.create({ data: { origin: 'ASAAS_WEBHOOK', reason: input.eventType, studentId: currentSubscription.studentId, after: { providerSubscriptionId: providerSubscriptionId ?? currentSubscription.providerSubscriptionId, status: nextStatus, eventId: input.eventId } } });
+      return true;
     });
-    return { updatedRows: 1 };
+    return { updatedRows: applied ? 1 : 0, ...(applied ? { studentId: subscription.studentId } : {}) };
   }
 
   private async applySponsoredPaymentEvent(input: {
@@ -395,24 +464,42 @@ export class PaymentEventRepository {
         ...(input.providerCheckoutId ? [{ providerCheckoutId: input.providerCheckoutId }] : []),
         ...(providerSubscriptionId ? [{ providerSubscriptionId }] : []),
       ] },
-      select: { id: true, status: true, billingInterval: true, serviceMonths: true, totalAmountCents: true, currentPeriodStart: true, currentPeriodEnd: true },
+      select: { id: true, status: true, billingInterval: true, billingType: true, serviceMonths: true, totalAmountCents: true, currentPeriodStart: true, currentPeriodEnd: true },
     });
     if (!batch) return null;
 
-    if (['CANCELLED', 'EXPIRED', 'REFUNDED', 'REVOKED'].includes(batch.status)) return { updatedRows: 1, accessGranted: false, state: 'PAYMENT_TERMINAL_NO_ACCESS' };
+    if (isSponsoredBatchTerminalForPayment(batch.status, batch.billingInterval, batch.billingType)) return { updatedRows: 1, accessGranted: false, state: 'PAYMENT_TERMINAL_NO_ACCESS' };
     const valueCents = readMoneyInCents(input.payment.value) ?? batch.totalAmountCents;
     const paidAt = readDate(input.payment.clientPaymentDate) ?? readDate(input.payment.paymentDate) ?? readDate(input.payment.dateCreated) ?? input.occurredAt;
     const requestedStatus = getSponsoredPaymentEventStatus(input.eventType)
       ?? (input.eventType === 'PAYMENT_RECEIVED' ? 'RECEIVED' : 'CONFIRMED');
 
     const result = await prisma.$transaction(async (transaction) => {
-      const currentBatch = await transaction.sponsoredSeatBatch.findUniqueOrThrow({ where: { id: batch.id }, select: { status: true, billingInterval: true, serviceMonths: true, paidAt: true, currentPeriodStart: true, currentPeriodEnd: true } });
+      const currentBatch = await transaction.sponsoredSeatBatch.findUniqueOrThrow({ where: { id: batch.id }, select: { status: true, billingInterval: true, billingType: true, serviceMonths: true, paidAt: true, currentPeriodStart: true, currentPeriodEnd: true } });
+      if (isSponsoredBatchTerminalForPayment(currentBatch.status, currentBatch.billingInterval, currentBatch.billingType)) {
+        return { state: 'PAYMENT_TERMINAL_NO_ACCESS', accessGranted: false };
+      }
       const existing = await transaction.sponsoredSeatPayment.findUnique({
         where: { environment_providerPaymentId: { environment: input.environment, providerPaymentId: input.providerPaymentId } },
         select: { id: true, status: true, lastProviderEventAt: true },
       });
       if (existing?.lastProviderEventAt && existing.lastProviderEventAt > input.occurredAt) return { state: 'PAYMENT_STALE_EVENT_IGNORED', accessGranted: false };
       if (existing?.status === 'REFUNDED' || existing?.status === 'CHARGEBACK') return { state: 'PAYMENT_TERMINAL_NO_ACCESS', accessGranted: false };
+      if (requestedStatus === 'DECLINED') {
+        if (existing?.status === 'RECEIVED' || existing?.status === 'CONFIRMED') return { state: 'SPONSORED_PAYMENT_DUPLICATE', accessGranted: false };
+        if (existing) {
+          await transaction.sponsoredSeatPayment.update({ where: { id: existing.id }, data: { status: 'DECLINED', lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId } });
+        } else {
+          await transaction.sponsoredSeatPayment.create({ data: {
+            batchId: batch.id, environment: input.environment, providerPaymentId: input.providerPaymentId,
+            providerCheckoutId: input.providerCheckoutId, status: 'DECLINED', grossCents: valueCents,
+            servicePeriodStart: currentBatch.currentPeriodStart, servicePeriodEnd: currentBatch.currentPeriodEnd,
+            lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId,
+          } });
+        }
+        await this.sponsoredEmails?.enqueueTeacherNotice(transaction, { batchId: batch.id, kind: 'DECLINED', eventKey: `declined:${input.providerPaymentId}`, occurredAt: input.occurredAt });
+        return { state: 'SPONSORED_PAYMENT_DECLINED', accessGranted: false };
+      }
       if (requestedStatus === 'PENDING' || requestedStatus === 'OVERDUE') {
         const paymentStatus = requestedStatus === 'OVERDUE'
           ? 'OVERDUE'
@@ -431,12 +518,13 @@ export class PaymentEventRepository {
             lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId,
           } });
         }
-        if (requestedStatus === 'OVERDUE') {
+        if (requestedStatus === 'OVERDUE' && currentBatch.status !== 'PAST_DUE') {
           await transaction.sponsoredSeatBatch.update({ where: { id: batch.id }, data: { status: 'PAST_DUE' } });
+          await this.sponsoredEmails?.enqueueTeacherNotice(transaction, { batchId: batch.id, kind: 'OVERDUE', eventKey: `overdue:${input.providerPaymentId}`, occurredAt: input.occurredAt });
         }
         return { state: requestedStatus === 'OVERDUE' ? 'SPONSORED_PAYMENT_OVERDUE' : 'SPONSORED_PAYMENT_PENDING', accessGranted: false };
       }
-      if (existing && !(currentBatch.billingInterval === 'MONTHLY' && existing.status === 'PENDING')) {
+      if (existing && !(existing.status === 'DECLINED' || (currentBatch.billingInterval === 'MONTHLY' && existing.status === 'PENDING'))) {
         const status = existing.status === 'RECEIVED' && requestedStatus === 'CONFIRMED' ? 'RECEIVED' : requestedStatus;
         if (isSponsoredAnnualPeriodAlreadyGranted(currentBatch.billingInterval, currentBatch.paidAt)) {
           await transaction.sponsoredSeatPayment.update({ where: { id: existing.id }, data: {
@@ -471,6 +559,8 @@ export class PaymentEventRepository {
         } });
         await transaction.sponsoredSeat.updateMany({ where: { batchId: batch.id, studentId: null, status: { not: 'REVOKED' } }, data: { status: 'PAID_UNCLAIMED', startsAt: period.startsAt, endsAt: period.endsAt } });
         await transaction.sponsoredSeat.updateMany({ where: { batchId: batch.id, studentId: { not: null }, status: { not: 'REVOKED' } }, data: { status: 'ACTIVE', startsAt: period.startsAt, endsAt: period.endsAt } });
+        await transaction.sponsoredSeatBatch.update({ where: { id: batch.id }, data: { paidAt: input.occurredAt } });
+        await this.sponsoredEmails?.enqueuePaidSeatInvitations(transaction, { batchId: batch.id, periodStart: period.startsAt, periodEnd: period.endsAt, occurredAt: input.occurredAt });
         return { state: 'SPONSORED_SEAT_PAYMENT_APPLIED', accessGranted: true };
       }
       if (isSponsoredAnnualPeriodAlreadyGranted(currentBatch.billingInterval, currentBatch.paidAt)) {
@@ -487,22 +577,26 @@ export class PaymentEventRepository {
       const period = currentBatch.billingInterval === 'ANNUAL' && currentBatch.status === 'ACTIVE' && currentBatch.currentPeriodStart && currentBatch.currentPeriodEnd
         ? { startsAt: currentBatch.currentPeriodStart, endsAt: currentBatch.currentPeriodEnd }
         : calculateServicePeriod(paidAt, currentBatch.currentPeriodEnd, currentBatch.serviceMonths);
-      await transaction.sponsoredSeatPayment.create({ data: {
+      const paymentData = {
         batchId: batch.id, environment: input.environment, providerPaymentId: input.providerPaymentId,
         providerCheckoutId: input.providerCheckoutId, status: requestedStatus, grossCents: valueCents,
         confirmedAt: requestedStatus === 'CONFIRMED' ? input.occurredAt : null,
         receivedAt: requestedStatus === 'RECEIVED' ? input.occurredAt : null,
         servicePeriodStart: period.startsAt, servicePeriodEnd: period.endsAt,
         lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId,
-      } });
+      };
+      if (existing) await transaction.sponsoredSeatPayment.update({ where: { id: existing.id }, data: paymentData });
+      else await transaction.sponsoredSeatPayment.create({ data: paymentData });
       await transaction.sponsoredSeatBatch.update({ where: { id: batch.id }, data: {
         status: 'ACTIVE',
+        paidAt: currentBatch.paidAt ?? input.occurredAt,
         ...(providerSubscriptionId ? { providerSubscriptionId } : {}),
         currentPeriodStart: period.startsAt,
         currentPeriodEnd: period.endsAt,
       } });
       await transaction.sponsoredSeat.updateMany({ where: { batchId: batch.id, studentId: null, status: { not: 'REVOKED' } }, data: { status: 'PAID_UNCLAIMED', startsAt: period.startsAt, endsAt: period.endsAt } });
       await transaction.sponsoredSeat.updateMany({ where: { batchId: batch.id, studentId: { not: null }, status: { not: 'REVOKED' } }, data: { status: 'ACTIVE', startsAt: period.startsAt, endsAt: period.endsAt } });
+      await this.sponsoredEmails?.enqueuePaidSeatInvitations(transaction, { batchId: batch.id, periodStart: period.startsAt, periodEnd: period.endsAt, occurredAt: input.occurredAt });
       return { state: 'SPONSORED_SEAT_PAYMENT_APPLIED', accessGranted: true };
     });
     return { updatedRows: 1, accessGranted: result.accessGranted, state: result.state };
@@ -578,10 +672,37 @@ export class PaymentEventRepository {
 
     console.log('Persistência financeira e liberação de acesso iniciadas', { event: 'payments.payment_access_persistence_started', eventId: input.eventId, tableNames: ['payment_charges', 'payment_subscriptions', 'payment_subscription_items', 'student_subscriptions', 'student_enrollments'], providerPaymentId, orderId: order.id, subscriptionId: subscription.id, studentId: order.studentId, monitorId: orderItem.monitorId, status, valueCents });
     const result = await prisma.$transaction(async (transaction) => {
+      // Annual checkout and payment events share an order lock so only the
+      // first grant chooses the period; later events reuse that persisted one.
+      const orderLockKey = `payment-order:${order.id}`;
+      await transaction.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${orderLockKey}, 0)) IS NULL`;
       // Serialize confirmations for this provider charge. The lock must precede
       // the charge read so concurrent webhook workers observe the prior commit.
       const chargeLockKey = `${input.environment}:${providerPaymentId}`;
-      await transaction.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${chargeLockKey}, 0))`;
+      await transaction.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${chargeLockKey}, 0)) IS NULL`;
+      const currentOrder = await transaction.paymentOrder.findUnique({ where: { id: order.id }, select: {
+        id: true, studentId: true, status: true, billingInterval: true, serviceMonths: true,
+        grossCents: true,
+        items: { take: 1, select: { id: true, monitorId: true, priceCentsSnapshot: true } },
+        subscription: { select: { id: true, status: true, accessRevocationReason: true, providerSubscriptionId: true, currentPeriodStart: true, currentPeriodEnd: true, items: { take: 1, select: { id: true, monitorId: true, teacherPercentageSnapshot: true, priceCentsSnapshot: true } } } },
+      } });
+      if (!currentOrder?.subscription || !currentOrder.items[0] || !currentOrder.subscription.items[0]) {
+        return { charge: null, accessGranted: false, state: 'PAYMENT_ORDER_MISSING' };
+      }
+      const currentSubscription = currentOrder.subscription;
+      const currentOrderItem = currentOrder.items[0];
+      const currentSubscriptionItem = currentSubscription.items[0]!;
+      const currentValueCents = readMoneyInCents(payment.value) ?? currentOrderItem.priceCentsSnapshot;
+      const annualPeriodAlreadyGranted = currentOrder.billingInterval === 'ANNUAL'
+        && currentOrder.status === 'PAYMENT_CONFIRMED'
+        && Boolean(currentSubscription.currentPeriodStart && currentSubscription.currentPeriodEnd);
+      if (annualPeriodAlreadyGranted) {
+        periodStart = currentSubscription.currentPeriodStart!;
+        periodEnd = currentSubscription.currentPeriodEnd!;
+      } else if (currentOrder.billingInterval === 'ANNUAL') {
+        const currentAccess = await transaction.studentSubscription.findUnique({ where: { studentId_monitorId: { studentId: currentOrder.studentId, monitorId: currentOrderItem.monitorId } }, select: { expiresAt: true } });
+        ({ startsAt: periodStart, endsAt: periodEnd } = calculateServicePeriod(paymentPeriodStart, currentAccess?.expiresAt ?? null, currentOrder.serviceMonths));
+      }
       const existingCharge = await transaction.paymentCharge.findUnique({
         where: { environment_providerPaymentId: { environment: input.environment, providerPaymentId } },
         select: { id: true, status: true, lastProviderEventAt: true, servicePeriodStart: true, servicePeriodEnd: true },
@@ -600,15 +721,15 @@ export class PaymentEventRepository {
       const chargeStatus = existingCharge?.status === 'RECEIVED' && status === 'CONFIRMED' ? 'RECEIVED' : status;
       const charge = await transaction.paymentCharge.upsert({
         where: { environment_providerPaymentId: { environment: input.environment, providerPaymentId } },
-        create: { subscriptionId: subscription.id, environment: input.environment, providerPaymentId, providerCheckoutId, dueDate, servicePeriodStart: periodStart, servicePeriodEnd: periodEnd, status, grossCents: valueCents, netCents, feeCents, confirmedAt: status === 'CONFIRMED' ? input.occurredAt : null, receivedAt: status === 'RECEIVED' ? input.occurredAt : null, lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId },
-        update: { status: chargeStatus, dueDate, netCents: netCents ?? undefined, feeCents: feeCents ?? undefined, confirmedAt: status === 'CONFIRMED' ? input.occurredAt : undefined, receivedAt: status === 'RECEIVED' ? input.occurredAt : undefined, lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId },
+        create: { subscriptionId: currentSubscription.id, environment: input.environment, providerPaymentId, providerCheckoutId, dueDate, servicePeriodStart: periodStart, servicePeriodEnd: periodEnd, status, grossCents: currentValueCents, netCents, feeCents, confirmedAt: status === 'CONFIRMED' ? input.occurredAt : null, receivedAt: status === 'RECEIVED' ? input.occurredAt : null, lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId },
+        update: { status: chargeStatus, dueDate, servicePeriodStart: existingCharge?.servicePeriodStart ?? periodStart, servicePeriodEnd: existingCharge?.servicePeriodEnd ?? periodEnd, netCents: netCents ?? undefined, feeCents: feeCents ?? undefined, confirmedAt: status === 'CONFIRMED' ? input.occurredAt : undefined, receivedAt: status === 'RECEIVED' ? input.occurredAt : undefined, lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId },
       });
-      if ((subscription.accessRevocationReason === 'CHARGEBACK' && !recoveredFromChargeback) || subscription.accessRevocationReason === 'REFUND') {
+      if ((currentSubscription.accessRevocationReason === 'CHARGEBACK' && !recoveredFromChargeback) || currentSubscription.accessRevocationReason === 'REFUND') {
         return { charge, accessGranted: false, state: 'PAYMENT_ACCESS_REVOKED' };
       }
       console.log('Cobrança Asaas persistida', { event: 'payments.payment_charge_persisted', tableName: 'payment_charges', eventId: input.eventId, chargeId: charge.id, providerPaymentId, status });
 
-      const teacherPercentage = Number(subscriptionItem.teacherPercentageSnapshot);
+      const teacherPercentage = Number(currentSubscriptionItem.teacherPercentageSnapshot);
       const existingTeacherSplit = await transaction.paymentSplit.findFirst({ where: { chargeId: charge.id, role: 'TEACHER' } });
       const splitData = { destination: teacherPercentage > 0 ? 'TEACHER' : 'PLATFORM', payoutMode: teacherPercentage > 0 ? 'TEACHER_ACCOUNT' as const : 'PLATFORM_FALLBACK' as const, contractedPercentage: teacherPercentage, effectivePercentage: teacherPercentage, expectedCents: Math.round(valueCents * teacherPercentage / 100), fallbackReason: teacherPercentage > 0 ? null : 'TEACHER_ACCOUNT_NOT_ELIGIBLE' };
       if (existingTeacherSplit) await transaction.paymentSplit.update({ where: { id: existingTeacherSplit.id }, data: splitData });
@@ -641,26 +762,27 @@ export class PaymentEventRepository {
         else await transaction.paymentSplit.create({ data: { chargeId: charge.id, contractedPercentage: index === 0 ? teacherPercentage : observed.effectivePercentage, ...observedData } });
       }
 
-      await transaction.paymentSubscription.update({ where: { id: subscription.id }, data: { status: subscription.status === 'CANCELLED' && !recoveredFromChargeback ? 'CANCELLED' : 'ACTIVE', accessRevocationReason: recoveredFromChargeback ? null : undefined, cancelledAt: recoveredFromChargeback ? null : undefined, cancelAtPeriodEnd: recoveredFromChargeback ? false : undefined, providerSubscriptionId: providerSubscriptionId ?? undefined, currentPeriodStart: periodStart, currentPeriodEnd: periodEnd, nextDueDate: periodEnd, lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId } });
-      console.log('Assinatura financeira ativada', { event: 'payments.subscription_activated', tableName: 'payment_subscriptions', eventId: input.eventId, subscriptionId: subscription.id, providerSubscriptionId, currentPeriodStart: periodStart, currentPeriodEnd: periodEnd });
-      await transaction.paymentSubscriptionItem.update({ where: { id: subscriptionItem.id }, data: { status: 'ACTIVE' } });
+      await transaction.paymentSubscription.update({ where: { id: currentSubscription.id }, data: { status: currentSubscription.status === 'CANCELLED' && !recoveredFromChargeback ? 'CANCELLED' : 'ACTIVE', accessRevocationReason: recoveredFromChargeback ? null : undefined, cancelledAt: recoveredFromChargeback ? null : undefined, cancelAtPeriodEnd: recoveredFromChargeback ? false : undefined, providerSubscriptionId: providerSubscriptionId ?? undefined, currentPeriodStart: periodStart, currentPeriodEnd: periodEnd, nextDueDate: periodEnd, lastProviderEventAt: input.occurredAt, lastProviderEventId: input.eventId } });
+      console.log('Assinatura financeira ativada', { event: 'payments.subscription_activated', tableName: 'payment_subscriptions', eventId: input.eventId, subscriptionId: currentSubscription.id, providerSubscriptionId, currentPeriodStart: periodStart, currentPeriodEnd: periodEnd });
+      await transaction.paymentSubscriptionItem.update({ where: { id: currentSubscriptionItem.id }, data: { status: 'ACTIVE' } });
 
       await transaction.studentSubscription.upsert({
-        where: { studentId_monitorId: { studentId: order.studentId, monitorId: orderItem.monitorId } },
-        create: { studentId: order.studentId, monitorId: orderItem.monitorId, status: 'active', amountPaid: valueCents / 100, startsAt: periodStart, expiresAt: periodEnd, gatewaySubscriptionId: providerSubscriptionId, currentPeriodStart: periodStart, currentPeriodEnd: periodEnd, paymentSubscriptionItemId: subscriptionItem.id, lastPaymentChargeId: charge.id },
-        update: { status: 'active', amountPaid: valueCents / 100, expiresAt: periodEnd, gatewaySubscriptionId: providerSubscriptionId ?? undefined, currentPeriodStart: periodStart, currentPeriodEnd: periodEnd, paymentSubscriptionItemId: subscriptionItem.id, lastPaymentChargeId: charge.id, cancelledAt: subscription.status === 'CANCELLED' && !recoveredFromChargeback ? undefined : null, cancelAtPeriodEnd: subscription.status === 'CANCELLED' && !recoveredFromChargeback ? true : false },
+        where: { studentId_monitorId: { studentId: currentOrder.studentId, monitorId: currentOrderItem.monitorId } },
+        create: { studentId: currentOrder.studentId, monitorId: currentOrderItem.monitorId, status: 'active', amountPaid: currentValueCents / 100, startsAt: periodStart, expiresAt: periodEnd, gatewaySubscriptionId: providerSubscriptionId, currentPeriodStart: periodStart, currentPeriodEnd: periodEnd, paymentSubscriptionItemId: currentSubscriptionItem.id, lastPaymentChargeId: charge.id },
+        update: { status: 'active', amountPaid: annualPeriodAlreadyGranted ? undefined : { increment: currentValueCents / 100 }, startsAt: currentOrder.billingInterval === 'ANNUAL' ? periodStart : undefined, expiresAt: periodEnd, gatewaySubscriptionId: providerSubscriptionId ?? undefined, currentPeriodStart: periodStart, currentPeriodEnd: periodEnd, paymentSubscriptionItemId: currentSubscriptionItem.id, lastPaymentChargeId: charge.id, cancelledAt: currentSubscription.status === 'CANCELLED' && !recoveredFromChargeback ? undefined : null, cancelAtPeriodEnd: currentSubscription.status === 'CANCELLED' && !recoveredFromChargeback ? true : false },
       });
-      console.log('Projeção de assinatura do aluno atualizada', { event: 'payments.student_subscription_access_upserted', tableName: 'student_subscriptions', eventId: input.eventId, studentId: order.studentId, monitorId: orderItem.monitorId, chargeId: charge.id, periodEnd });
+      console.log('Projeção de assinatura do aluno atualizada', { event: 'payments.student_subscription_access_upserted', tableName: 'student_subscriptions', eventId: input.eventId, studentId: currentOrder.studentId, monitorId: currentOrderItem.monitorId, chargeId: charge.id, periodEnd });
 
       await transaction.studentEnrollment.upsert({
-        where: { studentId_monitorId: { studentId: order.studentId, monitorId: orderItem.monitorId } },
-        create: { studentId: order.studentId, monitorId: orderItem.monitorId, status: 'ACTIVE', startsAt: periodStart, endsAt: periodEnd, paymentSubscriptionItemId: subscriptionItem.id },
-        update: { status: 'ACTIVE', endsAt: periodEnd, paymentSubscriptionItemId: subscriptionItem.id },
+        where: { studentId_monitorId: { studentId: currentOrder.studentId, monitorId: currentOrderItem.monitorId } },
+        create: { studentId: currentOrder.studentId, monitorId: currentOrderItem.monitorId, status: 'ACTIVE', startsAt: periodStart, endsAt: periodEnd, paymentSubscriptionItemId: currentSubscriptionItem.id },
+        update: { status: 'ACTIVE', startsAt: currentOrder.billingInterval === 'ANNUAL' ? periodStart : undefined, endsAt: periodEnd, paymentSubscriptionItemId: currentSubscriptionItem.id },
       });
-      console.log('Enrollment do aluno atualizado', { event: 'payments.student_enrollment_upserted', tableName: 'student_enrollments', eventId: input.eventId, studentId: order.studentId, monitorId: orderItem.monitorId, paymentSubscriptionItemId: subscriptionItem.id });
-      await transaction.paymentOrder.update({ where: { id: order.id }, data: { status: 'PAYMENT_CONFIRMED' } });
+      console.log('Enrollment do aluno atualizado', { event: 'payments.student_enrollment_upserted', tableName: 'student_enrollments', eventId: input.eventId, studentId: currentOrder.studentId, monitorId: currentOrderItem.monitorId, paymentSubscriptionItemId: currentSubscriptionItem.id });
+      await transaction.paymentOrder.update({ where: { id: currentOrder.id }, data: { status: 'PAYMENT_CONFIRMED' } });
       return { charge, accessGranted: true, state: 'PAYMENT_ACCESS_APPLIED' };
     });
+    if (!result.charge) return { updatedRows: 0, accessGranted: false, state: result.state };
     if (!result.accessGranted) {
       console.warn('Pagamento recebido após estorno ou contestação; acesso permanece revogado', { event: 'payments.payment_terminal_state_preserved', eventId: input.eventId, chargeId: result.charge.id, providerPaymentId, priorStatus: result.charge.status });
       return { updatedRows: 1, chargeId: result.charge.id, orderId: order.id, subscriptionId: subscription.id, studentId: order.studentId, monitorId: orderItem.monitorId, accessGranted: false, state: result.state };

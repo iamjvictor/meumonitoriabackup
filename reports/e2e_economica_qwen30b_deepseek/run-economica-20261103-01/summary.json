@@ -1,0 +1,82 @@
+{
+  "runId": "run-economica-20261103-01",
+  "test": "e2e_economica_qwen30b_deepseek",
+  "executionMode": "execute",
+  "modelMatrix": {
+    "embedding": "qwen/qwen3-embedding-8b",
+    "completionFull": "deepseek/deepseek-v3.2",
+    "visual": "qwen/qwen3-vl-30b-a3b-instruct",
+    "chatImage": "qwen/qwen3-vl-235b-a22b-instruct",
+    "extraction": "qwen/qwen3-vl-30b-a3b-instruct",
+    "alternatives": "deepseek/deepseek-v3.2",
+    "answer": "deepseek/deepseek-v3.2",
+    "explanation": "deepseek/deepseek-v3.2",
+    "review": "qwen/qwen3-vl-235b-a22b-instruct",
+    "normalize": "qwen/qwen3-vl-235b-a22b-instruct"
+  },
+  "completionModelAssignment": {
+    "schemaName": "question_completion_full",
+    "model": "deepseek/deepseek-v3.2",
+    "outputFields": [
+      "alternatives",
+      "correctAnswer",
+      "explanation"
+    ],
+    "reason": "Produção combina os três campos em uma chamada; o executor não decompõe nem repete chamadas.",
+    "matrixDeviation": null
+  },
+  "paidCallsMade": false,
+  "pipelineAttempted": false,
+  "pipelineExecuted": false,
+  "pipelineComplete": false,
+  "generatedAt": "2026-11-03T01:27:18.976Z",
+  "rounds": [
+    {
+      "round": 1,
+      "status": "FAILED",
+      "pipelineAttempted": false,
+      "qualityChecks": {
+        "status": "NOT_RUN",
+        "passed": 0,
+        "failed": 0,
+        "notVerified": 0,
+        "total": 0,
+        "byQuestion": []
+      },
+      "questions": [],
+      "calls": [],
+      "errorType": "Error"
+    }
+  ],
+  "baseline": {
+    "path": "dbtemp/artifacts/9df3b11e-d426-4542-aa57-1d1982f17f01/e2e-results-summary.json",
+    "status": "FOUND",
+    "questionCount": 10,
+    "structuredCalls": 90,
+    "inputTokens": 141107,
+    "outputTokens": 57889,
+    "costUsd": "NAO_VERIFICADO"
+  },
+  "comparison": {
+    "humanAnswerKey": "SEM_VERDADE_DE_REFERENCIA",
+    "chunkerVersion": "NAO_VERIFICADO",
+    "retention": "NAO_VERIFICADO"
+  },
+  "executionError": "Execução da rodada falhou; detalhes brutos foram omitidos do resumo.",
+  "calls": [],
+  "callTelemetry": {
+    "rounds": [],
+    "calls": 0,
+    "apiCallsSent": 0,
+    "status": "NAO_VERIFICADO",
+    "reason": "Nenhuma chamada foi observada; preflight/dry-run não executou o pipeline."
+  },
+  "qualityChecks": {
+    "status": "NOT_RUN",
+    "passed": 0,
+    "failed": 0,
+    "notVerified": 0,
+    "total": 0,
+    "byRound": []
+  }
+}

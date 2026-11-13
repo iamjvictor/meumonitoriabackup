@@ -4,6 +4,7 @@ export type ChatVisualAssetReference = {
   page: number | null;
   checksum: string;
   description: string | null;
+  totalCount?: number;
 };
 export type ChatVisualContextImage = ChatVisualAssetReference & {
   source: 'STUDENT_UPLOAD' | 'QUESTION' | 'KNOWLEDGE';
@@ -36,23 +37,41 @@ export class ChatVisualContextService {
     ]);
     const seen = new Set<string>();
     const images: ChatVisualContextImage[] = [];
+    const omittedCounts = new Map<ChatVisualContextImage['source'], number>();
+    const addOmitted = (source: ChatVisualContextImage['source'], count = 1) => {
+      if (count > 0) omittedCounts.set(source, (omittedCounts.get(source) ?? 0) + count);
+    };
+    const questionAssetCount = questionAssets[0]?.totalCount;
+    if (questionAssetCount !== undefined) {
+      addOmitted('QUESTION', questionAssetCount - questionAssets.length);
+    }
     for (const [source, assets] of [
-      ['STUDENT_UPLOAD', studentAssets],
       ['QUESTION', questionAssets],
+      ['STUDENT_UPLOAD', studentAssets],
       ['KNOWLEDGE', knowledgeAssets],
     ] as const) {
       for (const asset of assets) {
-        if (seen.has(asset.assetId) || images.length >= 4) continue;
+        if (seen.has(asset.assetId)) continue;
+        if (images.length >= 4) {
+          addOmitted(source);
+          continue;
+        }
         seen.add(asset.assetId);
-        images.push({ ...asset, source });
+        const { assetId, page, checksum, description } = asset;
+        images.push({ assetId, page, checksum, description, source });
       }
     }
-    const text = images.map((image, index) => [
+    const visualSections = images.map((image, index) => [
       `[CONTEXTO VISUAL ${index + 1}]`,
       `Origem: ${image.source}`,
       `Página: ${image.page ?? 'não informada'}`,
       image.description ?? 'A imagem foi selecionada para análise visual; use somente o que puder verificar nela.',
-    ].join('\n')).join('\n\n');
+    ].join('\n'));
+    if (omittedCounts.size > 0) {
+      const omittedSummary = Array.from(omittedCounts, ([source, count]) => `${source} (${count})`).join(', ');
+      visualSections.push(`[LIMITE DE IMAGENS] Limite de 4 imagens. Assets omitidos por fonte: ${omittedSummary}. Não afirme que viu imagens omitidas.`);
+    }
+    const text = visualSections.join('\n\n');
     return {
       text,
       images,

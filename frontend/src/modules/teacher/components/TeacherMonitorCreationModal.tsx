@@ -79,6 +79,29 @@ const steps = [
 // Banco de Questões Integrado: Matérias → Tópicos → Subtópicos → Subsubtópicos
 const normalizeDraftName = (value: string) => value.trim().replace(/\s+/g, ' ').toLowerCase();
 
+const hydrateExistingMonitorSubjects = (monitor: TeacherMonitor): SubjectDraft[] => monitor.subjects.map((subject) => ({
+  id: subject.id,
+  name: subject.name,
+  source: 'MIXED',
+  topics: subject.topicRefs.flatMap((topic) => {
+    const selections = topic.questionBankSelections ?? [];
+    const hasSelection = (subtopic?: string | null, subsubtopic?: string | null) => selections.some((selection) =>
+      normalizeDraftName(selection.subtopic ?? '') === normalizeDraftName(subtopic ?? '')
+      && normalizeDraftName(selection.subsubtopic ?? '') === normalizeDraftName(subsubtopic ?? '')
+    );
+    return [
+      { name: topic.name, definition: topic.definition ?? '', source: hasSelection() ? 'QUESTION_BANK' as const : 'MANUAL' as const },
+      ...topic.subtopics.flatMap((subtopic) => subtopic.subsubtopics.length === 0
+        ? [{ name: `${topic.name} > ${subtopic.name}`, definition: '', source: hasSelection(subtopic.name) ? 'QUESTION_BANK' as const : 'MANUAL' as const }]
+        : subtopic.subsubtopics.map((subsubtopic) => ({
+          name: `${topic.name} > ${subtopic.name} > ${subsubtopic.name}`,
+          definition: '',
+          source: hasSelection(subtopic.name, subsubtopic.name) ? 'QUESTION_BANK' as const : 'MANUAL' as const,
+        }))),
+    ];
+  }),
+}));
+
 // Helpers para navegação na árvore de 4 níveis
 export const getAllSubjectLeafIds = (subject: QuestionBankSubject): string[] => {
   const ids: string[] = [];
@@ -178,6 +201,16 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
   const [examProfilesList, setExamProfilesList] = useState<ExamProfile[]>([]);
   const [isLoadingCatalog, setIsLoadingCatalog] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (!isOpen || !isEditMonitorMode || !existingMonitor) return;
+    const hydratedSubjects = hydrateExistingMonitorSubjects(existingMonitor);
+    setName(existingMonitor.name);
+    setDescription(existingMonitor.description);
+    setSubjects(hydratedSubjects);
+    setSelectedSubjectId(hydratedSubjects[0]?.id ?? null);
+    setExpandedSubjects(Object.fromEntries(hydratedSubjects.map((subject) => [subject.id, true])));
+  }, [isOpen, isEditMonitorMode, existingMonitor]);
+
   // Carrega os dados reais da tabela question_bank_items ao abrir o modal
   useEffect(() => {
     if (!isOpen) return;
@@ -195,13 +228,9 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
         setExamProfilesList(profiles);
 
         if (isEditMonitorMode && existingMonitor) {
-          setName(existingMonitor.name);
-          setDescription(existingMonitor.description);
-
           const selectedProfileIds = new Set<string>();
           const selectedLeaves: Record<string, string[]> = {};
-          const hydratedSubjects = existingMonitor.subjects.map((monitorSubject) => {
-            const topics: TopicDraft[] = [];
+          for (const monitorSubject of existingMonitor.subjects) {
             const catalogSubject = subjects.find((candidate) => normalizeDraftName(candidate.name) === normalizeDraftName(monitorSubject.name));
 
             for (const topic of monitorSubject.topicRefs) {
@@ -230,33 +259,13 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                 }
                 selectedLeaves[catalogSubject.id] = Array.from(current);
               }
-
-              const hasSelection = (subtopic?: string | null, subsubtopic?: string | null) => selections.some((selection) =>
-                normalizeDraftName(selection.subtopic ?? '') === normalizeDraftName(subtopic ?? '')
-                && normalizeDraftName(selection.subsubtopic ?? '') === normalizeDraftName(subsubtopic ?? '')
-              );
-              topics.push({ name: topic.name, definition: topic.definition ?? '', source: hasSelection() ? 'QUESTION_BANK' : 'MANUAL' });
-              for (const subtopic of topic.subtopics) {
-                if (subtopic.subsubtopics.length === 0) {
-                  topics.push({ name: `${topic.name} > ${subtopic.name}`, definition: '', source: hasSelection(subtopic.name) ? 'QUESTION_BANK' : 'MANUAL' });
-                } else {
-                  for (const subsubtopic of subtopic.subsubtopics) {
-                    topics.push({ name: `${topic.name} > ${subtopic.name} > ${subsubtopic.name}`, definition: '', source: hasSelection(subtopic.name, subsubtopic.name) ? 'QUESTION_BANK' : 'MANUAL' });
-                  }
-                }
-              }
             }
-
-            return { id: monitorSubject.id, name: monitorSubject.name, source: 'MIXED' as const, topics };
-          });
-
-          setSubjects(hydratedSubjects);
+          }
           setSelectedExamProfiles(Array.from(selectedProfileIds));
           setSelectedCatalogSubtopics(selectedLeaves);
           setSelectedCatalogSubjects(Object.keys(selectedLeaves).filter((id) => selectedLeaves[id]?.length));
           const firstSelectedCatalogSubject = Object.keys(selectedLeaves).find((id) => selectedLeaves[id]?.length);
           setActiveCatalogSubjectId(firstSelectedCatalogSubject ?? subjects[0]?.id ?? 'matematica');
-          setExpandedSubjects(Object.fromEntries(hydratedSubjects.map((subject) => [subject.id, true])));
         } else if (subjects[0]?.id) {
           setActiveCatalogSubjectId(subjects[0].id);
         }
@@ -930,10 +939,6 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
     }
 
     if (step === 3) {
-      if (selectedExamProfiles.length === 0 && (selectedCatalogSubjects.length > 0 || totalSelectedSubtopicsCount > 0)) {
-        setError('Selecione pelo menos um perfil de prova ou banca para importar questões do acervo.');
-        return;
-      }
       // O acervo é opcional; quando usado, seus tópicos entram na árvore local.
       syncCatalogToSubjects();
       setStep(4);
@@ -1355,9 +1360,9 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
         {/* Top Header */}
         <div className="flex items-center justify-between border-b border-emerald-950 bg-gradient-to-r from-emerald-900 via-[#132E20] to-[#2E5B37] px-5 py-4 sm:px-7 text-white shadow-sm">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-300">Novo produto</p>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-300">{isEditMonitorMode ? 'Editar monitor' : 'Novo produto'}</p>
             <h2 className="mt-1 font-heading text-lg font-extrabold text-white uppercase tracking-wide">
-              Estruture seu Monitor de IA
+              {isEditMonitorMode ? 'Editar estrutura do Monitor de IA' : 'Estruture seu Monitor de IA'}
             </h2>
           </div>
           <button
@@ -1768,8 +1773,8 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                             <BookOpen className="h-8 w-8 text-slate-300 mb-2" />
                             {selectedExamProfiles.length === 0 ? (
                               <>
-                                <p className="text-sm font-semibold text-slate-600">Selecione uma ou mais bancas para filtrar o acervo</p>
-                                <p className="text-xs text-slate-400 mt-1">Volte à etapa anterior e escolha os perfis que deseja incluir.</p>
+                                <p className="text-sm font-semibold text-slate-600">O banco de questões é opcional</p>
+                                <p className="text-xs text-slate-400 mt-1">Selecione uma banca para importar questões ou continue para criar as matérias manualmente.</p>
                               </>
                             ) : (
                               <>
@@ -2535,19 +2540,21 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                   </div>
                 ) : null}
 
-                {/* FASE 5: REVISÃO FINAL & CRIAÇÃO */}
+                {/* FASE 5: REVISÃO FINAL */}
                 {step === 5 ? (
                   <div className="max-w-3xl space-y-6">
                     <div>
                       <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>Fase 5 • Revisão Final & Criação</span>
+                        <span>{isEditMonitorMode ? 'Edição da Estrutura • Revisão Final' : 'Fase 5 • Revisão Final & Criação'}</span>
                       </div>
                       <h3 className="font-heading text-2xl font-bold text-[#132E20]">
-                        Revise seu Monitor de IA antes de criar
+                        {isEditMonitorMode ? 'Revise as alterações na estrutura' : 'Revise seu Monitor de IA antes de criar'}
                       </h3>
                       <p className="mt-1 text-sm leading-6 text-slate-600">
-                        Confira os dados principais e a composição de matérias e tópicos configurados. Após criar o rascunho, você poderá publicar e gerenciar materiais.
+                        {isEditMonitorMode
+                          ? 'Confira as matérias e os tópicos. Ao salvar, as alterações serão aplicadas ao monitor atual.'
+                          : 'Confira os dados principais e a composição de matérias e tópicos configurados. Após criar o rascunho, você poderá publicar e gerenciar materiais.'}
                       </p>
                     </div>
 
@@ -2623,7 +2630,9 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
                     <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200 flex items-center gap-3 text-xs text-emerald-950 font-medium">
                       <CheckCircle2 className="h-5 w-5 text-emerald-700 shrink-0" />
                       <span>
-                        Tudo pronto! Ao clicar em <strong>&quot;Criar Monitor de IA&quot;</strong> abaixo, seu monitor será salvo no painel do professor e você será direcionado para o workspace de gestão.
+                        {isEditMonitorMode
+                          ? <>Tudo pronto! Ao clicar em <strong>&quot;Salvar alterações&quot;</strong>, a estrutura deste monitor será atualizada.</>
+                          : <>Tudo pronto! Ao clicar em <strong>&quot;Criar Monitor de IA&quot;</strong> abaixo, seu monitor será salvo no painel do professor e você será direcionado para o workspace de gestão.</>}
                       </span>
                     </div>
                   </div>
@@ -2792,7 +2801,7 @@ export const TeacherMonitorCreationModal: React.FC<TeacherMonitorCreationModalPr
               ) : step === 5 ? (
                 <>
                   <FileCheck2 className="h-4 w-4" />
-                  Criar Monitor de IA
+                  {isEditMonitorMode ? 'Salvar alterações' : 'Criar Monitor de IA'}
                 </>
               ) : (
                 'Continuar'

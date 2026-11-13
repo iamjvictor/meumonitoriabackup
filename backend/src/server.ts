@@ -12,6 +12,7 @@ import { profileImageRoutes } from './routes/profile-image.routes.js';
 import { monitorRoutes } from './routes/monitor.routes.js';
 import { documentRoutes } from './routes/document.routes.js';
 import { contentReviewRoutes } from './routes/content-review.routes.js';
+import { documentVisualReviewRoutes } from './routes/document-visual-review.routes.js';
 import { questionRoutes } from './routes/question.routes.js';
 import { studentPurchaseRoutes } from './routes/student-purchase.routes.js';
 import { registerDailyChallgensModule } from './modules/daily_challgens/daily-challgens.module.js';
@@ -45,6 +46,11 @@ import { PaymentEntitlementRepository } from './modules/access/infrastructure/pa
 import { RedisEntitlementCache } from './modules/access/infrastructure/redis-entitlement-cache.js';
 import { EntitlementController } from './modules/access/http/entitlement.controller.js';
 import { entitlementRoutes } from './modules/access/http/entitlement.routes.js';
+import { ResendWebhookController } from './modules/email/resend-webhook.controller.js';
+import { ResendWebhookRepository } from './modules/email/resend-webhook.repository.js';
+import { resendWebhookRoutes } from './modules/email/resend-webhook.routes.js';
+import { teacherIntelligenceRoutes } from './modules/teacher-intelligence/teacher-intelligence.routes.js';
+import { iffReviewRoutes } from './modules/question-bank/review/iff-review.routes.js';
 
 // Railway terminates HTTPS at the public edge; the Node process listens on HTTP internally.
 const app = Fastify({
@@ -85,6 +91,10 @@ await app.register(rateLimit, { max: env.LOAD_TEST_RATE_LIMIT_MAX, timeWindow: '
 app.setErrorHandler(createErrorHandler());
 
 app.get('/health', async () => ({ status: 'ok' }));
+if (env.EMAIL_ENABLED && env.RESEND_WEBHOOK_SECRET) {
+  const resendWebhookController = new ResendWebhookController(env.RESEND_WEBHOOK_SECRET, new ResendWebhookRepository(undefined, env.ASAAS_ENV.toUpperCase()));
+  await app.register(async (webhookApp) => resendWebhookRoutes(webhookApp, resendWebhookController), { prefix: '/api/v1' });
+}
 app.get('/health/worker', async (_request, reply) => {
   try {
     const workerHealth = await getWorkerHealth(entitlementRedis);
@@ -119,13 +129,16 @@ const studentFlashcardsModule = createStudentFlashcardsModule({ access: studentA
 await app.register(async (flashcardsApp) => studentFlashcardsRoutes(flashcardsApp, studentFlashcardsModule.controller), { prefix: '/api/v1' });
 await app.register(async (simulationApp) => registerWeeklySimulationModule(simulationApp, studentAccessModule.repository), { prefix: '/api/v1/student' });
 await app.register(teacherRoutes, { prefix: '/api/v1/teachers' });
+await app.register(teacherIntelligenceRoutes, { prefix: '/api/v1/teachers/me/intelligence' });
 await app.register(profileImageRoutes, { prefix: '/api/v1/teachers' });
 await app.register(profileImageRoutes, { prefix: '/api/v1/student' });
 await app.register(profileImageRoutes, { prefix: '/api/v1' });
 await app.register(monitorRoutes, { prefix: '/api/v1/monitors' });
 await app.register(documentRoutes, { prefix: '/api/v1/monitors' });
 await app.register(contentReviewRoutes, { prefix: '/api/v1/monitors' });
+await app.register(documentVisualReviewRoutes, { prefix: '/api/v1/monitors' });
 await app.register(questionRoutes, { prefix: '/api/v1/questions' });
+if (env.NODE_ENV !== 'production') await app.register(iffReviewRoutes, { prefix: '/api/v1/public-review' });
 await app.register(studentPurchaseRoutes, { prefix: '/api/v1/student' });
 await app.register(registerDailyChallgensModule, { prefix: '/api/v1/student' });
 await app.register(studentQuestionAttemptRoutes, { prefix: '/api/v1/student' });
@@ -147,13 +160,17 @@ if (env.PAYMENTS_PROVIDER === 'ASAAS') {
     environment: env.ASAAS_ENV,
     timeoutMs: env.ASAAS_HTTP_TIMEOUT_MS,
     returnBaseUrl: env.PAYMENTS_RETURN_BASE_URL ?? env.PUBLIC_FRONT_URL ?? 'http://localhost:3000',
+    frontBaseUrl: env.PUBLIC_FRONT_URL ?? 'http://localhost:3000',
+    emailEnabled: env.EMAIL_ENABLED,
+    emailFrom: env.EMAIL_FROM,
+    emailOutboxEncryptionKey: env.EMAIL_OUTBOX_ENCRYPTION_KEY,
     invalidateAccess: (studentId, reason) => entitlementService.invalidate(studentId, reason),
     invalidateSponsoredAccess: async (studentUserId) => {
       const studentId = await entitlementRepository.findStudentIdByUserId(studentUserId);
       if (studentId) await entitlementService.invalidate(studentId, 'sponsored_seat_claimed');
     },
   });
-  await app.register(async (paymentsApp) => paymentsRoutes(paymentsApp, paymentsModule.controller, paymentsModule.subscriptionController, paymentsModule.teacherPayoutController, paymentsModule.sponsoredSeatController), { prefix: '/api/v1' });
+  await app.register(async (paymentsApp) => paymentsRoutes(paymentsApp, paymentsModule.controller, paymentsModule.subscriptionController, paymentsModule.teacherPayoutController, paymentsModule.sponsoredSeatController, paymentsModule.sponsoredSeatInvitationController), { prefix: '/api/v1' });
 }
 
 

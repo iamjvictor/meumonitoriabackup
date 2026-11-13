@@ -9,7 +9,6 @@ function setup(status: string, checkoutUrl: string | null = null) {
   const repository = {
     findTeacherMonitor: async () => ({ teacherId: 'teacher-1', teacherPercentage: 40, monitor: { id: 'monitor-1', name: 'Matemática enem', status: 'PUBLISHED', priceCents: 30000 } }),
     findBatchByIdempotency: async () => ({ fingerprint, batch: { id: 'batch-1', amountCents: 28752, status, checkoutUrl, expiresAt: null } }),
-    findBlockingSeat: async () => false,
   };
   const provider = { createHostedCheckout: async () => { calls.provider += 1; return { providerCheckoutId: 'checkout-new', checkoutUrl: 'https://pay.test/new', expiresAt: null }; } };
   return { calls, useCase: new CreateSponsoredSeatBatchUseCase(repository as any, provider as any) };

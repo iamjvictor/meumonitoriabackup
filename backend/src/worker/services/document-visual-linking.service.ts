@@ -12,7 +12,7 @@ export type QuestionVisualSpanForLinking = {
   provenance: VisualSourceProvenance[]; text: string; visualRequired: boolean;
 };
 
-export type VisualAssociationMethod = 'ITEM_REF' | 'BBOX' | 'CAPTION' | 'PAGE_CANDIDATE';
+export type VisualAssociationMethod = 'ITEM_REF' | 'BBOX' | 'CAPTION' | 'PAGE_CANDIDATE' | 'REVIEW';
 export type VisualLink = {
   assetId: string; assetKey: string; method: VisualAssociationMethod;
   confidence: number; role: string; chunkId?: string; questionSpanId?: string; questionId?: string;
@@ -31,6 +31,7 @@ export type VisualLinkStore = {
   persistChunkLinks(links: VisualLink[]): Promise<void>;
   persistQuestionLinks(links: VisualLink[]): Promise<void>;
   persistQuestionSpanLinks(links: VisualLink[]): Promise<void>;
+  confirmQuestionVisualReview?(documentId: string, link: VisualLink, actorUserId: string): Promise<{ teacherId: string }>;
   updateQuestionSpanVisualStatuses(rows: Array<{ questionSpanId: string; status: 'AVAILABLE' | 'PENDING_EXTRACTION' | 'MISSING' }>): Promise<void>;
 };
 
@@ -42,6 +43,8 @@ export class DocumentVisualLinkingService {
   async linkVisualAssetsToChunks(parseRunId: string, chunks: VisualChunkForLinking[]): Promise<VisualLinkReport> {
     const assets = await this.store.findAssetsForParseRun(parseRunId);
     const report = emptyReport(assets);
+    const reviewCandidates: VisualLink[] = [];
+    const assetById = new Map(assets.map((asset) => [asset.id, asset]));
     for (const chunk of chunks) {
       const result = matchVisuals(assets, chunk.pages, chunk.provenance, chunk.text);
       for (const match of result.matches) report.linked.push({
@@ -52,12 +55,19 @@ export class DocumentVisualLinkingService {
       if (result.ambiguous.length) report.ambiguous.push({
         targetId: chunk.id, method: 'PAGE_CANDIDATE', candidateAssetIds: result.ambiguous.map((asset) => asset.id),
       });
+      for (const assetId of result.ambiguous.map((asset) => asset.id)) {
+        const asset = assetById.get(assetId);
+        if (asset) reviewCandidates.push({
+          assetId, assetKey: asset.assetKey, method: 'PAGE_CANDIDATE',
+          confidence: 0.2, role: 'REVIEW_CANDIDATE', chunkId: chunk.id,
+        });
+      }
       if (!result.matches.length && !result.ambiguous.length) report.missing.push({
         targetId: chunk.id, reason: result.cropUnavailable ? 'CROP_UNAVAILABLE' : 'NO_ASSET_ON_PAGE',
       });
       countByPage(report, chunk.pages, result);
     }
-    if (report.linked.length) await this.store.persistChunkLinks(report.linked);
+    if (report.linked.length || reviewCandidates.length) await this.store.persistChunkLinks([...report.linked, ...reviewCandidates]);
     this.emitReport('document_visual_assets.chunk_linking_completed', parseRunId, report);
     return report;
   }
@@ -105,6 +115,48 @@ export class DocumentVisualLinkingService {
     if (statusUpdates.length) await this.store.updateQuestionSpanVisualStatuses(statusUpdates);
     this.emitReport('document_visual_assets.question_linking_completed', documentId, report);
     return report;
+  }
+
+  /**
+   * Confirms an explicitly selected asset after an authorized human review.
+   * The caller must authorize the reviewer; this method only validates the
+   * document and question-page scope before persisting the decision.
+   */
+  async confirmQuestionVisualReview(input: {
+    documentId: string;
+    questionSpanId: string;
+    questionId: string | null;
+    assetId: string;
+    actorUserId: string;
+  }): Promise<VisualLink> {
+    if (!this.store.confirmQuestionVisualReview) throw new Error('Confirmação visual manual indisponível no repositório.');
+    if (!input.actorUserId) throw new Error('A identidade do professor é obrigatória para confirmar uma revisão visual.');
+    const assets = await this.store.findAssetsForDocument(input.documentId);
+    const asset = assets.find((candidate) => candidate.id === input.assetId);
+    if (!asset) throw new Error('O asset visual selecionado não pertence ao documento.');
+    if (!asset.contentAvailable) throw new Error('O conteúdo do asset visual selecionado não está disponível.');
+
+    const link: VisualLink = {
+      assetId: asset.id,
+      assetKey: asset.assetKey,
+      method: 'REVIEW',
+      confidence: 1,
+      role: 'STATEMENT',
+      questionSpanId: input.questionSpanId,
+      ...(input.questionId ? { questionId: input.questionId } : {}),
+    };
+    const { teacherId } = await this.store.confirmQuestionVisualReview(input.documentId, link, input.actorUserId);
+    this.log('document_visual_assets.question_link_review_confirmed', {
+      documentId: input.documentId,
+      questionSpanId: input.questionSpanId,
+      questionId: input.questionId,
+      assetId: link.assetId,
+      pageNumber: asset.pageNumber,
+      associationMethod: link.method,
+      actorUserId: input.actorUserId,
+      actorTeacherId: teacherId,
+    });
+    return link;
   }
 
   private emitReport(event: string, ownerId: string, report: VisualLinkReport) {

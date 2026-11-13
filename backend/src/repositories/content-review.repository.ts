@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
-import type { FlashcardReviewInput, QuestionReviewInput } from '../models/content-review.model.js';
+import type { FlashcardReviewInput, ManualFlashcardInput, QuestionReviewInput } from '../models/content-review.model.js';
 import { prisma } from '../lib/prisma.js';
+import { supabaseAdmin } from '../lib/supabase.js';
 import { computeFlashcardFrontHash } from '../services/flashcard-front-hash.js';
 
 export async function reviewQuestion(
@@ -18,23 +19,25 @@ export async function reviewQuestion(
       ...(monitorId ? { monitorId } : {}),
       monitor: { teacher: { userId } },
     },
-    select: { id: true, subjectId: true, topicId: true, alternatives: true, correctAnswer: true, explanation: true, status: true },
+    select: { id: true, monitorId: true, subjectId: true, topicId: true, text: true, alternatives: true, correctAnswer: true, explanation: true, status: true },
   });
   if (!question) return null;
 
   let topicId = input.primaryTopicId !== undefined ? input.primaryTopicId : question.topicId;
   let subjectId = input.subjectId !== undefined && input.subjectId ? input.subjectId : question.subjectId;
+  const referenceMonitorId = monitorId ?? question.monitorId;
 
   if (input.primaryTopicId) {
     const topic = await prisma.monitorTopic.findFirst({
-      where: { id: input.primaryTopicId },
+      where: { id: input.primaryTopicId, subject: { monitorId: referenceMonitorId } },
       select: { id: true, subjectId: true },
     });
     if (!topic) throw new Error('QUESTION_TOPIC_NOT_FOUND');
     subjectId = topic.subjectId;
-  } else if (input.subjectId) {
+  }
+  if (input.subjectId) {
     const subject = await prisma.monitorSubject.findFirst({
-      where: { id: input.subjectId },
+      where: { id: input.subjectId, monitorId: referenceMonitorId },
       select: { id: true },
     });
     if (!subject) throw new Error('QUESTION_SUBJECT_NOT_FOUND');
@@ -42,14 +45,25 @@ export async function reviewQuestion(
 
   const correctAnswer = input.correctAnswer !== undefined ? input.correctAnswer : question.correctAnswer;
   const alternatives = input.alternatives ?? parseAlternatives(question.alternatives);
-  const explanation = input.explanation !== undefined ? input.explanation : question.explanation;
+  const text = input.text !== undefined ? input.text : question.text;
   const status = input.status ?? question.status;
+  const hasContentEdit = Object.keys(input).some((field) => field !== 'status');
+
+  if (hasContentEdit || status === 'APPROVED') {
+    if (!text?.trim()) throw new Error('QUESTION_REQUIRES_PROMPT');
+    if (!hasFiveMultipleChoiceAlternatives(alternatives)) throw new Error('QUESTION_REQUIRES_FIVE_ALTERNATIVES');
+    const answerKey = correctAnswer?.trim();
+    if (!answerKey || !alternatives.some((alternative) => (
+      typeof alternative === 'object'
+      && alternative !== null
+      && (alternative as { label?: unknown }).label === answerKey
+      && typeof (alternative as { text?: unknown }).text === 'string'
+      && (alternative as { text: string }).text.trim().length > 0
+    ))) throw new Error('QUESTION_REQUIRES_ANSWER_KEY');
+  }
 
   if (status === 'APPROVED') {
     if (!topicId) throw new Error('QUESTION_REQUIRES_PRIMARY_TOPIC');
-    if (!correctAnswer) throw new Error('QUESTION_REQUIRES_ANSWER_KEY');
-    if (!hasFiveMultipleChoiceAlternatives(alternatives)) throw new Error('QUESTION_REQUIRES_FIVE_ALTERNATIVES');
-    if (!explanation?.trim()) throw new Error('QUESTION_REQUIRES_EXPLANATION');
   }
 
   const teacher = await prisma.teacher.findUnique({ where: { userId }, select: { id: true } });
@@ -214,7 +228,7 @@ export async function listQuestionsForMonitor(userId: string, monitorId: string)
   const teacher = await prisma.teacher.findUnique({ where: { userId }, select: { id: true } });
   if (!teacher) return [];
 
-  return prisma.question.findMany({
+  const questions = await prisma.question.findMany({
     where: { monitorId, teacherId: teacher.id },
     include: {
       topic: { select: { id: true, name: true } },
@@ -225,9 +239,68 @@ export async function listQuestionsForMonitor(userId: string, monitorId: string)
         },
         take: 1,
       },
+      visualAssets: {
+        select: {
+          role: true,
+          visualAsset: { select: { id: true, assetType: true, pageNumber: true, bbox: true, width: true, height: true, mimeType: true, storagePath: true, metadata: true } },
+        },
+      },
     },
     orderBy: { createdAt: 'desc' },
   });
+  return Promise.all(questions.map(async (question) => ({
+    ...question,
+    visualAssets: await Promise.all((question.visualAssets ?? []).filter(({ visualAsset }) => isFigureAsset(visualAsset))
+      .map(async ({ role, visualAsset }) => {
+      const { data, error } = await supabaseAdmin.storage.from('document-parser-artifacts').createSignedUrl(visualAsset.storagePath, 3600);
+      const placement = buildQuestionVisualAssetPlacement(visualAsset, question.metadata);
+      return {
+        assetId: visualAsset.id, role, pageNumber: visualAsset.pageNumber, bbox: visualAsset.bbox,
+        width: visualAsset.width, height: visualAsset.height, mimeType: visualAsset.mimeType,
+        ...(placement ?? {}),
+        imageUrl: error ? null : data?.signedUrl ?? null,
+      };
+    })),
+  })));
+}
+
+export function isFigureAsset(asset: { assetType: string; metadata: Prisma.JsonValue; width: number | null; height: number | null; bbox: Prisma.JsonValue | number[] | null }) {
+  const metadata = asRecord(asset.metadata);
+  const hasCaption = typeof metadata.caption === 'string' && metadata.caption.trim().length > 0;
+  if (metadata.assetKind === 'PAGE' || asset.assetType.toLowerCase() === 'page') return false;
+  if (hasCaption || asset.width === null || asset.height === null || asset.width > 48 || asset.height > 48
+      || !Array.isArray(asset.bbox) || asset.bbox.length !== 4
+      || !asset.bbox.every((value) => typeof value === 'number')) return true;
+  const [left, top, right, bottom] = asset.bbox as number[];
+  if (left === undefined || top === undefined || right === undefined || bottom === undefined) return true;
+  return !(left <= 80 && right <= 110 && top >= 650 && bottom >= 640);
+}
+
+function getQuestionVisualEvidence(metadataValue: Prisma.JsonValue, assetId: string) {
+  const metadata = asRecord(metadataValue);
+  if (!Array.isArray(metadata.visualEvidence)) return null;
+  const evidence = metadata.visualEvidence.find((item) => asRecord(item).assetId === assetId);
+  return evidence ? asRecord(evidence) : null;
+}
+
+export function buildQuestionVisualAssetPlacement(
+  asset: { id: string; assetType: string; width: number | null; height: number | null; bbox: Prisma.JsonValue | number[] | null; metadata: Prisma.JsonValue },
+  questionMetadata: Prisma.JsonValue,
+) {
+  if (!isFigureAsset(asset)) return null;
+  const metadata = asRecord(asset.metadata);
+  const evidence = getQuestionVisualEvidence(questionMetadata, asset.id);
+  return {
+    anchorText: typeof evidence?.anchorText === 'string' ? evidence.anchorText : null,
+    readingOrder: typeof evidence?.readingOrder === 'number' ? evidence.readingOrder
+      : typeof metadata.readingOrder === 'number' ? metadata.readingOrder : null,
+    sourceItemRef: typeof evidence?.sourceItemRef === 'string' ? evidence.sourceItemRef
+      : typeof metadata.sourceItemRef === 'string' ? metadata.sourceItemRef : null,
+  };
+}
+
+function asRecord(value: unknown): Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : {};
 }
 
 export async function listFlashcardsForMonitor(userId: string, monitorId: string) {
@@ -251,6 +324,36 @@ export async function listFlashcardsForMonitor(userId: string, monitorId: string
       },
     },
     orderBy: { createdAt: 'desc' },
+  });
+}
+
+export async function createManualFlashcard(userId: string, monitorId: string, input: ManualFlashcardInput) {
+  const teacher = await prisma.teacher.findUnique({ where: { userId }, select: { id: true } });
+  if (!teacher) throw new Error('TEACHER_NOT_FOUND');
+  const monitor = await prisma.monitor.findFirst({ where: { id: monitorId, teacherId: teacher.id }, select: { id: true } });
+  if (!monitor) throw new Error('MONITOR_NOT_FOUND');
+  const topic = await prisma.monitorTopic.findFirst({
+    where: { id: input.topicId, subject: { monitorId } },
+    select: { id: true, subjectId: true },
+  });
+  if (!topic) throw new Error('TOPIC_NOT_FOUND');
+  return prisma.flashcard.create({
+    data: {
+      teacherId: teacher.id,
+      monitorId: monitor.id,
+      subjectId: topic.subjectId,
+      topicId: topic.id,
+      front: input.front,
+      back: input.back,
+      kind: 'DEFINITION',
+      difficulty: input.difficulty,
+      generationOrigin: 'TEACHER',
+      status: 'APPROVED',
+      frontHash: computeFlashcardFrontHash(input.front),
+      reviewedAt: new Date(),
+      reviewedBy: teacher.id,
+    },
+    include: { topic: { select: { id: true, name: true } }, subject: { select: { id: true, name: true } } },
   });
 }
 

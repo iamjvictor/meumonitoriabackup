@@ -1,0 +1,52 @@
+{
+  "extraction": {
+    "status": "FAILED",
+    "input": {
+      "source": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/iff-provas-workspace/extraction/docling-run-001/layout.json",
+      "pagesInChunks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "chunkCount": 29,
+      "inputTokens": 10431,
+      "inputBudget": 100000,
+      "outputMaxTokens": 4000,
+      "imageAssetsAttached": 0
+    },
+    "additionalInstruction": "Leia o documento completo e extraia as questões do caderno Ensino Médio/Técnico Concomitante/Integrado PROEJA. Preserve literalmente o texto extraído. Use apenas alternativas com rótulos impressos A–E; texto sem rótulo, inclusive itens I, II, III, pertence ao enunciado. Cada questão deve ficar entre seu marcador QUESTÃO N e o próximo marcador, sem misturar cadernos nem itens vizinhos.\n\nO cabeçalho identifica o Instituto Federal Fluminense (IFF), Edital nº 14 de 21/09/2009 e Seleção 2010. Preencha institution com IFF e year com 2010 (ano da seleção), não 2009 (ano do edital).\n\nLeia correctAnswer diretamente da tabela textual intitulada GABARITO do caderno Ensino Médio/Técnico Concomitante/Integrado PROEJA, na página física 28. Associe cada número à letra impressa; não resolva as questões para inferir resposta. Ignore integralmente o gabarito da página física 29, identificado como Técnico Subsequente, pois é outro caderno. Se alguma associação do gabarito PROEJA não estiver legível ou explícita, use null. Não invente nem complete alternativas ausentes.",
+    "failure": {
+      "name": "Error",
+      "code": "PROVIDER_ERROR",
+      "statusCode": 401,
+      "message": "OpenRouter chat falhou (401): User not found."
+    }
+  },
+  "questions": []
+}

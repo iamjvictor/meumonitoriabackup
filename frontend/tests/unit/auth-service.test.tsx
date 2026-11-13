@@ -38,6 +38,21 @@ describe('AuthService.login', () => {
     expect(localStorage.getItem('mm_user_role')).toBe('student');
   });
 
+  it('preserves the previous token on failed login, then clears it after successful cookie-only login', async () => {
+    localStorage.setItem('mm_access_token', 'stale-token');
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(new Response(JSON.stringify({ error: { code: 'UNAUTHENTICATED' } }), { status: 401 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { role: 'student', email: 'student@example.com' } }), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(AuthService.login({ email: 'student@example.com', password: 'wrong' })).rejects.toThrow();
+    expect(localStorage.getItem('mm_access_token')).toBe('stale-token');
+
+    await AuthService.login({ email: 'student@example.com', password: 'correct' });
+    expect(localStorage.getItem('mm_access_token')).toBeNull();
+    expect(localStorage.getItem('mm_user_role')).toBe('student');
+  });
+
   it('requests password recovery through Supabase with the production reset route', async () => {
     resetPasswordForEmailMock.mockResolvedValueOnce({ data: {}, error: null });
 

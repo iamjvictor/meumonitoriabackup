@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-11-02",
+  "questionExtraction": {
+    "pdf": "Quimica-3.pdf",
+    "pdfjs": {
+      "result": "PASS_EXPECT_COUNT",
+      "textSource": "pdfjs",
+      "pages": 16,
+      "expectedQuestionCount": 10,
+      "questionBlocks": 10,
+      "questionBlocksWithChunks": 10,
+      "exactBlockChunkCoverage": 10,
+      "deterministicCandidates": 10,
+      "numbers": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
+      "readiness": {
+        "readyForCompletion": 9,
+        "visualPending": ["01"]
+      },
+      "artifact": "Quimica-3.questions-pdfjs.json",
+      "limits": ["Question 01 needs visual evidence."]
+    },
+    "doclingAuto": {
+      "result": "FAIL_QUESTION_ASSEMBLY",
+      "textSource": "docling",
+      "pagesNeedingOcr": [2, 13, 14, 16],
+      "questionBlocks": 0,
+      "chunks": 6,
+      "artifact": "Quimica-3.questions.json"
+    },
+    "aiCompletion": {
+      "result": "BLOCKED_PROVIDER_AUTH",
+      "candidates": 10,
+      "requests": 19,
+      "httpStatus": 401,
+      "successfulRequests": 0,
+      "tokens": 0,
+      "alternativesGenerated": 0,
+      "answersGenerated": 0,
+      "explanationsGenerated": 0,
+      "artifact": "ai-dry-run/Quimica-3.dry-run.md",
+      "note": "The dry-run exit code is zero and its 'completed' count means candidates processed, not successful AI completion."
+    }
+  },
+  "knowledgeBase": {
+    "Estequiometria.pdf": {
+      "result": "TEXT_OCR_PARTIAL_VISUAL_ASSETS_EXTRACTED",
+      "classification": "SCANNED",
+      "ocrEnabled": true,
+      "pages": 4,
+      "nativeTextPages": 1,
+      "coveredPages": [1, 2, 4],
+      "uncoveredPages": [3],
+      "chunks": 3,
+      "tokenRange": [35, 487],
+      "tokenLimit": 500,
+      "visualAssets": 8,
+      "visualAssetPages": [1, 2, 3],
+      "page3VisualAssets": 2,
+      "page3TextChunk": false,
+      "page3ImageRetainedInParserPackage": true,
+      "page3PrimaryAssetPreview": "Estequiometria-page3-annotated.png",
+      "artifact": "Estequiometria.knowledge.json",
+      "visualArtifact": "Estequiometria.chunk-v2.zip",
+      "notVerified": ["private storage persistence", "visual description/indexing", "embedding", "RAG retrieval"]
+    },
+    "pH e pOH.pdf": {
+      "result": "PASS_PAGE_COVERAGE_WITH_OCR_QUALITY_ISSUES",
+      "classification": "SCANNED",
+      "ocrEnabled": true,
+      "pages": 4,
+      "nativeTextPages": 1,
+      "coveredPages": [1, 2, 3, 4],
+      "uncoveredPages": [],
+      "chunks": 3,
+      "tokenRange": [167, 489],
+      "tokenLimit": 500,
+      "visualAssets": 3,
+      "visualAssetPages": [1, 3, 4],
+      "artifact": "pH e pOH.knowledge.json",
+      "visualArtifact": "pH e pOH.chunk-v2.zip",
+      "qualityNote": "Text and page coverage were recovered, but formulas and chemical notation contain OCR errors.",
+      "notVerified": ["private storage persistence", "visual description/indexing", "embedding", "RAG retrieval"]
+    }
+  },
+  "persistence": "No questions, documents, or embeddings were written to a database."
+}

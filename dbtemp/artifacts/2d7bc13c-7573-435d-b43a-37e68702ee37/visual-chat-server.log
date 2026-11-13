@@ -1,0 +1,247 @@
+(node:2705706) [FSTWRN004] FastifyWarning: It seems that you are overriding an errorHandler in the same scope, which can lead to subtle bugs. To disable this behavior, set 'allowErrorHandlerOverride' to false. For more information, visit: https://fastify.dev/docs/latest/Reference/Server/#allowerrorhandleroverride
+(Use `node --trace-warnings ...` to show where the warning was created)
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-1',
+  method: 'GET',
+  url: '/health',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-2',
+  method: 'POST',
+  url: '/api/v1/monitors/documents/09ab5f76-af91-4246-bf72-50a1509fdfb4/questions/1dceb28e-8484-4d29-825b-fe579e3f0598/visual-assets/a7f43fcd-2627-40b8-bc6e-517ec551cd6f/review',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: true,
+  hasCookies: false
+}
+Verificando sessao com Supabase {
+  event: 'auth.session_check',
+  requestId: 'req-2',
+  hasAuthorizationHeader: true,
+  hasAccessTokenCookie: false
+}
+Sessao validada {
+  event: 'auth.session_validated',
+  requestId: 'req-2',
+  userId: '80cfe334-fc6b-4db8-8308-ef378312a193'
+}
+document_visual_assets.question_link_review_confirmed {
+  documentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  questionSpanId: 'ac80045b-fb52-4b2a-9ed5-310376e209bc',
+  questionId: '1dceb28e-8484-4d29-825b-fe579e3f0598',
+  assetId: 'a7f43fcd-2627-40b8-bc6e-517ec551cd6f',
+  pageNumber: 5,
+  associationMethod: 'REVIEW',
+  actorUserId: '80cfe334-fc6b-4db8-8308-ef378312a193',
+  actorTeacherId: '08181813-5162-4f81-981e-12084ef320d7'
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-3',
+  method: 'POST',
+  url: '/api/v1/student/monitors/031e12c0-b296-4569-8011-80ad2d49b422/chat/subjects/5c8cf6b5-9208-4b17-ae8e-8d1b29712446/messages',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: true,
+  hasCookies: false
+}
+Verificando sessao com Supabase {
+  event: 'auth.session_check',
+  requestId: 'req-3',
+  hasAuthorizationHeader: true,
+  hasAccessTokenCookie: false
+}
+Sessao validada {
+  event: 'auth.session_validated',
+  requestId: 'req-3',
+  userId: 'a14aac94-37d1-4fc6-9eff-ae7724401a0e'
+}
+[chat.routes.ts] [Chat] Mensagem recebida na API {
+  event: 'chat.message_received',
+  requestId: 'req-3',
+  userId: 'a14aac94-37d1-4fc6-9eff-ae7724401a0e',
+  monitorId: '031e12c0-b296-4569-8011-80ad2d49b422',
+  subjectId: '5c8cf6b5-9208-4b17-ae8e-8d1b29712446',
+  messageChars: 199,
+  questionId: '1dceb28e-8484-4d29-825b-fe579e3f0598',
+  questionAttemptId: null,
+  questionMonitorId: '031e12c0-b296-4569-8011-80ad2d49b422',
+  questionSubjectId: '5c8cf6b5-9208-4b17-ae8e-8d1b29712446',
+  questionTopicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c'
+}
+[chat.routes.ts] [Chat] Acesso autorizado para mensagem {
+  event: 'chat.access_authorized',
+  requestId: 'req-3',
+  userId: 'a14aac94-37d1-4fc6-9eff-ae7724401a0e',
+  studentId: 'e407ef46-aae6-437a-a124-8eefb6b424f0',
+  monitorId: '031e12c0-b296-4569-8011-80ad2d49b422',
+  subjectId: '5c8cf6b5-9208-4b17-ae8e-8d1b29712446',
+  messageChars: 199
+}
+[chat.routes.ts] [Chat] Comparação do contexto da questão {
+  event: 'chat.question_context_scope_compared',
+  requestId: 'req-3',
+  userId: 'a14aac94-37d1-4fc6-9eff-ae7724401a0e',
+  studentId: 'e407ef46-aae6-437a-a124-8eefb6b424f0',
+  requested: {
+    questionId: '1dceb28e-8484-4d29-825b-fe579e3f0598',
+    monitorIdFromQuestionContext: '031e12c0-b296-4569-8011-80ad2d49b422',
+    subjectIdFromQuestionContext: '5c8cf6b5-9208-4b17-ae8e-8d1b29712446',
+    topicIdFromQuestionContext: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c',
+    monitorId: '031e12c0-b296-4569-8011-80ad2d49b422',
+    subjectId: '5c8cf6b5-9208-4b17-ae8e-8d1b29712446',
+    topicIdFromBody: null
+  },
+  officialQuestion: {
+    questionId: '1dceb28e-8484-4d29-825b-fe579e3f0598',
+    monitorId: '031e12c0-b296-4569-8011-80ad2d49b422',
+    subjectId: '5c8cf6b5-9208-4b17-ae8e-8d1b29712446',
+    topicId: 'bec7838f-d153-409e-ad04-5bc3c2b4c70c'
+  },
+  matches: true,
+  questionAttempt: null
+}
+[chat.routes.ts] [Chat] Fontes oficiais da questão carregadas {
+  event: 'chat.question_sources_loaded',
+  requestId: 'req-3',
+  questionId: '1dceb28e-8484-4d29-825b-fe579e3f0598',
+  sourceCount: 1,
+  chunkCount: 1,
+  answerKeyCount: 0,
+  explanationCount: 0,
+  evidenceSufficient: true,
+  durationMs: 13,
+  primaryDocumentId: '09ab5f76-af91-4246-bf72-50a1509fdfb4',
+  primaryBlockId: '60336fd1-031b-4c25-90fe-f022a49a74ac'
+}
+[chat.service.ts] [Chat] Contexto de anexo resolvido {
+  event: 'chat.context_attachment_resolved',
+  requestId: 'req-3',
+  contextType: 'QUESTION',
+  contextId: '1dceb28e-8484-4d29-825b-fe579e3f0598',
+  inherited: false
+}
+[chat-rag.service.ts] [Chat RAG] Cache de evidência de questão consultado {
+  event: 'chat.rag_evidence_cache_hit',
+  requestId: 'req-3',
+  kind: 'QUESTION',
+  evidenceId: '1dceb28e-8484-4d29-825b-fe579e3f0598'
+}
+[chat-rag.service.ts] [Chat RAG] Estratégia selecionada {
+  event: 'chat.rag_strategy_selected',
+  requestId: 'req-3',
+  strategy: 'DIRECT_QUESTION_SOURCE',
+  shouldEmbed: false,
+  reason: 'QUESTION_HAS_OFFICIAL_EVIDENCE'
+}
+[chat-rag.service.ts] [Chat RAG] Contexto montado {
+  event: 'chat.rag_context_assembled',
+  requestId: 'req-3',
+  used: true,
+  citationCount: 1,
+  contextChars: 4282,
+  historyCount: 2
+}
+[chat.service.ts] [Chat] Contexto visual resolvido {
+  event: 'chat.visual_context_resolved',
+  requestId: 'req-3',
+  selectedCount: 1,
+  contextManifest: [
+    {
+      assetId: 'a7f43fcd-2627-40b8-bc6e-517ec551cd6f',
+      page: 5,
+      checksum: '45789fbdbc0ca341cf4577b42806e3bad633cca1a7e2bfd1f665da03bde668b5',
+      source: 'QUESTION'
+    }
+  ]
+}
+Payload multimodal do chat preparado {
+  event: 'chat.multimodal_payload_prepared',
+  requestId: 'req-3',
+  requestedImageCount: 1,
+  attachedImageCount: 1,
+  omittedImageCount: 0,
+  imageBytes: 10107,
+  attachedAssets: [
+    {
+      assetId: 'a7f43fcd-2627-40b8-bc6e-517ec551cd6f',
+      sha256: '45789fbdbc0ca341cf4577b42806e3bad633cca1a7e2bfd1f665da03bde668b5'
+    }
+  ],
+  model: 'google/gemini-2.5-flash'
+}
+[openrouter.client.ts] Solicitação de geração iniciada {
+  event: 'monitor.chat_generation_request_started',
+  model: 'google/gemini-2.5-flash',
+  messageCount: 4,
+  inputChars: 2092,
+  maxTokens: 2600,
+  temperature: 0.2
+}
+[openrouter.client.ts] Resposta HTTP da geração recebida {
+  event: 'monitor.chat_generation_http_response_received',
+  model: 'google/gemini-2.5-flash',
+  statusCode: 200,
+  ok: true,
+  finishReason: 'stop',
+  durationMs: 5205
+}
+[openrouter.client.ts] Geração concluída {
+  event: 'monitor.chat_generation_request_completed',
+  model: 'google/gemini-2.5-flash',
+  finishReason: 'stop',
+  durationMs: 5205,
+  promptTokens: 1935,
+  completionTokens: 854,
+  totalTokens: 2789,
+  responseChars: 1755,
+  responsePreview: 'Ótimo! Agora que temos a imagem da questão, podemos analisar as estruturas da tretinoína e da isotretinoína com mais clareza para identificar a diferença na geometria da cadeia.\n' +
+    '\n' +
+    'Vamos focar na cadeia de ligações duplas (C=C) que se estende a partir do anel, até o grupo carboxila (-COOH):\n' +
+    '\n' +
+    '1.  **Na tretinoína (estrutura da esquerda):**\n' +
+    '    *   Observe a cadeia de carbonos com as ligações duplas. Ela se apresenta de forma bastante "esticada" ou linear.\n' +
+    '    *   Se você olhar a última ligação dupla'
+}
+[chat.service.ts] [Chat] Sinal de qualidade da recuperação {
+  event: 'chat.rag_quality_signal',
+  requestId: 'req-3',
+  historyCount: 2,
+  ragUsed: true,
+  citationCount: 1,
+  candidateCount: 1,
+  selectedCount: 1,
+  scoreAverage: 0.95,
+  retrievalSignal: 'strong',
+  contextChars: 4282,
+  visualImageCount: 1,
+  responseChars: 1755
+}
+[chat.routes.ts] [Chat] Resposta gerada e salva no histórico temporário {
+  event: 'chat.generation_completed',
+  requestId: 'req-3',
+  studentId: 'e407ef46-aae6-437a-a124-8eefb6b424f0',
+  monitorId: '031e12c0-b296-4569-8011-80ad2d49b422',
+  subjectId: '5c8cf6b5-9208-4b17-ae8e-8d1b29712446',
+  questionId: '1dceb28e-8484-4d29-825b-fe579e3f0598',
+  responseChars: 1755,
+  rag: {
+    historyCount: 2,
+    ragUsed: true,
+    citationCount: 1,
+    candidateCount: 1,
+    selectedCount: 1,
+    retrievalDurationMs: 12,
+    retrievalScoreAverage: 0.95,
+    retrievalSignal: 'strong',
+    contextChars: 4282,
+    visualImageCount: 1
+  },
+  durationMs: 5285
+}

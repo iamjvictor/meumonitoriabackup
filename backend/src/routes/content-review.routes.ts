@@ -26,6 +26,11 @@ export async function contentReviewRoutes(app: FastifyInstance) {
     { onRequest: authMiddleware },
     controller.createQuestion.bind(controller),
   );
+  app.post<{ Params: { monitorId: string }; Body: unknown }>(
+    '/:monitorId/flashcards',
+    { onRequest: authMiddleware },
+    controller.createFlashcard.bind(controller),
+  );
 
   // Rotas de atualização de questões (com e sem sufixo /review)
   app.put<{ Params: { monitorId: string; questionId: string }; Body: unknown }>(

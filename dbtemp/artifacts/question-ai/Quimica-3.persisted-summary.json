@@ -1,0 +1,47 @@
+{
+  "documentId": "e2000000-0000-4000-8000-000000000012",
+  "questionCount": 1,
+  "withAlternatives": 1,
+  "withCorrectAnswer": 1,
+  "needsReview": 1,
+  "questions": [
+    {
+      "number": 1,
+      "id": "f54061c4-72df-4451-aafa-f7fc5b9c9dd2",
+      "pages": [
+        4
+      ],
+      "text": "Contaminação por tolueno suspendeu fornecimento\nde água em municípios do Rio de Janeiro\nElevados índices de tolueno, também chamado de metilbenzeno, foram detectados no rio Guandu,\nna cidade de Guapimirim, perto de uma tubulação desativada. Altamente danosa à saúde, a\ncontaminação pela substância levou a CEDAE a suspender o fornecimento de água.\nAdaptado de oglobo.globo.com, 05/04/2024.\nApresente a fórmula estrutural em linha de ligação do tolueno e escreva se o caráter dessa\nsubstância é polar ou apolar. Em seguida, determine o número de elétrons pi em 1 mol de tolueno.",
+      "alternativeCount": 5,
+      "alternatives": [
+        {
+          "text": "Fórmula estrutural: um anel benzênico com um grupo metil (-CH3) ligado. Caráter: apolar. Número de elétrons pi em 1 mol: 3,612 x 10^24 elétrons.",
+          "label": "A"
+        },
+        {
+          "text": "Fórmula estrutural: um anel benzênico com um grupo metil (-CH3) ligado. Caráter: polar. Número de elétrons pi em 1 mol: 3,612 x 10^24 elétrons.",
+          "label": "B"
+        },
+        {
+          "text": "Fórmula estrutural: um anel benzênico com um grupo metil (-CH3) ligado. Caráter: apolar. Número de elétrons pi em 1 mol: 1,806 x 10^24 elétrons.",
+          "label": "C"
+        },
+        {
+          "text": "Fórmula estrutural: um anel benzênico com um grupo metil (-CH3) ligado. Caráter: polar. Número de elétrons pi em 1 mol: 1,806 x 10^24 elétrons.",
+          "label": "D"
+        },
+        {
+          "text": "Fórmula estrutural: um anel benzênico com um grupo etil (-CH2CH3) ligado. Caráter: apolar. Número de elétrons pi em 1 mol: 3,612 x 10^24 elétrons.",
+          "label": "E"
+        }
+      ],
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswer": "A",
+      "explanation": "O tolueno, ou metilbenzeno, possui um anel benzênico com um grupo metil (-CH3) ligado. Sua estrutura predominantemente apolar, devido à simetria do anel e à baixa polaridade da ligação C-H, o classifica como apolar. O anel benzênico contém 3 ligações pi, totalizando 6 elétrons pi por molécula. Em 1 mol (6,022 x 10^23 moléculas), o número de elétrons pi é 6 x 6,022 x 10^23 = 3,6132 x 10^24 elétrons, o que corresponde à alternativa A.",
+      "status": "PENDING_REVIEW",
+      "completenessStatus": "COMPLETE_WITH_AI",
+      "needsReview": true,
+      "qualityScore": 20
+    }
+  ]
+}

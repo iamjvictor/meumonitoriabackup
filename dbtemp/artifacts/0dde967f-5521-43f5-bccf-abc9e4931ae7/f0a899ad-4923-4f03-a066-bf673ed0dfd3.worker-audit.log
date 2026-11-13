@@ -1,0 +1,29 @@
+{
+  "documentId": "f0a899ad-4923-4f03-a066-bf673ed0dfd3",
+  "result": {
+    "skipped": "audit-only"
+  },
+  "document": {
+    "originalName": "Estequiometria.pdf",
+    "tag": "KNOWLEDGE_BASE",
+    "status": "FAILED",
+    "errorMessage": "O Doc-chunker recusou a solicitação.",
+    "teacherId": "c6abb96e-bb25-468c-9639-592623107012",
+    "monitorId": "13d89b29-ab6a-4c26-9620-92bdc44e3270",
+    "subjectId": "754c1cc1-3dad-4eef-9044-9d5799c41446",
+    "topicId": "32515c5b-c78f-4cef-a731-387acd2b160c",
+    "_count": {
+      "chunks": 0,
+      "blocks": 0,
+      "textExtractions": 0,
+      "visualAssets": 0
+    }
+  },
+  "visualAssets": 0,
+  "chunks": [],
+  "blockTypes": [],
+  "questionSources": 0,
+  "pageThreeAssets": [],
+  "pageThreeStorageChecks": [],
+  "elapsedMs": 251
+}

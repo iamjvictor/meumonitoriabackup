@@ -1,5 +1,18 @@
 import { Prisma } from '@prisma/client';
 import { prisma } from '../../../lib/prisma.js';
+import { env } from '../../../config/env.js';
+import { legacyStudentEnrollmentEnvironmentFilter } from '../../access/infrastructure/legacy-access-environment.js';
+
+export function buildActiveSponsoredSeatWhere(studentId: string, monitorId?: string, now = new Date(), environment = env.ASAAS_ENV.toUpperCase()) {
+  return {
+    studentId,
+    status: 'ACTIVE',
+    accessRevokedAt: null,
+    batch: { environment, ...(monitorId ? { monitorId } : {}) },
+    startsAt: { lte: now },
+    endsAt: { gt: now },
+  };
+}
 
 export class DailyChallengeRepository {
   findEligibleMonitors() {
@@ -49,13 +62,19 @@ export class DailyChallengeRepository {
     return prisma.student.findUnique({ where: { userId }, select: { id: true, fullName: true, email: true } });
   }
 
-  findActiveEnrollment(studentId: string, monitorId: string) {
-    return prisma.studentEnrollment.findFirst({ where: { studentId, monitorId, status: 'ACTIVE' }, select: { id: true } });
+  async findActiveEnrollment(studentId: string, monitorId: string) {
+    const now = new Date();
+    const enrollment = await prisma.studentEnrollment.findFirst({ where: { studentId, monitorId, status: 'ACTIVE', ...legacyStudentEnrollmentEnvironmentFilter(), startsAt: { lte: now }, OR: [{ endsAt: null }, { endsAt: { gt: now } }] }, select: { id: true } });
+    if (enrollment) return enrollment;
+    return prisma.sponsoredSeat.findFirst({ where: buildActiveSponsoredSeatWhere(studentId, monitorId), select: { id: true } });
   }
 
   async findActiveEnrollmentMonitorIds(studentId: string) {
-    const enrollments = await prisma.studentEnrollment.findMany({ where: { studentId, status: 'ACTIVE' }, select: { monitorId: true } });
-    return enrollments.map((enrollment) => enrollment.monitorId);
+    const [enrollments, seats] = await Promise.all([
+      prisma.studentEnrollment.findMany({ where: { studentId, status: 'ACTIVE', ...legacyStudentEnrollmentEnvironmentFilter(), startsAt: { lte: new Date() }, OR: [{ endsAt: null }, { endsAt: { gt: new Date() } }] }, select: { monitorId: true } }),
+      prisma.sponsoredSeat.findMany({ where: buildActiveSponsoredSeatWhere(studentId), select: { batch: { select: { monitorId: true } } } }),
+    ]);
+    return [...new Set([...enrollments.map((enrollment) => enrollment.monitorId), ...seats.map((seat) => seat.batch.monitorId)])];
   }
 
   findCurrentForStudentMonitors(monitorIds: string[], challengeDate: string, studentId: string) {

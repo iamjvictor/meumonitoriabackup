@@ -11,6 +11,52 @@ import { DOCUMENT_EMBEDDING_VERSION } from './chunk.service.js';
 
 const EMBEDDING_MAX_RETRIES = 5;
 
+type DocumentChunkContentLogInput = {
+  documentId: string;
+  chunkId?: string | null;
+  chunkIndex: number;
+  blockId?: string | null;
+  pages?: number[];
+  text: string;
+  embeddingText?: string;
+};
+
+export function logDocumentChunkContent(args: {
+  logger?: (...values: unknown[]) => void;
+  enabled: boolean;
+  maxChars: number;
+  stage: 'docling_chunk_received' | 'docling_chunk_persisted' | 'embedding_input';
+  chunks: DocumentChunkContentLogInput[];
+}) {
+  if (!args.enabled) return;
+  const logger = args.logger ?? console.log;
+  for (const chunk of args.chunks) {
+    const text = chunk.text;
+    const embeddingText = chunk.embeddingText;
+    const preview = text.slice(0, args.maxChars);
+    const embeddingPreview = embeddingText?.slice(0, args.maxChars);
+    logger('Conteúdo de chunk para auditoria', {
+      event: 'monitor.document_chunk_content_audit',
+      stage: args.stage,
+      documentId: chunk.documentId,
+      chunkId: chunk.chunkId ?? null,
+      chunkIndex: chunk.chunkIndex,
+      blockId: chunk.blockId ?? null,
+      pages: chunk.pages ?? [],
+      textChars: text.length,
+      loggedTextChars: preview.length,
+      textTruncated: preview.length < text.length,
+      text: preview,
+      ...(embeddingText === undefined ? {} : {
+        embeddingTextChars: embeddingText.length,
+        loggedEmbeddingTextChars: embeddingPreview!.length,
+        embeddingTextTruncated: embeddingPreview!.length < embeddingText.length,
+        embeddingText: embeddingPreview,
+      }),
+    });
+  }
+}
+
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -70,9 +116,21 @@ export class EmbeddingService {
         let embeddings: number[][] | null = null;
         for (let attempt = 1; attempt <= EMBEDDING_MAX_RETRIES; attempt += 1) {
           try {
-            embeddings = await this.client.createEmbeddings(
-              batch.map((chunk) => chunk.embeddingContent || chunk.content),
-            );
+            const embeddingContents = batch.map((chunk) => chunk.embeddingContent || chunk.content);
+            logDocumentChunkContent({
+              enabled: env.DOCUMENT_EXTRACTION_CONTENT_LOG_ENABLED,
+              maxChars: env.DOCUMENT_EXTRACTION_CONTENT_LOG_MAX_CHARS,
+              stage: 'embedding_input',
+              chunks: batch.map((chunk, index) => ({
+                documentId,
+                chunkId: chunk.id,
+                chunkIndex: chunk.chunkIndex,
+                blockId: chunk.blockId,
+                text: chunk.content,
+                embeddingText: embeddingContents[index]!,
+              })),
+            });
+            embeddings = await this.client.createEmbeddings(embeddingContents);
             break;
           } catch (error) {
             if (!isRateLimitError(error) || attempt === EMBEDDING_MAX_RETRIES) throw error;

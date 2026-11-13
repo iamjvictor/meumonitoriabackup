@@ -1,0 +1,191 @@
+Worker iniciou o processamento do documento {
+  event: 'monitor.document_processing_started',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  jobId: undefined,
+  attempt: undefined
+}
+Buscando documento no banco para o worker {
+  event: 'monitor.document_repository_lookup_started',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3'
+}
+Busca do documento concluida {
+  event: 'monitor.document_repository_lookup_completed',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  found: true,
+  topicLinkCount: 1
+}
+Atualizando documento para PROCESSING {
+  event: 'monitor.document_status_update_started',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  status: 'PROCESSING'
+}
+Documento atualizado para PROCESSING {
+  event: 'monitor.document_status_update_completed',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  status: 'PROCESSING'
+}
+Etapa auxiliar iniciada {
+  event: 'document_stage.started',
+  timestamp: '2026-11-06T17:55:00.637Z',
+  service: 'worker',
+  request_id: '5a93df6b-f602-4611-998b-4053fb4c8e7e',
+  document_id: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT'
+}
+Etapa auxiliar concluída {
+  event: 'document_stage.completed',
+  timestamp: '2026-11-06T17:55:00.728Z',
+  service: 'worker',
+  request_id: '5a93df6b-f602-4611-998b-4053fb4c8e7e',
+  document_id: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT',
+  outcome: 'completed',
+  duration_ms: 92
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  stage: 'DOWNLOAD_DOCUMENT',
+  status: 'READY',
+  startedAt: '2026-11-06T17:55:00.636Z',
+  finishedAt: '2026-11-06T17:55:00.728Z',
+  durationMs: 92,
+  attempt: undefined,
+  jobId: undefined,
+  details: {
+    storagePath: 'question-chat-e2e/0dde967f-5521-43f5-bccf-abc9e4931ae7/Estequiometria.pdf'
+  }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-06T17:55:00.774Z',
+  service: 'worker',
+  request_id: '48e50388-f960-4ef1-bd34-15a5858b7e6c',
+  document_id: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS'
+}
+doc_chunker_v2.request_started {
+  timestamp: '2026-11-06T17:55:00.810Z',
+  service: 'worker',
+  request_id: '6238fb6b-f56f-4245-bbec-1f912a084825',
+  document_id: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  doc_hash: '63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd',
+  request_bytes: 3374776
+}
+doc_chunker_v2.request_failed {
+  timestamp: '2026-11-06T17:55:01.368Z',
+  service: 'worker',
+  request_id: '6238fb6b-f56f-4245-bbec-1f912a084825',
+  document_id: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  error_code: 'DOC_CHUNKER_HTTP_ERROR',
+  status_code: 422,
+  duration_ms: 559
+}
+Etapa do documento falhou {
+  event: 'document_processing_stage.failed',
+  timestamp: '2026-11-06T17:55:01.373Z',
+  service: 'worker',
+  request_id: '48e50388-f960-4ef1-bd34-15a5858b7e6c',
+  document_id: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  outcome: 'failed',
+  duration_ms: 630,
+  error_code: 'DOCUMENT_PROCESSING_FAILED',
+  error_class: 'DocChunkerV2ClientError'
+}
+Operacao de processamento falhou {
+  event: 'monitor.document_processing_operation_failed',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  operation: 'CREATE_RETRIEVAL_CHUNKS',
+  jobId: undefined,
+  attempt: undefined,
+  durationMs: 630,
+  error: DocChunkerV2ClientError: O Doc-chunker recusou a solicitação.
+      at DocChunkerV2Client.chunkWithAssets (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/worker/services/doc-chunker/doc-chunker-v2.client.ts:100:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async track.engine (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/worker/services/document-worker.service.ts:360:36)
+      at async DocumentWorkerService.runTrackedOperation (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/worker/services/document-worker.service.ts:1027:22)
+      at async DocumentWorkerService.process (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/worker/services/document-worker.service.ts:301:26)
+      at async <anonymous> (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/run-document-worker.mjs:80:18) {
+    code: 'DOC_CHUNKER_HTTP_ERROR',
+    statusCode: 422
+  }
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  status: 'FAILED',
+  startedAt: '2026-11-06T17:55:00.743Z',
+  finishedAt: '2026-11-06T17:55:01.373Z',
+  durationMs: 630,
+  attempt: undefined,
+  jobId: undefined,
+  error: 'O Doc-chunker recusou a solicitação.'
+}
+Atualizando documento para FAILED {
+  event: 'monitor.document_status_update_started',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  status: 'FAILED',
+  errorMessage: 'O Doc-chunker recusou a solicitação.'
+}
+Documento atualizado para FAILED {
+  event: 'monitor.document_status_update_completed',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  status: 'FAILED'
+}
+Erro no processamento do documento pelo worker {
+  event: 'monitor.document_processing_failed',
+  documentId: 'f0a899ad-4923-4f03-a066-bf673ed0dfd3',
+  durationMs: 1044,
+  error: DocChunkerV2ClientError: O Doc-chunker recusou a solicitação.
+      at DocChunkerV2Client.chunkWithAssets (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/worker/services/doc-chunker/doc-chunker-v2.client.ts:100:15)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async track.engine (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/worker/services/document-worker.service.ts:360:36)
+      at async DocumentWorkerService.runTrackedOperation (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/worker/services/document-worker.service.ts:1027:22)
+      at async DocumentWorkerService.process (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/backend/src/worker/services/document-worker.service.ts:301:26)
+      at async <anonymous> (/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/run-document-worker.mjs:80:18) {
+    code: 'DOC_CHUNKER_HTTP_ERROR',
+    statusCode: 422
+  }
+}
+{
+  "documentId": "f0a899ad-4923-4f03-a066-bf673ed0dfd3",
+  "result": {
+    "error": {
+      "name": "DocChunkerV2ClientError",
+      "message": "O Doc-chunker recusou a solicitação."
+    }
+  },
+  "document": {
+    "originalName": "Estequiometria.pdf",
+    "tag": "KNOWLEDGE_BASE",
+    "status": "FAILED",
+    "errorMessage": "O Doc-chunker recusou a solicitação.",
+    "teacherId": "c6abb96e-bb25-468c-9639-592623107012",
+    "monitorId": "13d89b29-ab6a-4c26-9620-92bdc44e3270",
+    "subjectId": "754c1cc1-3dad-4eef-9044-9d5799c41446",
+    "topicId": "32515c5b-c78f-4cef-a731-387acd2b160c",
+    "_count": {
+      "chunks": 0,
+      "blocks": 0,
+      "textExtractions": 0,
+      "visualAssets": 0
+    }
+  },
+  "visualAssets": 0,
+  "chunks": [],
+  "blockTypes": [],
+  "questionSources": 0,
+  "pageThreeAssets": [],
+  "pageThreeStorageChecks": [],
+  "elapsedMs": 1072
+}

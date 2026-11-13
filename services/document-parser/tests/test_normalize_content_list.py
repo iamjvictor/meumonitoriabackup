@@ -8,6 +8,8 @@ import sys
 import textwrap
 import unittest
 from pathlib import Path
+from unittest.mock import patch
+from types import ModuleType, SimpleNamespace
 
 
 SCRIPT_PATH = Path(__file__).resolve().parents[1] / "scripts" / "run_mineru.py"
@@ -47,6 +49,36 @@ class FixtureDoclingDocument:
 
 
 class NormalizeDoclingDocumentTests(unittest.TestCase):
+    def test_converter_enables_docling_formula_enrichment(self) -> None:
+        captured: dict[str, object] = {}
+
+        class FakePdfPipelineOptions:
+            def __init__(self, **kwargs: object) -> None:
+                captured.update(kwargs)
+
+        class FakeDocumentConverter:
+            def __init__(self, **kwargs: object) -> None:
+                captured["converter_options"] = kwargs
+
+        base_models = ModuleType("docling.datamodel.base_models")
+        base_models.InputFormat = SimpleNamespace(PDF="pdf")
+        pipeline_options = ModuleType("docling.datamodel.pipeline_options")
+        pipeline_options.PdfPipelineOptions = FakePdfPipelineOptions
+        document_converter = ModuleType("docling.document_converter")
+        document_converter.DocumentConverter = FakeDocumentConverter
+        document_converter.PdfFormatOption = lambda **kwargs: kwargs
+
+        with patch.dict(sys.modules, {
+            "docling": ModuleType("docling"),
+            "docling.datamodel": ModuleType("docling.datamodel"),
+            "docling.datamodel.base_models": base_models,
+            "docling.datamodel.pipeline_options": pipeline_options,
+            "docling.document_converter": document_converter,
+        }):
+            run_docling.get_document_converter()
+
+        self.assertIs(captured["do_formula_enrichment"], True)
+
     def test_normalization_runs_without_docling_installed(self) -> None:
         """The fixture path must keep working in a standard-library-only interpreter."""
         probe = textwrap.dedent(

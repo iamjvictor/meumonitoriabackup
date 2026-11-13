@@ -1,0 +1,189 @@
+{
+  "documentId": "e2000000-0000-4000-8000-000000000012",
+  "database": "dbtemp-local-only",
+  "persisted": false,
+  "llmCalls": 1,
+  "questionCount": 10,
+  "selectedRoute": "both",
+  "stage": "awaiting_both",
+  "contextRefs": {
+    "chunkIds": [
+      "393cff58-3df0-4d3c-969c-99afd1eb4ff4",
+      "99e47ba5-5f3c-4e7e-bce4-2a558f23b342",
+      "87e74e16-bd86-4260-8d39-b9e1d7c331fc",
+      "a1b19afe-d29c-4a32-aee5-c78b13193d59",
+      "c2b0e4fe-4517-41ab-ba5e-bd3c0c92e489",
+      "a19ea6b8-0551-4389-93f2-93623c61447f"
+    ],
+    "pageNumbers": [],
+    "formulaEvidenceRefs": [],
+    "imageAssetIds": [
+      "13538213-2ccd-4ca1-8ee9-ee2bea4a2a05",
+      "4843279b-cf17-473b-9fce-19d08e765ceb",
+      "07e01eb5-c64e-4036-ad7a-2c9475e37a26",
+      "ca0bb5dc-aba2-44ae-865c-20cfbd42b968"
+    ]
+  },
+  "decisions": [
+    {
+      "number": "01",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "02",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "03",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "04",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "05",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "06",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "07",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "08",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "09",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    },
+    {
+      "number": "10",
+      "route": "both",
+      "missingAlternativeLabels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "missingAnswer": true,
+      "pendingIssues": [
+        "ALTERNATIVES_INCOMPLETE_OR_INVALID",
+        "ANSWER_MISSING"
+      ]
+    }
+  ]
+}

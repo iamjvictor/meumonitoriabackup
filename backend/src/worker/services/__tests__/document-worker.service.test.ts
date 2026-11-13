@@ -22,6 +22,15 @@ test('FLASHCARDS executa o job de geração após os embeddings e mantém quest�
   let questionCalls = 0;
   const order: string[] = [];
 
+  await t.mock.module('../../../lib/prisma.js', {
+    namedExports: {
+      prisma: {
+        documentParseRun: { async findFirst() { return null; } },
+        documentLayoutElement: { async findMany() { return []; } },
+      },
+    },
+  });
+
   await t.mock.module('../../../repositories/document-worker.repository.js', {
     namedExports: {
       async findDocumentForProcessing() {
@@ -91,7 +100,7 @@ test('FLASHCARDS executa o job de geração após os embeddings e mantém quest�
   await t.mock.module('../chunk.service.js', { namedExports: { ChunkService: class {} } });
   await t.mock.module('../document-text-extraction.service.js', { namedExports: { DocumentTextExtractionService: class {} } });
   await t.mock.module('../document-block-detection.service.js', { namedExports: { DocumentBlockDetectionService: class {} } });
-  await t.mock.module('../embedding.service.js', { namedExports: { EmbeddingService: class {} } });
+  await t.mock.module('../embedding.service.js', { namedExports: { EmbeddingService: class {}, logDocumentChunkContent() {} } });
   await t.mock.module('../question-extraction.service.js', { namedExports: { QuestionExtractionService: class {} } });
   await t.mock.module('../topic-profile-generation.service.js', { namedExports: { TopicProfileGenerationService: class {} } });
 
@@ -183,3 +192,4 @@ test('base de conhecimento de toda a matéria não gera perfis de todos os tópi
   assert.equal(shouldGenerateTopicProfile('KNOWLEDGE_BASE', 'topic-1'), true);
   assert.equal(shouldGenerateTopicProfile('QUESTIONS', 'topic-1'), false);
 });
+

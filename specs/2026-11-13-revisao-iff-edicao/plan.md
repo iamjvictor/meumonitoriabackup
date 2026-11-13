@@ -1,0 +1,1 @@
+Backend: rota limitada ao conjunto IFF 2010, validação, reconciliação de imagens existentes e hash. Frontend: formulário de edição com marcadores de imagem, leitura atualizada do backend e feedback de salvamento. Validar rotas e interação sem alterar dados reais.

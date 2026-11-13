@@ -1,0 +1,55 @@
+{
+  "documentId": "e2000000-0000-4000-8000-000000000012",
+  "originalName": "Quimica-3.pdf",
+  "database": "dbtemp-local-only",
+  "questionCount": 10,
+  "allQuestionsPendingReview": true,
+  "questions": [
+    {
+      "id": "72d5a994-16ca-4d72-88d9-1b879df204c6",
+      "number": "05",
+      "status": "PENDING_REVIEW",
+      "text": "Os  combustíveis  produzidos  a  partir  de  fontes  renováveis  são  considerados  uma  alternativa sustentável aos combustíveis fósseis. Um dos combustíveis renováveis é o hidrogênio verde, que corresponde  ao  hidrogênio  molecular  produzido  a  partir  da  reação  de  eletrólise  da  água, representada pela seguinte equação:\n$$H _ { 2 } O \\left ( \\ell \\right ) \\rightarrow H _ { 2 } \\left ( g \\right ) + \\frac{1}{2}O_2\\left ( g \\right ) \\quad \\Delta H ^ { 0 } = 2 8 6 \\, k J / m o l$$\nApresente a fórmula estrutural plana do hidrogênio molecular e indique o polo da célula eletrolítica no qual o hidrogênio é produzido. Em seguida, calcule, para a formação de 1 mol de H 2 , a razão, em coulomb/quilojoule, entre a quantidade de energia elétrica e a entalpia sob condições-padrão.\nDesenvolvimento e resposta:",
+      "alternatives": [],
+      "correctAnswer": null,
+      "visualAssets": []
+    },
+    {
+      "id": "db678350-44e1-4b02-a56e-ce2a091a74c9",
+      "number": "04",
+      "status": "PENDING_REVIEW",
+      "text": "Em um experimento, utilizou-se a concentração inicial de 0,2 mol/L de peróxido de hidrogênio, H 2 O2 ,  em solução. Observe a reação química de decomposição dessa substância, catalisada por MnO 2 :\n$$2 \\, H _ { 2 } O _ { 2 } \\left ( a q \\right ) \\xrightarrow { \\, M n O _ { 2 } \\left ( s \\right ) } 2 \\, H _ { 2 } O \\left ( \\ell \\right ) + O _ { 2 } \\left ( g \\right )$$\nSabe-se que essa reação é de primeira ordem e apresenta constante cinética de velocidade igual a 4,0 x $10^{7}$ $s^{-1}$ .\nNomeie o catalisador da reação e explique sua função em relação à energia de ativação. Determine, ainda, a velocidade dessa reação, em mol ∙ $L^{-1}$ ∙ $s^{-1}$ .\nDesenvolvimento e resposta:",
+      "alternatives": [],
+      "correctAnswer": null,
+      "visualAssets": []
+    },
+    {
+      "id": "0971bee7-1112-4781-bef2-0fab8bf7126b",
+      "number": "01",
+      "status": "PENDING_REVIEW",
+      "text": "O bromo é um elemento químico encontrado sob duas formas principais: o íon brometo Br - , em água do mar, e o bromo molecular Br 2 , obtido a partir da reação representada pela equação a seguir.\n$$2 \\, B r ^ { - ( a q ) } + C \\ell _ { 2 } ( g ) \\rightarrow B r _ { 2 } ( \\ell ) + 2 \\, C \\ell ^ { - } ( a q )$$\nIndique o grupo e o período da tabela de classificação periódica em que o bromo está localizado. Nomeie, ainda, a ligação interatômica presente no Br 2 e apresente a fórmula molecular do agente oxidante da reação.\nDesenvolvimento e resposta:",
+      "alternatives": [],
+      "correctAnswer": null,
+      "visualAssets": [
+        {
+          "assetId": "13538213-2ccd-4ca1-8ee9-ee2bea4a2a05",
+          "role": "STATEMENT",
+          "pageNumber": 15,
+          "bbox": [
+            32.65725529508019,
+            631.6829460848469,
+            546.9943189070192,
+            307.0059185155285
+          ],
+          "width": 514,
+          "height": 325,
+          "anchorText": "Indique o grupo e o período da tabela de classificação periódica em que o bromo está localizado.",
+          "readingOrder": 93,
+          "sourceItemRef": "#/pictures/16",
+          "imageUrlPresent": true,
+          "anchorOccurrences": 1
+        }
+      ]
+    }
+  ]
+}

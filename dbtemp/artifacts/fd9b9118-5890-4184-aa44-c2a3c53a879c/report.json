@@ -1,0 +1,153 @@
+{
+  "runId": "fd9b9118-5890-4184-aa44-c2a3c53a879c",
+  "startedAt": "2026-11-02T20:10:21.317Z",
+  "db": "127.0.0.1:56322",
+  "docs": [
+    {
+      "id": "ffbcd0af-51df-4d0d-b6ab-b5bacccc7742",
+      "name": "Quimica-3.pdf",
+      "tag": "QUESTIONS",
+      "sourceSha256": "dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d",
+      "workerExitCode": 127,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/fd9b9118-5890-4184-aa44-c2a3c53a879c/Quimica-3-pdf.worker.log",
+      "status": "QUEUED",
+      "errorMessage": null,
+      "blockTypes": [],
+      "chunks": 0,
+      "embeddedChunks": 0,
+      "chunksByStatus": [],
+      "visualAssets": [],
+      "spans": [],
+      "questions": [],
+      "elapsedMs": 60
+    },
+    {
+      "id": "262379c3-1981-400d-ab92-633b3626e870",
+      "name": "Estequiometria.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sourceSha256": "63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd",
+      "workerExitCode": 127,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/fd9b9118-5890-4184-aa44-c2a3c53a879c/Estequiometria-pdf.worker.log",
+      "status": "QUEUED",
+      "errorMessage": null,
+      "blockTypes": [],
+      "chunks": 0,
+      "embeddedChunks": 0,
+      "chunksByStatus": [],
+      "visualAssets": [],
+      "spans": [],
+      "questions": [],
+      "elapsedMs": 18
+    },
+    {
+      "id": "bb0773d5-0458-4dd9-a0f8-97f9fbc18330",
+      "name": "pH e pOH.pdf",
+      "tag": "KNOWLEDGE_BASE",
+      "sourceSha256": "5dc9b25e4ea2f5eb0729d748d3de2058d53cc90167ad558851504dddd40c4acc",
+      "workerExitCode": 127,
+      "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/fd9b9118-5890-4184-aa44-c2a3c53a879c/pH-e-pOH-pdf.worker.log",
+      "status": "QUEUED",
+      "errorMessage": null,
+      "blockTypes": [],
+      "chunks": 0,
+      "embeddedChunks": 0,
+      "chunksByStatus": [],
+      "visualAssets": [],
+      "spans": [],
+      "questions": [],
+      "elapsedMs": 17
+    }
+  ],
+  "chat": {
+    "attempted": false,
+    "result": "BLOCKED",
+    "reason": "Q03 source span, persisted question or page 5 visual asset not found after ingestion.",
+    "spanId": null,
+    "questionId": null,
+    "page5Assets": []
+  },
+  "cleanup": {
+    "complete": true,
+    "runPrefix": "question-chat-e2e/fd9b9118-5890-4184-aa44-c2a3c53a879c",
+    "isolatedTeacherDeleted": true,
+    "isolatedStudentDeleted": true
+  },
+  "config": {
+    "chatImageModelConfigured": false,
+    "questionModelConfigured": true,
+    "embeddingModelConfigured": true
+  },
+  "fixture": {
+    "prefix": "question-chat-e2e/fd9b9118-5890-4184-aa44-c2a3c53a879c",
+    "teacherId": "d3935853-da5d-40f5-a497-9e1f704610ba",
+    "studentId": "67ca33c7-b829-4739-a0dc-1176988716d6",
+    "monitorId": "d231c9a8-4b4e-4225-b7ee-784e3019b58b",
+    "subjectId": "9704231c-ecb6-4413-aeba-0ac011b4f241",
+    "topicId": "4971fca1-b1fa-4b8f-a1ed-e596bde6cb6c",
+    "documentIds": [
+      {
+        "id": "ffbcd0af-51df-4d0d-b6ab-b5bacccc7742",
+        "name": "Quimica-3.pdf",
+        "tag": "QUESTIONS"
+      },
+      {
+        "id": "262379c3-1981-400d-ab92-633b3626e870",
+        "name": "Estequiometria.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      },
+      {
+        "id": "bb0773d5-0458-4dd9-a0f8-97f9fbc18330",
+        "name": "pH e pOH.pdf",
+        "tag": "KNOWLEDGE_BASE"
+      }
+    ]
+  },
+  "reprocess": {
+    "workerExitCode": 127,
+    "workerLog": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/dbtemp/artifacts/fd9b9118-5890-4184-aa44-c2a3c53a879c/Quimica-3-repeat.worker.log",
+    "beforeCount": 0,
+    "afterCount": 0,
+    "before": [],
+    "after": [],
+    "stable": true
+  },
+  "ragAudits": [
+    {
+      "documentId": "262379c3-1981-400d-ab92-633b3626e870",
+      "exitCode": 127,
+      "logPath": "262379c3-1981-400d-ab92-633b3626e870.worker-audit.json",
+      "stdoutTail": "/usr/bin/env: 'node': No such file or directory\n"
+    },
+    {
+      "documentId": "bb0773d5-0458-4dd9-a0f8-97f9fbc18330",
+      "exitCode": 127,
+      "logPath": "bb0773d5-0458-4dd9-a0f8-97f9fbc18330.worker-audit.json",
+      "stdoutTail": "/usr/bin/env: 'node': No such file or directory\n"
+    }
+  ],
+  "finishedAt": "2026-11-02T20:10:22.637Z",
+  "acceptance": {
+    "ac001": {
+      "detectedQuestionBlocks": 0,
+      "spans": 0,
+      "persisted": 0
+    },
+    "ac003": true,
+    "ac004": false,
+    "ac005": false,
+    "ac007": [
+      {
+        "id": "262379c3-1981-400d-ab92-633b3626e870",
+        "status": "QUEUED",
+        "chunks": 0,
+        "visuals": 0
+      },
+      {
+        "id": "bb0773d5-0458-4dd9-a0f8-97f9fbc18330",
+        "status": "QUEUED",
+        "chunks": 0,
+        "visuals": 0
+      }
+    ]
+  }
+}

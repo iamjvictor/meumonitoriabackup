@@ -1,0 +1,566 @@
+# Questões extraídas — revisão humana
+
+Extração estruturada do recorte IFF Seleção 2010, em uma chamada à LLM. Este documento reproduz a resposta do modelo; não representa validação final nem inclui gabarito.
+
+## Questão 1 — páginas 4
+
+O texto 'Jornada dupla' aborda um tema presente na vida da mulher desde que ela foi inserida no mundo do trabalho, mas que nos dias atuais faz parte do universo feminino cada vez mais cedo.
+Sobre a frase de abertura 'Ser mãe é padecer não só no paraíso, mas também na escola.', só NÃO é possível dizer que
+
+- **A)** Antes  a  mulher  precisava  administrar  o  trabalho  e  a  maternidade;  hoje,  são  jovens adolescentes que necessitam articular o estudo e o fato de serem mães tão cedo.
+- **B)** parafraseia um ditado popular.
+- **C)** entre as orações há ideia de adição.
+- **D)** nela ocorre a elipse (omissão) de verbo.
+- **E)** a maternidade se traduz apenas por uma visão positiva de paraíso.
+- **F)** sugere ser a gravidez precoce um complicador na vida escolar dos jovens.
+
+Resposta correta: não extraída
+
+## Questão 2 — páginas 4
+
+O texto da revista Megazine ,  publicada  toda  terça-feira  pelo  jornal O Globo ,  suscita ideias a respeito do tema nele abordado. Em qual dos itens se traduz INCONVENIENTEMENTE algumas dessas ideias?
+
+- **A)** O título 'Jornada dupla' diz respeito ao desempenho das funções que as meninasmães assumem a partir da gravidez.
+- **B)** O caso de Paloma Aguiar serve para exemplificar a pesquisa 'O aluno do ensino médio  público  estadual  -  percepções,  hábitos  e  expectativas'  realizada  pelo Instituto Mapear.
+- **C)** Ingrid Amorim, jovem que sempre estudou em escolas particulares, não teve sua rotina alterada com o nascimento do filho.
+- **D)** De acordo com a pesquisa do Instituto Mapear, não é a gravidez a única causa que leva o jovem a abandonar a escola.
+- **E)** A gravidez na adolescência não é uma questão que envolve apenas estudantes das classes menos favorecidas e de escolas públicas.
+
+Resposta correta: não extraída
+
+## Questão 3 — páginas 5
+
+O  sentido  de  um  texto  pode  ser  também  melhor  percebido  quando  se  faz  uso  da análise morfossintática, em que se estuda a classe gramatical da palavra e a função do termo na oração.
+Sobre esse assunto, marque o comentário totalmente correto.
+
+- **A)** Em 'Dados do Instituto Mapear revelam que, entre os alunos que têm filho, 76% já interromperam os estudos, contra apenas 12% dos que não são pais.', todos os verbos se flexionaram no plural e são transitivos diretos.
+- **B)** Por possuir preposição, o termo destacado exerce função de objeto indireto em 'É provável que haja essa incidência pela necessidade de trabalhar para conseguir recursos.'
+- **C)** O pronome demonstrativo do período '- Isso leva a crer que a gravidez é um dos principais fatores de abandono escolar.' é o sujeito da primeira oração.
+- **D)** No trecho 'é importante voltar à escola.', a expressão sublinhada é composta de preposição, artigo e substantivo e funciona como adjunto adnominal.
+- **E)** Como  adjetivo,  'levado'  caracteriza  o  sujeito  em  'ele  é  muito  levado';  sendo, portanto, o objeto direto da oração.
+
+Resposta correta: não extraída
+
+## Questão 4 — páginas 5, 6
+
+http://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg. Acessado em 28/09/2009.
+
+Instituiu-se o dia 26 de setembro como o Dia Mundial da Prevenção da Gravidez na Adolescência. O texto que você acabou de ler trata desse tema. Nos itens abaixo, há um que traz informações NÃO pertinentes a esse texto. Marqueo.
+
+- **A)** O  pronome  possessivo  que  aparece  repetido  no  lema  da  campanha  objetiva atribuir ao interlocutor a responsabilidade sobre os próprios erros e acertos.
+- **B)** Haveria alteração de sentido se a primeira frase do texto fosse: Na vida, pode-se sempre escolher.
+- **C)** O uso de verbos no imperativo como 'escolha' e 'decida' busca uma aproximação maior com o leitor.
+- **D)** A campanha de 2008 estimula a busca por informações para que se possa decidir com consciência.
+- **E)** O locutor do texto fez uso de duas linguagens: a verbal e a não-verbal.
+
+Resposta correta: não extraída
+
+## Questão 5 — páginas 6, 7
+
+Esta  semana  está  cheia  de  datas  alertas...  Hoje,  dia  26  de  setembro,  mais  de  70 países da Europa, América Latina e Ásia participam do dia Mundial da Prevenção da Gravidez na Adolescência. A data é promovida por organizações não governamentais e sociedades médicas internacionais com apoio de marcas farmacêuticas. Este ano o tema é "Sua Vida, Sua Voz". [...]
+(Isis Nóbile Diniz) http://scienceblogs.com.br/xisxis/2009/09/dica_para_prevencao_de_gravide.php.Acessado em 28/09/2009.
+
+Considerando  esse  material  retirado  da  internet,  que  item  melhor  reproduz  as informações nele contidas?
+
+- **A)** Apenas  na  semana  de  26  de  setembro  existem  datas  apropriadas  para  a realização de campanhas e alerta à população.
+- **B)** Em  todos  os  anos, o lema da campanha  de  prevenção  da  gravidez na adolescência é 'Sua Vida, Sua Voz'.
+- **C)** No  último  dia  26  de  setembro,  houve,  em  centenas  de  países,  manifestações sobre a gravidez na adolescência.
+- **D)** A  imagem  da  campanha  de  prevenção  da  gravidez  na  adolescência  deste  ano sugere o relacionamento afetivo entre os adolescentes.
+- **E)** Apenas a classe médica tem se preocupado com a gravidez na adolescência já que o assunto se relaciona diretamente com a saúde.
+
+Resposta correta: não extraída
+
+## Questão 6 — páginas 7
+
+Seguem algumas afirmativas que relacionam o fragmento escrito por Isis Nóbile Diniz ao texto da campanha de 2008. Indique a correta.
+
+- **A)** O tema da campanha de 2009 difere do de 2008 em apenas uma palavra, mas nos dois a mensagem é a mesma: você tem o poder sobre sua vida.
+- **B)** Ao apresentar o dia 26 de setembro como uma data alerta, Isis Nóbile sugere que só  o  conhecimento  pode  evitar  uma  gravidez  indesejada  e  irresponsável  como também é dito na campanha de 2008.
+- **C)** Nota-se,  nas  duas  campanhas,  a  participação  efetiva  de  todos  os  países  do mundo.
+- **D)** Os dois textos empregam verbos no presente, no passado e no futuro para marcar que o problema da gravidez precoce faz parte da vida de toda a sociedade.
+- **E)** Em  ambos  os  textos, prevalece a intenção de informar ao interlocutor a importância de assumir uma gravidez indesejada.
+
+Resposta correta: não extraída
+
+## Questão 7 — páginas 8
+
+http://www.ultimasnoticias.inf.br/fotos/noticias/6238_0a.jpg. Acessado em 28/09/2009.
+
+Ler gráficos e tabelas é importante no mundo atual, no qual a associação do verbal com  o  não-verbal  é  cada  vez  mais  frequente.  Considerando  a  ilustração  acima, assinale a afirmativa INCORRETA .
+
+- **A)** É possível perceber, no período apresentado no gráfico, que o número de partos de adolescentes tem diminuído em todo o país.
+- **B)** A  região  mais  populosa  também  apresenta  um  percentual  elevado  de  partos  de mulheres ainda bem jovens.
+- **C)** Na região mais pobre do país, a tabela mostra que o percentual de partos, ainda que em queda, é o maior do Brasil.
+- **D)** Ao analisar os dados, nota-se que a menor redução ocorreu na região de maior extensão do país.
+- **E)** A  redução  dos  números  em  2008  leva  à  conclusão  de  que  não  há  mais necessidade de campanhas como 'SUA VIDA SUA DECISÃO'.
+
+Resposta correta: não extraída
+
+## Questão 8 — páginas 9
+
+DESCUIDO
+Sou fruto de um descuido Ato feito impensado Mas que a partir de agora Terá que ser Tratado com cuidado Gostaria de ter Sido planejado Mas por descuido Vim sem ser convidado Não sei se vou ter nome Ou se vou ser abortado Mas no fundo eu gostaria De ser tratado com carinho Amor e cuidado
+Bruna e Paloma T C24
+http://websmed.portoalegre.rs.gov.br/escolas/montecristo/jv/jv6/poesia.html. Acessado em 28/09/2009.
+Esse texto faz parte de um trabalho de produção textual desenvolvido pela professora Márcia Regina Ribeiro com seus alunos. Nele, os textos tinham como tema 'Gravidez na  adolescência',  porém  apresentavam  locutores  diferentes:  ora  era  o  bebê  que falava, ora era a adolescente grávida, ora um rapaz.
+Apenas uma das afirmações que seguem é INDEVIDA em relação ao texto. Assinalea.
+
+- **A)** Intitulado 'Descuido', é um poema estruturado em 14 versos e uma estrofe.
+- **B)** O bebê revela ter consciência de sua condição de intruso na vida do casal.
+- **C)** O destino do pequeno locutor do texto está revelado, embora ele afirme que não saiba.
+- **D)** A fala do bebê evidencia o seu desconforto por ser a consequência, mesmo que involuntária, de um ato irrefletido.
+- **E)** O desejo do bebê é viver como qualquer criança que tenha sido desejada por seus pais.
+
+Resposta correta: não extraída
+
+## Questão 9 — páginas 9, 10
+
+'Na América Latina, 50% dos jovens com menos de 17 anos têm vida sexual ativa. Dados do Ministério da Saúde mostram que no Brasil pelo menos uma em cada cinco mulheres que dão à luz  tem menos de 19 anos.'
+Acessado em 28/09/2009.
+http://www.agenciabrasil.gov.br/noticias/2009/09/24/materia.2009-09-24.5055875275/view.
+
+http://www.cambito.com.br/tiras/default.asp?tirinha=20031019. Acessado em 28/09/2009.
+Como já deve ter dado para notar, as questões de Língua Portuguesa giram em torno de um mesmo tema. A respeito da tirinha do Cambito e sua turma e do fragmento da Agência Brasil, que também abordam esse tema, é possível afirmar que
+
+- **A)** metade das mulheres brasileiras tem 19 anos e engravida.
+- **B)** o  Ministério  da  Saúde,  por  meio  de  suas  pesquisas,  revela  que  um  quinto  das mulheres brasileiras e latino-americanas engravida devido à vida sexual ativa.
+- **C)** todos  os  jovens  latino-americanos  iniciam  sua  vida  sexual  antes  dos  dezessete anos.
+- **D)** a  personagem, segundo a última fala da tirinha, espera que a amiga não esteja grávida.
+- **E)** houve, por parte de ambas as personagens da tirinha, preocupação com o uso de preservativo.
+
+Resposta correta: não extraída
+
+## Questão 10 — páginas 10
+
+Ainda  com  referência  aos  textos  da  questão  anterior,  são  feitas  considerações gramaticais. Marque a INADEQUADA .
+
+- **A)** As vírgulas foram empregadas pelo mesmo motivo em 'Ontem, peguei o mais gato do baile!' e 'Agora, tô com uma ressaca sinistra!'.
+- **B)** Completando a frase do segundo quadrinho da tirinha, poderia haver substituição das reticências por 'de usar a camisinha.'
+- **C)** Ao  comparar,  de  forma  implícita,  o  rapaz  com  quem  ficou  a  um  gato,  a personagem da turma do Cambito fez uso de metáfora.
+- **D)** Os adjetivos 'doidona' e 'sinistra' encontram-se no singular, pois caracterizam o mesmo substantivo; concordando, desta forma, com ele.
+- **E)** No fragmento da Agência Brasil, aparecem as formas verbais 'têm' e 'tem' que concordam com seus respectivos sujeitos no plural e no singular.
+
+Resposta correta: não extraída
+
+## Questão 11 — páginas 11
+
+\S S e n d { \ P ( x , y ) } { \ a s l u c { \tilde { a } } { \circ } } { \S s i m e } \ \begin{cases} 4 x + 2 y = 2 \\ 2 x - y = 0 \end{cases} \ , \, \circ \, \text {val order} \, \tilde { x } + \tilde { y } \, \tilde { e } \colon
+
+- **A)** 0
+- **B)** 4 1
+- **C)** \frac { 1 } { 2 }
+- **D)** 4 3
+- **E)** 2 3
+
+Resposta correta: não extraída
+
+## Questão 12 — páginas 11
+
+Cada mililitro de sangue humano contém, em média, 5.10 6 glóbulos vermelhos. Um ser humano adulto tem, em média, 5,5 litros de sangue. De acordo com esses dados, o número médio de glóbulos vermelhos de um adulto é:
+
+- **A)** 2,75 x 10 6
+- **B)** 2,75 x 10 7
+- **C)** 27,5 x 10 7
+- **D)** 27,5 x 10 8
+- **E)** 2,75 x 10 10
+
+Resposta correta: não extraída
+
+## Questão 13 — páginas 11, 12
+
+O polígono ABCD é um quadrado de lado 8 cm. Sabendo-se que G é ponto médio de BC ,  Q 1 é  um quadrado de área 4 cm 2 e  R 1 é um retângulo de área 8 cm 2 ,  qual a razão entre  AB e  IJ ?
+notação científica regra de 3
+
+- **A)** \frac { 4 \sqrt { 2 } } { 5 }
+- **B)** \frac { 5 \sqrt { 2 } } { 4 }
+- **C)** \frac { 4 \sqrt { 5 } } { 5 }
+- **D)** 4 5 5
+- **E)** 2 5
+
+Resposta correta: não extraída
+
+## Questão 14 — páginas 12
+
+Em ciências atuariais, uma tábua de vida é uma tabela, construída a partir de censos populacionais,  que  mostra  a  probabilidade  de  morte  de  um  indivíduo  em  uma  certa faixa etária. Tábuas de vida são usadas em planos de previdência e seguros de    vida. A tábua da vida abaixo indica, por exemplo, que um indivíduo entre um ano (inclusive) e 2 anos (exclusive) tem 0,05% de chance de morrer.
+Fonte: National Vital  Statístics Reports, vol.54, nº 14, 2006.
+Supondo-se  que  existe  um  grupo  de  1.000.000  de  pessoas  que  acabaram  de completar 2 anos, segundo esta tabela, o número de pessoas deste grupo que farão aniversário de 4 anos é, aproximadamente, igual a:
+porcentagem probabilidade
+áreas de figuras
+
+- **A)** 997.000
+- **B)** 999.700
+- **C)** 999.500
+- **D)** 999.950
+- **E)** 999.970
+
+Resposta correta: não extraída
+
+## Questão 15 — páginas 13
+
+Considere os conjuntos ( ) { } 9 2 IR / x x A 2 = - ∈ = e { } 6 3 4 ≥ - - ∈ = x IN x B / * .
+Se n indica o número de elementos do conjunto B A ∪ , então o valor de n é:
+
+- **A)** 3
+- **B)** 4
+- **C)** 5
+- **D)** 6
+- **E)** ∞
+
+Resposta correta: não extraída
+
+## Questão 16 — páginas 13, 14
+
+Observe  o  demonstrativo  do  consumo  de  energia  elétrica  da  residência  do  Sr. Econômico.
+Considere  que  o  consumo  médio,  de  janeiro/2009  a  maio/2009,  foi  igual  ao  que ocorreu de junho/2009 a setembro/2009.
+Sabendo  que  o  valor  cobrado  por  cada  Kwh,  já  incluídos  todos  os  impostos  e encargos, é de R$ 0,52, é correto afirmar que a conta de luz do mês de setembro/2009 que o Sr. Econômico pagou foi, em reais:
+teoria dos conjuntos
+
+- **A)** 52,00
+- **B)** 62,40
+- **C)** 57,20
+- **D)** 72,80
+- **E)** mais de 72,80
+
+Resposta correta: não extraída
+
+## Questão 17 — páginas 14
+
+Na figura, r//s.
+Se â = 4x + 31 0 e  c ˆ = 3x + 59 0 30' , então a medida do ângulo b é:
+ângulos
+
+- **A)** 35°
+- **B)** 45°
+- **C)** 40°
+- **D)** 50°
+- **E)** 55°
+
+Resposta correta: não extraída
+
+## Questão 18 — páginas 15
+
+Um terreno tem a forma de um trapézio retângulo conforme a figura abaixo.
+Dado que sen 60°  = 2 3 ,  cos  60°   = 2 1 e  tg  60°   = 3 ,  calcule,  em  m 2 a  área  do terreno.
+trigonometria
+área de figuras
+
+- **A)** 68 + 6 3
+- **B)** 126
+- **C)** 168
+- **D)** 168 3
+- **E)** 336 3
+
+Resposta correta: não extraída
+
+## Questão 19 — páginas 15
+
+Uma pequena esfera de isopor, aluminizada, suspensa por um fio "nylon", é atraída por um pente plástico negativamente carregado. Pode-se afirmar que a carga elétrica da esfera é:
+eletroestática
+
+- **A)** apenas negativa;
+- **B)** apenas positiva;
+- **C)** apenas nula;
+- **D)** negativa, ou então nula;
+- **E)** positiva, ou então nula.
+
+Resposta correta: não extraída
+
+## Questão 20 — páginas 16
+
+Considere as afirmações a seguir:
+O som se propaga no ar com uma velocidade de aproximadamente 340m/s.
+As velocidades de propagação do som no ar e no vácuo são aproximadamente iguais.
+O eco é devido à reflexão do som.
+Quais delas são corretas?
+ondulatória
+
+- **A)** Apenas I
+- **B)** Apenas I e III
+- **C)** Apenas I e II
+- **D)** Apenas II e III
+- **E)** I, II e III
+
+Resposta correta: não extraída
+
+## Questão 21 — páginas 16
+
+Uma bola de borracha é rolada contra a parede de uma sala retangular, atingindo o ponto médio de cada lado, descrevendo a trajetória indicada pelas setas abaixo.
+Sabendo  que  a  bola  manteve  uma  velocidade  constante  e  que  demorou  10s  para voltar ao ponto de origem, determine a sua velocidade média.
+velocidade média
+
+- **A)** 1,8km/h
+- **B)** 5,4km/h
+- **C)** 3,6km/h
+- **D)** 7,2km/h
+- **E)** 9,0km/h
+
+Resposta correta: não extraída
+
+## Questão 22 — páginas 17
+
+A Ferrari F430 Scuderia que chega agora ao Brasil, vem com 20 cavalos a mais de potência em relação ao modelo F430, graças a redução de sua massa para 1.250kg, cerca de 200kg a menos que o modelo antecessor. Com um motor v8 de 4,3 litros e potência de 510 cavalos, alcança uma velocidade final de 320km/h. É este propulsor que faz esta máquina arrancar de 0 a 100km/h em apenas 3,5s.
+Com base nos dados do texto anterior responda:
+Qual  a  distância  percorrida  pelo  carro,  a  partir  do  repouso,  para  que  este  atinja  a velocidade de 100km/h? (Para efeito de cálculo admita que 100km/h = 28m/s).
+movimento retilíneo
+
+- **A)** 45m
+- **B)** 52m
+- **C)** 49m
+- **D)** 56m
+- **E)** 62m
+
+Resposta correta: não extraída
+
+## Questão 23 — páginas 17
+
+Na  filtração  das  águas  da  piscina  utilizam-se  filtros  que  contêm  areia  como  meio filtrante. A areia utilizada para esse fim deve ter granulometria apropriada, além de ser isenta  de  matéria  orgânica.  Para  se  chegar  a  esses  critérios  de  qualidade,  a  areia deve ser previamente peneirada e posteriormente queimada em fornos rotatórios. Os processos de obtenção dessa qualidade da areia são respectivamente:
+transformações da matéria
+
+- **A)** físico e químico.
+- **B)** químico e químico.
+- **C)** químico e físico.
+- **D)** físico e físico.
+- **E)** nuclear e físico.
+
+Resposta correta: não extraída
+
+## Questão 24 — páginas 17
+
+Qual  dos  seguintes  procedimentos  é  o  mais  indicado  quando  se  quer  distinguir  um copo  contendo  água  destilada  de  outro  que  contenha  uma  solução  de  água açucarada, sem experimentar o gosto?
+substâncias
+
+- **A)** Filtrar os líquidos.
+- **B)** Determinar a densidade.
+- **C)** Medir o volume.
+- **D)** Usar um microscópio.
+- **E)** Decantar os líquidos.
+
+Resposta correta: não extraída
+
+## Questão 25 — páginas 18
+
+Gasolina, gelo e grafite são, respectivamente, exemplos de:
+
+- **A)** mistura, substância simples e substância composta.
+- **B)** substância composta, mistura e substância simples.
+- **C)** mistura, substância composta e substância simples.
+- **D)** substância composta, substância simples e mistura.
+- **E)** substância simples, mistura e substância composta .
+
+Resposta correta: não extraída
+
+## Questão 26 — páginas 18
+
+Um determinado elemento pertence ao primeiro grupo ou família da tabela periódica. A respeito das suas propriedades, é INCORRETO afirmar que:
+tabela periódica
+
+- **A)** encontra-se no estado sólido à temperatura ambiente.
+- **B)** forma cátion monovalente nos sais correspondentes.
+- **C)** trata-se de um metal alcalino.
+- **D)** é um elemento muito reativo em água.
+- **E)** forma compostos covalentes com não-metais.
+
+Resposta correta: não extraída
+
+## Questão 27 — páginas 18
+
+A filtração caseira da água é um procedimento eficiente para evitar a transmissão de várias  doenças. Assinale  a  opção  que  contenha  somente  doenças  que  terão  sua incidência reduzida com a adoção dessa medida.
+
+- **A)** Dengue, hepatite A, giardíase, botulismo
+- **B)** Giardíase, cólera, ascaridíase, amebíase
+- **C)** Malária, giardíase, cólera, disenteria bacilar
+- **D)** Dengue, giardíase, cólera, amebíase.
+- **E)** Cólera, amebíase, malária, filariose
+
+Resposta correta: não extraída
+
+## Questão 28 — páginas 18, 19
+
+'A  mata  atlântica  é  hoje  uma  das  florestas  tropicais  mais  devastadas  do  planeta, reduzida  a  algumas  poucas  áreas  remanescentes,  em  geral  descontínuas.  Esse processo de fragmentação pode ser a causa do aumento da densidade de formigas conhecidas como saúvas, o que ameaçaria ainda mais esse bioma já fragilizado. Com a fragmentação, há um predomínio de plantas de luz ou pioneiras, em detrimento das plantas de sombra, próprias de florestas maduras e conservadas. As plantas pioneiras não  possuem  compostos  de  defesa  contra  organismos  que  se  alimentam  de  suas folhas.  Com  mais  plantas  sem  defesas  nas  proximidades  dos  ninhos,  as  formigas gastam menos energia para buscar seus alimentos e mais energia para a produção de rainhas e consequentemente um maior número de colônias adultas.'
+Adaptado de Ciência Hoje. Dezembro de 2008. p. 60.
+
+Baseado no texto e nos seus conhecimentos, analise as afirmativas a seguir e marque a alternativa correta.
+
+- **A)** Podemos  verificar,  de  acordo  com  o  texto  acima,  que  o  número  de saúvas reduziu devido a escassez de alimentos provocada pelo desmatamento da mata atlântica.
+- **B)** A  mata  atlântica  é  um  bioma  brasileiro  que  se  caracteriza  por  sua vegetação densa, com chuvas abundantes, presença de palmeiras e ipês.
+- **C)** As  formigas  mantêm  relação  harmoniosa  denominada  sociedade.  A sociedade das formigas é estruturada em  castas (rainha, macho, operária,  soldado),  sendo  cada  uma  responsável  por  um  determinado trabalho ou função.
+- **D)** Todas as afirmativas são corretas.
+- **E)** Apenas as afirmativas I e III estão corretas.
+- **F)** Apenas as afirmativas I e II estão corretas.
+- **G)** Apenas as afirmativas II e III estão corretas.
+- **H)** Todas as afirmativas são falsas.
+
+Resposta correta: não extraída
+
+## Questão 29 — páginas 19
+
+Sobre os tecidos animais é INCORRETO afirmar:
+
+- **A)** O tecido  muscular  é  formado  por  fibras  musculares,  células  ricas  em  filamentos protéicos;
+- **B)** Os tecidos conjuntivos, que apresentam pouca quantidade de material extracelular, podem  exercer  função  de  sustentação,  defesa,  nutrição  e  preenchimento  de espaços entre órgãos.
+- **C)** Os tecidos  epiteliais  apresentam  células  justapostas  e  funções  de  revestimento, secreção e absorção.
+- **D)** O tecido nervoso é especializado na recepção e transmissão de impulsos elétricos.
+- **E)** O  sangue  é  um  tipo  de  tecido  conjuntivo  constituído  pelos  elementos  figurados (hemácias, leucócitos e plaquetas) e plasma (substância intercelular líquida).
+
+Resposta correta: não extraída
+
+## Questão 30 — páginas 20
+
+'Eu trago bananas prá vender Bananas de todas qualidades Quem vai querer Olha banana Nanica Olha banana Maçã Olha banana Ouro Olha banana Prata Olha a banana da Terra Figo São Tomé
+Olha a banana d'Água.'
+(O Vendedor de Bananas -Jorge Ben)
+Nas feiras e supermercados geralmente encontramos bananas sem sementes. Uma das  espécies  de  bananeiras  que  não  produz  sementes  é  a Musa  sapientum (variedades  ouro,  prata,  maçã,  figo,  São  Tomé).  No  entanto,  existem  bananeiras silvestres  cujo  fruto  apresenta  sementes  duras,  que  ocupam  boa  parte  da  massa comestível da banana. É o caso da espécie Musa balbisiana .
+Banana sem semente
+Banana com semente
+Com referência aos processos reprodutivos das duas espécies citadas no enunciado pode-se afirmar corretamente que:
+
+- **A)** Somente a espécie Musa balbisiana se reproduz por processo sexuado;
+- **B)** As duas espécies não se reproduzem por processo sexuado;
+- **C)** As duas espécies reproduzem-se por processo sexuado;
+- **D)** Na espécie Musa sapientum ocorre o desenvolvimento do embrião;
+- **E)** A espécie Musa balbisiana não forma zigoto;
+
+Resposta correta: não extraída
+
+## Questão 31 — páginas 21
+
+O  Brasil  encontra-se  dividido  em  cinco  grandes  regiões:  sul,  sudeste,  centro-oeste, norte  e  nordeste.  Essa  divisão  oficial  foi  realizada  pelo  IBGE  (Instituto  Brasileiro  de Geografia  e  Estatística) e é com base nessas regiões que boa parte das informações do país é organizada. Com base no mapa abaixo e em seus conhecimentos sobre as regiões brasileiras, assinale a alternativa correta :
+Fonte: IBGE
+
+- **A)** A  grande  concentração  industrial  brasileira  está  na  região  nordeste  devido  ao maior número de estados que ela contém.
+- **B)** A região sul caracteriza-se por sua ocupação  recente, o que explica os insatisfatórios índices de crescimento industrial.
+- **C)** A região centro-oeste é composta por três estados e pelo Distrito Federal, onde se encontra a capital do Brasil.
+- **D)** A  região  sudeste  apresenta  os  maiores  índices  de  mortalidade  infantil  e  de analfabetismo, sendo também considerada uma região fracamente desenvolvida.
+- **E)** A  região  norte  apresenta  uma  grande  extensão  territorial  e  também  um  grande número populacional.
+
+Resposta correta: não extraída
+
+## Questão 32 — páginas 22
+
+Leia atentamente as manchetes abaixo:
+'Número  de  mortos  por  tsunami  causado  por  terremoto  passa  de  100  na Oceania Há mortos e feridos em Samoa Americana e em Samoa.'
+Disponível em: <http://g1.globo.com/Noticias/Mundo/0,,MUL1323397-5602,00.html>. Acessado em 30/09/2009.
+'Terremoto na Indonésia deixa ao menos 75 mortos.'
+Disponível em: <http://noticias.uol.com.br/ultnot/internacional/2009/09/30/ult1859u1560.jhtm>. Acessado em 30/09/2009.
+'Vulcão Asama entra em erupção e deixa Japão em alerta - 02/02/2009.'
+Disponível em: <http://video.aol.co.uk/video-detail/vulco-asama-entra-em-erupo-e-deixa-japo-emalerta/3349838831>. Acessado em 13/10/2009.
+Os fenômenos expostos acima estão relacionados ao(s):
+
+- **A)** processos externos devido aos inúmeros impactos provocados na crosta terrestre.
+- **B)** processos internos da Terra que provocam a movimentação das placas tectônicas.
+- **C)** elevação dos impactos ambientais provocados pelo aquecimento global.
+- **D)** desgaste das rochas, que por estarem expostas acabam se desgastando.
+- **E)** dinamismo existente  na  Terra,  o  que  certamente  tem  uma  relação  direta  com  a redução repentina do número de habitantes do Planeta.
+
+Resposta correta: não extraída
+
+## Questão 33 — páginas 22
+
+Indique  a  alternativa  que NÃO corresponde  à  realidade  das  grandes  metrópoles brasileiras:
+
+- **A)** A escolha da cidade do Rio de Janeiro como sede das olimpíadas de 2016 é vista por muitos  como  uma  oportunidade  de  crescimento  econômico,  principalmente  pelo turismo.  Por  outro  lado,  as  enormes  desigualdades  sociais  e  territoriais  existentes tanto  na  cidade  do  Rio  de  Janeiro  quanto  em  outras  metrópoles  brasileiras  geram críticas quanto ao grande investimento que será feito para sediar os jogos mundiais, em detrimento a outras necessidades do país.
+- **B)** São cidades que passaram por um rápido e desordenado crescimento, tornandose 'inchadas' de pessoas e de problemas.
+- **C)** Os  escassos  investimentos  governamentais  na  área  habitacional  levaram  à formação de precárias moradias.
+- **D)** A  rápida  urbanização  faz  com  que  cidades  vizinhas  à  metrópole  aumentem  de tamanho e formem um só conjunto.
+- **E)** Há um grande número de mendigos, desempregados e subempregados vivendo nestas cidades.
+- **F)** A falta de infraestrutura adequada e de saneamento básico não são problemas tão preocupantes nas metrópoles devido à presença de mão de obra qualificada para resolvê-los.
+
+Resposta correta: não extraída
+
+## Questão 34 — páginas 23
+
+'As  fontes  de  energia  são  extremamente importantes nas  atividades  humanas,  pois originam combustíveis e eletricidade que servem para iluminar, movimentar máquinas, caminhões entre outras aplicações.
+As  energias  facilitam  o  trabalho  do  homem  que  em  outras  circunstâncias  teria  uma grande  dificuldade,  utiliza-se  a  energia  para  levantar  peso,  apertar  parafuso,  mover veículos, ferver água, etc.'
+Disponível em: <http://www.mundoeducacao.com.br/geografia/fontes-energia-1.htm>. Acessado em 13/10/2009.
+Sobre as fontes energéticas são feitas as seguintes afirmações.
+As termoelétricas que produzem energia a partir da queima em caldeira de  carvão,  óleo  combustível  ou  gás  natural,  elevam  a  concentração  de poluentes  na  atmosfera  e  por  consequência  acentuam  o  aquecimento global.
+A energia eólica, ou seja, aquela que é proveniente do vento, ocasiona alguns  impactos  ambientais,  tais  como:  aumento  da  poluição  sonora, visual  e  atmosférica,  sendo  diretamente  responsável  pelo  aquecimento global.
+As hidrelétricas apesar de serem vistas por alguns como 'energia limpa', geram inúmeros impactos ambientais devido à construção das represas, que  provocam  inundações  em  imensas  áreas  de  matas,  destroem espécies  vegetais,  prejudicam  os  animais,  e  interferem  na  ocupação humana.
+A energia solar é considerada  uma  fonte  energética alternativa e renovável.
+Estão corretas as alternativas:
+
+- **A)** I, III e IV.
+- **B)** II, III e IV.
+- **C)** II e III.
+- **D)** I, II e IV.
+- **E)** I, II, III e IV .
+
+Resposta correta: não extraída
+
+## Questão 35 — páginas 24
+
+Observe o mapa abaixo:
+Adaptado - Disponível em: <http://www.geografiaparatodos.com.br/index.php?pag=mapasm>. Acessado em 13/10/2009 .
+Uma  das  tendências  do  mundo  atualmente  é  a  articulação  dos  países  em  blocos econômicos,  como  os  que  estão  expostos  no  mapa  acima.  Assinale  a  alternativa INCORRETA a respeito desse assunto.
+
+- **A)** A Comunidade para o Desenvolvimento da África Austral (SADC), localiza-se no território africano.
+- **B)** A  União  Européia  possui  uma  moeda  única,  o  euro,  e  tem  como  um  dos  seus membros a Alemanha.
+- **C)** O  Nafta  é  uma  zona  de  livre  comércio  formada  por  Canadá,  Estados  Unidos  e México.
+- **D)** O Mercosul tem como membros permanentes apenas países da América do Sul.
+- **E)** Todos os  blocos  econômicos  apresentam  o  mesmo  nível  de  integração  política, social, ambiental e econômica.
+
+Resposta correta: não extraída
+
+## Questão 36 — páginas 25
+
+'O Congresso de Viena foi realizado na capital austríaca, entre setembro de 1814 e junho  de  1815,  tendo  como  participantes  dezenas  de  príncipes,  reis,  imperadores, chefes militares, diplomatas, dirigentes da igreja, nobres, tomados de alegria porque Napoleão Bonaparte, que passara a simbolizar a Revolução Francesa, estava exilado na Ilha de Elba'.
+(AQUINO; RONALDO. Fazendo a História : A Europa e as Américas nos séculos XVIII e XIX. Rio de Janeiro: Ao Livro Técnico, 1986)
+Quatro  países  foram  os  grandes  beneficiários  dos  acordos  que  resultaram  do Congresso de Viena; são eles:
+
+- **A)** Áustria, Alemanha, Rússia e Inglaterra.
+- **B)** Inglaterra, França, Prússia e Rússia.
+- **C)** França, Espanha, Portugal e Prússia.
+- **D)** Portugal, Inglaterra, França e Rússia.
+- **E)** Prússia, Inglaterra, Áustria e Rússia.
+
+Resposta correta: não extraída
+
+## Questão 37 — páginas 25
+
+Em meados do século XIX, os Estados Unidos vivenciaram sua maior guerra civil: a Guerra de Secessão; sobre ela é correto afirmar:
+
+- **A)** os  estados  do  Norte,  predominantemente  industrializados,  eram  contra  uma política de livre comércio, enquanto os estados do Sul, agrícolas, eram contra uma política protecionista.
+- **B)** os  estados  do  Norte  tiveram  apoio  da  Inglaterra,  já  que  a  guerra  era  contra  a França.
+- **C)** com  a  vitória  dos  estados  do  Norte  sobre  os  estados  do  Sul,  a  escravidão  foi abolida e foi adotada uma política protecionista.
+- **D)** os nortistas obtiveram alguns êxitos iniciais nessa  guerra,  mas,  graças à superioridade populacional, industrial e financeira dos sulistas, terminaram derrotados.
+- **E)** Abraham  Lincoln,  eleito  presidente  pelos  sulistas,  tentou  evitar  a  guerra  com  o Norte, que era totalmente contrário à abolição da escravatura no país.
+
+Resposta correta: não extraída
+
+## Questão 38 — páginas 26
+
+No que se refere ao uso da mão de obra no Brasil, pode-se afirmar que:
+
+- **A)** tanto na produção do café  como  do algodão, no século XX, utilizou-se, principalmente, mão de obra servil.
+- **B)** tanto  na  produção  da  cana  de  açúcar,  no  Nordeste,  como  do  café,  no  Vale  do Paraíba,  entre  os  séculos  XVI  e  XIX,  utilizou-se,  principalmente,  mão  de  obra escrava.
+- **C)** tanto  na  produção  do  café  do  Oeste  Paulista  como  da  pecuária,  no  século  XIX, utilizou-se, principalmente, mão de obra indígena.
+- **D)** tanto na produção da cana de açúcar, como na do algodão, no século XIX, utilizouse, principalmente, mão de obra indígena sob a forma de trabalho servil.
+- **E)** desde a exploração do pau brasil, como na mineração e na produção industrial, utilizou-se, principalmente, mão de obra escrava.
+
+Resposta correta: não extraída
+
+## Questão 39 — páginas 26
+
+No final  do  século  XIX  e  início  do  século  XX,  a  expansão  do  capitalismo  provocou importantes  transformações em  todo  o  mundo.  No  Brasil, esse  fenômeno  foi responsável pela abolição da escravatura e pela proclamação da República, acompanhadas por um processo de crescente modernização da economia. Por toda parte ocorreram reajustes sociais que forçaram a adaptação, transformando as antigas formas  de  convívio  social.  Foi  nesse  contexto  que  o  regime  republicano  teve  que enfrentar  revoltas  das  populações  marginalizadas.  Afinal  de  contas,  como  seria possível se submeter aos poderes e obrigações de um Estado pouco interessado em atender às demandas daqueles que devia representar? O banditismo social representou um dos movimentos de manifestação contrários ao governo republicano, que destacou uma figura conhecida da História e do imaginário brasileiros, a saber:
+
+- **A)** Antônio Conselheiro;
+- **B)** Lampião;
+- **C)** Padre Antônio Maria;
+- **D)** Padre Cícero;
+- **E)** Luís Carlos Prestes
+
+Resposta correta: não extraída
+
+## Questão 40 — páginas 27
+
+"Industrializar aceleradamente o país; transferir do exterior para o nosso território as bases  do  desenvolvimento  autônomo;  fazer  da  indústria  manufatureira  o  centro dinâmico das atividades econômicas nacionais - isto resume o meu propósito, a minha opção".
+(OLIVEIRA, Juscelino Kubitschek de. Por que construí Brasília . Rio de Janeiro: Bloch: 1975, p. 57).
+O trecho acima pode ser considerado o resumo do programa de governo de Juscelino Kubitschek, caracterizado por:
+
+- **A)** ter  como  base  de  seu  programa  administrativo,  o  trinômio:  saúde,  estabilidade monetária e habitação.
+- **B)** reduzir  aceleradamente  a  produção  de  bens  de  consumo  duráveis,  voltando-se totalmente para a indústria de base.
+- **C)** reprimir  as  oposições,  anulando  os  direitos  democráticos  e  a  liberdade  de imprensa.
+- **D)** acelerar o desenvolvimento industrial, internacionalizar nossa economia, gerando, contudo, endividamento e inflação.
+- **E)** acentuar o nacionalismo econômico brasileiro.
+
+Resposta correta: não extraída

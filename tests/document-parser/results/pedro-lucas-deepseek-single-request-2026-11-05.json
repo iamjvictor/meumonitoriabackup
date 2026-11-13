@@ -1,0 +1,22 @@
+{
+  "run": {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "configSource": "backend/.env explicitly parsed; OPENROUTER_STRUCTURED_TIMEOUT_MS overridden in process only",
+    "credentialPrinted": false,
+    "realOpenRouter": true,
+    "llmCalls": 1,
+    "databaseWrites": false,
+    "sourcePdf": "tests/document-parser/documentos-professor/Simulado Pedro Lucas.pdf",
+    "attachedImage": "rendered original PDF page 4; Q07 exponent 17 visible",
+    "imageSent": true,
+    "maxOutputTokens": 16000,
+    "timeoutMs": 180000
+  },
+  "error": {
+    "name": "Error",
+    "code": null,
+    "message": "QUESTION_EXTRACTION_OUTPUT_TRUNCATED: o modelo não terminou a resposta estruturada em uma única chamada. Aumente QUESTION_EXTRACTION_MAX_TOKENS/modelo com contexto de saída suficiente e reexecute; nenhuma candidata foi persistida.",
+    "details": null
+  },
+  "partialQuestions": []
+}

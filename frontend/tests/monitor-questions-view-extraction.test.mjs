@@ -34,3 +34,11 @@ test('extrai a view original de revisão de questões e conecta a página', () =
   assert.doesNotMatch(page, /VIEW 2: BANCO DE QUESTÕES/);
   assert.doesNotMatch(page, /Geração Inteligente de Questões via IA/);
 });
+
+test('renderiza assets privados vinculados ao enunciado e à alternativa correta', () => {
+  const component = read(componentPath);
+  assert.match(component, /asset\.role === 'STATEMENT'[\s\S]{0,400}<Image/);
+  assert.match(component, /asset\.role === `ALTERNATIVE:\$\{opt\.letter\}`[\s\S]{0,400}<Image/);
+  assert.match(component, /imageUrl!\} unoptimized/);
+  assert.match(read(pagePath), /visualAssets: Array\.isArray\((q|question)\.visualAssets\)/);
+});

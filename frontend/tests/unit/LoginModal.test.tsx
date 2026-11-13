@@ -3,14 +3,17 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { LoginModal } from '../../src/modules/marketing/components/LoginModal';
 
-const { loginMock, resetPasswordMock, showAlertMock } = vi.hoisted(() => ({
+const { loginMock, resetPasswordMock, showAlertMock, redeemInvitationMock, routerPushMock, routerReplaceMock } = vi.hoisted(() => ({
   loginMock: vi.fn(),
   resetPasswordMock: vi.fn(),
   showAlertMock: vi.fn(),
+  redeemInvitationMock: vi.fn(),
+  routerPushMock: vi.fn(),
+  routerReplaceMock: vi.fn(),
 }));
 
 vi.mock('next/image', () => ({ default: ({ alt, ...props }: Record<string, unknown>) => <span aria-label={String(alt || '')} {...props} /> }));
-vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn() }) }));
+vi.mock('next/navigation', () => ({ useRouter: () => ({ push: routerPushMock, replace: routerReplaceMock }) }));
 vi.mock('@/shared', () => ({ useAlert: () => ({ showAlert: showAlertMock }) }));
 vi.mock('../../src/modules/marketing/services/AuthService', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../../src/modules/marketing/services/AuthService')>();
@@ -19,10 +22,18 @@ vi.mock('../../src/modules/marketing/services/AuthService', async (importOrigina
     AuthService: { login: loginMock, requestPasswordReset: resetPasswordMock },
   };
 });
+vi.mock('@/modules/student/services/sponsored-seat-invitation.service', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/modules/student/services/sponsored-seat-invitation.service')>();
+  return { ...actual, redeemSponsoredSeatInvitationForExistingAccount: redeemInvitationMock };
+});
 
 describe('LoginModal', () => {
   beforeEach(() => {
     loginMock.mockReset();
+    redeemInvitationMock.mockReset();
+    routerPushMock.mockReset();
+    routerReplaceMock.mockReset();
+    sessionStorage.clear();
   });
 
   it('renders accessible controls and validates required credentials', async () => {
@@ -53,6 +64,23 @@ describe('LoginModal', () => {
     await user.click(screen.getByRole('button', { name: /Entrar na Plataforma/i }));
     expect(await screen.findByText(/E-mail ou senha incorretos\. Verifique suas credenciais e tente novamente\./i)).toBeVisible();
     await waitFor(() => expect(loginMock).toHaveBeenCalledTimes(1));
+  });
+
+  it('redeems a pending sponsored invitation after login and returns to its page without a token in the URL', async () => {
+    const user = userEvent.setup();
+    loginMock.mockResolvedValue({ data: { role: 'student' } });
+    redeemInvitationMock.mockResolvedValue({ claimedCount: 1 });
+    sessionStorage.setItem('mm_pending_sponsored_invitation', JSON.stringify({ token: 'invite-secret', savedAt: Date.now() }));
+    render(<LoginModal isOpen onClose={vi.fn()} />);
+
+    await user.type(screen.getByRole('textbox', { name: /e-mail/i }), 'student@example.com');
+    await user.type(screen.getByLabelText(/^Senha \*$/i), 'secret');
+    await user.click(screen.getByRole('button', { name: /Entrar na Plataforma/i }));
+
+    await waitFor(() => expect(redeemInvitationMock).toHaveBeenCalledWith('invite-secret'));
+    expect(sessionStorage.getItem('mm_pending_sponsored_invitation')).toBeNull();
+    expect(sessionStorage.getItem('mm_sponsored_invitation_redeemed')).toBe('1');
+    expect(routerReplaceMock).toHaveBeenCalledWith('/convite/aluno');
   });
 
   it('does not submit when closed', () => {

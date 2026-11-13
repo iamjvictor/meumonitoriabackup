@@ -3,8 +3,8 @@ import test from 'node:test';
 import { getWorkerHealth, WORKER_HEARTBEAT_INTERVAL_MS, WORKER_HEARTBEAT_TTL_SECONDS } from '../worker-health.js';
 
 test('mantém heartbeat com intervalo e TTL compatíveis com polling reduzido', () => {
-  assert.equal(WORKER_HEARTBEAT_INTERVAL_MS, 60_000);
-  assert.equal(WORKER_HEARTBEAT_TTL_SECONDS, 180);
+  assert.equal(WORKER_HEARTBEAT_INTERVAL_MS, 120_000);
+  assert.equal(WORKER_HEARTBEAT_TTL_SECONDS, 300);
 });
 
 test('considera o worker saudável quando o heartbeat existe no Redis', async () => {

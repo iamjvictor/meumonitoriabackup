@@ -17,6 +17,13 @@ import {
   UserPlus,
 } from 'lucide-react';
 import { AuthService, formatAuthErrorMessage, type LoginResponse } from '../services/AuthService';
+import {
+  clearPendingSponsoredSeatInvitationToken,
+  getPendingSponsoredSeatInvitationToken,
+  markSponsoredSeatInvitationRedeemFailed,
+  markSponsoredSeatInvitationRedeemed,
+  redeemSponsoredSeatInvitationForExistingAccount,
+} from '@/modules/student/services/sponsored-seat-invitation.service';
 
 import { useAlert } from '@/shared';
 
@@ -70,6 +77,20 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       // respostas antigas que usavam user.role ou role na raiz.
       const responseData = (res as LoginResponse & { data?: { role?: string } }).data;
       const role = responseData?.role || res.user?.role || (res as LoginResponse & { role?: string }).role;
+      const pendingInvitationToken = getPendingSponsoredSeatInvitationToken();
+      if (pendingInvitationToken) {
+        try {
+          await redeemSponsoredSeatInvitationForExistingAccount(pendingInvitationToken);
+          clearPendingSponsoredSeatInvitationToken();
+          markSponsoredSeatInvitationRedeemed();
+        } catch {
+          // Keep the short-lived token in sessionStorage so the invitation page can offer a retry.
+          markSponsoredSeatInvitationRedeemFailed();
+        }
+        onClose();
+        router.replace('/convite/aluno');
+        return;
+      }
       const redirect = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('redirect') : null;
       const safeRedirect = redirect?.startsWith('/') && !redirect.startsWith('//') ? redirect : null;
       if (safeRedirect) {

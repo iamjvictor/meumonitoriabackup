@@ -1,0 +1,75 @@
+{
+  "file": "Estequiometria.pdf",
+  "sha256": "63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd",
+  "parser": "docling",
+  "parserVersion": "2.122.0",
+  "pageCount": 4,
+  "chunks": 4,
+  "assets": 6,
+  "parserWarnings": [],
+  "extraction": {
+    "questions": [
+      {
+        "id": "question-1",
+        "sourceChunkIds": [
+          "chunk-2"
+        ],
+        "visualAssetIds": []
+      },
+      {
+        "id": "question-2",
+        "sourceChunkIds": [
+          "chunk-2"
+        ],
+        "visualAssetIds": []
+      }
+    ],
+    "chunksProcessed": 4,
+    "windowsProcessed": 1,
+    "llmCalls": 1
+  },
+  "questions": [
+    {
+      "number": "1",
+      "statement": "O percarbonato de sódio, que corresponde a uma mistura de 2 mols de Na₂CO₃ e 3 mols de H₂O₂, é empregado em lavagem de roupas como agente oxidante na remoção de manchas. Esse processo de oxidação ocorre em função do oxigênio formado na reação de decomposição do peróxido de hidrogênio presente na mistura\n\nConsiderando 1 kg de percarbonato de sódio, o volume máximo, em litros, de gás oxigênio formado, sob condições normais de temperatura e pressão, é aproximadamente de",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "328"
+        },
+        {
+          "label": "B",
+          "text": "321"
+        },
+        {
+          "label": "C",
+          "text": "214"
+        },
+        {
+          "label": "D",
+          "text": "107"
+        }
+      ],
+      "correctAnswer": null,
+      "institution": null,
+      "year": null,
+      "sourceChunkIds": [
+        "chunk-2"
+      ],
+      "visualEvidence": []
+    },
+    {
+      "number": "2",
+      "statement": "Qual é o volume produzido de gás carbônico quando 80 g de propano reagem com 40 g do gás oxigênio?\n1 mol de gás 22,4L",
+      "alternatives": [],
+      "correctAnswer": null,
+      "institution": null,
+      "year": null,
+      "sourceChunkIds": [
+        "chunk-2"
+      ],
+      "visualEvidence": []
+    }
+  ],
+  "formulaMarkers": []
+}

@@ -1,0 +1,1985 @@
+(node:2249290) [FSTWRN004] FastifyWarning: It seems that you are overriding an errorHandler in the same scope, which can lead to subtle bugs. To disable this behavior, set 'allowErrorHandlerOverride' to false. For more information, visit: https://fastify.dev/docs/latest/Reference/Server/#allowerrorhandleroverride
+(Use `node --trace-warnings ...` to show where the warning was created)
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-1',
+  method: 'GET',
+  url: '/health',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-2',
+  method: 'GET',
+  url: '/health/worker',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+Verificação do schema do worker concluída {
+  event: 'payments.worker_database_check_completed',
+  attempt: 1,
+  attempts: 3
+}
+monitor.daily_challenge_generation_triggered {
+  event: 'monitor.daily_challenge_generation_triggered',
+  trigger: 'startup'
+}
+monitor.daily_challenge_generation_started {
+  event: 'monitor.daily_challenge_generation_started',
+  challengeDate: '2026-11-07',
+  timezone: 'America/Sao_Paulo',
+  jobKey: 'daily-challenge-generation:2026-11-07'
+}
+monitor.daily_challenge_scheduler_scheduled {
+  event: 'monitor.daily_challenge_scheduler_scheduled',
+  timezone: 'America/Sao_Paulo',
+  nextRun: 2026-11-08T03:00:00.000Z,
+  delayMs: 46029049
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-3',
+  method: 'GET',
+  url: '/health/worker',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+Limpeza de anexos de imagem do chat concluída {
+  event: 'chat.image_attachments_cleanup_completed',
+  selectedCount: 0,
+  deletedCount: 0
+}
+Worker de documentos conectado ao Redis {
+  event: 'monitor.document_worker_ready',
+  queue: 'monitor-documents',
+  concurrency: 2
+}
+Worker de simulados semanais conectado ao Redis {
+  event: 'monitor.weekly_simulation_worker_ready',
+  queue: 'monitor-weekly-simulations',
+  concurrency: 2
+}
+Worker de webhooks de pagamentos conectado ao Redis { event: 'payments.webhook_worker_ready', queue: 'payments-webhooks' }
+monitor.daily_challenge_monitors_loaded {
+  event: 'monitor.daily_challenge_monitors_loaded',
+  challengeDate: '2026-11-07',
+  monitorCount: 0,
+  jobKey: 'daily-challenge-generation:2026-11-07'
+}
+monitor.daily_challenge_generation_completed {
+  event: 'monitor.daily_challenge_generation_completed',
+  challengeDate: '2026-11-07',
+  created: 0,
+  existing: 0,
+  unavailable: 0,
+  durationMs: 110,
+  jobKey: 'daily-challenge-generation:2026-11-07'
+}
+monitor.daily_challenge_generation_trigger_completed {
+  event: 'monitor.daily_challenge_generation_trigger_completed',
+  trigger: 'startup',
+  result: {
+    challengeDate: '2026-11-07',
+    created: 0,
+    existing: 0,
+    unavailable: 0,
+    durationMs: 110
+  }
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-4',
+  method: 'GET',
+  url: '/health/worker',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+
+API local: http://127.0.0.1:33671
+Worker local ativo; LangGraph habilitado com checkpoints em question_graph_local_test.
+Banco: 127.0.0.1:56322/postgres | Supabase: http://127.0.0.1:56321 | Redis dedicado: 127.0.0.1:56379 | Docling: http://127.0.0.1:8080
+Use Ctrl+C para encerrar API e worker. Nenhuma chave será exibida.
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-5',
+  method: 'GET',
+  url: '/health',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-6',
+  method: 'POST',
+  url: '/api/v1/monitors/2e96883f-5c20-4b61-b296-e916db81cebd/documents',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: true,
+  hasCookies: false
+}
+Verificando sessao com Supabase {
+  event: 'auth.session_check',
+  requestId: 'req-6',
+  hasAuthorizationHeader: true,
+  hasAccessTokenCookie: false
+}
+Sessao validada {
+  event: 'auth.session_validated',
+  requestId: 'req-6',
+  userId: '3fe46041-a6be-435c-91b3-63abdeddf8f6'
+}
+Upload de documento recebido {
+  event: 'monitor.document_upload_received',
+  requestId: 'req-6',
+  userId: '3fe46041-a6be-435c-91b3-63abdeddf8f6',
+  monitorId: '2e96883f-5c20-4b61-b296-e916db81cebd',
+  method: 'POST',
+  url: '/api/v1/monitors/2e96883f-5c20-4b61-b296-e916db81cebd/documents',
+  contentType: 'multipart/form-data; boundary=----formdata-undici-026611847068'
+}
+Repository validando escopo do documento {
+  event: 'monitor.document_scope_validation_started',
+  userId: '3fe46041-a6be-435c-91b3-63abdeddf8f6',
+  monitorId: '2e96883f-5c20-4b61-b296-e916db81cebd',
+  subjectId: '61c2aa13-e304-4808-bc55-5f6445229b2e',
+  topicId: '963760d7-d3cb-427d-8980-8be0bb263245'
+}
+Escopo do documento validado {
+  event: 'monitor.document_scope_validation_completed',
+  monitorId: '2e96883f-5c20-4b61-b296-e916db81cebd',
+  subjectId: '61c2aa13-e304-4808-bc55-5f6445229b2e',
+  topicId: '963760d7-d3cb-427d-8980-8be0bb263245',
+  teacherId: 'ce0ff270-377d-4439-a5a9-78a2aee86c9e'
+}
+Iniciando upload do documento no Storage {
+  event: 'monitor.document_storage_upload_started',
+  bucket: 'monitor-documents',
+  storagePath: 'ce0ff270-377d-4439-a5a9-78a2aee86c9e/2e96883f-5c20-4b61-b296-e916db81cebd/61c2aa13-e304-4808-bc55-5f6445229b2e/963760d7-d3cb-427d-8980-8be0bb263245/1eb0267e-67cb-4af2-b89e-ad81b498fa2d-Quimica-3.pdf',
+  originalSizeBytes: 599300,
+  sizeBytes: 599300,
+  compressed: false,
+  compressionProfile: null,
+  localDiagnosticPath: null,
+  storageLimitBytes: 52428800,
+  mimeType: 'application/pdf'
+}
+Documento salvo no Storage {
+  event: 'monitor.document_storage_upload_completed',
+  bucket: 'monitor-documents',
+  storagePath: 'ce0ff270-377d-4439-a5a9-78a2aee86c9e/2e96883f-5c20-4b61-b296-e916db81cebd/61c2aa13-e304-4808-bc55-5f6445229b2e/963760d7-d3cb-427d-8980-8be0bb263245/1eb0267e-67cb-4af2-b89e-ad81b498fa2d-Quimica-3.pdf',
+  originalSizeBytes: 599300,
+  sizeBytes: 599300,
+  compressed: false,
+  compressionProfile: null,
+  localDiagnosticPath: null
+}
+Registro do documento criado no banco {
+  event: 'monitor.document_database_record_created',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  monitorId: '2e96883f-5c20-4b61-b296-e916db81cebd',
+  subjectId: '61c2aa13-e304-4808-bc55-5f6445229b2e',
+  topicId: '963760d7-d3cb-427d-8980-8be0bb263245',
+  tag: 'QUESTIONS',
+  status: 'QUEUED'
+}
+Documento salvo e colocado na fila {
+  event: 'monitor.document_service_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  status: 'QUEUED'
+}
+Documento colocado na fila {
+  event: 'monitor.document_upload_completed',
+  requestId: 'req-6',
+  userId: '3fe46041-a6be-435c-91b3-63abdeddf8f6',
+  monitorId: '2e96883f-5c20-4b61-b296-e916db81cebd',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  tag: 'QUESTIONS',
+  status: 'QUEUED',
+  durationMs: 335
+}
+Worker iniciou o processamento do documento {
+  event: 'monitor.document_processing_started',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  jobId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  attempt: 1
+}
+Buscando documento no banco para o worker {
+  event: 'monitor.document_repository_lookup_started',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d'
+}
+Busca do documento concluida {
+  event: 'monitor.document_repository_lookup_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  found: true,
+  topicLinkCount: 1
+}
+Atualizando documento para PROCESSING {
+  event: 'monitor.document_status_update_started',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  status: 'PROCESSING'
+}
+Documento atualizado para PROCESSING {
+  event: 'monitor.document_status_update_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  status: 'PROCESSING'
+}
+Etapa auxiliar iniciada {
+  event: 'document_stage.started',
+  timestamp: '2026-11-07T14:12:53.346Z',
+  service: 'worker',
+  request_id: 'aea1902d-de7e-41e1-a401-5eedc073b671',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'DOWNLOAD_DOCUMENT'
+}
+Etapa auxiliar concluída {
+  event: 'document_stage.completed',
+  timestamp: '2026-11-07T14:12:53.373Z',
+  service: 'worker',
+  request_id: 'aea1902d-de7e-41e1-a401-5eedc073b671',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'DOWNLOAD_DOCUMENT',
+  outcome: 'completed',
+  duration_ms: 27
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  stage: 'DOWNLOAD_DOCUMENT',
+  status: 'READY',
+  startedAt: '2026-11-07T14:12:53.346Z',
+  finishedAt: '2026-11-07T14:12:53.373Z',
+  durationMs: 27,
+  attempt: 1,
+  jobId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  details: {
+    storagePath: 'ce0ff270-377d-4439-a5a9-78a2aee86c9e/2e96883f-5c20-4b61-b296-e916db81cebd/61c2aa13-e304-4808-bc55-5f6445229b2e/963760d7-d3cb-427d-8980-8be0bb263245/1eb0267e-67cb-4af2-b89e-ad81b498fa2d-Quimica-3.pdf'
+  }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-07T14:12:53.391Z',
+  service: 'worker',
+  request_id: '9a23065d-79c1-413d-92fc-8ac22f6ad75b',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'CREATE_RETRIEVAL_CHUNKS'
+}
+doc_chunker_v2.request_started {
+  timestamp: '2026-11-07T14:12:53.405Z',
+  service: 'worker',
+  request_id: 'e57a3443-b2ac-4981-b4d2-755e50f59aee',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  doc_hash: 'dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d',
+  request_bytes: 599300
+}
+doc_chunker_v2.request_completed {
+  timestamp: '2026-11-07T14:15:50.255Z',
+  service: 'worker',
+  request_id: 'e57a3443-b2ac-4981-b4d2-755e50f59aee',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  doc_hash: 'dbc94a84bc48dfba51b0eda410e7cf116430827b6cd8468338030eb10ef3a28d',
+  chunk_count: 13,
+  asset_count: 20,
+  warning_count: 0,
+  response_bytes: 234254,
+  duration_ms: 176850
+}
+Docling QUESTIONS: páginas representadas, cobertura integral de caracteres não verificável sem fonte independente. {
+  event: 'monitor.questions_text_coverage_unverified',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  coverageMode: 'PAGE_PRESENCE_ONLY',
+  coveredPages: 12,
+  pageCount: 16,
+  pagesWithoutText: [ 2, 13, 14, 16 ],
+  pagesWithoutTextWithVisualAssets: [ 16 ],
+  pagesWithoutTextUnclassified: [ 2, 13, 14 ],
+  emptyTextChunkCount: 0
+}
+(node:2249291) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1460,
+  descriptionChars: 170
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 238
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1589,
+  descriptionChars: 228
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 296
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1455,
+  descriptionChars: 234
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 303
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1483,
+  descriptionChars: 247
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 316
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1493,
+  descriptionChars: 305
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 373
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1566,
+  descriptionChars: 241
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 309
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1555,
+  descriptionChars: 236
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 304
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1564,
+  descriptionChars: 302
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 370
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1584,
+  descriptionChars: 283
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 351
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1652,
+  descriptionChars: 319
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 388
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1863,
+  descriptionChars: 374
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 442
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1793,
+  descriptionChars: 368
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 436
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2062,
+  descriptionChars: 574
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 642
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2095,
+  descriptionChars: 440
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 508
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2197,
+  descriptionChars: 745
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 813
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2282,
+  descriptionChars: 715
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 784
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 600
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 150,
+  totalTokens: 150
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2505,
+  descriptionChars: 1153
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1221
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2644,
+  descriptionChars: 1293
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1361
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2796,
+  descriptionChars: 1054
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1123
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1321
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1424
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1422
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 148,
+  totalTokens: 148
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 113,
+  totalTokens: 113
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 124,
+  totalTokens: 124
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1515
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 134,
+  totalTokens: 134
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 626
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 420,
+  totalTokens: 420
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2795
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 97,
+  totalTokens: 97
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2586
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2585
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 229,
+  totalTokens: 229
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 202,
+  totalTokens: 202
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 4831,
+  descriptionChars: 1502
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1571
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3899
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 115,
+  totalTokens: 115
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3663
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 175,
+  totalTokens: 175
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 967
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 776,
+  totalTokens: 776
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4430
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 124,
+  totalTokens: 124
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3970
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 272,
+  totalTokens: 272
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3936
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 389,
+  totalTokens: 389
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5096
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5099
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 132,
+  totalTokens: 132
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 116,
+  totalTokens: 116
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5963
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 118,
+  totalTokens: 118
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5169
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 295,
+  totalTokens: 295
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 15657
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 403,
+  totalTokens: 403
+}
+Indexação das imagens do documento concluída {
+  event: 'document_visual_assets.indexing_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  parseRunId: 'dcd0206c-55b8-4e78-b998-8e3a2b0acdec',
+  assetCount: 20,
+  failureCount: 0
+}
+Assets visuais privados persistidos {
+  event: 'document_visual_assets.persist_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  parseRunId: 'dcd0206c-55b8-4e78-b998-8e3a2b0acdec',
+  assetCount: 20,
+  warningCount: 0
+}
+document_visual_assets.chunk_linking_completed {
+  owner_id: 'dcd0206c-55b8-4e78-b998-8e3a2b0acdec',
+  detected_count: 20,
+  linked_count: 0,
+  ambiguous_count: 13,
+  missing_count: 0,
+  detected_by_page: {
+    '1': 4,
+    '3': 1,
+    '4': 1,
+    '5': 2,
+    '6': 1,
+    '7': 1,
+    '8': 1,
+    '9': 3,
+    '11': 1,
+    '12': 1,
+    '15': 1,
+    '16': 3
+  },
+  linked_by_page: {},
+  ambiguous_by_page: {
+    '1': 18,
+    '3': 6,
+    '4': 10,
+    '5': 4,
+    '6': 6,
+    '7': 2,
+    '8': 4,
+    '9': 4,
+    '10': 1,
+    '11': 3,
+    '12': 2,
+    '15': 4
+  },
+  missing_by_page: {}
+}
+Vínculos de imagens aos chunks calculados {
+  event: 'document_visual_assets.chunk_links_summary',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  parseRunId: 'dcd0206c-55b8-4e78-b998-8e3a2b0acdec',
+  linkedCount: 0,
+  ambiguousCount: 13,
+  missingCount: 0
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-07T14:16:09.234Z',
+  service: 'worker',
+  request_id: '9a23065d-79c1-413d-92fc-8ac22f6ad75b',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  outcome: 'completed',
+  duration_ms: 195853,
+  chunkCount: 13,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  status: 'READY',
+  startedAt: '2026-11-07T14:12:53.376Z',
+  finishedAt: '2026-11-07T14:16:09.230Z',
+  durationMs: 195853,
+  attempt: 1,
+  jobId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  details: { chunkCount: 13, status: 'READY' }
+}
+Chunks Docling persistidos {
+  event: 'document_chunks.persist_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  chunkCount: 13,
+  reused: false,
+  engine: 'docling',
+  sourceMode: 'pdfjs'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-07T14:16:09.252Z',
+  service: 'worker',
+  request_id: 'a32cc851-30f7-42a4-84f3-1da249ed0c2d',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS'
+}
+Buscando chunks pendentes de embedding {
+  event: 'monitor.embedding_chunks_lookup_started',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  status: 'EMBEDDING_PENDING'
+}
+Chunks pendentes encontrados {
+  event: 'monitor.embedding_chunks_lookup_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  chunkCount: 13,
+  chunkIndexes: [
+     0, 1, 2, 3,  4,  5,
+     6, 7, 8, 9, 10, 11,
+    12
+  ]
+}
+Processamento de embeddings iniciado {
+  event: 'monitor.document_embeddings_started',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  chunkCount: 13,
+  batchSize: 64
+}
+Atualizando chunks para EMBEDDING_PROCESSING { event: 'monitor.embedding_chunks_status_started', chunkCount: 13 }
+Chunks atualizados para EMBEDDING_PROCESSING {
+  event: 'monitor.embedding_chunks_status_completed',
+  chunkCount: 13,
+  status: 'EMBEDDING_PROCESSING'
+}
+Chunks reservados para processamento de embeddings {
+  event: 'monitor.document_embeddings_chunks_reserved',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  chunkCount: 13
+}
+Enviando lote de chunks para embeddings {
+  event: 'monitor.document_embeddings_batch_started',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  batchNumber: 1,
+  batchCount: 13,
+  firstChunkIndex: 0,
+  blockIds: []
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 13,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 13,
+  inputChars: 10023
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3859
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 13,
+  dimensions: 2048,
+  promptTokens: 3726,
+  totalTokens: 3726
+}
+Embeddings do lote recebidos, iniciando persistencia {
+  event: 'monitor.document_embeddings_batch_response_ready',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  batchNumber: 1,
+  embeddingCount: 13,
+  dimensions: 2048
+}
+Persistindo vetores dos chunks {
+  event: 'monitor.embedding_vectors_persist_started',
+  chunkCount: 13,
+  dimensions: 2048,
+  transactionTimeoutMs: 60000
+}
+Vetores dos chunks persistidos {
+  event: 'monitor.embedding_vectors_persist_completed',
+  chunkCount: 13,
+  status: 'READY'
+}
+Lote de embeddings persistido {
+  event: 'monitor.document_embeddings_batch_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  batchNumber: 1,
+  processedCount: 13,
+  totalChunks: 13
+}
+Processamento de embeddings concluido {
+  event: 'monitor.document_embeddings_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  chunkCount: 13,
+  batchCount: 1,
+  durationMs: 4000
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-07T14:16:13.256Z',
+  service: 'worker',
+  request_id: 'a32cc851-30f7-42a4-84f3-1da249ed0c2d',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  outcome: 'completed',
+  duration_ms: 4010,
+  chunkCount: 13,
+  batchCount: 1,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  status: 'READY',
+  startedAt: '2026-11-07T14:16:09.243Z',
+  finishedAt: '2026-11-07T14:16:13.253Z',
+  durationMs: 4010,
+  attempt: 1,
+  jobId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  details: { chunkCount: 13, batchCount: 1, status: 'READY' }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-07T14:16:13.263Z',
+  service: 'worker',
+  request_id: '1c15459a-dfee-4fe9-9fa3-efccb5114c24',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW'
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'document_questions',
+  maxTokens: 4000,
+  timeoutMs: 180000,
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 2222
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 12823,
+  responseChars: 10306,
+  promptTokens: 46393,
+  completionTokens: 3267,
+  totalTokens: 49660,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 0
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 20548,
+  responseChars: 930,
+  promptTokens: 5133,
+  completionTokens: 4811,
+  totalTokens: 9944,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 4497
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 21331,
+  responseChars: 1588,
+  promptTokens: 5141,
+  completionTokens: 5561,
+  totalTokens: 10702,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 5004
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 17022,
+  responseChars: 1258,
+  promptTokens: 6565,
+  completionTokens: 2362,
+  totalTokens: 8927,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1988
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 8660,
+  responseChars: 1412,
+  promptTokens: 6092,
+  completionTokens: 1871,
+  totalTokens: 7963,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1381
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 28049,
+  responseChars: 1059,
+  promptTokens: 5242,
+  completionTokens: 6165,
+  totalTokens: 11407,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 5781
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 38344,
+  responseChars: 1388,
+  promptTokens: 5390,
+  completionTokens: 5690,
+  totalTokens: 11080,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 5266
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 20815,
+  responseChars: 1682,
+  promptTokens: 5052,
+  completionTokens: 2869,
+  totalTokens: 7921,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 2259
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 8111,
+  responseChars: 1316,
+  promptTokens: 5247,
+  completionTokens: 1792,
+  totalTokens: 7039,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1390
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 13369,
+  responseChars: 888,
+  promptTokens: 5918,
+  completionTokens: 3176,
+  totalTokens: 9094,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 2855
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 534
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 210618,
+  responseChars: 0,
+  promptTokens: 5004,
+  completionTokens: 131072,
+  totalTokens: 136076,
+  finishReason: 'length',
+  nativeFinishReason: 'length',
+  reasoningTokens: 131072
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_alternatives_completion',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 3,
+  inputChars: 1341
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 5373,
+  responseChars: 1200,
+  promptTokens: 5197,
+  completionTokens: 1470,
+  totalTokens: 6667,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 955
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 571
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1056
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 183,
+  totalTokens: 183
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 18
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4514,
+  responseChars: 636,
+  promptTokens: 10394,
+  completionTokens: 775,
+  totalTokens: 11169,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 598
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 565
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1895
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 199,
+  totalTokens: 199
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 18
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 8418,
+  responseChars: 806,
+  promptTokens: 10837,
+  completionTokens: 1188,
+  totalTokens: 12025,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 924
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 596
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2404
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 189,
+  totalTokens: 189
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 18
+}
+Etapa de processamento sem evento terminal {
+  event: 'document_stage.stalled',
+  timestamp: '2026-11-07T14:26:50.961Z',
+  service: 'worker',
+  job_id: 'c5cf597c-22fa-40ec-8264-356d3f27a330',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW',
+  request_id: '1c15459a-dfee-4fe9-9fa3-efccb5114c24',
+  elapsed_ms: 637694,
+  timeout_ms: 600000
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 907877,
+  responseChars: 0,
+  promptTokens: 10979,
+  completionTokens: 131072,
+  totalTokens: 142051,
+  finishReason: 'length',
+  nativeFinishReason: 'length',
+  reasoningTokens: 131072
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 450
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 598475,
+  responseChars: 0,
+  promptTokens: 11233,
+  completionTokens: 131072,
+  totalTokens: 142305,
+  finishReason: 'length',
+  nativeFinishReason: 'length',
+  reasoningTokens: 122045
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 835
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 810
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 287,
+  totalTokens: 287
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 18
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6077,
+  responseChars: 648,
+  promptTokens: 10135,
+  completionTokens: 1450,
+  totalTokens: 11585,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 846
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 830
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 654
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 253,
+  totalTokens: 253
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 18
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 6822,
+  responseChars: 748,
+  promptTokens: 10137,
+  completionTokens: 909,
+  totalTokens: 11046,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 632
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 780
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 597
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 275,
+  totalTokens: 275
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 18
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 12586,
+  responseChars: 465,
+  promptTokens: 10586,
+  completionTokens: 1864,
+  totalTokens: 12450,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 1726
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 684
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 992
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 223,
+  totalTokens: 223
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'deepseek/deepseek-v4.1-flash',
+  schemaName: 'question_answer_key',
+  maxTokens: 'provider_default',
+  timeoutMs: 'none',
+  temperature: 0,
+  requireParameters: true,
+  messageCount: 1,
+  inputChars: 18
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 16721,
+  responseChars: 277,
+  promptTokens: 11896,
+  completionTokens: 2737,
+  totalTokens: 14633,
+  finishReason: 'stop',
+  nativeFinishReason: 'stop',
+  reasoningTokens: 2665
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-07T14:49:12.240Z',
+  service: 'worker',
+  request_id: '1c15459a-dfee-4fe9-9fa3-efccb5114c24',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW',
+  outcome: 'completed',
+  duration_ms: 1978981,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  stage: 'EXTRACT_QUESTIONS_TO_PENDING_REVIEW',
+  status: 'READY',
+  startedAt: '2026-11-07T14:16:13.256Z',
+  finishedAt: '2026-11-07T14:49:12.237Z',
+  durationMs: 1978981,
+  attempt: 1,
+  jobId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  details: { status: 'READY' }
+}
+Atualizando documento para PARTIAL_SUCCESS {
+  event: 'monitor.document_status_update_started',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  status: 'PARTIAL_SUCCESS',
+  errorMessage: 'Operacoes pendentes: ; Avisos: QUESTIONS_TEXT_COVERAGE_UNVERIFIED, QUESTIONS_PAGES_WITHOUT_TEXT, QUESTIONS_PAGE_TEXT_UNCLASSIFIED'
+}
+Documento atualizado para PARTIAL_SUCCESS {
+  event: 'monitor.document_status_update_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  status: 'PARTIAL_SUCCESS'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-07T14:49:12.258Z',
+  service: 'worker',
+  request_id: 'f96c185c-70b8-44a5-9b9b-74474cac8c37',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'READY_FOR_REVIEW'
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-07T14:49:12.260Z',
+  service: 'worker',
+  request_id: 'f96c185c-70b8-44a5-9b9b-74474cac8c37',
+  document_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_id: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  job_attempt: 1,
+  stage: 'READY_FOR_REVIEW',
+  outcome: 'completed',
+  duration_ms: 8,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  stage: 'READY_FOR_REVIEW',
+  status: 'READY',
+  startedAt: '2026-11-07T14:49:12.250Z',
+  finishedAt: '2026-11-07T14:49:12.258Z',
+  durationMs: 8,
+  attempt: 1,
+  jobId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  details: { status: 'READY' }
+}
+Documento processado pelo worker {
+  event: 'monitor.document_worker_completed',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  mimeType: 'application/pdf',
+  expectedBytes: 599300,
+  downloadedBytes: 599300,
+  durationMs: 2178952,
+  status: 'PARTIAL_SUCCESS'
+}
+Job de documento concluido {
+  event: 'monitor.document_job_completed',
+  jobId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d',
+  documentId: '1eb0267e-67cb-4af2-b89e-ad81b498fa2d'
+}
+Encerramento do worker solicitado { event: 'monitor.document_worker_shutdown', signal: 'SIGTERM' }
+monitor.daily_challenge_scheduler_stopped {
+  event: 'monitor.daily_challenge_scheduler_stopped',
+  timezone: 'America/Sao_Paulo'
+}

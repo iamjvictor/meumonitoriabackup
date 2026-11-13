@@ -1,0 +1,290 @@
+{
+  "documentId": "e2000000-0000-4000-8000-000000000010",
+  "result": {
+    "skipped": "audit-only"
+  },
+  "document": {
+    "originalName": "Estequiometria.pdf",
+    "tag": "KNOWLEDGE_BASE",
+    "status": "READY",
+    "errorMessage": null,
+    "teacherId": "e2000000-0000-4000-8000-000000000001",
+    "monitorId": "e2000000-0000-4000-8000-000000000003",
+    "subjectId": "e2000000-0000-4000-8000-000000000004",
+    "topicId": "e2000000-0000-4000-8000-000000000005",
+    "_count": {
+      "chunks": 3,
+      "blocks": 0,
+      "textExtractions": 0,
+      "visualAssets": 8
+    }
+  },
+  "visualAssets": 8,
+  "chunks": [
+    {
+      "chunkIndex": 0,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 1,
+      "tokenCount": 35,
+      "embeddedAt": "2026-11-02T18:24:35.967Z",
+      "content": "- ●○ que e'mol?\n- Relacionando grandezas\n- Balanceamento de uma reagão\n- Interpretando problemas"
+    },
+    {
+      "chunkIndex": 1,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 4,
+      "tokenCount": 487,
+      "embeddedAt": "2026-11-02T18:24:35.967Z",
+      "content": "Nº de Avogadro: 6,02·10 23 MMH=1g/mol MMN=14g/mgl Tantos mols de algo\"\n<!-- formula-not-decoded -->\n> Estequiomettia na pratica Balanceamento\n\"Lei de Lavoisier\"\n2HCl + Mg(OH)₂\nH2\n1-2\nO2\nCH_{4}+2O_₂}\n14g\nX + 2Y → X Y2\nGg sus Gg\n4g·2=8g\n4.2=8g\nMqCl₂+2H₂O\n→\n→\nH2O\nMACHO\nCO₂+2H₂O√\nC3H8 + 5O₂\n3CO₂+ 4H₂O√\n2Al(OH)₃+3H₂SO₄\nFeO+\nCO—\n3I- + 2H₂O\n→\nAl₂(SO4)₃+6H_₂}O√\n→\nCO2 + Fe\n→2OH−+ I₃ + H₂\nH₂O₂ + MnOi + 3H⁺—\nGr ande Zas\nm = massa\nV= Volume\nMM= massa molar\nn = n² de mds\nd = dens,dade\nm= C.v\n→2O₂+ Mn2+ +5H₂O\n2\nImpartante: Nas CNTP, 1 mol\nde ga's ideal oculpa 22,4 L\nMM=\nm\nn\nm = MM·n d =\nm = d.v\n@quimica. bizurada\nQ\nO percarbonato de sódio, que corresponde a uma mistura de 2 mols de Na ₂ CO ₃ e 3 mols de H ₂ O ₂ , é empregado em lavagem de roupas como agente oxidante na remoção de manchas. Esse processo de oxidação ocorre em função do oxigênio formado na reação de decomposição do peróxido de hidrogênio presente na mistura"
+    },
+    {
+      "chunkIndex": 2,
+      "status": "READY",
+      "pageStart": 4,
+      "pageEnd": 4,
+      "tokenCount": 383,
+      "embeddedAt": "2026-11-02T18:24:35.967Z",
+      "content": "Considerando 1 kg de percarbonato de sódio, o volume máximo, em litros, de gás oxigênio formado, sob condições normais de temperatura e pressão, é aproximadamente de\nA) 328\nB) 321\nC) 214\nD) 107\nQual é o volume produzido de gás carbônico quando 80 g de propano reagem com 40 g  do gás oxigênio?\n1 mol de ga's 22,4L\n3H2O{\n3H2O+\n→\n$$MM2Na₂CO₃ MMNa=23 3H₂O₂ 314 g/mol 十 二 MMC=p2 92 2496 6 Q6 MMo=16 =HWW 1000 VO₂=3nu202 1 3.185 mols 22,4 314 2 (mols totais em Jkg) VO2=4,777 .22.4 =107L$$\nC3H8+ 5O₂\n3CO2⁺\nOHh\n>\n12g\n449\n160\n132g\n409\n÷4\n80g\nMM\n二\nn.22,4\n11g\n40g\n339\n33\n44\n1=0.75.223\nn\n33g\nde\nCo\n2\nn= 0,75 mols\nV= 16,8L\n@quimica.bizurada"
+    }
+  ],
+  "blockTypes": [],
+  "questionSources": 0,
+  "pageThreeAssets": [
+    {
+      "id": "cfa0c71e-1297-4024-ae4e-ff7836ea8c3c",
+      "pageNumber": 3,
+      "assetType": "figure",
+      "storagePath": "e2000000-0000-4000-8000-000000000010/70e98eb1-a3fc-4d22-8d1a-f92eaf01973f/assets/eef9434649548db4d7a3a7e4d5bf7799-f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5.png",
+      "checksum": "f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5",
+      "descriptionStatus": "READY",
+      "description": "A figura é uma imagem de uma folha de caderno pautada, com anotações manuscritas em caneta preta e vermelha, e texto impresso em preto.\n\nNo topo, há uma frase impressa: \"A equação química a seguir representa a obtenção de ferro metálico a partir de seu minério.\" Abaixo, uma equação química impressa está sublinhada em vermelho: \"2 Fe₂O₃ (s) + 3 C (s) → 4 Fe (s) + 3 CO₂ (g)\".\n\nAbaixo da equação, há um problema impresso: \"Admitindo um rendimento de 100%, a massa de Fe₂O₃, em quilogramas, necessária para a obtenção de 28 g de ferro metálico corresponde a:\"\nSeguem-se opções de múltipla escolha impressas, com uma bolinha verde ao lado da opção (A):\n\"(A) 20\"\n\"(B) 40\"\n\"(C) 80\"\n\"(D) 160\"\n\nAo lado das opções, há cálculos manuscritos em caneta preta e vermelha:\n\"224 / 28 = ⑧\" (o \"⑧\" está circulado em vermelho)\n\"4 . 56 = 224\"\n\"MM Fe = 56\"\n\"MM C = 12\"\n\"MM O = 16\"\n\"MM Fe₂O₃ = 80\" (escrito em vermelho)\n\nAbaixo, há uma frase manuscrita em caneta preta: \"a quantidade de produto obtida é oito vezes menor que a esperada\". Uma seta vermelha aponta para a palavra \"menor\".\n\nMais abaixo, há cálculos manuscritos em caneta vermelha:\n\"2 . 80 = 160\"\nUma seta dupla aponta para \"160 / 8 = 20 kg\".\n\nNa parte inferior da folha, há um título impresso em verde: \"Questão 1\".\nAbaixo, um problema impresso: \"(Famerp) Em janeiro de 2018 foi encontrado em uma mina na África o quinto maior diamante (uma variedade alotrópica do carbono) do mundo, pesando 900 quilates. Considerando que um quilate equivale a uma massa de 200 mg, a quantidade, em mol, de átomos de carbono existente nesse diamante é igual a\" (a frase \"a quantidade, em mol,\" está sublinhada em vermelho).\n\nAbaixo do problema, há \"Dados: C = 12.\" impresso.\nSeguem-se opções de múltipla escolha impressas, com uma bolinha verde ao lado da opção \"a)\":\n\"a) 1,5 × 10¹.\"\n\"b) 3,0 × 10¹.\"\n\"c) 4,5 × 10¹.\"\n\"d) 1,5 × 10⁴.\"\n\"e) 3,0 × 10⁴.\"\n\nAo lado das opções, há cálculos manuscritos em caneta preta:\n\"900 . 200 = 180000"
+    },
+    {
+      "id": "3985c705-5fbd-4f99-9e44-54d0f04dc3d4",
+      "pageNumber": 3,
+      "assetType": "figure",
+      "storagePath": "e2000000-0000-4000-8000-000000000010/70e98eb1-a3fc-4d22-8d1a-f92eaf01973f/assets/fa966747a39160eda788c61997ced705-c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7.png",
+      "checksum": "c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7",
+      "descriptionStatus": "READY",
+      "description": "A figura é uma imagem de texto. O texto visível é \"@ quimica.bizurada\". Não há título, rótulos, unidades, valores legíveis, relações visuais ou incertezas adicionais."
+    }
+  ],
+  "elapsedMs": 264,
+  "retrieval": {
+    "queryText": "anotação do professor e figura na página 3 sobre estequiometria",
+    "candidateCount": 8,
+    "citations": [
+      {
+        "chunkId": "c05ede4c-6105-49ff-8f23-b136a8edab75",
+        "documentId": "e2000000-0000-4000-8000-000000000010",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 2,
+        "blockType": "FIGURE",
+        "similarity": 0.623623528582741,
+        "lexicalScore": 0,
+        "fusedScore": 0.223623528582741,
+        "content": "A figura é uma página de caderno pautado, com anotações manuscritas em diversas cores.\n\nO título principal é \"Balanceamento\", escrito em preto, com uma ilustração de uma balança de dois pratos acima e à direita.\n\nAbaixo do título, há a frase \"Lei de Lavoisier\" entre aspas, em vermelho. Em seguida, uma equação química genérica: \"X + 2Y → XY₂\". Abaixo de \"X\", está \"6g\" em vermelho. Abaixo de \"2Y\", está \"4.2=8g\" em azul. Acima de \"X + 2Y\", está \"24g\" em vermelho. Acima de \"XY₂\", está \"14g\" em vermelho.\n\nSeguem-se várias equações químicas, algumas com coeficientes estequiométricos em vermelho e um sinal de \"✓\" verde à direita, indicando que estão balanceadas.\n\n1.  \"2HCl + Mg(OH)₂ → MgCl₂ + 2H₂O ✓\" (o \"2\" antes de HCl e H₂O estão em vermelho).\n2.  \"H₂ + ½O₂ → H₂O ✓\" (o \"½\" está em vermelho). À direita, a palavra \"MACHO\" em verde.\n3.  \"CH₄ + 2O₂ → CO₂ + 2H₂O ✓\" (o \"2\" antes de O₂ e H₂O estão em vermelho).\n4.  \"C₃H₈ + 5O₂ → 3CO₂ + 4H₂O ✓\" (o \"5\" antes de O₂, \"3\" antes de CO₂ e \"4\" antes de H₂O estão em vermelho).\n5.  \"2Al(OH)₃ + 3H₂SO₄ → Al₂(SO₄)₃ + 6H₂O ✓\" (o \"2\" antes de Al(OH)₃, \"3\" antes de H₂SO₄ e \"6\" antes de H₂O estão em vermelho).\n6.  \"FeO + CO → CO₂ + Fe ✓\" (sem coeficientes em vermelho).\n7.  \"3I⁻ + 2H₂O → 2OH⁻ + I₃⁻ + H₂ ✓\" (o \"3\" antes de I⁻, \"2\" antes de H₂O e \"2\" antes de OH⁻ estão em vermelho).\n8.  \"H₂O₂ + MnO₄⁻ + 3H⁺ → ⁷⁄₂O₂ + Mn²⁺ + ⁵⁄₂H₂O ✓\" (o \"3\" antes de H⁺, \"⁷⁄₂\" antes de O₂ e \"⁵⁄₂\" antes de H₂O estão em vermelho).\n\nAbaixo das equações, há o subtítulo \"Grandezas\" em preto.\n\nEm uma coluna à esquerda, há definições de grandezas:\n*   \"m = massa\"\n*   \"V = Volume\"\n*   \"MM = massa molar\"\n*   \"n = nº de mols\"\n*   \"d = densidade\"\n*   \"...\"\n\nAbaixo, duas fórmulas:\n*   \"C = m/V\"\n*",
+        "pageStart": 2,
+        "pageEnd": 2,
+        "pages": [
+          2
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "c05ede4c-6105-49ff-8f23-b136a8edab75"
+        ]
+      },
+      {
+        "chunkId": "cfa0c71e-1297-4024-ae4e-ff7836ea8c3c",
+        "documentId": "e2000000-0000-4000-8000-000000000010",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 3,
+        "blockType": "FIGURE",
+        "similarity": 0.613737231640377,
+        "lexicalScore": 0,
+        "fusedScore": 0.213737231640377,
+        "content": "A figura é uma imagem de uma folha de caderno pautada, com anotações manuscritas em caneta preta e vermelha, e texto impresso em preto.\n\nNo topo, há uma frase impressa: \"A equação química a seguir representa a obtenção de ferro metálico a partir de seu minério.\" Abaixo, uma equação química impressa está sublinhada em vermelho: \"2 Fe₂O₃ (s) + 3 C (s) → 4 Fe (s) + 3 CO₂ (g)\".\n\nAbaixo da equação, há um problema impresso: \"Admitindo um rendimento de 100%, a massa de Fe₂O₃, em quilogramas, necessária para a obtenção de 28 g de ferro metálico corresponde a:\"\nSeguem-se opções de múltipla escolha impressas, com uma bolinha verde ao lado da opção (A):\n\"(A) 20\"\n\"(B) 40\"\n\"(C) 80\"\n\"(D) 160\"\n\nAo lado das opções, há cálculos manuscritos em caneta preta e vermelha:\n\"224 / 28 = ⑧\" (o \"⑧\" está circulado em vermelho)\n\"4 . 56 = 224\"\n\"MM Fe = 56\"\n\"MM C = 12\"\n\"MM O = 16\"\n\"MM Fe₂O₃ = 80\" (escrito em vermelho)\n\nAbaixo, há uma frase manuscrita em caneta preta: \"a quantidade de produto obtida é oito vezes menor que a esperada\". Uma seta vermelha aponta para a palavra \"menor\".\n\nMais abaixo, há cálculos manuscritos em caneta vermelha:\n\"2 . 80 = 160\"\nUma seta dupla aponta para \"160 / 8 = 20 kg\".\n\nNa parte inferior da folha, há um título impresso em verde: \"Questão 1\".\nAbaixo, um problema impresso: \"(Famerp) Em janeiro de 2018 foi encontrado em uma mina na África o quinto maior diamante (uma variedade alotrópica do carbono) do mundo, pesando 900 quilates. Considerando que um quilate equivale a uma massa de 200 mg, a quantidade, em mol, de átomos de carbono existente nesse diamante é igual a\" (a frase \"a quantidade, em mol,\" está sublinhada em vermelho).\n\nAbaixo do problema, há \"Dados: C = 12.\" impresso.\nSeguem-se opções de múltipla escolha impressas, com uma bolinha verde ao lado da opção \"a)\":\n\"a) 1,5 × 10¹.\"\n\"b) 3,0 × 10¹.\"\n\"c) 4,5 × 10¹.\"\n\"d) 1,5 × 10⁴.\"\n\"e) 3,0 × 10⁴.\"\n\nAo lado das opções, há cálculos manuscritos em caneta preta:\n\"900 . 200 = 180000",
+        "pageStart": 3,
+        "pageEnd": 3,
+        "pages": [
+          3
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "cfa0c71e-1297-4024-ae4e-ff7836ea8c3c"
+        ]
+      },
+      {
+        "chunkId": "3985c705-5fbd-4f99-9e44-54d0f04dc3d4",
+        "documentId": "e2000000-0000-4000-8000-000000000010",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 3,
+        "blockType": "FIGURE",
+        "similarity": 0.540742984975193,
+        "lexicalScore": 0,
+        "fusedScore": 0.140742984975193,
+        "content": "A figura é uma imagem de texto. O texto visível é \"@ quimica.bizurada\". Não há título, rótulos, unidades, valores legíveis, relações visuais ou incertezas adicionais.",
+        "pageStart": 3,
+        "pageEnd": 3,
+        "pages": [
+          3
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "3985c705-5fbd-4f99-9e44-54d0f04dc3d4"
+        ]
+      },
+      {
+        "chunkId": "6bf81c6a-06f8-47a8-a99e-e80f063cc23d",
+        "documentId": "e2000000-0000-4000-8000-000000000010",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 1,
+        "blockType": "FIGURE",
+        "similarity": 0.534700748040213,
+        "lexicalScore": 0,
+        "fusedScore": 0.134700748040213,
+        "content": "A figura é uma imagem de texto. O texto visível é \"@quimica.bizurada\". Não há título, rótulos, unidades, valores legíveis, relações visuais ou incertezas adicionais.",
+        "pageStart": 1,
+        "pageEnd": 1,
+        "pages": [
+          1
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "6bf81c6a-06f8-47a8-a99e-e80f063cc23d"
+        ]
+      },
+      {
+        "chunkId": "52635a56-700c-4f88-b525-73e71b20f5eb",
+        "documentId": "e2000000-0000-4000-8000-000000000010",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 1,
+        "blockType": "FIGURE",
+        "similarity": 0.435360288758999,
+        "lexicalScore": 0,
+        "fusedScore": 0.035360288758999,
+        "content": "A figura é uma ilustração que representa uma sequência de ingredientes e um produto final. Não há título visível.\n\nDa esquerda para a direita, são visíveis:\n1.  Três laranjas de cor laranja com folhas verdes.\n2.  Um sinal de adição preto.\n3.  Quatro xícaras brancas com alças, contendo um material granulado branco, possivelmente açúcar.\n4.  Um sinal de adição preto.\n5.  Três ovos de cor bege.\n6.  Uma seta preta apontando para a direita.\n7.  Um bolo redondo com um buraco no centro, de cor marrom claro, com cobertura marrom escorrendo pelas laterais.\n\nTodos os elementos estão alinhados horizontalmente sobre duas linhas azuis paralelas, que se assemelham a linhas de caderno. Não há rótulos, unidades ou valores numéricos legíveis além da contagem dos itens. Não há incertezas visíveis nos elementos representados.",
+        "pageStart": 1,
+        "pageEnd": 1,
+        "pages": [
+          1
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "52635a56-700c-4f88-b525-73e71b20f5eb"
+        ]
+      },
+      {
+        "chunkId": "41efc79e-4644-46b2-8660-70caebf15e02",
+        "documentId": "e2000000-0000-4000-8000-000000000010",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 1,
+        "blockType": "FIGURE",
+        "similarity": 0.419781551549351,
+        "lexicalScore": 0,
+        "fusedScore": 0.0197815515493515,
+        "content": "A figura é uma ilustração que representa uma sequência de ingredientes e um produto final, dispostos horizontalmente sobre um fundo que simula papel pautado com linhas azuis.\n\nDa esquerda para a direita, os elementos visíveis são:\n1.  Três laranjas de cor laranja com pequenas folhas verdes. Duas laranjas estão na parte superior e uma na parte inferior esquerda.\n2.  Um sinal de adição (+) em preto.\n3.  Duas xícaras brancas com bordas pretas, cheias de um conteúdo granulado branco, possivelmente açúcar ou farinha. A xícara da direita está parcialmente obscurecida pela da esquerda.\n4.  Outro sinal de adição (+) em preto.\n5.  Três ovos de cor marrom claro, dispostos em um pequeno grupo.\n6.  Uma seta preta apontando para a direita.\n7.  Um bolo em forma de anel (donut) de cor laranja, com uma cobertura marrom escorrendo pelas laterais.\n\nNão há título, rótulos, unidades ou valores numéricos legíveis além da contagem dos itens. As relações visuais sugerem uma receita ou processo de combinação de ingredientes para obter um produto final. Não há incertezas visíveis nos elementos representados.",
+        "pageStart": 1,
+        "pageEnd": 1,
+        "pages": [
+          1
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "41efc79e-4644-46b2-8660-70caebf15e02"
+        ]
+      },
+      {
+        "chunkId": "436ed4a4-8934-434a-bb12-bb23d6fd883a",
+        "documentId": "e2000000-0000-4000-8000-000000000010",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 1,
+        "blockType": "FIGURE",
+        "similarity": 0.388127861108934,
+        "lexicalScore": 0,
+        "fusedScore": -0.0118721388910658,
+        "content": "A figura é uma ilustração que mostra uma sequência de ingredientes e um produto final, dispostos horizontalmente sobre um fundo que simula papel pautado com linhas azuis.\n\nDa esquerda para a direita, os elementos visíveis são:\n1.  Um grupo de sete laranjas, com folhas verdes.\n2.  Um sinal de adição (+).\n3.  Um grupo de quatro xícaras brancas, cada uma contendo uma substância granulada branca, possivelmente açúcar ou farinha.\n4.  Outro sinal de adição (+).\n5.  Um grupo de seis ovos de cor marrom-claro.\n6.  Uma seta preta apontando para a direita.\n7.  Dois donuts de cor laranja com cobertura marrom escorrendo.\n\nNão há título, rótulos ou unidades explícitas. Os valores legíveis são as quantidades de cada item: 7 laranjas, 4 xícaras, 6 ovos e 2 donuts. As relações visuais indicam uma combinação dos ingredientes (laranjas, xícaras com substância granulada, ovos) resultando nos donuts. Não há incertezas visíveis nos elementos representados.",
+        "pageStart": 1,
+        "pageEnd": 1,
+        "pages": [
+          1
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "436ed4a4-8934-434a-bb12-bb23d6fd883a"
+        ]
+      },
+      {
+        "chunkId": "0b3ace46-c6cc-450a-a786-5390117f1999",
+        "documentId": "e2000000-0000-4000-8000-000000000010",
+        "blockId": null,
+        "parentBlockId": null,
+        "chunkIndex": 1,
+        "blockType": "FIGURE",
+        "similarity": 0.367925048017796,
+        "lexicalScore": 0,
+        "fusedScore": -0.0320749519822038,
+        "content": "A figura é um retrato em preto e branco de um homem, em formato circular. O homem tem cabelo escuro, penteado para trás e com algumas mechas caindo sobre a testa. Ele tem um rosto alongado, nariz proeminente e lábios finos. Seus olhos estão voltados para a direita do observador. Ele veste uma roupa escura, que parece ser um casaco ou paletó, com uma gola alta. Não há rótulos, unidades, valores legíveis, título ou incertezas visíveis na imagem.",
+        "pageStart": 1,
+        "pageEnd": 1,
+        "pages": [
+          1
+        ],
+        "headings": null,
+        "engine": "docling-visual",
+        "sectionPath": [],
+        "isComplete": true,
+        "incompleteReason": null,
+        "reason": null,
+        "visualAssetIds": [
+          "0b3ace46-c6cc-450a-a786-5390117f1999"
+        ]
+      }
+    ],
+    "contextBlocks": []
+  }
+}

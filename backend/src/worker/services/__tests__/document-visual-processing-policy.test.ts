@@ -11,7 +11,7 @@ test('visual extraction includes QUESTIONS independently of DOCUMENT_TEXT_SOURCE
   });
   const { shouldParseVisualAssets } = await import('../document-worker.service.js');
   assert.equal(shouldParseVisualAssets('QUESTIONS', true), true);
-  assert.equal(shouldParseVisualAssets('QUESTIONS', false), false);
+  assert.equal(shouldParseVisualAssets('QUESTIONS', false), true, 'QUESTIONS precisa preservar figuras mesmo com flag opt-in de KNOWLEDGE_BASE desligada');
   assert.equal(shouldParseVisualAssets('KNOWLEDGE_BASE', true), true);
   assert.equal(shouldParseVisualAssets('FLASHCARDS', true), false);
 });

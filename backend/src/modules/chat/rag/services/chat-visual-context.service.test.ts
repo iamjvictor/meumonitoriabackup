@@ -50,7 +50,55 @@ test('usa imagem anexada pelo aluno junto da figura autorizada da questão', asy
     async studentAssets(ids) { return ids.map((assetId) => ({ assetId, page: null, checksum: 'sha-upload', description: null })); },
   });
   const result = await service.resolveVisualContext({ scope, currentQuestionId: 'question-a', resolvedAttachment: null, studentImageIds: ['upload-1'], rag: { citations: [] } as any });
-  assert.deepEqual(result.images.map((image) => image.source), ['STUDENT_UPLOAD', 'QUESTION']);
+  assert.deepEqual(result.images.map((image) => image.source), ['QUESTION', 'STUDENT_UPLOAD']);
+});
+
+test('prioriza até quatro imagens da questão e informa explicitamente fontes omitidas', async () => {
+  const service = new ChatVisualContextService({
+    async questionAssets() {
+      return [1, 2, 3, 4].map((page) => ({ assetId: `question-${page}`, page, checksum: `sha-${page}`, description: null }));
+    },
+    async knowledgeAssets() { return [{ assetId: 'knowledge-figure', page: 8, checksum: 'sha-k', description: null }]; },
+    async studentAssets() { return [{ assetId: 'student-upload', page: null, checksum: 'sha-s', description: null }]; },
+  });
+
+  const result = await service.resolveVisualContext({
+    scope,
+    currentQuestionId: 'question-current',
+    resolvedAttachment: null,
+    studentImageIds: ['student-upload'],
+    rag: { citations: [{ visualAssetIds: ['knowledge-figure'] }] } as any,
+  });
+
+  assert.deepEqual(result.images.map((image) => image.assetId), ['question-1', 'question-2', 'question-3', 'question-4']);
+  assert.match(result.text, /limite de 4/i);
+  assert.match(result.text, /STUDENT_UPLOAD/);
+  assert.match(result.text, /KNOWLEDGE/);
+});
+
+test('detecta quinto asset da questão sem incluí-lo no contexto e informa a omissão', async () => {
+  const service = new ChatVisualContextService({
+    async questionAssets() {
+      return [1, 2, 3, 4].map((page) => ({
+        assetId: `question-${page}`, page, checksum: `sha-${page}`, description: null, totalCount: 5,
+      }));
+    },
+    async knowledgeAssets() { return []; },
+    async studentAssets() { return []; },
+  });
+
+  const result = await service.resolveVisualContext({
+    scope,
+    currentQuestionId: 'question-current',
+    resolvedAttachment: null,
+    studentImageIds: [],
+    rag: { citations: [] },
+  });
+
+  assert.deepEqual(result.images.map((image) => image.assetId), ['question-1', 'question-2', 'question-3', 'question-4']);
+  assert.equal(result.images.length, 4);
+  assert.match(result.text, /QUESTION \(1\)/);
+  assert.equal(JSON.stringify(result).includes('totalCount'), false);
 });
 
 test('omite imagem que expirou ou não está mais autorizada quando o chat resolve o contexto', async () => {

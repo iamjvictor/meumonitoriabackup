@@ -335,6 +335,8 @@ function mapDocumentParseRun(row: NonNullable<DocumentParseRunRow>): ParseRunRec
     updatedAt: row.updatedAt.toISOString(),
     errorCode: row.errorCode ?? undefined,
     errorMessage: row.errorMessage ?? undefined,
+    metrics: row.metrics && typeof row.metrics === 'object' && !Array.isArray(row.metrics)
+      ? row.metrics as Record<string, unknown> : undefined,
   };
 }
 
@@ -355,6 +357,7 @@ function toDocumentParseRunCreateInput(record: ParseRunRecord) {
     updatedAt: new Date(record.updatedAt),
     errorCode: record.errorCode ?? null,
     errorMessage: record.errorMessage ?? null,
+    metrics: record.metrics as Prisma.InputJsonValue | undefined,
   };
 }
 
@@ -373,6 +376,7 @@ function toDocumentParseRunUpdateInput(record: ParseRunRecord) {
     updatedAt: new Date(record.updatedAt),
     errorCode: record.errorCode ?? null,
     errorMessage: record.errorMessage ?? null,
+    metrics: record.metrics as Prisma.InputJsonValue | undefined,
   };
 }
 

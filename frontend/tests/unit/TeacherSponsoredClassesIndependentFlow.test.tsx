@@ -39,13 +39,14 @@ async function preparePurchase(interval: 'MONTHLY' | 'ANNUAL', method: 'Pix' | '
   if (interval === 'ANNUAL') fireEvent.click(screen.getByRole('button', { name: /anual · 12 meses/i }));
   fireEvent.click(screen.getByRole('button', { name: /forma de pagamento/i }));
   fireEvent.click(screen.getByRole('button', { name: new RegExp(`^${method}`, 'i') }));
+  fireEvent.click(screen.getByRole('button', { name: /continuar para alunos/i }));
   const emails = Array.from({ length: count }, (_, i) => `aluno${i + 1}@example.test`);
   for (const email of emails) {
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: email } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
   }
-  fireEvent.click(screen.getByRole('button', { name: /revisar valores/i }));
-  await screen.findByLabelText('Revisão da compra');
+  fireEvent.click(screen.getByRole('button', { name: /calcular valores e revisar/i }));
+  await screen.findByLabelText(/etapa 3: revisão da compra/i);
   return { assign, emails };
 }
 
@@ -53,7 +54,7 @@ describe('independent sponsored purchase flow (mocked provider)', () => {
   it.each(['MONTHLY', 'ANNUAL'] as const)('verifica compra de um aluno para cada método no plano %s', async (interval) => {
     for (const method of ['Pix', 'Cartão de crédito'] as const) {
       const { assign, emails } = await preparePurchase(interval, method, 1);
-      const review = screen.getByLabelText('Revisão da compra');
+      const review = screen.getByLabelText(/etapa 3: revisão da compra/i);
       expect(within(review).getByText(/1 vaga/i)).toBeInTheDocument();
       expect(within(review).getByText(new RegExp(`Forma de pagamento: ${method}`, 'i'))).toBeInTheDocument();
       expect(within(review).getByText(/total: R\$\s*123,45/i)).toBeInTheDocument();
@@ -68,9 +69,13 @@ describe('independent sponsored purchase flow (mocked provider)', () => {
     ['MONTHLY', 'Pix'], ['MONTHLY', 'Cartão de crédito'], ['ANNUAL', 'Pix'], ['ANNUAL', 'Cartão de crédito'],
   ] as const)('envia 10 alunos e mostra a lista no resumo (%s, %s)', async (interval, method) => {
     const { assign, emails } = await preparePurchase(interval, method, 10);
-    const review = screen.getByLabelText('Revisão da compra');
+    const review = screen.getByLabelText(/etapa 3: revisão da compra/i);
     expect(within(review).getByText(/10 vagas/i)).toBeInTheDocument();
-    for (const email of emails) expect(screen.getAllByText(email).length).toBeGreaterThanOrEqual(2);
+    const purchaseSummary = screen.getByLabelText(/resumo da compra/i);
+    for (const email of emails) {
+      expect(review).toHaveTextContent(email);
+      expect(within(purchaseSummary).getByText(email)).toBeInTheDocument();
+    }
     expect(within(review).getByText(/total: R\$\s*1\.234,50/i)).toBeInTheDocument();
     expect(TeacherSponsoredSeatService.quoteSponsoredBatch).toHaveBeenCalledWith({ monitorId: monitor.id, interval, beneficiaryEmails: emails });
     fireEvent.click(within(review).getByRole('button', { name: /ir para pagamento/i }));
@@ -81,6 +86,9 @@ describe('independent sponsored purchase flow (mocked provider)', () => {
     render(<TeacherSponsoredClassesPage />);
     await screen.findByRole('option', { name: 'Exatas ENEM' });
     fireEvent.change(screen.getByLabelText(/1\. escolha o monitor/i), { target: { value: monitor.id } });
+    fireEvent.click(screen.getByRole('button', { name: /forma de pagamento/i }));
+    fireEvent.click(screen.getByRole('button', { name: /pix/i }));
+    fireEvent.click(screen.getByRole('button', { name: /continuar para alunos/i }));
     fireEvent.change(screen.getByLabelText(/adicione os alunos um por vez/i), { target: { value: 'email-invalido' } });
     fireEvent.click(screen.getByRole('button', { name: /adicionar/i }));
     expect(await screen.findByRole('alert')).toHaveTextContent(/válido/i);

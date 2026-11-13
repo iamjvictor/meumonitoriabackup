@@ -25,7 +25,8 @@ const MULTI_ITEM = /(?:^|\n)\s*(?:[a-d][).]|item\s+[a-d])\s+/iu;
 const MULTI_ITEM_INSTRUCTION = /\b(?:em cada uma|em cada um|itens? a seguir|fa[çc]a o que se pede)\b/iu;
 const GENERIC_PROMPT = /^(?:qual|quanto|quantos|quantas|determine|calcule|resolva|indique|assinale|sabendo-se)\b/iu;
 const NEXT_QUESTION = /(?:[?!.]|\b[ABCDE][).])\s*(?:quest[aã]o\s*)?\d{1,3}[.)]\s*(?:\(|[A-ZÀ-Ý])/u;
-const VISUAL_REFERENCE = /\b(?:figura|imagem|ilustra[cç][aã]o|fotografia|foto|etiqueta|gr[aá]fico|mapa|tabela)\b/iu;
+const VISUAL_REFERENCE = /\b(?:figura|imagem|ilustra[cç][aã]o|fotografia|foto|etiqueta|gr[aá]fico|mapa)\b/iu;
+const REQUIRED_TABLE_REFERENCE = /\b(?:valores?|dados?|resultados?|informa[cç][õo]es?)\s+(?:(?:indicados?|apresentados?|mostrados?|fornecidos?)\s+)?(?:na|da|desta|nessa)\s+tabela\b|\b(?:observe|considere|conforme|segundo)\s+(?:a|na|nesta|desta)\s+tabela\b|\btabela\s+(?:a seguir|abaixo|acima)\b/iu;
 
 function compact(value: string) {
   return value.replace(/\s+/gu, ' ').trim();
@@ -116,9 +117,11 @@ export function validateQuestionStatementEvidence(
   if (TRAILING_CONTINUATION.test(normalizedStatement)) reasons.push('ENDS_AS_CONTINUATION');
   if (NEXT_QUESTION.test(normalizedStatement)) reasons.push('CONTAINS_NEXT_QUESTION');
   if (MULTI_ITEM.test(statement) || MULTI_ITEM_INSTRUCTION.test(normalizedStatement)) reasons.push('MULTI_ITEM_ACTIVITY');
-  const hasTableReference = /\btabela\b/iu.test(normalizedStatement);
+  const hasTableReference = REQUIRED_TABLE_REFERENCE.test(normalizedStatement);
   const tableValuesAreInSource = hasTableReference && hasReadableTextTable(sourceChunks);
-  if (VISUAL_REFERENCE.test(normalizedStatement) && !tableValuesAreInSource) reasons.push('MISSING_VISUAL_EVIDENCE');
+  if ((VISUAL_REFERENCE.test(normalizedStatement) || hasTableReference) && !tableValuesAreInSource) {
+    reasons.push('MISSING_VISUAL_EVIDENCE');
+  }
 
   return { valid: reasons.length === 0, reasons, sourceMatch };
 }

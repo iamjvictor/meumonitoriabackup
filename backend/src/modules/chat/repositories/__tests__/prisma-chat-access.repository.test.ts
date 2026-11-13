@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import type { PrismaClient } from '@prisma/client';
+import { env } from '../../../../config/env.js';
 import { PrismaChatAccessRepository } from '../prisma-chat-access.repository.js';
 
 function makeClient(overrides: Record<string, unknown> = {}) {
@@ -9,6 +10,7 @@ function makeClient(overrides: Record<string, unknown> = {}) {
     monitorSubject: { findFirst: async () => ({ id: 'subject-1', monitor: { teacherId: 'teacher-1' } }) },
     studentSubscription: { findFirst: async () => ({ id: 'subscription-1' }) },
     studentEnrollment: { findFirst: async () => null },
+    sponsoredSeat: { findFirst: async () => null },
     teacher: { findUnique: async () => null },
     monitor: { findFirst: async () => null },
     ...overrides,
@@ -31,6 +33,22 @@ test('autoriza matrícula ativa quando não há assinatura', async () => {
   }));
 
   assert.ok(await repository.resolveChatScope({ userId: 'user-1', monitorId: 'monitor-1', subjectId: 'subject-1' }));
+});
+
+test('autoriza SponsoredSeat ativa e restringe a consulta ao ambiente e período atuais', async () => {
+  let sponsoredWhere: Record<string, any> | undefined;
+  const repository = new PrismaChatAccessRepository(makeClient({
+    studentSubscription: { findFirst: async () => null },
+    studentEnrollment: { findFirst: async () => null },
+    sponsoredSeat: { findFirst: async (args: { where: Record<string, any> }) => { sponsoredWhere = args.where; return { id: 'seat-1' }; } },
+  }));
+
+  assert.ok(await repository.resolveChatScope({ userId: 'user-1', monitorId: 'monitor-1', subjectId: 'subject-1' }));
+  assert.equal(sponsoredWhere?.status, 'ACTIVE');
+  assert.equal(sponsoredWhere?.accessRevokedAt, null);
+  assert.deepEqual(sponsoredWhere?.batch, { environment: env.ASAAS_ENV.toUpperCase(), monitorId: 'monitor-1' });
+  assert.ok(sponsoredWhere?.startsAt.lte instanceof Date);
+  assert.ok(sponsoredWhere?.endsAt.gt instanceof Date);
 });
 
 test('autoriza professor no modo preview quando a matéria pertence ao seu monitor', async () => {

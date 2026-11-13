@@ -76,7 +76,7 @@ test('checkout anual patrocinado → webhook → claim por email verificado → 
   }
 });
 
-test('Pix mensal patrocinado libera um mês após confirmação financeira sem criar assinatura recorrente', { skip: !canRun }, async () => {
+test('Pix mensal patrocinado libera um mês após confirmação financeira mesmo se CHECKOUT_EXPIRED chegou antes', { skip: !canRun }, async () => {
   const runId = randomUUID();
   const teacher = await prisma.teacher.create({ data: {
     userId: randomUUID(), fullName: 'Professor Pix mensal', email: `teacher-pix-${runId}@example.test`, username: `pix-month-${runId}`,
@@ -104,7 +104,7 @@ test('Pix mensal patrocinado libera um mês após confirmação financeira sem c
     });
     const events = new PaymentEventRepository();
     const occurredAt = new Date('2026-11-01T12:00:00.000Z');
-    await events.applyCheckoutEvent({ environment: 'SANDBOX', eventId: `evt-checkout-paid-${runId}`, eventType: 'CHECKOUT_PAID', occurredAt, payload: { checkout: { id: providerCheckoutId } } });
+    await events.applyCheckoutEvent({ environment: 'SANDBOX', eventId: `evt-checkout-expired-${runId}`, eventType: 'CHECKOUT_EXPIRED', occurredAt, payload: { checkout: { id: providerCheckoutId } } });
     const payment = { payment: { id: `payment-pix-${runId}`, externalReference: checkout.batchId, checkout: providerCheckoutId, value: quote.totalAmountCents / 100, paymentDate: occurredAt.toISOString() } };
     await events.applyPaymentEvent({ environment: 'SANDBOX', eventId: `evt-payment-created-${runId}`, eventType: 'PAYMENT_CREATED', occurredAt, payload: payment });
     const confirmed = await events.applyPaymentEvent({ environment: 'SANDBOX', eventId: `evt-payment-confirmed-${runId}`, eventType: 'PAYMENT_CONFIRMED', occurredAt, payload: payment });

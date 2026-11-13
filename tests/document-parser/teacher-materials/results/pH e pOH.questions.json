@@ -1,0 +1,95 @@
+{
+  "inputPath": "/home/joaov/Documents/01_Projetos_Desenvolvimento/MeuMonitorAI/tests/document-parser/teacher-materials/pH e pOH.pdf",
+  "generatedAt": "2026-11-02T17:27:02.060Z",
+  "textSource": "docling",
+  "pagesNeedingOcr": [
+    1,
+    3,
+    4
+  ],
+  "summary": {
+    "pages": 4,
+    "blocks": 1,
+    "questionBlocks": 0,
+    "questionBlocksWithChunks": 0,
+    "questionBlocksWithoutChunks": 0,
+    "questionBlocksWithoutExactCoverage": 0,
+    "deterministicCandidates": 0,
+    "questionBlocksWithoutCandidate": 0,
+    "falseQuestionStarts": 0,
+    "expectedCount": null,
+    "expectedNumbers": [],
+    "missingNumbers": [],
+    "missingCandidateNumbers": [],
+    "chunks": 1
+  },
+  "pages": [
+    {
+      "page": 1,
+      "chars": 288,
+      "normalizedChars": 279,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 2,
+      "chars": 409,
+      "normalizedChars": 409,
+      "columns": 1,
+      "hasImages": false
+    },
+    {
+      "page": 3,
+      "chars": 686,
+      "normalizedChars": 681,
+      "columns": 1,
+      "hasImages": true
+    },
+    {
+      "page": 4,
+      "chars": 960,
+      "normalizedChars": 954,
+      "columns": 1,
+      "hasImages": true
+    }
+  ],
+  "questionBlocks": [],
+  "candidates": [],
+  "candidateReadiness": [],
+  "otherBlocks": [
+    {
+      "blockIndex": 0,
+      "type": "THEORY",
+      "questionNumber": null,
+      "pageStart": 1,
+      "pageEnd": 4,
+      "status": "READY",
+      "incompleteReason": null,
+      "content": "Ahrrenius\nHCI\nM2O\nH2O\nBronsted - Lowry\nHCl +\nH₂O\nAcido asea\nNH3+ H2O\nBase ACido\nH\nN\nLewis\nHCl H2O\n:Cl-H\n:Cl:\n+\nHCl\nH\n>\n十\nH\nH⁺\nNa⁺\n+ Cl⁻\n+\n(Acido)\nOH\n>\n>\n(Base)\nH_3O⁺\n+ Cl⁻\nNH_{4\nH2 +\n>\n→Cl⁻ + H₃O⁺\nH\nH\n+\n(Acido)\nOH\n(Base)\nCl⁻\nLewis\nLOWE.1\nH\nH\nBranstedAhrtenius\nHH\nH\nu\nH-N-BH\nB\nÁcido libera H+ em água, e base libera OH- em água\nÁcido doa H+ e base recebe H+\nÁcido recebe um par de elétrons enquanto a base doa par de elétrons\nEquilíbrio químico\nHCL H⁺ + Cl⁻ 100%\nHAcO H⁺ + AcO - Ka = 1,8 · 105\n[ ] = Concentragão\n[H+]\n0,01\n0,01\n[HCi] = [H+]\n[H+]·[Aco-] Ka H [HAcO]\nKa = [H+] [HAcO]\n[H+7² Ka·[HAcO]\n[H+]=√ Ka· [MAcO]\n[+H] b01- = Hd pH<7\np=-10g(op1\npH=20\n0,01 mol/L\ndo A'cida\n0 meio\nacido\nNa⁺\n>\n+\nOH\n9,01\n0,01\n0,01 mol/L base\n[OH-] = 0,01\npOH = - log [OH-]\npOH = 2\npH + pOH 14\nL < Hd\nO meio\nbasico e\npH 十 2 =14\np\npH = 12\nCorpo de bombeiro militar do Ceará\nDurante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\nCom base nessa informação, é correto afirmar:\nA substância é neutra, com concentração igual de H⁺ e OH⁻.\nTrata-se de um ácido forte, com alto poder de corrosão.\nA substância possui caráter levemente ácido.\nA substância é uma base forte, com alta concentração de íons OH⁻.\nO valor de pH indica que a solução não apresenta riscos químicos.\nFGV - TDTND/AMAZUL/Operador de Central Termonuclear/2026\nQuímica e Engenharia Química - Ácidos e Bases\n563) O suco de uva pode ser usado como um indicador natural do pH de uma solução. Isso se dá por conta de uma substância natural chamada antocianina, presente nas uvas, que ao reagir com o meio forma produtos de cores distintas, seguindo um mesmo padrão de cores. Dessa forma, em meio ácido o suco de uva, ficará vermelho- rosa, enquanto em meio básico ficará verde-escuro.\nSe fizermos um teste com suco de uva, será observada uma coloração verde-escuro\nno limpa-forno.\nno suco de limão.\nna água destilada.\nno vinagre de maçã.\nna solução de bateria automotiva.\nFGV - Tec Ge (CPRM)/CPRM/Hidrologia/2025\nuis noa ns os ood sa - Lud oso\n472) O parâmetro físico-químico que mede a concentração de íons livres na água, indicando a capacidade de conduzir corrente elétrica, é\na alcalinidade.\no pH.\na condutividade elétrica.\no oxigênio dissolvido.\na turbidez.",
+      "chars": 2318,
+      "tokens": 857,
+      "blockSkipReason": null,
+      "chunkDecisions": [
+        {
+          "reason": null,
+          "chars": 1465,
+          "tokens": 386
+        }
+      ],
+      "chunkIndexes": [
+        0
+      ],
+      "chunkCoverageExact": false
+    }
+  ],
+  "chunks": [
+    {
+      "index": 0,
+      "blockIndex": 0,
+      "content": "Durante uma ocorrência envolvendo vazamento de produtos de limpeza em uma residência, um técnico de segurança química observou que a substância derramada apresentava pH 13.\nCom base nessa informação, é correto afirmar:\nA substância é neutra, com concentração igual de H⁺ e OH⁻.\nTrata-se de um ácido forte, com alto poder de corrosão.\nA substância possui caráter levemente ácido.\nA substância é uma base forte, com alta concentração de íons OH⁻.\nO valor de pH indica que a solução não apresenta riscos químicos.\nFGV - TDTND/AMAZUL/Operador de Central Termonuclear/2026\nQuímica e Engenharia Química - Ácidos e Bases\n563) O suco de uva pode ser usado como um indicador natural do pH de uma solução. Isso se dá por conta de uma substância natural chamada antocianina, presente nas uvas, que ao reagir com o meio forma produtos de cores distintas, seguindo um mesmo padrão de cores. Dessa forma, em meio ácido o suco de uva, ficará vermelho- rosa, enquanto em meio básico ficará verde-escuro.\nSe fizermos um teste com suco de uva, será observada uma coloração verde-escuro\nno limpa-forno.\nno suco de limão.\nna água destilada.\nno vinagre de maçã.\nna solução de bateria automotiva.\nFGV - Tec Ge (CPRM)/CPRM/Hidrologia/2025\nuis noa ns os ood sa - Lud oso\n472) O parâmetro físico-químico que mede a concentração de íons livres na água, indicando a capacidade de conduzir corrente elétrica, é\na alcalinidade.\no pH.\na condutividade elétrica.\no oxigênio dissolvido.\na turbidez.",
+      "tokens": 386,
+      "charStart": 853,
+      "charEnd": 2318
+    }
+  ]
+}

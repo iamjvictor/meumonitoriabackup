@@ -24,24 +24,6 @@ export class PrismaSponsoredSeatBatchRepository implements SponsoredSeatBatchRep
     } : null;
   }
 
-  async findBlockingSeat(monitorId: string, normalizedEmail: string, excludeBatchId?: string) {
-    const now = new Date();
-    const sponsored = await prisma.sponsoredSeat.findFirst({
-      where: { emailNormalized: normalizedEmail, ...(excludeBatchId ? { batchId: { not: excludeBatchId } } : {}), status: { notIn: ['CANCELED', 'EXPIRED', 'REVOKED'] }, OR: [{ endsAt: null }, { endsAt: { gt: now } }], batch: { monitorId, status: { notIn: ['CANCELED', 'EXPIRED', 'REFUNDED', 'REVOKED'] } } },
-      select: { id: true },
-    });
-    if (sponsored) return true;
-    const student = await prisma.student.findFirst({ where: { email: { equals: normalizedEmail, mode: 'insensitive' } }, select: { id: true } });
-    if (!student) return false;
-    const [payment, legacy, enrollment, billing] = await Promise.all([
-      prisma.paymentSubscriptionItem.findFirst({ where: { studentId: student.id, monitorId, status: 'ACTIVE', subscription: { status: { in: ['ACTIVE', 'TRIALING'] } } }, select: { id: true } }),
-      prisma.studentSubscription.findFirst({ where: { studentId: student.id, monitorId, status: 'active', OR: [{ expiresAt: null }, { expiresAt: { gt: now } }] }, select: { id: true } }),
-      prisma.studentEnrollment.findFirst({ where: { studentId: student.id, monitorId, status: 'ACTIVE', OR: [{ endsAt: null }, { endsAt: { gt: now } }] }, select: { id: true } }),
-      prisma.billingSubscriptionItem.findFirst({ where: { monitorId, status: 'ACTIVE', subscription: { studentId: student.id, status: { in: ['ACTIVE', 'TRIALING'] } } }, select: { id: true } }),
-    ]);
-    return Boolean(payment || legacy || enrollment || billing);
-  }
-
   async createPendingBatch(input: Parameters<SponsoredSeatBatchRepository['createPendingBatch']>[0]) {
     const id = randomUUID();
     await prisma.sponsoredSeatBatch.create({

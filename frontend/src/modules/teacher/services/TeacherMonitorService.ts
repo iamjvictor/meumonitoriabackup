@@ -1,6 +1,7 @@
 import type { MonitorDraft } from '../components/TeacherMonitorCreationModal';
 import type { ExamProfile, QuestionBankSubject } from '../components/question-bank-catalog';
 import { TeacherSessionError } from './TeacherSessionError';
+import { getQuestionReviewValidationMessage, validateQuestionReviewDraft } from './question-review-validation';
 
 const getBackendUrl = () => process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8443';
 
@@ -305,6 +306,22 @@ export const TeacherMonitorService = {
     return data;
   },
 
+  async createFlashcard(monitorId: string, payload: { topicId: string; front: string; back: string; difficulty: 'EASY' | 'MEDIUM' | 'HARD' }) {
+    const response = await fetch(`${getBackendUrl()}/api/v1/monitors/${encodeURIComponent(monitorId)}/flashcards`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(payload),
+    });
+    if (response.status === 401) throw new TeacherSessionError();
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || 'Falha ao criar o flashcard.');
+    }
+    const { data } = await response.json();
+    return data;
+  },
+
   async listDocuments(monitorId: string) {
     const response = await fetch(`${getBackendUrl()}/api/v1/monitors/${encodeURIComponent(monitorId)}/documents`, {
       credentials: 'include',
@@ -358,6 +375,19 @@ export const TeacherMonitorService = {
       alternatives?: Array<{ label: string; text: string }>;
     }
   ) {
+    const hasContentChanges = payload.text !== undefined
+      || payload.alternatives !== undefined
+      || payload.correctAnswer !== undefined
+      || payload.explanation !== undefined;
+    if (hasContentChanges) {
+      const validationErrors = validateQuestionReviewDraft({
+        prompt: payload.text ?? '',
+        options: (payload.alternatives ?? []).map(({ label, text }) => ({ letter: label, text })),
+        correctAnswer: payload.correctAnswer ?? '',
+      });
+      if (validationErrors) throw new Error(getQuestionReviewValidationMessage(validationErrors));
+    }
+
     const response = await fetch(
       `${getBackendUrl()}/api/v1/monitors/${encodeURIComponent(monitorId)}/questions/${encodeURIComponent(questionId)}/review`,
       {
@@ -370,7 +400,7 @@ export const TeacherMonitorService = {
     if (response.status === 401) throw new TeacherSessionError();
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || 'Falha ao atualizar a revisão da questão.');
+      throw new Error(errorData.error?.message || errorData.message || 'Falha ao atualizar a revisão da questão.');
     }
     const { data } = await response.json();
     return data;

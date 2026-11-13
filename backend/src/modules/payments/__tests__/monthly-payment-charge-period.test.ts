@@ -121,7 +121,24 @@ test('PAYMENT_CONFIRMED e PAYMENT_RECEIVED simultâneos da mesma cobrança não 
         occurredAt: new Date('2026-11-08T00:00:00.000Z'), payload,
       }),
     ]);
-    await assertSingleMonthlyPeriod(fixture, providerPaymentId);
+    const updatedSubscription = await prisma.paymentSubscription.findUniqueOrThrow({ where: { id: fixture.subscription.id } });
+    const access = await prisma.studentSubscription.findUniqueOrThrow({ where: { studentId_monitorId: { studentId: fixture.student.id, monitorId: fixture.monitor.id } } });
+    const enrollment = await prisma.studentEnrollment.findUniqueOrThrow({ where: { studentId_monitorId: { studentId: fixture.student.id, monitorId: fixture.monitor.id } } });
+    const charge = await prisma.paymentCharge.findUniqueOrThrow({ where: { environment_providerPaymentId: { environment: 'SANDBOX', providerPaymentId } } });
+    const winningStart = updatedSubscription.currentPeriodStart;
+    assert.ok(winningStart, 'um dos eventos concorrentes deve definir o início do período');
+    assert.ok(
+      ['2026-11-01T00:00:00.000Z', '2026-11-08T00:00:00.000Z'].includes(winningStart.toISOString()),
+      'o primeiro evento que adquirir o lock define o início do período',
+    );
+    const expectedEnd = new Date(winningStart);
+    expectedEnd.setUTCMonth(expectedEnd.getUTCMonth() + 1);
+    assert.equal(updatedSubscription.currentPeriodEnd?.toISOString(), expectedEnd.toISOString());
+    assert.equal(access.currentPeriodStart?.toISOString(), winningStart.toISOString());
+    assert.equal(access.expiresAt?.toISOString(), expectedEnd.toISOString());
+    assert.equal(enrollment.endsAt?.toISOString(), expectedEnd.toISOString());
+    assert.equal(charge.servicePeriodStart?.toISOString(), winningStart.toISOString());
+    assert.equal(charge.servicePeriodEnd?.toISOString(), expectedEnd.toISOString());
   } finally {
     await removeFixture(fixture);
   }

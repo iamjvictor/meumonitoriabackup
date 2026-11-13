@@ -1,0 +1,399 @@
+{
+  "document": "IFF Seleção 2010 (40 questões)",
+  "inputPdf": "tests/document-parser/iff-provas-workspace/iff-selecao-2010-pages-1-30.pdf",
+  "database": "dbtemp local only",
+  "persisted": false,
+  "model": "deepseek/deepseek-v4.1-flash",
+  "contextMode": "full selectable PDF text; visual assets excluded from this scale run",
+  "sourceQuestionCount": 3,
+  "llmCalls": 5,
+  "alternativesAgentResponses": [
+    {
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "parafraseia um ditado popular.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "a)   parafraseia um ditado popular."
+        },
+        {
+          "label": "B",
+          "text": "nela ocorre a elipse (omissão) de verbo.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "b)   nela ocorre a elipse (omissão) de verbo."
+        },
+        {
+          "label": "C",
+          "text": "entre as orações há ideia de adição.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "c)   entre as orações há ideia de adição."
+        },
+        {
+          "label": "D",
+          "text": "a maternidade se traduz apenas por uma visão positiva de paraíso.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "d)   a maternidade se traduz apenas por uma visão positiva de paraíso."
+        },
+        {
+          "label": "E",
+          "text": "sugere ser a gravidez precoce um complicador na vida escolar dos jovens.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "e)   sugere ser a gravidez precoce um complicador na vida escolar dos jovens."
+        }
+      ],
+      "corrections": [
+        {
+          "label": "A",
+          "text": "parafraseia um ditado popular.",
+          "evidenceQuote": "a)   parafraseia um ditado popular."
+        },
+        {
+          "label": "B",
+          "text": "nela ocorre a elipse (omissão) de verbo.",
+          "evidenceQuote": "b)   nela ocorre a elipse (omissão) de verbo."
+        },
+        {
+          "label": "D",
+          "text": "a maternidade se traduz apenas por uma visão positiva de paraíso.",
+          "evidenceQuote": "d)   a maternidade se traduz apenas por uma visão positiva de paraíso."
+        },
+        {
+          "label": "E",
+          "text": "sugere ser a gravidez precoce um complicador na vida escolar dos jovens.",
+          "evidenceQuote": "e)   sugere ser a gravidez precoce um complicador na vida escolar dos jovens."
+        }
+      ],
+      "pendingIssue": null
+    },
+    {
+      "alternatives": [
+        {
+          "evidenceQuote": "a)   Todas as afirmativas são corretas.",
+          "label": "A",
+          "origin": "SOURCE_DOCUMENT",
+          "text": "Todas as afirmativas são corretas."
+        },
+        {
+          "evidenceQuote": "b)   Apenas as afirmativas I e II estão corretas.",
+          "label": "B",
+          "origin": "SOURCE_DOCUMENT",
+          "text": "Apenas as afirmativas I e II estão corretas."
+        },
+        {
+          "evidenceQuote": "c)   Apenas as afirmativas I e III estão corretas.",
+          "label": "C",
+          "origin": "SOURCE_DOCUMENT",
+          "text": "Apenas as afirmativas I e III estão corretas."
+        },
+        {
+          "evidenceQuote": "d)   Apenas as afirmativas II e III estão corretas.",
+          "label": "D",
+          "origin": "SOURCE_DOCUMENT",
+          "text": "Apenas as afirmativas II e III estão corretas."
+        },
+        {
+          "evidenceQuote": "e)   Todas as afirmativas são falsas.",
+          "label": "E",
+          "origin": "SOURCE_DOCUMENT",
+          "text": "Todas as afirmativas são falsas."
+        }
+      ],
+      "corrections": [
+        {
+          "evidenceQuote": "I. Podemos verificar, de acordo com o texto acima, que o número de saúvas reduziu devido a escassez de alimentos provocada pelo desmatamento da mata atlântica.",
+          "label": "A",
+          "text": "A afirmativa I é conteúdo do enunciado, não alternativa de resposta."
+        },
+        {
+          "evidenceQuote": "II. As formigas mantêm relação harmoniosa denominada sociedade. A sociedade das formigas é estruturada em castas (rainha, macho, operária, soldado), sendo cada uma responsável por um determinado trabalho ou função.",
+          "label": "C",
+          "text": "A afirmativa II é conteúdo do enunciado, não alternativa de resposta."
+        },
+        {
+          "evidenceQuote": "III. A mata atlântica é um bioma brasileiro que se caracteriza por sua vegetação densa, com chuvas abundantes, presença de palmeiras e ipês.",
+          "label": "B",
+          "text": "A afirmativa III é conteúdo do enunciado, não alternativa de resposta."
+        }
+      ],
+      "pendingIssue": null
+    },
+    {
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "São cidades que passaram por um rápido e desordenado crescimento, tornando-se “inchadas” de pessoas e de problemas.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "a) São cidades que passaram por um rápido e desordenado crescimento, tornando-\n   se “inchadas” de pessoas e de problemas."
+        },
+        {
+          "label": "B",
+          "text": "A rápida urbanização faz com que cidades vizinhas à metrópole aumentem de tamanho e formem um só conjunto.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "b) A rápida urbanização faz com que cidades vizinhas à metrópole aumentem de\n   tamanho e formem um só conjunto."
+        },
+        {
+          "label": "C",
+          "text": "Os escassos investimentos governamentais na área habitacional levaram à formação de precárias moradias.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "c) Os escassos investimentos governamentais na área habitacional levaram à\n   formação de precárias moradias."
+        },
+        {
+          "label": "D",
+          "text": "Há um grande número de mendigos, desempregados e subempregados vivendo nestas cidades.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "d) Há um grande número de mendigos, desempregados e subempregados vivendo\n   nestas cidades."
+        },
+        {
+          "label": "E",
+          "text": "A falta de infraestrutura adequada e de saneamento básico não são problemas tão preocupantes nas metrópoles devido à presença de mão de obra qualificada para resolvê-los.",
+          "origin": "SOURCE_DOCUMENT",
+          "evidenceQuote": "e) A falta de infraestrutura adequada e de saneamento básico não são problemas tão\n   preocupantes nas metrópoles devido à presença de mão de obra qualificada para\n   resolvê-los."
+        }
+      ],
+      "corrections": [
+        {
+          "label": "A",
+          "text": "São cidades que passaram por um rápido e desordenado crescimento, tornando-se “inchadas” de pessoas e de problemas.",
+          "evidenceQuote": "a) São cidades que passaram por um rápido e desordenado crescimento, tornando-\n   se “inchadas” de pessoas e de problemas."
+        },
+        {
+          "label": "B",
+          "text": "A rápida urbanização faz com que cidades vizinhas à metrópole aumentem de tamanho e formem um só conjunto.",
+          "evidenceQuote": "b) A rápida urbanização faz com que cidades vizinhas à metrópole aumentem de\n   tamanho e formem um só conjunto."
+        },
+        {
+          "label": "D",
+          "text": "Há um grande número de mendigos, desempregados e subempregados vivendo nestas cidades.",
+          "evidenceQuote": "d) Há um grande número de mendigos, desempregados e subempregados vivendo\n   nestas cidades."
+        },
+        {
+          "label": "E",
+          "text": "A falta de infraestrutura adequada e de saneamento básico não são problemas tão preocupantes nas metrópoles devido à presença de mão de obra qualificada para resolvê-los.",
+          "evidenceQuote": "e) A falta de infraestrutura adequada e de saneamento básico não são problemas tão\n   preocupantes nas metrópoles devido à presença de mão de obra qualificada para\n   resolvê-los."
+        }
+      ],
+      "pendingIssue": null
+    }
+  ],
+  "graphStage": "awaiting_both",
+  "graphRoute": "both",
+  "outputQuestionCount": 3,
+  "llmUsage": [
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 9130,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 13440,
+      "completionTokens": 3379,
+      "totalTokens": 16819,
+      "reasoningTokens": 2935,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 9905,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 13442,
+      "completionTokens": 2479,
+      "totalTokens": 15921,
+      "reasoningTokens": 1850,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_alternatives_completion",
+      "durationMs": 9199,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 13563,
+      "completionTokens": 3260,
+      "totalTokens": 16823,
+      "reasoningTokens": 2515,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 3380,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 12773,
+      "completionTokens": 600,
+      "totalTokens": 13373,
+      "reasoningTokens": 440,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 2715,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 13132,
+      "completionTokens": 223,
+      "totalTokens": 13355,
+      "reasoningTokens": 156,
+      "finishReason": "stop"
+    }
+  ],
+  "totalDurationMs": 34329,
+  "usageTotals": {
+    "promptTokens": 66350,
+    "completionTokens": 9941,
+    "reasoningTokens": 7896,
+    "totalTokens": 76291
+  },
+  "generatedAlternativesQuestions": [
+    "1",
+    "28",
+    "33"
+  ],
+  "generatedAnswerQuestions": [],
+  "questionsWithPendingIssues": [
+    {
+      "questionNumber": "33",
+      "pendingIssues": [
+        "ANSWER_MISSING",
+        "ALTERNATIVES_AGENT_UNVERIFIED_CORRECTION",
+        "Correção da alternativa A sem evidência literal válida."
+      ]
+    }
+  ],
+  "backendOutput": [
+    {
+      "questionNumber": "1",
+      "statement": "O texto 'Jornada dupla' aborda um tema presente na vida da mulher desde que ela foi inserida no mundo do trabalho, mas que nos dias atuais faz parte do universo feminino cada vez mais cedo.\nSobre a frase de abertura 'Ser mãe é padecer não só no paraíso, mas também na escola.', só NÃO é possível dizer que",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "parafraseia um ditado popular."
+        },
+        {
+          "label": "B",
+          "text": "nela ocorre a elipse (omissão) de verbo."
+        },
+        {
+          "label": "C",
+          "text": "entre as orações há ideia de adição."
+        },
+        {
+          "label": "D",
+          "text": "a maternidade se traduz apenas por uma visão positiva de paraíso."
+        },
+        {
+          "label": "E",
+          "text": "sugere ser a gravidez precoce um complicador na vida escolar dos jovens."
+        }
+      ],
+      "correctAnswer": "D",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": false,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "SOURCE_DOCUMENT",
+      "sourceChunkIds": [
+        "iff-2010-page-4"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "28",
+      "statement": "'A  mata  atlântica  é  hoje  uma  das  florestas  tropicais  mais  devastadas  do  planeta, reduzida  a  algumas  poucas  áreas  remanescentes,  em  geral  descontínuas.  Esse processo de fragmentação pode ser a causa do aumento da densidade de formigas conhecidas como saúvas, o que ameaçaria ainda mais esse bioma já fragilizado. Com a fragmentação, há um predomínio de plantas de luz ou pioneiras, em detrimento das plantas de sombra, próprias de florestas maduras e conservadas. As plantas pioneiras não  possuem  compostos  de  defesa  contra  organismos  que  se  alimentam  de  suas folhas.  Com  mais  plantas  sem  defesas  nas  proximidades  dos  ninhos,  as  formigas gastam menos energia para buscar seus alimentos e mais energia para a produção de rainhas e consequentemente um maior número de colônias adultas.'\nAdaptado de Ciência Hoje. Dezembro de 2008. p. 60.\n\nBaseado no texto e nos seus conhecimentos, analise as afirmativas a seguir e marque a alternativa correta.",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "Todas as afirmativas são corretas."
+        },
+        {
+          "label": "B",
+          "text": "Apenas as afirmativas I e II estão corretas."
+        },
+        {
+          "label": "C",
+          "text": "Apenas as afirmativas I e III estão corretas."
+        },
+        {
+          "label": "D",
+          "text": "Apenas as afirmativas II e III estão corretas."
+        },
+        {
+          "label": "E",
+          "text": "Todas as afirmativas são falsas."
+        }
+      ],
+      "correctAnswer": "D",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": false,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": "SOURCE_DOCUMENT",
+      "sourceChunkIds": [
+        "iff-2010-page-18",
+        "iff-2010-page-19"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "33",
+      "statement": "Indique  a  alternativa  que NÃO corresponde  à  realidade  das  grandes  metrópoles brasileiras:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "A escolha da cidade do Rio de Janeiro como sede das olimpíadas de 2016 é vista por muitos  como  uma  oportunidade  de  crescimento  econômico,  principalmente  pelo turismo.  Por  outro  lado,  as  enormes  desigualdades  sociais  e  territoriais  existentes tanto  na  cidade  do  Rio  de  Janeiro  quanto  em  outras  metrópoles  brasileiras  geram críticas quanto ao grande investimento que será feito para sediar os jogos mundiais, em detrimento a outras necessidades do país."
+        },
+        {
+          "label": "B",
+          "text": "A rápida urbanização faz com que cidades vizinhas à metrópole aumentem de tamanho e formem um só conjunto."
+        },
+        {
+          "label": "C",
+          "text": "Os escassos investimentos governamentais na área habitacional levaram à formação de precárias moradias."
+        },
+        {
+          "label": "D",
+          "text": "Há um grande número de mendigos, desempregados e subempregados vivendo nestas cidades."
+        },
+        {
+          "label": "E",
+          "text": "A falta de infraestrutura adequada e de saneamento básico não são problemas tão preocupantes nas metrópoles devido à presença de mão de obra qualificada para resolvê-los."
+        }
+      ],
+      "correctAnswer": null,
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": true,
+      "answerGenerated": false,
+      "alternativesOrigin": "AI_GENERATED",
+      "correctAnswerOrigin": null,
+      "sourceChunkIds": [
+        "iff-2010-page-22"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": [
+        "ANSWER_MISSING",
+        "ALTERNATIVES_AGENT_UNVERIFIED_CORRECTION",
+        "Correção da alternativa A sem evidência literal válida."
+      ]
+    }
+  ],
+  "graphErrors": [],
+  "attempts": {
+    "candidate:4788616ff017ae17dcab:0:alternatives": 1,
+    "candidate:8009332f3656a35cb043:1:alternatives": 1,
+    "candidate:c9521957fee5bfb43c54:2:alternatives": 1,
+    "candidate:4788616ff017ae17dcab:0:answer": 1,
+    "candidate:8009332f3656a35cb043:1:answer": 1
+  }
+}

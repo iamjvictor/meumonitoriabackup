@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { after, test } from 'node:test';
 import { prisma } from '../../../lib/prisma.js';
-import { getSponsoredPaymentEventStatus, isSponsoredAnnualPeriodAlreadyGranted, PaymentEventRepository } from '../infrastructure/persistence/payment-event.repository.js';
+import { getSponsoredPaymentEventStatus, isSponsoredAnnualPeriodAlreadyGranted, isSponsoredBatchTerminalForPayment, PaymentEventRepository } from '../infrastructure/persistence/payment-event.repository.js';
 
 const databaseUrl = process.env.PAYMENTS_TEST_DATABASE_URL;
 const canRun = Boolean(databaseUrl && process.env.DATABASE_URL === databaseUrl && databaseUrl.includes('mm_asaas_flow_test'));
@@ -18,6 +18,15 @@ test('período anual patrocinado pago permanece idempotente mesmo após o lote f
   assert.equal(isSponsoredAnnualPeriodAlreadyGranted('ANNUAL', new Date('2026-10-20T12:00:00.000Z')), true);
   assert.equal(isSponsoredAnnualPeriodAlreadyGranted('ANNUAL', null), false);
   assert.equal(isSponsoredAnnualPeriodAlreadyGranted('MONTHLY', new Date('2026-10-20T12:00:00.000Z')), false);
+});
+
+test('expiração do checkout não bloqueia Pix mensal confirmado, mas cancelamento e estorno continuam terminais', () => {
+  assert.equal(isSponsoredBatchTerminalForPayment('EXPIRED', 'MONTHLY', 'PIX'), false);
+  assert.equal(isSponsoredBatchTerminalForPayment('EXPIRED', 'MONTHLY', 'CREDIT_CARD'), true);
+  assert.equal(isSponsoredBatchTerminalForPayment('EXPIRED', 'ANNUAL', 'PIX'), true);
+  assert.equal(isSponsoredBatchTerminalForPayment('CANCELLED', 'MONTHLY', 'PIX'), true);
+  assert.equal(isSponsoredBatchTerminalForPayment('REFUNDED', 'MONTHLY', 'PIX'), true);
+  assert.equal(isSponsoredBatchTerminalForPayment('REVOKED', 'MONTHLY', 'PIX'), true);
 });
 
 after(async () => { await prisma.$disconnect(); });

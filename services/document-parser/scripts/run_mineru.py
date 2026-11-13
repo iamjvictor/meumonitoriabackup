@@ -82,18 +82,29 @@ def get_document_converter(
     *,
     do_ocr: bool = False,
     force_backend_text: bool = True,
+    knowledge_profile: Any | None = None,
 ) -> Any:
     """Build Docling lazily with explicit PDF text/OCR pipeline options."""
-    from docling.datamodel.base_models import InputFormat
-    from docling.datamodel.pipeline_options import PdfPipelineOptions
-    from docling.document_converter import DocumentConverter, PdfFormatOption
+    if knowledge_profile is not None:
+        from knowledge_profile import build_pipeline_options
 
-    pipeline_options = PdfPipelineOptions(
-        do_ocr=do_ocr,
-        force_backend_text=force_backend_text,
-        generate_picture_images=True,
-        images_scale=1.0,
-    )
+        pipeline_options = build_pipeline_options(knowledge_profile)
+        # Knowledge batches retain page layout/text while the profile controls
+        # expensive OCR and image rendering independently.
+        do_ocr = knowledge_profile.do_ocr
+        force_backend_text = not knowledge_profile.do_ocr
+    else:
+        from docling.datamodel.pipeline_options import PdfPipelineOptions
+
+        pipeline_options = PdfPipelineOptions(
+            do_ocr=do_ocr,
+            force_backend_text=force_backend_text,
+            do_formula_enrichment=True,
+            generate_picture_images=True,
+            images_scale=1.0,
+        )
+    from docling.datamodel.base_models import InputFormat
+    from docling.document_converter import DocumentConverter, PdfFormatOption
     return DocumentConverter(
         format_options={
             InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options),

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash, randomUUID } from 'node:crypto';
 import { deflateRawSync } from 'node:zlib';
 import test from 'node:test';
+import { Agent } from 'undici';
 import { DocChunkerV2Client, DocChunkerV2ClientError } from '../doc-chunker-v2.client.js';
 
 const requestId = 'b3615f67-b6df-47e1-90b7-7e5d8de13e4f';
@@ -11,7 +12,7 @@ const manifest = {
   schema_version: 'doc-chunker/v2', request_id: requestId, doc_hash: docHash,
   parser_version: '2.122.0', tokenizer_id: 'test-tokenizer', chunker_version: 'hybrid-v1', page_count: 1,
   engine: 'docling', chunks: [{ index: 0, text: 'Figura', raw_text: 'Figura', headings: [], pages: [1], type: 'text', tokens: 1, provenance: [] }],
-  visual_assets: [{ asset_key: '1'.repeat(32), source_item_ref: '#/pictures/0', reading_order: 0, page_number: 1,
+  visual_assets: [{ asset_kind: 'FIGURE', asset_key: '1'.repeat(32), source_item_ref: '#/pictures/0', reading_order: 0, page_number: 1,
     bbox: [1, 2, 30, 40], coord_origin: 'TOPLEFT', caption: 'Figura', mime_type: 'image/png',
     width: 1, height: 1, sha256: createHash('sha256').update(png).digest('hex') }],
   warnings: [],
@@ -112,4 +113,105 @@ test('v2 rejects visual bytes whose SHA-256 differs from the manifest', async ()
   const body = zip([['manifest.json', Buffer.from(JSON.stringify(invalidManifest))], [`assets/${'1'.repeat(32)}.png`, png]]);
   await assert.rejects(clientFor(body).chunkWithAssets(input()),
     (error: unknown) => error instanceof DocChunkerV2ClientError && error.code === 'DOC_CHUNKER_ASSET_HASH_MISMATCH');
+});
+
+test('v2 passes a request-scoped undici Agent to fetch and closes it after response consumption', async () => {
+  let dispatcher: Agent | undefined;
+  const client = new DocChunkerV2Client({
+    baseUrl: 'http://parser.internal', requestIdFactory: () => requestId, requestTimeoutMs: 900_000,
+    fetchImpl: async (_url, init) => {
+      const requestDispatcher = (init as RequestInit & { dispatcher?: unknown }).dispatcher;
+      assert.ok(requestDispatcher instanceof Agent);
+      dispatcher = requestDispatcher;
+      const body = validZip();
+      return new Response(new Blob([body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength) as ArrayBuffer]), { status: 200, headers: {
+        'Content-Type': 'application/vnd.doc-chunker.v2+zip', 'X-Request-Id': requestId,
+      } });
+    },
+  });
+  await client.chunkWithAssets(input());
+  assert.ok(dispatcher?.closed);
+});
+
+test('v2 classifies transport errors as network errors and preserves their cause', async () => {
+  const transportError = Object.assign(new Error('upstream detail must not enter the public message'), { code: 'ECONNRESET' });
+  const client = new DocChunkerV2Client({
+    baseUrl: 'http://parser.internal', requestIdFactory: () => requestId,
+    fetchImpl: async () => { throw transportError; },
+  });
+  await assert.rejects(client.chunkWithAssets(input()), (error: unknown) => {
+    assert.ok(error instanceof DocChunkerV2ClientError);
+    assert.equal(error.code, 'DOC_CHUNKER_NETWORK_ERROR');
+    assert.equal(error.cause, transportError);
+    assert.equal(error.message.includes('upstream detail'), false);
+    return true;
+  });
+});
+
+test('v2 classifies a broken response stream separately from an invalid package', async () => {
+  const transportError = Object.assign(new Error('socket closed'), { code: 'UND_ERR_SOCKET' });
+  const body = new ReadableStream<Uint8Array>({ start(controller) { controller.error(transportError); } });
+  const client = new DocChunkerV2Client({
+    baseUrl: 'http://parser.internal', requestIdFactory: () => requestId,
+    fetchImpl: async () => new Response(body, { status: 200, headers: {
+      'Content-Type': 'application/vnd.doc-chunker.v2+zip', 'X-Request-Id': requestId,
+    } }),
+  });
+  await assert.rejects(client.chunkWithAssets(input()), (error: unknown) => {
+    assert.ok(error instanceof DocChunkerV2ClientError);
+    assert.equal(error.code, 'DOC_CHUNKER_RESPONSE_READ_ERROR');
+    assert.equal(error.cause, transportError);
+    return true;
+  });
+});
+
+test('v2 maps its configured request deadline to timeout and keeps the abort cause', async () => {
+  const client = new DocChunkerV2Client({
+    baseUrl: 'http://parser.internal', requestIdFactory: () => requestId, requestTimeoutMs: 10,
+    fetchImpl: async (_url, init) => new Promise<Response>((_resolve, reject) => {
+      init?.signal?.addEventListener('abort', () => reject(init.signal?.reason), { once: true });
+    }),
+  });
+  await assert.rejects(client.chunkWithAssets(input()), (error: unknown) => {
+    assert.ok(error instanceof DocChunkerV2ClientError);
+    assert.equal(error.code, 'DOC_CHUNKER_TIMEOUT');
+    assert.ok(error.cause instanceof Error);
+    return true;
+  });
+});
+
+test('v2 distinguishes explicit caller cancellation from its configured deadline', async () => {
+  const caller = new AbortController();
+  const client = new DocChunkerV2Client({
+    baseUrl: 'http://parser.internal', requestIdFactory: () => requestId, requestTimeoutMs: 5_000,
+    fetchImpl: async (_url, init) => new Promise<Response>((_resolve, reject) => {
+      init?.signal?.addEventListener('abort', () => reject(init.signal?.reason), { once: true });
+    }),
+  });
+  const pending = client.chunkWithAssets({ ...input(), signal: caller.signal });
+  caller.abort(new Error('cancel requested by caller'));
+  await assert.rejects(pending, (error: unknown) => {
+    assert.ok(error instanceof DocChunkerV2ClientError);
+    assert.equal(error.code, 'DOC_CHUNKER_ABORTED');
+    assert.equal((error.cause as Error).message, 'cancel requested by caller');
+    return true;
+  });
+});
+
+test('v2 null request timeout leaves the queue wait open until explicit cancellation', async () => {
+  const caller = new AbortController();
+  const client = new DocChunkerV2Client({
+    baseUrl: 'http://parser.internal', requestIdFactory: () => requestId, requestTimeoutMs: null,
+    fetchImpl: async (_url, init) => new Promise<Response>((_resolve, reject) => {
+      init?.signal?.addEventListener('abort', () => reject(init.signal?.reason), { once: true });
+    }),
+  });
+  const pending = client.chunkWithAssets({ ...input(), signal: caller.signal });
+  await new Promise((resolve) => setTimeout(resolve, 20));
+  caller.abort(new Error('queue request cancelled'));
+  await assert.rejects(pending, (error: unknown) => {
+    assert.ok(error instanceof DocChunkerV2ClientError);
+    assert.equal(error.code, 'DOC_CHUNKER_ABORTED');
+    return true;
+  });
 });

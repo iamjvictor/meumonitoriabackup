@@ -11,14 +11,14 @@ import {
   FileText,
   ListChecks,
   LoaderCircle,
-  Sparkles,
 } from 'lucide-react';
 import { TeacherMonitor, TeacherMonitorService, type QuestionBankMaterializationRun } from '@/modules/teacher/services/TeacherMonitorService';
+import { getQuestionReviewValidationMessage, validateQuestionReviewDraft } from '@/modules/teacher/services/question-review-validation';
 import type { MonitorDraft } from '@/modules/teacher/components/TeacherMonitorCreationModal';
 import { TeacherSessionError } from '@/modules/teacher/services/TeacherSessionError';
 import { TeacherProfileService, TeacherProfile } from '@/modules/teacher/services/TeacherProfileService';
 import { AlertModal } from '@/shared';
-import { MonitorHeader } from '@/modules/teacher/components/monitor/MonitorHeader';
+import { MonitorContextSidebar } from '@/modules/teacher/components/monitor/MonitorContextSidebar';
 import { MonitorStructureSidebar } from '@/modules/teacher/components/monitor/MonitorStructureSidebar';
 import { MonitorKnowledgeTab } from '@/modules/teacher/components/monitor/MonitorKnowledgeTab';
 import { QuestionBankMaterializationProgress } from '@/modules/teacher/components/monitor/QuestionBankMaterializationProgress';
@@ -70,6 +70,7 @@ type QuestionItem = {
   options: { letter: string; text: string }[];
   correctAnswer: string;
   explanation: string;
+  visualAssets?: Array<{ assetId: string; role: string; pageNumber: number; imageUrl: string | null; width: number | null; height: number | null }>;
   status: ReviewStatus;
 };
 
@@ -261,25 +262,6 @@ export default function TeacherMonitorPage() {
     | 'no_explanation'
   >('pending');
 
-  // Estado para controlar a exibição dos headers de escopo e abas no scroll
-  const [showWorkspaceHeaders, setShowWorkspaceHeaders] = useState(true);
-  const lastScrollTopRef = useRef(0);
-
-  const handleWorkspaceScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const currentScrollTop = e.currentTarget.scrollTop;
-    const diff = currentScrollTop - lastScrollTopRef.current;
-
-    if (currentScrollTop < 50) {
-      setShowWorkspaceHeaders(true);
-    } else if (diff > 8) {
-      setShowWorkspaceHeaders(false);
-    } else if (diff < -8) {
-      setShowWorkspaceHeaders(true);
-    }
-
-    lastScrollTopRef.current = currentScrollTop;
-  };
-
   useEffect(() => {
     let isCurrent = true;
     setLoading(true);
@@ -342,6 +324,7 @@ export default function TeacherMonitorPage() {
             ),
             correctAnswer: q.correctAnswer || '',
             explanation: q.explanation || '',
+            visualAssets: Array.isArray(q.visualAssets) ? q.visualAssets : [],
             status: q.status === 'APPROVED' ? 'approved' : q.status === 'REPORTED' ? 'reported' : q.status === 'REJECTED' ? 'rejected' : 'pending_review',
           };
         });
@@ -443,6 +426,7 @@ export default function TeacherMonitorPage() {
                 options: ensureFiveOptions((Array.isArray(question.alternatives) ? question.alternatives : []).map((alternative: any) => ({ letter: alternative.label || alternative.letter || 'A', text: alternative.text || '' }))),
                 correctAnswer: question.correctAnswer || '',
                 explanation: question.explanation || '',
+                visualAssets: Array.isArray(question.visualAssets) ? question.visualAssets : [],
                 status: question.status === 'APPROVED' ? 'approved' as const : question.status === 'REPORTED' ? 'reported' as const : question.status === 'REJECTED' ? 'rejected' as const : 'pending_review' as const,
               };
             }));
@@ -729,6 +713,7 @@ export default function TeacherMonitorPage() {
   const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
   const [editQuestionDraft, setEditQuestionDraft] = useState<QuestionItem | null>(null);
   const [isSavingQuestion, setIsSavingQuestion] = useState<boolean>(false);
+  const [showQuestionEditValidation, setShowQuestionEditValidation] = useState(false);
 
   // Estado para edição/criação com modal e live preview de Flashcard
   const [editingFlashcardId, setEditingFlashcardId] = useState<string | null>(null);
@@ -738,6 +723,7 @@ export default function TeacherMonitorPage() {
   const [previewSide, setPreviewSide] = useState<'front' | 'back'>('front');
 
   const handleStartEditQuestion = (q: QuestionItem) => {
+    setShowQuestionEditValidation(false);
     setEditingQuestionId(q.id);
     const draft: QuestionItem = JSON.parse(JSON.stringify(q));
     
@@ -762,6 +748,7 @@ export default function TeacherMonitorPage() {
   };
 
   const handleOpenCreateQuestion = () => {
+    setShowQuestionEditValidation(false);
     const currentSub = monitor?.subjects?.find((subject) => subject.id === (selectedSubjectId || monitor?.subjects?.[0]?.id));
     const currentTop = currentSub?.topicRefs?.find((topic) => topic.id === (selectedTopicId || currentSub?.topicRefs?.[0]?.id));
     const newQuestion: QuestionItem = {
@@ -785,17 +772,15 @@ export default function TeacherMonitorPage() {
   const handleCancelEditQuestion = () => {
     setEditingQuestionId(null);
     setEditQuestionDraft(null);
+    setShowQuestionEditValidation(false);
   };
 
   const handleSaveQuestionEdit = async () => {
     if (!editQuestionDraft || !params.monitorId) return;
-    if (!editQuestionDraft.prompt.trim()) {
-      showAlert('Enunciado obrigatório', 'Digite o enunciado antes de salvar a questão.', 'warning');
-      return;
-    }
-    const correctOption = editQuestionDraft.options.find((option) => option.letter === editQuestionDraft.correctAnswer);
-    if (!correctOption?.text.trim()) {
-      showAlert('Gabarito obrigatório', 'Preencha o texto da alternativa marcada como correta antes de salvar.', 'warning');
+    setShowQuestionEditValidation(true);
+    const validationErrors = validateQuestionReviewDraft(editQuestionDraft);
+    if (validationErrors) {
+      showAlert('Revise os campos obrigatórios', getQuestionReviewValidationMessage(validationErrors), 'warning');
       return;
     }
     setIsSavingQuestion(true);
@@ -847,6 +832,7 @@ export default function TeacherMonitorPage() {
         : prev.map((q) => (q.id === editQuestionDraft.id ? updatedQuestion : q)));
       setEditingQuestionId(null);
       setEditQuestionDraft(null);
+      setShowQuestionEditValidation(false);
       showAlert('Questão Salva', 'A questão foi salva e aprovada com sucesso!', 'success');
     } catch (err: any) {
       console.error('[handleSaveQuestionEdit] Erro ao salvar questão:', err);
@@ -864,9 +850,15 @@ export default function TeacherMonitorPage() {
   };
 
   const handleOpenCreateFlashcardModal = () => {
+    if (!selectedTopicId) {
+      showAlert('Selecione um tópico', 'Escolha um tópico antes de criar o flashcard para que ele seja salvo na matéria correta.', 'warning');
+      return;
+    }
     setEditingFlashcardId(null);
     setEditFlashcardDraft({
       id: `fc-new-${Date.now()}`,
+      subjectId: selectedSubject?.id,
+      topicId: selectedTopicId,
       topicName: selectedTopic || selectedSubject?.name || 'Matemática',
       sourceDocName: 'Criado manualmente pelo professor',
       originType: 'source_doc',
@@ -904,11 +896,26 @@ export default function TeacherMonitorPage() {
         });
         setFlashcards((prev) => prev.map((fc) => (fc.id === editFlashcardDraft.id ? updatedFlashcard : fc)));
       } else {
+        const topicId = editFlashcardDraft.topicId || selectedTopicId;
+        if (!topicId) throw new Error('Selecione um tópico antes de salvar o flashcard.');
+        const saved = await TeacherMonitorService.createFlashcard(params.monitorId, {
+          topicId,
+          front: editFlashcardDraft.front.trim(),
+          back: editFlashcardDraft.back.trim(),
+          difficulty: editFlashcardDraft.difficulty === 'Fácil' ? 'EASY' : editFlashcardDraft.difficulty === 'Difícil' ? 'HARD' : 'MEDIUM',
+        });
         const newFc: FlashcardItem = {
           ...updatedFlashcard,
-          id: `fc-${Date.now()}`,
+          id: saved.id,
+          subjectId: saved.subjectId,
+          subjectName: saved.subject?.name || selectedSubject?.name,
+          topicId: saved.topicId,
+          topicName: saved.topic?.name || editFlashcardDraft.topicName,
+          difficulty: saved.difficulty === 'EASY' ? 'Fácil' : saved.difficulty === 'HARD' ? 'Difícil' : 'Médio',
+          status: saved.status === 'APPROVED' ? 'approved' : 'pending_review',
         };
         setFlashcards((prev) => [newFc, ...prev]);
+        showAlert('Flashcard criado', 'O flashcard foi salvo com sucesso e já está disponível na lista.', 'success');
       }
 
       setIsFlashcardModalOpen(false);
@@ -1361,30 +1368,8 @@ export default function TeacherMonitorPage() {
   }
 
   return (
-    <main className="min-h-screen w-full flex flex-col bg-[#F5F1E8] text-[#132E20] lg:h-screen lg:overflow-hidden">
-      {/* HEADER DO AGENTE (Barra Superior Completa) */}
-      <MonitorHeader
-        monitor={monitor}
-        sidebarView={sidebarView}
-        showWorkspaceHeaders={showWorkspaceHeaders}
-        topicCount={topicCount}
-        documentsCount={documents.length}
-        totalApprovedQuestionsCount={totalApprovedQuestionsCount}
-        totalPendingQuestionsCount={totalPendingQuestionsCount}
-        totalReportedQuestionsCount={totalReportedQuestionsCount}
-        totalApprovedFlashcardsCount={totalApprovedFlashcardsCount}
-        totalPendingFlashcardsCount={totalPendingFlashcardsCount}
-        publishValidation={publishValidation}
-        isPublishing={isPublishing}
-        setSidebarView={setSidebarView}
-        setIsEditingInfo={setIsEditingInfo}
-        setEditInfoName={setEditInfoName}
-        setEditInfoDescription={setEditInfoDescription}
-        handlePublishMonitor={handlePublishMonitor}
-      />
-
-      {/* CONTAINER PRINCIPAL FULL-HEIGHT (Sidebar + Workspace com Amplo Espaço) */}
-      <div className="flex-1 flex min-h-0 flex-col overflow-y-auto lg:flex-row lg:overflow-hidden">
+    <main className="flex min-h-screen w-full flex-col bg-[#F5F1E8] text-[#132E20] lg:h-screen lg:min-h-0 lg:overflow-hidden">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden lg:flex-row">
         {/* SIDEBAR DA ESTRUTURA DO MONITOR (Navegação de Matérias) */}
         <MonitorStructureSidebar
           monitor={monitor}
@@ -1393,7 +1378,6 @@ export default function TeacherMonitorPage() {
           selectedTopic={selectedTopic}
           selectedTopicId={selectedTopicId}
           sidebarView={sidebarView}
-          publishValidation={publishValidation}
           documents={documents}
           questions={questions}
           flashcards={flashcards}
@@ -1413,32 +1397,9 @@ export default function TeacherMonitorPage() {
         />
 
         {/* WORKSPACE PRINCIPAL (Com Espaço Amplo para Exercícios, Flashcards e Documentos) */}
-        <section className={`flex min-h-[60vh] flex-1 flex-col min-w-0 overflow-hidden bg-slate-50/40 lg:h-full lg:min-h-0 ${sidebarView === 'settings' ? 'hidden' : ''}`}>
-          {/* Sub-header de Escopo Ativo + Abas Principais (Ocultados no scroll para baixo) */}
-          <div
-            className={`transition-all duration-300 ease-in-out overflow-hidden shrink-0 ${
-              showWorkspaceHeaders ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
-            }`}
-          >
-            {/* Sub-header de Escopo Ativo */}
-            <div className="border-b border-slate-200 bg-white px-4 py-3.5 flex flex-wrap items-center justify-between gap-3 shadow-2xs sm:px-8">
-              <div className="min-w-0 flex items-center gap-3">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Escopo Ativo:</span>
-                <div className="flex items-center gap-2 text-sm font-bold text-[#132E20]">
-                  <span className="bg-emerald-50 text-emerald-900 px-3 py-1 rounded-lg border border-emerald-200">{selectedSubject?.name || 'Matéria'}</span>
-                  <span className="text-slate-300">/</span>
-                              <span className="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg border border-slate-200">{selectedTopic || 'Toda a matéria'}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 text-xs bg-emerald-50 text-emerald-900 px-3.5 py-1.5 rounded-lg border border-emerald-200 font-semibold shadow-2xs">
-                <Sparkles className="h-4 w-4 text-emerald-700 animate-pulse" aria-hidden="true" />
-                <span>Esteira de Extração IA Ativa</span>
-              </div>
-            </div>
-
-            {/* Abas Principais do Workspace */}
-            <nav className="flex overflow-x-auto border-b border-slate-200 px-4 bg-white sm:px-8">
+        <section className={`flex min-h-[60vh] min-w-0 flex-1 flex-col overflow-hidden bg-slate-50/40 lg:h-full lg:min-h-0 ${sidebarView === 'settings' ? 'hidden' : ''}`}>
+            {/* Abas fixas do workspace: permanecem visíveis enquanto o conteúdo rola. */}
+            <nav aria-label="Conteúdo do monitor" className="z-20 flex shrink-0 overflow-x-auto border-b border-slate-200 bg-white px-4 sm:px-8">
               {workspaceViews.map((view) => {
                 const Icon = view.icon;
                 const isActive = activeView === view.id;
@@ -1492,10 +1453,9 @@ export default function TeacherMonitorPage() {
                 );
               })}
             </nav>
-          </div>
 
-          {/* CONTEÚDO EXPANDIDO DO WORKSPACE (Scrollable com Espaço Amplo) */}
-          <div onScroll={handleWorkspaceScroll} className="flex-1 overflow-y-auto p-4 space-y-6 sm:p-6 lg:p-8">
+          {/* Conteúdo rolável; a navegação das abas fica fora desta área. */}
+          <div className="min-h-0 flex-1 overflow-y-auto p-4 space-y-6 sm:p-6 lg:p-8">
 
             {questionBankMaterialization && (
               <QuestionBankMaterializationProgress
@@ -1562,6 +1522,7 @@ export default function TeacherMonitorPage() {
               handleBulkRejectQuestions={handleBulkRejectQuestions}
               editingQuestionId={editingQuestionId}
               editQuestionDraft={editQuestionDraft}
+              showQuestionEditValidation={showQuestionEditValidation}
               isQuestionIncomplete={isQuestionIncomplete}
               toggleSelectQuestion={toggleSelectQuestion}
               isQuestionNoTopic={isQuestionNoTopic}
@@ -1654,6 +1615,27 @@ export default function TeacherMonitorPage() {
             totalApprovedFlashcardsCount={totalApprovedFlashcardsCount}
           />
         )}
+
+        <MonitorContextSidebar
+          monitor={monitor}
+          selectedSubjectName={selectedSubject?.name ?? null}
+          selectedTopic={selectedTopic}
+          topicCount={topicCount}
+          documentsCount={documents.length}
+          totalApprovedQuestionsCount={totalApprovedQuestionsCount}
+          totalPendingQuestionsCount={totalPendingQuestionsCount}
+          totalReportedQuestionsCount={totalReportedQuestionsCount}
+          totalApprovedFlashcardsCount={totalApprovedFlashcardsCount}
+          totalPendingFlashcardsCount={totalPendingFlashcardsCount}
+          sidebarView={sidebarView}
+          publishValidation={publishValidation}
+          isPublishing={isPublishing}
+          setSidebarView={setSidebarView}
+          setIsEditingInfo={setIsEditingInfo}
+          setEditInfoName={setEditInfoName}
+          setEditInfoDescription={setEditInfoDescription}
+          handlePublishMonitor={handlePublishMonitor}
+        />
 
       </div>
 

@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import test from 'node:test';
 import type { ChatPromptMessage } from '../../models/chat-generation.model.js';
+import { ChatVisualImageLoader } from '../../rag/services/chat-visual-image-loader.service.js';
+import { ChatVisualContextService } from '../../rag/services/chat-visual-context.service.js';
 import { ChatGenerationError, OpenRouterChatGateway } from '../openrouter-chat.gateway.js';
 
 class FixedPromptBuilder {
@@ -107,6 +110,69 @@ test('gateway envia texto e imagem privada ao modelo visual configurado', async 
     { type: 'image_url', image_url: { url: 'data:image/jpeg;base64,cGhvdG8=' } },
     { type: 'image_url', image_url: { url: 'data:image/png;base64,ZmlndXJl' } },
   ]);
+});
+
+test('encaminha os bytes íntegros do asset da questão no payload recebido pelo provider', async () => {
+  const bytes = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jWZkAAAAASUVORK5CYII=', 'base64');
+  const sha256 = createHash('sha256').update(bytes).digest('hex');
+  let received: any;
+  let downloadedPath: string | null = null;
+  const visualContext = await new ChatVisualContextService({
+    async questionAssets(questionId, scope) {
+      assert.equal(questionId, 'question-q03');
+      assert.deepEqual(scope, { studentId: 'student-1', teacherId: 'teacher-1', monitorId: 'monitor-1', subjectId: 'subject-1' });
+      return [{ assetId: 'asset-q03-page-5', page: 5, checksum: sha256, description: 'Estruturas químicas da tretinoína e isotretinoína.' }];
+    },
+    async knowledgeAssets() { return []; },
+    async studentAssets() { return []; },
+  }).resolveVisualContext({
+    scope: { studentId: 'student-1', teacherId: 'teacher-1', monitorId: 'monitor-1', subjectId: 'subject-1' },
+    currentQuestionId: 'question-q03',
+    resolvedAttachment: null,
+    studentImageIds: [],
+    rag: { citations: [] },
+  });
+  const loader = new ChatVisualImageLoader({
+    chatImageAttachment: { async findFirst() { return null; } },
+    documentVisualAsset: { async findFirst(args: any) {
+      assert.equal(args.where.id, 'asset-q03-page-5');
+      assert.equal(args.where.document.teacherId, 'teacher-1');
+      assert.equal(args.where.document.monitorId, 'monitor-1');
+      assert.equal(args.where.document.subjectId, 'subject-1');
+      return { storagePath: 'question/q03/page-5.png', mimeType: 'image/png', checksum: sha256 };
+    } },
+  } as any, { async download() { throw new Error('student bucket must not be used'); } }, {
+    async download(path) {
+      downloadedPath = path;
+      return { data: new Blob([bytes]), error: null };
+    },
+  });
+  const gateway = new OpenRouterChatGateway(
+    { async createChatCompletion(input) { received = input; return { content: 'A tretinoína apresenta um grupo carboxila.', usage: { promptTokens: 1, completionTokens: 1, totalTokens: 2 } }; } },
+    { build(input: { message: string }) { return [{ role: 'system', content: 'sistema' }, { role: 'user', content: input.message }]; } } as any,
+    { model: 'text-model', imageModel: 'vision-model', maxTokens: 500, temperature: 0.3, timeoutMs: 10_000 },
+    loader,
+  );
+
+  await gateway.generate({
+    message: 'Qual grupo funcional aparece na estrutura da tretinoína?',
+    history: [], questionContext: null,
+    monitorId: 'monitor-1', subjectId: 'subject-1', studentId: 'student-1', teacherId: 'teacher-1',
+    visualContext,
+  });
+
+  assert.equal(downloadedPath, 'question/q03/page-5.png');
+  assert.equal(received.model, 'vision-model');
+  const multimodalContent = received.messages[1].content;
+  assert.equal(multimodalContent[0].type, 'text');
+  assert.match(multimodalContent[0].text, /Qual grupo funcional/);
+  assert.equal(multimodalContent[1].type, 'image_url');
+  assert.match(multimodalContent[1].image_url.url, /^data:image\/png;base64,/);
+  const payloadBytes = Buffer.from(multimodalContent[1].image_url.url.split(',')[1], 'base64');
+  assert.equal(createHash('sha256').update(payloadBytes).digest('hex'), sha256);
+  assert.deepEqual(received.messages[1].content[1], {
+    type: 'image_url', image_url: { url: `data:image/png;base64,${bytes.toString('base64')}` },
+  });
 });
 
 test('gateway não declara que viu a imagem quando ela expirou ou falhou ao baixar', async () => {

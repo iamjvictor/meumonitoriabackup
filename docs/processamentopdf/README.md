@@ -6,6 +6,8 @@
 
 | Tema | Documento | Uso |
 | --- | --- | --- |
+| Fluxo agêntico explicado | [Etapas e diagramas](./fluxo-agentico-questoes.md) | Código atual versus desenho corrigido; responsabilidades dos agentes e estado. |
+| Correções globais do fluxo | [Especificação e aceite](../../specs/2026-11-06-correcao-fluxo-agentico-questoes/spec.md) | Identidade, evidência, busca de gabarito, fragmentos, integração e retomada. Proposto. |
 | Melhorias pendentes | [Problemas e correções](./MELHORIAS-PDF.md) | Backlog medido do fluxo de questões, imagens, fórmulas e testes finais. |
 | Questões, fluxo atual | [Processamento de questões](./questoes.md) | Entrada, ramificações, extração, persistência, limites e testes. |
 | Base de conhecimento e incidentes | [Processamento da base de conhecimento](./base-conhecimento.md) | Parser Docling, configuração, falhas observadas e operação. |
@@ -19,6 +21,9 @@
 
 | Documento | Assunto | Situação |
 | --- | --- | --- |
+| [Questões com LangGraph, 06/11](../../specs/2026-11-06-langgraph-questoes/spec.md) | Extração, revisão, agentes de alternativas e gabarito, estado e recuperação | Planejado; implementação e QA pendentes. |
+| [Extração de questões por LLM estruturada, 05/11](./specs/2026-11-05-pedro-lucas-question-extraction-design.md) | Conteúdo integral de documentos QUESTIONS, embeddings e saída estruturada | Proposta; ainda não implementada. |
+| [Pacote de especificação e validação](../../specs/2026-11-05-extracao-questions-llm/spec.md) | Critérios de aceite, tarefas e cenários de QA | Planejado; critérios pendentes. |
 | [Qualidade do parser e questões, 26/10](./specs/2026-10-26-document-parser-quality-design.md) | OCR, cortes de questões, corpus e métricas | Spec com baseline; partes ainda pendentes. |
 | [Doc-chunker de produção, 24/10](./specs/2026-10-24-doc-chunker-production-design.md) | `/chunk`, tokenizer, timeout, fallback e logs | Spec do caminho de conhecimento. |
 | [Imagens de PDF e chat, 27/10](./specs/2026-10-27-chat-multimodal-document-images-design.md) | Recortes, storage, vínculos com questões e IA multimodal | Implementado localmente; validação ponta a ponta e rollout pendentes. |
@@ -34,6 +39,7 @@
 
 | Documento | Assunto |
 | --- | --- |
+| [Extração de questões por LLM estruturada, 05/11](./planos/2026-11-05-extracao-questions-llm-estruturada.md) | Plano proposto para chunks integrais, extração estruturada e validação. |
 | [Ingestão V3](./planos/2026-08-25-document-ingestion-v3.md) | Etapas de integração de layout e parse runs. |
 | [Qualidade de questões](./planos/2026-08-26-document-question-pipeline-quality.md) | Plano central de candidatas e agentes. |
 | [Qualidade de questões, variante backend](./planos/2026-08-26-document-question-pipeline-quality-backend.md) | Plano anterior preservado. |

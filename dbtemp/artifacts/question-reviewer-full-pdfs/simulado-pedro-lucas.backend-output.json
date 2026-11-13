@@ -1,0 +1,590 @@
+{
+  "document": "Simulado Pedro Lucas",
+  "inputPdf": "tests/document-parser/documentos-professor/Simulado Pedro Lucas.pdf",
+  "database": "dbtemp local only",
+  "persisted": false,
+  "model": "deepseek/deepseek-v4.1-flash",
+  "contextMode": "full-pdf-text; no question figures found by parser",
+  "sourceQuestionCount": 10,
+  "llmCalls": 10,
+  "graphStage": "ready",
+  "graphRoute": "complete",
+  "outputQuestionCount": 10,
+  "llmUsage": [
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 4570,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 3191,
+      "completionTokens": 709,
+      "totalTokens": 3900,
+      "reasoningTokens": 547,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 1326,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 2827,
+      "completionTokens": 482,
+      "totalTokens": 3309,
+      "reasoningTokens": 330,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 5320,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 3040,
+      "completionTokens": 687,
+      "totalTokens": 3727,
+      "reasoningTokens": 519,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 5217,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 3164,
+      "completionTokens": 607,
+      "totalTokens": 3771,
+      "reasoningTokens": 478,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 1399,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 3025,
+      "completionTokens": 198,
+      "totalTokens": 3223,
+      "reasoningTokens": 109,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 4049,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 3049,
+      "completionTokens": 382,
+      "totalTokens": 3431,
+      "reasoningTokens": 267,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 5495,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 3332,
+      "completionTokens": 620,
+      "totalTokens": 3952,
+      "reasoningTokens": 427,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 12039,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 3098,
+      "completionTokens": 1799,
+      "totalTokens": 4897,
+      "reasoningTokens": 1273,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 4897,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 2942,
+      "completionTokens": 210,
+      "totalTokens": 3152,
+      "reasoningTokens": 180,
+      "finishReason": "stop"
+    },
+    {
+      "schemaName": "question_answer_key",
+      "durationMs": 815,
+      "model": "deepseek/deepseek-v4.1-flash",
+      "statusCode": 200,
+      "promptTokens": 2965,
+      "completionTokens": 137,
+      "totalTokens": 3102,
+      "reasoningTokens": 78,
+      "finishReason": "stop"
+    }
+  ],
+  "totalDurationMs": 45127,
+  "usageTotals": {
+    "promptTokens": 30633,
+    "completionTokens": 5831,
+    "reasoningTokens": 4208,
+    "totalTokens": 36464
+  },
+  "generatedAlternativesQuestions": [],
+  "generatedAnswerQuestions": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10"
+  ],
+  "questionsWithPendingIssues": [
+    {
+      "questionNumber": "08",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "10",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    }
+  ],
+  "backendOutput": [
+    {
+      "questionNumber": "01",
+      "statement": "O fósforo branco, de fórmula P4, é uma substância bastante tóxica. É utilizado para fins bélicos como arma química de guerra em granadas fumígenas. Pode ser obtido a partir do aquecimento do fosfato de cálcio, areia e coque em um forno especial, conforme mostrado na equação balanceada da reação:\n$$2 \\, \\text {Ca} _ { 3 } ( P O _ { 4 / 2 } ) \\left ( s \\right ) + 6 \\, \\text {Si} O _ { 2 } \\left ( s \\right ) + 1 0 \\, C \\left ( s \\right ) \\rightarrow 6 \\, \\text {Ca} \\text {Si} O _ { 3 } ( s ) + 1 \\, P _ { 4 } ( s ) + 1 0 \\, C O \\left ( g \\right )$$\nA respeito da reação de obtenção do fósforo branco, seus participantes e suas características são feitas as seguintes afirmativas.\n- I - O fósforo branco é classificado como uma substância iônica polar.\n- II - O fósforo branco (P4) é classificado como uma substância simples.\n- III - A geometria da molécula do gás monóxido de carbono é angular.\n- IV - A massa de fósforo branco obtida quando se aquece 1860 g de fosfato de cálcio com rendimento de 80% é de 297,6 g.\n- V - A distribuição eletrônica do átomo de cálcio no estado fundamental é: 1s 2 2s 2 2p 6 3s 2 3p 5 .\nDas afirmativas feitas estão corretas apenas.",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "I, II, III e V"
+        },
+        {
+          "label": "B",
+          "text": "II e IV"
+        },
+        {
+          "label": "C",
+          "text": "II, IV e V"
+        },
+        {
+          "label": "D",
+          "text": "III e V"
+        },
+        {
+          "label": "E",
+          "text": "I, III e IV"
+        }
+      ],
+      "correctAnswer": "B",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-1"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "02",
+      "statement": "Assinale a alternativa que apresenta apenas compostos iônicos:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "HF, NaCO3 e CaCl2."
+        },
+        {
+          "label": "B",
+          "text": "H2O, NaCl e NaBr."
+        },
+        {
+          "label": "C",
+          "text": "Ba(OH)2, NH4Cl e CH4."
+        },
+        {
+          "label": "D",
+          "text": "CaO, NaCl e KBr."
+        },
+        {
+          "label": "E",
+          "text": "C 2 H6, C 6 H6 e BH 3"
+        }
+      ],
+      "correctAnswer": "D",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-2"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "03",
+      "statement": "Assinale a alternativa correta:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "A condutividade elétrica dos metais é explicada admitindo-se a existência de nêutrons livres."
+        },
+        {
+          "label": "B",
+          "text": "O nitrato de sódio é um composto iônico, mas que apresenta ligações covalentes entre o átomo de nitrogênio e os átomos de oxigênio."
+        },
+        {
+          "label": "C",
+          "text": "Uma molécula com ligações polares pode somente ser classificada, quanto à sua polaridade, como uma molécula polar."
+        },
+        {
+          "label": "D",
+          "text": "Não existe força de atração entre moléculas apolares."
+        },
+        {
+          "label": "E",
+          "text": "As forças de atração entre as moléculas do ácido bromídrico são denominadas ligações de hidrogênio."
+        }
+      ],
+      "correctAnswer": "B",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-3"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "04",
+      "statement": "Compostos iônicos são aqueles que apresentam ligação iônica. A ligação iônica é a ligação entre íons positivos e negativos, unidos por forças de atração eletrostática. (Texto adaptado de: Usberco, João e Salvador, Edgard, Química: química geral, vol 1, pág 225, Saraiva, 2009). Sobre as propriedades e características de compostos iônicos são feitas as seguintes afirmativas:\n- I - apresentam brilho metálico.\n- II - apresentam elevadas temperaturas de fusão e ebulição.\n- III - apresentam boa condutibilidade elétrica quando em solução aquosa.\n- IV - São sólidos nas condições ambiente (25 °C e 1atm).\n- V - são pouco solúveis em solventes polares como a água.\nDas afirmativas apresentadas estão corretas apenas.",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "II, IV e V."
+        },
+        {
+          "label": "B",
+          "text": "II, III e IV ."
+        },
+        {
+          "label": "C",
+          "text": "I, III e V."
+        },
+        {
+          "label": "D",
+          "text": "I, IV e V."
+        },
+        {
+          "label": "E",
+          "text": "I, II e III."
+        }
+      ],
+      "correctAnswer": "B",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-3"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "05",
+      "statement": "Sabemos que os metais são materiais brilhantes, em sua maioria, sólidos muito resistentes, maleáveis, dúcteis e sécteis. Essas peculiaridades dessas substâncias são dadas devido, principalmente, à natureza de suas ligações, sendo formados por ligações metálicas. Assinale a alternativa que apresenta corretamente uma boa definição para a ligação metálica:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "A ligação metálica é a interação entre cátion e ânion, que se unem por forças eletrostáticas."
+        },
+        {
+          "label": "B",
+          "text": "A ligação metálica é o compartilhamento de elétrons entre átomos de eletronegatividade semelhante."
+        },
+        {
+          "label": "C",
+          "text": "A ligação metálica ocorre devido à interação entre cátions fixos e elétrons que se deslocam pela estrutura do metal no chamado ' modelo mar de elétrons'."
+        },
+        {
+          "label": "D",
+          "text": "A ligação metálica ocorre quando um átomo de metal interage com outro átomo de metal através de interações do tipo dipolo induzido."
+        },
+        {
+          "label": "E",
+          "text": "A ligação metálica ocorre quando o hidrogênio doa elétrons para um metal, e o metal utiliza esses elétrons para interagir com outro metal."
+        }
+      ],
+      "correctAnswer": "C",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-4"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "06",
+      "statement": "Os tipos de ligações químicas existentes nas substâncias cloreto de sódio (NaCl), gás cloro (Cl2) e água (H2O) são, respectivamente:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "iônica, covalente apolar e covalente polar."
+        },
+        {
+          "label": "B",
+          "text": "iônica, covalente polar e covalente apolar"
+        },
+        {
+          "label": "C",
+          "text": "iônica, covalente apolar e covalente apolar."
+        },
+        {
+          "label": "D",
+          "text": "covalente apolar, iônica e covalente polar."
+        },
+        {
+          "label": "E",
+          "text": "covalente polar, iônica e covalente apolar."
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-4"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "07",
+      "statement": "Sistema CFQ/CRQs esclarece dúvidas sobre contaminação alimentar por arsênio. Publicado em 30 de dezembro de 2024. O Sistema Conselho Federal de Química/Conselhos Regionais de Química (CFQ/CRQs) informa sobre as características, riscos e prevenção relacionados ao arsênio, substância encontrada em um recente caso de contaminação alimentar que levou a óbito três pessoas, em Torres, no Rio Grande do Sul. [...] De acordo com a literatura, o arsênio é um elemento químico não essencial ao organismo humano e altamente tóxico em sua forma inorgânica. [...] Sua toxicidade está associada à inativação de enzimas essenciais, interferindo na produção de energia celular e na reparação do DNA. [...] Para alimentos à base de cereais infantis, a Agência Nacional de Vigilância Sanitária (Anvisa) estabelece um limite máximo tolerado de 0,15 miligramas (de Arsênio) por kg. [...]\nAdaptado de: https://cfq.org.br/noticia/sistema-cfq-crqs-esclarece-duvidas-sobre-contaminacao-alimentar-porarsenio/. Acessado em 21/03/2025.\nCom base nas informações do texto, a quantidade máxima de átomos de arsênio que pode ser encontrada em 250 g de um alimento à base de cereais infantis, de acordo com o limite de tolerância estabelecido pela Anvisa, é de aproximadamente: Dado: Constante de Avogadro = 6,0 × 10 23 entidades mol -1 .\nDados: Massa Molar do Arsênio: 75 g/mol",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "3 × 10 17"
+        },
+        {
+          "label": "B",
+          "text": "4 × 10 20"
+        },
+        {
+          "label": "C",
+          "text": "6 × 10 22"
+        },
+        {
+          "label": "D",
+          "text": "7 × 10 23"
+        },
+        {
+          "label": "E",
+          "text": "9 × 10 30"
+        }
+      ],
+      "correctAnswer": "A",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-5",
+        "chunk-6"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "08",
+      "statement": "O 2,2,4 - trimetil pentano é o principal isômero da gasolina, sendo um hidrocarboneto de fórmula molecular C 8 H14 . Considere uma reação de combustão desse composto, descrita na equação (não balanceada) abaixo e calcule a o volume de CO2 gerado pela combustão de 33g do hidrocarboneto.\n(Considere 1 mol de gás = 22,4 L).\n$$C _ { 8 } H _ { 1 4 \\, ( 1 ) } + 0 _ { 2 \\, \\text { (g)} } \\longrightarrow C 0 _ { 2 \\, ( 1 ) } + H _ { 2 } 0 _ { \\, ( 1 ) }$$",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "1792 L"
+        },
+        {
+          "label": "B",
+          "text": "4480 L"
+        },
+        {
+          "label": "C",
+          "text": "5376 L"
+        },
+        {
+          "label": "D",
+          "text": "1388 L"
+        },
+        {
+          "label": "E",
+          "text": "2688 L"
+        }
+      ],
+      "correctAnswer": "C",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-6"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    },
+    {
+      "questionNumber": "09",
+      "statement": "Considere as seguintes afirmações, referentes à evolução dos modelos atômicos:\n- I - No modelo de Dalton, o átomo é dividido em prótons e elétrons.\n- II - No modelo de Rutherford, os átomos são constituídos por um núcleo muito pequeno e denso e carregado positivamente. Ao redor do núcleo estão distribuídos os elétrons, como planetas em torno do Sol.\n- III - O físico inglês Thomson afirma, em seu modelo atômico, que um elétron, ao passar de uma órbita para outra, absorve ou emite um quantum (fóton) de energia.\nDas afirmações feitas, está(ão) correta(s)",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "Apenas III."
+        },
+        {
+          "label": "B",
+          "text": "Apenas I e II."
+        },
+        {
+          "label": "C",
+          "text": "apenas II e III"
+        },
+        {
+          "label": "D",
+          "text": "apenas II."
+        },
+        {
+          "label": "E",
+          "text": "todas."
+        }
+      ],
+      "correctAnswer": "D",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-6",
+        "chunk-7"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": []
+    },
+    {
+      "questionNumber": "10",
+      "statement": "Sobre os modelos atômicos é correto afirmar que:",
+      "kind": "MULTIPLE_CHOICE",
+      "alternatives": [
+        {
+          "label": "A",
+          "text": "O modelo atômico de J.J. Thompson foi o primeiro, nele o átomo é maciço, indivisível e neutro. Apelidamos esse modelo de 'bola de bilhar'"
+        },
+        {
+          "label": "B",
+          "text": "No modelo de Ernest Rutherford, o átomo possui elétrons encrustrados em sua superfície como um 'pudim de passas'."
+        },
+        {
+          "label": "C",
+          "text": "A ideia de eletrosfera foi introduzida por John Dalton após um experimento bombardeando uma folha de ouro com partículas alfa."
+        },
+        {
+          "label": "D",
+          "text": "O modelo atômico de Erwin Schrödinger foi o primeiro a apresentar a ideia de elétrons. Essa partícula foi descoberta após um experimento com um tubo de raios catódicos."
+        },
+        {
+          "label": "E",
+          "text": "Niels Bohr foi quem propôs o modelo atômico que apresenta uma eletrosfera com diferentes níveis de energia, dividindo-a em camadas eletrônicas."
+        }
+      ],
+      "correctAnswer": "E",
+      "institution": null,
+      "year": null,
+      "alternativesGenerated": false,
+      "answerGenerated": true,
+      "alternativesOrigin": "SOURCE_DOCUMENT",
+      "correctAnswerOrigin": "AI_GENERATED",
+      "sourceChunkIds": [
+        "chunk-7"
+      ],
+      "visualEvidence": [],
+      "needsReview": true,
+      "status": "PENDING_REVIEW",
+      "pendingIssues": [
+        "ANSWER_CONTEXT_INSUFFICIENT"
+      ]
+    }
+  ],
+  "graphErrors": [],
+  "attempts": {
+    "candidate:c8776ad6d295cfd7cb66:0:answer": 1,
+    "candidate:1d3e00a541eda89b637d:1:answer": 1,
+    "candidate:e317c63288d87871a1c7:2:answer": 1,
+    "candidate:c9000771e4528e52770a:3:answer": 1,
+    "candidate:02d8692ec1cdc082b5c1:4:answer": 1,
+    "candidate:159527bd01b44ccbd705:5:answer": 1,
+    "candidate:1e9d2ac0a7aadfb61aba:6:answer": 1,
+    "candidate:d3cab8600ef6e2192db0:7:answer": 1,
+    "candidate:e1017e74185533315544:8:answer": 1,
+    "candidate:d568e45fd5f520391b7c:9:answer": 1
+  }
+}

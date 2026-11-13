@@ -1,0 +1,142 @@
+(node:2179740) [FSTWRN004] FastifyWarning: It seems that you are overriding an errorHandler in the same scope, which can lead to subtle bugs. To disable this behavior, set 'allowErrorHandlerOverride' to false. For more information, visit: https://fastify.dev/docs/latest/Reference/Server/#allowerrorhandleroverride
+(Use `node --trace-warnings ...` to show where the warning was created)
+Verificação do schema do worker concluída {
+  event: 'payments.worker_database_check_completed',
+  attempt: 1,
+  attempts: 3
+}
+monitor.daily_challenge_generation_triggered {
+  event: 'monitor.daily_challenge_generation_triggered',
+  trigger: 'startup'
+}
+monitor.daily_challenge_generation_started {
+  event: 'monitor.daily_challenge_generation_started',
+  challengeDate: '2026-11-07',
+  timezone: 'America/Sao_Paulo',
+  jobKey: 'daily-challenge-generation:2026-11-07'
+}
+monitor.daily_challenge_scheduler_scheduled {
+  event: 'monitor.daily_challenge_scheduler_scheduled',
+  timezone: 'America/Sao_Paulo',
+  nextRun: 2026-11-08T03:00:00.000Z,
+  delayMs: 47520319
+}
+Limpeza de anexos de imagem do chat concluída {
+  event: 'chat.image_attachments_cleanup_completed',
+  selectedCount: 0,
+  deletedCount: 0
+}
+Worker de documentos conectado ao Redis {
+  event: 'monitor.document_worker_ready',
+  queue: 'monitor-documents',
+  concurrency: 2
+}
+Worker de simulados semanais conectado ao Redis {
+  event: 'monitor.weekly_simulation_worker_ready',
+  queue: 'monitor-weekly-simulations',
+  concurrency: 2
+}
+Worker de webhooks de pagamentos conectado ao Redis { event: 'payments.webhook_worker_ready', queue: 'payments-webhooks' }
+monitor.daily_challenge_monitors_loaded {
+  event: 'monitor.daily_challenge_monitors_loaded',
+  challengeDate: '2026-11-07',
+  monitorCount: 0,
+  jobKey: 'daily-challenge-generation:2026-11-07'
+}
+monitor.daily_challenge_generation_completed {
+  event: 'monitor.daily_challenge_generation_completed',
+  challengeDate: '2026-11-07',
+  created: 0,
+  existing: 0,
+  unavailable: 0,
+  durationMs: 122,
+  jobKey: 'daily-challenge-generation:2026-11-07'
+}
+monitor.daily_challenge_generation_trigger_completed {
+  event: 'monitor.daily_challenge_generation_trigger_completed',
+  trigger: 'startup',
+  result: {
+    challengeDate: '2026-11-07',
+    created: 0,
+    existing: 0,
+    unavailable: 0,
+    durationMs: 122
+  }
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-1',
+  method: 'GET',
+  url: '/health',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-2',
+  method: 'GET',
+  url: '/health/worker',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+
+API local: http://127.0.0.1:33671
+Worker local ativo; LangGraph habilitado com checkpoints em question_graph_local_test.
+Banco: 127.0.0.1:56322/postgres | Supabase: http://127.0.0.1:56321 | Redis dedicado: 127.0.0.1:56379 | Docling: http://127.0.0.1:8080
+Use Ctrl+C para encerrar API e worker. Nenhuma chave será exibida.
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-3',
+  method: 'GET',
+  url: '/health',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: false,
+  hasCookies: false
+}
+Requisicao HTTP recebida {
+  event: 'http.request_received',
+  requestId: 'req-4',
+  method: 'POST',
+  url: '/api/v1/monitors/fd71e337-ceb5-4cc5-81ae-6badb36d5aec/documents',
+  origin: undefined,
+  accessControlRequestMethod: undefined,
+  hasAuthorization: true,
+  hasCookies: false
+}
+Verificando sessao com Supabase {
+  event: 'auth.session_check',
+  requestId: 'req-4',
+  hasAuthorizationHeader: true,
+  hasAccessTokenCookie: false
+}
+Sessao validada {
+  event: 'auth.session_validated',
+  requestId: 'req-4',
+  userId: '96942dbd-017b-4354-876c-c489c68dc7d9'
+}
+Upload de documento recebido {
+  event: 'monitor.document_upload_received',
+  requestId: 'req-4',
+  userId: '96942dbd-017b-4354-876c-c489c68dc7d9',
+  monitorId: 'fd71e337-ceb5-4cc5-81ae-6badb36d5aec',
+  method: 'POST',
+  url: '/api/v1/monitors/fd71e337-ceb5-4cc5-81ae-6badb36d5aec/documents',
+  contentType: 'multipart/form-data; boundary=----formdata-undici-034377831240'
+}
+Upload rejeitado na validacao dos campos {
+  event: 'monitor.document_upload_validation_failed',
+  requestId: 'req-4',
+  userId: '96942dbd-017b-4354-876c-c489c68dc7d9',
+  monitorId: 'fd71e337-ceb5-4cc5-81ae-6badb36d5aec',
+  invalidFields: [ 'tag' ]
+}
+Encerramento do worker solicitado { event: 'monitor.document_worker_shutdown', signal: 'SIGTERM' }
+monitor.daily_challenge_scheduler_stopped {
+  event: 'monitor.daily_challenge_scheduler_stopped',
+  timezone: 'America/Sao_Paulo'
+}

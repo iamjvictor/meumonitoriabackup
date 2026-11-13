@@ -1,0 +1,2 @@
+- AC-001/003: ampliar rotas com escopo IFF e UUID.
+- AC-002/003/004: adaptar filtros, navegação e decisões locais.

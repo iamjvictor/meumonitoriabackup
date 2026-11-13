@@ -44,6 +44,19 @@ export class RedisEntitlementCache {
     }
   }
 
+  async invalidateOrThrow(studentId: string) {
+    try {
+      await this.withTimeout(this.redis.del(this.key(studentId)));
+    } catch (error) {
+      console.error('Falha ao invalidar snapshot de acesso no Redis; webhook pode ser repetido', {
+        event: 'access.redis_invalidation_failed',
+        studentId,
+        error: error instanceof Error ? error.message : 'unknown',
+      });
+      throw error;
+    }
+  }
+
   private async withTimeout<T>(operation: Promise<T>): Promise<T> {
     let timer: ReturnType<typeof setTimeout> | undefined;
     try {

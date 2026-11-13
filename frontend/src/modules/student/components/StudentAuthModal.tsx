@@ -162,6 +162,8 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
       const token = extractAccessToken(data);
       if (token) {
         localStorage.setItem('mm_access_token', token);
+      } else {
+        localStorage.removeItem('mm_access_token');
       }
       localStorage.setItem('mm_user_role', 'student');
       const userInfo = {
@@ -268,6 +270,8 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
       const token = extractAccessToken(data);
       if (token) {
         localStorage.setItem('mm_access_token', token);
+      } else {
+        localStorage.removeItem('mm_access_token');
       }
       localStorage.setItem('mm_user_role', 'student');
       const newUserInfo = {

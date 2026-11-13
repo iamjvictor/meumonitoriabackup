@@ -1,0 +1,1 @@
+Consultar banco e API e comparar totais; simular dois anos e números repetidos no navegador; checar filtros, navegação, migração de decisões de 2010 e edição por UUID; rodar verificações de tipos e testes existentes.

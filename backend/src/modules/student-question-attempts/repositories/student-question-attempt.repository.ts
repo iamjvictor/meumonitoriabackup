@@ -1,4 +1,6 @@
 import { prisma } from '../../../lib/prisma.js';
+import { env } from '../../../config/env.js';
+import { legacyStudentEnrollmentEnvironmentFilter, legacyStudentSubscriptionEnvironmentFilter } from '../../access/infrastructure/legacy-access-environment.js';
 import type { StudentQuestionAttemptInput } from '../models/student-question-attempt.model.js';
 import { mapQuestionPracticeProvenance } from '../services/question-practice-provenance.js';
 
@@ -14,9 +16,10 @@ export class StudentQuestionAttemptRepository {
 
   async findAccessibleMonitorIds(studentId: string, userId: string) {
     const now = new Date();
-    const [subscriptions, enrollments, teacher] = await Promise.all([
-      prisma.studentSubscription.findMany({ where: { studentId, status: 'active', startsAt: { lte: now }, OR: [{ expiresAt: null }, { expiresAt: { gte: now } }] }, select: { monitorId: true } }),
-      prisma.studentEnrollment.findMany({ where: { studentId, status: 'ACTIVE', startsAt: { lte: now }, OR: [{ endsAt: null }, { endsAt: { gte: now } }] }, select: { monitorId: true } }),
+    const [subscriptions, enrollments, sponsoredSeats, teacher] = await Promise.all([
+      prisma.studentSubscription.findMany({ where: { studentId, status: 'active', ...legacyStudentSubscriptionEnvironmentFilter(), startsAt: { lte: now }, OR: [{ expiresAt: null }, { expiresAt: { gte: now } }] }, select: { monitorId: true } }),
+      prisma.studentEnrollment.findMany({ where: { studentId, status: 'ACTIVE', ...legacyStudentEnrollmentEnvironmentFilter(), startsAt: { lte: now }, OR: [{ endsAt: null }, { endsAt: { gte: now } }] }, select: { monitorId: true } }),
+      prisma.sponsoredSeat.findMany({ where: { studentId, status: 'ACTIVE', accessRevokedAt: null, batch: { environment: env.ASAAS_ENV.toUpperCase() }, startsAt: { lte: now }, endsAt: { gt: now } }, select: { batch: { select: { monitorId: true } } } }),
       prisma.teacher.findUnique({ where: { userId }, select: { id: true } }),
     ]);
 
@@ -27,6 +30,7 @@ export class StudentQuestionAttemptRepository {
     return Array.from(new Set([
       ...subscriptions.map((item) => item.monitorId),
       ...enrollments.map((item) => item.monitorId),
+      ...sponsoredSeats.map((seat) => seat.batch.monitorId),
       ...teacherMonitorIds,
     ]));
   }

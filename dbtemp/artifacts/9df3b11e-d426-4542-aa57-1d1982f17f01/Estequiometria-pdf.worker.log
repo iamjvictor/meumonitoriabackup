@@ -1,0 +1,793 @@
+Worker iniciou o processamento do documento {
+  event: 'monitor.document_processing_started',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  jobId: undefined,
+  attempt: undefined
+}
+Buscando documento no banco para o worker {
+  event: 'monitor.document_repository_lookup_started',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9'
+}
+Busca do documento concluida {
+  event: 'monitor.document_repository_lookup_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  found: true,
+  topicLinkCount: 1
+}
+Atualizando documento para PROCESSING {
+  event: 'monitor.document_status_update_started',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  status: 'PROCESSING'
+}
+Documento atualizado para PROCESSING {
+  event: 'monitor.document_status_update_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  status: 'PROCESSING'
+}
+Etapa auxiliar iniciada {
+  event: 'document_stage.started',
+  timestamp: '2026-11-02T20:38:57.994Z',
+  service: 'worker',
+  request_id: '504b9d54-d8ac-46cf-8654-f08cd9fd633c',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT'
+}
+Etapa auxiliar concluída {
+  event: 'document_stage.completed',
+  timestamp: '2026-11-02T20:38:58.041Z',
+  service: 'worker',
+  request_id: '504b9d54-d8ac-46cf-8654-f08cd9fd633c',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'DOWNLOAD_DOCUMENT',
+  outcome: 'completed',
+  duration_ms: 48
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  stage: 'DOWNLOAD_DOCUMENT',
+  status: 'READY',
+  startedAt: '2026-11-02T20:38:57.994Z',
+  finishedAt: '2026-11-02T20:38:58.041Z',
+  durationMs: 47,
+  attempt: undefined,
+  jobId: undefined,
+  details: {
+    storagePath: 'question-chat-e2e/9df3b11e-d426-4542-aa57-1d1982f17f01/Estequiometria.pdf'
+  }
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:38:58.075Z',
+  service: 'worker',
+  request_id: 'e035997a-9668-4718-a3de-660c5d5679d3',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS'
+}
+doc_chunker_v2.request_started {
+  timestamp: '2026-11-02T20:38:58.101Z',
+  service: 'worker',
+  request_id: '091871c0-dd24-41e7-945e-cc2111c8b0a6',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  doc_hash: '63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd',
+  request_bytes: 3374776
+}
+doc_chunker_v2.request_completed {
+  timestamp: '2026-11-02T20:39:29.852Z',
+  service: 'worker',
+  request_id: '091871c0-dd24-41e7-945e-cc2111c8b0a6',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  doc_hash: '63ac6bcdc1a33ef8a67998886482432496754695f6a3db9c918e3c6e7eb346cd',
+  chunk_count: 3,
+  asset_count: 8,
+  warning_count: 0,
+  response_bytes: 300362,
+  duration_ms: 31752
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1372,
+  descriptionChars: 165
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 233
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1498,
+  descriptionChars: 166
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 234
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 1769,
+  descriptionChars: 447
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 515
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2597,
+  descriptionChars: 948
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1016
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 2690,
+  descriptionChars: 818
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 886
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 3033,
+  descriptionChars: 1034
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1102
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1615
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 88,
+  totalTokens: 88
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2249
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 939
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 88,
+  totalTokens: 88
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 284,
+  totalTokens: 284
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 1625
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 333,
+  totalTokens: 333
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2647
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 171,
+  totalTokens: 171
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 5440,
+  descriptionChars: 1826
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 1894
+}
+Descrição visual concluída {
+  event: 'monitor.document_visual_description_completed',
+  model: 'google/gemini-2.5-flash',
+  durationMs: 6045,
+  descriptionChars: 1958
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 2026
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3156
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 359,
+  totalTokens: 359
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 675
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 788,
+  totalTokens: 788
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 3814
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 814,
+  totalTokens: 814
+}
+Indexação das imagens do documento concluída {
+  event: 'document_visual_assets.indexing_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  parseRunId: 'b9b0c276-05dd-4b34-af12-fba31aba47c2',
+  assetCount: 8,
+  failureCount: 0
+}
+Assets visuais privados persistidos {
+  event: 'document_visual_assets.persist_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  parseRunId: 'b9b0c276-05dd-4b34-af12-fba31aba47c2',
+  assetCount: 8,
+  warningCount: 0
+}
+(node:2755957) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+document_visual_assets.chunk_linking_completed {
+  owner_id: 'b9b0c276-05dd-4b34-af12-fba31aba47c2',
+  detected_count: 8,
+  linked_count: 0,
+  ambiguous_count: 2,
+  missing_count: 1,
+  detected_by_page: { '1': 5, '2': 1, '3': 2 },
+  linked_by_page: {},
+  ambiguous_by_page: { '1': 11, '2': 6, '4': 6 },
+  missing_by_page: {}
+}
+Vínculos de imagens aos chunks calculados {
+  event: 'document_visual_assets.chunk_links_summary',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  parseRunId: 'b9b0c276-05dd-4b34-af12-fba31aba47c2',
+  linkedCount: 0,
+  ambiguousCount: 2,
+  missingCount: 1
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:39:39.386Z',
+  service: 'worker',
+  request_id: 'e035997a-9668-4718-a3de-660c5d5679d3',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  outcome: 'completed',
+  duration_ms: 41329,
+  chunkCount: 3,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  stage: 'CREATE_RETRIEVAL_CHUNKS',
+  status: 'READY',
+  startedAt: '2026-11-02T20:38:58.054Z',
+  finishedAt: '2026-11-02T20:39:39.382Z',
+  durationMs: 41329,
+  attempt: undefined,
+  jobId: undefined,
+  details: { chunkCount: 3, status: 'READY' }
+}
+Chunks Docling persistidos {
+  event: 'document_chunks.persist_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  chunkCount: 3,
+  reused: false,
+  engine: 'docling',
+  sourceMode: 'docling'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:39:39.403Z',
+  service: 'worker',
+  request_id: 'a6c9cf37-7359-4d2e-85ac-073291394e73',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS'
+}
+Buscando chunks pendentes de embedding {
+  event: 'monitor.embedding_chunks_lookup_started',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  status: 'EMBEDDING_PENDING'
+}
+Chunks pendentes encontrados {
+  event: 'monitor.embedding_chunks_lookup_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  chunkCount: 3,
+  chunkIndexes: [ 0, 1, 2 ]
+}
+Processamento de embeddings iniciado {
+  event: 'monitor.document_embeddings_started',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  chunkCount: 3,
+  batchSize: 64
+}
+Atualizando chunks para EMBEDDING_PROCESSING { event: 'monitor.embedding_chunks_status_started', chunkCount: 3 }
+Chunks atualizados para EMBEDDING_PROCESSING {
+  event: 'monitor.embedding_chunks_status_completed',
+  chunkCount: 3,
+  status: 'EMBEDDING_PROCESSING'
+}
+Chunks reservados para processamento de embeddings {
+  event: 'monitor.document_embeddings_chunks_reserved',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  chunkCount: 3
+}
+Enviando lote de chunks para embeddings {
+  event: 'monitor.document_embeddings_batch_started',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  batchNumber: 1,
+  batchCount: 3,
+  firstChunkIndex: 0,
+  blockIds: []
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 3,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 3,
+  inputChars: 1696
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 801
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 3,
+  dimensions: 2048,
+  promptTokens: 908,
+  totalTokens: 908
+}
+Embeddings do lote recebidos, iniciando persistencia {
+  event: 'monitor.document_embeddings_batch_response_ready',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  batchNumber: 1,
+  embeddingCount: 3,
+  dimensions: 2048
+}
+Persistindo vetores dos chunks {
+  event: 'monitor.embedding_vectors_persist_started',
+  chunkCount: 3,
+  dimensions: 2048,
+  transactionTimeoutMs: 60000
+}
+Vetores dos chunks persistidos {
+  event: 'monitor.embedding_vectors_persist_completed',
+  chunkCount: 3,
+  status: 'READY'
+}
+Lote de embeddings persistido {
+  event: 'monitor.document_embeddings_batch_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  batchNumber: 1,
+  processedCount: 3,
+  totalChunks: 3
+}
+Processamento de embeddings concluido {
+  event: 'monitor.document_embeddings_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  chunkCount: 3,
+  batchCount: 1,
+  durationMs: 841
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:39:40.247Z',
+  service: 'worker',
+  request_id: 'a6c9cf37-7359-4d2e-85ac-073291394e73',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  outcome: 'completed',
+  duration_ms: 849,
+  chunkCount: 3,
+  batchCount: 1,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  stage: 'GENERATE_CHUNK_EMBEDDINGS',
+  status: 'READY',
+  startedAt: '2026-11-02T20:39:39.395Z',
+  finishedAt: '2026-11-02T20:39:40.244Z',
+  durationMs: 849,
+  attempt: undefined,
+  jobId: undefined,
+  details: { chunkCount: 3, batchCount: 1, status: 'READY' }
+}
+Etapa auxiliar iniciada {
+  event: 'document_stage.started',
+  timestamp: '2026-11-02T20:39:40.248Z',
+  service: 'worker',
+  request_id: 'bb401156-9281-4ad1-8040-631a8b9b44c6',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_TOPIC_PROFILE'
+}
+Validando cliente do OpenRouter {
+  event: 'monitor.openrouter_client_validation_started',
+  inputCount: 1,
+  hasApiKey: true,
+  model: 'qwen/qwen3-embedding-8b',
+  dimensions: 2048
+}
+Solicitando embeddings ao OpenRouter {
+  event: 'monitor.embedding_request_started',
+  model: 'qwen/qwen3-embedding-8b',
+  inputCount: 1,
+  inputChars: 78
+}
+Resposta recebida do OpenRouter {
+  event: 'monitor.embedding_http_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 4812
+}
+Embeddings recebidos do OpenRouter {
+  event: 'monitor.embedding_request_completed',
+  model: 'qwen/qwen3-embedding-8b',
+  embeddingCount: 1,
+  dimensions: 2048,
+  promptTokens: 26,
+  totalTokens: 26
+}
+Solicitando analise estruturada ao OpenRouter {
+  event: 'monitor.llm_structured_request_started',
+  model: 'google/gemini-2.5-flash',
+  schemaName: 'topic_profile',
+  maxTokens: 1200,
+  temperature: 0.2,
+  requireParameters: true,
+  messageCount: 2,
+  inputChars: 5009
+}
+Resposta da analise estruturada recebida {
+  event: 'monitor.llm_structured_response_received',
+  statusCode: 200,
+  ok: true,
+  durationMs: 2648,
+  responseChars: 663,
+  promptTokens: 2222,
+  completionTokens: 342,
+  totalTokens: 2564,
+  finishReason: 'stop',
+  nativeFinishReason: 'STOP'
+}
+Perfil de topico gerado a partir da base de conhecimento {
+  event: 'monitor.topic_profile_generated',
+  topicId: '2d17bd2a-bf62-48c7-8488-1fa44c532632',
+  topicName: 'Química orgânica e soluções',
+  sourceCount: 6,
+  model: 'google/gemini-2.5-flash'
+}
+Etapa auxiliar concluída {
+  event: 'document_stage.completed',
+  timestamp: '2026-11-02T20:39:47.769Z',
+  service: 'worker',
+  request_id: 'bb401156-9281-4ad1-8040-631a8b9b44c6',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'GENERATE_TOPIC_PROFILE',
+  outcome: 'completed',
+  duration_ms: 7521
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  stage: 'GENERATE_TOPIC_PROFILE',
+  status: 'READY',
+  startedAt: '2026-11-02T20:39:40.248Z',
+  finishedAt: '2026-11-02T20:39:47.769Z',
+  durationMs: 7521,
+  attempt: undefined,
+  jobId: undefined,
+  details: { profileScope: 'TOPIC' }
+}
+Atualizando documento para READY {
+  event: 'monitor.document_status_update_started',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  status: 'READY'
+}
+Documento atualizado para READY {
+  event: 'monitor.document_status_update_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  status: 'READY'
+}
+Etapa do documento iniciada {
+  event: 'document_processing_stage.started',
+  timestamp: '2026-11-02T20:39:47.874Z',
+  service: 'worker',
+  request_id: '08dc45c1-f409-446f-82db-3e7deebe1e47',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'READY_FOR_REVIEW'
+}
+Etapa do documento concluída {
+  event: 'document_processing_stage.completed',
+  timestamp: '2026-11-02T20:39:47.877Z',
+  service: 'worker',
+  request_id: '08dc45c1-f409-446f-82db-3e7deebe1e47',
+  document_id: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  job_id: null,
+  job_attempt: null,
+  stage: 'READY_FOR_REVIEW',
+  outcome: 'completed',
+  duration_ms: 90,
+  status: 'READY'
+}
+Etapa de processamento medida {
+  event: 'monitor.document_processing_stage_timed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  stage: 'READY_FOR_REVIEW',
+  status: 'READY',
+  startedAt: '2026-11-02T20:39:47.784Z',
+  finishedAt: '2026-11-02T20:39:47.874Z',
+  durationMs: 90,
+  attempt: undefined,
+  jobId: undefined,
+  details: { status: 'READY' }
+}
+Documento processado pelo worker {
+  event: 'monitor.document_worker_completed',
+  documentId: '5796b615-8eea-498a-ad44-8690d3af0ee9',
+  mimeType: 'application/pdf',
+  expectedBytes: 3374776,
+  downloadedBytes: 3374776,
+  durationMs: 50090,
+  status: 'READY'
+}
+{
+  "documentId": "5796b615-8eea-498a-ad44-8690d3af0ee9",
+  "document": {
+    "originalName": "Estequiometria.pdf",
+    "tag": "KNOWLEDGE_BASE",
+    "status": "READY",
+    "errorMessage": null,
+    "teacherId": "5e9e9a55-cbe4-4f65-864c-e28631f3f2af",
+    "monitorId": "4a48274d-a788-4dc0-ba63-63f8f8b17526",
+    "subjectId": "16a05fe3-5936-4e0d-bfb8-d3c01dab3f2b",
+    "topicId": "2d17bd2a-bf62-48c7-8488-1fa44c532632",
+    "_count": {
+      "chunks": 3,
+      "blocks": 0,
+      "textExtractions": 0,
+      "visualAssets": 8
+    }
+  },
+  "visualAssets": 8,
+  "chunks": [
+    {
+      "chunkIndex": 0,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 1,
+      "tokenCount": 35,
+      "embeddedAt": "2026-11-02T20:39:40.236Z",
+      "content": "- ●○ que e'mol?\n- Relacionando grandezas\n- Balanceamento de uma reagão\n- Interpretando problemas"
+    },
+    {
+      "chunkIndex": 1,
+      "status": "READY",
+      "pageStart": 1,
+      "pageEnd": 4,
+      "tokenCount": 487,
+      "embeddedAt": "2026-11-02T20:39:40.236Z",
+      "content": "Nº de Avogadro: 6,02·10 23 MMH=1g/mol MMN=14g/mgl Tantos mols de algo\"\n<!-- formula-not-decoded -->\n> Estequiomettia na pratica Balanceamento\n\"Lei de Lavoisier\"\n2HCl + Mg(OH)₂\nH2\n1-2\nO2\nCH_{4}+2O_₂}\n14g\nX + 2Y → X Y2\nGg sus Gg\n4g·2=8g\n4.2=8g\nMqCl₂+2H₂O\n→\n→\nH2O\nMACHO\nCO₂+2H₂O√\nC3H8 + 5O₂\n3CO₂+ 4H₂O√\n2Al(OH)₃+3H₂SO₄\nFeO+\nCO—\n3I- + 2H₂O\n→\nAl₂(SO4)₃+6H_₂}O√\n→\nCO2 + Fe\n→2OH−+ I₃ + H₂\nH₂O₂ + MnOi + 3H⁺—\nGr ande Zas\nm = massa\nV= Volume\nMM= massa molar\nn = n² de mds\nd = dens,dade\nm= C.v\n→2O₂+ Mn2+ +5H₂O\n2\nImpartante: Nas CNTP, 1 mol\nde ga's ideal oculpa 22,4 L\nMM=\nm\nn\nm = MM·n d =\nm = d.v\n@quimica. bizurada\nQ\nO percarbonato de sódio, que corresponde a uma mistura de 2 mols de Na ₂ CO ₃ e 3 mols de H ₂ O ₂ , é empregado em lavagem de roupas como agente oxidante na remoção de manchas. Esse processo de oxidação ocorre em função do oxigênio formado na reação de decomposição do peróxido de hidrogênio presente na mistura"
+    },
+    {
+      "chunkIndex": 2,
+      "status": "READY",
+      "pageStart": 4,
+      "pageEnd": 4,
+      "tokenCount": 383,
+      "embeddedAt": "2026-11-02T20:39:40.236Z",
+      "content": "Considerando 1 kg de percarbonato de sódio, o volume máximo, em litros, de gás oxigênio formado, sob condições normais de temperatura e pressão, é aproximadamente de\nA) 328\nB) 321\nC) 214\nD) 107\nQual é o volume produzido de gás carbônico quando 80 g de propano reagem com 40 g  do gás oxigênio?\n1 mol de ga's 22,4L\n3H2O{\n3H2O+\n→\n$$MM2Na₂CO₃ MMNa=23 3H₂O₂ 314 g/mol 十 二 MMC=p2 92 2496 6 Q6 MMo=16 =HWW 1000 VO₂=3nu202 1 3.185 mols 22,4 314 2 (mols totais em Jkg) VO2=4,777 .22.4 =107L$$\nC3H8+ 5O₂\n3CO2⁺\nOHh\n>\n12g\n449\n160\n132g\n409\n÷4\n80g\nMM\n二\nn.22,4\n11g\n40g\n339\n33\n44\n1=0.75.223\nn\n33g\nde\nCo\n2\nn= 0,75 mols\nV= 16,8L\n@quimica.bizurada"
+    }
+  ],
+  "blockTypes": [],
+  "questionSources": 0,
+  "pageThreeAssets": [
+    {
+      "id": "176bf3bb-336c-4ebb-a6c6-23417a106427",
+      "pageNumber": 3,
+      "assetType": "figure",
+      "storagePath": "5796b615-8eea-498a-ad44-8690d3af0ee9/b9b0c276-05dd-4b34-af12-fba31aba47c2/assets/eef9434649548db4d7a3a7e4d5bf7799-f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5.png",
+      "checksum": "f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5",
+      "descriptionStatus": "READY",
+      "description": "A figura é uma imagem de uma folha de caderno pautada, com anotações manuscritas em caneta preta e vermelha, e texto impresso em preto.\n\nNo topo, há uma frase impressa: \"A equação química a seguir representa a obtenção de ferro metálico a partir de seu minério.\" Abaixo, uma equação química impressa está sublinhada em vermelho: \"2 Fe₂O₃ (s) + 3 C (s) → 4 Fe (s) + 3 CO₂ (g)\".\n\nAbaixo da equação, há um problema impresso: \"Admitindo um rendimento de 100%, a massa de Fe₂O₃, em quilogramas, necessária para a obtenção de 28 g de ferro metálico corresponde a:\"\nSeguem-se opções de múltipla escolha impressas, com uma bolinha verde ao lado da opção (A):\n\"(A) 20\"\n\"(B) 40\"\n\"(C) 80\"\n\"(D) 160\"\n\nAo lado das opções, há cálculos manuscritos em caneta preta e vermelha:\n\"224 / 28 = ⑧\" (o \"⑧\" está circulado em vermelho)\n\"4 . 56 = 224\"\n\"MM Fe = 56\"\n\"MM C = 12\"\n\"MM O = 16\"\n\"MM Fe₂O₃ = 80\" (escrito em vermelho)\n\nAbaixo, há uma frase manuscrita em caneta preta: \"a quantidade de produto obtida é oito vezes menor que a esperada\". Uma seta vermelha aponta para a palavra \"menor\".\n\nMais abaixo, há cálculos manuscritos em caneta vermelha:\n\"2 . 80 = 160\"\nUma seta dupla aponta para \"160 / 8 = 20 kg\".\n\nNa parte inferior da folha, há um título impresso em verde: \"Questão 1\".\nAbaixo, um problema impresso: \"(Famerp) Em janeiro de 2018 foi encontrado em uma mina na África o quinto maior diamante (uma variedade alotrópica do carbono) do mundo, pesando 900 quilates. Considerando que um quilate equivale a uma massa de 200 mg, a quantidade, em mol, de átomos de carbono existente nesse diamante é igual a\" (a frase \"a quantidade, em mol,\" está sublinhada em vermelho).\n\nAbaixo do problema, há \"Dados: C = 12.\" impresso.\nSeguem-se opções de múltipla escolha impressas, com uma bolinha verde ao lado da opção \"a)\":\n\"a) 1,5 × 10¹.\"\n\"b) 3,0 × 10¹.\"\n\"c) 4,5 × 10¹.\"\n\"d) 1,5 × 10⁴.\"\n\"e) 3,0 × 10⁴.\"\n\nAo lado das opções, há cálculos manuscritos em caneta preta:\n\"900 . 200 = 180000"
+    },
+    {
+      "id": "fcc882d6-9df8-422b-b12f-26d4a85f42b1",
+      "pageNumber": 3,
+      "assetType": "figure",
+      "storagePath": "5796b615-8eea-498a-ad44-8690d3af0ee9/b9b0c276-05dd-4b34-af12-fba31aba47c2/assets/fa966747a39160eda788c61997ced705-c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7.png",
+      "checksum": "c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7",
+      "descriptionStatus": "READY",
+      "description": "A figura é uma imagem de texto. O texto visível é \"@ quimica.bizurada\". Não há título, rótulos, unidades, valores legíveis, relações visuais ou incertezas adicionais."
+    }
+  ],
+  "pageThreeStorageChecks": [
+    {
+      "assetId": "176bf3bb-336c-4ebb-a6c6-23417a106427",
+      "storagePath": "5796b615-8eea-498a-ad44-8690d3af0ee9/b9b0c276-05dd-4b34-af12-fba31aba47c2/assets/eef9434649548db4d7a3a7e4d5bf7799-f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5.png",
+      "downloaded": true,
+      "byteLength": 127362,
+      "sha256": "f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5",
+      "expectedChecksum": "f176fe94d5025a79cd6375ff1bbdd000c708be37510a9264711c5a89f434f1d5",
+      "checksumMatches": true
+    },
+    {
+      "assetId": "fcc882d6-9df8-422b-b12f-26d4a85f42b1",
+      "storagePath": "5796b615-8eea-498a-ad44-8690d3af0ee9/b9b0c276-05dd-4b34-af12-fba31aba47c2/assets/fa966747a39160eda788c61997ced705-c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7.png",
+      "downloaded": true,
+      "byteLength": 2786,
+      "sha256": "c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7",
+      "expectedChecksum": "c4491e02e10d6dd751ec2be9deb4dc1e81a762e0438ec0d8ff9788915b50e0a7",
+      "checksumMatches": true
+    }
+  ],
+  "elapsedMs": 50128
+}
