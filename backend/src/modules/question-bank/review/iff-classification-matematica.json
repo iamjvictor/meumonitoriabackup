@@ -1,0 +1,719 @@
+[
+  {
+    "id": "01a11140-c294-4676-baa6-776658225941",
+    "competenceCodes": [
+      "D50"
+    ]
+  },
+  {
+    "id": "2ce04702-b30a-41fd-a2b7-4c3027443e81",
+    "competenceCodes": [
+      "D32",
+      "D43",
+      "D44"
+    ]
+  },
+  {
+    "id": "352c3e3d-ddca-4736-82cf-a1e2b10d5da8",
+    "competenceCodes": [
+      "D19"
+    ]
+  },
+  {
+    "id": "c46db9b7-a0b3-4a66-88d0-1227c3cb093f",
+    "competenceCodes": [
+      "D49",
+      "D54"
+    ]
+  },
+  {
+    "id": "096d2fd5-a44c-4207-9a55-eddd09793802",
+    "competenceCodes": [
+      "D51"
+    ]
+  },
+  {
+    "id": "636fcb4c-bf9a-496b-8a64-857d7ea760b0",
+    "competenceCodes": [
+      "D54"
+    ]
+  },
+  {
+    "id": "1e549d00-a817-4441-a7fb-d0d9b762fed8",
+    "competenceCodes": [
+      "D14"
+    ]
+  },
+  {
+    "id": "841c4105-ae42-407e-a4f4-8a9f50adc588",
+    "competenceCodes": [
+      "D28",
+      "D30"
+    ]
+  },
+  {
+    "id": "5fc256dc-ffc1-473f-80bf-732e5946686c",
+    "competenceCodes": [
+      "D49"
+    ]
+  },
+  {
+    "id": "9f7c838b-76d0-4fa4-9eba-fd5fb6ef633a",
+    "competenceCodes": [
+      "D27"
+    ]
+  },
+  {
+    "id": "caf1df6b-c7c8-4635-b18a-124e43c176d7",
+    "competenceCodes": [
+      "D28"
+    ]
+  },
+  {
+    "id": "22cd97a3-cb3b-44cf-bd23-9f61407c9276",
+    "competenceCodes": [
+      "D44"
+    ]
+  },
+  {
+    "id": "fee61ebe-fe19-450d-8551-daeab1b8d957",
+    "competenceCodes": [
+      "D49",
+      "D44"
+    ]
+  },
+  {
+    "id": "8c27f690-93f2-4075-9602-46f6427453a9",
+    "competenceCodes": [
+      "D24",
+      "D29"
+    ]
+  },
+  {
+    "id": "90c9cf63-73b2-4ec0-8c8b-5a20081c62a9",
+    "competenceCodes": [
+      "D12",
+      "D18"
+    ]
+  },
+  {
+    "id": "635ff3d5-6602-4a8d-85a2-d24e0294b7a8",
+    "competenceCodes": [
+      "D54",
+      "D55"
+    ]
+  },
+  {
+    "id": "73a267d5-b033-43a7-ac22-8016f73f3465",
+    "competenceCodes": [
+      "D47"
+    ]
+  },
+  {
+    "id": "18a4195e-0c63-4c1b-925d-beb6849b87d1",
+    "competenceCodes": []
+  },
+  {
+    "id": "587f0492-71da-4c95-aca2-f729d491a659",
+    "competenceCodes": [
+      "D5",
+      "D16"
+    ]
+  },
+  {
+    "id": "b08b2b9f-4731-4683-b0d7-5d6c2263858e",
+    "competenceCodes": [
+      "D23",
+      "D32"
+    ]
+  },
+  {
+    "id": "ffdf1153-e3f7-4236-ba80-0f4e3dbc2b64",
+    "competenceCodes": [
+      "D14"
+    ]
+  },
+  {
+    "id": "050739d5-dbc1-4760-a752-daebf09bbc08",
+    "competenceCodes": []
+  },
+  {
+    "id": "6b8aeaf7-1a4d-49c1-861b-41ff7d2a3403",
+    "competenceCodes": [
+      "D11",
+      "D15"
+    ]
+  },
+  {
+    "id": "5b154ca9-9e02-46fd-a76b-f18a2f5138a5",
+    "competenceCodes": []
+  },
+  {
+    "id": "e1114797-a55f-4c2b-ba26-1da2513de52f",
+    "competenceCodes": [
+      "D44"
+    ]
+  },
+  {
+    "id": "01571b9d-4cc6-491a-8bf2-dd52ef1d5668",
+    "competenceCodes": [
+      "D27"
+    ]
+  },
+  {
+    "id": "3013d13f-5e64-41d0-a2e2-57af1716744c",
+    "competenceCodes": [
+      "D28"
+    ]
+  },
+  {
+    "id": "fed19809-c863-4b72-9221-aa799206c670",
+    "competenceCodes": [
+      "D49"
+    ]
+  },
+  {
+    "id": "00d85b04-bb9a-490e-b586-ff6f27a55c56",
+    "competenceCodes": [
+      "D32"
+    ]
+  },
+  {
+    "id": "dda70116-cd93-4b90-806e-69903814faef",
+    "competenceCodes": [
+      "D34",
+      "D54"
+    ]
+  },
+  {
+    "id": "5d0944e9-10ea-4857-a448-6f02a2161bfc",
+    "competenceCodes": [
+      "D44"
+    ]
+  },
+  {
+    "id": "af3dc835-e299-43fb-9e2b-07ecb67d6c19",
+    "competenceCodes": [
+      "D35"
+    ]
+  },
+  {
+    "id": "cae0e449-1199-4aa8-9ce4-1bf957db044f",
+    "competenceCodes": [
+      "D25",
+      "D19"
+    ]
+  },
+  {
+    "id": "ef17a4f8-e65a-402e-821c-f42e7de66483",
+    "competenceCodes": [
+      "D7",
+      "D22",
+      "D27"
+    ]
+  },
+  {
+    "id": "74e9d2e5-731d-47e8-9da5-0f8a3252b772",
+    "competenceCodes": [
+      "D49"
+    ]
+  },
+  {
+    "id": "b13bed4d-cc49-40c3-baae-9e12b4aa924b",
+    "competenceCodes": [
+      "D44"
+    ]
+  },
+  {
+    "id": "2d39911a-cb43-4a4a-81d7-2a915d473c49",
+    "competenceCodes": [
+      "D12",
+      "D29"
+    ]
+  },
+  {
+    "id": "2c9eea69-4285-43d7-aa4f-89595c795be7",
+    "competenceCodes": [
+      "D11",
+      "D15"
+    ]
+  },
+  {
+    "id": "837df231-31f9-48fa-90ad-97a3dd6b0630",
+    "competenceCodes": [
+      "D7",
+      "D22"
+    ]
+  },
+  {
+    "id": "2527f4ee-180e-4d99-8d43-e2d944b9b00e",
+    "competenceCodes": [
+      "D53",
+      "D59"
+    ]
+  },
+  {
+    "id": "2972b866-f829-4912-a5d3-553d6eaf0630",
+    "competenceCodes": [
+      "D14"
+    ]
+  },
+  {
+    "id": "1a962fd8-a62b-41db-bc18-fcd7fc77f550",
+    "competenceCodes": [
+      "D44"
+    ]
+  },
+  {
+    "id": "01c5c95f-e7a3-4a1d-82a3-e87c63d9811d",
+    "competenceCodes": [
+      "D55"
+    ]
+  },
+  {
+    "id": "7d541594-ec20-4ebd-ad2e-2ce383e37106",
+    "competenceCodes": []
+  },
+  {
+    "id": "85950ea0-0217-432e-b493-c9107928b05e",
+    "competenceCodes": [
+      "D32"
+    ]
+  },
+  {
+    "id": "b205ceb8-6bf2-4d7e-a588-3c6b01f2e691",
+    "competenceCodes": [
+      "D18"
+    ]
+  },
+  {
+    "id": "7c38be13-82e3-4425-94b5-8c0217bd7cfb",
+    "competenceCodes": [
+      "D53",
+      "D59"
+    ]
+  },
+  {
+    "id": "7459d2d0-ccf8-4c86-af38-6a2f3c7249cf",
+    "competenceCodes": [
+      "D46"
+    ]
+  },
+  {
+    "id": "76126ffd-8495-4d8e-b0a8-488670285859",
+    "competenceCodes": [
+      "D49"
+    ]
+  },
+  {
+    "id": "2c3d60ad-7d16-462a-a061-038e90005756",
+    "competenceCodes": [
+      "D10"
+    ]
+  },
+  {
+    "id": "d4972ce4-0144-49c0-910c-572a5d2f7be0",
+    "competenceCodes": [
+      "D24",
+      "D27"
+    ]
+  },
+  {
+    "id": "7d537996-d5d8-4e53-b4ca-abc8dbef2ec6",
+    "competenceCodes": [
+      "D41",
+      "D50"
+    ]
+  },
+  {
+    "id": "9b0a30b2-3c51-427a-a7ec-7ca655b9a560",
+    "competenceCodes": [
+      "D30"
+    ]
+  },
+  {
+    "id": "146c5fea-c7b0-4492-9f7d-b22d2fdb341b",
+    "competenceCodes": [
+      "D54",
+      "D55"
+    ]
+  },
+  {
+    "id": "22794dfe-e1c1-46b2-81e8-9190919fbc32",
+    "competenceCodes": [
+      "D49"
+    ]
+  },
+  {
+    "id": "77e5049c-44d4-4abd-98ec-8cf24e18463e",
+    "competenceCodes": []
+  },
+  {
+    "id": "154357d6-c5b5-46b2-9f17-901a28398229",
+    "competenceCodes": [
+      "D49"
+    ]
+  },
+  {
+    "id": "bc5ef150-d28b-4ad9-84ba-2d3b69d95293",
+    "competenceCodes": [
+      "D47"
+    ]
+  },
+  {
+    "id": "354d4f31-881e-4216-8c0b-d7da5798b911",
+    "competenceCodes": [
+      "D35"
+    ]
+  },
+  {
+    "id": "2614ba6e-d67c-48df-beac-aa4565768a65",
+    "competenceCodes": []
+  },
+  {
+    "id": "0d015c91-5f27-420a-a8eb-184cd7c4dc08",
+    "competenceCodes": [
+      "D24",
+      "D30"
+    ]
+  },
+  {
+    "id": "ea411909-5852-4074-846c-9cdbf8dfb3b8",
+    "competenceCodes": [
+      "D24",
+      "D29"
+    ]
+  },
+  {
+    "id": "4d2a2f74-cf56-4608-a4de-86f84bfb0d6a",
+    "competenceCodes": [
+      "D12",
+      "D26"
+    ]
+  },
+  {
+    "id": "26cfefb8-df42-4398-8389-e7e70e2bc2a9",
+    "competenceCodes": [
+      "D54",
+      "D55"
+    ]
+  },
+  {
+    "id": "8a81382d-147e-4c87-be22-9258d2789353",
+    "competenceCodes": [
+      "D43"
+    ]
+  },
+  {
+    "id": "5bb94666-6e07-4fa5-ab66-c74002f1e1a0",
+    "competenceCodes": [
+      "D49"
+    ]
+  },
+  {
+    "id": "d31bd467-0a92-4bc0-922b-4ec33efb3d20",
+    "competenceCodes": [
+      "D58"
+    ]
+  },
+  {
+    "id": "18d8ec13-39e3-4162-9c6b-584321019740",
+    "competenceCodes": [
+      "D24",
+      "D32"
+    ]
+  },
+  {
+    "id": "14715021-a601-4d84-a9e1-68c9bd222a92",
+    "competenceCodes": [
+      "D49",
+      "D54"
+    ]
+  },
+  {
+    "id": "f7a6b059-3a2d-415c-b75b-6d3e7429d2d1",
+    "competenceCodes": [
+      "D50"
+    ]
+  },
+  {
+    "id": "0d0cdc38-dbee-4853-9853-df16b6a675c2",
+    "competenceCodes": [
+      "D22",
+      "D30"
+    ]
+  },
+  {
+    "id": "bc69b8b0-5a08-45f5-8674-9779b87e1ccd",
+    "competenceCodes": [
+      "D7"
+    ]
+  },
+  {
+    "id": "5448aa07-2773-456e-afe2-091642a27d38",
+    "competenceCodes": [
+      "D30"
+    ]
+  },
+  {
+    "id": "4f34e91f-d06b-4d39-a548-1a5dd1b6a248",
+    "competenceCodes": [
+      "D30"
+    ]
+  },
+  {
+    "id": "f28d7a40-d6e5-4b12-987d-27cc84cf7f54",
+    "competenceCodes": [
+      "D15",
+      "D20",
+      "D44"
+    ]
+  },
+  {
+    "id": "39ed64ae-461b-4919-9af7-3cbea2b3a2ba",
+    "competenceCodes": [
+      "D3"
+    ]
+  },
+  {
+    "id": "1d7b2823-21b2-4882-9045-227ab86cd661",
+    "competenceCodes": [
+      "D29"
+    ]
+  },
+  {
+    "id": "371750b8-bb46-424f-8e3c-b17b85844874",
+    "competenceCodes": [
+      "D43",
+      "D49"
+    ]
+  },
+  {
+    "id": "054051c7-c934-401e-a51e-06160b4db7d3",
+    "competenceCodes": [
+      "D27",
+      "D30",
+      "D49"
+    ]
+  },
+  {
+    "id": "ab23eb46-1c06-46bd-827f-41f06d078bc9",
+    "competenceCodes": [
+      "D50"
+    ]
+  },
+  {
+    "id": "8c736b11-0434-4887-869d-c32d84c3724a",
+    "competenceCodes": [
+      "D18"
+    ]
+  },
+  {
+    "id": "29eb6be6-b801-4639-adb0-98d16084953f",
+    "competenceCodes": [
+      "D55"
+    ]
+  },
+  {
+    "id": "0a60176c-6308-4d0e-9bf6-e0757a1a26c7",
+    "competenceCodes": [
+      "D14",
+      "D29"
+    ]
+  },
+  {
+    "id": "5aec5331-8525-4adc-8fd5-13bd221cc5dd",
+    "competenceCodes": [
+      "D51"
+    ]
+  },
+  {
+    "id": "d1dab82a-e426-4606-a3fc-fb20d7dc3319",
+    "competenceCodes": [
+      "D35"
+    ]
+  },
+  {
+    "id": "f8bf4de5-43a2-4f27-a5db-00fa8b32275b",
+    "competenceCodes": [
+      "D58"
+    ]
+  },
+  {
+    "id": "85abef65-2b28-4d8b-a67c-3e1ac0b1d9c4",
+    "competenceCodes": [
+      "D49",
+      "D51"
+    ]
+  },
+  {
+    "id": "04175fa0-9b75-4cfa-881d-237e8c2a365a",
+    "competenceCodes": [
+      "D27"
+    ]
+  },
+  {
+    "id": "f6829040-005b-49ea-b8ef-f3e3fec1e88e",
+    "competenceCodes": []
+  },
+  {
+    "id": "9ce233bf-01d9-4fa0-b782-080348921eba",
+    "competenceCodes": [
+      "D30"
+    ]
+  },
+  {
+    "id": "25488229-6ec7-493e-9a2a-cdef9d527f25",
+    "competenceCodes": [
+      "D24",
+      "D30"
+    ]
+  },
+  {
+    "id": "9623bc7e-1a6d-4817-84dc-d1db91517495",
+    "competenceCodes": [
+      "D23"
+    ]
+  },
+  {
+    "id": "9d48f224-2e0e-4bcf-8a5e-e5776256611a",
+    "competenceCodes": [
+      "D16"
+    ]
+  },
+  {
+    "id": "26408a88-6bf7-49a4-8e00-b6ac7efe3e76",
+    "competenceCodes": [
+      "D24",
+      "D29"
+    ]
+  },
+  {
+    "id": "7e07ac89-19ab-4da3-8e5c-8f9a0fcf07c5",
+    "competenceCodes": [
+      "D10"
+    ]
+  },
+  {
+    "id": "231512ac-13e7-480a-962c-56fe9c59fe3c",
+    "competenceCodes": [
+      "D25"
+    ]
+  },
+  {
+    "id": "9f985277-3a27-4157-a6bd-ce0e62120bdd",
+    "competenceCodes": [
+      "D33"
+    ]
+  },
+  {
+    "id": "17361c55-e0ab-4322-a853-eeacd574eeb2",
+    "competenceCodes": [
+      "D15"
+    ]
+  },
+  {
+    "id": "62160543-bdc1-4d4c-8e34-ecae6f37ba29",
+    "competenceCodes": [
+      "D18",
+      "D32"
+    ]
+  },
+  {
+    "id": "b26f23d5-2143-4369-b151-53132f6a3b6c",
+    "competenceCodes": [
+      "D19",
+      "D55"
+    ]
+  },
+  {
+    "id": "b2332fa4-d11d-4893-8237-e1dc1356ac2a",
+    "competenceCodes": [
+      "D3"
+    ]
+  },
+  {
+    "id": "ca57bb4c-b293-4139-92ea-578c12a2a61b",
+    "competenceCodes": [
+      "D35"
+    ]
+  },
+  {
+    "id": "3a494233-e3e3-41bd-b146-e8b060aea09e",
+    "competenceCodes": [
+      "D28",
+      "D29"
+    ]
+  },
+  {
+    "id": "4ba03d88-c1f6-4293-a382-89692d882cea",
+    "competenceCodes": [
+      "D21",
+      "D28",
+      "D30"
+    ]
+  },
+  {
+    "id": "f0d40987-9157-4767-b833-a07ca8a42ff6",
+    "competenceCodes": [
+      "D54",
+      "D55"
+    ]
+  },
+  {
+    "id": "f2ffdbfb-a24c-4c32-a7d9-890e6191d520",
+    "competenceCodes": [
+      "D44",
+      "D47"
+    ]
+  },
+  {
+    "id": "e3a5a815-0626-4367-8b9f-cfc34451f384",
+    "competenceCodes": [
+      "D49",
+      "D54"
+    ]
+  },
+  {
+    "id": "8b22cbc8-be5a-473c-85d7-aa51a0d3a102",
+    "competenceCodes": [
+      "D22"
+    ]
+  },
+  {
+    "id": "ab1ec9b5-182b-4047-b871-935d8b50ac6e",
+    "competenceCodes": [
+      "D30"
+    ]
+  },
+  {
+    "id": "2e7dacef-12d0-4233-bda7-3accad4cc4ce",
+    "competenceCodes": [
+      "D51"
+    ]
+  },
+  {
+    "id": "856b49cc-adf4-4733-88fc-6dda9d350c61",
+    "competenceCodes": []
+  },
+  {
+    "id": "29038b03-cbcf-4925-ba7c-5bfafb0e8708",
+    "competenceCodes": [
+      "D11",
+      "D14"
+    ]
+  },
+  {
+    "id": "60157cb7-c994-4aaf-96fa-c2c6dff9778d",
+    "competenceCodes": [
+      "D23"
+    ]
+  },
+  {
+    "id": "44f8a3d8-670e-4627-85e3-2e600941c652",
+    "competenceCodes": [
+      "D16",
+      "D18"
+    ]
+  }
+]

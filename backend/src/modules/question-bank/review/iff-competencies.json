@@ -1,0 +1,3159 @@
+[
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D1",
+    "description": "Interpretar textos em linguagem verbal e não verbal."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D2",
+    "description": "Diferenciar ideias centrais de secundárias; tópicos de subtópicos; tese de argumentos em um texto."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D3",
+    "description": "Localizar informações explícitas em um texto."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D4",
+    "description": "Inferir informações implícitas em um texto."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D5",
+    "description": "Interpretar dados e fatos em um texto; distinguir um fato da opinião relativa a esse fato."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D6",
+    "description": "Identificar no texto o contexto de produção que envolve a situação de comunicação, o perfil dos interlocutores, o assunto, a linguagem utilizada, além de eventuais ruídos que dificultam a comunicação."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D7",
+    "description": "Inferir o significado de palavras e de expressões linguísticas a partir da análise de seus elementos estruturais e/ou do contexto."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D8",
+    "description": "Identificar os recursos linguísticos que possibilitam a criação de novas palavras e os efeitos de sentido resultantes desse uso."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D9",
+    "description": "Estabelecer relações entre o texto (literário / não literário) e o momento de sua produção, situando aspectos do contexto histórico, social e político."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D10",
+    "description": "Identificar os gêneros textuais a partir dos elementos constitutivos de sua organização interna e das informações transmitidas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D11",
+    "description": "Interpretar textos identificando mudança de sentido gerada por alteração do contexto (locutor, interlocutor, variação linguística, suporte etc.)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D12",
+    "description": "Identificar a finalidade de textos de diferentes gêneros textuais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D13",
+    "description": "Analisar a função da linguagem predominante nos textos considerando a finalidade a que se destinam."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D14",
+    "description": "Identificar as diversas vozes presentes no texto, as marcas linguísticas que as distinguem, seus pontos de vista e estratégias de enunciá-los."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D15",
+    "description": "Reconhecer posições distintas entre duas ou mais opiniões relativas ao mesmo fato ou ao mesmo tema."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 3 – Relação entre textos",
+    "code": "D16",
+    "description": "Reconhecer diferentes formas de tratar uma informação na comparação de textos que tratam do mesmo tema, em função das condições em que ele foi produzido e daquelas em que será recebido."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 3 – Relação entre textos",
+    "code": "D17",
+    "description": "Estabelecer relações entre imagens (fotos, ilustrações, telas), gráficos, tabelas, infográficos e o corpo do texto, comparando informações explícitas, pressupostas ou subentendidas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 3 – Relação entre textos",
+    "code": "D18",
+    "description": "Reconhecer formas de apropriação textual como paródias, paráfrases, citações, discurso direto, indireto ou indireto livre e justificar seu uso."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 3 – Relação entre textos",
+    "code": "D19",
+    "description": "Reconhecer o uso da metalinguagem em textos literários e não literários."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D20",
+    "description": "Identificar a tese de um texto."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D21",
+    "description": "Estabelecer relação entre a tese e os argumentos oferecidos para sustentá-la."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D22",
+    "description": "Identificar os elementos que concorrem para a progressão temática e para a organização e estruturação de textos de diferentes gêneros e tipos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D23",
+    "description": "Estabelecer relações entre partes de um texto, identificando repetições, substituições e/ou pronominalizações e demais mecanismos que contribuem para dar-lhe continuidade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D24",
+    "description": "Identificar o conflito gerador do enredo e os elementos que constroem a narrativa."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D25",
+    "description": "Identificar relações lógico-discursivas presentes no texto, marcadas por conjunções, advérbios etc."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D26",
+    "description": "Reconhecer as regras de acentuação gráfica, de ortografia, de pontuação, de concordância e de regência como ferramentas fundamentais para a coesão e coerência de um texto."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D27",
+    "description": "Analisar a relação de sentido produzida pelos recursos coesivos e operadores discursivos como estratégia argumentativa."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D28",
+    "description": "Identificar mecanismos de articulação frasal (justaposição, coordenação e subordinação)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D29",
+    "description": "Identificar a estrutura formal de poemas apresentados."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D30",
+    "description": "Identificar a significativa alteração de sentido do texto, em virtude da presença ou ausência dos sinais gráficos (acentos gráficos e pontuação)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D31",
+    "description": "Identificar os recursos linguísticos próprios para marcar a pessoalidade, a impessoalidade ou a indeterminação de um sujeito agente e os efeitos de sentido produzidos pelo recurso usado."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D32",
+    "description": "Identificar o efeito de sentido produzido em um texto pelo uso de determinadas categorias gramaticais (gênero, número, casos, aspecto, modo, voz etc.)"
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D33",
+    "description": "Identificar os recursos expressivos visuais e sonoros e as figuras de linguagem, elementos importantes para a compreensão e interpretação de um texto literário ou publicitário."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D34",
+    "description": "Identificar efeitos de ironia ou humor em textos variados."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D35",
+    "description": "Identificar o efeito de sentido decorrente do deslocamento de palavras ou expressões na frase."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D36",
+    "description": "Reconhecer o efeito de sentido decorrente da escolha de uma determinada palavra ou expressão em detrimento de outra."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D37",
+    "description": "Reconhecer o efeito de sentido decorrente da exploração de recursos ortográficos e / ou morfossintáticos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 6 – Variação linguística",
+    "code": "D38",
+    "description": "Relacionar as variedades linguísticas a situações específicas de uso social."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 6 – Variação linguística",
+    "code": "D39",
+    "description": "Justificar a presença, em um texto, de marcas de variação linguística que dizem respeito a fatores geográficos, históricos, sociais ou técnicos, do ponto de vista da fonética, do léxico, da morfologia ou da sintaxe."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 6 – Variação linguística",
+    "code": "D40",
+    "description": "Justificar a presença, em um texto, de marcas de variação linguística que dizem respeito às diferenças entre os registros formal e informal, ou entre os padrões de linguagem oral ou escrita, do ponto de vista da fonética, do léxico, da morfologia ou da sintaxe."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 6 – Variação linguística",
+    "code": "D41",
+    "description": "Reconhecer os usos da norma padrão da língua portuguesa nas diferentes situações de comunicação."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D1",
+    "description": "Identificar a localização/movimentação de objeto em mapas, croquis e outras representações gráficas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D2",
+    "description": "Reconhecer a semelhança entre figuras planas, a partir da congruência das medidas angulares e da proporcionalidade entre as medidas lineares correspondentes."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D3",
+    "description": "Identificar propriedades comuns e diferenças entre figuras bidimensionais e tridimensionais, relacionando-as com as suas planificações."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D4",
+    "description": "Identificar simetria axial e central na leitura das representações dos objetos no dia a dia e das figuras geométricas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D5",
+    "description": "Identificar propriedades de triângulos pela comparação de medidas de lados e ângulos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D6",
+    "description": "Reconhecer a conservação ou modificação de medidas dos lados, do perímetro, da área em ampliação e/ou redução de figuras poligonais usando malhas quadriculadas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D7",
+    "description": "Determinar área e perímetro de uma figura utilizando composição e decomposição de figuras."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D8",
+    "description": "Reconhecer ângulos como mudança de direção ou giros, identificando ângulos retos e não retos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D9",
+    "description": "Reconhecer círculo/circunferência, seus elementos e algumas de suas relações."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D10",
+    "description": "Usar o plano cartesiano para representação de pares ordenados; coordenadas cartesianas e equações lineares."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D11",
+    "description": "Resolver problemas que utilizam propriedades dos polígonos (soma de seus ângulos internos, número de diagonais, cálculo da medida de cada ângulo interno nos polígonos regulares)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D12",
+    "description": "Resolver problemas em diferentes contextos, que envolvam triângulos semelhantes."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D13",
+    "description": "Realizar medidas usando padrões e unidades não convencionais ou de outros sistemas de medida dados."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D14",
+    "description": "Efetuar cálculos que envolvam medidas de ângulos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D15",
+    "description": "Identificar a soma das medidas dos ângulos de um triângulo e de um polígono de n lados (por decomposição em triângulos)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D16",
+    "description": "Resolver problemas que envolvam medidas de ângulos de triângulos e de polígonos em geral."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D17",
+    "description": "Reconhecer situações que envolvam proporcionalidade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D18",
+    "description": "Resolver situações-problema que envolvam grandezas direta ou inversamente proporcionais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D19",
+    "description": "Reconhecer o conceito de razão em diversos contextos: proporcionalidade, escala, velocidade, porcentagem etc."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D20",
+    "description": "Reconhecer pi como uma razão constante da geometria."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D21",
+    "description": "Usar desenhos de escalas para resolver problemas do cotidiano que incluam distância (como em leitura de mapas)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D22",
+    "description": "Calcular áreas de polígonos de diferentes tipos, com destaque para os polígonos regulares."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D23",
+    "description": "Calcular o volume de prismas em diferentes contextos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D24",
+    "description": "Utilizar a razão pi no cálculo do perímetro e da área da circunferência."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D25",
+    "description": "Calcular a área e o volume de um cilindro."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D26",
+    "description": "Aplicar o Teorema de Tales como uma forma de ocorrência da ideia de proporcionalidade, em diferentes contextos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D27",
+    "description": "Resolver problemas em diferentes contextos, que envolvam as relações métricas dos triângulos retângulos. (Teorema de Pitágoras)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D28",
+    "description": "Resolver problemas em diferentes contextos, a partir da aplicação das razões trigonométricas dos ângulos agudos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D29",
+    "description": "Resolver problemas que envolvam o cálculo de perímetro de figuras planas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D30",
+    "description": "Resolver problemas que envolvam o cálculo de área de figuras planas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D31",
+    "description": "Resolver problemas que envolvam noções de volume."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D32",
+    "description": "Resolver problema utilizando relações entre diferentes unidades de medida."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D33",
+    "description": "Reconhecer as principais características do sistema decimal: contagem, base, valor posicional."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D34",
+    "description": "Resolver problemas que envolvam as quatro operações básicas entre números inteiros (adição, subtração, multiplicação e divisão)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D35",
+    "description": "Resolver equações do 1.º grau."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D36",
+    "description": "Reconhecer as diferentes representações de um número racional."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D37",
+    "description": "Identificar fração como representação que pode estar associada a diferentes significados."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D38",
+    "description": "Reconhecer as representações decimais dos números racionais como uma extensão do sistema de numeração decimal, identificando a existência de “ordens” como décimos, centésimos e milésimos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D39",
+    "description": "Representar os números reais geometricamente na reta numerada."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D40",
+    "description": "Identificar a expressão algébrica que expressa uma regularidade observada em sequências de números ou figuras (padrões)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D41",
+    "description": "Identificar um sistema de equações do 1.º grau que expressa um problema."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D42",
+    "description": "Identificar a relação entre as representações algébrica e geométrica de um sistema de equações do 1.º grau."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D43",
+    "description": "Utilizar a notação científica como forma de representação adequada para números muito grandes ou muitos pequenos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D44",
+    "description": "Efetuar cálculos que envolvam operações com números racionais (adição, subtração, multiplicação, divisão, potenciação – expoentes inteiros e radiciação)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D45",
+    "description": "Efetuar cálculos simples com valores aproximados de radicais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D46",
+    "description": "Realizar operações simples com polinômios."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D47",
+    "description": "Simplificar expressões algébricas que envolvam produtos notáveis e fatoração."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D48",
+    "description": "Expressar as relações de proporcionalidade direta entre uma grandeza e o quadrado de outra por meio de uma função do 2.º grau."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D49",
+    "description": "Resolver problemas que envolvam porcentagem."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D50",
+    "description": "Resolver sistemas lineares (métodos da adição e da substituição)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D51",
+    "description": "Resolver problemas que envolvam equações do 2.º grau."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D52",
+    "description": "Resolver problemas que envolvam relações de proporcionalidade direta entre duas grandezas por meio de funções do 1.º grau."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D53",
+    "description": "Resolver problemas que envolvam probabilidade de eventos simples."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D54",
+    "description": "Resolver problemas que envolvam informações apresentadas em tabelas e/ou gráficos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D55",
+    "description": "Identificar e interpretar informações transmitidas por meio de gráficos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D56",
+    "description": "Identificar o gráfico adequado para representar um conjunto de dados e informações. (gráficos elementares – barras, linhas, pontos)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D57",
+    "description": "Associar informações apresentadas em listas e/ou tabelas simples aos gráficos que as representam e vice-versa."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D58",
+    "description": "Resolver problemas que envolvam processos de contagem; princípio multiplicativo."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D59",
+    "description": "Resolver problemas que envolvam ideias básicas de probabilidade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 1 – A Paisagem e suas manifestações",
+    "code": "D1",
+    "description": "Descrever elementos representativos de mudanças e permanências em uma dada paisagem."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 1 – A Paisagem e suas manifestações",
+    "code": "D2",
+    "description": "Observar e reconhecer os diferentes elementos constitutivos de uma dada paisagem."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 1 – A Paisagem e suas manifestações",
+    "code": "D3",
+    "description": "Identificar, a partir de iconografias, diferentes formas de desigualdade social impressas na paisagem."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 1 – A Paisagem e suas manifestações",
+    "code": "D4",
+    "description": "Reconhecer características dos diferentes setores da economia."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 1 – A Paisagem e suas manifestações",
+    "code": "D5",
+    "description": "A partir de textos ou iconografias, descrever as múltiplas paisagens que existem na superfície da Terra."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 1 – A Paisagem e suas manifestações",
+    "code": "D6",
+    "description": "Identificar diferentes formas de relevo terrestre e/ou impactos produzidos pela ação humana no modelado do relevo."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 2 – Espaço geográfico brasileiro em suas diferentes escalas",
+    "code": "D7",
+    "description": "Identificar e descrever a regionalização oficial do Brasil do IBGE e a regionalização em Complexos Geoeconômicos e diferenciar os critérios utilizados no estabelecimento de cada uma."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 2 – Espaço geográfico brasileiro em suas diferentes escalas",
+    "code": "D8",
+    "description": "A partir de dados expressos em tabelas e gráficos cartesianos, comparar indicadores socioeconômicos dos estados brasileiros."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 2 – Espaço geográfico brasileiro em suas diferentes escalas",
+    "code": "D9",
+    "description": "Diferenciar e aplicar conceitos de limite e fronteira."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 2 – Espaço geográfico brasileiro em suas diferentes escalas",
+    "code": "D10",
+    "description": "Com base em dados expressos em mapas e gráficos, identificar os principais fluxos econômicos do Brasil com os demais países do mundo."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 2 – Espaço geográfico brasileiro em suas diferentes escalas",
+    "code": "D11",
+    "description": "Identificar a partir da leitura de textos e mapas, o processo de formação territorial e/ou o estabelecimento das fronteiras nacionais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 3 – Patrimônio ambiental e sociedade",
+    "code": "D12",
+    "description": "Identificar e descrever os diferentes usos dos recursos naturais realizados pela sociedade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 3 – Patrimônio ambiental e sociedade",
+    "code": "D13",
+    "description": "Caracterizar, por meio de mapas, a diversidade morfoclimática do território brasileiro, identificando fatores que colocam em risco a sua preservação e/ou a importância destas na distribuição dos recursos naturais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 3 – Patrimônio ambiental e sociedade",
+    "code": "D14",
+    "description": "Reconhecer as generalidades e singularidades que caracterizam os biomas brasileiros, considerando os impactos oriundos das diferentes formas de intervenção humana em diferentes épocas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 4 – A linguagem cartográfica",
+    "code": "D15",
+    "description": "Distinguir entre mapas e imagens de satélites."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 4 – A linguagem cartográfica",
+    "code": "D16",
+    "description": "Identificar os pontos cardeais e colaterais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 4 – A linguagem cartográfica",
+    "code": "D17",
+    "description": "Aplicar o sistema de coordenadas geográficas para determinar a posição absoluta dos lugares."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 4 – A linguagem cartográfica",
+    "code": "D18",
+    "description": "Reconhecer a diferença entre a escala gráfica e a escala numérica."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 4 – A linguagem cartográfica",
+    "code": "D19",
+    "description": "Inferir título mais adequado para uma representação cartográfica."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 4 – A linguagem cartográfica",
+    "code": "D20",
+    "description": "Reconhecer o significado da legenda para a representação dos fenômenos geográficos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 5 – O tempo da natureza e o tempo social",
+    "code": "D21",
+    "description": "Relacionar o movimento de translação da Terra à sucessão das estações do ano."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 5 – O tempo da natureza e o tempo social",
+    "code": "D22",
+    "description": "Identificar os movimentos do planeta Terra, relacionando-os com as diferentes formas de orientação e/ou pontos cardeais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 5 – O tempo da natureza e o tempo social",
+    "code": "D23",
+    "description": "Identificar os elementos constitutivos do clima e/ou fatores que nele interferem."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 5 – O tempo da natureza e o tempo social",
+    "code": "D24",
+    "description": "Descrever a ação das forças realizadas pela água e/ou pelo vento no modelado do relevo terrestre."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 6 – A população brasileira",
+    "code": "D25",
+    "description": "Identificar as principais influências socioculturais resultantes das etnias que compõem a matriz étnica brasileira"
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 6 – A população brasileira",
+    "code": "D26",
+    "description": "A partir da leitura de tabelas e gráficos identificar faixas de crescimento e/ou distribuição por gênero da população brasileira."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 7 – O espaço geográfico global",
+    "code": "D27",
+    "description": "Identificar situações representativas do processo de globalização"
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 7 – O espaço geográfico global",
+    "code": "D28",
+    "description": "A partir de textos, gráficos ou mapas, interpretar situações acerca das manifestações sociais da globalização."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 7 – O espaço geográfico global",
+    "code": "D29",
+    "description": "Comparar dados sobre produção, circulação e/ou consumo de mercadorias em diferentes lugares."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 7 – O espaço geográfico global",
+    "code": "D30",
+    "description": "Explicar causas e efeitos que permitam reconhecer a globalização como produto do funcionamento do sistema capitalista."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 7 – O espaço geográfico global",
+    "code": "D31",
+    "description": "Identificar situações nas quais os direitos básicos dos cidadãos não são usufruídos por todos os segmentos da sociedade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 8 – Recursos naturais e política ambiental",
+    "code": "D32",
+    "description": "Identificar e analisar dados em tabelas, gráficos e mapas relativos ao uso, forma ou consequência ambiental da atividade energética global."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 8 – Recursos naturais e política ambiental",
+    "code": "D33",
+    "description": "Extrair informações em diferentes fontes, para exemplificar e explicar formas de utilização e/ou consequências do uso indiscriminado das distintas fontes de energia."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 8 – Recursos naturais e política ambiental",
+    "code": "D34",
+    "description": "Identificar a presença de recursos naturais na organização do espaço geográfico, relacionando transformações naturais e intervenção humana."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 8 – Recursos naturais e política ambiental",
+    "code": "D35",
+    "description": "Compreender o significado e a importância da água para a sociedade, sabendo qualificar diferentes formas de uso resultantes da intervenção humana."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 8 – Recursos naturais e política ambiental",
+    "code": "D36",
+    "description": "Identificar e caracterizar elementos responsáveis pela poluição atmosférica."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 8 – Recursos naturais e política ambiental",
+    "code": "D37",
+    "description": "Analisar criticamente implicações socioambientais resultantes das formas predatórias de utilização dos recursos naturais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Geografia",
+    "topic": "Tema 8 – Recursos naturais e política ambiental",
+    "code": "D38",
+    "description": "Analisar situações-problema representativas da propagação de hábitos de consumo que induzam ao consumismo."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 1 – História, cultura e sociedade",
+    "code": "D1",
+    "description": "Identificar os principais elementos dos sistemas políticos, econômicos e culturais de organização da vida social (Estados modernos e sociedades contemporâneas)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 1 – História, cultura e sociedade",
+    "code": "D2",
+    "description": "Reconhecer as formas históricas das sociedades como resultado das relações de poder entre as nações (expansão europeia, colonialismo e imperialismo)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 1 – História, cultura e sociedade",
+    "code": "D3",
+    "description": "Identificar nas manifestações atuais de religião e religiosidade os processos históricos de sua constituição."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 1 – História, cultura e sociedade",
+    "code": "D4",
+    "description": "Analisar criticamente as justificativas ideológicas apresentadas pelas grandes potências para interferir nas várias regiões do Planeta (sistemas modernos de colonização, imperialismo, conflitos atuais)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 1 – História, cultura e sociedade",
+    "code": "D5",
+    "description": "Relacionar o desenvolvimento técnico-científico – inclusive bélico – à necessidade de preservação de valores fundamentais para a vida humana."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 2 – História e trabalho",
+    "code": "D6",
+    "description": "Reconhecer a importância do trabalho humano, identificando e interpretando registros sobre as formas de sua organização em diferentes contextos históricos (escravidão moderna, industrialização)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 2 – História e trabalho",
+    "code": "D7",
+    "description": "Reconhecer o aumento da participação da mulher no mercado de trabalho, a partir da Revolução Industrial do século XVIII."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 2 – História e trabalho",
+    "code": "D8",
+    "description": "Identificar as causas do trabalho do menor na sociedade brasileira."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 2 – História e trabalho",
+    "code": "D9",
+    "description": "Reconhecer a importância da Legislação que estabelece os direitos dos trabalhadores."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 2 – História e trabalho",
+    "code": "D10",
+    "description": "Identificar as principais características do trabalho agrícola e industrial no mundo contemporâneo."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 2 – História e trabalho",
+    "code": "D11",
+    "description": "Relacionar o aumento da participação de mulheres e crianças no mercado de trabalho ao desenvolvimento técnico que, desde a Revolução Industrial inglesa (séc. XVIII), caracteriza a produção fabril."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 2 – História e trabalho",
+    "code": "D12",
+    "description": "Estabelecer relações entre desenvolvimento tecnológico e empregabilidade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 2 – História e trabalho",
+    "code": "D13",
+    "description": "Relacionar as condições de vida dos trabalhadores aos movimentos sociais por eles desenvolvidos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 4 – Fontes históricas",
+    "code": "D14",
+    "description": "Relacionar as manifestações do pensamento e da criação artístico-literária aos seus contextos históricos específicos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D15",
+    "description": "A partir de textos, analisar os processos de transformação histórica, identificando suas principais características econômicas, políticas e sociais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D16",
+    "description": "Identificar os principais fatores que levaram à crise do Antigo Regime e à deflagração das revoluções burguesas na Europa ocidental."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D17",
+    "description": "Identificar a diversidade dos modelos de colonização europeia nos vários contextos regionais americanos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D18",
+    "description": "Identificar os principais fatores que levaram à crise do sistema colonial na América."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D19",
+    "description": "Reconhecer as principais características dos processos de independência das colônias europeias na América."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D20",
+    "description": "Identificar os principais conceitos e influências do ideário dos movimentos revolucionários europeus dos séculos XVII e XVIII para a identificação das posições político-partidárias da atualidade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D21",
+    "description": "Localizar historicamente as lutas sociais, em defesa da cidadania e da democracia, em diferentes contextos históricos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D22",
+    "description": "Identificar os principais traços da organização política das sociedades, reconhecendo o papel das Leis em sua estruturação e organização."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D23",
+    "description": "Identificar as principais características dos sistemas de governo e seus papéis na estruturação e organização da sociedade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D24",
+    "description": "Reconhecer a importância do voto e da participação política para a o exercício da cidadania."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D25",
+    "description": "Reconhecer que as transformações da história não decorrem apenas da ação das chamadas grandes personagens."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D26",
+    "description": "Comparar organizações políticas, econômicas e sociais no mundo contemporâneo, reconhecendo propostas que visem a reduzir as desigualdades sociais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 5 – História, movimentos e conflitos",
+    "code": "D27",
+    "description": "Relacionar a ocupação do território brasileiro ao longo da história à destruição das sociedades indígenas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 6 – História, cultura e identidade",
+    "code": "D28",
+    "description": "Identificar e valorizar a diversidade do patrimônio étnico-cultural, reconhecendo suas manifestações e representações em diferentes sociedades."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 6 – História, cultura e identidade",
+    "code": "D29",
+    "description": "Identificar propostas que reconheçam a importância do patrimônio étnico-cultural e artístico para a preservação da memória e da identidade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 6 – História, cultura e identidade",
+    "code": "D30",
+    "description": "A partir da compreensão dos elementos culturais que constituem as identidades, reconhecer a importância do estudo das questões de alteridade para compreender as relações de caráter histórico-cultural."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "História",
+    "topic": "Tema 6 – História, cultura e identidade",
+    "code": "D31",
+    "description": "Avaliar criticamente propostas de inclusão social, demonstrando respeito aos direitos humanos e à diversidade étnico-cultural."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 1 – Características e estrutura do planeta Terra",
+    "code": "D1",
+    "description": "Reconhecer as principais características físicas da Terra, como dimensão, esfericidade e força de atração gravitacional."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 1 – Características e estrutura do planeta Terra",
+    "code": "D2",
+    "description": "Diferenciar elementos da estrutura da Terra (núcleo, manto, crosta, hidrosfera ou atmosfera) quanto à composição, localização e tamanho."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 1 – Características e estrutura do planeta Terra",
+    "code": "D3",
+    "description": "Associar informações referentes aos fenômenos naturais como vulcões, terremotos e tsunamis às suas causas e efeitos (modelo das placas tectônicas)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 2 – Origem e evolução dos seres vivos",
+    "code": "D4",
+    "description": "Reconhecer a importância dos fósseis e de outras evidências evolutivas que corroboram a evolução dos seres vivos na Terra."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 2 – Origem e evolução dos seres vivos",
+    "code": "D5",
+    "description": "Relacionar as características básicas dos primeiros seres vivos que surgiram na Terra com as condições da Terra primitiva."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 3 – Características básicas dos seres vivos e classificação biológica",
+    "code": "D6",
+    "description": "Identificar a célula como estrutura básica dos seres vivos e as principais substâncias químicas que a compõem."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 3 – Características básicas dos seres vivos e classificação biológica",
+    "code": "D7",
+    "description": "Descrever as funções básicas dos componentes celulares e identificá-los em esquemas e ilustrações."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 3 – Características básicas dos seres vivos e classificação biológica",
+    "code": "D8",
+    "description": "Diferenciar células animais de células vegetais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 3 – Características básicas dos seres vivos e classificação biológica",
+    "code": "D9",
+    "description": "Relacionar o material genético da célula à hereditariedade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 3 – Características básicas dos seres vivos e classificação biológica",
+    "code": "D10",
+    "description": "Comparar diferentes critérios que podem ser utilizados na classificação biológica, fundamental para a organização e compreensão da enorme diversidade dos seres vivos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 3 – Características básicas dos seres vivos e classificação biológica",
+    "code": "D11",
+    "description": "Classificar os seres vivos com base em conceitos biológicos como número de células, processo de obtenção de energia, características morfo-fisiológicas, dentre outros."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 3 – Características básicas dos seres vivos e classificação biológica",
+    "code": "D12",
+    "description": "Relacionar as principais características dos diversos grupos de seres vivos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 4 – Micro-organismos e a produção de alimentos, bebidas e remédios",
+    "code": "D13",
+    "description": "Caracterizar a fermentação biológica como processo de obtenção de energia realizado por muitos micro-organismos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 4 – Micro-organismos e a produção de alimentos, bebidas e remédios",
+    "code": "D14",
+    "description": "Associar a existência de micro-organismos à situações cotidianas como produção de pão e de coalhada, apodrecimento de restos de animais e de vegetais, apodrecimento de alimentos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 4 – Micro-organismos e a produção de alimentos, bebidas e remédios",
+    "code": "D15",
+    "description": "Identificar principais processos de conservação dos alimentos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 5 – Ambiente natural",
+    "code": "D16",
+    "description": "Identificar características climáticas básicas e principais animais e plantas representativos dos maiores ecossistemas brasileiros."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 5 – Ambiente natural",
+    "code": "D17",
+    "description": "Identificar nas cadeias e teias alimentares os seus componentes: produtores, consumidores e decompositores."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 5 – Ambiente natural",
+    "code": "D18",
+    "description": "Reconhecer as formas de obtenção de energia pelos seres vivos e o fluxo de matéria e energia nos ambientes naturais."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 5 – Ambiente natural",
+    "code": "D19",
+    "description": "Diferenciar as relações ecológicas harmônicas e desarmônicas entre os seres vivos dos ecossistemas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 5 – Ambiente natural",
+    "code": "D20",
+    "description": "Relacionar vantagens e desvantagens relativas ao uso de combustíveis (álcool, entre outros), tendo em vista a preservação ambiental."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 5 – Ambiente natural",
+    "code": "D21",
+    "description": "Conhecer as etapas do ciclo hidrológico."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 5 – Ambiente natural",
+    "code": "D22",
+    "description": "Distinguir ações que promovam o uso racional da água."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 5 – Ambiente natural",
+    "code": "D23",
+    "description": "Reconhecer os problemas ambientais e julgar ações necessárias à sua conservação."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D24",
+    "description": "Identificar, através de esquemas e ilustrações, os principais órgãos que compõem os diferentes aparelhos e sistemas do corpo humano e relacionar suas funções."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D25",
+    "description": "Diferenciar, quanto à forma e função, os principais tecidos que formam o corpo humano."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D26",
+    "description": "Descrever o método de doação de sangue baseado nos sistemas sanguíneos ABO e Rh."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D27",
+    "description": "Identificar as principais glândulas e funções das suas secreções ou hormônios que atuam no organismo humano."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D28",
+    "description": "Distinguir ação nervosa de ação hormonal, a partir de exemplos dessas ações."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D29",
+    "description": "Estabelecer correspondência entre os hormônios que atuam na puberdade de meninos e meninas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D30",
+    "description": "Relacionar os diversos métodos contraceptivos existentes com a respectiva ação."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D31",
+    "description": "Caracterizar as principais doenças sexualmente transmissíveis e a AIDs e descrever maneiras preventivas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 6 – Compreensão do corpo humano",
+    "code": "D32",
+    "description": "Caracterizar a reprodução humana: da fecundação à gravidez."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D33",
+    "description": "Reconhecer os determinantes e as condicionantes de uma vida saudável (alimentação, saneamento, moradia, meio ambiente, educação, renda, trabalho, lazer, transporte, etc.)."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D34",
+    "description": "Reconhecer os efeitos dos principais poluentes químicos do ar, água e solo sobre a saúde."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D35",
+    "description": "Identificar as formas de prevenir as doenças humanas transmitidas por água e solo contaminados."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D36",
+    "description": "Identificar as medidas para prevenir verminoses comuns entre os brasileiros, como esquistossomose, teníase, ascaridíase, dentre outras."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D37",
+    "description": "Identificar os agentes causadores e transmissores de doenças causadas por protozoários, como doença de Chagas e malária, e relacionar maneiras de prevenção."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D38",
+    "description": "Explicar causas e efeitos das principais doenças virais e bacterianas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D39",
+    "description": "Associar os principais tipos de nutrientes aos alimentos mais comuns presentes na dieta diária."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D40",
+    "description": "Identificar relações entre saúde, hábitos alimentares e atividade física."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D41",
+    "description": "Identificar hábitos de vida que afetam a saúde do sistema cardiovascular."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D42",
+    "description": "Identificar os diferentes mecanismos de defesa do organismo: barreiras mecânicas e sistema imunológico."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 7 – Ser humano e saúde",
+    "code": "D43",
+    "description": "Associar a promoção da saúde individual e coletiva à responsabilidade conjunta dos indivíduos e dos poderes públicos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D44",
+    "description": "Reconhecer fenômenos físicos e químicos que ocorrem no cotidiano e identificar evidências diretas e indiretas da ocorrência de transformações químicas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D45",
+    "description": "Representar substâncias químicas por meio de símbolos dos elementos que as constituem e diferenciar substâncias simples de substâncias compostas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D46",
+    "description": "Comparar condutibilidade elétrica de diferentes materiais e reconhecer limitações de modelos de partículas para interpretar diferenças de condutibilidade elétrica."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D47",
+    "description": "Diferenciar os sistemas químicos e reconhecer os métodos de separação de misturas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D48",
+    "description": "Reconhecer que o ar é uma mistura de gases, identificando sua composição, e compreender fenômenos e antrópicos que podem alterar essa composição."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D49",
+    "description": "Reconhecer as mudanças de estado físico da matéria e relacionar essas transformações com base no modelo de constituição submicroscópica."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D50",
+    "description": "Reconhecer propriedades específica dos materiais como densidade, solubilidade, temperatura de fusão e ebulição."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D51",
+    "description": "Resolver problemas que envolvam análise gráfica e cálculo de densidade."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 8 – Ciência e tecnologia: a matéria e suas transformações",
+    "code": "D52",
+    "description": "Identificar modelos que descrevem a estrutura da matéria, constituição do átomo e composição de moléculas, e reconhecer sua evolução histórica."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 9 – Ciência e tecnologia: produção e uso de energia no cotidiano e no sistema produtivo",
+    "code": "D53",
+    "description": "Classificar as tecnologias do cotidiano que utilizam eletricidade em função de seus usos e relacioná-las com os respectivos consumos de energia."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 9 – Ciência e tecnologia: produção e uso de energia no cotidiano e no sistema produtivo",
+    "code": "D54",
+    "description": "Associar experimentos sobre circuito elétrico simples com aparelhos elétricos, identificando as funções dos principais componentes."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 9 – Ciência e tecnologia: produção e uso de energia no cotidiano e no sistema produtivo",
+    "code": "D55",
+    "description": "Reconhecer riscos e segurança no uso da eletricidade em diferentes situações do dia a dia."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 9 – Ciência e tecnologia: produção e uso de energia no cotidiano e no sistema produtivo",
+    "code": "D56",
+    "description": "Identificar as etapas e as transformações de energia envolvidas na geração de energia elétrica em diferentes tipos de usinas."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 9 – Ciência e tecnologia: produção e uso de energia no cotidiano e no sistema produtivo",
+    "code": "D57",
+    "description": "Comparar diferentes recursos energéticos como petróleo, carvão, gás natural em relação à biomassa, origens e usos."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 9 – Ciência e tecnologia: produção e uso de energia no cotidiano e no sistema produtivo",
+    "code": "D58",
+    "description": "Identificar argumentos favoráveis e desfavoráveis às diferentes formas de geração de eletricidade, tanto em relação ao custo, quanto em relação aos danos ao meio ambiente."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 9 – Ciência e tecnologia: produção e uso de energia no cotidiano e no sistema produtivo",
+    "code": "D59",
+    "description": "Reconhecer os processos de transformação de energia utilizados em situações cotidianas como, por exemplo, energia elétrica em energia térmica."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 9 – Ciência e tecnologia: produção e uso de energia no cotidiano e no sistema produtivo",
+    "code": "D60",
+    "description": "Identificar situações em que ocorre conservação da Energia Mecânica, e suas respectivas transformações entre Energia Cinética/Potencial."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 10 – Terra e universo: o Sistema Solar, Terra e Lua",
+    "code": "D61",
+    "description": "Identificar linguagem científica, nomes, gráficos, símbolos e outras representações relativas ao sistema Terra–Sol–Lua e aos astros pertencentes ao Sistema Solar."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 10 – Terra e universo: o Sistema Solar, Terra e Lua",
+    "code": "D62",
+    "description": "Relacionar diferentes fenômenos cíclicos, como a duração dos dias e anos e as estações do ano, aos movimentos do sistema Sol–Terra, com o movimento de rotação e translação, e suas características."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 10 – Terra e universo: o Sistema Solar, Terra e Lua",
+    "code": "D63",
+    "description": "Reconhecer as fases da Lua, considerando suas formas no hemisfério sul e a duração de cada uma das quatro fases principais, relacionando-as à configuração do sistema Sol–Terra–Lua."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 11 – Ciência e tecnologia: a ciência nas máquinas e veículos automotivos",
+    "code": "D64",
+    "description": "Diferenciar as vantagens e as desvantagens entre custo/benefício de uso de diferentes tipos de combustíveis."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 11 – Ciência e tecnologia: a ciência nas máquinas e veículos automotivos",
+    "code": "D65",
+    "description": "Identificar a relação entre força e aceleração, relacionando as situações cotidianas com as leis de Newton."
+  },
+  {
+    "matrix": "INTEGRADO",
+    "subject": "Ciências Naturais",
+    "topic": "Tema 11 – Ciência e tecnologia: a ciência nas máquinas e veículos automotivos",
+    "code": "D66",
+    "description": "Determinar parâmetros como velocidade, aceleração e deslocamento, através das equações do movimento."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D1",
+    "description": "Interpretar textos em linguagem verbal e não verbal."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D2",
+    "description": "Diferenciar ideias centrais de secundárias; tópicos de subtópicos; tese de argumentos em um texto."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D3",
+    "description": "Localizar informações explícitas e implícitas em um texto."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D4",
+    "description": "Interpretar dados e fatos em um texto; distinguir um fato da opinião relativa a esse fato."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D5",
+    "description": "Identificar a situação de comunicação, o assunto, o tipo de linguagem e o perfil dos interlocutores em todos os textos lidos, além de eventuais ruídos que dificultem a comunicação."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D6",
+    "description": "Identificar os recursos linguísticos próprios para marcar a pessoalidade, a impessoalidade ou a indeterminação de um sujeito agente e os efeitos de sentido produzidos pelo recurso usado."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D7",
+    "description": "Inferir o significado de palavras e de expressões linguísticas a partir da análise de seus elementos estruturais e/ou do contexto."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 1 – Procedimentos de leitura",
+    "code": "D8",
+    "description": "Identificar a significativa alteração de sentido do texto, em virtude da presença ou ausência dos sinais gráficos (acentos gráficos e pontuação)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D9",
+    "description": "Identificar os gêneros textuais a partir da estrutura e das informações transmitidas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D10",
+    "description": "Interpretar textos identificando mudança de sentido gerada por alteração da situação comunicativa (locutor, interlocutor, variação linguística, suporte etc.)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D11",
+    "description": "Identificar a finalidade de textos de diferentes gêneros textuais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D12",
+    "description": "Reconhecer diferentes formas de tratar uma informação na comparação de textos que tratam do mesmo tema, em função das condições em que ele foi produzido e daquelas em que será recebido."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D13",
+    "description": "Identificar as diversas vozes presentes no texto, as marcas linguísticas que as distinguem, seus pontos de vista e estratégias de enunciá-los."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 2 – Implicações do suporte/ gênero e/ou enunciador na compreensão do texto",
+    "code": "D14",
+    "description": "Reconhecer posições distintas entre duas ou mais opiniões relativas ao mesmo fato ou ao mesmo tema."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 3 – Relação entre textos",
+    "code": "D15",
+    "description": "Estabelecer relações entre imagens (fotos, ilustrações, telas), gráficos, tabelas, infográficos e o corpo do texto, comparando informações explícitas, pressupostas ou subentendidas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 3 – Relação entre textos",
+    "code": "D16",
+    "description": "Reconhecer formas de apropriação textual como paródias, paráfrases, citações, discurso direto, indireto ou indireto livre e justificar seu uso."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 3 – Relação entre textos",
+    "code": "D17",
+    "description": "Reconhecer o uso da metalinguagem em textos literários e não literários."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D18",
+    "description": "Estabelecer relações entre partes de um texto, identificando repetições, substituições ou pronominalizações que contribuem para dar-lhe continuidade."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D19",
+    "description": "Identificar o uso adequado da concordância nominal ou verbal como forma de se manter coesão textual."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D20",
+    "description": "Identificar o conflito gerador do enredo e os elementos que constroem a narrativa."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D21",
+    "description": "Estabelecer relações de causa e consequência entre partes e elementos de um texto."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D22",
+    "description": "Identificar relações lógico-discursivas presentes no texto, marcadas por preposições, conjunções, advérbios etc."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D23",
+    "description": "Reconhecer as regras de acentuação gráfica, de ortografia e de pontuação como ferramentas fundamentais para a coesão e coerência de um texto."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D24",
+    "description": "Analisar as relações sintático-semânticas em segmentos de texto."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D25",
+    "description": "Identificar o efeito de sentido resultante da escolha de um determinado tempo e/ou modo verbal."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D26",
+    "description": "Analisar a relação de sentido produzida pelos recursos coesivos e operadores discursivos como estratégia argumentativa."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 4 – Coerência e coesão no processamento do texto",
+    "code": "D27",
+    "description": "Identificar mecanismos de articulação frasal (justaposição, coordenação e subordinação)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D28",
+    "description": "Identificar a estrutura formal de poemas apresentados, além de aspectos visuais e musicais das palavras."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D29",
+    "description": "Identificar os recursos expressivos sonoros e as figuras de linguagem, elementos importantes para a compreensão e interpretação de um texto literário ou publicitário."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D30",
+    "description": "Identificar efeitos de ironia ou humor em textos variados."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D31",
+    "description": "Identificar o efeito de sentido decorrente do deslocamento de palavras ou expressões na frase."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 5 – Relação entre recursos expressivos e efeitos de sentido",
+    "code": "D32",
+    "description": "Reconhecer o efeito de sentido decorrente da escolha de uma determinada palavra ou expressão em detrimento de outra."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 6 – Variação linguística",
+    "code": "D33",
+    "description": "Justificar a presença, em um texto, de marcas de variação linguística, que dizem respeito aos fatores geográficos, históricos, sociológicos ou técnicos, do ponto de vista da fonética, do léxico, da morfologia ou da sintaxe."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Língua Portuguesa",
+    "topic": "Tópico 6 – Variação linguística",
+    "code": "D34",
+    "description": "Justificar a presença, em um texto, de marcas de variação linguística, que dizem respeito às diferenças entre os registros formal e informal ou entre os padrões de linguagem oral ou escrita, do ponto de vista da fonética, do léxico, da morfologia ou da sintaxe."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D1",
+    "description": "Identificar figuras semelhantes mediante o reconhecimento de relações de proporcionalidade."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D2",
+    "description": "Reconhecer aplicações das relações métricas do triângulo retângulo em um problema que envolva figuras planas ou espaciais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D3",
+    "description": "Caracterizar polígonos regulares inscritos e circunscritos em circunferências."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D4",
+    "description": "Identificar a relação entre o número de vértices, faces e/ou arestas de poliedros expressa em um problema (Relação de Euler)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D5",
+    "description": "Resolver problema que envolva razões trigonométricas no triângulo retângulo (seno, cosseno e tangente)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D6",
+    "description": "Representar pontos, figuras, relações e equações em sistemas de coordenadas cartesianas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D7",
+    "description": "Reconhecer a equação da reta e o significado de seus coeficientes."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D8",
+    "description": "Identificar a relação entre o número de vértices, faces e/ou arestas de poliedros expressa em um problema."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D9",
+    "description": "Relacionar a determinação do ponto de interseção de duas ou mais retas com a resolução de um sistema de equações com duas incógnitas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 1 – Espaço e forma",
+    "code": "D10",
+    "description": "Identificar as equações da circunferência e das cônicas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D11",
+    "description": "Resolver problemas que envolvam cálculo de perímetro e área de figuras planas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D12",
+    "description": "Resolver problemas que envolvam relações métricas fundamentais (comprimentos, áreas e volumes) de sólidos como o prisma e o cilindro."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D13",
+    "description": "Resolver problemas que envolvam relações métricas fundamentais (comprimentos, áreas e volumes) de sólidos como a pirâmide e o cone."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D14",
+    "description": "Resolver problemas que envolvam relações métricas fundamentais (comprimentos, áreas e volumes) da esfera e suas partes."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 2 – Grandezas e medidas",
+    "code": "D15",
+    "description": "Identificar fusos, latitudes e longitudes com as propriedades características da esfera terrestre."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D16",
+    "description": "Identificar a localização de números reais na reta numérica."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D17",
+    "description": "Resolver problemas que envolvam operações com números reais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D18",
+    "description": "Expressar matematicamente padrões e regularidades em sequências numéricas ou de imagens."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D19",
+    "description": "Representar por meio de funções, relações de proporcionalidade direta, inversa, e direta com o quadrado."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D20",
+    "description": "Resolver problemas que envolva porcentagem."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D21",
+    "description": "Resolver problemas envolvendo equações e inequações do 1.º grau e do 2.º grau."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D22",
+    "description": "Reconhecer expressão algébrica que representa uma função a partir de uma tabela."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D23",
+    "description": "Resolver problema envolvendo uma função polinomial do 1.º grau."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D24",
+    "description": "Analisar a variação do sinal, crescimento/decrescimento e zeros de funções reais apresentadas em gráficos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D25",
+    "description": "Identificar o gráfico que representa uma situação descrita em um texto."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D26",
+    "description": "Resolver problemas que envolvam Progressões Aritméticas e/ou Progressões Geométricas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D27",
+    "description": "Reconhecer o gráfico de uma função polinomial de 1.º grau por meio de seus coeficientes."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D28",
+    "description": "Descrever as características fundamentais da função quadrática, relativas ao gráfico, crescimento, decrescimento, valores máximo ou mínimo e variação do sinal."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D29",
+    "description": "Relacionar as raízes de um polinômio com a decomposição em fatores do 1.º grau."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D30",
+    "description": "Identificar a representação algébrica e/ou gráfica de uma função exponencial."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D31",
+    "description": "Reconhecer a função exponencial e suas propriedades relativas ao crescimento ou decrescimento."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D32",
+    "description": "Identificar a representação algébrica e/ou gráfica de uma função logarítmica, reconhecendo-a como inversa da função exponencial."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D33",
+    "description": "Resolver problemas que envolvam equações e inequações exponenciais e logarítmicas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D34",
+    "description": "Utilizar as propriedades operatórias do logaritmo na resolução de problemas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D35",
+    "description": "Identificar gráficos de funções trigonométricas (seno, cosseno e tangente), reconhecendo as suas propriedades."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D36",
+    "description": "Determinar a solução de um sistema linear, associando-o a uma matriz."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D37",
+    "description": "Resolver sistemas lineares."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D38",
+    "description": "Efetuar cálculos envolvendo operações com matrizes e determinantes."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D39",
+    "description": "Efetuar operações com polinômios."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D40",
+    "description": "Identificar os resultados de operações entre números complexos representados no plano de Argand-Gauss."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D41",
+    "description": "Calcular expressões envolvendo operações com números complexos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D42",
+    "description": "Resolver problemas envolvendo razões trigonométricas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D43",
+    "description": "Resolver equações e inequações trigonométricas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D44",
+    "description": "Aplicar os raciocínios combinatórios aditivo e/ou multiplicativo na resolução de situações-problema."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 3 – Números e operações/ álgebra e funções",
+    "code": "D45",
+    "description": "Resolver problemas que envolvam o cálculo de probabilidades de eventos que se repetem seguidamente; o binômio de Newton e o triângulo de Pascal."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D46",
+    "description": "Interpretar e construir tabelas e gráficos de frequência a partir de dados obtidos em pesquisas por amostras estatísticas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D47",
+    "description": "Calcular e interpretar medidas de tendência central de uma distribuição de dados (média, mediana e moda) e de dispersão (desvio padrão)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D48",
+    "description": "Analisar e interpretar índices estatísticos de diferentes tipos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D49",
+    "description": "Resolver problema envolvendo informações apresentadas em tabelas e/ou gráficos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Matemática",
+    "topic": "Tema 4 – Tratamento da informação",
+    "code": "D50",
+    "description": "Associar informações apresentadas em listas e/ou tabelas simples aos gráficos que as representam e vice-versa."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 1 – Origem e evolução da vida: hipóteses e teorias",
+    "code": "D1",
+    "description": "Identificar evidências do processo de evolução biológica (fósseis, órgãos análogos, homólogos e vestigiais)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 1 – Origem e evolução da vida: hipóteses e teorias",
+    "code": "D2",
+    "description": "Interpretar a história da vida na Terra com base em escala temporal, indicando os principais eventos (surgimento da vida, das plantas, do homem etc.)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 1 – Origem e evolução da vida: hipóteses e teorias",
+    "code": "D3",
+    "description": "Identificar as ideias evolucionistas de Darwin e Lamarck, com base na leitura de textos históricos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 1 – Origem e evolução da vida: hipóteses e teorias",
+    "code": "D4",
+    "description": "Explicar a transformação das espécies ao longo do tempo por meio dos mecanismos de mutação, recombinação gênica e seleção natural."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 1 – Origem e evolução da vida: hipóteses e teorias",
+    "code": "D5",
+    "description": "Inferir que o resultado da seleção natural é a preservação e a transmissão para os descendentes das variações orgânicas favoráveis à sobrevivência da espécie no ambiente."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 1 – Origem e evolução da vida: hipóteses e teorias",
+    "code": "D6",
+    "description": "Analisar as ideias sobre a origem da vida a partir da leitura de textos históricos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 1 – Origem e evolução da vida: hipóteses e teorias",
+    "code": "D7",
+    "description": "Estabelecer a relação entre as condições da Terra primitiva e a origem dos primeiros seres vivos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 2 – Origem e evolução da vida: evolução biológica e cultural",
+    "code": "D8",
+    "description": "Reconhecer os impactos da intervenção humana na evolução, nos campos da medicina, da agricultura e farmacologia, e a relação com o aumento da expectativa de vida."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 2 – Origem e evolução da vida: evolução biológica e cultural",
+    "code": "D9",
+    "description": "Estabelecer relações de parentesco em árvores filogenéticas de hominídeos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 2 – Origem e evolução da vida: evolução biológica e cultural",
+    "code": "D10",
+    "description": "Interpretar o processo evolutivo humano como resultado da interação entre mecanismos biológicos e culturais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 2 – Origem e evolução da vida: evolução biológica e cultural",
+    "code": "D11",
+    "description": "Avaliar as implicações evolutivas dos processos de seleção artificial de espécies animais e vegetais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 2 – Origem e evolução da vida: evolução biológica e cultural",
+    "code": "D12",
+    "description": "Avaliar os impactos da transformação e adaptação do ambiente aos interesses da espécie humana."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 3 – A diversidade da vida: o desafio da classificação biológica",
+    "code": "D13",
+    "description": "Reconhecer relações de parentesco evolutivo entre grupos de seres vivos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 3 – A diversidade da vida: o desafio da classificação biológica",
+    "code": "D14",
+    "description": "Identificar os grandes grupos de seres vivos a partir de características distintivas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 3 – A diversidade da vida: o desafio da classificação biológica",
+    "code": "D15",
+    "description": "Comparar características gerais dos grandes grupos de seres vivos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 3 – A diversidade da vida: o desafio da classificação biológica",
+    "code": "D16",
+    "description": "Interpretar árvores filogenéticas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 4 – Identidade dos seres vivos: organização celular e funções vitais básicas",
+    "code": "D17",
+    "description": "Reconhecer as aplicações da engenharia genética na medicina, entre elas a terapia gênica."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 4 – Identidade dos seres vivos: organização celular e funções vitais básicas",
+    "code": "D18",
+    "description": "Reconhecer a importância dos testes de DNA na determinação da paternidade, investigação criminal e identificação de indivíduos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 4 – Identidade dos seres vivos: organização celular e funções vitais básicas",
+    "code": "D19",
+    "description": "Relacionar as funções vitais das células com seus componentes."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 4 – Identidade dos seres vivos: organização celular e funções vitais básicas",
+    "code": "D20",
+    "description": "Associar a divisão celular mitótica à reprodução dos seres unicelulares e ao crescimento e regeneração dos tecidos dos seres multicelulares."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 4 – Identidade dos seres vivos: organização celular e funções vitais básicas",
+    "code": "D21",
+    "description": "Comparar a estrutura química dos ácidos nucleicos (DNA x RNA)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 4 – Identidade dos seres vivos: organização celular e funções vitais básicas",
+    "code": "D22",
+    "description": "Distinguir o papel dos diferentes tipos de RNA no processo de síntese de proteínas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 4 – Identidade dos seres vivos: organização celular e funções vitais básicas",
+    "code": "D23",
+    "description": "Avaliar as razões que explicam as contribuições dos eventos da divisão meiótica para a variabilidade das espécies."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 4 – Identidade dos seres vivos: organização celular e funções vitais básicas",
+    "code": "D24",
+    "description": "Analisar os argumentos quanto aos riscos e benefícios da utilização de produtos geneticamente modificados disponíveis no mercado."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 5 – Diversidade da vida: a biologia das plantas",
+    "code": "D25",
+    "description": "Reconhecer as principais características do desenvolvimento das angiospermas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 5 – Diversidade da vida: a biologia das plantas",
+    "code": "D26",
+    "description": "Comparar os diferentes grupos vegetais, com base nas respectivas aquisições evolutivas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 5 – Diversidade da vida: a biologia das plantas",
+    "code": "D27",
+    "description": "Associar as características morfofuncionais dos grandes grupos vegetais aos diferentes habitats por eles ocupados."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 5 – Diversidade da vida: a biologia das plantas",
+    "code": "D28",
+    "description": "Relacionar o movimento das plantas às condições de luminosidade."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 6 – Diversidade da vida: a biologia dos animais",
+    "code": "D29",
+    "description": "Reconhecer as características dos principais filos do reino animal."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 6 – Diversidade da vida: a biologia dos animais",
+    "code": "D30",
+    "description": "Identificar características comuns aos animais vertebrados."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 6 – Diversidade da vida: a biologia dos animais",
+    "code": "D31",
+    "description": "Identificar os principais processos físicos e químicos envolvidos na digestão."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 6 – Diversidade da vida: a biologia dos animais",
+    "code": "D32",
+    "description": "Identificar as principais características da respiração humana."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 6 – Diversidade da vida: a biologia dos animais",
+    "code": "D33",
+    "description": "Identificar as principais características da circulação humana."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 6 – Diversidade da vida: a biologia dos animais",
+    "code": "D34",
+    "description": "Associar estrutura e função dos componentes do sistema reprodutor humano (feminino e masculino)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 6 – Diversidade da vida: a biologia dos animais",
+    "code": "D35",
+    "description": "Identificar o princípio básico de funcionamento dos métodos anticoncepcionais mais disseminados."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 6 – Diversidade da vida: a biologia dos animais",
+    "code": "D36",
+    "description": "Selecionar dietas adequadas a demandas energéticas e faixas etárias predeterminadas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 7 – A interdependência da vida: os seres vivos e suas interações; desequilíbrios ambientais",
+    "code": "D37",
+    "description": "Diferenciar, com base na descrição de situações concretas, fatores bióticos e abióticos num ecossistema."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 7 – A interdependência da vida: os seres vivos e suas interações; desequilíbrios ambientais",
+    "code": "D38",
+    "description": "Identificar níveis tróficos em cadeias e teias alimentares, reconhecendo carnívoros, herbívoros e onívoros."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 7 – A interdependência da vida: os seres vivos e suas interações; desequilíbrios ambientais",
+    "code": "D39",
+    "description": "Identificar, com base em descrição de situações concretas, habitat e nicho ecológico de organismos diversos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 7 – A interdependência da vida: os seres vivos e suas interações; desequilíbrios ambientais",
+    "code": "D40",
+    "description": "Relacionar as atividades econômicas mais importantes no cenário nacional às principais alterações nos ecossistemas brasileiros."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 7 – A interdependência da vida: os seres vivos e suas interações; desequilíbrios ambientais",
+    "code": "D41",
+    "description": "Interpretar gráficos e tabelas que contenham dados sobre crescimento e densidade de uma dada população."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 7 – A interdependência da vida: os seres vivos e suas interações; desequilíbrios ambientais",
+    "code": "D42",
+    "description": "Analisar medidas que permitem controlar e/ou resolver os principais problemas ambientais, tais como efeito estufa, destruição da camada de ozônio, desaparecimento de espécies animais e vegetais, alteração no regime das chuvas, a poluição do ar, água e solo."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 8 – Qualidade de vida das populações humanas: a saúde coletiva e ambiental",
+    "code": "D43",
+    "description": "Identificar procedimentos para a prevenção das doenças infecciosas e parasitárias mais frequentes no Brasil."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 8 – Qualidade de vida das populações humanas: a saúde coletiva e ambiental",
+    "code": "D44",
+    "description": "Incluir a gravidez na adolescência entre os fatores de risco à saúde materna."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 8 – Qualidade de vida das populações humanas: a saúde coletiva e ambiental",
+    "code": "D45",
+    "description": "Identificar DSTs mais frequentes no Brasil e os cuidados para preveni-las."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 8 – Qualidade de vida das populações humanas: a saúde coletiva e ambiental",
+    "code": "D46",
+    "description": "Analisar tabelas e gráficos que mostrem correlação entre diferentes indicadores de saúde."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 8 – Qualidade de vida das populações humanas: a saúde coletiva e ambiental",
+    "code": "D47",
+    "description": "Analisar tabelas com dados comparativos dos indicadores de saúde da população de diferentes regiões brasileiras."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 8 – Qualidade de vida das populações humanas: a saúde coletiva e ambiental",
+    "code": "D48",
+    "description": "Inferir sobre o nível de desenvolvimento humano e de saúde de diferentes regiões do país e do mundo, com base na análise de indicadores tais como mortalidade infantil, esperança de vida ao nascer e mortalidade por causa."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 8 – Qualidade de vida das populações humanas: a saúde coletiva e ambiental",
+    "code": "D49",
+    "description": "Inferir sobre o nível de desenvolvimento e de saúde de regiões ou estados brasileiros com base em suas respectivas condições de acesso a saneamento básico."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Biologia",
+    "topic": "Tema 8 – Qualidade de vida das populações humanas: a saúde coletiva e ambiental",
+    "code": "D50",
+    "description": "Apresentar conclusões baseadas em argumentos sobre o impacto positivo das tecnologias na melhoria da qualidade da saúde das populações (vacina, medicamentos, exames diagnósticos, alimentos enriquecidos, etc.)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D1",
+    "description": "Reconhecer a ocorrência de transformações químicas no dia a dia e no sistema produtivo por meio de evidências macroscópicas (mudanças de cor, desprendimento de gás, mudanças de temperatura, formação de precipitado, emissão de luz, etc), da formação de novos materiais (produtos) com propriedades distintas dos de partida (reagentes)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D2",
+    "description": "Reconhecer as transformações químicas e suas representações por meio de fórmulas e equações químicas (e vice-versa)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D3",
+    "description": "Reconhecer as principais ideias sobre a constituição da matéria usando as ideias de Dalton e reconhecer a importância e as limitações do uso de modelos explicativos na ciência."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D4",
+    "description": "Reconhecer a conservação de massa e as proporções fixas entre as massas de reagentes e produtos e a energia envolvidas em uma transformação química."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D5",
+    "description": "Reconhecer as variáveis (estado de agregação, temperatura, concentração e catalisador) que podem modificar as velocidades (rapidez) de transformações químicas e como elas atuam."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D6",
+    "description": "Interpretar diagramas de energia, e reconhecer energia de ativação, bem como a orientação de colisão entre partículas, como fatores determinantes para que ocorra uma colisão efetiva."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D7",
+    "description": "Realizar cálculos para estimar massas, massas molares, quantidades de matéria (mol), número de partículas e energia envolvida em transformações de combustão e em transformações químicas em geral, incluídos cálculos com rendimento e pureza variados."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D8",
+    "description": "Aplicar o modelo atômico de Dalton para interpretar as transformações químicas, a conservação de massa, as proporções fixas entre reagentes e produtos e a energia envolvida."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D9",
+    "description": "A partir de equações balanceadas, prever as quantidades de reagentes e produtos envolvidos em termos de massas, massas molares e quantidade de matéria."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 1 – Transformações Químicas na natureza e no sistema produtivo",
+    "code": "D10",
+    "description": "Interpretar reações de neutralização entre ácidos e bases fortes de Arrhenius como reações entre H+ e OH- e prever a quantidade (em massa e quantidade de matéria, e em volume) de base forte que deve ser adicionada a um ácido forte, para que a solução obtida seja neutra – dadas as concentrações das soluções."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 2 – Transformações químicas que apresentam rendimentos inferiores aos previstos estequiometricamente: equilíbrios químicos",
+    "code": "D11",
+    "description": "Reconhecer que existem transformações químicas cujos rendimentos são inferiores aos previstos estequiometricamente, que não se completam, em que reagentes e produtos coexistem em equilíbrio químico dinâmico: as velocidades das transformações diretas são iguais às velocidades das transformações inversas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 2 – Transformações químicas que apresentam rendimentos inferiores aos previstos estequiometricamente: equilíbrios químicos",
+    "code": "D12",
+    "description": "Reconhecer os fatores que alteram os estados de equilíbrio químicos: temperatura, pressão e mudanças na concentração de espécies envolvidas no equilíbrio. Conhecer variáveis que podem modificar a velocidade (rapidez) de uma transformação química."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 2 – Transformações químicas que apresentam rendimentos inferiores aos previstos estequiometricamente: equilíbrios químicos",
+    "code": "D13",
+    "description": "Utilizar valores da escala de pH para classificar soluções aquosas como ácidas, básicas e neutras (a 25ºC), e calcular valores de pH a partir das concentrações de H+, e vice-versa."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 2 – Transformações químicas que apresentam rendimentos inferiores aos previstos estequiometricamente: equilíbrios químicos",
+    "code": "D14",
+    "description": "Aplicar os conhecimentos referentes às influências da pressão e da temperatura na rapidez e na extensão de transformações químicas de equilíbrio, para escolher condições reacionais mais adequadas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D15",
+    "description": "Reconhecer e localizar os elementos químicos na tabela periódica e de acordo com a distribuição eletrônica dos mesmos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D16",
+    "description": "Reconhecer “fusão fracionada” e “destilação fracionada” como métodos de separação que se baseiam nas diferentes temperaturas de fusão e de ebulição de diferentes misturas (petróleo, ar atmosférico) e a “cristalização fracionada”, como maneira de separação de sais dissolvidos em água usando suas diferentes solubilidades."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D17",
+    "description": "Reconhecer a dependência entre a solubilidade de gases em líquidos com as condições de pressão e de temperatura."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D18",
+    "description": "Reconhecer o número atômico como o número de prótons, o qual caracteriza o elemento químico, e o número de massa como a soma dos números de prótons e nêutrons."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D19",
+    "description": "Relacionar nomes de compostos orgânicos com suas fórmulas estruturais e funções e vice-versa."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D20",
+    "description": "Relacionar propriedades de sólidos e líquidos (temperaturas de fusão e de ebulição, volatilidade, resistência à compressão, condutibilidade elétrica) com o tipo de ligações presentes (iônicas covalentes e metálicas) e com os tipos de interação eletrostática interpartículas (London e ligações de hidrogênio)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D21",
+    "description": "Realizar cálculos envolvidos no preparo de soluções a partir de informações de massas, quantidade de matéria e volumes e a partir de outras soluções mais concentradas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D22",
+    "description": "Saber expressar e interrelacionar as composições de soluções em g.L-1 e mol.L-1 , ppm, % em massa e em volume."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D23",
+    "description": "Reconhecer ligações covalentes em sólidos e em macromoléculas, ligações iônicas em sais sólidos e líquidos, e ligações metálicas em metais, e entender a formação de uma substância a partir das interações eletrostáticas entre as partículas que a constitui."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D24",
+    "description": "Analisar informações de gráficos e tabelas para estimar o estado físico dos materiais a partir de suas temperaturas de fusão e de ebulição e para diferenciar substâncias de misturas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D25",
+    "description": "Avaliar e escolher métodos de separação de substâncias (filtração, destilação, decantação, etc) com base nas propriedades dos materiais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 3 – Materiais e suas propriedades",
+    "code": "D26",
+    "description": "Aplicar conceitos de separação de misturas, de solubilidade, de transformação química para compreender os processos envolvidos no tratamento da água para consumo humano e em outras situações cotidianas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 4 – Transformações químicas que envolvem diretamente energia elétrica",
+    "code": "D27",
+    "description": "Reconhecer que há transformações químicas que ocorrem com o envolvimento de energia elétrica."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 4 – Transformações químicas que envolvem diretamente energia elétrica",
+    "code": "D28",
+    "description": "Interpretar os processos de oxidação e de redução a partir de ideias sobre a estrutura da matéria."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 4 – Transformações químicas que envolvem diretamente energia elétrica",
+    "code": "D29",
+    "description": "Relacionar a energia elétrica produzida e consumida na transformação química com os processos de oxidação e redução, e aplicar esses conhecimentos para explicar o funcionamento de uma pilha galvânica e os processos eletrolíticos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 5 – O que o ser humano extrai e introduz na atmosfera, hidrosfera e biosfera",
+    "code": "D30",
+    "description": "Reconhecer alguns agentes poluidores do meio ambiente, como por exemplo, esgotos residenciais, industriais e agropecuários, detergentes, praguicidas, gases solúveis em água, materiais sólidos tóxicos ou de difícil degradação."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 5 – O que o ser humano extrai e introduz na atmosfera, hidrosfera e biosfera",
+    "code": "D31",
+    "description": "Escrever fórmulas estruturais de hidrocarbonetos a partir de sua nomenclatura e vice-versa, e reconhecer o petróleo como fonte de hidrocarbonetos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 5 – O que o ser humano extrai e introduz na atmosfera, hidrosfera e biosfera",
+    "code": "D32",
+    "description": "Reconhecer as principais fontes de emissão dos gases responsáveis pela intensificação do efeito estufa, pelo aumento da acidez de chuvas, pela depleção da camada de ozônio e reconhecer que a poluição atmosférica está relacionada com o tempo de permanência, a solubilidade dos gases poluentes, assim como com as reações que envolvam estes gases."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 5 – O que o ser humano extrai e introduz na atmosfera, hidrosfera e biosfera",
+    "code": "D33",
+    "description": "Interpretar figuras, diagramas, esquemas e textos referentes à formação da chuva ácida, ao efeito estufa, aos ciclos do carbono, do oxigênio, da água e do nitrogênio para compreender como se inter-relacionam, assim como a importância de se fazer escolhas conscientes de consumo e de descarte."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 5 – O que o ser humano extrai e introduz na atmosfera, hidrosfera e biosfera",
+    "code": "D34",
+    "description": "Analisar e reconhecer os grupos funcionais por meio de fórmulas estruturais de aminas, amidas, ácidos carboxílicos, ésteres, éteres, aldeídos, cetonas, alcoóis, gliceróis, relacioná-las aos principais macronutrientes alimentares e refletir sobre a ideia da existência de alimentos sem química."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Química",
+    "topic": "Tema 5 – O que o ser humano extrai e introduz na atmosfera, hidrosfera e biosfera",
+    "code": "D35",
+    "description": "Avaliar vantagens e desvantagens do uso de diferentes tipos de combustíveis e de energias: combustíveis fósseis, biomassa, energia solar, movimento de ventos e de águas (hidrelétricas e marés), oxidação (queima) de gás hidrogênio."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D1",
+    "description": "Identificar diferentes formas e linguagens para representar movimentos, como: trajetórias, gráficos, tabelas, funções e linguagem discursiva."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D2",
+    "description": "Classificar movimentos segundo características comuns, como trajetórias e variações de velocidade."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D3",
+    "description": "Relacionar e calcular grandezas que caracterizam movimentos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D4",
+    "description": "Reconhecer causas da variação de movimentos associadas a forças e ao tempo de duração das interações"
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D5",
+    "description": "Prever e avaliar situações cotidianas que envolvam movimentos, utilizando a conservação da quantidade de movimento."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D6",
+    "description": "Prever e avaliar situações cotidianas que envolvam movimentos, utilizando as leis de Newton."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D7",
+    "description": "Identificar fontes e transformações de energia em movimentos, em diferentes equipamentos e máquinas, em atividades físicas e esportivas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D8",
+    "description": "Calcular o trabalho mecânico de forças de diferentes naturezas, em exemplos de situações reais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 1 – Movimentos - variações e conservações. Grandezas do movimento: identificação, caracterização e estimativa de valores; quantidade de movimento linear: variação e conservação; Leis de Newton; trabalho e energia mecânica; equilíbrio estático e dinâmico",
+    "code": "D9",
+    "description": "Utilizar a conservação da energia mecânica para analisar e determinar parâmetros de movimentos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 2 – Universo, Terra e vida. Universo: elementos que o compõem; interação gravitacional; Sistema Solar; origem e compreensão humana sobre evolução do Universo",
+    "code": "D10",
+    "description": "Estimar e comparar características e dimensões espaciais de corpos celestes (tamanhos e distâncias)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 2 – Universo, Terra e vida. Universo: elementos que o compõem; interação gravitacional; Sistema Solar; origem e compreensão humana sobre evolução do Universo",
+    "code": "D11",
+    "description": "Relacionar variáveis relevantes nas interações gravitacionais entre objetos na superfície da Terra ou entre astros no Universo."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 2 – Universo, Terra e vida. Universo: elementos que o compõem; interação gravitacional; Sistema Solar; origem e compreensão humana sobre evolução do Universo",
+    "code": "D12",
+    "description": "Associar a natureza cíclica de movimentos da Terra, Sol e Lua a fenômenos naturais, ao calendário e influências na vida humana."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D13",
+    "description": "Identificar fenômenos, fontes e sistemas que envolvem trocas de calor em processos naturais ou tecnológicos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D14",
+    "description": "Comparar e avaliar procedimentos de medida e controle da temperatura."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D15",
+    "description": "Identificar propriedades térmicas dos materiais ou processos de trocas de calor que justificam a escolha apropriada de objetos e utensílios com diferentes finalidades."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D16",
+    "description": "Estimar trocas de calor envolvidas em fenômenos naturais ou em processos tecnológicos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D17",
+    "description": "Associar fenômenos atmosféricos ou climáticos a processos de troca de calor e propriedades térmicas de materiais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D18",
+    "description": "Avaliar hipóteses e argumentos acerca do aquecimento global e suas consequências ambientais e sociais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D19",
+    "description": "Identificar fontes e transformações de energia em diferentes processos de sua geração e uso social."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D20",
+    "description": "Aplicar o princípio de conservação da energia nas trocas de calor com mudanças de estado físico, nas máquinas mecânicas e a vapor."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D21",
+    "description": "Reconhecer representações adequadas dos ciclos de funcionamento de diferentes máquinas térmicas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D22",
+    "description": "Avaliar e comparar a potência e o rendimento de máquinas térmicas a partir de dados reais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 3 – Calor, ambiente e usos de energia. Calor e temperatura; trocas de calor e propriedades térmicas da matéria; aquecimento e clima; calor como energia; máquinas térmicas",
+    "code": "D23",
+    "description": "Compreender os princípios fundamentais da termodinâmica que norteiam a construção e o funcionamento das máquinas térmicas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 4 – Som, imagem e comunicação. Som: fontes, características físicas e usos; luz: fontes e características físicas; luz e cor; ondas e transmissões eletromagnéticas",
+    "code": "D24",
+    "description": "Identificar e discriminar características físicas de ondas sonoras."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 4 – Som, imagem e comunicação. Som: fontes, características físicas e usos; luz: fontes e características físicas; luz e cor; ondas e transmissões eletromagnéticas",
+    "code": "D25",
+    "description": "Avaliar argumentos sobre problemas decorrentes da poluição sonora para a saúde humana e possíveis formas de controlá-la."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 4 – Som, imagem e comunicação. Som: fontes, características físicas e usos; luz: fontes e características físicas; luz e cor; ondas e transmissões eletromagnéticas",
+    "code": "D26",
+    "description": "Descrever, por meio de linguagem discursiva ou gráfica, fenômenos e equipamentos que envolvem a propagação da luz e formação de imagens."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 4 – Som, imagem e comunicação. Som: fontes, características físicas e usos; luz: fontes e características físicas; luz e cor; ondas e transmissões eletromagnéticas",
+    "code": "D27",
+    "description": "Comparar diferentes instrumentos e sistemas utilizados para melhorar ou ampliar a visão, como óculos, lupas, microscópios, telescópios e projetores."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 4 – Som, imagem e comunicação. Som: fontes, características físicas e usos; luz: fontes e características físicas; luz e cor; ondas e transmissões eletromagnéticas",
+    "code": "D28",
+    "description": "Associar a cor de um objeto a formas de interação da luz com a matéria."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 4 – Som, imagem e comunicação. Som: fontes, características físicas e usos; luz: fontes e características físicas; luz e cor; ondas e transmissões eletromagnéticas",
+    "code": "D29",
+    "description": "Identificar os principais meios de produção, propagação e detecção de ondas eletromagnéticas no cotidiano."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 4 – Som, imagem e comunicação. Som: fontes, características físicas e usos; luz: fontes e características físicas; luz e cor; ondas e transmissões eletromagnéticas",
+    "code": "D30",
+    "description": "Associar o funcionamento de equipamentos de telecomunicação a características do espectro eletromagnético."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D31",
+    "description": "Identificar elementos e grandezas elétricas presentes em contas de luz, embalagens chapinhas ou impressos de fabricação de aparelhos e equipamentos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D32",
+    "description": "Analisar o funcionamento de equipamentos elétricos presentes no cotidiano segundo suas funções."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D33",
+    "description": "Estimar consumo e custo de energia elétrica residencial."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D34",
+    "description": "Avaliar opções apropriadas na escolha e uso de aparelhos elétricos com base em critérios como segurança, consumo de energia, eficiência e direitos do consumidor."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D35",
+    "description": "Reconhecer representações e arranjos adequados de circuitos elétricos residenciais."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D36",
+    "description": "Relacionar elementos e grandezas mensuráveis de equipamentos e circuitos elétricos (corrente, tensão, resistência, potência)."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D37",
+    "description": "Descrever, por meio de linguagens, diferentes fenômenos, situações ou experimentos que envolvam interações elétricas ou magnéticas"
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D38",
+    "description": "Estimar ordens de grandeza de cargas, correntes e campos elétricos ou magnéticos em fenômenos, arranjos experimentais ou equipamentos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D39",
+    "description": "Discriminar o funcionamento de motores e de geradores, reconhecendo as transformações de energia envolvidas em cada um deles."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D40",
+    "description": "Comparar diferentes processos de geração de energia elétrica em larga escala, bem como as transformações de energia neles envolvidas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 5 – Equipamentos elétricos. Aparelhos e circuitos elétricos; campos e forças eletromagnéticos; motores e geradores; produção e consumo de energia elétrica",
+    "code": "D41",
+    "description": "Avaliar argumentos críticos sobre diferentes recursos e processos de geração de energia, considerando aspectos ambientais, sociais e econômicos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 6 – Matéria e radiação. Matéria: propriedades e organização; átomo: emissão e absorção de radiação; núcleo atômico e radioatividade",
+    "code": "D42",
+    "description": "Identificar e classificar, segundo características e propriedades físicas, diferentes materiais presentes no cotidiano."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 6 – Matéria e radiação. Matéria: propriedades e organização; átomo: emissão e absorção de radiação; núcleo atômico e radioatividade",
+    "code": "D43",
+    "description": "Confrontar diferentes modelos atômicos e/ou concepções de constituição da matéria ao longo da história, analisando seus limites e desdobramentos."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 6 – Matéria e radiação. Matéria: propriedades e organização; átomo: emissão e absorção de radiação; núcleo atômico e radioatividade",
+    "code": "D44",
+    "description": "Reconhecer e avaliar o uso da luz laser em tecnologias contemporâneas."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 6 – Matéria e radiação. Matéria: propriedades e organização; átomo: emissão e absorção de radiação; núcleo atômico e radioatividade",
+    "code": "D45",
+    "description": "Reconhecer transformações nucleares que dão origem à radioatividade."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 6 – Matéria e radiação. Matéria: propriedades e organização; átomo: emissão e absorção de radiação; núcleo atômico e radioatividade",
+    "code": "D46",
+    "description": "Avaliar efeitos biológicos e ambientais das radiações ionizantes, assim como medidas para a sua proteção."
+  },
+  {
+    "matrix": "SUBSEQUENTE",
+    "subject": "Física",
+    "topic": "Tema 6 – Matéria e radiação. Matéria: propriedades e organização; átomo: emissão e absorção de radiação; núcleo atômico e radioatividade",
+    "code": "D47",
+    "description": "Reconhecer aplicações e avaliar argumentos sobre os riscos e benefícios da energia nuclear em diferentes setores, como na medicina, agricultura e geração de eletricidade."
+  }
+]

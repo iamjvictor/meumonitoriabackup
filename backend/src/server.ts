@@ -138,7 +138,7 @@ await app.register(documentRoutes, { prefix: '/api/v1/monitors' });
 await app.register(contentReviewRoutes, { prefix: '/api/v1/monitors' });
 await app.register(documentVisualReviewRoutes, { prefix: '/api/v1/monitors' });
 await app.register(questionRoutes, { prefix: '/api/v1/questions' });
-if (env.NODE_ENV !== 'production') await app.register(iffReviewRoutes, { prefix: '/api/v1/public-review' });
+await app.register(iffReviewRoutes, { prefix: '/api/v1/public-review' });
 await app.register(studentPurchaseRoutes, { prefix: '/api/v1/student' });
 await app.register(registerDailyChallgensModule, { prefix: '/api/v1/student' });
 await app.register(studentQuestionAttemptRoutes, { prefix: '/api/v1/student' });
